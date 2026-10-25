@@ -11,14 +11,19 @@ an externally anchored or tamper-proof audit trail.
 """
 
 from contextlib import contextmanager
+import errno
 from hashlib import sha256
 import json
+import math
 import os
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import threading
 import time
 from typing import Any, Iterator, Mapping
 from uuid import uuid4
+
+
+_WINDOWS_LOCK_ACCESS_RETRY = os.name == "nt"
 
 
 class ArtifactError(RuntimeError):
@@ -183,8 +188,8 @@ class FilesystemArtifactStore:
                  lock_timeout: float = 10.0) -> None:
         if data_classification not in {"metadata", "config", "synthetic"}:
             raise ValueError("Local stores permit only metadata, config, or synthetic fixtures")
-        if lock_timeout < 0:
-            raise ValueError("lock_timeout must be nonnegative")
+        if not math.isfinite(lock_timeout) or lock_timeout < 0:
+            raise ValueError("lock_timeout must be finite and nonnegative")
         self.root = Path(root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
         self.lock_timeout = lock_timeout
@@ -233,6 +238,14 @@ class FilesystemArtifactStore:
             except FileExistsError:
                 if time.monotonic() >= deadline:
                     raise StoreBusy("Lock remains occupied; reconcile its owner before retry: " + key)
+                time.sleep(min(0.01, max(0.0, deadline - time.monotonic())))
+            except PermissionError as exc:
+                # Windows' CRT can map a briefly delete-pending lock to EACCES
+                # without retaining winerror. Retry only this Windows case;
+                # persistent access denial keeps its original error and cause.
+                if (not _WINDOWS_LOCK_ACCESS_RETRY or exc.errno != errno.EACCES
+                        or time.monotonic() >= deadline):
+                    raise
                 time.sleep(min(0.01, max(0.0, deadline - time.monotonic())))
         try:
             with os.fdopen(descriptor, "wb") as output:

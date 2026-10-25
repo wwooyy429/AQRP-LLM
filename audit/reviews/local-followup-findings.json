@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "purpose": "engineering_only",
+  "financial_evidence": false,
+  "findings": [
+    {
+      "id": "DEV-WIN-01",
+      "kind": "actual_local_test_failure",
+      "report": "audit/reviews/local-128-lock-failure.json",
+      "scope": "FilesystemArtifactStore.locked",
+      "cause": "Windows concurrent O_EXCL acquisition may return EACCES without winerror",
+      "repair": "bounded Windows EACCES wait; retain persistent error and unresolved locks; finite timeout required"
+    },
+    {
+      "id": "DEV-LABEL-02",
+      "kind": "synthetic_reproduction",
+      "scope": "build_execution_labels",
+      "trigger": {
+        "entry_quantity": 1e-13,
+        "exit_quantity": 1e-12,
+        "entry_price": 100,
+        "exit_price": 100,
+        "entry_fee": 1,
+        "exit_fee": 1
+      },
+      "observed_gross_return_approx": 9,
+      "cause": "absolute quantity tolerance accepted unequal completed fills",
+      "repair": "exact equal quantity required; reject even one floating step difference"
+    }
+  ],
+  "status": "implemented_local_tests_passed_independent_recheck_pending",
+  "research_calls_added": 0,
+  "lean_calls_added": 0
+}

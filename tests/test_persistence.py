@@ -2,12 +2,16 @@
 
 from concurrent.futures import ThreadPoolExecutor
 from hashlib import sha256
+import errno
 import json
 import multiprocessing
 from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+
+import os
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "cloud"))
 
@@ -290,6 +294,72 @@ class PersistenceTests(unittest.TestCase):
                 with store.locked(key):
                     self.fail("An unresolved lock must not be acquired")
             self.assertEqual(lock.read_bytes(), b"synthetic interrupted owner")
+
+    def test_windows_transient_lock_access_denial_recovers_once(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = FilesystemArtifactStore(directory, lock_timeout=1)
+            original_open = os.open
+            denied = PermissionError(errno.EACCES, "synthetic delete-pending lock")
+            calls = []
+
+            def deny_first_then_open(*args, **kwargs):
+                calls.append(args[0])
+                if len(calls) == 1:
+                    raise denied
+                return original_open(*args, **kwargs)
+
+            entered = 0
+            with patch("qresearch.artifacts._WINDOWS_LOCK_ACCESS_RETRY", True), patch(
+                    "qresearch.artifacts.os.open", side_effect=deny_first_then_open):
+                with store.locked("synthetic/transient"):
+                    entered += 1
+            self.assertEqual(entered, 1)
+            self.assertEqual(len(calls), 2)
+            self.assertEqual(list((Path(directory) / ".locks").iterdir()), [])
+
+    def test_lock_timeout_must_be_finite_and_nonnegative(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for timeout in (float("nan"), float("inf"), float("-inf"), -1):
+                with self.subTest(timeout=timeout), self.assertRaisesRegex(ValueError, "finite and nonnegative"):
+                    FilesystemArtifactStore(directory, lock_timeout=timeout)
+            self.assertEqual(FilesystemArtifactStore(directory, lock_timeout=0).lock_timeout, 0)
+
+    def test_windows_persistent_access_denial_preserves_error_and_owner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = FilesystemArtifactStore(directory, lock_timeout=1)
+            key = "synthetic/denied"
+            lock = Path(directory) / ".locks" / (sha256(key.encode()).hexdigest() + ".lock")
+            lock.parent.mkdir()
+            owner = b"synthetic unresolved owner"
+            lock.write_bytes(owner)
+            denied = PermissionError(errno.EACCES, "synthetic persistent access denial")
+            with patch("qresearch.artifacts._WINDOWS_LOCK_ACCESS_RETRY", True), patch(
+                    "qresearch.artifacts.os.open", side_effect=denied) as opening, patch(
+                    "qresearch.artifacts.time.monotonic", side_effect=[0., .5, .5, 1.]), patch(
+                    "qresearch.artifacts.time.sleep") as sleeping:
+                with self.assertRaises(PermissionError) as raised:
+                    with store.locked(key):
+                        self.fail("A denied lock cannot enter the critical section")
+            self.assertIs(raised.exception, denied)
+            self.assertEqual(opening.call_count, 2)
+            sleeping.assert_called_once()
+            self.assertEqual(lock.read_bytes(), owner)
+
+    def test_nonwindows_or_other_permission_errors_are_not_retried(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = FilesystemArtifactStore(directory, lock_timeout=1)
+            for windows, code in ((False, errno.EACCES), (True, errno.EPERM)):
+                denied = PermissionError(code, "synthetic real permission fault")
+                with self.subTest(windows=windows, errno=code), patch(
+                        "qresearch.artifacts._WINDOWS_LOCK_ACCESS_RETRY", windows), patch(
+                        "qresearch.artifacts.os.open", side_effect=denied) as opening, patch(
+                        "qresearch.artifacts.time.sleep") as sleeping:
+                    with self.assertRaises(PermissionError) as raised:
+                        with store.locked("synthetic/denied"):
+                            self.fail("A permission fault cannot enter the critical section")
+                self.assertIs(raised.exception, denied)
+                opening.assert_called_once()
+                sleeping.assert_not_called()
 
     def test_event_chain_sequence_and_hashes_are_verified(self):
         first = self.store.append_event("synthetic/events.jsonl", {"fixture": 1})

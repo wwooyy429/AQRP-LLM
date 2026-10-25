@@ -1,0 +1,114 @@
+{
+  "reviewed_commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
+  "source_hash": "2231d32bac52db386ed084a9432f1d2e1c88a65c204b81d8b602b668962805d7",
+  "reviewer": "ChatGPT Work",
+  "review_kind": "independent_software_acceptance_synthetic_only",
+  "stage_results": {
+    "0": {
+      "status": "failed",
+      "blocking_findings": [
+        "WR-02"
+      ]
+    },
+    "1": {
+      "status": "failed",
+      "blocking_findings": [
+        "WR-01"
+      ]
+    }
+  },
+  "tests": {
+    "environment": {
+      "python": "3.12.14",
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "platform": "Linux x86_64"
+    },
+    "repository_verify": {
+      "command": "python -B tools/stages.py verify",
+      "actually_executed": true,
+      "run": 112,
+      "passed": 112,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "independent": {
+      "run": 32,
+      "passed": 30,
+      "failed": 2,
+      "exit_code": 1,
+      "author_test_fixtures_imported": false,
+      "failed_tests": [
+        "Labels.test_11_unsigned_input_must_not_turn_loss_into_profit",
+        "Audits.test_21_runtime_must_not_use_A_audit_to_authorize_B_factor"
+      ],
+      "pipeline_cross_subject_rejection": "passed",
+      "restored_model_artifacts": 6,
+      "predictions_compared_exactly": 18
+    },
+    "repository_checkout_unchanged": true,
+    "market_data_calls": 0,
+    "research_executions": 0,
+    "backtest_submissions": 0,
+    "model_api_calls": 0,
+    "live_calls": 0,
+    "financial_evidence": false
+  },
+  "findings": [
+    {
+      "id": "WR-01",
+      "priority": "P1",
+      "file": "cloud/qresearch/labels.py",
+      "lines": [
+        113,
+        139,
+        152,
+        153,
+        154,
+        155,
+        156
+      ],
+      "title": "Unsigned integer arithmetic corrupts execution labels",
+      "trigger": "1 share; entry 100; exit 90; entry/exit fees 1 each; NUMBER_COLUMNS cast to uint64",
+      "expected": {
+        "gross_return": -0.1,
+        "net_return": -0.12
+      },
+      "actual": {
+        "gross_return": 184467440737095520,
+        "net_return": 184467440737095520
+      },
+      "minimal_fix": "Normalize numeric representation before arithmetic; reject out-of-range inputs; validate notional and cost sums; add integer dtype regression tests."
+    },
+    {
+      "id": "WR-02",
+      "priority": "P1",
+      "file": "cloud/qresearch/runtime.py",
+      "lines": [
+        43,
+        52,
+        53,
+        55,
+        56,
+        57
+      ],
+      "title": "ResearchEngine accepts B under A's unchanged audit reports",
+      "trigger": "Keep A reports and study_hash; replace approval.factor_hashes with B; evaluate B",
+      "expected": "reject",
+      "actual": "B=2*close accepted; close=7 produced 14",
+      "minimal_fix": "Resolve and hash-check the authoritative audited package; derive all approved component bindings from that package.",
+      "scope": "Low-level ResearchEngine; independently tested pipeline rejected cross-subject reports."
+    }
+  ],
+  "not_verified": [
+    "Any later repair commit or moving HEAD",
+    "Stages 2-7 production acceptance",
+    "Real market coverage and actual historical availability",
+    "Actual QuantConnect execution and Research/LEAN trading parity",
+    "Distributed storage concurrency and portfolio cost/risk stress",
+    "External model APIs and live trading",
+    "Market IC, profitability and final financial tests",
+    "2026 holdout independence",
+    "Local Python 3.10/3.11 execution"
+  ]
+}

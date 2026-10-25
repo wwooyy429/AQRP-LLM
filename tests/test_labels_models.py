@@ -10,7 +10,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "cloud"))
 from qresearch.contracts import NY, digest
-from qresearch.labels import LabelProtocol, LabelValidationError, build_execution_labels
+from qresearch.labels import LabelProtocol, LabelValidationError, NUMBER_COLUMNS, build_execution_labels
 from qresearch.models import ModelSpec, ModelValidationError, create_model, restore_model
 
 
@@ -67,6 +67,84 @@ def metadata(years):
 
 
 class LabelTests(unittest.TestCase):
+    def one_share_loss(self):
+        data = executions().iloc[[0]].copy()
+        for name, value in {"entry_quantity": 1, "exit_quantity": 1, "entry_price": 100, "exit_price": 90,
+                            "entry_fee": 1, "exit_fee": 1, "other_costs": 0, "cash_distributions": 0}.items():
+            data[name] = value
+        return data
+
+    def test_wr01_unsigned_losses_and_numeric_dtype_invariance(self):
+        protocol = LabelProtocol.from_dict(label_spec())
+        for dtype in ("uint8", "uint64", "int8", "int64", "float32", "float64", "object"):
+            data = self.one_share_loss()
+            data[list(NUMBER_COLUMNS)] = data[list(NUMBER_COLUMNS)].astype(dtype)
+            with self.subTest(dtype=dtype):
+                result = build_execution_labels(data, protocol)
+                self.assertAlmostEqual(result.gross_return.iloc[0], -.10, places=14)
+                self.assertAlmostEqual(result.net_return.iloc[0], -.12, places=14)
+        # Per-scalar NumPy dtype in an object frame must not reintroduce uint
+        # subtraction, even when not all columns use the same storage dtype.
+        for scalar in (np.uint8, np.uint64, np.int64, np.float32, np.float64):
+            data = self.one_share_loss()
+            for name in NUMBER_COLUMNS:
+                data[name] = pd.Series([scalar(data[name].iloc[0])], dtype=object)
+            result = build_execution_labels(data, protocol)
+            self.assertAlmostEqual(result.net_return.iloc[0], -.12, places=14)
+
+    def test_wr01_signed_multiplication_cannot_wrap(self):
+        data = self.one_share_loss()
+        data["entry_quantity"], data["exit_quantity"] = 2 ** 31, 2 ** 31
+        data["entry_price"], data["exit_price"] = 2 ** 32, 2 ** 31
+        data[list(NUMBER_COLUMNS)] = data[list(NUMBER_COLUMNS)].astype("int64")
+        result = build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+        # Entry notional is 2**63, beyond signed int64 but valid in binary64.
+        self.assertAlmostEqual(result.gross_return.iloc[0], -.5, places=14)
+        self.assertAlmostEqual(result.net_return.iloc[0], -.5, places=14)
+
+    def test_unequal_tiny_quantities_cannot_pass_as_complete_roundtrip(self):
+        data = self.one_share_loss()
+        data["entry_quantity"], data["exit_quantity"] = 1e-13, 1e-12
+        with self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
+            build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+        # A numerical tolerance must not hide unequal quantities at any scale.
+        data["entry_quantity"], data["exit_quantity"] = 1., np.nextafter(1., 2.)
+        with self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
+            build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+
+    def test_wr01_out_of_precision_integer_inputs_rejected_before_coercion(self):
+        protocol = LabelProtocol.from_dict(label_spec())
+        for name in NUMBER_COLUMNS:
+            for representation in (np.uint64(2 ** 53 + 1), np.int64(2 ** 53 + 1), 2 ** 53 + 1, str(2 ** 53 + 1)):
+                data = self.one_share_loss()
+                data[name] = pd.Series([representation], dtype=object)
+                with self.subTest(column=name, kind=type(representation).__name__), self.assertRaisesRegex(LabelValidationError, "precision"):
+                    build_execution_labels(data, protocol)
+        # A mixed object column must be inspected before pandas can round the
+        # large Python integer while combining it with real floating values.
+        data = executions()
+        data["entry_price"] = pd.Series([2 ** 53 + 1, 50., 20.], dtype=object)
+        with self.assertRaisesRegex(LabelValidationError, "precision"):
+            build_execution_labels(data, protocol)
+
+    def test_wr01_every_float_intermediate_requires_finite_values(self):
+        protocol = LabelProtocol.from_dict(label_spec())
+        cases = [
+            {"entry_quantity": 1e308, "exit_quantity": 1e308, "entry_price": 100.},
+            {"entry_price": 1., "exit_price": 1e308, "entry_quantity": 2., "exit_quantity": 2.},
+            {"entry_fee": 1e308, "exit_fee": 1e308},
+            {"entry_fee": 1e308, "other_costs": 1e308},
+            {"entry_price": 1., "exit_price": 1e308, "cash_distributions": 1e308},
+            {"entry_price": 1e308, "exit_price": 1., "entry_fee": 1e308},
+            {"entry_price": 1e-300, "entry_quantity": 1e-300, "exit_quantity": 1e-300},
+        ]
+        for change in cases:
+            data = self.one_share_loss()
+            for name, value in change.items():
+                data[name] = float(value)
+            with self.subTest(change=change), self.assertRaises(LabelValidationError):
+                build_execution_labels(data, protocol)
+
     def test_three_hand_computed_roundtrip_answers_and_maturity(self):
         result = build_execution_labels(executions(), LabelProtocol.from_dict(label_spec()))
         np.testing.assert_allclose(result.gross_return, [.10, -.10, .03], rtol=0, atol=1e-14)

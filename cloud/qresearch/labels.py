@@ -8,7 +8,9 @@ adapter exists. Spread and slippage are already inside actual fill prices and
 are not charged a second time here.
 """
 from dataclasses import dataclass
+from decimal import Decimal, InvalidOperation
 import json
+from numbers import Integral, Real
 from typing import Mapping
 
 import numpy as np
@@ -71,6 +73,57 @@ NUMBER_COLUMNS = ("entry_quantity", "exit_quantity", "entry_price", "exit_price"
 EXECUTION_COLUMNS = ("trade_id", "sid", "side", "currency", "normalization", "execution_source",
                      "entry_execution_id", "exit_execution_id", "non_cash_corporate_action")
 
+MAX_EXACT_INTEGER = 2 ** 53
+
+
+def _float64_column(series, name):
+    """Normalize before arithmetic, without silently rounding large integers.
+
+    Checking original scalars also catches object columns mixing integers and
+    floats before pandas could coerce the integers to an imprecise float dtype.
+    Integral inputs outside binary64's consecutive exact-integer range are not
+    supported. Explicit finite real floating inputs use binary64 arithmetic.
+    """
+    converted = []
+    for value in series:
+        if isinstance(value, (bool, np.bool_)) or np.iscomplexobj(value):
+            raise LabelValidationError("Boolean/complex execution values are prohibited: " + name)
+        if isinstance(value, Integral):
+            if abs(int(value)) > MAX_EXACT_INTEGER:
+                raise LabelValidationError("Execution integer exceeds exact float64 precision: " + name)
+        elif isinstance(value, (str, Decimal)):
+            try:
+                decimal = Decimal(value)
+            except (InvalidOperation, ValueError) as exc:
+                raise LabelValidationError("Execution values must be real numeric data: " + name) from exc
+            if not decimal.is_finite():
+                raise LabelValidationError("Missing or infinite execution values are prohibited: " + name)
+            if decimal == decimal.to_integral_value() and abs(decimal) > MAX_EXACT_INTEGER:
+                raise LabelValidationError("Execution integer exceeds exact float64 precision: " + name)
+            value = decimal
+        elif not isinstance(value, Real):
+            raise LabelValidationError("Execution values must be real numeric data: " + name)
+        try:
+            numeric = float(value)
+        except (ValueError, TypeError, OverflowError) as exc:
+            raise LabelValidationError("Execution value cannot be represented as float64: " + name) from exc
+        if not np.isfinite(numeric):
+            raise LabelValidationError("Missing or infinite execution values are prohibited: " + name)
+        converted.append(numeric)
+    return pd.Series(np.asarray(converted, dtype=np.float64), index=series.index)
+
+
+def _finite_math(name, operation, *operands):
+    """Check every float64 intermediate, not just the final return ratio."""
+    try:
+        with np.errstate(over="raise", invalid="raise", divide="raise", under="ignore"):
+            result = operation(*operands)
+    except (FloatingPointError, OverflowError) as exc:
+        raise LabelValidationError("Non-finite execution arithmetic: " + name) from exc
+    if not np.isfinite(result).all():
+        raise LabelValidationError("Non-finite execution arithmetic: " + name)
+    return result
+
 
 def build_execution_labels(trades, protocol):
     """Return gross/net realized return labels on entry notional, with timing.
@@ -79,7 +132,9 @@ def build_execution_labels(trades, protocol):
     currency. Cash distributions include only realized cash for this round trip.
     A supplied label_available_at may delay maturity; it may not move it earlier
     than either fill, cost or corporate-action receipt. Missing or partial
-    trades fail rather than being silently discarded.
+    trades fail rather than being silently discarded. Numeric inputs are
+    normalized to float64 before arithmetic, with exact-integer range checks;
+    uint/signed input dtypes cannot change the economic result.
     """
     if not isinstance(protocol, LabelProtocol):
         raise LabelValidationError("Validate the LabelProtocol before constructing labels")
@@ -107,19 +162,12 @@ def build_execution_labels(trades, protocol):
             (data.exit_at <= data.costs_available_at) & (data.exit_at <= data.corporate_actions_available_at)).all():
         raise LabelValidationError("Execution events and receipt timestamps are inconsistent")
     for column in NUMBER_COLUMNS:
-        if data[column].map(lambda value: isinstance(value, (bool, np.bool_))).any():
-            raise LabelValidationError("Boolean monetary/quantity values are prohibited")
-        try:
-            data[column] = pd.to_numeric(data[column], errors="raise")
-        except (ValueError, TypeError) as exc:
-            raise LabelValidationError("Execution quantities, prices and costs must be numeric") from exc
-        if np.iscomplexobj(data[column].to_numpy()) or not np.isfinite(data[column].to_numpy(dtype=float)).all():
-            raise LabelValidationError("Missing or infinite execution values are prohibited")
+        data[column] = _float64_column(data[column], column)
     if (data[list(NUMBER_COLUMNS)] < 0).any().any():
         raise LabelValidationError("Negative quantity, price, costs or distributions are unsupported")
     if (data[["entry_quantity", "exit_quantity", "entry_price", "exit_price"]] <= 0).any().any():
         raise LabelValidationError("Completed round trips require positive prices and quantities")
-    if not np.isclose(data.entry_quantity, data.exit_quantity, rtol=0, atol=1e-12).all():
+    if not data.entry_quantity.eq(data.exit_quantity).all():
         raise LabelValidationError("Partial or share-changing executions require a separate accounting adapter")
     spec = protocol.to_dict()
     if not data.side.eq("long").all():
@@ -136,8 +184,10 @@ def build_execution_labels(trades, protocol):
         raise LabelValidationError("Unresolved non-cash corporate actions are prohibited")
     if spec["purpose"] == "research" and data.execution_source.str.lower().str.contains("synthetic|fixture", regex=True).any():
         raise LabelValidationError("Synthetic executions cannot certify research labels")
-    all_costs = data.entry_fee + data.exit_fee + data.other_costs
-    if all_costs.eq(0).any() and not spec.get("zero_cost_reason"):
+    numbers = {name: data[name].to_numpy(dtype=np.float64, copy=False) for name in NUMBER_COLUMNS}
+    roundtrip_fees = _finite_math("entry plus exit fees", np.add, numbers["entry_fee"], numbers["exit_fee"])
+    all_costs = _finite_math("total costs", np.add, roundtrip_fees, numbers["other_costs"])
+    if np.any(all_costs == 0) and not spec.get("zero_cost_reason"):
         raise LabelValidationError("Zero costs require an explicit frozen reason; no implicit zero-cost labels")
     maturity = data[["entry_available_at", "exit_available_at", "costs_available_at",
                      "corporate_actions_available_at"]].max(axis=1)
@@ -148,13 +198,15 @@ def build_execution_labels(trades, protocol):
     output = data[["trade_id", "sid", "formation_at", "entry_at", "exit_at", "execution_source",
                    "entry_execution_id", "exit_execution_id"]].copy()
     output["label_available_at"] = maturity
-    with np.errstate(over="ignore", invalid="ignore"):
-        notional = data.entry_quantity * data.entry_price
-        price_pnl = data.exit_quantity * data.exit_price - notional
-        output["gross_return"] = (price_pnl + data.cash_distributions) / notional
-        output["net_return"] = (price_pnl + data.cash_distributions - all_costs) / notional
-    if not np.isfinite(notional.to_numpy()).all() or not np.isfinite(output[["gross_return", "net_return"]].to_numpy()).all():
-        raise LabelValidationError("Execution arithmetic overflowed; no finite label can be produced")
+    notional = _finite_math("entry notional multiplication", np.multiply, numbers["entry_quantity"], numbers["entry_price"])
+    if np.any(notional <= 0):
+        raise LabelValidationError("Entry notional must remain positive after float64 multiplication")
+    exit_proceeds = _finite_math("exit proceeds multiplication", np.multiply, numbers["exit_quantity"], numbers["exit_price"])
+    price_pnl = _finite_math("exit proceeds minus entry notional", np.subtract, exit_proceeds, notional)
+    gross_pnl = _finite_math("price PnL plus distributions", np.add, price_pnl, numbers["cash_distributions"])
+    net_pnl = _finite_math("gross PnL minus total costs", np.subtract, gross_pnl, all_costs)
+    output["gross_return"] = _finite_math("gross return division", np.divide, gross_pnl, notional)
+    output["net_return"] = _finite_math("net return division", np.divide, net_pnl, notional)
     output["label"] = output[spec["target_kind"]]
     output["target_kind"] = spec["target_kind"]
     output["label_protocol_hash"] = protocol.configuration_hash
