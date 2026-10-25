@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "review_kind": "developer_read_only_stage2_readiness",
+  "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+  "status": "not_accepted",
+  "source_changed": false,
+  "market_calls": 0,
+  "research_executions": 0,
+  "backtest_submissions": 0,
+  "reuse": [
+    "QuantConnectHistoryProvider.fetch",
+    "ExchangeCalendar",
+    "SharedDataCache",
+    "select_liquid_universe",
+    "causal_window"
+  ],
+  "gaps": [
+    {
+      "priority": "P0",
+      "name": "versioned_cloud_deployment",
+      "detail": "Cloud is still the older 0.1 snapshot; deploy and read back the accepted 0.2 source before execution."
+    },
+    {
+      "priority": "P0",
+      "name": "real_task_bridge",
+      "detail": "Bind source, cloud project, actual request plan, budget attempt, external task and terminal result; do not open production scope for engineering fixtures."
+    },
+    {
+      "priority": "P0",
+      "name": "observed_coverage_producer",
+      "detail": "Compute checks from actual evidence and bind the execution plan; caller booleans cannot certify coverage."
+    },
+    {
+      "priority": "P1",
+      "name": "historical_full_universe",
+      "detail": "Collect historical coarse DollarVolume, permanent SIDs, point-in-time classification and listing status."
+    },
+    {
+      "priority": "P1",
+      "name": "financial_vintages_and_availability",
+      "detail": "Record field path, report period, publication, provider receipt, revisions and missing coverage."
+    },
+    {
+      "priority": "P1",
+      "name": "mapping_and_corporate_actions",
+      "detail": "Trace raw prices, splits, dividends, delistings and mapping."
+    }
+  ],
+  "critical_limitations": [
+    "History available_time=end_time is modeled LEAN delivery, not certified historical provider receipt.",
+    "Cache expands short requests to year partitions; declare the actual fetch range.",
+    "Two fixed example stocks do not certify the dynamic historical US200.",
+    "An immediately quitting host algorithm cannot count as a completed data-receiving backtest."
+  ],
+  "proposed_next_engineering_fixture": {
+    "market_period": "2018 only, no 2024+ access",
+    "universe": "two fixed engineering examples, not historical US200",
+    "research_calls": 1,
+    "lean_submissions": 1,
+    "budget_reserved": false,
+    "execution_authorized_by_this_report": false,
+    "economic_factor_registered": false,
+    "financial_evidence": false,
+    "lean_scope": "Dedicated data-receiving entry point; actual OnData and corporate actions; await terminal result."
+  },
+  "independent_gpt_work_acceptance": false
+}

@@ -1,11 +1,107 @@
-# AQRP-LLM
+# AQRP-LLM：LLM＋QuantConnect因子研究平台
 
-A staged LLM + QuantConnect factor research platform.
+本仓库按0–7阶段开发，运行结构为一个研究LLM、持久化程序调度器、共享计算库及QuantConnect云端执行。GPT负责提出受限规范；审计、预算、指标和接受／拒绝由固定程序控制。阶段0–1已由GPT Work对固定提交ddca623独立复验并修复后通过，另提前实现调度器状态机。阶段2–7仍未验收，尚未实现无人值守市场研究或交易。
 
-Development follows stages 0-7: contracts, offline calculation, QuantConnect integration, Research evaluation, trading validation, bounded LLM proposals, constrained search, and frozen evaluation/forward monitoring.
+上一版共享缓存、文件去重、受限因子计算和滚动评价已部署到QuantConnect，并用2018年两个样例股票验证过一次批量取数、再次读取新增请求0次。该云端记录只属于0.1工程检查，不是本轮0.2全部代码的云端验收，也不是因子绩效证据。当前没有已登记的市场经济因子、已选生产模型或已冻结交易协议。
 
-This repository starts with engineering infrastructure. It has no validated economic factor, no live trading authorization, and no certified independent final-test result. Research data access is limited to dates before 2024 until a separate frozen executor is configured. The requested 2024-2026 evaluation includes a previously research-exposed 2024-2025 segment.
+本地88个旧文件已移入回收站，云端主研究项目的旧源码、1个历史回测及2份旧结果文件已清理。当前只使用通用代码和配置，未恢复旧因子。
 
-Source, configuration contracts, synthetic tests, and non-market audit metadata may be versioned here. Licensed market panels and row-level derived values stay in QuantConnect Cloud. Credentials are never committed.
+云端教学沙箱的最后1个旧入口文件已删除，并已读回确认文件列表为空。旧文件清理已全部完成，详细记录保留在本地受限审计文件audit/cleanup_result.json，不随代码上传。
 
-Changes are developed on feature branches and submitted for stage-based review. GPT Work reviews a fixed Git commit with independent tests; its software review is separate from the final financial holdout.
+## 时间分区
+
+统一使用America/New_York及QuantConnect交易所日历。2010是首轮训练起点，固定8年训练、随后1年验证，每次前进1年，共6轮，不是扩展窗口。
+
+| 轮次 | 训练 | 验证 |
+| --- | --- | --- |
+| 1 | 2010–2017 | 2018 |
+| 2 | 2011–2018 | 2019 |
+| 3 | 2012–2019 | 2020 |
+| 4 | 2013–2020 | 2021 |
+| 5 | 2014–2021 | 2022 |
+| 6 | 2015–2022 | 2023 |
+
+每轮加入最近已经发生的一年、移除最早一年，只在新的8年训练窗内重估预先声明的可训练参数，再评价随后一年。早于窗口的历史仅可用于特征暖启动，不能继续影响拟合统计。公式、方向、模型族、超参数、交易、成本和风险规则不会随结果更换。
+
+最终评估区间为2024-01-01至2026-10-23，替代此前等待2026全年的方案。独立执行器按冻结的年度更新规则拟合2016–2023预测2024、2017–2024预测2025、2018–2025预测2026至10月23日；不根据测试反馈调方案，所有最终持有期必须在截止日内实际退出。
+
+2024–2025曾用于先前研究，因此完整最终区间不能认证为未触碰的独立测试集。这一事实保留在审计中，删除文件不会消除数据暴露。2026子段的独立性仍待核验。最终评估执行保持关闭，待完整规范冻结及独立执行器就绪。
+
+## 通用范围和控制
+
+股票池为美国主要交易所普通股及ADR，按过去20个完整交易日的平均DollarVolume动态选前200只，不用当前名单回填历史。财务缺失不替换股票池成员；公布和实际送达时点、原始报告版本及缺失规则须逐字段登记。
+
+预热长度与隔离期不沿用旧固定值，须根据每个新FactorSpec的最长特征窗口、财务报告历史、标签持有期和成交延迟派生并在绩效计算前冻结。最终连续评估如需入口隔离只在2024起点应用，不在2025和2026自动另造停仓空窗。跨边界或拟合时未成熟的标签均剔除。六轮不是六个新配置，实际执行与提交次数分别计预算。
+
+## 配置入口
+
+- [研究分区和滚动规则](config/research.json)
+- [股票池](config/universe.json)
+- [数据与可用时间](config/data.json)
+- [预算及累计使用量](config/budget.json)
+- [研究流程和执行门槛](config/workflow.json)
+- [QuantConnect连接设置](config/quantconnect.json)
+- [因子规范模板](templates/factor_spec.json)、[模型模板](templates/model_spec.json)、[成交成本风险模板](templates/trading_spec.json)
+- [数据暴露记录](audit/data_exposure.json)；清理详细记录保留本地受限审计
+
+预算上限保持12个配置、20次Research执行、16次LEAN提交。此前使用量不会因删除而归零。本次通用重配置占用1个正常配置槽。
+
+## 文件与数据如何复用
+
+config/*.json是设置的唯一编辑入口。运行 `python -B tools/research.py build` 在原路径生成cloud/research_config.py及当前部署清单audit/deployment.json；内容相同就不重写，不生成按时间命名的副本。cloud/qresearch是唯一共享计算源码，同时供Research和后续LEAN交易适配器引用。
+
+配置按规范化内容生成哈希。配置、结果采用稳定路径且不可覆盖；重复的已完成任务直接复用结果，不追加新执行、不再扣执行预算。每次实际成功、失败、修复和异步状态进入audit/runtime/registry/events.jsonl。状态不明的提交及崩溃留下的锁须核对后处理，不能自动换任务名重试。事件链可以发现不一致，不是外部不可篡改认证。
+
+历史数据先汇总本轮因子所需的字段、永久SID和时间，按年份及最多64个SID分块批量获取。每字段独立缓存，新增字段只补取缺失字段；相同计划下多个因子和六轮验证复用缓存。改变SID集合可能改变分块，所以应先固定完整联合取数计划；此版本没有承诺任意改变股票列表都实现零重复下载。首次预取不是把全市场全部年份全部财务字段一次塞进内存。
+
+真实行情、财务及逐行衍生结果只留在QuantConnect云端Object Store。缓存写入使用一个明确的生产进程，其余读取者关闭取数能力；当前Object Store没有跨节点原子锁保证。因子本身无历史请求接口，只接收按每个形成时点构造的因果窗口；标签单独传给评价模块。原始历史可用于新入池股票的滚动计算，rank/zscore则逐日使用历史当日成员。
+
+## 使用入口
+
+本地检查：`python -B tools/research.py status`。本地合成测试：PowerShell设置 `$env:PYTHONPATH = Join-Path (Get-Location) 'cloud'` 后运行 `python -B -m unittest discover -s tests -q`。这些命令不会访问市场数据或提交回测。
+
+首次迁移使用 `python -B tools/research.py bootstrap`，通过已核验旧台账导入通用配置，不再扣一次配置预算。后续新完整研究设计使用 `register --config-file <已冻结配置.json>`，返回内容哈希；经济逻辑、方向、参数范围、预处理、模型或交易规则变化都登记新配置。
+
+每次真正执行前使用 `begin --config-id <哈希> --stage research或lean --operation <固定逻辑任务名>`，仅should_execute为true时调用平台。异步取得任务编号用pending登记；收到已完成结果后用complete登记。失败用fail登记；重试同一任务必须显式给出retry-of、原因及预算分配。编译成功、提交成功、运行完成分别记录。此CLI登记器不会自行调用平台，也不能约束绕过登记器的手工调用。
+
+云端research.ipynb保留一个可复用的工程检查单元，调用engineering_smoke.run；重新实际执行仍须预扣Research次数。正式因子接口为DataRequest、ResearchEngine.prepare、causal_window、FactorSpec.from_dict、evaluate_factors与walk_forward_evaluate。ResearchEngine真实因子计算还要求冻结实现哈希、匹配的公式/时序与覆盖审计、固定模型、标签和预登记比较协议；当前这些研究批准项尚未成立。QuantBook的start_date是历史请求截止时点，需满足请求结束≤qb.time≤2024-01-01。
+
+## 验证范围与剩余工作
+
+云端14份Python源码已读回一致，编译成功，存在纯Python辅助模块的通用风格提示。首次云端检查因QuantBook截止时点设错返回空数据，已记录失败；修复并新增截止时点检查后通过。2次Research实际执行均计预算，失败没有返还。累计使用：配置5/12，Research8/20（正常5、修复预留3），LEAN0/16，无额外购买。
+
+股票池的历史排名计算内核已实现；全市场历史采集、分类覆盖及财务实际公布/送达时点仍未认证，财务取数适配器尚未开放。尚未注册经济因子、固定模型、成本成交风险规范和LEAN组合交易适配器；尚未完成跨Research/LEAN实际交易路径一致性、组合增量及成本压力检验。main.py是Research库宿主，会明确结束且不交易；不能把它作为空策略回测或完整交易系统验收结果。
+
+最终测试保持关闭。完整证据见audit/implementation_verification.json、当前部署清单和追加台账。后续工作是完成历史股票池及逐字段时序审计，再预登记首个假设和完整交易研究协议；目前不能声称已发现扣费后有效因子。
+
+## 本轮阶段开发与Git审核
+
+GitHub仓库为 https://github.com/wwooyy429/AQRP-LLM 。主分支保存已接纳版本，开发通过功能分支和PR进行；不在每轮创建日期副本。Git追踪代码、配置、合成测试及许可的审计元数据，临时锁、凭证、原始数据、逐行市场结果和Notebook输出不入库。
+
+阶段计划及依赖在config/development.json。执行 `python -B tools/stages.py verify` 会检查配置并运行合成测试，生成当前源码清单与阶段记录audit/stage_verification.json。该命令不访问市场数据，不消耗Research／回测次数。固定测试依赖位于requirements-test.txt，GitHub Actions在Python3.10／3.11执行同一离线检查。
+
+| 阶段 | 本轮交付或当前门槛 |
+| --- | --- |
+| 0 规范与骨架 | StudySpec完整规范、哈希绑定、审计证据和阶段清单；固定提交ddca623经GPT Work修复后通过 |
+| 1 离线计算 | 受限公式、手算因子、实际成交标签协议、固定模型与模型版本；固定提交ddca623独立合成复算通过 |
+| 2 QuantConnect适配 | 已有小样例缓存；完整历史股票池、数据时点和真实任务计划仍未认证 |
+| 3 Research评价 | 已有六轮评价核心；实际研究需合格数据、标签、固定模型和审计证据 |
+| 4 交易验证 | 通用LEAN组合交易、成本成交风险、对账和压力检验尚未完成 |
+| 5 GPT闭环 | 提前交付持久化状态机；GPT模型版本、凭证、调用额度及真实QC任务桥尚未启用 |
+| 6 受限搜索 | 等待前置阶段验收及明确比较范围，不能用测试集筛选候选 |
+| 7 冻结与前向 | 等待完整冻结、独立最终执行器、前向交易与监控 |
+
+WorkflowController当前可用合成适配器演练登记、审计、预算、提交、等待、判定和归档；真实research提交在任务计划尚未认证时明确拒绝。生产Study、标签、模型、交易及代码身份必须匹配；只填“通过”的布尔标记不能推进。审计声明必须与不可变的原始检查报告一致。
+
+标签器目前仅处理多头、等量、完整往返交易，费用和现金分配必须显式提供；不支持的部分成交、做空和非现金公司行动会拒绝。它不是组合账本。固定模型包含identity及ridge协议，并不表示已选择或优化生产模型。生成标签的成熟时间包含入场、退出、费用及公司行动记录的实际送达时点。
+
+GPT Work软件审核应独立构造边界和手算测试，报告“通过／修复后通过／失败／证据不足”，并写明Git提交和源码哈希。软件审核不等于最终金融样本测试；2024–2025既往暴露事实继续保留。
+
+GPT Work首次实际审核固定提交113fdf7：仓库112项测试通过，独立32项中30项通过、2项失败，阶段0和1均未通过。WR-01为无符号整数成交标签回绕，WR-02为低层ResearchEngine审计与实际因子未绑定；原报告保存在audit/reviews/113fdf7cf7147d58a8b3125beceeaeee0f6aa962.json，原始独立复现保存在tests/test_work_p1_minimal.py。修复后必须针对新固定提交重新独立审核，不能用开发者测试覆盖原失败结论。
+
+第二轮固定提交dd77108的原32项独立测试、2个原始复现及133项仓库测试全部通过。阶段0修复后通过；新增16项中1项发现WR-03：原始高精度不等数量在float64转换后合并，阶段1仍失败。该轮报告和独立最小复现也保留。WR-03修复在窄化前以精确有理数比较原始数量，等待新固定版本复验；当前结论以audit/review_tracking.json及对应提交报告为准。
+
+第三轮固定提交ddca623a879d7f051540b6a15a3fe29bc7b96441的138项仓库测试、原32项独立测试、2个原始复现、第二轮新增16项及第三轮新增14项全部通过。执行次数包含重叠复现，不表示202项独有测试。WR-01/02/03确认修复，阶段0和1均修复后通过；完整报告在[audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json](audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json)，当前状态在[audit/review_tracking.json](audit/review_tracking.json)。本地Windows及GitHub的Python3.10/3.11均实际运行138项通过；Work在Linux上独立运行，不认证原生Windows行为。
+
+独立验收绑定上述源码提交及清单哈希cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf；后续归档提交只更新报告和文档。离线验证器生成的stage_verification.json是开发侧报告，不能替代独立验收记录。下一阶段缺口与最小工程验收范围见[audit/stage2_readiness.json](audit/stage2_readiness.json)，不会据此自动开放市场研究或最终样本。
+

@@ -1,0 +1,189 @@
+{
+  "reviewer": "ChatGPT Work",
+  "review_date": "2026-10-26",
+  "review_kind": "independent_software_recheck_synthetic_only",
+  "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+  "source_hash": "a0dd6a3ff7d631771ec54c3dd531c1b40a1e436babe94921ae0070ed177a1e99",
+  "environment": {
+    "platform": "Linux x86_64; glibc 2.39",
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "dependency_installation": "requirements-test.txt actually checked with pip in the independent virtual environment"
+  },
+  "stage_results": {
+    "0": {
+      "status": "passed_after_fix",
+      "scope": "Offline synthetic software acceptance on the fixed commit; native Windows kernel behavior not certified"
+    },
+    "1": {
+      "status": "failed",
+      "blocking_findings": [
+        "WR-03"
+      ]
+    },
+    "2-7": {
+      "status": "not_accepted"
+    }
+  },
+  "previous_review": {
+    "reviewed_commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
+    "stage_0": "failed",
+    "stage_1": "failed",
+    "original_conclusion_preserved": true,
+    "original_test_scripts_byte_identical": true
+  },
+  "tests": {
+    "repository_verify": {
+      "run": 133,
+      "passed": 133,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 3.178,
+      "command": "python -B tools/stages.py verify"
+    },
+    "original_independent_32": {
+      "run": 32,
+      "passed": 32,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 0.772
+    },
+    "original_minimal_2": {
+      "run": 2,
+      "passed": 2,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 0.053
+    },
+    "added": {
+      "test_methods": 16,
+      "passed_methods": 15,
+      "failed_methods": 1,
+      "failed_subtests": 2,
+      "unittest_failure_records": 2,
+      "exit_code": 1,
+      "seconds": 0.397,
+      "failed_test": "NumericBoundaries.test_11_decimal_and_string_unequal_quantities_must_not_collapse"
+    },
+    "positive_A": {
+      "result": [
+        [
+          7
+        ],
+        [
+          13
+        ]
+      ],
+      "cache_reads_after_two_identical_calls": 1
+    },
+    "negative_cases": {
+      "B_factor": "rejected before cache read",
+      "changed_dates": "rejected against unchanged observed report even after free plan metadata rehash",
+      "changed_members": "rejected against unchanged observed report even after free plan metadata rehash",
+      "changed_request_interval": "rejected against unchanged observed report even after free plan metadata rehash",
+      "changed_data_version_or_universe": "rejected against registered package",
+      "boolean_plan_check_without_actual_report_plan": "rejected"
+    },
+    "dtype_consistency": [
+      "uint8",
+      "uint64",
+      "int64",
+      "float64",
+      "UInt64",
+      "Int64"
+    ],
+    "dtype_expected": {
+      "gross_return": -0.1,
+      "net_return": -0.12
+    },
+    "float_quantity_boundaries": {
+      "unequal_tiny": "rejected",
+      "one_float_step_difference": "rejected",
+      "equal_tiny": "accepted with expected finite labels"
+    },
+    "lock_boundaries": {
+      "transient_windows_EACCES": "passed via simulated EACCES then actual local acquisition",
+      "persistent_EACCES": "bounded retries and original exception preserved",
+      "foreign_or_replaced_locks": "preserved",
+      "nonwindows_EACCES_or_EPERM": "not retried",
+      "nonfinite_or_negative_timeout": "rejected",
+      "native_windows_execution": false
+    },
+    "repository": {
+      "tracked_files": 70,
+      "manifest_files": 51,
+      "source_hash_matches": true,
+      "working_tree_unchanged": true,
+      "market_panel_or_notebook_files_found": 0,
+      "known_credential_pattern_matches_found": 0,
+      "preserved_2024_2025_exposure": true,
+      "ledger_usage": {
+        "configurations": 5,
+        "research": 8,
+        "lean": 0
+      }
+    },
+    "external_calls": {
+      "QC": 0,
+      "market_data": 0,
+      "external_model": 0,
+      "financial_final_test": 0,
+      "live_trading": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "WR-01",
+      "priority": "P1",
+      "status": "resolved_at_reviewed_commit",
+      "evidence": "Original minimal reproducer and six numeric dtype variants produce gross=-0.1, net=-0.12."
+    },
+    {
+      "id": "WR-02",
+      "priority": "P1",
+      "status": "resolved_at_reviewed_commit",
+      "evidence": "Original negative reproducer passes; independently built authoritative A computes [7,13]; B and unapproved plan changes are rejected before reading."
+    },
+    {
+      "id": "WR-03",
+      "priority": "P2",
+      "status": "open",
+      "file": "cloud/qresearch/labels.py",
+      "lines": [
+        94,
+        96,
+        107,
+        164,
+        165,
+        170
+      ],
+      "title": "Strict quantity equality is checked after lossy float64 conversion",
+      "trigger": {
+        "entry_quantity": "Decimal('1') or string '1'",
+        "exit_quantity": "Decimal('1.00000000000000001') or string '1.00000000000000001'",
+        "storage_dtype": "object"
+      },
+      "expected": "Reject unequal round-trip quantities or explicitly reject an unsupported precision representation.",
+      "actual": {
+        "accepted": true,
+        "gross_return": -0.1,
+        "net_return": -0.12
+      },
+      "cause": "Both supported input values convert to binary64 1.0 before the equality check.",
+      "scope": "Decimal/numeric-string quantities whose difference is below binary64 resolution; ordinary unequal float64 quantities were correctly rejected.",
+      "minimal_fix": "Validate exact equality of the original accepted quantity representations before narrowing, or reject unsupported quantity precision/types; keep the valid equal-quantity path working.",
+      "reproducer": "NumericBoundaries.test_11_decimal_and_string_unequal_quantities_must_not_collapse"
+    }
+  ],
+  "not_verified": [
+    "Stages 2-7 production acceptance",
+    "Native Windows kernel and filesystem behavior; Windows error branches were simulated on Linux",
+    "Python 3.10/3.11 execution",
+    "Real QC data coverage, availability timestamps, Research/backtest completion, Research/LEAN parity, distributed Object Store concurrency",
+    "External model APIs, real portfolio/cost/risk stress and live trading",
+    "Market IC, profitability, final financial sample tests and 2026 holdout independence",
+    "Any moving HEAD or later commit",
+    "Absolute absence of unknown/encoded credentials beyond the stated content and pattern scan"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "timezone": "America/New_York",
+  "market": "USA",
+  "target_size": 200,
+  "included_security_types": [
+    "listed common-stock share classes",
+    "listed ADRs",
+    "listed REIT common shares"
+  ],
+  "excluded_security_types": [
+    "ETF",
+    "ETN",
+    "closed-end fund",
+    "preferred stock",
+    "unit",
+    "warrant",
+    "OTC"
+  ],
+  "listing_scope": "Historical US primary listing exchanges, with validated PIT instrument classification",
+  "identifier": "permanent SID; multiple common share classes may be selected; issuer concentration must be handled by the trading specification",
+  "selection": {
+    "liquidity_metric": "mean daily DollarVolume across20 complete expected exchange sessions",
+    "lookback_sessions": 20,
+    "ranking": "descending; permanent SID tie break",
+    "refresh": "daily before the next regular open using only actually available completed-session data",
+    "uses_current_list_to_backfill": false,
+    "SP500_or_ETF_membership_required": false,
+    "financial_coverage_filter": false,
+    "replace_missing_financial_name_with_rank201": false,
+    "window_completeness": "Do not skip missing sessions; observed zero is zero; missing is missing; IPOs require complete20-session history"
+  },
+  "timing": {
+    "signal_data_session": "last completed regular session t",
+    "scheduled_decision": "09:00 America/New_York on t+1",
+    "allowed_entry": "Only after all inputs are available and actual broker/order cutoff is satisfied; exact execution must be set in each trading specification"
+  },
+  "coverage_status": "full historical classification, liquidity and financial coverage audit not yet performed"
+}
+

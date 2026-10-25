@@ -1,0 +1,240 @@
+{
+  "reviewer": "ChatGPT Work",
+  "review_date": "2026-10-26",
+  "review_kind": "independent_software_recheck_synthetic_only",
+  "reviewed_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
+  "source_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
+  "environment": {
+    "platform": "Linux x86_64; glibc 2.39",
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "transitive_dependencies": {
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "longdouble_nmant": 63,
+    "float64_nmant": 52,
+    "dependency_check": "requirements-test.txt actually checked using pip in the independent virtual environment"
+  },
+  "stage_results": {
+    "0": {
+      "status": "passed_after_fix",
+      "scope": "Offline synthetic software acceptance of this fixed commit"
+    },
+    "1": {
+      "status": "passed_after_fix",
+      "scope": "Offline factor, realized-label, fixed-model and synthetic integration acceptance"
+    },
+    "2-7": {
+      "status": "not_accepted"
+    }
+  },
+  "previous_reviews": [
+    {
+      "reviewed_commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
+      "stage_0": "failed",
+      "stage_1": "failed"
+    },
+    {
+      "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+      "stage_0": "passed_after_fix",
+      "stage_1": "failed",
+      "blocking_findings": [
+        "WR-03"
+      ]
+    }
+  ],
+  "historical_reports_preserved": true,
+  "commands": {
+    "base_directory": "/workspace/scratch/bf2edba5c62c",
+    "fetch": "git -C review-repo fetch origin ddca623a879d7f051540b6a15a3fe29bc7b96441",
+    "clone": "git clone --no-checkout /workspace/scratch/bf2edba5c62c/review-repo /workspace/scratch/bf2edba5c62c/review-fixed-ddca",
+    "checkout": "git -C review-fixed-ddca checkout --detach ddca623a879d7f051540b6a15a3fe29bc7b96441",
+    "dependency_check": "review-venv/bin/python -m pip install -r review-fixed-ddca/requirements-test.txt",
+    "export_fixed_snapshot": "git -C review-fixed-ddca archive ddca623a879d7f051540b6a15a3fe29bc7b96441 | tar -x -C review-run-ddca",
+    "repository_verify": "(cd review-run-ddca && ../review-venv/bin/python -B tools/stages.py verify)",
+    "original_32": "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-ddca/cloud /workspace/scratch/bf2edba5c62c/review-venv/bin/python -B -m unittest discover -s independent-ddca -p test_work_review.py -v",
+    "original_2": "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-ddca/cloud /workspace/scratch/bf2edba5c62c/review-venv/bin/python -B independent-ddca/test_work_p1_minimal.py",
+    "previous_16": "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-ddca/cloud /workspace/scratch/bf2edba5c62c/review-venv/bin/python -B independent-ddca/test_work_recheck.py",
+    "added_14": "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-ddca/cloud /workspace/scratch/bf2edba5c62c/review-venv/bin/python -B independent-ddca/test_work_precision.py"
+  },
+  "tests": {
+    "repository_verify": {
+      "run": 138,
+      "passed": 138,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 4.461
+    },
+    "original_independent_32": {
+      "run": 32,
+      "passed": 32,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 1.239,
+      "script_byte_identical": true
+    },
+    "original_minimal_2": {
+      "run": 2,
+      "passed": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 0.046,
+      "script_byte_identical": true
+    },
+    "previous_added_16": {
+      "run": 16,
+      "passed": 16,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 0.496,
+      "script_byte_identical": true
+    },
+    "new_precision_14": {
+      "run": 14,
+      "passed": 14,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "seconds": 0.617,
+      "author_test_fixtures_imported": false,
+      "fixture_source": "Prior independently written test_work_recheck.py"
+    },
+    "total_test_method_executions": 202,
+    "test_contents_deduplicated": false,
+    "precision_cases": {
+      "high_precision_Decimal_equal": "accepted with expected gross/net labels",
+      "high_precision_string_equal_and_mixed_Decimal_string_equal": "accepted",
+      "Fraction_and_mixed_exact_equal": "accepted",
+      "Decimal_string_and_Fraction_unequal_but_same_float64": "rejected before lossy equality collapse",
+      "Decimal_0_1_versus_binary64_0_1": "rejected because exact rational values differ",
+      "longdouble": "Extra mantissa precision available; unequal originals rejected, equal and exactly equivalent Fraction inputs accepted; test executed without skip",
+      "low_Decimal_context": {
+        "precisions": [
+          1,
+          2,
+          6
+        ],
+        "rounding_modes": [
+          "ROUND_DOWN",
+          "ROUND_UP",
+          "ROUND_HALF_EVEN"
+        ],
+        "equal_and_unequal_cases": "passed",
+        "Inexact_Rounded_FloatOperation_traps": "passed",
+        "integer_range_guards_all_numeric_columns": "passed"
+      },
+      "dtype_matrix": [
+        "uint8",
+        "uint64",
+        "int8",
+        "int32",
+        "int64",
+        "float16",
+        "float32",
+        "float64",
+        "UInt64",
+        "Int64",
+        "string"
+      ],
+      "dtype_expected": {
+        "gross_return": -0.1,
+        "net_return": -0.12
+      },
+      "tiny_equal_Decimal_string_Fraction": "accepted with expected finite labels",
+      "unsupported_float_only_type": "rejected",
+      "nonfinite_nonpositive_and_float64_unrepresentable_quantities": "rejected"
+    },
+    "regressions": {
+      "authoritative_A_computes": [
+        7,
+        13
+      ],
+      "A_cache_reads_after_two_identical_calls": 1,
+      "B_and_unapproved_plan_changes": "rejected before cache read",
+      "six_fold_model_restoration": "passed; six artifacts and eighteen predictions",
+      "budget_and_restart": "passed",
+      "lock_error_boundaries": "passed on Linux; Windows error branches simulated"
+    }
+  },
+  "findings": [
+    {
+      "id": "WR-01",
+      "priority": "P1",
+      "status": "resolved_at_reviewed_commit",
+      "evidence": "Original reproducer and numeric dtype matrix pass."
+    },
+    {
+      "id": "WR-02",
+      "priority": "P1",
+      "status": "resolved_at_reviewed_commit",
+      "evidence": "Original reproducer, valid A computation and B/plan rejection regressions pass."
+    },
+    {
+      "id": "WR-03",
+      "priority": "P2",
+      "status": "resolved_at_reviewed_commit",
+      "file": "cloud/qresearch/labels.py",
+      "evidence": "Original Decimal/string mismatch test now rejects; independent equal high-precision, Fraction, longdouble and low-context positive/negative tests pass."
+    }
+  ],
+  "open_findings": [],
+  "repository_checks": {
+    "tracked_files": 74,
+    "source_manifest_files": 52,
+    "source_hash_independently_recomputed": true,
+    "source_manifest_note": "Root README.md and audit metadata are outside the declared source manifest and were inspected separately.",
+    "original_and_reviewed_checkout_sources_unchanged": true,
+    "market_panel_or_notebook_files_found": 0,
+    "known_credential_pattern_matches_found": 0,
+    "historical_2024_2025_exposure_preserved": true,
+    "whole_final_window_untouched": false,
+    "budget_usage": {
+      "configurations": 5,
+      "research": 8,
+      "lean": 0
+    },
+    "budget_limits": {
+      "configurations": 12,
+      "research": 20,
+      "lean": 16
+    },
+    "execution_flags": {
+      "market_research_enabled": false,
+      "llm_runtime_enabled": false,
+      "final_test_enabled": false,
+      "live_trading_enabled": false
+    }
+  },
+  "external_calls": {
+    "QC": 0,
+    "market_data": 0,
+    "external_model_API": 0,
+    "financial_final_test": 0,
+    "live_trading": 0
+  },
+  "financial_evidence": false,
+  "not_verified": [
+    "Stages 2-7 production acceptance; this report does not authorize real stage-2 execution",
+    "Native Windows kernel/filesystem behavior; Windows error handling was simulated on Linux",
+    "Python 3.10/3.11 execution",
+    "Real historical universe, financial vintages, actual availability timestamps and corporate-action coverage",
+    "Actual QC deployment/Research/backtest completion, Research/LEAN trading parity and distributed Object Store concurrency",
+    "External model integration, real portfolio cost/risk stress and live trading",
+    "Market IC, profitability, final financial sample tests and 2026 holdout independence",
+    "Any moving HEAD or later commit",
+    "Absolute absence of unknown or encoded credentials beyond the stated repository content and pattern scan"
+  ]
+}

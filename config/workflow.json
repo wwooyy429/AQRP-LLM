@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "configuration_id": "GENERIC-WF-001",
+  "state": "research_framework_implemented_strategy_unregistered",
+  "active_factor": null,
+  "active_model": null,
+  "active_trading_rules": null,
+  "orders_enabled": false,
+  "stages": [
+    "read_charter_dictionary_partitions_budget_ledger",
+    "economic_hypothesis",
+    "FactorSpec",
+    "formula_and_timing_audit",
+    "Research",
+    "LEAN_backtest",
+    "analysis"
+  ],
+  "hypothesis_required": [
+    "mechanism",
+    "expected direction",
+    "horizon",
+    "applicable regimes",
+    "failure conditions"
+  ],
+  "controls": {
+    "point_in_time_features": true,
+    "labels_match_actual_entry_exit": true,
+    "restricted_fields_and_operators": true,
+    "factor_phase_fixed_model": true,
+    "model_phase_requires_frozen_factors": true,
+    "compare_structure_absolute_correlations_and_net_portfolio_increment": true,
+    "preserve_all_future_success_failure_and_repair_records": true,
+    "configuration_semantic_changes_always_registered": true,
+    "no_test_feedback_for_design_changes": true,
+    "no_fabricated_market_metrics": true
+  },
+  "execution_prerequisites": [
+    "registered FactorSpec/model/trading protocol",
+    "historical universe and financial-availability coverage",
+    "fixed costs, fills and risk constraints",
+    "shared Research/LEAN calculation parity",
+    "frozen rolling update procedure and hashes",
+    "budget-checked comparison matrix"
+  ],
+  "asynchronous_backtests": "Submission and compilation are not completion; wait for terminal delivered results; do not poll or relaunch an uncertain submission",
+  "stop_conditions": [
+    "required contract missing",
+    "PIT or label violation",
+    "Research/LEAN mismatch",
+    "budget cap reached",
+    "predeclared hypothesis acceptance fails",
+    "all registered trials concluded"
+  ],
+  "final_evaluation": "Disabled until independent executor and frozen protocol are ready; full requested window is not certified untouched because2024-2025 were previously used",
+  "implementation_version": "0.1.0"
+}

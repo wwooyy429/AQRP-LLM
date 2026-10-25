@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "repository": "wwooyy429/AQRP-LLM",
+  "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/1",
+  "reviewed_source_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
+  "source_manifest_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
+  "accepted_stages": [
+    0,
+    1
+  ],
+  "acceptance_scope": "Fixed-version offline synthetic software acceptance only",
+  "review_is_financial_final_test": false,
+  "review_history": [
+    {
+      "reviewed_commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
+      "source_hash": "2231d32bac52db386ed084a9432f1d2e1c88a65c204b81d8b602b668962805d7",
+      "stage_results": {
+        "0": {
+          "status": "failed",
+          "blocking_findings": [
+            "WR-02"
+          ]
+        },
+        "1": {
+          "status": "failed",
+          "blocking_findings": [
+            "WR-01"
+          ]
+        }
+      },
+      "report_path": "audit/reviews/113fdf7cf7147d58a8b3125beceeaeee0f6aa962.json"
+    },
+    {
+      "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+      "source_hash": "a0dd6a3ff7d631771ec54c3dd531c1b40a1e436babe94921ae0070ed177a1e99",
+      "stage_results": {
+        "0": {
+          "status": "passed_after_fix",
+          "scope": "Offline synthetic software acceptance on the fixed commit; native Windows kernel behavior not certified"
+        },
+        "1": {
+          "status": "failed",
+          "blocking_findings": [
+            "WR-03"
+          ]
+        },
+        "2-7": {
+          "status": "not_accepted"
+        }
+      },
+      "report_path": "audit/reviews/dd7710854bca31135d2fc86f4f5625b8ded05d65.json"
+    },
+    {
+      "reviewed_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
+      "source_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
+      "stage_results": {
+        "0": {
+          "status": "passed_after_fix",
+          "scope": "Offline synthetic software acceptance of this fixed commit"
+        },
+        "1": {
+          "status": "passed_after_fix",
+          "scope": "Offline factor, realized-label, fixed-model and synthetic integration acceptance"
+        },
+        "2-7": {
+          "status": "not_accepted"
+        }
+      },
+      "report_path": "audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json"
+    }
+  ],
+  "gpt_work": {
+    "task_id": "6ade8331-1c9c-83e8-b954-0d5a6debc8b7",
+    "task_kind_verified": "chatgpt",
+    "title": "AQRP-LLM 阶段0–1独立验收",
+    "execution_mode_requested": "chatgptWorkCloud",
+    "status": "passed_after_repairs",
+    "approved": true,
+    "report_path": "audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json",
+    "native_windows_certified": false
+  },
+  "developer_checks": {
+    "platform": "Windows",
+    "synthetic_tests": 138,
+    "passed": 138,
+    "new_market_executions": 0,
+    "previous_local_failure_report": "audit/reviews/local-128-lock-failure.json",
+    "additional_finding_record": "audit/reviews/local-followup-findings.json"
+  },
+  "github_actions": {
+    "source_run_id": 40243674065,
+    "url": "https://github.com/wwooyy429/AQRP-LLM/actions/runs/40243674065",
+    "source_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
+    "conclusion": "success",
+    "python_matrix": [
+      "3.10",
+      "3.11"
+    ],
+    "tests_each": 138,
+    "both_jobs_completed_successfully": true,
+    "source_manifest_matched": true,
+    "earlier_successful_runs": [
+      40240499422,
+      40242492066
+    ]
+  },
+  "independent_test_executions": {
+    "repository": 138,
+    "original_independent": 32,
+    "original_minimal_reproductions": 2,
+    "second_review_added": 16,
+    "third_review_added": 14,
+    "all_passed": true,
+    "contents_deduplicated": false
+  },
+  "findings": {
+    "WR-01": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441",
+    "WR-02": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441",
+    "WR-03": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441"
+  },
+  "stage_acceptance": {
+    "0": "passed_after_repairs",
+    "1": "passed_after_repairs",
+    "2_to_7": "not_accepted"
+  },
+  "stage2_readiness_record": "audit/stage2_readiness.json",
+  "research_budget_usage": {
+    "configurations": 5,
+    "research": 8,
+    "lean": 0
+  },
+  "final_evaluation_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "later_record_commit_scope": "Archive reports and update documentation only; code acceptance remains bound to reviewed_source_commit and source_manifest_hash.",
+  "publication_transport_repair": {
+    "superseded_commit": "d256abf6b342fffb5e80286296d39c80bee8e7f6",
+    "corrected_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+    "reason": "Restore UTF-8 text through escaped transport and compare source exactly."
+  }
+}
