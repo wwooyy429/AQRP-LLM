@@ -1,6 +1,8 @@
 """Independent arithmetic fixtures; no market data or active trading strategy."""
 from copy import deepcopy
 from datetime import datetime
+from decimal import Decimal, localcontext
+from fractions import Fraction
 from pathlib import Path
 import sys
 import unittest
@@ -107,6 +109,65 @@ class LabelTests(unittest.TestCase):
         data["entry_quantity"], data["exit_quantity"] = 1e-13, 1e-12
         with self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
             build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+
+    def test_wr03_original_decimal_and_string_quantity_differences_are_preserved(self):
+        pairs = [(Decimal("1"), Decimal("1.00000000000000001")),
+                 ("1", "1.00000000000000001"),
+                 (Decimal("1.00000000000000001"), 1.),
+                 ("1.00000000000000001", np.uint64(1)),
+                 (Decimal("0.1"), .1)]
+        for entry, exit_quantity in pairs:
+            self.assertEqual(float(entry), float(exit_quantity))
+            data = self.one_share_loss()
+            data["entry_quantity"] = pd.Series([entry], dtype=object)
+            data["exit_quantity"] = pd.Series([exit_quantity], dtype=object)
+            with self.subTest(entry_type=type(entry).__name__, exit_type=type(exit_quantity).__name__), self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
+                build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+
+    def test_wr03_equal_high_precision_mixed_and_tiny_quantities_remain_legal(self):
+        pairs = [(Decimal("1.00000000000000001"), Decimal("1.00000000000000001")),
+                 ("1.00000000000000001", "1.00000000000000001"),
+                 (Decimal("1.00000000000000001"), "1.00000000000000001"),
+                 (Decimal("0.25"), .25), (Fraction(1, 4), Decimal("0.25")),
+                 (np.uint64(1), 1.), (Decimal("1e-13"), "0.0000000000001")]
+        for entry, exit_quantity in pairs:
+            data = self.one_share_loss()
+            data["entry_quantity"] = pd.Series([entry], dtype=object)
+            data["exit_quantity"] = pd.Series([exit_quantity], dtype=object)
+            data["entry_fee"], data["exit_fee"] = 0., 0.
+            protocol = LabelProtocol.from_dict(label_spec(zero_cost_reason="Explicit precision arithmetic fixture"))
+            with self.subTest(entry_type=type(entry).__name__, exit_type=type(exit_quantity).__name__):
+                result = build_execution_labels(data, protocol)
+                self.assertAlmostEqual(result.gross_return.iloc[0], -.10, places=14)
+                self.assertAlmostEqual(result.net_return.iloc[0], -.10, places=14)
+
+    def test_wr03_exact_quantity_comparison_ignores_decimal_context_rounding(self):
+        data = self.one_share_loss()
+        data["entry_quantity"] = pd.Series([Decimal("1")], dtype=object)
+        data["exit_quantity"] = pd.Series([Decimal("1.00000000000000001")], dtype=object)
+        with localcontext() as context:
+            context.prec = 3
+            with self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
+                build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+        data["entry_quantity"] = pd.Series([Decimal("1.00000000000000001")], dtype=object)
+        with localcontext() as context:
+            context.prec = 3
+            self.assertAlmostEqual(build_execution_labels(data, LabelProtocol.from_dict(label_spec())).net_return.iloc[0], -.12, places=14)
+
+    def test_wr03_adjacent_numpy_float_quantities_are_not_collapsed(self):
+        for dtype in (np.float16, np.float32, np.float64, np.longdouble):
+            one = dtype(1)
+            adjacent = np.nextafter(one, dtype(2))
+            self.assertNotEqual(one.as_integer_ratio(), adjacent.as_integer_ratio())
+            data = self.one_share_loss()
+            data["entry_quantity"] = pd.Series([one], dtype=object)
+            data["exit_quantity"] = pd.Series([adjacent], dtype=object)
+            with self.subTest(dtype=dtype.__name__), self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):
+                build_execution_labels(data, LabelProtocol.from_dict(label_spec()))
+            if np.finfo(dtype).nmant > np.finfo(np.float64).nmant:
+                # On platforms with true extended precision, this pair differs
+                # before conversion despite collapsing to the same binary64.
+                self.assertEqual(float(one), float(adjacent))
         # A numerical tolerance must not hide unequal quantities at any scale.
         data["entry_quantity"], data["exit_quantity"] = 1., np.nextafter(1., 2.)
         with self.assertRaisesRegex(LabelValidationError, "Partial or share-changing"):

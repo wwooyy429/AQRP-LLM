@@ -41,18 +41,17 @@
     "task_kind_verified": "chatgpt",
     "title": "AQRP-LLM 阶段0–1独立验收",
     "execution_mode_requested": "chatgptWorkCloud",
-    "status": "first_review_failed_repairs_pending_recheck",
+    "status": "WR-03_implemented_pending_fixed_commit_recheck",
     "approved": false,
     "instructions": "Read the fixed commit, run source checks where tools allow, add independent synthetic cases, report findings; no market data or trading.",
     "report_path": "audit/reviews/113fdf7cf7147d58a8b3125beceeaeee0f6aa962.json",
     "blocking_findings": [
-      "WR-01",
-      "WR-02"
+      "WR-03"
     ]
   },
   "stage_acceptance": {
-    "0": "failed_WR-02",
-    "1": "failed_WR-01",
+    "0": "passed_after_repairs_on_dd771",
+    "1": "failed_WR-03",
     "2_to_7": "not_accepted"
   },
   "research_budget_usage": {
@@ -62,17 +61,62 @@
   },
   "final_evaluation_enabled": false,
   "repair_status": {
-    "WR-01": "implemented_pending_independent_recheck",
-    "WR-02": "implemented_pending_independent_recheck",
+    "WR-01": "independently_verified_fixed_on_dd771",
+    "WR-02": "independently_verified_fixed_on_dd771",
     "local_lock_failure": "implemented_pending_independent_recheck",
     "original_work_reproductions": "tests/test_work_p1_minimal.py",
-    "strict_equal_quantity": "implemented_pending_independent_recheck"
+    "strict_equal_quantity": "implemented_pending_independent_recheck",
+    "WR-03": "implemented_pending_independent_recheck"
   },
   "repair_candidate": {
-    "source_manifest_hash": "a0dd6a3ff7d631771ec54c3dd531c1b40a1e436babe94921ae0070ed177a1e99",
-    "local_tests_run": 133,
-    "local_tests_passed": 133,
+    "source_manifest_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
+    "local_tests_run": 138,
+    "local_tests_passed": 138,
     "new_market_executions": 0,
     "external_review_status": "pending_fixed_repair_commit"
+  },
+  "repair_review": {
+    "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+    "source_manifest_hash": "a0dd6a3ff7d631771ec54c3dd531c1b40a1e436babe94921ae0070ed177a1e99",
+    "reviewer": "ChatGPT Work",
+    "status": "stage0_passed_after_repairs_stage1_failed_WR-03",
+    "repository_tests": {
+      "run": 133,
+      "passed": 133
+    },
+    "original_independent_tests": {
+      "run": 32,
+      "passed": 32
+    },
+    "original_minimal_reproductions": {
+      "run": 2,
+      "passed": 2
+    },
+    "new_independent_methods": {
+      "run": 16,
+      "passed": 15,
+      "failed_methods": 1,
+      "failed_subtests": 2
+    },
+    "financial_evidence": false,
+    "report_path": "audit/reviews/dd7710854bca31135d2fc86f4f5625b8ded05d65.json",
+    "original_reproduction": "tests/test_work_wr03_minimal.py"
+  },
+  "repair_github_actions": {
+    "run_id": 40242492066,
+    "url": "https://github.com/wwooyy429/AQRP-LLM/actions/runs/40242492066",
+    "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+    "conclusion": "success",
+    "python_matrix": [
+      "3.10",
+      "3.11"
+    ],
+    "tests_each": 133,
+    "source_manifest_matched": true
+  },
+  "publication_transport_repair": {
+    "superseded_commit": "d256abf6b342fffb5e80286296d39c80bee8e7f6",
+    "corrected_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
+    "detail": "Restore UTF-8 text through escaped transport; source files and normalized local contents compared exactly."
   }
 }

@@ -9,6 +9,7 @@ are not charged a second time here.
 """
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
+from fractions import Fraction
 import json
 from numbers import Integral, Real
 from typing import Mapping
@@ -76,6 +77,43 @@ EXECUTION_COLUMNS = ("trade_id", "sid", "side", "currency", "normalization", "ex
 MAX_EXACT_INTEGER = 2 ** 53
 
 
+def _exact_quantity(value, name):
+    """Preserve supported original quantities for equality before narrowing.
+
+    Fraction/as_integer_ratio are exact and do not use Decimal context rounding.
+    A float64 range probe only rejects quantities that cannot participate in the
+    supported arithmetic; the probe never supplies the equality representation.
+    """
+    if isinstance(value, (bool, np.bool_)) or np.iscomplexobj(value):
+        raise LabelValidationError("Quantity must be supported positive real numeric data: " + name)
+    if isinstance(value, Integral) and abs(int(value)) > MAX_EXACT_INTEGER:
+        raise LabelValidationError("Execution integer exceeds exact float64 precision: " + name)
+    if isinstance(value, str):
+        try:
+            value = Decimal(value)
+        except (InvalidOperation, ValueError) as exc:
+            raise LabelValidationError("Quantity must be supported positive real numeric data: " + name) from exc
+    if not isinstance(value, (Integral, float, np.floating, Decimal, Fraction)):
+        raise LabelValidationError("Quantity type has no supported exact representation: " + name)
+    try:
+        probe = float(value)
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise LabelValidationError("Quantity is outside supported finite float64 arithmetic: " + name) from exc
+    if not np.isfinite(probe) or probe <= 0:
+        raise LabelValidationError("Quantity is outside supported positive float64 arithmetic: " + name)
+    if isinstance(value, Integral):
+        return Fraction(int(value), 1)
+    try:
+        numerator, denominator = value.as_integer_ratio()
+    except (AttributeError, ValueError, OverflowError) as exc:
+        raise LabelValidationError("Quantity type has no supported exact representation: " + name) from exc
+    if not isinstance(numerator, Integral) or not isinstance(denominator, Integral) or denominator <= 0:
+        raise LabelValidationError("Quantity type returned an invalid exact representation: " + name)
+    if isinstance(value, (Decimal, Fraction)) and denominator == 1 and abs(int(numerator)) > MAX_EXACT_INTEGER:
+        raise LabelValidationError("Execution integer exceeds exact float64 precision: " + name)
+    return Fraction(int(numerator), int(denominator))
+
+
 def _float64_column(series, name):
     """Normalize before arithmetic, without silently rounding large integers.
 
@@ -98,7 +136,7 @@ def _float64_column(series, name):
                 raise LabelValidationError("Execution values must be real numeric data: " + name) from exc
             if not decimal.is_finite():
                 raise LabelValidationError("Missing or infinite execution values are prohibited: " + name)
-            if decimal == decimal.to_integral_value() and abs(decimal) > MAX_EXACT_INTEGER:
+            if decimal == decimal.to_integral_value() and decimal.copy_abs() > MAX_EXACT_INTEGER:
                 raise LabelValidationError("Execution integer exceeds exact float64 precision: " + name)
             value = decimal
         elif not isinstance(value, Real):
@@ -133,7 +171,8 @@ def build_execution_labels(trades, protocol):
     A supplied label_available_at may delay maturity; it may not move it earlier
     than either fill, cost or corporate-action receipt. Missing or partial
     trades fail rather than being silently discarded. Numeric inputs are
-    normalized to float64 before arithmetic, with exact-integer range checks;
+    compared exactly in their original supported representation for quantities,
+    then normalized to float64 arithmetic with exact-integer range checks;
     uint/signed input dtypes cannot change the economic result.
     """
     if not isinstance(protocol, LabelProtocol):
@@ -161,6 +200,10 @@ def build_execution_labels(trades, protocol):
             (data.entry_at <= data.entry_available_at) & (data.exit_at <= data.exit_available_at) &
             (data.exit_at <= data.costs_available_at) & (data.exit_at <= data.corporate_actions_available_at)).all():
         raise LabelValidationError("Execution events and receipt timestamps are inconsistent")
+    for entry_quantity, exit_quantity in zip(data.entry_quantity, data.exit_quantity):
+        if (_exact_quantity(entry_quantity, "entry_quantity") !=
+                _exact_quantity(exit_quantity, "exit_quantity")):
+            raise LabelValidationError("Partial or share-changing executions require a separate accounting adapter")
     for column in NUMBER_COLUMNS:
         data[column] = _float64_column(data[column], column)
     if (data[list(NUMBER_COLUMNS)] < 0).any().any():
