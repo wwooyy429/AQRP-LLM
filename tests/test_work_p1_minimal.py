@@ -1,4 +1,4 @@
-"""ChatGPT Work�������֣����ϳ����ݣ����ⲿAPI���á�"""
+"""ChatGPT Work独立复现：仅合成数据，无外部API调用。"""
 
 import unittest
 import numpy as np
@@ -167,8 +167,8 @@ class WorkP1Reproductions(unittest.TestCase):
         )
         result = build_execution_labels(frame, protocol())
 
-        # ��ȷ�𰸣�ë����-10%��������-12%��
-        # ԭ113fdf7ʵ�����Լ1.8446744073709552e17��
+        # 正确答案：毛收益-10%，净收益-12%。
+        # 原113fdf7实际输出约1.8446744073709552e17。
         np.testing.assert_allclose(
             result[["gross_return", "net_return"]],
             [[-0.10, -0.12]],
@@ -177,7 +177,7 @@ class WorkP1Reproductions(unittest.TestCase):
         )
 
     def test_WR02_A_audit_cannot_authorize_B(self):
-        # ��ģ��פ���ӿڣ�������QuantConnect��
+        # 仅模拟驻留接口；不连接QuantConnect。
         store = MemoryArtifactStore()
         store.residency = "quantconnect_cloud"
 
@@ -199,14 +199,14 @@ class WorkP1Reproductions(unittest.TestCase):
             factor_b.configuration_hash,
         )
 
-        # �������ɡ��洢������A��ԭʼ��Ʊ��档
+        # 真正生成、存储并引用A的原始审计报告。
         formula_a = audit_formula(
             store,
             study_a,
             subject_hash=study_a.hash,
             source_hash=binding["code_hash"],
         )
-        # ���Ǹ�����Ƶĺϳ���Լ�оߣ������г�������֤��
+        # 这是覆盖审计的合成契约夹具，不是市场覆盖认证。
         coverage_a = make_evidence(
             store,
             subject_hash=study_a.hash,
@@ -221,7 +221,7 @@ class WorkP1Reproductions(unittest.TestCase):
             scope="research",
         )
 
-        # A��subject�ͱ��治�䣬�������ֵ��ΪB�����ӹ�ϣ��
+        # A的subject和报告不变，仅自由字典改为B的因子哈希。
         approval = {
             "formula_timing_audit_passed": True,
             "coverage_audit_passed": True,
