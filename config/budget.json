@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "user_authorized_totals_usage_preserved",
+  "configuration_id": "GENERIC-WF-001",
+  "resources": {
+    "backtest": "B2-8",
+    "research": "R4-12",
+    "agent": "A1-1"
+  },
+  "allocations": {
+    "research_execution_attempts": {
+      "reserve": 8,
+      "normal": 12,
+      "total": 20
+    },
+    "full_configurations": {
+      "reserve": 4,
+      "normal": 8,
+      "total": 12
+    },
+    "lean_submission_attempts": {
+      "reserve": 8,
+      "normal": 8,
+      "total": 16
+    }
+  },
+  "limits": {
+    "full_configurations": 12,
+    "research_execution_attempts": 20,
+    "lean_submission_attempts": 16,
+    "optimization_jobs": 0,
+    "extra_resource_purchases": 0,
+    "extra_spend_USD": 0
+  },
+  "usage": {
+    "configuration_budget_charges": 5,
+    "configuration_normal_used": 5,
+    "configuration_reserve_used": 0,
+    "research_execution_attempts": 8,
+    "research_normal_used": 5,
+    "research_reserve_used": 3,
+    "lean_submission_attempts": 0,
+    "complete_strategy_configurations_frozen": 0,
+    "lean_normal_used": 0,
+    "lean_reserve_used": 0
+  },
+  "historical_usage_preserved": true,
+  "migration_charge": {
+    "configurations": 1,
+    "allocation": "normal",
+    "reason": "User-requested fixed8+1 rolling split plus removal of factor-specific settings and generic reconfiguration; combined before new performance computation"
+  },
+  "counting": "Increment before each actual Research execution/LEAN submission. Failure, repair and rerun do not refund quota. Automatic annual refits under one frozen procedure are model-artifact updates, not new configurations.",
+  "reserve_policy": "Reserved for failures, repairs and reruns; not extra hypothesis selection",
+  "deletion_does_not_reset_usage": true,
+  "old_round_records_removed_at_user_request": true,
+  "hypothesis_policy": "No active factor or inherited one-hypothesis setting; every new economic hypothesis/semantic design must consume configuration budget",
+  "final_evaluation_execution_enabled": false
+}

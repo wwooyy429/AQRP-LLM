@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "implementation_version": "0.1.0",
+  "status": "engineering_checks_passed",
+  "local_synthetic_tests": {
+    "run": 52,
+    "passed": 52,
+    "economic_evidence": false
+  },
+  "research_executions_this_implementation": 2,
+  "first_execution": {
+    "status": "failed",
+    "attempt_id": "33603d80ca064a32b71e164ce4a397be",
+    "cause": "QuantBook frontier at2018-01-01 clipped year2018 request; empty response rejected by cloud check",
+    "repair": "Frontier moved to2019-01-01; added preflight guard; new immutable snapshotv2"
+  },
+  "cloud_smoke": {
+    "status": "passed",
+    "attempt_id": "3a09202e77234016b17a17204cf061a2",
+    "historical_window": "2018",
+    "fixture_symbols": 2,
+    "provider_calls_first_pass": 1,
+    "provider_calls_second_pass": 0,
+    "checks_passed": 7,
+    "market_values_exported": false,
+    "economic_factor_tested": false,
+    "full_US200_coverage_certified": false,
+    "final_data_accessed": false,
+    "checks": {
+      "calendar_before_decision": true,
+      "complete_fixture_window": true,
+      "development_only": true,
+      "nonempty_history": true,
+      "same_partition_ids": true,
+      "second_prefetch_no_history": true,
+      "single_batch_on_cold_cache": true
+    },
+    "snapshot_identity": "fe46d148fc713cbc505a9adac4b0112027e00fe4fdab66a0c68b445beab52cfd"
+  },
+  "compile": {
+    "success": true,
+    "warnings": {
+      "qresearch/universe.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads."
+      ],
+      "qresearch/point_in_time.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads."
+      ],
+      "qresearch/runtime.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads.",
+        "19:30 Use of getattr is discouraged as it prevents the syntax checker from alerting to type errors. Use typed objects when possible."
+      ],
+      "qresearch/quantconnect.py": [
+        "67:1 Use of try/catch is discouraged as it can hide errors leading to unpredictable behavior in your strategy."
+      ],
+      "qresearch/contracts.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads."
+      ],
+      "qresearch/artifacts.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads.",
+        "97:1 Use of try/catch is discouraged as it can hide errors leading to unpredictable behavior in your strategy."
+      ],
+      "qresearch/cache.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads.",
+        "68:39 Use of getattr is discouraged as it prevents the syntax checker from alerting to type errors. Use typed objects when possible.",
+        "66:1 Use of try/catch is discouraged as it can hide errors leading to unpredictable behavior in your strategy."
+      ],
+      "qresearch/factors.py": [
+        "1:1 Add 'from AlgorithmImports import *' at the top of the file. Without it, QuantConnect names such as QCAlgorithm and Resolution are undefined when the algorithm loads."
+      ]
+    },
+    "status": "compiled_not_a_backtest"
+  },
+  "scope": {
+    "shared_cache": true,
+    "immutable_artifacts": true,
+    "budget_before_remote_execution": true,
+    "causal_formula_engine": true,
+    "fixed_8_plus_1_six_folds": true,
+    "historical_universe_ranking_core": true,
+    "certified_full_market_ingestion": false,
+    "financial_adapter_certified": false,
+    "registered_factor": false,
+    "portfolio_LEAN_adapter": false,
+    "independent_final_executor": false
+  },
+  "not_evaluated": [
+    "factor IC on market data",
+    "net returns or portfolio increment",
+    "cost/fill/risk stress tests",
+    "Research versus LEAN trading-path parity",
+    "independent final performance"
+  ],
+  "new_economic_configuration_charges": 0,
+  "lean_submissions_this_implementation": 0,
+  "final_evaluation_enabled": false,
+  "cloud_source_verification": {
+    "source_files_compared": 14,
+    "mismatches": [],
+    "project_file_count": 15,
+    "code_cell_count": 1
+  },
+  "idempotency": {
+    "repeated_build_rewrites_configuration": false,
+    "repeated_completed_begin_should_execute": false,
+    "repeated_completed_begin_extra_charge": false
+  },
+  "local_repairs": [
+    "Windows extended-path normalization under concurrent writes",
+    "Timezone-preserving empty history",
+    "Historical membership for cross-sectional operators while preserving entrant history",
+    "Ambiguous simultaneous revisions rejected",
+    "Per-field cache reuse and unresolved fetch intents",
+    "QuantBook historical frontier preflight"
+  ],
+  "current_budget_usage": {
+    "configurations": 5,
+    "research": 8,
+    "lean": 0
+  },
+  "remaining_limits": {
+    "configurations": 7,
+    "research": 12,
+    "lean": 16
+  },
+  "evidence_note": "Only source, metadata, validation flags and counts are local. No market financial metrics were generated.",
+  "temporary_bytecode_cleanup": {
+    "status": "tool_policy_rejected",
+    "reason": "Deletion command blocked by policy",
+    "effect": "Generated Python bytecode is ignored; source and experiment/result idempotency unaffected; CLI disables further bytecode writes"
+  }
+}

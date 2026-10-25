@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "timezone": "America/New_York",
+  "development_access": {
+    "end_exclusive": "2024-01-01",
+    "test_market_data_readable_by_research": false,
+    "first_training_start": "2010-01-01",
+    "warmup_start": null,
+    "warmup_policy": "Derive and register from the exact FactorSpec and financial reporting lookback before requesting data; keep all research inputs before2024."
+  },
+  "final_executor_access": "After freeze only; fixed evaluation2024-01-01 through2026-10-23 plus permitted pre-window training history. Earlier evaluation years can enter later fitting windows only after they have occurred and labels matured.",
+  "sources": [
+    {
+      "name": "US Equities",
+      "role": "raw OHLCV, listed/delisted history",
+      "history_start_metadata": "1998-01",
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/algoseek/us-equities"
+    },
+    {
+      "name": "US Equity Coarse Universe",
+      "role": "historical all-market DollarVolume and universe records",
+      "history_start_metadata": "1998-01",
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/quantconnect/us-equity-coarse-universe"
+    },
+    {
+      "name": "US Fundamental Data",
+      "role": "as-reported financial fields and filing metadata",
+      "history_start_metadata": "1998-01",
+      "limitations": "Provider documentation excludes ADRs/ETFs/OTC; actual field coverage must be measured",
+      "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/morningstar/us-fundamental-data"
+    },
+    {
+      "name": "US Equity Security Master",
+      "role": "mapping, splits, dividends, IPOs/delistings",
+      "history_start_metadata": "1998-01",
+      "url": "https://www.quantconnect.com/datasets/quantconnect-us-equity-security-master"
+    }
+  ],
+  "availability": {
+    "required": [
+      "source session/report period",
+      "public filing/release time and precision",
+      "vendor_available_at",
+      "ingested_at",
+      "formation_at",
+      "feed/engine version"
+    ],
+    "rule": "Use a value only after its actual availability; report period-end is not publication time",
+    "date_only_filing": "Conservatively wait through the next exchange-session close after the filing date and any later actual delivery",
+    "proxy_dates": "Approximately45-day provider dates are proxies, not certification of true publication",
+    "asof_join": "Only the latest then-known vintage; never backward-fill future reports or restatements",
+    "future_filing_rule": "A later filing cannot be inserted into earlier test features merely because evaluation runs later"
+  },
+  "factor_field_whitelist": [],
+  "field_whitelist_policy": "Every new FactorSpec must declare exact field paths, units, period accessors, timing and null-handling before computation",
+  "operator_catalog": [
+    "add",
+    "subtract",
+    "multiply",
+    "safe_divide",
+    "positive_log",
+    "positive_session_lag",
+    "trailing_mean",
+    "trailing_std",
+    "trailing_correlation",
+    "cross_section_rank",
+    "cross_section_zscore",
+    "asof_available_join"
+  ],
+  "operator_policy": "Each FactorSpec chooses a restricted subset and fixed parameters/ranges; this catalog does not authorize parameter mining",
+  "financial_missing": "Keep the liquidity universe unchanged; preregister factor sample and candidate/benchmark comparability",
+  "data_residency": "Market panels and derived row-level values stay inside authorized QuantConnect cloud; no export through logs or files",
+  "coverage_audit_scope": "Derive warmup from registered FactorSpec; training/development events and availability strictly before2024; final coverage audit belongs to the independent executor.",
+  "coverage_status": "not_certified",
+  "shared_cache": {
+    "schema_version": 1,
+    "residency": "QuantConnect Object Store only",
+    "partition": "calendar year and sorted union-SID chunks of at most64",
+    "key_components": [
+      "dataset",
+      "source/data version",
+      "fields",
+      "permanent SIDs",
+      "interval",
+      "normalization",
+      "universe hash",
+      "timezone"
+    ],
+    "producer": "one explicitly designated cloud process; no distributed CAS guarantee",
+    "consumer": "prefetched cache-only reads; factor receives causal matrices only",
+    "failures": "intent retained; reconcile explicitly before refresh with a new version",
+    "price_availability": "LEAN daily end_time modeled assumption; vendor receipt not certified",
+    "historical_membership": "mask each historical formation by its own universe before cross-sectional operators"
+  }
+}

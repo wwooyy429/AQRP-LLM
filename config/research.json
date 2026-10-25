@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "configuration_id": "GENERIC-WF-001",
+  "status": "generic_design_no_registered_factor",
+  "timezone": "America/New_York",
+  "date_interval_semantics": "inclusive local calendar dates; execute using exchange calendar and actual data availability",
+  "rolling_validation": {
+    "type": "fixed_length_rolling",
+    "first_training_year": 2010,
+    "training_years": 8,
+    "validation_years": 1,
+    "step_years": 1,
+    "rounds": 6,
+    "operations": [
+      "Add the most recent fully observed year",
+      "Remove the oldest year",
+      "Refit declared trainable parameters on this eight-year window only",
+      "Evaluate the following one-year validation period"
+    ],
+    "folds": [
+      {
+        "round": 1,
+        "training_start": "2010-01-01",
+        "training_end": "2017-12-31",
+        "training_years": 8,
+        "validation_start": "2018-01-01",
+        "validation_end": "2018-12-31",
+        "validation_years": 1,
+        "removed_training_year": null,
+        "added_training_year": null,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      },
+      {
+        "round": 2,
+        "training_start": "2011-01-01",
+        "training_end": "2018-12-31",
+        "training_years": 8,
+        "validation_start": "2019-01-01",
+        "validation_end": "2019-12-31",
+        "validation_years": 1,
+        "removed_training_year": 2010,
+        "added_training_year": 2018,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      },
+      {
+        "round": 3,
+        "training_start": "2012-01-01",
+        "training_end": "2019-12-31",
+        "training_years": 8,
+        "validation_start": "2020-01-01",
+        "validation_end": "2020-12-31",
+        "validation_years": 1,
+        "removed_training_year": 2011,
+        "added_training_year": 2019,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      },
+      {
+        "round": 4,
+        "training_start": "2013-01-01",
+        "training_end": "2020-12-31",
+        "training_years": 8,
+        "validation_start": "2021-01-01",
+        "validation_end": "2021-12-31",
+        "validation_years": 1,
+        "removed_training_year": 2012,
+        "added_training_year": 2020,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      },
+      {
+        "round": 5,
+        "training_start": "2014-01-01",
+        "training_end": "2021-12-31",
+        "training_years": 8,
+        "validation_start": "2022-01-01",
+        "validation_end": "2022-12-31",
+        "validation_years": 1,
+        "removed_training_year": 2013,
+        "added_training_year": 2021,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      },
+      {
+        "round": 6,
+        "training_start": "2015-01-01",
+        "training_end": "2022-12-31",
+        "training_years": 8,
+        "validation_start": "2023-01-01",
+        "validation_end": "2023-12-31",
+        "validation_years": 1,
+        "removed_training_year": 2014,
+        "added_training_year": 2022,
+        "fit_cutoff": "Only inputs available and labels fully matured before deployment; do not retain earlier-window fitting samples or statistics.",
+        "feature_warmup_start": null,
+        "feature_warmup_rule": "Derive before execution from the new FactorSpec longest price/financial lookback; pre-window rows initialize features only and never enter parameter fitting."
+      }
+    ],
+    "parameter_reestimation": {
+      "scope": "training-only fitting statistics and declared fitted model coefficients",
+      "design_frozen": [
+        "factor formula and direction",
+        "model family and hyperparameters",
+        "preprocessing and missing-value policy",
+        "cost/fill/risk/trading rules",
+        "parameter update timing and estimator"
+      ],
+      "parameterless_model": "No artificial refit or model change when a registered model has no trainable parameters",
+      "artifacts": "Record fitting cutoff, exact rows, code hash, model version/hash and update outcome for every round"
+    }
+  },
+  "boundaries": {
+    "purge": "Reject samples whose actual entry/exit cross the assigned interval or whose label is not fully known by fit cutoff",
+    "embargo_sessions": null,
+    "development_embargo": "Apply the registered gap per validation fold only if required by the frozen protocol; record actual scored dates and do not fabricate full-year invested performance.",
+    "final_evaluation_embargo": "Apply the registered entry gap once at2024 start if required; no automatic annual cash gap in2025 or2026.",
+    "rebalance_phase": "Derive from the first eligible signal after the relevant gap; never select a phase from performance",
+    "no_random_stock_day_split": true,
+    "embargo_policy": "Derive and freeze from maximum label span, entry/exit delays and overlap before any performance evaluation; no inherited fixed20-session value."
+  },
+  "final_evaluation": {
+    "user_requested_name": "final test",
+    "start": "2024-01-01",
+    "end": "2026-10-23",
+    "status": "reserved_not_executed_contains_previously_researched_segment",
+    "evaluation_type": "one continuous sequential evaluation of a frozen annual eight-year refitting procedure",
+    "annual_refit_segments": [
+      {
+        "prediction_year": 2024,
+        "training_start": "2016-01-01",
+        "training_end": "2023-12-31",
+        "prediction_start": "2024-01-01",
+        "prediction_end": "2024-12-31",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      },
+      {
+        "prediction_year": 2025,
+        "training_start": "2017-01-01",
+        "training_end": "2024-12-31",
+        "prediction_start": "2025-01-01",
+        "prediction_end": "2025-12-31",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      },
+      {
+        "prediction_year": 2026,
+        "training_start": "2018-01-01",
+        "training_end": "2025-12-31",
+        "prediction_start": "2026-01-01",
+        "prediction_end": "2026-10-23",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      }
+    ],
+    "model_design_selection_cutoff": "Before final evaluation; development results only",
+    "fitted_parameters_fixed_for_whole_period": false,
+    "feedback_to_research_for_changes": false,
+    "year_boundary_positions": "No automatic liquidation or cash gap solely for model-year changes; positions and orders follow frozen scheduled exit and transition rules",
+    "tail_rule": "All final scored trades/labels must actually exit no later than2026-10-23; never request later prices to complete them",
+    "independent_executor_required": true,
+    "independent_executor_configured": false,
+    "execution_enabled": false,
+    "contamination": {
+      "start": "2024-01-01",
+      "end": "2025-12-31",
+      "reason": "Previously used for research screening and direction decisions before this configuration",
+      "whole_window_is_untouched_independent_holdout": false,
+      "year2026_status": "Potentially unexposed in this chat, subject to independent audit; not automatically certified"
+    },
+    "preregistered_reporting_segments": [
+      {
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "label": "prior-research-exposed retrospective evaluation"
+      },
+      {
+        "start": "2026-01-01",
+        "end": "2026-10-23",
+        "label": "separate segment, independence pending audit"
+      }
+    ]
+  },
+  "active_factor_spec": null,
+  "active_model_spec": null,
+  "active_trading_spec": null,
+  "rule": "Six windows are one frozen rolling procedure, not six new hypotheses/configurations. Actual Research calls, LEAN submissions, failures and semantic changes remain separately counted."
+}
