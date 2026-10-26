@@ -1,0 +1,52 @@
+[
+  {
+    "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\minimal_wr08_original.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026",
+    "exit_code": 0,
+    "kind": "public reproduction, not additional unit methods"
+  },
+  {
+    "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "-c",
+      "from pathlib import Path\nimport json,math,sys\nimport pandas as pd\nsys.path.insert(0,str(Path(sys.argv[1])/'cloud'))\nfrom qresearch.evaluation import summarize_ic\ndef clean(value):\n    if isinstance(value,float) and not math.isfinite(value):return None\n    if isinstance(value,dict):return {k:clean(v) for k,v in value.items()}\n    return value\ncases={\"positive_constant\":[.7]*6,\"negative_constant\":[-.7]*6,\"adjacent\":[.7,math.nextafter(.7,math.inf)],\"subnormal\":[0.,math.ulp(0.)]}\nprint(json.dumps({k:{\"input\":v,\"summary\":clean(summarize_ic(pd.DataFrame({\"ic\":v,\"n\":[5]*len(v)})))} for k,v in cases.items()},allow_nan=False))\n",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026",
+    "exit_code": 0,
+    "kind": "public reproduction, not additional unit methods"
+  },
+  {
+    "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\minimal_wr08_original.py",
+      "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM\u5ba1\u6838\\review-7b0dcce-20261026\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026",
+    "exit_code": 1,
+    "kind": "public reproduction, not additional unit methods"
+  },
+  {
+    "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "-c",
+      "from pathlib import Path\nimport json,math,sys\nimport pandas as pd\nsys.path.insert(0,str(Path(sys.argv[1])/'cloud'))\nfrom qresearch.evaluation import summarize_ic\ndef clean(value):\n    if isinstance(value,float) and not math.isfinite(value):return None\n    if isinstance(value,dict):return {k:clean(v) for k,v in value.items()}\n    return value\ncases={\"positive_constant\":[.7]*6,\"negative_constant\":[-.7]*6,\"adjacent\":[.7,math.nextafter(.7,math.inf)],\"subnormal\":[0.,math.ulp(0.)]}\nprint(json.dumps({k:{\"input\":v,\"summary\":clean(summarize_ic(pd.DataFrame({\"ic\":v,\"n\":[5]*len(v)})))} for k,v in cases.items()},allow_nan=False))\n",
+      "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM\u5ba1\u6838\\review-7b0dcce-20261026\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026",
+    "exit_code": 0,
+    "kind": "public reproduction, not additional unit methods"
+  }
+]

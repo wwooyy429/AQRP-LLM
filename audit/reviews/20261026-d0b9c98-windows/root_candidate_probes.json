@@ -1,0 +1,70 @@
+{
+  "positive_constant": {
+    "input": [
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7,
+      0.7
+    ],
+    "summary": {
+      "valid_days": 6,
+      "total_days": 6,
+      "mean_ic": 0.7,
+      "sample_std_ic": 0.0,
+      "icir": null,
+      "icir_annualized": false,
+      "common_observations": 30
+    }
+  },
+  "negative_constant": {
+    "input": [
+      -0.7,
+      -0.7,
+      -0.7,
+      -0.7,
+      -0.7,
+      -0.7
+    ],
+    "summary": {
+      "valid_days": 6,
+      "total_days": 6,
+      "mean_ic": -0.7,
+      "sample_std_ic": 0.0,
+      "icir": null,
+      "icir_annualized": false,
+      "common_observations": 30
+    }
+  },
+  "adjacent": {
+    "input": [
+      0.7,
+      0.7000000000000001
+    ],
+    "summary": {
+      "valid_days": 2,
+      "total_days": 2,
+      "mean_ic": 0.7,
+      "sample_std_ic": 7.850462293418876e-17,
+      "icir": 8916672341536080.0,
+      "icir_annualized": false,
+      "common_observations": 10
+    }
+  },
+  "subnormal": {
+    "input": [
+      0.0,
+      5e-324
+    ],
+    "summary": {
+      "valid_days": 2,
+      "total_days": 2,
+      "mean_ic": 0.0,
+      "sample_std_ic": 5e-324,
+      "icir": 0.7071067811865475,
+      "icir_annualized": false,
+      "common_observations": 10
+    }
+  }
+}

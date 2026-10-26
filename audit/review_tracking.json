@@ -1,106 +1,98 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
-  "source_manifest_hash": "2dc286d98fc2c0dbbd744b528d0e66aa1cb8abb051df81610066cc2e513e766e",
+  "reviewed_source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
   "accepted_stages": [
-    0
+    0,
+    1
   ],
-  "acceptance_scope": "Fixed 7b0dcce independent review: stage0 passed in tested offline scope; WR07 passed in tested numerical scope; overall failed WR08. New repair awaits independent review.",
-  "software_acceptance": "failed_on_reviewed_source",
+  "acceptance_scope": "阶段0/1及本轮实际覆盖的已实现离线共享接口",
+  "software_acceptance": "passed_after_fix_in_tested_offline_scope_on_reviewed_source",
   "financial_evidence": false,
   "stage_acceptance": [
     {
       "stage": 0,
-      "modules": "规范/配置/身份/Registry/原子准入",
-      "implementation": "已实现工程核心",
-      "evidence": "265仓库、19准入、适配56、84静态检查、两次稳定构建",
+      "modules": "规范、配置、身份、Registry、原子准入",
+      "implementation": "工程核心已实现",
+      "evidence": "仓库280、准入19、适配56、116静态检查、两次构建",
       "blocking_findings": [],
       "status": "passed_after_fix",
-      "scope": "本轮实际覆盖的离线工程范围"
+      "scope": "实际覆盖的离线工程范围"
     },
     {
       "stage": 1,
-      "modules": "因子/PIT/标签/模型/共享评价",
-      "implementation": "已实现离线内核及提前评价接口",
-      "evidence": "265仓库、数值16、独立Pearson10、兼容12",
-      "blocking_findings": [
-        "WR-08"
-      ],
-      "status": "failed",
-      "scope": "WR-07数值修复通过；共享ICIR错误阻断整体验收"
+      "modules": "因子、PIT、标签、模型、共享评价",
+      "implementation": "离线内核及提前评价接口已实现",
+      "evidence": "仓库280、归档回归、新摘要11、新兼容8",
+      "blocking_findings": [],
+      "status": "passed_after_fix",
+      "scope": "本轮独立覆盖的离线计算、WR-08修复及既有回归"
     },
     {
       "stage": 2,
-      "modules": "QC数据/缓存/任务桥",
-      "implementation": "已实现工程桥及小样例",
+      "modules": "QC数据、缓存、任务桥",
+      "implementation": "工程桥及小样例已实现",
       "evidence": "准入19及适配56通过；旧平台归档E3；当前源码只读E4",
       "blocking_findings": [],
       "status": "pending_acceptance",
-      "scope": "本地准入回归通过；新源码未部署、LEAN无交付终态、完整数据未认证，且依赖阶段1"
+      "scope": "候选未部署或运行、LEAN无交付终态、完整数据未认证"
     },
     {
       "stage": 3,
       "modules": "滚动Research评价",
-      "implementation": "六轮、成熟标签、共同样本、部分指标已实现",
-      "evidence": "独立完整合成链36预测/6模型恢复；ICIR失败",
-      "blocking_findings": [
-        "WR-08"
-      ],
-      "status": "failed",
-      "scope": "已实现统计模块失败；完整Research阶段仍未验收"
+      "implementation": "六轮、成熟标签、共同样本及部分指标已实现",
+      "evidence": "摘要11、兼容8及60预测/6模型恢复合成链通过",
+      "blocking_findings": [],
+      "status": "pending_acceptance",
+      "implemented_metric_scope": "passed_after_fix",
+      "scope": "已实现统计模块通过本轮离线检查，完整Research阶段未验收"
     },
     {
       "stage": 4,
-      "modules": "LEAN组合/订单/成交/成本/风险/账本",
-      "implementation": "工程宿主及接口；完整交易验证未交付",
-      "evidence": "静态检查；无真实完整交易链证据",
+      "modules": "组合、订单、成交、成本、风险、账本",
+      "implementation": "工程宿主及接口，完整交易验证未交付",
+      "evidence": "静态检查，无完整真实交易链证据",
       "blocking_findings": [],
-      "status": "not_accepted",
-      "scope": "无订单工程样例不能替代本阶段"
+      "status": "not_accepted"
     },
     {
       "stage": 5,
-      "modules": "GPT提案/受限网关/控制器",
+      "modules": "GPT提案、受限网关、控制器",
       "implementation": "部分受限接口已实现",
-      "evidence": "仓库及适配套件覆盖接口；真实GPT闭环未执行",
+      "evidence": "离线接口回归，真实GPT闭环未执行",
       "blocking_findings": [],
-      "status": "not_accepted",
-      "scope": "具体模型/次数/费用额度均未配置，调用关闭"
+      "status": "not_accepted"
     },
     {
       "stage": 6,
-      "modules": "去重/相关/搜索/组合增量",
-      "implementation": "部分去重和相关接口已实现",
-      "evidence": "Pearson修复已测；无实际搜索/组合增量证据",
+      "modules": "去重、相关、搜索、组合增量",
+      "implementation": "部分去重及相关接口已实现",
+      "evidence": "相关接口回归通过；无实际搜索和组合增量证据",
       "blocking_findings": [],
-      "status": "not_accepted",
-      "scope": "完整受限搜索、消融与选择偏差诊断未交付"
+      "status": "not_accepted"
     },
     {
       "stage": 7,
-      "modules": "冻结/独立最终执行/前向/监控",
-      "implementation": "存在隔离门禁，完整执行器及前向证据未交付",
-      "evidence": "配置和暴露记录静态核对",
+      "modules": "冻结、独立最终执行、前向、监控",
+      "implementation": "存在门禁，完整执行及前向证据未交付",
+      "evidence": "配置及暴露记录核对",
       "blocking_findings": [],
-      "status": "not_accepted",
-      "scope": "最终测试关闭；2024–2025已有暴露、2026独立性未认证"
+      "status": "not_accepted"
     }
   ],
-  "known_open_findings": [
-    "WR-08"
-  ],
+  "known_open_findings": [],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-06": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-07": "independently_verified_resolved_in_tested_scope_on_7b0dcce",
-    "WR-08": "developer_repair_awaiting_new_fixed_SHA_independent_review"
+    "WR-08": "independently_verified_resolved_in_tested_scope_on_d0b9c98"
   },
-  "latest_independent_report": "audit/reviews/20261026-7b0dcce-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261026-d0b9c98-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/wr08/developer_verification.json",
-  "current_handoff": "docs/review/wr08/README.md",
+  "current_handoff": "docs/stage2-continuation.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -433,6 +425,93 @@
         }
       },
       "latest_independent_report": "audit/reviews/20261026-fe4374c-windows/formal_report.json"
+    },
+    {
+      "reviewed_source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+      "source_manifest_hash": "2dc286d98fc2c0dbbd744b528d0e66aa1cb8abb051df81610066cc2e513e766e",
+      "accepted_stages": [
+        0
+      ],
+      "software_acceptance": "failed_on_reviewed_source",
+      "stage_acceptance": [
+        {
+          "stage": 0,
+          "modules": "规范/配置/身份/Registry/原子准入",
+          "implementation": "已实现工程核心",
+          "evidence": "265仓库、19准入、适配56、84静态检查、两次稳定构建",
+          "blocking_findings": [],
+          "status": "passed_after_fix",
+          "scope": "本轮实际覆盖的离线工程范围"
+        },
+        {
+          "stage": 1,
+          "modules": "因子/PIT/标签/模型/共享评价",
+          "implementation": "已实现离线内核及提前评价接口",
+          "evidence": "265仓库、数值16、独立Pearson10、兼容12",
+          "blocking_findings": [
+            "WR-08"
+          ],
+          "status": "failed",
+          "scope": "WR-07数值修复通过；共享ICIR错误阻断整体验收"
+        },
+        {
+          "stage": 2,
+          "modules": "QC数据/缓存/任务桥",
+          "implementation": "已实现工程桥及小样例",
+          "evidence": "准入19及适配56通过；旧平台归档E3；当前源码只读E4",
+          "blocking_findings": [],
+          "status": "pending_acceptance",
+          "scope": "本地准入回归通过；新源码未部署、LEAN无交付终态、完整数据未认证，且依赖阶段1"
+        },
+        {
+          "stage": 3,
+          "modules": "滚动Research评价",
+          "implementation": "六轮、成熟标签、共同样本、部分指标已实现",
+          "evidence": "独立完整合成链36预测/6模型恢复；ICIR失败",
+          "blocking_findings": [
+            "WR-08"
+          ],
+          "status": "failed",
+          "scope": "已实现统计模块失败；完整Research阶段仍未验收"
+        },
+        {
+          "stage": 4,
+          "modules": "LEAN组合/订单/成交/成本/风险/账本",
+          "implementation": "工程宿主及接口；完整交易验证未交付",
+          "evidence": "静态检查；无真实完整交易链证据",
+          "blocking_findings": [],
+          "status": "not_accepted",
+          "scope": "无订单工程样例不能替代本阶段"
+        },
+        {
+          "stage": 5,
+          "modules": "GPT提案/受限网关/控制器",
+          "implementation": "部分受限接口已实现",
+          "evidence": "仓库及适配套件覆盖接口；真实GPT闭环未执行",
+          "blocking_findings": [],
+          "status": "not_accepted",
+          "scope": "具体模型/次数/费用额度均未配置，调用关闭"
+        },
+        {
+          "stage": 6,
+          "modules": "去重/相关/搜索/组合增量",
+          "implementation": "部分去重和相关接口已实现",
+          "evidence": "Pearson修复已测；无实际搜索/组合增量证据",
+          "blocking_findings": [],
+          "status": "not_accepted",
+          "scope": "完整受限搜索、消融与选择偏差诊断未交付"
+        },
+        {
+          "stage": 7,
+          "modules": "冻结/独立最终执行/前向/监控",
+          "implementation": "存在隔离门禁，完整执行器及前向证据未交付",
+          "evidence": "配置和暴露记录静态核对",
+          "blocking_findings": [],
+          "status": "not_accepted",
+          "scope": "最终测试关闭；2024–2025已有暴露、2026独立性未认证"
+        }
+      ],
+      "latest_independent_report": "audit/reviews/20261026-7b0dcce-windows/formal_report.json"
     }
   ],
   "repair_acceptance": {
@@ -451,6 +530,72 @@
     "WR-07": {
       "status": "passed_after_fix_in_tested_scope",
       "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8"
+    },
+    "WR-08": {
+      "status": "passed_after_fix_in_tested_scope",
+      "source_file": "cloud/qresearch/evaluation.py",
+      "lines": [
+        276,
+        316
+      ],
+      "constant_positive": {
+        "mean": 0.7,
+        "sample_std": 0,
+        "icir": null,
+        "icir_representation": "NaN"
+      },
+      "adjacent_float_std": 7.850462293418876e-17,
+      "old_failure_preserved": true,
+      "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4"
     }
-  }
+  },
+  "whole_system_acceptance": "not_accepted",
+  "current_stage": 2,
+  "numerical_precision_scope": {
+    "epsilon": 2.220446049250313e-16,
+    "constant_rule": "严格零标准差和未定义ICIR",
+    "positive_std_guard": "精确预期可表示为正的标准差必须保持大于0",
+    "mean_tolerance": "max(16eps*maxabs(input),2ULP(expected_mean))",
+    "std_tolerance": "max(32eps*expected_std,2ULP(expected_std))",
+    "ICIR_tolerance": "32eps*max(1,abs(expected_ICIR))",
+    "max_normal_std_relative_error": 2.8107271145275333e-16,
+    "max_ICIR_error_normalized_by_eps_and_max1ratio": 1.6868995801715694
+  },
+  "numerical_diagnostics": [
+    {
+      "id": "reviewer_harness_first",
+      "methods": 11,
+      "passed": 9,
+      "failed": 0,
+      "errors": 2,
+      "skipped": 0,
+      "subtests": 716,
+      "error_records": 8,
+      "exit_code": 1,
+      "disposition": "审核器观测指标EPS*subnormal下溢为0导致除零，非生产异常；首次源码/输出/结果及diff保留，原预期和容差未改，另增强正std断言"
+    },
+    {
+      "id": "exploratory_pure_relative_ICIR",
+      "methods": 11,
+      "passed": 9,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "subtests": 716,
+      "failure_records": 4,
+      "exit_code": 1,
+      "absolute_error_upper_bound": 8.85e-17,
+      "disposition": "更严格纯相对精度探针未全部通过；小分母/抵消的普通舍入差异单列为精度限制，不宣称均匀相对精度保证"
+    }
+  ],
+  "unverified": [
+    "全部可能浮点向量及无限长度的数值正确性",
+    "强抵消后近零均值/ICIR的统一相对精度，纯相对探索存在差异",
+    "审核者在Linux或额外longdouble精度环境实际执行",
+    "d0新版本QC部署、编译及实际运行",
+    "既有LEAN交付终态",
+    "完整历史US200、财务修订版本及实际供应商送达认证",
+    "真实组合成本风险账本、搜索增量、GPT闭环",
+    "2026独立性及独立最终/前向金融测试"
+  ]
 }

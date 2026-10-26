@@ -1,0 +1,35 @@
+--- first.py
++++ final.py
+@@ -38,6 +38,8 @@
+         scale=max(map(abs,finite),default=0.)
+         mean_tol=max(16*EPS*scale,2*math.ulp(expected[0]) if math.isfinite(expected[0]) else 0.)
+         std_tol=max(32*EPS*expected[1],2*math.ulp(expected[1])) if math.isfinite(expected[1]) else 0.
++        # An absolute floor avoids false relative-error alarms near zero. For
++        # near-constant nonzero IC, |ICIR| >> 1 and this is 32eps relative.
+         icir_tol=32*EPS*max(1.,abs(expected[2])) if math.isfinite(expected[2]) else 0.
+         fields=['mean_ic','sample_std_ic','icir'];tolerances=[mean_tol,std_tol,icir_tol]
+         for field,want,tolerance in zip(fields,expected,tolerances):
+@@ -51,8 +53,12 @@
+                     if OBS['first_failure'] is None:OBS['first_failure']=failure
+                 self.assertTrue(math.isfinite(actual),label+'-'+field)
+                 self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)
++        if math.isfinite(expected[1]) and expected[1]>0:
++            self.assertGreater(result['sample_std_ic'],0.,label+' must not erase representable nonzero variance')
+         if finite:
+-            me=abs(result['mean_ic']-expected[0])/(EPS*scale) if scale else 0.
++            # Divide in this order so the diagnostic's denominator itself does
++            # not underflow for legitimate subnormal inputs.
++            me=(abs(result['mean_ic']-expected[0])/scale)/EPS if scale else 0.
+             if me>OBS['max_normalized_mean_error']:
+                 OBS['max_normalized_mean_error']=me;OBS['worst_mean']={'label':label,'values_hex':[v.hex() for v in finite],
+                     'expected':expected[0],'actual':result['mean_ic'],'absolute_error':abs(result['mean_ic']-expected[0]),'error_in_eps_times_max_abs_input':me}
+@@ -152,7 +158,8 @@
+         'skipped':len(result.skipped),'subcases':result.subcase_count,'observations':OBS,
+         'tolerance':{'mean':'max(16*eps*max(abs(valid_IC)),2*ulp(correctly_rounded_mean))',
+             'sample_std':'max(32*eps*correctly_rounded_std,2*ulp(correctly_rounded_std))',
+-            'ICIR':'32*eps*max(1,abs(correctly_rounded_ICIR)); avoids relative-error false alarms near zero'},
++            'ICIR':'32*eps*max(1,abs(correctly_rounded_ICIR)); this is a relative 32eps bound for large near-constant-IC ratios and an absolute 32eps bound near zero',
++            'positive_std_guard':'Every representable positive oracle std must remain strictly positive; only subnormal std rounding uses 2 ULP allowance'},
+         'oracle':'Exact Fraction raw moments with sample ddof1, 180-significant-digit Decimal square root and mean/std ratio',
+         'warnings':sorted(set(str(w.message) for w in caught)),
+         'failures':[{'test':str(t),'traceback':tb} for t,tb in result.failures],

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "kind": "post_d0_acceptance_readonly_stage2_gap_record",
+  "accepted_offline_source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "accepted_source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
+  "independent_offline_accepted_stages": [
+    0,
+    1
+  ],
+  "stage2_status": "pending_acceptance",
+  "historical_readiness_record_preserved": "audit/stage2_readiness.json",
+  "latest_independent_report": "audit/reviews/20261026-d0b9c98-windows/formal_report.json",
+  "deployment_comparison_scope": "Accepted d0 local manifest versus archived old75 cloud manifest; not a new QC readback",
+  "deployment_file_count": 25,
+  "deployment_differences": [
+    {
+      "path": "qresearch/contracts.py",
+      "accepted_candidate_sha256": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+      "archived_cloud_sha256": "83e4d28ca9df9508af8ac7080b9506ef9fc01e03293f40093ac73dfe212aa9c0"
+    },
+    {
+      "path": "qresearch/engineering_tasks.py",
+      "accepted_candidate_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+      "archived_cloud_sha256": "96d5ca4c72e35edf11e19da72cee84b9611d834b2f3a06b89c66a1e4e35d75cf"
+    },
+    {
+      "path": "qresearch/evaluation.py",
+      "accepted_candidate_sha256": "4225343241686feceaafc70353983125d06eb7b8ad90a7bdbbd231789e591ba4",
+      "archived_cloud_sha256": "dee48d3b57417f91125f7820b0b4e0615dc71ea55afa85c6980fb3c25f7b96a7"
+    },
+    {
+      "path": "qresearch/point_in_time.py",
+      "accepted_candidate_sha256": "e9a4ece0970df03f65e6f46b2e645716db67831f656af027ea2c2dcc748ba1e6",
+      "archived_cloud_sha256": "db16e080ae6a3aefc66acd182ac5a2cb253a5024de9735dedffef29019be3501"
+    },
+    {
+      "path": "qresearch/registry.py",
+      "accepted_candidate_sha256": "5d312a5ab192fbe0cef5150f32a8ab5f90bf1b654dc97a15ba7c8bf5924866b7",
+      "archived_cloud_sha256": "37eea2754dc1fce3578581228ba2bbf232b2fde1f5bb78aeb2a9adffc0d372ac"
+    },
+    {
+      "path": "qresearch/runtime.py",
+      "accepted_candidate_sha256": "488592714f509fd0451bf14241929316def76f251bbb6877b0d49b7e0a631303",
+      "archived_cloud_sha256": "88149bf342d040bdf0448d91cf17788936bb3c377e62033b9742c4a063854384"
+    },
+    {
+      "path": "research_config.py",
+      "accepted_candidate_sha256": "175c660a651c7a6cc57edcabf3083ed8ace9ff11df38b6e900eeb50c07d5ba2c",
+      "archived_cloud_sha256": "563b63a6b87cfd68a837c3e071d8bfff2bce7b8f535138b56136068dfce8faaa"
+    }
+  ],
+  "pending_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+  "terminal_received": false,
+  "read_or_polled_this_turn": false,
+  "pending_source_or_task_input_changed": false,
+  "engineering_stop_caps": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 2
+  },
+  "engineering_observed_used": {
+    "configurations": 1,
+    "research": 1,
+    "lean": 1
+  },
+  "engineering_nominal_remaining": {
+    "configurations": 1,
+    "research": 1,
+    "lean": 1
+  },
+  "remaining_is_not_permission_to_bypass_pending": true,
+  "global_usage": {
+    "configurations": 6,
+    "research": 9,
+    "lean": 1
+  },
+  "blockers": [
+    "existing_LEAN_delivered_terminal_and_reconciled_result",
+    "accepted_new_implementation_cloud_deployment_and_runtime_evidence",
+    "historical_US200_and_financial_PIT_data_certification"
+  ],
+  "source_configuration_budget_changed": false,
+  "market_calls": 0,
+  "model_API_calls": 0,
+  "new_independent_review_dispatched": false,
+  "financial_evidence": false
+}

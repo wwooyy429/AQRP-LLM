@@ -1,0 +1,12 @@
+固定d0独立审核复现，仅使用合成数据、离线执行。
+建议Python3.10.11并使用requirements-audit.txt中实测依赖版本。
+最小复验：python -B minimal_wr08_original.py source（预期exit0）
+旧版对照：python -B minimal_wr08_original.py baselines/7b0dcce/source（预期exit1）
+新摘要：python -B numeric_agent/exact_ic_summary_review.py
+新兼容：python -B compat_agent/public_compatibility.py（原静态helper的BASE为本次实际旧路径；跨机器使用下述便携入口）
+便携重放：python -B run_offline_review.py --out ../d0-offline-rerun-NEW
+--out必须不存在，避免覆盖历史。本入口复制候选、运行280与归档12/10/16/19/56、新11/8和旧7b负对照，保留已预期的负对照失败。仅将新兼容静态比较BASE指向包内7b快照，未改变断言/预期。
+聚合入口仅执行过--help和语法检查，没有在本轮整套再次执行；本轮结果来自各原始入口的实际执行记录。
+source为d0的270份Git文件原件；baselines为7b的217份Git文件原件。numeric_agent中的first/relative_tolerance材料是首次审核器错误及探索精度限制，不应冒称最终套件失败或隐藏它们。开发者归档的首次14/15仅有工具摘要，不宣称原始完整日志。
+evidence_agent脚本内机器专属临时路径用于记录本轮来源；可按JSON和源文件重新定位。归档原脚本SHA字面量不认证本轮身份，以外层replay文件哈希和固定d0为准。完整逐文件清单见artifact_manifest.json，用verify_artifacts.py可验证。
+不授权或触发市场、模型、Research、LEAN、购买、部署、合并及交易。
