@@ -273,13 +273,46 @@ def daily_rank_ic(records: pd.DataFrame, score_column: str = "prediction", label
     return pd.DataFrame(result, columns=["date", "n", "ic"])
 
 
+def _ic_moments(values: np.ndarray) -> tuple[float, float, float]:
+    """Stable arithmetic mean, sample standard deviation and unannualized ICIR.
+
+    Exact equality defines a constant, never a tolerance. Power-of-two scaling
+    preserves small representable differences; anchor-centered offsets avoid
+    creating residuals from rounding the large common part of the mean.
+    """
+    count = len(values)
+    if not count:
+        return float("nan"), float("nan"), float("nan")
+    first = float(values[0])
+    if count == 1:
+        return first, float("nan"), float("nan")
+    if np.all(values == first):
+        return first, 0.0, float("nan")
+    exponent = math.frexp(float(np.max(np.abs(values))))[1]
+    scaled = [math.ldexp(float(value), -exponent) for value in values]
+    offsets = [value - scaled[0] for value in scaled]
+    offset_mean = math.fsum(offsets) / count
+    centered = [value - offset_mean for value in offsets]
+    scaled_mean = scaled[0] + offset_mean
+    mean = math.ldexp(scaled_mean, exponent)
+    scaled_std = math.hypot(*centered) / math.sqrt(count - 1)
+    try:
+        std = math.ldexp(scaled_std, exponent)
+    except OverflowError:
+        # Preserve the existing undefined-ICIR rule for unrepresentable std.
+        std = float("inf")
+    # Cancel the common scale before division. Rounded public float outputs
+    # can lose a subnormal mean/std even when their ratio is representable.
+    icir = scaled_mean / scaled_std if scaled_std > 0 and math.isfinite(std) else float("nan")
+    return mean, std, icir
+
+
 def summarize_ic(daily: pd.DataFrame) -> dict[str, Any]:
     """ICIR = arithmetic mean / sample standard deviation, without annualization."""
     values = pd.to_numeric(daily["ic"], errors="raise").replace([np.inf, -np.inf], np.nan).dropna()
-    mean = float(values.mean()) if len(values) else float("nan")
-    std = float(values.std(ddof=1)) if len(values) >= 2 else float("nan")
+    mean, std, icir = _ic_moments(values.to_numpy(dtype=float))
     return {"valid_days": len(values), "total_days": len(daily), "mean_ic": mean,
-            "sample_std_ic": std, "icir": mean / std if np.isfinite(std) and std > 0 else float("nan"),
+            "sample_std_ic": std, "icir": icir,
             "icir_annualized": False, "common_observations": int(daily["n"].sum())}
 
 

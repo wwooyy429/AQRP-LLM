@@ -1,0 +1,268 @@
+test_adjacent_floats_have_real_nonzero_variance_without_threshold (test_work_wr08_regression.WR08ICSummaryTests) ... test_daily_rank_ic_to_summary_reproduces_seven_tenths_constant (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_missing_and_infinite_days_preserve_existing_count_rules (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) ... test_nonconstant_hand_answer_uses_sample_ddof_one (test_work_wr08_regression.WR08ICSummaryTests) ... ok
+test_one_valid_day_keeps_mean_but_has_undefined_sample_std (test_work_wr08_regression.WR08ICSummaryTests) ... ok
+test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) ... test_permutation_preserves_micro_variance_and_mean (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) ... test_registered_study_statistics_preserve_constant_nonperfect_ic (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_small_but_nonzero_ic_scale_is_not_rounded_to_constant (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_subnormal_real_variation_is_not_discarded_by_variance_squaring (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_walk_forward_statistics_do_not_publish_spurious_icir (test_work_wr08_regression.WR08ICSummaryTests) ... FAIL
+test_zero_constant_ic_has_undefined_ratio (test_work_wr08_regression.WR08ICSummaryTests) ... ok
+test_zero_valid_days_and_empty_input_have_undefined_statistics (test_work_wr08_regression.WR08ICSummaryTests) ... ok
+
+======================================================================
+FAIL: test_adjacent_floats_have_real_nonzero_variance_without_threshold (test_work_wr08_regression.WR08ICSummaryTests) (value=0.7, days=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 143, in test_adjacent_floats_have_real_nonzero_variance_without_threshold
+    self.assert_numerical_summary(values)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 68, in assert_numerical_summary
+    self.assertTrue(math.isclose(result["sample_std_ic"], expected_std,
+AssertionError: False is not true : ({'valid_days': 2, 'total_days': 2, 'mean_ic': 0.7, 'sample_std_ic': 1.1102230246251565e-16, 'icir': 6305039478318694.0, 'icir_annualized': False, 'common_observations': 10}, 7.850462293418876e-17)
+
+======================================================================
+FAIL: test_adjacent_floats_have_real_nonzero_variance_without_threshold (test_work_wr08_regression.WR08ICSummaryTests) (value=0.7, days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 143, in test_adjacent_floats_have_real_nonzero_variance_without_threshold
+    self.assert_numerical_summary(values)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_adjacent_floats_have_real_nonzero_variance_without_threshold (test_work_wr08_regression.WR08ICSummaryTests) (value=-0.7, days=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 143, in test_adjacent_floats_have_real_nonzero_variance_without_threshold
+    self.assert_numerical_summary(values)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 68, in assert_numerical_summary
+    self.assertTrue(math.isclose(result["sample_std_ic"], expected_std,
+AssertionError: False is not true : ({'valid_days': 2, 'total_days': 2, 'mean_ic': -0.7, 'sample_std_ic': 1.1102230246251565e-16, 'icir': -6305039478318694.0, 'icir_annualized': False, 'common_observations': 10}, 7.850462293418876e-17)
+
+======================================================================
+FAIL: test_adjacent_floats_have_real_nonzero_variance_without_threshold (test_work_wr08_regression.WR08ICSummaryTests) (value=-0.7, days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 143, in test_adjacent_floats_have_real_nonzero_variance_without_threshold
+    self.assert_numerical_summary(values)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.7000000000000001 != -0.7
+
+======================================================================
+FAIL: test_daily_rank_ic_to_summary_reproduces_seven_tenths_constant (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 173, in test_daily_rank_ic_to_summary_reproduces_seven_tenths_constant
+    self.assertEqual(result["mean_ic"], .7)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_missing_and_infinite_days_preserve_existing_count_rules (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 128, in test_missing_and_infinite_days_preserve_existing_count_rules
+    self.assertEqual(result["mean_ic"], .7)
+AssertionError: 0.6999999999999998 != 0.7
+
+======================================================================
+FAIL: test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 89, in test_negative_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([-.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.6999999999999998 != -0.7
+
+======================================================================
+FAIL: test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 89, in test_negative_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([-.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.7000000000000001 != -0.7
+
+======================================================================
+FAIL: test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 89, in test_negative_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([-.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.7000000000000001 != -0.7
+
+======================================================================
+FAIL: test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=30)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 89, in test_negative_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([-.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.6999999999999997 != -0.7
+
+======================================================================
+FAIL: test_negative_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=252)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 89, in test_negative_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([-.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.7000000000000001 != -0.7
+
+======================================================================
+FAIL: test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) (value=0.1, days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 100, in test_other_identical_binary_float_values_remain_constant
+    self.assert_numerical_summary([value] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.09999999999999999 != 0.1
+
+======================================================================
+FAIL: test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) (value=0.1, days=13)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 100, in test_other_identical_binary_float_values_remain_constant
+    self.assert_numerical_summary([value] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.10000000000000002 != 0.1
+
+======================================================================
+FAIL: test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) (value=0.3, days=13)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 100, in test_other_identical_binary_float_values_remain_constant
+    self.assert_numerical_summary([value] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.29999999999999993 != 0.3
+
+======================================================================
+FAIL: test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) (value=-0.2, days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 100, in test_other_identical_binary_float_values_remain_constant
+    self.assert_numerical_summary([value] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.19999999999999998 != -0.2
+
+======================================================================
+FAIL: test_other_identical_binary_float_values_remain_constant (test_work_wr08_regression.WR08ICSummaryTests) (value=-0.2, days=13)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 100, in test_other_identical_binary_float_values_remain_constant
+    self.assert_numerical_summary([value] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: -0.20000000000000004 != -0.2
+
+======================================================================
+FAIL: test_permutation_preserves_micro_variance_and_mean (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 157, in test_permutation_preserves_micro_variance_and_mean
+    first = self.assert_numerical_summary(values)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 68, in assert_numerical_summary
+    self.assertTrue(math.isclose(result["sample_std_ic"], expected_std,
+AssertionError: False is not true : ({'valid_days': 6, 'total_days': 6, 'mean_ic': 0.7000000000000001, 'sample_std_ic': 9.930136612989092e-17, 'icir': 7049248437170207.0, 'icir_annualized': False, 'common_observations': 30}, 9.064933036736789e-17)
+
+======================================================================
+FAIL: test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=3)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 84, in test_positive_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.6999999999999998 != 0.7
+
+======================================================================
+FAIL: test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 84, in test_positive_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 84, in test_positive_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=30)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 84, in test_positive_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.6999999999999997 != 0.7
+
+======================================================================
+FAIL: test_positive_constant_nonperfect_ic_is_exactly_zero_variance (test_work_wr08_regression.WR08ICSummaryTests) (days=252)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 84, in test_positive_constant_nonperfect_ic_is_exactly_zero_variance
+    self.assert_numerical_summary([.7] * count)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 61, in assert_numerical_summary
+    self.assertEqual(result["mean_ic"], expected_mean)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_registered_study_statistics_preserve_constant_nonperfect_ic (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 214, in test_registered_study_statistics_preserve_constant_nonperfect_ic
+    self.assertEqual(result.ic_statistics["mean_ic"], .7)
+AssertionError: 0.7000000000000001 != 0.7
+
+======================================================================
+FAIL: test_small_but_nonzero_ic_scale_is_not_rounded_to_constant (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 146, in test_small_but_nonzero_ic_scale_is_not_rounded_to_constant
+    self.assert_numerical_summary([1e-200, 2e-200, 3e-200])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 67, in assert_numerical_summary
+    self.assertGreater(result["sample_std_ic"], 0.)
+AssertionError: 0.0 not greater than 0.0
+
+======================================================================
+FAIL: test_subnormal_real_variation_is_not_discarded_by_variance_squaring (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 150, in test_subnormal_real_variation_is_not_discarded_by_variance_squaring
+    self.assert_numerical_summary([0., smallest])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 67, in assert_numerical_summary
+    self.assertGreater(result["sample_std_ic"], 0.)
+AssertionError: 0.0 not greater than 0.0
+
+======================================================================
+FAIL: test_walk_forward_statistics_do_not_publish_spurious_icir (test_work_wr08_regression.WR08ICSummaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr08_regression.py", line 188, in test_walk_forward_statistics_do_not_publish_spurious_icir
+    self.assertEqual(result.ic_statistics["sample_std_ic"], 0.)
+AssertionError: 1.2161883888976234e-16 != 0.0
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.260s
+
+FAILED (failures=26)

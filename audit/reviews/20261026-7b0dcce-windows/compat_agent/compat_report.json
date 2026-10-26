@@ -1,0 +1,214 @@
+{
+  "reviewed_source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+  "WR07_public_contract_result": "Pearson/Spearman signatures, default method, common samples, missing/constant sample boundary and positive pipeline are compatible in the tested cases; first shared-core Spearman regression was actually reproduced and removed without changing its assertion/statistics function.",
+  "overall_compatibility_scope": "failed_due_to_new_constant_ICIR_finding",
+  "independent_test_final": {
+    "actually_executed": true,
+    "independent_methods": 12,
+    "passed_methods": 11,
+    "failed_methods": 1,
+    "error_methods": 0,
+    "skipped_methods": 0,
+    "subcases": 22
+  },
+  "first_independent_run": {
+    "independent_methods": 11,
+    "passed_methods": 11,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "skipped_methods": 0,
+    "subcases": 22
+  },
+  "selected_historical_method": [
+    {
+      "label": "archived_uncommitted_first_attempt",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+        "-v"
+      ],
+      "exit_code": 1,
+      "method": "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+      "source_commit": null,
+      "evaluation_file_sha256": "5986a897a0b0aa7d7ae4dd3bd5ffec95196e13d9cf46f2d5eade1a66d3e83d0e",
+      "output": "test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests) ... FAIL\n\n======================================================================\nFAIL: test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7b0dcce-20261026\\compat_agent\\first_attempt\\tests\\test_factors.py\", line 298, in test_each_fold_gets_fresh_fit_and_exact_predictions\n    self.assertTrue(np.isnan(result.ic_statistics[\"icir\"]))\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.142s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "label": "current_fixed_commit",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+        "-v"
+      ],
+      "exit_code": 0,
+      "method": "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+      "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+      "evaluation_file_sha256": "5a4139100d2610426072cf33afe7f8abbba96d1f99e7776928f9a353d9531db2",
+      "output": "test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.126s\n\nOK\n"
+    }
+  ],
+  "static_checks": {
+    "protected_file_hash_equal": {
+      "cloud/qresearch/registry.py": true,
+      "cloud/qresearch/engineering_tasks.py": true,
+      "tools/stage2.py": true,
+      "cloud/qresearch/workflow.py": true,
+      "cloud/qresearch/runtime.py": true,
+      "cloud/qresearch/point_in_time.py": true,
+      "cloud/qresearch/contracts.py": true,
+      "cloud/qresearch/study.py": true,
+      "cloud/qresearch/factors.py": true,
+      "cloud/qresearch/models.py": true,
+      "cloud/qresearch/labels.py": true,
+      "cloud/qresearch/pipeline.py": true,
+      "tools/research.py": true,
+      "tools/stages.py": true,
+      "config/budget.json": true,
+      "config/research.json": true,
+      "config/data.json": true,
+      "config/development.json": true,
+      "config/engineering.json": true,
+      "config/universe.json": true,
+      "config/workflow.json": true,
+      "config/quantconnect.json": true,
+      "tests/test_factors.py": true,
+      "tests/test_pipeline.py": true,
+      "docs/research_charter.md": true
+    },
+    "summarize_ic_source_unchanged": true,
+    "daily_rank_ic_source_unchanged": true,
+    "generated_configuration": {
+      "configuration_equal": true,
+      "source_sha_equal": true,
+      "implementation_sha_changed": true
+    }
+  },
+  "findings": [
+    {
+      "suggested_id": "WR-08",
+      "priority": "P2",
+      "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+      "title": "Identical nonperfect daily RankIC values produce a huge finite ICIR through roundoff in mean/std",
+      "file": "cloud/qresearch/evaluation.py",
+      "lines": [
+        276,
+        278,
+        279,
+        280,
+        281,
+        282
+      ],
+      "trigger": "Six dates, five SIDs per date; predictions [1,2,3,4,5], labels [1,2,4,5,3] identically on each date.",
+      "expected": {
+        "daily_ic": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "sample_std_ic": 0.0,
+        "icir": null,
+        "icir_repr": "NaN"
+      },
+      "actual": {
+        "daily_ic": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "mean_ic": 0.7000000000000001,
+        "sample_std_ic": 1.2161883888976234e-16,
+        "icir": 5755687247059590.0
+      },
+      "cause": "All six stored daily IC values are bitwise equal, but pandas mean rounds above them; subtracting that rounded mean in std manufactures nonzero dispersion.",
+      "impact": "Legitimate daily evaluation reports an enormous positive ICIR for a constant IC series, distorting fixed metric gates and reliability interpretation.",
+      "fix_direction": "Use stable variance/constant detection that preserves zero variance for identical values; do not introduce an arbitrary tolerance that erases legitimate near-constant dispersion.",
+      "regressions": [
+        "Identical 0.7 and other nonperfect/tied rank IC values over varying day counts",
+        "All exact-identical IC series returns zero std and undefined ICIR",
+        "Near-identical adjacent floats keep real nonzero variation",
+        "End-to-end daily_rank_ic→summarize_ic and six-fold aggregate"
+      ],
+      "inherited_not_newly_introduced": true,
+      "minimal_reproducer": "compat_agent/icir_constant_repro.py",
+      "evidence_level": "reviewer_executed_independent_synthetic_test",
+      "financial_evidence": false,
+      "downstream_verified_static": [
+        {
+          "file": "cloud/qresearch/evaluation.py",
+          "lines": [
+            196,
+            197
+          ],
+          "path": "walk_forward_evaluate calls daily_rank_ic then summarize_ic and returns WalkForwardResult.ic_statistics"
+        },
+        {
+          "file": "cloud/qresearch/pipeline.py",
+          "lines": [
+            220,
+            221,
+            222,
+            228,
+            231
+          ],
+          "path": "evaluate_registered_study uses walk_forward_evaluate and returns RegisteredStudyResult"
+        },
+        {
+          "file": "cloud/qresearch/pipeline.py",
+          "lines": [
+            54,
+            55
+          ],
+          "path": "RegisteredStudyResult.ic_statistics directly exposes evaluation.ic_statistics without recomputation"
+        }
+      ],
+      "conditional_not_claimed_actual": {
+        "file": "cloud/qresearch/workflow.py",
+        "lines": [
+          463,
+          474,
+          477,
+          479,
+          481,
+          482,
+          485,
+          487,
+          495
+        ],
+        "explanation": "Generic decide can compare finite statistics.icir if explicitly supplied by a future/trusted result publisher; current code contains no direct mapping from ic_statistics to that statistics payload, so no actual acceptance/market action is claimed."
+      }
+    }
+  ],
+  "new_findings_count": 1,
+  "artifacts": [
+    "compatibility_checks.py",
+    "results.json",
+    "independent_output.txt",
+    "first_11_results.json",
+    "first_11_output.txt",
+    "icir_constant_repro.py",
+    "archived_uncommitted_first_attempt_output.txt",
+    "current_fixed_commit_output.txt"
+  ],
+  "developer_fixtures_imported_in_independent_tests": false,
+  "original_developer_method_replayed_separately": true,
+  "primary_suites_not_repeated": [
+    "19 atomic",
+    "16 numeric",
+    "56 original/adapted",
+    "265 repository"
+  ],
+  "market_model_or_QC_calls": 0,
+  "financial_evidence": false
+}

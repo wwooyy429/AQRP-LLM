@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "review_id": "AQRP-20261026-7B0DCCE-WINDOWS-03",
+  "review_date": "2026-10-26",
+  "reviewed_source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+  "baseline_commit": "fe4374cee054fb8053706074be913ad7068c4484",
+  "evidence_commits": [
+    "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "34de67eef2ef70544ea513865d40e1cbfe73adfc",
+    "fe4374cee054fb8053706074be913ad7068c4484",
+    "7b0dccebef2d3582e1b07ada05211863c3cba0d8"
+  ],
+  "source_manifest_hash": "2dc286d98fc2c0dbbd744b528d0e66aa1cb8abb051df81610066cc2e513e766e",
+  "source_manifest_file_count": 81,
+  "zip_git_files_verified": 217,
+  "delivery_zip_sha256": "9b02ab4cef0e19cc2e21b98ea54c5886dd23a3ae2562601a267ff97c4bdf228a",
+  "deployment_hash": "c06be52ccfa01558cca0caa996b4d1ae0ee9eb93398d81e9fcdb4f03e504d172",
+  "deployment_hash_scope": "25份本地候选构建文件；未部署",
+  "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "runtime_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+  "runtime_source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "python_executable": "C:/Users/11638/.codex/tmp/aqrp-review-20261026/venv/Scripts/python.exe",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "python_dateutil": "3.0.0",
+    "pytz": "2026.5",
+    "six": "1.17.0",
+    "tzdata": "2026.5",
+    "numpy_longdouble_nmant": 52,
+    "main_replay_BLAS_threads": 1,
+    "linux_independently_executed": false
+  },
+  "tool_capabilities": {
+    "GitHub_read": true,
+    "offline_native_Windows_execution": true,
+    "QC_readonly_calls": [
+      "list_projects",
+      "read_project"
+    ],
+    "QC_project_id": 38436695,
+    "pending_backtest_or_logs_read": false,
+    "market_or_model_execution": false,
+    "production_or_PR_write": false
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范/配置/身份/Registry/原子准入",
+      "implementation": "已实现工程核心",
+      "evidence": "265仓库、19准入、适配56、84静态检查、两次稳定构建",
+      "blocking_findings": [],
+      "status": "passed_after_fix",
+      "scope": "本轮实际覆盖的离线工程范围"
+    },
+    {
+      "stage": 1,
+      "modules": "因子/PIT/标签/模型/共享评价",
+      "implementation": "已实现离线内核及提前评价接口",
+      "evidence": "265仓库、数值16、独立Pearson10、兼容12",
+      "blocking_findings": [
+        "WR-08"
+      ],
+      "status": "failed",
+      "scope": "WR-07数值修复通过；共享ICIR错误阻断整体验收"
+    },
+    {
+      "stage": 2,
+      "modules": "QC数据/缓存/任务桥",
+      "implementation": "已实现工程桥及小样例",
+      "evidence": "准入19及适配56通过；旧平台归档E3；当前源码只读E4",
+      "blocking_findings": [],
+      "status": "pending_acceptance",
+      "scope": "本地准入回归通过；新源码未部署、LEAN无交付终态、完整数据未认证，且依赖阶段1"
+    },
+    {
+      "stage": 3,
+      "modules": "滚动Research评价",
+      "implementation": "六轮、成熟标签、共同样本、部分指标已实现",
+      "evidence": "独立完整合成链36预测/6模型恢复；ICIR失败",
+      "blocking_findings": [
+        "WR-08"
+      ],
+      "status": "failed",
+      "scope": "已实现统计模块失败；完整Research阶段仍未验收"
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN组合/订单/成交/成本/风险/账本",
+      "implementation": "工程宿主及接口；完整交易验证未交付",
+      "evidence": "静态检查；无真实完整交易链证据",
+      "blocking_findings": [],
+      "status": "not_accepted",
+      "scope": "无订单工程样例不能替代本阶段"
+    },
+    {
+      "stage": 5,
+      "modules": "GPT提案/受限网关/控制器",
+      "implementation": "部分受限接口已实现",
+      "evidence": "仓库及适配套件覆盖接口；真实GPT闭环未执行",
+      "blocking_findings": [],
+      "status": "not_accepted",
+      "scope": "具体模型/次数/费用额度均未配置，调用关闭"
+    },
+    {
+      "stage": 6,
+      "modules": "去重/相关/搜索/组合增量",
+      "implementation": "部分去重和相关接口已实现",
+      "evidence": "Pearson修复已测；无实际搜索/组合增量证据",
+      "blocking_findings": [],
+      "status": "not_accepted",
+      "scope": "完整受限搜索、消融与选择偏差诊断未交付"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结/独立最终执行/前向/监控",
+      "implementation": "存在隔离门禁，完整执行器及前向证据未交付",
+      "evidence": "配置和暴露记录静态核对",
+      "blocking_findings": [],
+      "status": "not_accepted",
+      "scope": "最终测试关闭；2024–2025已有暴露、2026独立性未认证"
+    }
+  ],
+  "tests": {
+    "actually_executed": true,
+    "counts_are_overlapping_not_unique": true,
+    "execution_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7b0dcce-20261026",
+    "command_records": [
+      "runs/execution_records.json",
+      "numeric_agent/review_summary.json",
+      "compat_agent/results.json",
+      "root_minimal_execution.json",
+      "evidence_agent/build_stability.json"
+    ],
+    "suites": [
+      {
+        "id": "repository_verify",
+        "source": "7b0dcce",
+        "methods": 265,
+        "passed": 265,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": null,
+        "exit_code": 0,
+        "command": "python -B tools/stages.py verify",
+        "cwd": "runs/repository_source"
+      },
+      {
+        "id": "archived_numeric",
+        "source": "7b0dcce",
+        "methods": 16,
+        "passed": 16,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 84,
+        "exit_code": 0,
+        "command": "python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_numeric --suite numeric"
+      },
+      {
+        "id": "archived_atomic",
+        "source": "7b0dcce",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 9,
+        "exit_code": 0,
+        "command": "python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_atomic --suite atomic"
+      },
+      {
+        "id": "previous_adapted",
+        "source": "7b0dcce",
+        "methods": 56,
+        "passed": 56,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 25,
+        "exit_code": 0,
+        "command": "python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/previous_adapted_56 --mode adapted"
+      },
+      {
+        "id": "independent_exact_pearson",
+        "source": "7b0dcce",
+        "methods": 10,
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 896,
+        "exit_code": 0,
+        "command": "python -B numeric_agent/exact_pearson_review.py",
+        "oracle": "精确二进制Fraction原始矩；160位Decimal平方根",
+        "absolute_tolerance": 2.842170943040401e-14,
+        "max_absolute_error": 2.220446049250313e-16,
+        "seeded_random_cases": 720
+      },
+      {
+        "id": "independent_compatibility_final",
+        "source": "7b0dcce",
+        "methods": 12,
+        "passed": 11,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 22,
+        "exit_code": 1,
+        "command": "python -B compat_agent/compatibility_checks.py",
+        "failure": "WR-08",
+        "first_run_preserved": "first_11_results.json: 11/11，扩展后的失败另存"
+      },
+      {
+        "id": "negative_old_numeric",
+        "source": "fe4374c",
+        "methods": 16,
+        "passed": 15,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 84,
+        "failure_records": 4,
+        "exit_code": 1,
+        "command_record": "runs/execution_records.json[4]"
+      },
+      {
+        "id": "archived_first_shared_core",
+        "source": null,
+        "evaluation_file_sha256": "5986a897a0b0aa7d7ae4dd3bd5ffec95196e13d9cf46f2d5eade1a66d3e83d0e",
+        "methods": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": null,
+        "exit_code": 1,
+        "command": "python -B -m unittest test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions -v"
+      },
+      {
+        "id": "same_original_method_current",
+        "source": "7b0dcce",
+        "methods": 1,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": null,
+        "exit_code": 0,
+        "overlap": "repository_verify",
+        "command": "python -B -m unittest test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions -v"
+      }
+    ],
+    "other_executions": {
+      "delivery_hash_AST_JSON_checks": {
+        "checks": 84,
+        "passed": 84,
+        "failed": 0,
+        "unit_methods": null
+      },
+      "stable_local_builds": {
+        "commands": 2,
+        "exit_codes": [
+          0,
+          0
+        ],
+        "byte_changes": []
+      },
+      "WR08_root_reproductions": {
+        "commits": [
+          "7b0dcce",
+          "fe4374c",
+          "75f2462"
+        ],
+        "exit_codes": [
+          1,
+          1,
+          1
+        ],
+        "unit_methods": null
+      }
+    },
+    "notes": [
+      "原16项脚本内部写死fe SHA保持原件；本轮实际源码由外层replay.json文件哈希认证。",
+      "本轮只重跑认可适配56，未声称原样56通过；其历史50通过/3失败/3错误保留。",
+      "未重新执行开发者15项负对照全套；其开发结果仅归档，不冒充本轮独立执行。",
+      "unknown subtest counts are null，重复执行不累计为独有测试。"
+    ]
+  },
+  "findings": [
+    {
+      "id": "WR-08",
+      "priority": "P2",
+      "status": "open",
+      "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+      "file": "cloud/qresearch/evaluation.py",
+      "lines": [
+        279,
+        280,
+        281,
+        282
+      ],
+      "title": "完全相同的日RankIC产生虚假的非零标准差和巨大有限ICIR",
+      "trigger": "6个合法日横截面，每天预测[1,2,3,4,5]、标签[1,2,4,5,3]；所有日RankIC严格等于0.7。",
+      "expected": {
+        "sample_std_ic": 0,
+        "icir": null,
+        "icir_representation": "NaN"
+      },
+      "actual": {
+        "daily_ic": [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ],
+        "mean_ic": 0.7000000000000001,
+        "sample_std_ic": 1.2161883888976234e-16,
+        "icir": 5755687247059590
+      },
+      "cause": "对完全相同的二进制浮点值，舍入后的均值偏移产生伪残差；std>0将其当作真实波动作为分母。",
+      "impact": "错误统计由walk_forward_evaluate及RegisteredStudyResult.ic_statistics公开，阻断共享评价验收；未证明已触发候选接受、交易或真实市场损失。",
+      "severity_reason": "有实际影响的恒定序列数值边界缺陷；属于研究统计可靠性问题。",
+      "introduced_by_WR07": false,
+      "also_reproduced_on": [
+        "fe4374cee054fb8053706074be913ad7068c4484",
+        "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4"
+      ],
+      "evidence_level": "E2",
+      "minimal_reproduction": "python -B minimal_wr08.py source",
+      "fix_direction": "显式保证完全相同的有效IC样本零方差，并使用稳定的中心矩；保留ddof=1、缺失规则及未定义ICIR，不用任意阈值抹掉真实微小差异。",
+      "required_regressions": [
+        "正/负非完美恒定IC及不同天数",
+        "全零、0/1有效天、NaN缺失",
+        "相邻浮点的真实非零方差",
+        "daily_rank_ic→summarize_ic及完整模型评价链",
+        "保持WR-07 Pearson与Spearman公开接口"
+      ]
+    }
+  ],
+  "budget_replay": {
+    "actually_reparsed": true,
+    "evidence_level": "E1/E3",
+    "events_verified": 12,
+    "configuration": {
+      "used": 6,
+      "normal": 6,
+      "reserve": 0,
+      "limit": 12
+    },
+    "Research": {
+      "used": 9,
+      "normal": 6,
+      "reserve": 3,
+      "limit": 20
+    },
+    "LEAN": {
+      "used": 1,
+      "normal": 1,
+      "reserve": 0,
+      "limit": 16
+    },
+    "new_calls_this_review": {
+      "configuration": 0,
+      "Research": 0,
+      "LEAN": 0,
+      "model_API": 0
+    },
+    "historical_aggregate_prior_operations_individually_reconstructed": false
+  },
+  "platform_evidence_level": {
+    "E1": "静态源码/哈希/事件链",
+    "E2": "审核者本轮实际离线合成执行",
+    "E3": "开发者归档Research/提交工具JSON，离线重解析",
+    "E4": "审核者本轮只读取得QC项目及源码；GitHub PR/CI元数据",
+    "E5": null
+  },
+  "platform_checks": {
+    "QC_source_files_matching_old75": 25,
+    "candidate_source_different_files": 7,
+    "candidate_deployed": false,
+    "task_input_sha256": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
+    "pending_LEAN_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "archived_status": "pending",
+    "current_terminal_status": null,
+    "terminal_or_logs_read": false,
+    "pr1_draft": true,
+    "pr2_draft": true,
+    "CI_head": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+    "CI_success_ids": [
+      40302577807,
+      40302568687
+    ]
+  },
+  "historical_findings": {
+    "WR-01_WR-02_WR-03": "历史结论保留；仓库和适配56覆盖原回归范围",
+    "WR-04": "原范围修复后通过，19准入及适配56回归通过",
+    "WR-05": "原Spearman范围修复后通过，数值16回归通过",
+    "WR-06": "原时区/成员范围修复后通过，数值16和适配56回归通过",
+    "WR-07": "本轮独立修复后通过；旧fe数值失败保留",
+    "WR-08": "新发现的继承缺陷；不改写旧报告"
+  },
+  "unverified": [
+    "全部可能浮点向量和无限长度的数值正确性",
+    "审核者在Linux或额外longdouble精度环境的实际执行",
+    "7b新版本QC部署/编译/实际运行",
+    "既有LEAN交付终态",
+    "完整历史US200及财务版本/实际供应商送达认证",
+    "真实组合交易账本、成本压力、搜索增量、真实GPT闭环",
+    "2026数据独立性及独立最终/前向金融测试"
+  ],
+  "software_acceptance": {
+    "overall": "failed",
+    "blocking_findings": [
+      "WR-08"
+    ],
+    "WR07_repair": "passed_after_fix_in_tested_scope",
+    "whole_system": "not_accepted"
+  },
+  "data_certification": {
+    "status": "not_certified",
+    "historical_US200": false,
+    "financial_vintages": false,
+    "actual_vendor_delivery": false,
+    "prior_exposure_2024_2025": true,
+    "independence_2026": null,
+    "final_test_enabled": false
+  },
+  "financial_evidence": false
+}
