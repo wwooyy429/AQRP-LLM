@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "project_id": 38436695,
+  "cell_index": 1,
+  "source_lines": [
+    "import sys, importlib, base64\n",
+    "for _module_name in list(sys.modules):\n",
+    "    if _module_name == 'qresearch' or _module_name.startswith('qresearch.'):\n",
+    "        sys.modules.pop(_module_name, None)\n",
+    "importlib.invalidate_caches()\n",
+    "import qresearch.engineering_data as _engineering\n",
+    "_task = _engineering.load_task_input(_engineering.Path(_engineering.__file__).resolve().parents[1] / '_engineering_task_input.py')\n",
+    "_result = _engineering.run_research_task(_task)\n",
+    "print('AQRP_ENGINEERING_JSON ' + base64.b64encode(_engineering.canonical_json(_result)).decode('ascii'))\n"
+  ],
+  "source_read_back_exact": true,
+  "contains_data_rows": false,
+  "execution_performed": false,
+  "source_module_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "preflight_repair": "Preserved original Markdown cell; updated existing code cell after verifying its type; no Research execution occurred."
+}
