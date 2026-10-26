@@ -7,6 +7,7 @@ financial panels are hashed transiently and discarded; only whitelisted task
 metadata and the cloud's bounded engineering report may enter the ledger.
 """
 import base64
+from datetime import datetime
 from decimal import Decimal, InvalidOperation
 import json
 import math
@@ -37,6 +38,53 @@ _CHECKS = {"source_snapshot_matches", "raw_data_received", "second_prefetch_no_h
 
 def _fail(message):
     raise ReceiptParseError(message)
+
+
+def _annotations(value):
+    """Registered MCP content hints only; never uninspected output containers.
+
+    These hints do not establish market/publication/availability timestamps.
+    Accept the common ISO date and second-precision datetime spellings used by
+    the adapter, including fractions, UTC/offset and naive local hint clocks.
+    """
+    if value is None:
+        return
+    if not isinstance(value, dict) or set(value) - {"audience", "priority", "lastModified"}:
+        _fail("Unknown text annotations cannot carry side data")
+    if "audience" in value:
+        audience = value["audience"]
+        if (not isinstance(audience, list)
+                or any(not isinstance(role, str) or role not in {"user", "assistant"} for role in audience)):
+            _fail("Annotation audience must contain registered roles only")
+    if "priority" in value:
+        priority = value["priority"]
+        try:
+            valid = type(priority) in {int, float} and math.isfinite(priority) and 0 <= priority <= 1
+        except OverflowError:
+            valid = False
+        if not valid:
+            _fail("Annotation priority must be a finite number between zero and one")
+    if "lastModified" in value:
+        stamp = value["lastModified"]
+        if (not isinstance(stamp, str) or re.fullmatch(
+                r"[0-9]{4}-[0-9]{2}-[0-9]{2}(?:[Tt ](?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:[.,][0-9]+)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])?)?", stamp) is None):
+            _fail("Annotation lastModified must be a registered ISO clock string")
+        try:
+            parsed = stamp.replace("t", "T").replace(",", ".")
+            if parsed.endswith(("Z", "z")):
+                parsed = parsed[:-1] + "+00:00"
+            datetime.fromisoformat(parsed)
+        except ValueError:
+            _fail("Annotation lastModified is not a valid calendar clock")
+
+
+def _text_node(node):
+    """One validator for outer carriers and every nested Research text node."""
+    if (not isinstance(node, dict) or node.get("type") != "text"
+            or not isinstance(node.get("text"), str) or set(node) - {"type", "text", "annotations"}):
+        _fail("Only registered text observations are permitted")
+    _annotations(node.get("annotations"))
+    return node["text"]
 
 
 def _hash(value):
@@ -105,12 +153,7 @@ def _native(result):
             _fail("Native content is missing")
         texts = []
         for block in blocks:
-            if (not isinstance(block, dict) or block.get("type") != "text"
-                    or not isinstance(block.get("text"), str)
-                    or set(block) - {"type", "text", "annotations"}
-                    or block.get("annotations") not in (None, {})):
-                _fail("Only text native observations are permitted")
-            texts.append(block["text"])
+            texts.append(_text_node(block))
         if len(texts) == 1:
             text = texts[0]
             carriers.append(_json(text) if text.lstrip().startswith(("{", "[")) else text)
@@ -268,8 +311,8 @@ def _research_stdout(native):
                 _fail("Research stdout must contain text only")
             lines.extend(text.splitlines())
             return
-        if node.get("type") == "text" and set(node) <= {"type", "text", "annotations"}:
-            visit(node.get("text"))
+        if node.get("type") == "text":
+            visit(_text_node(node))
             return
         if set(node) - wrappers - metadata:
             _fail("Unknown Research output metadata is prohibited")

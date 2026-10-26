@@ -1,0 +1,295 @@
+ .gitattributes                                     |    2 +
+ README.md                                          |    2 +-
+ audit/deployment.json                              |    6 +-
+ .../wr11_wr12/developer_outputs_manifest.json      |   28 +
+ .../wr11_wr12/developer_verification.json          |  125 +
+ ...ginal_independent_replay_first_run_summary.json |  261 ++
+ ...ginal_independent_replay_first_run_unittest.txt |   19 +
+ .../original_independent_replay_replay.stderr      |    0
+ .../original_independent_replay_replay.stdout      |   21 +
+ .../wr11_wr12/original_native_carrier_failure.json |   16 +
+ .../original_wr11-baseline-corrected.stderr        |  119 +
+ .../original_wr11-baseline-corrected.stdout        |    0
+ .../wr11_wr12/original_wr11-baseline.stderr        |  112 +
+ .../wr11_wr12/original_wr11-baseline.stdout        |    0
+ .../wr11_wr12/original_wr11-collection.stderr      |   16 +
+ .../wr11_wr12/original_wr11-collection.stdout      |    0
+ .../wr11_wr12/original_wr11-final-review.json      |   62 +
+ .../wr11_wr12/original_wr11-legacy.stderr          |   17 +
+ .../wr11_wr12/original_wr11-legacy.stdout          |    0
+ .../wr11_wr12/original_wr11-legacy_cli.stderr      |   11 +
+ .../wr11_wr12/original_wr11-legacy_cli.stdout      |    0
+ .../wr11_wr12/original_wr11-repair.stderr          |   11 +
+ .../wr11_wr12/original_wr11-repair.stdout          |    0
+ .../wr11_wr12/original_wr11-wr11_final.stderr      |   11 +
+ .../wr11_wr12/original_wr11-wr11_final.stdout      |    0
+ .../wr11_wr12/original_wr11-wr12.stderr            |   12 +
+ .../wr11_wr12/original_wr11-wr12.stdout            |    0
+ .../wr11_wr12/public_and_regression_runs.json      |   71 +
+ audit/review_tracking.json                         |  169 +-
+ audit/reviews/20261026-e513c66-windows/README.txt  |    9 +
+ .../admission_agent/build_report.py                |   49 +
+ .../admission_agent/first_output.txt               |   29 +
+ .../admission_agent/first_results.json             |  670 +++
+ .../admission_agent/independent_admission.py       |  352 ++
+ .../admission_agent/review_report.json             |  748 ++++
+ .../20261026-e513c66-windows/archive_manifest.json | 1675 ++++++++
+ .../artifact_verification.json                     |    9 +
+ .../build_formal_report.py                         |  146 +
+ .../20261026-e513c66-windows/change_stat.txt       |  170 +
+ .../cli_agent/catalog.stderr.txt                   |    4 +
+ .../cli_agent/catalog.stdout.txt                   |   68 +
+ .../cli_agent/command_log.json                     |   28 +
+ .../cli_agent/compact-carrier.stderr.txt           |    4 +
+ .../cli_agent/compact-carrier.stdout.txt           |    1 +
+ .../cli_agent/compact-catalog.stderr.txt           |    4 +
+ .../cli_agent/compact-catalog.stdout.txt           |    2 +
+ .../cli_agent/compact-pointer.stderr.txt           |    4 +
+ .../cli_agent/compact-pointer.stdout.txt           |    2 +
+ .../cli_agent/first_harness_summary.json           |   11 +
+ .../cli_agent/harness_measurement_correction.diff  |   11 +
+ .../cli_agent/pointer.stderr.txt                   |    4 +
+ .../cli_agent/pointer.stdout.txt                   |   68 +
+ .../cli_agent/result-catalog.json                  |   68 +
+ .../cli_agent/result-pointer.json                  |   68 +
+ .../cli_agent/root_cli_reconciliation_first.py     |   78 +
+ .../20261026-e513c66-windows/environment.json      |   16 +
+ .../evidence_agent/build_1.stderr.txt              |    0
+ .../evidence_agent/build_1.stdout.txt              |    1 +
+ .../evidence_agent/build_2.stderr.txt              |    0
+ .../evidence_agent/build_2.stdout.txt              |    1 +
+ .../evidence_agent/build_stability.json            |   48 +
+ .../evidence_agent/build_stability.json.sha256     |    1 +
+ .../evidence_agent/compare_qc_and_build.py         |  115 +
+ .../evidence_agent/delivery_evidence_report.json   | 4478 ++++++++++++++++++++
+ .../delivery_evidence_report.json.sha256           |    1 +
+ .../evidence_agent/execution_identity_probes.json  |  718 ++++
+ .../execution_identity_probes.json.sha256          |    1 +
+ .../evidence_agent/qc_readback_comparison.json     |  102 +
+ .../qc_readback_comparison.json.sha256             |    1 +
+ .../evidence_agent/verify_delivery.py              |  235 +
+ .../20261026-e513c66-windows/formal_report.json    |  496 +++
+ .../20261026-e513c66-windows/formal_report.txt     |  661 +++
+ .../20261026-e513c66-windows/github_metadata.json  |   42 +
+ .../20261026-e513c66-windows/minimal_cli_switch.py |   53 +
+ .../minimal_parallel_carrier.py                    |   13 +
+ .../20261026-e513c66-windows/package_review.py     |   69 +
+ .../portable_replay/CLI_catalog.stderr.txt         |    4 +
+ .../portable_replay/CLI_catalog.stdout.txt         |    2 +
+ .../portable_replay/CLI_pointer.stderr.txt         |    4 +
+ .../portable_replay/CLI_pointer.stdout.txt         |    2 +
+ .../portable_replay/adapter_recovery.json          |   61 +
+ .../portable_replay/adapter_recovery.stderr.txt    |    0
+ .../portable_replay/adapter_recovery.stdout.txt    |   61 +
+ .../portable_replay/admission.stderr.txt           |    0
+ .../portable_replay/admission.stdout.txt           |   31 +
+ .../admission_agent/first_output.txt               |   29 +
+ .../admission_agent/first_results.json             |  670 +++
+ .../historical_and_repository.stderr.txt           |    0
+ .../historical_and_repository.stdout.txt           |   39 +
+ .../portable_replay/parallel_boundary.stderr.txt   |    4 +
+ .../portable_replay/parallel_boundary.stdout.txt   |    1 +
+ .../portable_replay/parallel_full.json             |  259 ++
+ .../portable_replay/parallel_full.stderr.txt       |    0
+ .../portable_replay/parallel_full.stdout.txt       |    6 +
+ .../portable_replay/portable_commands.json         |   99 +
+ .../portable_date_cache/independent_date_cache.py  |  269 ++
+ .../portable_replay/portable_date_path.diff        |   11 +
+ .../portable_replay/portable_runner.diff           |   19 +
+ .../portable_replay/portable_summary.json          |    5 +
+ .../receipt_agent/adapter_recovery.py              |   93 +
+ .../receipt_agent/first_run_summary.json           |  265 ++
+ .../receipt_agent/first_run_unittest.txt           |   34 +
+ .../receipt_agent/independent_receipts.py          |  320 ++
+ .../receipt_agent/minimal_parallel_output.py       |   97 +
+ .../portable_replay/receipt_agent/write_report.py  |  106 +
+ .../portable_replay/receipts.stderr.txt            |    0
+ .../portable_replay/receipts.stdout.txt            |   36 +
+ .../portable_replay/run_main_checks.py             |   27 +
+ .../portable_replay/runs/7bf_dates.stderr.txt      |    0
+ .../portable_replay/runs/7bf_dates.stdout.txt      |    1 +
+ .../runs/7bf_dates/bad-baseline-command.json       |   13 +
+ .../runs/7bf_dates/collection-baseline.diff        |   16 +
+ .../runs/7bf_dates/first_output.txt                |   14 +
+ .../runs/7bf_dates/first_results.json              |  253 ++
+ .../runs/7bf_dates/good-baseline-command.json      |   13 +
+ .../runs/7bf_dates/historical_source-baseline.diff |   48 +
+ .../portable_replay/runs/7bf_dates/replay.json     |   63 +
+ .../portable_replay/runs/7bf_dates/stderr.txt      |    0
+ .../portable_replay/runs/7bf_dates/stdout.txt      |   16 +
+ .../portable_replay/runs/7bf_intervals.stderr.txt  |    0
+ .../portable_replay/runs/7bf_intervals.stdout.txt  |   19 +
+ .../runs/7bf_intervals/candidate_summary.json      |  407 ++
+ .../runs/7bf_intervals/candidate_unittest.txt      |   17 +
+ .../runs/archived_atomic.stderr.txt                |    0
+ .../runs/archived_atomic.stdout.txt                |    1 +
+ .../runs/archived_atomic/output.txt                |   24 +
+ .../runs/archived_atomic/process_output.txt        |   26 +
+ .../runs/archived_atomic/replay.json               |  379 ++
+ .../runs/archived_atomic/results.json              |  320 ++
+ .../runs/archived_compatibility.stderr.txt         |    0
+ .../runs/archived_compatibility.stdout.txt         |    1 +
+ .../runs/archived_compatibility/process_output.txt |    1 +
+ .../runs/archived_compatibility/replay.json        |   76 +
+ .../runs/archived_compatibility/test_output.txt    |   17 +
+ .../runs/archived_compatibility/test_results.json  |   15 +
+ .../runs/archived_numeric.stderr.txt               |    0
+ .../runs/archived_numeric.stdout.txt               |    1 +
+ .../runs/archived_numeric/process_output.txt       |   23 +
+ .../runs/archived_numeric/replay.json              |  118 +
+ .../runs/archived_numeric/test_output.txt          |   21 +
+ .../runs/archived_numeric/test_results.json        |   59 +
+ .../runs/archived_pearson.stderr.txt               |    0
+ .../runs/archived_pearson.stdout.txt               |    1 +
+ .../runs/archived_pearson/process_output.txt       |    1 +
+ .../runs/archived_pearson/replay.json              |   94 +
+ .../runs/archived_pearson/test_output.txt          |   15 +
+ .../runs/archived_pearson/test_results.json        |   33 +
+ .../runs/d0_compatibility.stderr.txt               |    0
+ .../runs/d0_compatibility.stdout.txt               |    1 +
+ .../runs/d0_compatibility/output.txt               |   13 +
+ .../runs/d0_compatibility/results.json             |  116 +
+ .../portable_replay/runs/d0_summary.stderr.txt     |    0
+ .../portable_replay/runs/d0_summary.stdout.txt     |    1 +
+ .../portable_replay/runs/d0_summary/output.txt     |   16 +
+ .../portable_replay/runs/d0_summary/results.json   |   83 +
+ .../portable_replay/runs/execution_records.json    |  222 +
+ .../portable_replay/runs/fbe_boundary.stderr.txt   |    0
+ .../portable_replay/runs/fbe_boundary.stdout.txt   |    1 +
+ .../portable_replay/runs/fbe_boundary/replay.json  |   59 +
+ .../secondary_source_output_counted.txt            |    8 +
+ .../secondary_source_results_counted.json          |  116 +
+ .../portable_replay/runs/fbe_boundary/stderr.txt   |    0
+ .../portable_replay/runs/fbe_boundary/stdout.txt   |    8 +
+ .../portable_replay/runs/fbe_collection.stderr.txt |    0
+ .../portable_replay/runs/fbe_collection.stdout.txt |    1 +
+ .../runs/fbe_collection/replay.json                |   59 +
+ .../portable_replay/runs/fbe_collection/stderr.txt |    0
+ .../portable_replay/runs/fbe_collection/stdout.txt |   26 +
+ .../runs/fbe_collection/verification_output.txt    |   24 +
+ .../runs/fbe_collection/verification_results.json  |   68 +
+ .../portable_replay/runs/fbe_source.stderr.txt     |    0
+ .../portable_replay/runs/fbe_source.stdout.txt     |    1 +
+ .../portable_replay/runs/fbe_source/replay.json    |   59 +
+ .../runs/fbe_source/source_review_output_first.txt |   13 +
+ .../fbe_source/source_review_results_first.json    |   83 +
+ .../portable_replay/runs/fbe_source/stderr.txt     |    0
+ .../portable_replay/runs/fbe_source/stdout.txt     |   13 +
+ .../runs/previous_adapted_56.stderr.txt            |    0
+ .../runs/previous_adapted_56.stdout.txt            |    1 +
+ .../adapted_independent_review.py                  |  638 +++
+ .../runs/previous_adapted_56/harness.diff          |   31 +
+ .../independent_test_output.txt                    |   61 +
+ .../independent_test_results.json                  |  222 +
+ .../runs/previous_adapted_56/process_output.txt    |   63 +
+ .../runs/previous_adapted_56/replay.json           |  280 ++
+ .../runs/repository_verify.stderr.txt              |    0
+ .../runs/repository_verify.stdout.txt              |    1 +
+ .../receipt_agent/WR11_minimal.md                  |   17 +
+ .../receipt_agent/adapter_recovery.json            |   61 +
+ .../receipt_agent/command_log.json                 |   36 +
+ .../receipt_agent/first_run_summary.json           |  265 ++
+ .../receipt_agent/first_run_unittest.txt           |   34 +
+ .../receipt_agent/manifest.json                    |   14 +
+ .../receipt_agent/minimal_parallel_output.json     |  259 ++
+ .../receipt_agent/report.json                      |  131 +
+ .../receipt_agent/report.md                        |    9 +
+ .../requirements-audit.txt                         |    6 +
+ .../root_cli_reconciliation.py                     |   78 +
+ .../root_parallel_output.json                      |  259 ++
+ .../root_probe_execution.json                      |   48 +
+ .../20261026-e513c66-windows/run_main_checks.py    |   27 +
+ .../20261026-e513c66-windows/run_offline_review.py |   47 +
+ .../run_root_cli_probes.py                         |   12 +
+ .../runs/7bf_dates.stderr.txt                      |    0
+ .../runs/7bf_dates.stdout.txt                      |    1 +
+ .../runs/7bf_dates/bad-baseline-command.json       |   13 +
+ .../runs/7bf_dates/collection-baseline.diff        |   16 +
+ .../runs/7bf_dates/first_output.txt                |   14 +
+ .../runs/7bf_dates/first_results.json              |  253 ++
+ .../runs/7bf_dates/good-baseline-command.json      |   13 +
+ .../runs/7bf_dates/historical_source-baseline.diff |   48 +
+ .../runs/7bf_dates/replay.json                     |   63 +
+ .../runs/7bf_dates/stderr.txt                      |    0
+ .../runs/7bf_dates/stdout.txt                      |   16 +
+ .../runs/7bf_intervals.stderr.txt                  |    0
+ .../runs/7bf_intervals.stdout.txt                  |   19 +
+ .../runs/7bf_intervals/candidate_summary.json      |  407 ++
+ .../runs/7bf_intervals/candidate_unittest.txt      |   17 +
+ .../runs/archived_atomic.stderr.txt                |    0
+ .../runs/archived_atomic.stdout.txt                |    1 +
+ .../runs/archived_atomic/output.txt                |   24 +
+ .../runs/archived_atomic/process_output.txt        |   26 +
+ .../runs/archived_atomic/replay.json               |  379 ++
+ .../runs/archived_atomic/results.json              |  320 ++
+ .../runs/archived_compatibility.stderr.txt         |    0
+ .../runs/archived_compatibility.stdout.txt         |    1 +
+ .../runs/archived_compatibility/process_output.txt |    1 +
+ .../runs/archived_compatibility/replay.json        |   76 +
+ .../runs/archived_compatibility/test_output.txt    |   17 +
+ .../runs/archived_compatibility/test_results.json  |   15 +
+ .../runs/archived_numeric.stderr.txt               |    0
+ .../runs/archived_numeric.stdout.txt               |    1 +
+ .../runs/archived_numeric/process_output.txt       |   23 +
+ .../runs/archived_numeric/replay.json              |  118 +
+ .../runs/archived_numeric/test_output.txt          |   21 +
+ .../runs/archived_numeric/test_results.json        |   59 +
+ .../runs/archived_pearson.stderr.txt               |    0
+ .../runs/archived_pearson.stdout.txt               |    1 +
+ .../runs/archived_pearson/process_output.txt       |    1 +
+ .../runs/archived_pearson/replay.json              |   94 +
+ .../runs/archived_pearson/test_output.txt          |   15 +
+ .../runs/archived_pearson/test_results.json        |   33 +
+ .../runs/d0_compatibility.stderr.txt               |    0
+ .../runs/d0_compatibility.stdout.txt               |    1 +
+ .../runs/d0_compatibility/output.txt               |   13 +
+ .../runs/d0_compatibility/results.json             |  116 +
+ .../runs/d0_summary.stderr.txt                     |    0
+ .../runs/d0_summary.stdout.txt                     |    1 +
+ .../runs/d0_summary/output.txt                     |   16 +
+ .../runs/d0_summary/results.json                   |   83 +
+ .../runs/execution_records.json                    |  222 +
+ .../runs/fbe_boundary.stderr.txt                   |    0
+ .../runs/fbe_boundary.stdout.txt                   |    1 +
+ .../runs/fbe_boundary/replay.json                  |   59 +
+ .../secondary_source_output_counted.txt            |    8 +
+ .../secondary_source_results_counted.json          |  116 +
+ .../runs/fbe_boundary/stderr.txt                   |    0
+ .../runs/fbe_boundary/stdout.txt                   |    8 +
+ .../runs/fbe_collection.stderr.txt                 |    0
+ .../runs/fbe_collection.stdout.txt                 |    1 +
+ .../runs/fbe_collection/replay.json                |   59 +
+ .../runs/fbe_collection/stderr.txt                 |    0
+ .../runs/fbe_collection/stdout.txt                 |   26 +
+ .../runs/fbe_collection/verification_output.txt    |   24 +
+ .../runs/fbe_collection/verification_results.json  |   68 +
+ .../runs/fbe_source.stderr.txt                     |    0
+ .../runs/fbe_source.stdout.txt                     |    1 +
+ .../runs/fbe_source/replay.json                    |   59 +
+ .../runs/fbe_source/source_review_output_first.txt |   13 +
+ .../fbe_source/source_review_results_first.json    |   83 +
+ .../runs/fbe_source/stderr.txt                     |    0
+ .../runs/fbe_source/stdout.txt                     |   13 +
+ .../runs/previous_adapted_56.stderr.txt            |    0
+ .../runs/previous_adapted_56.stdout.txt            |    1 +
+ .../runs/previous_adapted_56/harness.diff          |   31 +
+ .../independent_test_output.txt                    |   61 +
+ .../independent_test_results.json                  |  222 +
+ .../runs/previous_adapted_56/process_output.txt    |   63 +
+ .../runs/previous_adapted_56/replay.json           |  280 ++
+ .../audit/stage_verification.json                  |  203 +
+ .../runs/repository_verify.stderr.txt              |    0
+ .../runs/repository_verify.stdout.txt              |    1 +
+ .../source_git_manifest.json                       | 1392 ++++++
+ .../20261026-e513c66-windows/verify_artifacts.py   |   14 +
+ audit/stage2_current_readiness.json                |   32 +-
+ audit/stage_verification.json                      |   19 +-
+ cloud/qresearch/engineering_receipts.py            |   39 +-
+ cloud/research_config.py                           |    2 +-
+ docs/review/wr11-wr12.md                           |   40 +
+ docs/stage2-collection-task-bridge.md              |    2 +
+ tests/test_wr11_carriers.py                        |  118 +
+ tests/test_wr12_attempt_recovery.py                |  158 +
+ tools/collection_task_cli.py                       |   90 +-
+ tools/stage2_collection.py                         |    5 +-
+ 294 files changed, 26482 insertions(+), 64 deletions(-)

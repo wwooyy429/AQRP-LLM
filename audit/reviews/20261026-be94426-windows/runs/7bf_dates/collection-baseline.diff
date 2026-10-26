@@ -1,0 +1,16 @@
+--- fbe/cloud/qresearch/collection.py
++++ 7bf/cloud/qresearch/collection.py
+@@ -211,10 +211,11 @@
+                         raise CollectionError("A bounded string or missing value is required")
+                     if kind == "date":
+                         try:
+-                            if date.fromisoformat(value).isoformat() != value:
++                            parsed = date.fromisoformat(value)
++                            if parsed.isoformat() != value or parsed == date.min:
+                                 raise ValueError
+                         except ValueError:
+-                            raise CollectionError("Date fields require an explicit ISO date without a made-up time") from None
++                            raise CollectionError("Date fields require an ISO date; SDK missing-date sentinels must be null") from None
+             values[path] = value
+         return {"sid": sid, "snapshot_at": stamp.isoformat(), "values": values}
+ 

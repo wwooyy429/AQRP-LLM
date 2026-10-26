@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "purpose": "WR13_developer_repair_evidence_not_independent_acceptance",
+  "date": "2026-10-27",
+  "failed_review_commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "original_independent_report": "audit/reviews/20261026-be94426-windows/formal_report.json",
+  "original_archive_files": 169,
+  "original_archive_manifest_raw_sha256": "c2f1c4e0e76c6d739ad3631346b245fd08f004d5f9489e49c0651c57ca74f91d",
+  "original_archive_byte_equal": true,
+  "prior_failures_and_reviewer_corrections_preserved": true,
+  "candidate_source_manifest_hash": "be91de99b0bed096f99103375435e69e47a31baa6c4406092b8dcdba9618775c",
+  "candidate_source_files": 110,
+  "implementation_hash": "745b66ecb3aa7975e01ee69dcbfc9ea142a1d099dbb65517c4425edb9ec261b4",
+  "parser_source_normalized_sha256": "6e1a7a46626aa6edd9a95131e3cd1c9d0239bc4ff261421fc2913a52e716a4dd",
+  "deployment_python_files": 29,
+  "configuration_hash_unchanged": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "nativeWindows",
+    "BLAS_threads": 1
+  },
+  "fix": {
+    "WR13": "Shared text-node/annotation validation on outer and recursively decoded Research entries; fixed field/type/clock contract; reject row/error sidecars before stdout-only/completion certification",
+    "legal_controls_preserved": "Absent/None/empty and registered standard annotations; equivalent mirrored carriers",
+    "adjacent_type_boundary": "Text must be string, not dict/list recursively interpreted as content",
+    "clock_boundary": "Explicit offset hour/minute bounds prevent datetime.fromisoformat normalizing malformed offsets; supported ISO hints are not market/publication/availability timestamps"
+  },
+  "baseline_new_tests": {
+    "methods": 10,
+    "passed_methods": 1,
+    "failed_methods": 8,
+    "error_methods": 1,
+    "failure_records": 55,
+    "error_records": 2,
+    "harness_errors": 0,
+    "error_reason": "Old implementation rejected legal outer standard annotations",
+    "original_input_preserved": "original_wr13-baseline-test-input.py",
+    "later_added_subcases": "3 invalid offset examples; final10 methods include these"
+  },
+  "final_repository_methods": 401,
+  "new_repository_methods": 10,
+  "full_verification": {
+    "chunk_id": "c23fa1",
+    "wall_time_seconds": 0.0000105,
+    "exit_code": 0,
+    "original_token_count": 71,
+    "output": "{\"local_tests_passed\": true, \"source_hash\": \"be91de99b0bed096f99103375435e69e47a31baa6c4406092b8dcdba9618775c\", \"external_review_status\": \"pending_GPT_Work\", \"test_output\": \"----------------------------------------------------------------------\\nRan 401 tests in 31.784s\\n\\nOK\\n\"}\r\n"
+  },
+  "original_public_MRE": {
+    "before_exit": 1,
+    "after_exit": 0,
+    "script_unchanged": true,
+    "record": "public_probe_runs.json"
+  },
+  "compatibility_developer_replay": {
+    "original_carrier_methods": 15,
+    "carrier_subcases": 80,
+    "original_recovery_methods": 12,
+    "recovery_subcases": 36,
+    "all_passed": true,
+    "scripts_byte_unchanged": true,
+    "real_CLI_and_file_ledger_in_isolated_copies": true,
+    "counts_overlap": true,
+    "summary": "original_compat_summary.json",
+    "commands": "original_compat_execution_records.json",
+    "is_new_GPT_Work_acceptance": false
+  },
+  "developer_original_outputs": "developer_outputs_manifest.json",
+  "second_build_config_changed": false,
+  "WR11_WR12_independent_acceptance": {
+    "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
+    "status": "passed_after_fix_in_original_tested_scope",
+    "not_extended_to_WR13": true
+  },
+  "protected_registry_code_WR12_CLI_config_budget_ledger_old_inputs_and_prior_reviews_unchanged": true,
+  "budget": {
+    "used": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "extra_resource_purchases": 0
+  },
+  "cloud": {
+    "new_project_operations": 0,
+    "deployed": false,
+    "real_SDK_executed": false,
+    "prior_backtest": "39cafa1e9b11f91b27e396b66d033a6d",
+    "delivered_terminal_received": false,
+    "polled": false,
+    "source_or_input_changed": false
+  },
+  "known_open_findings_pending_independent_verification": [
+    "WR-13"
+  ],
+  "new_candidate_independently_accepted": false,
+  "stage2": "failed_reviewed_be944_receipt_boundary_pending_WR13_repair_review",
+  "whole_system": "not_accepted",
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "prior_accepted_scopes_and_precision_limits_preserved": true,
+  "limitations": [
+    "Registered annotation fields/ISO clock forms only; not arbitrary MCP extensions",
+    "Real SDK carrier formats and cloud runtime not exercised",
+    "No market timing/vintage certification from annotations",
+    "Full native failure receipts/prior terminal/full historical universe-financial-corporate-action data certification still pending"
+  ],
+  "documentation": "docs/review/wr13.md"
+}

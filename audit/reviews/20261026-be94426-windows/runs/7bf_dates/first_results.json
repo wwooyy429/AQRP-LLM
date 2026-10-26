@@ -1,0 +1,253 @@
+{
+  "commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "actually_executed": true,
+  "methods": 9,
+  "passed_methods": 9,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "subcases": 27,
+  "skipped": 0,
+  "failure_records": 0,
+  "error_records": 0,
+  "failures": [],
+  "errors": [],
+  "observations": {
+    "legacy_rejection": {
+      "written_by_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+      "old_sentinel_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": "0001-01-01",
+        "financial_statements.period_ending_date.value": "0001-01-01",
+        "has_fundamental_data": false,
+        "time": "2021-11-08T12:17:00"
+      },
+      "first_window_batches": 2,
+      "current_attempts": 4,
+      "current_source_calls": 0,
+      "all_store_bytes_unchanged": true,
+      "old_missing_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": 1,
+        "financial_statements.period_ending_date.value": 1,
+        "has_fundamental_data": 0,
+        "time": 0
+      },
+      "baseline_source_calls": 2
+    },
+    "new_chain": {
+      "record_count": 5,
+      "window_count": 2,
+      "missing_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": 1,
+        "financial_statements.period_ending_date.value": 4,
+        "has_fundamental_data": 0,
+        "time": 0
+      },
+      "source_calls": 2,
+      "second_new_calls": 0,
+      "stored_dates": [
+        {
+          "financial_statements.file_date.value": null,
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "2021-10-27",
+          "financial_statements.period_ending_date.value": "2021-09-30"
+        },
+        {
+          "financial_statements.file_date.value": "2021-10-26",
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "0001-01-02",
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "1899-12-31",
+          "financial_statements.period_ending_date.value": null
+        }
+      ]
+    }
+  },
+  "static_review": {
+    "baseline": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+    "unchanged_protected_collection_functions": {
+      "HistoricalCollectionPlan": true,
+      "_load_window": true,
+      "read_window": true,
+      "_collect_window": true,
+      "collect": true
+    },
+    "source_locations": {
+      "cloud/qresearch/collection.py:CollectionError": {
+        "start": 22,
+        "end": 23
+      },
+      "cloud/qresearch/collection.py:CollectionMiss": {
+        "start": 26,
+        "end": 27
+      },
+      "cloud/qresearch/collection.py:CollectionInterrupted": {
+        "start": 30,
+        "end": 31
+      },
+      "cloud/qresearch/collection.py:CollectionIntegrityError": {
+        "start": 34,
+        "end": 35
+      },
+      "cloud/qresearch/collection.py:_text": {
+        "start": 48,
+        "end": 51
+      },
+      "cloud/qresearch/collection.py:_time": {
+        "start": 54,
+        "end": 61
+      },
+      "cloud/qresearch/collection.py:_catalog": {
+        "start": 64,
+        "end": 81
+      },
+      "cloud/qresearch/collection.py:HistoricalCollectionPlan": {
+        "start": 85,
+        "end": 156
+      },
+      "cloud/qresearch/collection.py:HistoricalSnapshotCollector": {
+        "start": 159,
+        "end": 382
+      },
+      "cloud/qresearch/collection.py:__init__": {
+        "start": 166,
+        "end": 173
+      },
+      "cloud/qresearch/collection.py:from_dict": {
+        "start": 93,
+        "end": 131
+      },
+      "cloud/qresearch/collection.py:identity": {
+        "start": 133,
+        "end": 134
+      },
+      "cloud/qresearch/collection.py:to_dict": {
+        "start": 136,
+        "end": 137
+      },
+      "cloud/qresearch/collection.py:field_catalog": {
+        "start": 140,
+        "end": 141
+      },
+      "cloud/qresearch/collection.py:hash": {
+        "start": 144,
+        "end": 145
+      },
+      "cloud/qresearch/collection.py:windows": {
+        "start": 147,
+        "end": 156
+      },
+      "cloud/qresearch/collection.py:_window": {
+        "start": 175,
+        "end": 176
+      },
+      "cloud/qresearch/collection.py:_identity": {
+        "start": 178,
+        "end": 179
+      },
+      "cloud/qresearch/collection.py:_key": {
+        "start": 181,
+        "end": 182
+      },
+      "cloud/qresearch/collection.py:_row": {
+        "start": 184,
+        "end": 220
+      },
+      "cloud/qresearch/collection.py:_write_batch": {
+        "start": 222,
+        "end": 227
+      },
+      "cloud/qresearch/collection.py:_document": {
+        "start": 229,
+        "end": 246
+      },
+      "cloud/qresearch/collection.py:_load_window": {
+        "start": 248,
+        "end": 299
+      },
+      "cloud/qresearch/collection.py:read_window": {
+        "start": 301,
+        "end": 303
+      },
+      "cloud/qresearch/collection.py:_source_rows": {
+        "start": 305,
+        "end": 318
+      },
+      "cloud/qresearch/collection.py:_collect_window": {
+        "start": 320,
+        "end": 366
+      },
+      "cloud/qresearch/collection.py:collect": {
+        "start": 368,
+        "end": 382
+      },
+      "cloud/qresearch/historical_source.py:HistoricalSourceError": {
+        "start": 21,
+        "end": 22
+      },
+      "cloud/qresearch/historical_source.py:_clock": {
+        "start": 25,
+        "end": 35
+      },
+      "cloud/qresearch/historical_source.py:_attribute": {
+        "start": 38,
+        "end": 56
+      },
+      "cloud/qresearch/historical_source.py:_scalar": {
+        "start": 59,
+        "end": 107
+      },
+      "cloud/qresearch/historical_source.py:_universe_identity": {
+        "start": 110,
+        "end": 117
+      },
+      "cloud/qresearch/historical_source.py:_history_endpoint": {
+        "start": 120,
+        "end": 127
+      },
+      "cloud/qresearch/historical_source.py:QuantConnectSnapshotSource": {
+        "start": 130,
+        "end": 217
+      },
+      "cloud/qresearch/historical_source.py:observed_liquidity_record": {
+        "start": 220,
+        "end": 257
+      },
+      "cloud/qresearch/historical_source.py:__init__": {
+        "start": 137,
+        "end": 145
+      },
+      "cloud/qresearch/historical_source.py:_all_symbols": {
+        "start": 148,
+        "end": 150
+      },
+      "cloud/qresearch/historical_source.py:fetch": {
+        "start": 152,
+        "end": 211
+      },
+      "cloud/qresearch/historical_source.py:provenance": {
+        "start": 213,
+        "end": 217
+      }
+    }
+  },
+  "developer_test_helpers_imported": false,
+  "actual_external_calls": 0,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "numpy": "1.26.4",
+  "pandas": "2.3.3",
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-unchanged-review-script-4yvi69ha\\date_cache_agent\\independent_date_cache.py"
+  ],
+  "script_sha256": "c99943847bd5fcf372d3829d25963f5125746665c0116d28df81d222e885a6bd",
+  "exit_code": 0
+}

@@ -1,0 +1,142 @@
+{
+  "reviewer": "receipt_agent independent repair review",
+  "commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "date": "2026-10-26",
+  "verdict": "WR-11原双载体不一致路径在新增独立范围修复后通过；新增WR-13/P2旁路已复现，当前回执边界整体仍不通过。",
+  "WR11_scope_result": "修复后通过：候选所有存在载体完整语义比较、等价键序/缩进、空可选载体、未知顶层/块元数据、类型差异、错误/隐藏输出、重复JSON键及新旧回执链。",
+  "first_measurement": {
+    "methods": 15,
+    "subcases": 80,
+    "failure_records": 1,
+    "error_records": 0,
+    "skipped": 0,
+    "classification": "审核器预期错误，不是产品缺陷",
+    "first_failure": {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected (__main__.IndependentCarrierTests)",
+      "subtest": "test_nonidentical_typed_values_or_output_order_rejected (__main__.IndependentCarrierTests) (type_or_order=3)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\receipt_agent\\independent_carrier_boundaries.py\", line 174, in test_nonidentical_typed_values_or_output_order_rejected\n    with self.assertRaises(ReceiptParseError):_native({'structuredContent':left,'content':[{'type':'text','text':json.dumps(right)}]})\nAssertionError: ReceiptParseError not raised\n"
+    }
+  },
+  "corrected_measurement": {
+    "methods": 15,
+    "passed_methods": 15,
+    "subcases": 80,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0
+  },
+  "measurement_correction": "首跑把structuredContent=None当作实际存在载体，与空JSON字符串比较要求拒绝；源码与原合同明确None表示缺席。另存修正版将输入改为{x:null}与{x:\"\"}，使两个载体实际存在，保留类型差异目标。只改该输入和输出文件名；未改候选源码，未覆盖首跑。diff在reviewer_correction.diff。",
+  "additional_WR13_probe": {
+    "programs": 1,
+    "subcases": 5,
+    "positive_controls": 2,
+    "positive_passed": 2,
+    "negative_cases": 3,
+    "incorrectly_completed": 3,
+    "exit_code": 1
+  },
+  "counts_overlap_do_not_add": true,
+  "method_subcases": {
+    "test_both_matching_carriers_with_hidden_outputs_still_rejected": 4,
+    "test_collection_complete_chain_all_supported_modes": 4,
+    "test_collection_wrong_json_root_types_are_rejected": 9,
+    "test_conflicts_on_either_side_are_rejected_without_ledger_writes": 10,
+    "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected": 11,
+    "test_duplicate_keys_inside_marker_rejected_in_both_carriers": 2,
+    "test_equivalent_wrapped_json_controls": 8,
+    "test_multiple_text_blocks_are_one_equivalent_list_observation": 1,
+    "test_nonidentical_typed_values_or_output_order_rejected": 8,
+    "test_old_lean_each_native_stage_conflict_rejected": 3,
+    "test_old_lean_matching_runtime_failure_reconciles_without_row_text": 1,
+    "test_old_lean_submission_read_and_logs_complete_chain": 4,
+    "test_old_research_complete_chain_equivalent_carriers": 4,
+    "test_old_research_conflicting_carrier_rejected": 2,
+    "test_top_level_and_block_metadata_cannot_hide_rows": 9
+  },
+  "findings": [
+    {
+      "id": "WR-13",
+      "priority": "P2",
+      "title": "受支持的嵌套TextContent忽略未知annotations，带行侧载荷仍认证stdout-only并完成",
+      "file": "cloud/qresearch/engineering_receipts.py",
+      "start_line": 271,
+      "end_line": 273,
+      "related_locations": [
+        {
+          "file": "cloud/qresearch/engineering_receipts.py",
+          "start_line": 108,
+          "end_line": 111
+        },
+        {
+          "file": "cloud/qresearch/engineering_receipts.py",
+          "start_line": 301,
+          "end_line": 305
+        },
+        {
+          "file": "cloud/qresearch/collection_execution.py",
+          "start_line": 122,
+          "end_line": 140
+        }
+      ],
+      "trigger": "原生structuredContent中使用解析器明确支持的content/outputs包装text节点或直接text节点；text为合法固定marker，annotations带未知rows数组；外层content包含完全等价的JSON镜像。",
+      "expected": "两个载体相同仍须递归验证所承载内容；未知annotations行/错误侧载荷应在stdout_only和终态前拒绝。若支持标准注解，应明确字段和类型。",
+      "actual": "_native按完整JSON确认两载体相等；_research_stdout的text节点分支只visit(text)，不查看annotations。3个带合成rows的负例都得到Registry completed，raw.stdout_only=True、marker_count=1、report.market_values_exported=False。",
+      "impact": "内容驻留与完成证据门槛遗漏了一条受支持输入路径。相同载体只能证明它们一致，不能证明annotations无额外数据。",
+      "controls": "无注解及标准audience/priority/lastModified注解两正例都完成。不是主张所有annotations都应拒绝。外层MCP content块对非空annotations已有更严格检查，嵌套入口却忽略未知rows。",
+      "limitations": "不声称真实QuantConnect SDK已发送这种注解，也不声称任意SDK封装均已认证。所有行均为新造合成sentinel；行字节未写入Registry，原生结果只以digest进入台账。",
+      "reproduction": "nested_annotations_probe.py",
+      "evidence": "nested_annotations_probe.json",
+      "subcases": 5,
+      "false_acceptances": 3,
+      "fix_direction": "对所有解析器支持的text节点递归核验annotations。使用明确注解字段/类型白名单，拒绝未登记行/错误/其他侧载荷；保留合法标准注解与等价双表示的正向路径。",
+      "root_cause_history": "7bf与e513中已存在同一忽略annotations分支，见shared_branch_history.json；不能归因本提交首次引入。"
+    }
+  ],
+  "scope_details": [
+    "新采集合成worker经云store缓存、固定报告、原生direct/structured/content/dual四形状、Bridge/Registry完整成功终态；合成源行只存云store。",
+    "旧Research使用独立EngineeringTaskPlan与实际固定_finish报告程序，原生四形状经parser/Bridge/Registry完成。未运行其真实SDK数据取得worker。",
+    "旧LEAN在合成Research已完成后，原生create_backtest→read_backtest→分块logs三段解析及Bridge/Registry完成；四种支持包装正例通过。",
+    "旧LEAN等价双载体Runtime Error可终结failed，合成error/stacktrace行sentinel不写入台账。",
+    "各载体单侧冲突、两侧相同但各自有stdout/display/error/stderr、顶层/外层annotations隐藏行、重复键和错误JSON类型拒绝；拒绝路径不产生Registry新字节。",
+    "严格封装兼容范围仅限本脚本列出的已支持包装及JSON等价镜像；不推广为任意MCP或SDK包装认证。"
+  ],
+  "source_hashes_before_after_equal": true,
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "ec350c1db049053406742cdb061ffebe573deeaf57d8890061b176246b2b5b7a",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/registry.py": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894"
+  },
+  "commands": "command_log.json",
+  "regression_inputs": "corrected_run_summary.json:inputs",
+  "first_run_preserved": [
+    "first_run_summary.json",
+    "first_run_unittest.txt",
+    "independent_carrier_boundaries.py"
+  ],
+  "correction_files": [
+    "independent_carrier_boundaries_corrected.py",
+    "corrected_run_summary.json",
+    "corrected_run_unittest.txt",
+    "reviewer_correction.diff"
+  ],
+  "uncompleted_evidence": [
+    "真实新版成功运行与完整实际原生失败回执仍未执行。",
+    "真实SDK/Python.NET包装、云端部署/输入读回和金融/数据覆盖不由合成回执链证明。",
+    "原在途LEAN未查询、未重交、未替换输入；正式研究、最终测试和交易未开启。"
+  ],
+  "actions": {
+    "network": 0,
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deployment": 0,
+    "actual_budget_changes": 0,
+    "candidate_source_edits": 0,
+    "actual_final_market_data_opened": 0
+  }
+}
