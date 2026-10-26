@@ -1,0 +1,76 @@
+{
+  "source_commit": "fe4374cee054fb8053706074be913ad7068c4484",
+  "actually_executed": true,
+  "methods": 16,
+  "passed_methods": 15,
+  "failed_methods": 1,
+  "error_methods": 0,
+  "failure_records": 4,
+  "error_records": 0,
+  "skipped": 0,
+  "subcases": 84,
+  "observations": {
+    "WR07": [
+      {
+        "scale": 1e-200,
+        "path": "default",
+        "expected": 1.0,
+        "actual": null
+      },
+      {
+        "scale": 1e-200,
+        "path": "absolute_matrix",
+        "expected": 1.0,
+        "actual": null
+      },
+      {
+        "scale": 1e+200,
+        "path": "default",
+        "expected": 1.0,
+        "actual": 0.0
+      },
+      {
+        "scale": 1e+200,
+        "path": "absolute_matrix",
+        "expected": 1.0,
+        "actual": 0.0
+      }
+    ],
+    "full_chain": {
+      "folds": 6,
+      "predictions": 18,
+      "models_restored": 6,
+      "prefetch_calls": 14,
+      "extra_history_calls": 0
+    }
+  },
+  "failures": [
+    {
+      "test": "test_WR07_default_and_matrix_pearson_must_be_scale_invariant (__main__.Numeric) (scale=1e-200, path='default')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-wr07-replay-f8bc1fk5\\numeric_agent\\numeric_time_review.py\", line 99, in test_WR07_default_and_matrix_pearson_must_be_scale_invariant\n    with self.subTest(scale=scale,path=name):self.assertAlmostEqual(value,1.)\nAssertionError: nan != 1.0 within 7 places (nan difference)\n"
+    },
+    {
+      "test": "test_WR07_default_and_matrix_pearson_must_be_scale_invariant (__main__.Numeric) (scale=1e-200, path='absolute_matrix')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-wr07-replay-f8bc1fk5\\numeric_agent\\numeric_time_review.py\", line 99, in test_WR07_default_and_matrix_pearson_must_be_scale_invariant\n    with self.subTest(scale=scale,path=name):self.assertAlmostEqual(value,1.)\nAssertionError: nan != 1.0 within 7 places (nan difference)\n"
+    },
+    {
+      "test": "test_WR07_default_and_matrix_pearson_must_be_scale_invariant (__main__.Numeric) (scale=1e+200, path='default')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-wr07-replay-f8bc1fk5\\numeric_agent\\numeric_time_review.py\", line 99, in test_WR07_default_and_matrix_pearson_must_be_scale_invariant\n    with self.subTest(scale=scale,path=name):self.assertAlmostEqual(value,1.)\nAssertionError: 0.0 != 1.0 within 7 places (1.0 difference)\n"
+    },
+    {
+      "test": "test_WR07_default_and_matrix_pearson_must_be_scale_invariant (__main__.Numeric) (scale=1e+200, path='absolute_matrix')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-wr07-replay-f8bc1fk5\\numeric_agent\\numeric_time_review.py\", line 99, in test_WR07_default_and_matrix_pearson_must_be_scale_invariant\n    with self.subTest(scale=scale,path=name):self.assertAlmostEqual(value,1.)\nAssertionError: 0.0 != 1.0 within 7 places (1.0 difference)\n"
+    }
+  ],
+  "errors": [],
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "author_test_fixtures_imported": false,
+  "source_unchanged": true,
+  "market_calls": 0,
+  "financial_evidence": false
+}

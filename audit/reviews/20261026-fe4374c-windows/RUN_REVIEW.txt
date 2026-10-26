@@ -1,0 +1,13 @@
+解压到新的独立目录。不要覆盖开发者源码或旧审核记录。
+py -3.10 -m venv venv
+.\venv\Scripts\python.exe -m pip install -r source\requirements-test.txt
+$env:OPENBLAS_NUM_THREADS='1'
+$env:OMP_NUM_THREADS='1'
+$env:MKL_NUM_THREADS='1'
+.\venv\Scripts\python.exe -B atomic_agent\atomic_independent.py
+.\venv\Scripts\python.exe -B numeric_agent\numeric_time_review.py
+.\venv\Scripts\python.exe -B numeric_agent\minimal_pearson.py source
+数值/时区16方法当前应15通过、1失败方法（4子例），退出1；这是WR-07的实际失败，未使用expectedFailure。
+若要重跑仓库验证会生成audit/stage_verification.json，请先复制source为工作副本，再从副本运行tools/stages.py verify。
+旧56套件原样/适配命令见formal_report.json；输出目录须新建为空，保留全部原件。
+证据辅助脚本和负对照记录引用本审核机原目录；不要求通过这些旧机器路径来运行上面的独立新测试。

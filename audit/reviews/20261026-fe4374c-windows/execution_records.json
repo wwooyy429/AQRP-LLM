@@ -1,0 +1,65 @@
+[
+  {
+    "label": "repository_verify",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/stages.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\runs\\repository_source",
+    "exit_code": 0,
+    "seconds": 9.875
+  },
+  {
+    "label": "independent_original",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\source\\docs\\review\\wr04-wr06\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\runs\\independent_original",
+      "--mode",
+      "original"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026",
+    "exit_code": 1,
+    "seconds": 6.421999999991385
+  },
+  {
+    "label": "independent_adapted",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\source\\docs\\review\\wr04-wr06\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\runs\\independent_adapted",
+      "--mode",
+      "adapted"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026",
+    "exit_code": 0,
+    "seconds": 6.312000000005355
+  },
+  {
+    "label": "baseline_adapted",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\source\\docs\\review\\wr04-wr06\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\review_package\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026\\runs\\baseline_adapted",
+      "--mode",
+      "adapted"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fe4374c-20261026",
+    "exit_code": 1,
+    "seconds": 5.5310000000172295
+  }
+]

@@ -1,0 +1,710 @@
+test_absolute_pearson_matrix_uses_pairwise_common_sample_counts (test_work_wr07_regression.WR07PearsonTests) ... ERROR
+test_common_finite_samples_follow_index_alignment (test_work_wr07_regression.WR07PearsonTests) ... FAIL
+test_common_row_permutation_preserves_offset_correlation (test_work_wr07_regression.WR07PearsonTests) ... test_constant_inputs_at_extreme_scales_remain_undefined (test_work_wr07_regression.WR07PearsonTests) ... test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) ... test_duplicate_observation_indices_and_unknown_methods_still_fail (test_work_wr07_regression.WR07PearsonTests) ... ok
+test_near_maximum_positive_offset_preserves_small_spread (test_work_wr07_regression.WR07PearsonTests) ... ERROR
+test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) ... test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) ... test_pearson_stays_distinct_from_spearman_at_extreme_scales (test_work_wr07_regression.WR07PearsonTests) ... FAIL
+test_smallest_subnormal_inputs_keep_nonconstant_variation (test_work_wr07_regression.WR07PearsonTests) ... FAIL
+test_spearman_average_ties_and_sign_still_match_hand_ranks (test_work_wr07_regression.WR07PearsonTests) ... ok
+test_symmetric_float64_maximum_inputs_do_not_overflow (test_work_wr07_regression.WR07PearsonTests) ... ERROR
+test_ulp_variation_with_large_common_offset_matches_exact_oracle (test_work_wr07_regression.WR07PearsonTests) ... test_zero_one_and_two_observation_boundaries (test_work_wr07_regression.WR07PearsonTests) ... FAIL
+
+======================================================================
+ERROR: test_absolute_pearson_matrix_uses_pairwise_common_sample_counts (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 151, in test_absolute_pearson_matrix_uses_pairwise_common_sample_counts
+    result = pairwise_factor_correlations(features)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 271, in pairwise_factor_correlations
+    result = paired_factor_correlation(features[left], features[right], method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_common_row_permutation_preserves_offset_correlation (test_work_wr07_regression.WR07PearsonTests) (order=[0, 1, 2, 3])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 119, in test_common_row_permutation_preserves_offset_correlation
+    self.assert_pearson(left[order], right[order], expected)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_common_row_permutation_preserves_offset_correlation (test_work_wr07_regression.WR07PearsonTests) (order=[3, 0, 2, 1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 119, in test_common_row_permutation_preserves_offset_correlation
+    self.assert_pearson(left[order], right[order], expected)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_common_row_permutation_preserves_offset_correlation (test_work_wr07_regression.WR07PearsonTests) (order=[1, 2, 3, 0])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 119, in test_common_row_permutation_preserves_offset_correlation
+    self.assert_pearson(left[order], right[order], expected)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_constant_inputs_at_extreme_scales_remain_undefined (test_work_wr07_regression.WR07PearsonTests) (value=1.7976931348623157e+308)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 124, in test_constant_inputs_at_extreme_scales_remain_undefined
+    self.assert_pearson([value] * 3, [1., 2., 3.], math.nan)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 152, in _var
+    arrmean = umr_sum(arr, axis, dtype, keepdims=True, where=where)
+FloatingPointError: overflow encountered in reduce
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e+200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e+200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e-200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e-200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1.0, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1.0, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e+200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e+200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_near_maximum_positive_offset_preserves_small_spread (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 110, in test_near_maximum_positive_offset_preserves_small_spread
+    self.assert_pearson(left, [2., 4., 1., 8.])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 152, in _var
+    arrmean = umr_sum(arr, axis, dtype, keepdims=True, where=where)
+FloatingPointError: overflow encountered in reduce
+
+======================================================================
+ERROR: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e+200, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+ERROR: test_symmetric_float64_maximum_inputs_do_not_overflow (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 87, in test_symmetric_float64_maximum_inputs_do_not_overflow
+    self.assert_pearson([-maximum, -maximum / 2, 0., maximum / 2, maximum],
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 152, in _var
+    arrmean = umr_sum(arr, axis, dtype, keepdims=True, where=where)
+FloatingPointError: overflow encountered in reduce
+
+======================================================================
+ERROR: test_ulp_variation_with_large_common_offset_matches_exact_oracle (test_work_wr07_regression.WR07PearsonTests) (base=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 103, in test_ulp_variation_with_large_common_offset_matches_exact_oracle
+    self.assert_pearson(left, right)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 49, in assert_pearson
+    result = paired_factor_correlation(pd.Series(left), pd.Series(right))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 258, in paired_factor_correlation
+    corr = _correlation(pair.left.to_numpy(), pair.right.to_numpy(), method)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\wr07-work\baseline\source\cloud\qresearch\evaluation.py", line 210, in _correlation
+    if np.std(left) == 0 or np.std(right) == 0:
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\fromnumeric.py", line 3645, in std
+    return _methods._std(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 206, in _std
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\venv\lib\site-packages\numpy\core\_methods.py", line 176, in _var
+    x = um.multiply(x, x, out=x)
+FloatingPointError: overflow encountered in multiply
+
+======================================================================
+FAIL: test_common_finite_samples_follow_index_alignment (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 134, in test_common_finite_samples_follow_index_alignment
+    self.assertAlmostEqual(result["correlation"], 1.)
+AssertionError: nan != 1.0 within 7 places (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e-200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e-200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1.0, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1.0, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e+200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e+200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e-200, sign=-1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_default_pearson_perfect_signs_with_independently_scaled_inputs (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e-200, sign=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 66, in test_default_pearson_perfect_signs_with_independently_scaled_inputs
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 0.9819805060619656 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 0.9819805060619656 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 0.9819805060619656 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_hand_calculation_at_small_normal_large_scales (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 75, in test_nonperfect_hand_calculation_at_small_normal_large_scales
+    self.assert_pearson(np.array([1., 2., 3.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 0.9819805060619656 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -0.3920152142488941 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -0.3920152142488941 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1e-200, right_scale=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -0.3920152142488941 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_nonperfect_negative_correlation_uses_exact_binary_input_oracle (test_work_wr07_regression.WR07PearsonTests) (left_scale=1.0, right_scale=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 82, in test_nonperfect_negative_correlation_uses_exact_binary_input_oracle
+    self.assert_pearson(np.array([0., 1., 4., 9.]) * left_scale,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -0.3920152142488941 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_pearson_stays_distinct_from_spearman_at_extreme_scales (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 167, in test_pearson_stays_distinct_from_spearman_at_extreme_scales
+    self.assertAlmostEqual(pearson["correlation"], 3 / math.sqrt(2 * (14 / 3)))
+AssertionError: nan != 0.9819805060619656 within 7 places (nan difference)
+
+======================================================================
+FAIL: test_smallest_subnormal_inputs_keep_nonconstant_variation (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 93, in test_smallest_subnormal_inputs_keep_nonconstant_variation
+    self.assert_pearson([smallest, 2 * smallest, 3 * smallest], [1., 2., 3.], 1.0)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 1.0 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_ulp_variation_with_large_common_offset_matches_exact_oracle (test_work_wr07_regression.WR07PearsonTests) (base=1e-200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 103, in test_ulp_variation_with_large_common_offset_matches_exact_oracle
+    self.assert_pearson(left, right)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != 0.6777749493656265 within 5e-14 delta (nan difference)
+
+======================================================================
+FAIL: test_ulp_variation_with_large_common_offset_matches_exact_oracle (test_work_wr07_regression.WR07PearsonTests) (base=1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 103, in test_ulp_variation_with_large_common_offset_matches_exact_oracle
+    self.assert_pearson(left, right)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: 0.6682951125722248 != 0.6777749493656265 within 5e-14 delta (0.009479836793401697 difference)
+
+======================================================================
+FAIL: test_zero_one_and_two_observation_boundaries (test_work_wr07_regression.WR07PearsonTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 144, in test_zero_one_and_two_observation_boundaries
+    self.assert_pearson([1e-200, 2e-200], [2e200, 1e200], -1.)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_work_wr07_regression.py", line 56, in assert_pearson
+    self.assertAlmostEqual(result["correlation"], expected, delta=5e-14)
+AssertionError: nan != -1.0 within 5e-14 delta (nan difference)
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.058s
+
+FAILED (failures=22, errors=24)

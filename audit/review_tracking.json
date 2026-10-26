@@ -1,101 +1,119 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
-  "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
-  "accepted_stages": [],
-  "acceptance_scope": "Latest wider-scope independent Windows software review failed; developer repairs await new fixed-SHA independent review",
+  "reviewed_source_commit": "fe4374cee054fb8053706074be913ad7068c4484",
+  "source_manifest_hash": "1e98343a15a47bf3b59ee51747a304e29bb23719d0ea973c454c2559cb415d7f",
+  "accepted_stages": [
+    0
+  ],
+  "acceptance_scope": "Fixed fe4374c independent review: stage0 passed in tested scope; WR04/05/06 passed in their original scopes; extended numerical scope failed WR07. New repair pending independent review.",
   "software_acceptance": "failed_on_reviewed_source",
   "financial_evidence": false,
   "stage_acceptance": {
     "0": {
-      "implementation": "规范、身份、证据、Registry与持久化已实现；跨阶段准入有缺陷",
-      "status": "failed",
-      "passed_scope": "配置重建稳定、清单和证据哈希一致、全局额度与失败计费/复用/重启控制",
-      "blocking_findings": [
-        "WR-04"
-      ],
-      "tests": "217项及141项子集实际执行；独立预算、事件链、故障注入及原生Windows并发",
-      "missing": "所有工程入口共享的阶段2原子停止门槛"
+      "modules": "Study/身份/审计/Artifacts/Registry/准入",
+      "implementation": "已实现离线工程核心",
+      "status": "passed_after_fix",
+      "scope": "本轮实际覆盖的合同、身份、持久化及全局/阶段2原子预算准入",
+      "tests": "250项仓库回归；适配56；新增19项准入；63项独立证据检查",
+      "blocking_findings": []
     },
     "1": {
-      "implementation": "受限因子、PIT、股票池内核、往返标签、identity/ridge与六轮合成链已实现",
+      "modules": "因子/PIT/股票池内核/标签/模型/提前评价接口",
+      "implementation": "已实现核心，相关性有未解决边界",
       "status": "failed",
-      "passed_scope": "手算标签/因子/ridge、原始精度、历史修订、训练窗移除、模型恢复及适配后的正向完整链",
+      "scope": "WR-05/06及因子、标签、模型、完整六轮链通过；扩展Pearson范围失败",
+      "tests": "原套件正向回归、新增数值/时区16方法中15通过1失败",
       "blocking_findings": [
-        "WR-05",
-        "WR-06"
-      ],
-      "tests": "141项基础自检通过；独立测试发现RankIC失败和完整链时区错误",
-      "missing": "数值尺度不变性及等价时区表示兼容修复"
+        "WR-07"
+      ]
     },
     "2": {
-      "implementation": "工程任务桥、接收器、覆盖诊断及历史批次接入合同已实现",
-      "status": "failed",
-      "software_foundation": "failed",
-      "real_execution_acceptance": "pending",
-      "blocking_findings": [
-        "WR-04"
-      ],
-      "tests": "独立合成回执链与状态/故障边界；当前QC源码只读核对；归档回执重解析",
-      "missing": "LEAN已交付终态、完整历史US200/财务版本/实际送达认证"
+      "modules": "QC适配/缓存/接收器/任务桥/覆盖与接入合同",
+      "implementation": "本地软件已实现，当前修复未部署",
+      "status": "pending",
+      "software_foundation": "passed_after_fix_in_tested_synthetic_scope",
+      "tests": "新增19项准入及56项回执/恢复等回归；QC当前源码只读核对",
+      "blocking_findings": [],
+      "missing": [
+        "既有LEAN终态",
+        "新实现的部署及运行证据",
+        "完整US200/财务版本/实际送达认证"
+      ]
     },
     "3": {
-      "implementation": "提前交付评价和六轮集成核心；尚无合格真实研究",
+      "modules": "evaluation/pipeline",
+      "implementation": "提前交付六轮评价核心，完整研究尚未实现",
       "status": "not_accepted",
-      "implemented_numeric_scope": "failed",
+      "implemented_correlation_scope": "failed",
       "blocking_findings": [
-        "WR-05",
-        "WR-06"
+        "WR-07"
       ],
-      "tests": "六轮合成、共同样本拒绝、标签成熟、拟合窗口与模型恢复",
-      "missing": "分层收益/暴露/换手/风险完整报告、真实固定模型及合格数据评价"
+      "tests": "独立六轮、成熟边界、样本/模型恢复及数值复算",
+      "missing": [
+        "合格真实数据与固定生产模型",
+        "完整分层/暴露/换手/风险报告"
+      ]
     },
     "4": {
-      "implementation": "无订单工程接收器不构成组合交易系统",
+      "modules": "LEAN组合与执行",
+      "implementation": "仅有无订单工程接收器",
       "status": "not_implemented_not_accepted",
+      "tests": "工程订单拒绝回归",
       "blocking_findings": [],
-      "tests": "仅工程零订单回执拒绝测试",
-      "missing": "完整LEAN组合、订单成交、费用现金净值对账、成本风险压力及增量"
+      "missing": [
+        "组合、订单成交、持仓现金净值账本",
+        "成本风险压力、Research/LEAN交易一致性及增量"
+      ]
     },
     "5": {
-      "implementation": "持久化Workflow状态机提前实现；GPT生成闭环未接通",
+      "modules": "Workflow/GPT闭环",
+      "implementation": "持久化状态机已有，GPT调用未配置接通",
       "status": "not_accepted",
+      "tests": "既有合成状态机及重启/未知提交回归",
       "blocking_findings": [],
-      "tests": "既有状态机合成回归；独立未知提交/重启/失败不退款",
-      "missing": "固定GPT模型、调用/费用上限、真实生成适配器、有限修复与提示注入全链"
+      "missing": [
+        "固定GPT模型、次数与费用上限",
+        "实际生成、有限修复和提示注入闭环"
+      ]
     },
     "6": {
-      "implementation": "存在结构相似度和绝对相关辅助函数",
+      "modules": "结构及相关性辅助函数/受限搜索",
+      "implementation": "辅助函数部分实现，完整搜索未实现",
       "status": "not_implemented_not_accepted",
       "blocking_findings": [
-        "WR-05"
+        "WR-07"
       ],
-      "tests": "独立负相关绝对值手算；Spearman数值问题复现",
-      "missing": "完整受限搜索、全部试验登记、消融和净组合增量、选择偏差诊断"
+      "tests": "结构/绝对相关回归及Pearson失败复现",
+      "missing": [
+        "搜索台账、消融、净组合增量及选择偏差诊断"
+      ]
     },
     "7": {
-      "implementation": "有冻结元数据及关闭门槛；独立最终/前向执行器未实现",
+      "modules": "冻结/独立最终执行器/前向",
+      "implementation": "有冻结元数据和关闭门槛，执行器未实现",
       "status": "not_implemented_not_accepted",
       "blocking_findings": [],
-      "tests": "开发/最终日期拒绝和历史暴露记录静态核对",
-      "missing": "完整冻结、独立最终执行器、2026独立性证明、前向监控停止回滚"
+      "tests": "日期拒绝与暴露事实回归/静态检查",
+      "missing": [
+        "完整冻结及独立最终执行器",
+        "2026独立性、前向监控停止回滚"
+      ]
     }
   },
   "known_open_findings": [
-    "WR-04",
-    "WR-05",
-    "WR-06"
+    "WR-07"
   ],
   "finding_developer_status": {
-    "WR-04": "repair_implemented_offline_verified_pending_independent_review",
-    "WR-05": "repair_implemented_offline_verified_pending_independent_review",
-    "WR-06": "repair_implemented_offline_verified_pending_independent_review"
+    "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
+    "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
+    "WR-06": "independently_verified_resolved_in_original_scope_on_fe4374c",
+    "WR-07": "developer_repair_pending_new_fixed_SHA_independent_review"
   },
-  "latest_independent_report": "audit/reviews/20261026-75f24629-windows/formal_report.json",
-  "developer_fix_evidence": "audit/review_packages/wr04_wr06/developer_verification.json",
-  "current_handoff": "docs/review/wr04-wr06/README.md",
+  "latest_independent_report": "audit/reviews/20261026-fe4374c-windows/formal_report.json",
+  "developer_fix_evidence": "audit/review_packages/wr07/developer_verification.json",
+  "current_handoff": "docs/review/wr07/README.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -244,5 +262,103 @@
     "lean": 1
   },
   "new_market_or_model_calls": 0,
-  "new_independent_review_dispatched": false
+  "new_independent_review_dispatched": false,
+  "review_history": [
+    {
+      "reviewed_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+      "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+      "accepted_stages": [],
+      "software_acceptance": "failed_on_reviewed_source",
+      "stage_acceptance": {
+        "0": {
+          "implementation": "规范、身份、证据、Registry与持久化已实现；跨阶段准入有缺陷",
+          "status": "failed",
+          "passed_scope": "配置重建稳定、清单和证据哈希一致、全局额度与失败计费/复用/重启控制",
+          "blocking_findings": [
+            "WR-04"
+          ],
+          "tests": "217项及141项子集实际执行；独立预算、事件链、故障注入及原生Windows并发",
+          "missing": "所有工程入口共享的阶段2原子停止门槛"
+        },
+        "1": {
+          "implementation": "受限因子、PIT、股票池内核、往返标签、identity/ridge与六轮合成链已实现",
+          "status": "failed",
+          "passed_scope": "手算标签/因子/ridge、原始精度、历史修订、训练窗移除、模型恢复及适配后的正向完整链",
+          "blocking_findings": [
+            "WR-05",
+            "WR-06"
+          ],
+          "tests": "141项基础自检通过；独立测试发现RankIC失败和完整链时区错误",
+          "missing": "数值尺度不变性及等价时区表示兼容修复"
+        },
+        "2": {
+          "implementation": "工程任务桥、接收器、覆盖诊断及历史批次接入合同已实现",
+          "status": "failed",
+          "software_foundation": "failed",
+          "real_execution_acceptance": "pending",
+          "blocking_findings": [
+            "WR-04"
+          ],
+          "tests": "独立合成回执链与状态/故障边界；当前QC源码只读核对；归档回执重解析",
+          "missing": "LEAN已交付终态、完整历史US200/财务版本/实际送达认证"
+        },
+        "3": {
+          "implementation": "提前交付评价和六轮集成核心；尚无合格真实研究",
+          "status": "not_accepted",
+          "implemented_numeric_scope": "failed",
+          "blocking_findings": [
+            "WR-05",
+            "WR-06"
+          ],
+          "tests": "六轮合成、共同样本拒绝、标签成熟、拟合窗口与模型恢复",
+          "missing": "分层收益/暴露/换手/风险完整报告、真实固定模型及合格数据评价"
+        },
+        "4": {
+          "implementation": "无订单工程接收器不构成组合交易系统",
+          "status": "not_implemented_not_accepted",
+          "blocking_findings": [],
+          "tests": "仅工程零订单回执拒绝测试",
+          "missing": "完整LEAN组合、订单成交、费用现金净值对账、成本风险压力及增量"
+        },
+        "5": {
+          "implementation": "持久化Workflow状态机提前实现；GPT生成闭环未接通",
+          "status": "not_accepted",
+          "blocking_findings": [],
+          "tests": "既有状态机合成回归；独立未知提交/重启/失败不退款",
+          "missing": "固定GPT模型、调用/费用上限、真实生成适配器、有限修复与提示注入全链"
+        },
+        "6": {
+          "implementation": "存在结构相似度和绝对相关辅助函数",
+          "status": "not_implemented_not_accepted",
+          "blocking_findings": [
+            "WR-05"
+          ],
+          "tests": "独立负相关绝对值手算；Spearman数值问题复现",
+          "missing": "完整受限搜索、全部试验登记、消融和净组合增量、选择偏差诊断"
+        },
+        "7": {
+          "implementation": "有冻结元数据及关闭门槛；独立最终/前向执行器未实现",
+          "status": "not_implemented_not_accepted",
+          "blocking_findings": [],
+          "tests": "开发/最终日期拒绝和历史暴露记录静态核对",
+          "missing": "完整冻结、独立最终执行器、2026独立性证明、前向监控停止回滚"
+        }
+      },
+      "latest_independent_report": "audit/reviews/20261026-75f24629-windows/formal_report.json"
+    }
+  ],
+  "repair_acceptance": {
+    "WR-04": {
+      "status": "passed_after_fix",
+      "scope": "跨计划/项目/store、线程及Windows进程的工程2/2/2原子准入；所有有效入口，复用与失败/未知保护"
+    },
+    "WR-05": {
+      "status": "passed_after_fix",
+      "scope": "原Spearman问题；独立平均秩、多尺度、符号、并列、常数与共同样本"
+    },
+    "WR-06": {
+      "status": "passed_after_fix",
+      "scope": "共享PIT/计划/运行入口的等价时区、DST、非法成员拒绝、缓存复用和未加调用方适配的完整链"
+    }
+  }
 }

@@ -1,0 +1,109 @@
+[
+  {
+    "label": "candidate",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "numeric_agent\\minimal_pearson.py",
+      "source"
+    ],
+    "exit_code": 0,
+    "result": {
+      "source": "source",
+      "observations": [
+        {
+          "scale": 1e-200,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": null,
+            "absolute_pearson_matrix": null,
+            "spearman": 1.0
+          },
+          "NaN_paths": [
+            "default_pearson",
+            "absolute_pearson_matrix"
+          ]
+        },
+        {
+          "scale": 1.0,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": 1.0,
+            "absolute_pearson_matrix": 1.0,
+            "spearman": 1.0
+          },
+          "NaN_paths": []
+        },
+        {
+          "scale": 1e+200,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": 0.0,
+            "absolute_pearson_matrix": 0.0,
+            "spearman": 1.0
+          },
+          "NaN_paths": []
+        }
+      ],
+      "runtime_warnings": [
+        "invalid value encountered in divide",
+        "overflow encountered in multiply"
+      ]
+    },
+    "stderr": ""
+  },
+  {
+    "label": "baseline",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "numeric_agent\\minimal_pearson.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\review_package\\source"
+    ],
+    "exit_code": 0,
+    "result": {
+      "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\review_package\\source",
+      "observations": [
+        {
+          "scale": 1e-200,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": null,
+            "absolute_pearson_matrix": null,
+            "spearman": null
+          },
+          "NaN_paths": [
+            "default_pearson",
+            "absolute_pearson_matrix",
+            "spearman"
+          ]
+        },
+        {
+          "scale": 1.0,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": 1.0,
+            "absolute_pearson_matrix": 1.0,
+            "spearman": 1.0
+          },
+          "NaN_paths": []
+        },
+        {
+          "scale": 1e+200,
+          "expected": 1.0,
+          "actual": {
+            "default_pearson": 0.0,
+            "absolute_pearson_matrix": 0.0,
+            "spearman": 1.0
+          },
+          "NaN_paths": []
+        }
+      ],
+      "runtime_warnings": [
+        "invalid value encountered in divide",
+        "overflow encountered in multiply"
+      ]
+    },
+    "stderr": ""
+  }
+]
