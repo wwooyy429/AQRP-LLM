@@ -1,0 +1,569 @@
+"""Budgeted, metadata-only bridge for a fixed QC engineering fixture.
+
+This does not open the production research controller. Trusted adapters observe
+actual platform receipts; a trusted completion source reads delivered terminal
+results and the cloud report. Their provenance is an operational trust boundary,
+not a cryptographic signature. LLM output is never a completion source.
+"""
+from dataclasses import dataclass
+import json
+import math
+import re
+
+from .artifacts import canonical_json, content_hash, validate_key
+from .contracts import DataRequest, aware
+from .registry import Attempt
+from .workflow import SubmissionRejected
+
+
+class EngineeringTaskError(ValueError):
+    """An engineering plan, receipt, or transition is not admissible."""
+
+
+def _hash(value, name):
+    if not isinstance(value, str) or re.fullmatch("[0-9a-f]{64}", value) is None:
+        raise EngineeringTaskError(name + " requires a canonical SHA-256")
+    return value
+
+
+def _mapping(value, name):
+    if not isinstance(value, dict):
+        raise EngineeringTaskError(name + " must be a JSON object")
+    return value
+
+
+def _string(value, name):
+    if not isinstance(value, str) or not value.strip():
+        raise EngineeringTaskError(name + " must be a nonempty string")
+    return value
+
+
+def _time(value):
+    stamp = aware(value)
+    if stamp is None or str(stamp) == "NaT":
+        raise EngineeringTaskError("Missing time is prohibited")
+    return stamp
+
+
+_IDENTITY_FIELDS = {"plan_hash", "config_id", "attempt_id", "stage", "project_id",
+                    "source_manifest_hash", "deployment_hash", "data_request_hash"}
+_FLAGS = {"market_values_exported", "economic_factor_tested", "final_data_accessed",
+          "full_US200_coverage_certified", "actual_availability_verified"}
+_COUNT_FIELDS = {
+    "research": {"record_count", "history_calls_first", "history_calls_second", "expected_formation_count"},
+    "lean": {"data_event_count", "slice_count", "orders_submitted", "runtime_error_count",
+             "dividend_event_count", "split_event_count", "delisting_event_count", "mapping_event_count"},
+}
+_RAW_ROW_KEYS = {"rows", "row", "values", "value", "panel", "panels", "dataframe", "dataframes",
+                 "data", "records", "record", "prices", "price", "bars", "bar", "trades", "trade",
+                 "holdings", "positions", "orders", "equitycurve", "charts", "statistics", "performance",
+                 "returns", "labels", "targets", "output", "outputs", "stdout", "stderr"}
+
+
+def _safe_raw_metadata(raw, *, depth=0, text_list=False):
+    """Reject row containers before any receipt bytes can reach local storage.
+
+    Native tool metadata may have differing keys. Only bounded scalar metadata,
+    objects and explicit error/warning text lists are accepted. This cannot
+    certify absence of arbitrarily encoded information in a trusted tool string.
+    """
+    if depth > 8:
+        raise EngineeringTaskError("Platform metadata nesting exceeds the fixed boundary")
+    if isinstance(raw, dict):
+        if len(raw) > 128:
+            raise EngineeringTaskError("Platform metadata object is too large")
+        for key, value in raw.items():
+            if not isinstance(key, str) or len(key) > 256:
+                raise EngineeringTaskError("Platform metadata keys must be bounded strings")
+            normalized = key.lower().replace("_", "").replace("-", "").replace(" ", "")
+            if normalized in _RAW_ROW_KEYS:
+                raise EngineeringTaskError("Row-level data and market outputs cannot enter local receipts: " + key)
+            _safe_raw_metadata(value, depth=depth + 1, text_list=text_list or normalized in {"errors", "warnings"})
+    elif isinstance(raw, list):
+        if not text_list or len(raw) > 32 or any(not isinstance(item, str) or len(item) > 4096 for item in raw):
+            raise EngineeringTaskError("Only bounded platform error/warning text lists are metadata")
+    elif isinstance(raw, str):
+        if len(raw) > 4096:
+            raise EngineeringTaskError("Platform metadata strings must be bounded")
+    elif raw is None or type(raw) in {bool, int}:
+        return
+    elif type(raw) is float and math.isfinite(raw):
+        return
+    else:
+        raise EngineeringTaskError("Unsupported platform metadata value")
+
+
+def _safe_reference(raw):
+    raw = _mapping(raw, "content-addressed cloud reference")
+    if set(raw) != {"key", "sha256"}:
+        raise EngineeringTaskError("Cloud evidence references contain only key and sha256")
+    validate_key(raw["key"])
+    _hash(raw["sha256"], "cloud reference sha256")
+
+
+def _safe_identity(raw, *, external=False):
+    raw = _mapping(raw, "engineering identity")
+    if set(raw) != _IDENTITY_FIELDS | ({"external_id"} if external else set()):
+        raise EngineeringTaskError("Unknown engineering identity fields cannot carry output data")
+    for name in ("plan_hash", "config_id", "source_manifest_hash", "deployment_hash", "data_request_hash"):
+        _hash(raw[name], name)
+    if (not isinstance(raw["attempt_id"], str) or re.fullmatch("[0-9a-f]{32}", raw["attempt_id"]) is None
+            or type(raw["project_id"]) is not int or raw["project_id"] <= 0 or raw["stage"] not in _COUNT_FIELDS):
+        raise EngineeringTaskError("Invalid fixed engineering identity metadata")
+    if external:
+        value = _string(raw["external_id"], "external identity")
+        if len(value) > 256 or "\n" in value or "\r" in value:
+            raise EngineeringTaskError("External identity is not bounded platform metadata")
+
+
+def _safe_evidence(raw):
+    raw = _mapping(raw, "engineering evidence metadata")
+    allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
+               "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
+               "unobserved_action_types_are_not_certified"}
+    if not set(raw) <= allowed:
+        raise EngineeringTaskError("Unknown engineering evidence cannot carry row-level data")
+    for name, value in raw.items():
+        if name.endswith("_ref"):
+            _safe_reference(value)
+        elif name == "cache_payload_refs":
+            if not isinstance(value, list) or len(value) > 5:
+                raise EngineeringTaskError("Only bounded cloud cache references may leave cloud")
+            for reference in value:
+                _safe_reference(reference)
+        elif name == "coverage_certification_gaps":
+            from .coverage import RESEARCH_GAPS
+            if value != list(RESEARCH_GAPS):
+                raise EngineeringTaskError("Coverage gaps must be the fixed program observations")
+        elif name == "lean_engine_version":
+            if not isinstance(value, str) or not value or len(value) > 100 or "\n" in value or "\r" in value:
+                raise EngineeringTaskError("Invalid engine version metadata")
+        elif name == "vendor_revision_known" and value is not False:
+            raise EngineeringTaskError("The historical vendor revision is not certified")
+        elif name == "unobserved_action_types_are_not_certified" and value is not True:
+            raise EngineeringTaskError("Unobserved corporate-action types remain uncertified")
+
+
+@dataclass(frozen=True, init=False)
+class EngineeringTaskPlan:
+    """A canonical, fixed two-stock 2018 data-plumbing plan, not a factor.
+
+    ``discovered_project_ids`` is supplied by the trusted platform dispatcher
+    after list_projects, never extracted from the candidate document itself.
+    The deployment/source hashes exclude per-attempt generated input, whose
+    separately observed hash is bound by each submission and completion receipt.
+    """
+    _encoded: bytes
+
+    def __init__(self, *args, **kwargs):
+        raise TypeError("Use EngineeringTaskPlan.from_dict with trusted discovered project IDs")
+
+    @classmethod
+    def from_dict(cls, raw, *, discovered_project_ids):
+        value = _mapping(json.loads(canonical_json(raw)), "engineering plan")
+        required = {"schema_version", "plan_id", "scope", "project_id", "source_manifest_hash",
+                    "deployment_hash", "request_mode", "observation_window", "required_checks",
+                    "max_retries", "report_namespace", "orders_enabled", "financial_metrics_enabled",
+                    "economic_factor", "economic_model"}
+        mode = value.get("request_mode")
+        mode_keys = {"request_template", "symbol_resolution"} if mode == "symbol_resolution" else {"data_request"}
+        if set(value) != required | mode_keys or value["schema_version"] != 1 or type(value["schema_version"]) is not int:
+            raise EngineeringTaskError("A complete versioned engineering plan is required; unknown overrides are prohibited")
+        if value["scope"] != "engineering" or value["orders_enabled"] is not False or value["financial_metrics_enabled"] is not False:
+            raise EngineeringTaskError("This bridge permits engineering without orders or financial metrics only")
+        if value["economic_factor"] is not None or value["economic_model"] is not None:
+            raise EngineeringTaskError("Economic factors and models cannot enter this bridge")
+        _string(value["plan_id"], "plan_id")
+        project = value["project_id"]
+        ids = tuple(discovered_project_ids)
+        if type(project) is not int or project <= 0 or any(type(i) is not int for i in ids) or project not in ids:
+            raise EngineeringTaskError("Use a project returned by the trusted list_projects call")
+        for key in ("source_manifest_hash", "deployment_hash"):
+            _hash(value[key], key)
+        validate_key(value["report_namespace"])
+        if mode == "symbol_resolution":
+            template = _mapping(value["request_template"], "request_template")
+            expected = {"dataset", "fields", "start", "end", "data_version", "universe_hash", "normalization", "timezone"}
+            if set(template) != expected:
+                raise EngineeringTaskError("Declare the complete SID-free request template")
+            resolver = _mapping(value["symbol_resolution"], "symbol_resolution")
+            if set(resolver) != {"tickers", "as_of", "method"} or resolver["tickers"] != ["AAPL", "MSFT"]:
+                raise EngineeringTaskError("Only the fixed AAPL/MSFT engineering resolution fixture is supported")
+            if resolver["method"] != "QuantBook.add_equity/as-of fixed fixture":
+                raise EngineeringTaskError("An explicit historical fixture resolver is required")
+            # Validate dates/fields without pretending these sentinels are real SIDs.
+            request = DataRequest(**dict(template, fields=tuple(template["fields"]), sids=("template-only-A", "template-only-B")))
+            if _time(resolver["as_of"]) != _time(request.end):
+                raise EngineeringTaskError("The fixed fixture resolution frontier must equal the history end")
+        elif mode == "resolved":
+            request = DataRequest(**value["data_request"])
+            if len(request.sids) != 2:
+                raise EngineeringTaskError("Only two pre-resolved permanent SIDs are supported")
+            value["data_request"] = request.identity()
+        else:
+            raise EngineeringTaskError("Unknown request resolution mode")
+        if (request.dataset not in {"US Equities", "us_equity_daily"} or request.normalization != "raw"
+                or not set(request.fields) <= {"open", "high", "low", "close", "volume"}):
+            raise EngineeringTaskError("Only declared raw daily OHLCV is permitted")
+        _hash(request.universe_hash, "fixture universe_hash")
+        if (request.start != _time("2018-01-01T00:00:00-05:00")
+                or request.end != _time("2019-01-01T00:00:00-05:00")):
+            raise EngineeringTaskError("Declare the actual full-year 2018 cache fetch, not just the observation window")
+        window = _mapping(value["observation_window"], "observation_window")
+        if set(window) != {"start", "end_exclusive"}:
+            raise EngineeringTaskError("Explicit observation bounds are required")
+        start, end = _time(window["start"]), _time(window["end_exclusive"])
+        if not _time(request.start) <= start < end <= _time(request.end):
+            raise EngineeringTaskError("Observation dates must lie inside the fixed 2018 history request")
+        value["observation_window"] = {"start": start.isoformat(), "end_exclusive": end.isoformat()}
+        for key in ("required_checks", "max_retries"):
+            if set(_mapping(value[key], key)) != {"research", "lean"}:
+                raise EngineeringTaskError("Both engineering stages must be explicitly bounded")
+        for stage in ("research", "lean"):
+            checks = value["required_checks"][stage]
+            if (not isinstance(checks, list) or not checks
+                    or any(not isinstance(x, str) or re.fullmatch("[a-z][a-z0-9_]*", x) is None for x in checks)
+                    or len(set(checks)) != len(checks)):
+                raise EngineeringTaskError("Named unique required checks are required")
+            retries = value["max_retries"][stage]
+            if type(retries) is not int or not 0 <= retries <= 2:
+                raise EngineeringTaskError("Retries must be preregistered and bounded from zero through two")
+        result = object.__new__(cls)
+        object.__setattr__(result, "_encoded", canonical_json(value))
+        return result
+
+    def to_dict(self):
+        return json.loads(self._encoded)
+
+    @property
+    def hash(self):
+        return content_hash(self.to_dict())
+
+    configuration_hash = hash
+
+    @property
+    def request_hash(self):
+        value = self.to_dict()
+        request = ({"request_template": value["request_template"], "symbol_resolution": value["symbol_resolution"]}
+                   if value["request_mode"] == "symbol_resolution" else value["data_request"])
+        return content_hash(request)
+
+
+class EngineeringTaskBridge:
+    """One authoritative Registry; no second budget counter or polling loop.
+
+    ``adapter`` implements submit_research/submit_backtest(payload,
+    operation_key=...). ``completion_source(payload)`` is trusted program I/O,
+    returning platform terminal metadata plus the cloud metadata report and its
+    immutable reference. It must observe actual tool results, not LLM approvals.
+    Direct free dictionaries cannot be passed to consume_completion.
+    """
+    def __init__(self, registry, plan, *, adapter=None, completion_source=None):
+        if not isinstance(plan, EngineeringTaskPlan):
+            raise TypeError("A validated EngineeringTaskPlan is required")
+        self.registry, self.store, self.plan = registry, registry.store, plan
+        self.adapter, self.completion_source = adapter, completion_source
+        self.package = {"engineering_task_schema_version": 1, "plan": plan.to_dict()}
+        self.config_id = content_hash(self.package)
+
+    def register(self, *, allocation="normal"):
+        return self.registry.register_config(self.package, allocation=allocation)
+
+    def _operation(self, stage):
+        if stage not in {"research", "lean"}:
+            raise EngineeringTaskError("Only engineering research/lean stages are permitted")
+        return "engineering-plan:" + self.plan.hash + ":" + stage
+
+    def _records(self):
+        return self.registry.snapshot()["attempts"]
+
+    def _record(self, attempt):
+        identity = attempt.attempt_id if isinstance(attempt, Attempt) else attempt
+        matches = [x for x in self._records() if x["attempt_id"] == identity]
+        if (len(matches) != 1 or matches[0]["config_id"] != self.config_id
+                or matches[0]["operation_key"] != self._operation(matches[0]["stage"])):
+            raise EngineeringTaskError("Attempt does not belong to this exact registered task plan")
+        return matches[0]
+
+    @staticmethod
+    def _attempt(record):
+        return Attempt(**{key: record.get(key) for key in ("attempt_id", "config_id", "stage", "operation_key",
+                       "status", "allocation", "result_key", "external_id")}, should_execute=False)
+
+    def _research_result(self):
+        records = [x for x in self._records() if x["config_id"] == self.config_id and x["stage"] == "research"]
+        if not records or records[-1]["status"] != "completed":
+            raise EngineeringTaskError("LEAN requires the verified completed Research resolution first")
+        return self.registry.read_result(records[-1]["attempt_id"])
+
+    def claim(self, stage, *, allocation="normal", retry_of=None, reason=None):
+        operation = self._operation(stage)
+        document = self.plan.to_dict()
+        if stage == "lean":
+            self._research_result()
+        with self.store.locked("engineering/project-claim/" + str(document["project_id"])):
+            records = self._records()
+            for record in records:
+                if record["status"] not in {"started", "pending", "ambiguous"}:
+                    continue
+                package = json.loads(self.store.read_bytes("configurations/" + record["config_id"] + ".json"))
+                if (package.get("engineering_task_schema_version") == 1
+                        and package["plan"]["project_id"] == document["project_id"]
+                        and record["config_id"] != self.config_id):
+                    raise EngineeringTaskError("Unresolved engineering work on this project must be reconciled before another plan")
+            previous = [x for x in records if x["config_id"] == self.config_id and x["stage"] == stage]
+            if retry_of is not None and len(previous) >= 1 + document["max_retries"][stage]:
+                raise EngineeringTaskError("Preregistered retry bound reached")
+            return self.registry.begin_attempt(self.config_id, stage, allocation=allocation,
+                       operation_key=operation, retry_of=retry_of, reason=reason)
+
+    def payload(self, attempt):
+        record = self._record(attempt)
+        document = self.plan.to_dict()
+        identity = {"plan_hash": self.plan.hash, "config_id": self.config_id,
+                    "attempt_id": record["attempt_id"], "stage": record["stage"],
+                    "project_id": document["project_id"], "source_manifest_hash": document["source_manifest_hash"],
+                    "deployment_hash": document["deployment_hash"], "data_request_hash": self.plan.request_hash}
+        payload = {"plan": document, "identity": identity,
+                   "report_key": document["report_namespace"] + "/reports/" + self.plan.hash + "/" + record["stage"] + "/" + record["attempt_id"] + ".json",
+                   "external_identity_kind": "logical_research_execution_receipt" if record["stage"] == "research" else "quantconnect_backtest_id"}
+        if record["stage"] == "lean":
+            payload["research_resolution"] = self._research_result()["cloud_report"].get("resolution")
+        return payload
+
+    def _save(self, attempt_id, kind, value):
+        encoded = canonical_json(value)
+        digest = content_hash(value)
+        key = "engineering/evidence/" + attempt_id + "/" + kind + "/" + digest + ".json"
+        self.store.write_once(key, encoded)
+        return {"key": key, "sha256": digest}
+
+    def _submission_key(self, attempt_id):
+        return "engineering/submissions/" + attempt_id + ".json"
+
+    def _deployment(self, raw):
+        raw = _mapping(raw, "deployment observation")
+        document = self.plan.to_dict()
+        if set(raw) != {"source_manifest_hash", "deployment_hash", "input_hash"}:
+            raise EngineeringTaskError("Bind separately verified source deployment and generated input hashes")
+        if any(raw[key] != document[key] for key in ("source_manifest_hash", "deployment_hash")):
+            raise EngineeringTaskError("Observed source deployment differs from the registered plan")
+        _hash(raw["input_hash"], "generated input hash")
+        return raw
+
+    def _submission_metadata(self, receipt):
+        required = {"identity", "identity_kind", "accepted", "deployment", "raw_receipt"}
+        if not required <= set(receipt) or set(receipt) - required - {"external_id", "status"}:
+            raise EngineeringTaskError("Unknown submission metadata fields are prohibited")
+        _safe_identity(receipt["identity"])
+        self._deployment(receipt["deployment"])
+        _safe_raw_metadata(_mapping(receipt["raw_receipt"], "platform submission metadata"))
+        if type(receipt["accepted"]) is not bool:
+            raise EngineeringTaskError("Submission acceptance must be an observed boolean")
+        if receipt["identity_kind"] not in {"logical_research_execution_receipt", "quantconnect_backtest_id"}:
+            raise EngineeringTaskError("Unknown external identity kind")
+        if receipt.get("external_id") is not None:
+            external = _string(receipt["external_id"], "external identity")
+            if len(external) > 256 or "\n" in external or "\r" in external:
+                raise EngineeringTaskError("External identity must be bounded metadata")
+        if "status" in receipt and receipt["status"] not in {"submitted", "pending", "completed", "compiled", "rejected", "failed"}:
+            raise EngineeringTaskError("Submission status is not an output-data field")
+
+    def _report_metadata(self, report):
+        report = _mapping(report, "cloud engineering report")
+        required = {"schema_version", "identity", "status", "terminal", "checks", "statistics"} | _FLAGS
+        if not required <= set(report) or set(report) - required - {"resolution", "evidence"}:
+            raise EngineeringTaskError("Unknown cloud report fields cannot leave cloud")
+        if type(report["schema_version"]) is not int or report["schema_version"] != 1:
+            raise EngineeringTaskError("A fixed versioned engineering report is required")
+        _safe_identity(report["identity"])
+        if report["status"] not in {"completed", "failed"} or report["terminal"] is not True:
+            raise EngineeringTaskError("Cloud report is not a terminal engineering observation")
+        if any(report[name] is not False for name in _FLAGS):
+            raise EngineeringTaskError("Engineering limitations cannot be upgraded by a receipt")
+        checks = _mapping(report["checks"], "engineering checks")
+        if any(re.fullmatch("[a-z][a-z0-9_]{0,95}", key) is None or type(value) is not bool for key, value in checks.items()):
+            raise EngineeringTaskError("Engineering checks contain named boolean observations only")
+        statistics = _mapping(report["statistics"], "engineering counts")
+        if not set(statistics) <= _COUNT_FIELDS[report["identity"]["stage"]] or any(type(value) is not int or value < 0 for value in statistics.values()):
+            raise EngineeringTaskError("Only fixed nonnegative engineering counts may leave cloud")
+        self._resolution(report, report["identity"]["stage"])
+        _safe_evidence(report.get("evidence", {}))
+
+    def _completion_metadata(self, observed):
+        observed = _mapping(observed, "delivered completion metadata")
+        if "platform" not in observed or set(observed) - {"platform", "cloud_report", "report_ref"}:
+            raise EngineeringTaskError("Unknown completion fields cannot be stored locally")
+        platform = _mapping(observed["platform"], "platform completion metadata")
+        if set(platform) != {"identity", "terminal", "status", "deployment", "raw_receipt"}:
+            raise EngineeringTaskError("Unknown platform observation fields cannot carry output data")
+        _safe_identity(platform["identity"], external=True)
+        self._deployment(platform["deployment"])
+        if type(platform["terminal"]) is not bool or platform["status"] not in {"completed", "failed", "runtime_error", "compile_error", "compiled", "submitted", "pending"}:
+            raise EngineeringTaskError("Invalid platform observation metadata")
+        _safe_raw_metadata(_mapping(platform["raw_receipt"], "actual platform terminal metadata"))
+        if observed.get("cloud_report") is not None:
+            self._report_metadata(observed["cloud_report"])
+            _safe_reference(observed.get("report_ref"))
+        elif observed.get("report_ref") is not None:
+            raise EngineeringTaskError("A report reference without a report is incomplete")
+
+    def record_submission(self, attempt, observed_receipt):
+        """Trusted adapter acknowledgement only; even 'completed' means pending.
+
+        For Research there is no native job ID: use the explicit logical receipt
+        qc-research:<project>:<attempt>. LEAN must retain its platform backtest ID.
+        """
+        record, receipt = self._record(attempt), json.loads(canonical_json(observed_receipt))
+        payload = self.payload(record["attempt_id"])
+        self._submission_metadata(_mapping(receipt, "submission receipt"))
+        reference = self._save(record["attempt_id"], "submission", receipt)
+        if receipt.get("identity") != payload["identity"] or receipt.get("identity_kind") != payload["external_identity_kind"]:
+            raise EngineeringTaskError("Submission receipt belongs to another source, plan, project or attempt")
+        raw = _mapping(receipt.get("raw_receipt"), "actual raw platform receipt")
+        if not raw:
+            raise EngineeringTaskError("An actual submission observation is required")
+        deployment = self._deployment(receipt.get("deployment"))
+        if receipt.get("accepted") is not True:
+            return self.registry.fail(record["attempt_id"], {"reason": "Observed platform rejection", "receipt_ref": reference})
+        external_id = _string(receipt.get("external_id"), "observed external identity")
+        if record["stage"] == "research" and external_id != "qc-research:" + str(payload["identity"]["project_id"]) + ":" + record["attempt_id"]:
+            raise EngineeringTaskError("Research must be labelled as its logical execution receipt, not a fabricated platform job ID")
+        if record["stage"] == "lean" and (raw.get("success") is not True or raw.get("backtestId") != external_id):
+            raise EngineeringTaskError("A compile receipt is not a backtest submission; retain the actual returned backtestId")
+        saved = {"external_id": external_id, "identity": payload["identity"], "deployment": deployment,
+                 "receipt_ref": reference, "identity_kind": payload["external_identity_kind"]}
+        self.store.write_once(self._submission_key(record["attempt_id"]), canonical_json(saved))
+        if record["status"] == "completed":
+            return self._attempt(record)
+        if record["status"] == "ambiguous":
+            # Preserve ambiguity while retaining an observed ID for subsequent
+            # terminal reconciliation. An acknowledgement cannot make it pending.
+            return self._attempt(record)
+        return self.registry.pending(record["attempt_id"], external_id=external_id, details=saved)
+
+    def submit(self, stage, *, allocation="normal", retry_of=None, reason=None):
+        callback = getattr(self.adapter, "submit_research" if stage == "research" else "submit_backtest", None)
+        if not callable(callback):
+            raise EngineeringTaskError("A trusted platform adapter is required before claiming budget")
+        attempt = self.claim(stage, allocation=allocation, retry_of=retry_of, reason=reason)
+        if not attempt.should_execute:
+            return attempt
+        try:
+            receipt = callback(self.payload(attempt), operation_key=attempt.operation_key)
+        except SubmissionRejected as exc:
+            return self.registry.fail(attempt, str(exc))
+        except Exception as exc:
+            return self.registry.ambiguous(attempt, reason="Submission outcome unknown: " + type(exc).__name__)
+        try:
+            return self.record_submission(attempt, receipt)
+        except Exception:
+            self.registry.ambiguous(attempt, reason="Accepted outcome or identity could not be safely recorded")
+            raise
+
+    def _resolution(self, report, stage):
+        document = self.plan.to_dict()
+        if document["request_mode"] != "symbol_resolution":
+            if report.get("resolution") is not None:
+                raise EngineeringTaskError("Pre-resolved plans cannot export an unregistered resolution payload")
+            return
+        resolution = _mapping(report.get("resolution"), "observed SID resolution")
+        required = {"resolved_request_hash", "resolved_registry_hash", "resolution_artifact_hash", "tickers", "ticker_count", "permanent_sid_count", "method"}
+        if not required <= set(resolution) or set(resolution) - required - {"resolved_registry_ref", "resolved_request_ref"}:
+            raise EngineeringTaskError("Complete fixed-fixture resolution metadata is required")
+        for name in ("resolved_request_hash", "resolved_registry_hash", "resolution_artifact_hash"):
+            _hash(resolution[name], name)
+        if (resolution["tickers"] != document["symbol_resolution"]["tickers"]
+                or type(resolution["ticker_count"]) is not int or resolution["ticker_count"] != 2
+                or type(resolution["permanent_sid_count"]) is not int or resolution["permanent_sid_count"] != 2
+                or resolution["method"] != document["symbol_resolution"]["method"]):
+            raise EngineeringTaskError("Resolution does not identify the two permanent SIDs of the fixed fixture")
+        refs = {}
+        for name, digest in (("resolved_registry_ref", "resolved_registry_hash"), ("resolved_request_ref", "resolved_request_hash")):
+            if name in resolution:
+                ref = _mapping(resolution[name], name)
+                if set(ref) != {"key", "sha256"} or ref["sha256"] != resolution[digest]:
+                    raise EngineeringTaskError("Resolved cloud reference does not match its content identity")
+                validate_key(ref["key"])
+                refs[name] = ref
+        if refs and (len(refs) != 2 or content_hash(refs) != resolution["resolution_artifact_hash"]):
+            raise EngineeringTaskError("Resolved registry/request bundle identity differs")
+        if stage == "lean" and resolution != self._research_result()["cloud_report"]["resolution"]:
+            raise EngineeringTaskError("LEAN must use the exact verified Research SID registry and request")
+
+    def _cloud_report(self, report, payload):
+        report = _mapping(report, "cloud engineering report")
+        self._report_metadata(report)
+        if (type(report.get("schema_version")) is not int or report.get("schema_version") != 1 or report.get("identity") != payload["identity"]
+                or report.get("terminal") is not True or report.get("status") not in {"completed", "failed"}):
+            raise EngineeringTaskError("Cloud report belongs to another execution or is not final")
+        for name in ("market_values_exported", "economic_factor_tested", "final_data_accessed", "full_US200_coverage_certified", "actual_availability_verified"):
+            if report.get(name) is not False:
+                raise EngineeringTaskError("Engineering evidence must preserve its data, economic and availability limitations")
+        checks = _mapping(report.get("checks"), "observed engineering checks")
+        required = self.plan.to_dict()["required_checks"][payload["identity"]["stage"]]
+        if not set(required) <= set(checks) or any(type(x) is not bool for x in checks.values()):
+            raise EngineeringTaskError("Observed checks must contain every preregistered check")
+        stats = _mapping(report.get("statistics"), "observed engineering counts")
+        if any(type(value) is not int or value < 0 for value in stats.values()):
+            raise EngineeringTaskError("Engineering statistics contain nonnegative integer counts only, never market performance or arrays")
+        stage = payload["identity"]["stage"]
+        expected = {"record_count": (1, None), "history_calls_second": (0, 0)} if stage == "research" else {
+            "data_event_count": (1, None), "orders_submitted": (0, 0), "runtime_error_count": (0, 0)}
+        if "corporate_action_received" in required:
+            expected["dividend_event_count"] = (1, None)
+        counts_passed = True
+        for name, (lower, upper) in expected.items():
+            value = stats.get(name)
+            if type(value) is not int or value < 0:
+                raise EngineeringTaskError("Actual engineering counts must be nonnegative integers: " + name)
+            counts_passed &= value >= lower and (upper is None or value <= upper)
+        self._resolution(report, stage)
+        return report["status"] == "completed" and counts_passed and all(checks[name] for name in required)
+
+    def consume_completion(self, attempt, *, completion_source=None):
+        """Read a delivered completion; never poll or accept a free status flag."""
+        record = self._record(attempt)
+        if record["status"] in {"completed", "failed"}:
+            return self._attempt(record)
+        source = self.completion_source if completion_source is None else completion_source
+        if not callable(source):
+            raise EngineeringTaskError("A trusted completion reader is required; a free result dictionary is not evidence")
+        if not self.store.exists(self._submission_key(record["attempt_id"])):
+            raise EngineeringTaskError("Reconcile and record the actual submission identity before completion")
+        submission = json.loads(self.store.read_bytes(self._submission_key(record["attempt_id"])))
+        payload = self.payload(record["attempt_id"])
+        payload["external_id"] = submission["external_id"]
+        observed = source(json.loads(canonical_json(payload)))
+        # The boundary runs before persisting even a rejected raw observation.
+        # Rows accidentally returned by a trusted I/O adapter must remain cloud-only.
+        self._completion_metadata(observed)
+        reference = self._save(record["attempt_id"], "completion", observed)
+        platform = _mapping(observed.get("platform"), "platform terminal observation")
+        expected = dict(payload["identity"], external_id=submission["external_id"])
+        if (platform.get("identity") != expected or platform.get("terminal") is not True
+                or platform.get("deployment") != submission["deployment"]):
+            raise EngineeringTaskError("Terminal platform evidence does not match the recorded task and input")
+        raw = _mapping(platform.get("raw_receipt"), "actual platform terminal receipt")
+        if not raw:
+            raise EngineeringTaskError("An actual platform receipt is required")
+        status = platform.get("status")
+        if status in {"failed", "runtime_error", "compile_error"}:
+            return self.registry.fail(record["attempt_id"], {"platform_status": status, "evidence_ref": reference}, reconciliation=reference["sha256"])
+        if status != "completed":
+            raise EngineeringTaskError("Submission or compilation success is not execution completion")
+        report = observed.get("cloud_report")
+        passed = self._cloud_report(report, payload)
+        report_ref = _mapping(observed.get("report_ref"), "cloud report reference")
+        if set(report_ref) != {"key", "sha256"} or report_ref["key"] != payload["report_key"] or report_ref["sha256"] != content_hash(report):
+            raise EngineeringTaskError("Cloud report reference does not identify the expected immutable report")
+        if not passed:
+            return self.registry.fail(record["attempt_id"], {"reason": "Observed engineering checks failed", "evidence_ref": reference}, reconciliation=reference["sha256"])
+        result = {"scope": "engineering", "identity": payload["identity"], "external_id": submission["external_id"],
+                  "cloud_report": report, "report_ref": report_ref, "platform_evidence_ref": reference,
+                  "financial_evidence": False}
+        return self.registry.complete(record["attempt_id"], result, external_id=submission["external_id"])
+
+    def read_result(self, attempt):
+        record = self._record(attempt)
+        return self.registry.read_result(record["attempt_id"])

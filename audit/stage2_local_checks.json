@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "scope": "engineering_development_only",
+  "financial_evidence": false,
+  "research_executions_added": 0,
+  "lean_submissions_added": 0,
+  "records": [
+    {
+      "id": "S2-LOCAL-01",
+      "module": "coverage",
+      "kind": "synthetic_boundary_failure",
+      "finding": "pytz and ZoneInfo NY equivalent formation indices were not equal",
+      "repair": "Normalize membership index to NY before execution-plan identity",
+      "status": "owned_tests_14_passed"
+    },
+    {
+      "id": "S2-LOCAL-02",
+      "module": "engineering_data",
+      "kind": "synthetic_boundary_failure",
+      "test_methods": 14,
+      "passed_methods_before_repair": 13,
+      "failed_methods_before_repair": 1,
+      "finding": "Resolution accepted two identities whose ticker set differed from the fixed plan",
+      "repair": "Validate exact declared ticker set before any artifact writes",
+      "status": "owned_tests_14_passed_after_repair"
+    }
+  ],
+  "integrated_checks": {
+    "synthetic_tests_run": 210,
+    "passed": 210,
+    "external_calls": 0,
+    "stage2_acceptance": "pending_real_task_and_independent_review"
+  }
+}
