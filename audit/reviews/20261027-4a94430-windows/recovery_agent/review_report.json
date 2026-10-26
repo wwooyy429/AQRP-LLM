@@ -1,0 +1,546 @@
+{
+  "reviewed_source_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+  "baseline": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "verdict_in_tested_scope": "Original recovery/shared-task compatibility remains passing; specified fractional-clock receipts now complete after context drift; no new recovery defect confirmed.",
+  "original_recovery_replay": {
+    "methods": 12,
+    "passed_methods": 12,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 36,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027\\recovery_agent\\independent_recovery.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027",
+    "elapsed_seconds": 225.56299999999828
+  },
+  "new_fractional_parser_recovery": {
+    "methods": 2,
+    "passed_methods": 2,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 7,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027\\recovery_agent\\new_parser_recovery.py"
+    ]
+  },
+  "separate_overlapping_suites_not_a_unique_case_sum": true,
+  "current_execution_identity": {
+    "reviewed_source_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+    "actual_source_directory": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027\\source",
+    "source_files": 1331,
+    "source_raw_bytes_before_after_equal": true,
+    "previous_original_script": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\recovery_agent\\independent_recovery.py",
+    "copied_script": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027\\recovery_agent\\independent_recovery.py",
+    "script_raw_bytes_equal_original": true,
+    "script_sha256": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4",
+    "historical_literal_commit_in_original_output": "be9442603a31481a9a71e51ca794df77650c7411",
+    "historical_literal_is_not_current_execution_identity": true,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027\\recovery_agent\\independent_recovery.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a94430-20261027",
+    "exit_code": 0,
+    "elapsed_seconds": 225.56299999999828,
+    "methods": 12,
+    "passed_methods": 12,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 36,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "protected_module_comparison_with_dc49": {
+      "tools/collection_task_cli.py": {
+        "current_sha256": "402134f8063246d385d956eee9da72b9e6b9fec1aa78037f9911afc371d915c8",
+        "previous_sha256": "402134f8063246d385d956eee9da72b9e6b9fec1aa78037f9911afc371d915c8",
+        "raw_bytes_equal": true
+      },
+      "tools/stage2_collection.py": {
+        "current_sha256": "d5ccf547693f3ce4c4be40da2e40608451b4e5886e5c5f9ac90fccb7711c62d5",
+        "previous_sha256": "d5ccf547693f3ce4c4be40da2e40608451b4e5886e5c5f9ac90fccb7711c62d5",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/registry.py": {
+        "current_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+        "previous_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection_tasks.py": {
+        "current_sha256": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+        "previous_sha256": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/engineering_tasks.py": {
+        "current_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+        "previous_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection_execution.py": {
+        "current_sha256": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+        "previous_sha256": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection.py": {
+        "current_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+        "previous_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/historical_source.py": {
+        "current_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+        "previous_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+        "raw_bytes_equal": true
+      }
+    },
+    "source_function_locations": {
+      "tools/collection_task_cli.py:execution_source_manifest": [
+        14,
+        25
+      ],
+      "tools/collection_task_cli.py:freeze_task": [
+        28,
+        54
+      ],
+      "tools/collection_task_cli.py:current_bridge": [
+        57,
+        65
+      ],
+      "tools/collection_task_cli.py:bridge_for_attempt": [
+        68,
+        94
+      ],
+      "tools/collection_task_cli.py:admitted_input": [
+        97,
+        126
+      ],
+      "tools/collection_task_cli.py:prepare_task": [
+        129,
+        152
+      ],
+      "tools/collection_task_cli.py:verify_current_source": [
+        155,
+        158
+      ],
+      "tools/collection_task_cli.py:execute_metadata_command": [
+        161,
+        198
+      ],
+      "tools/stage2_collection.py:catalog": [
+        15,
+        24
+      ],
+      "tools/stage2_collection.py:preview": [
+        27,
+        38
+      ],
+      "tools/stage2_collection.py:main": [
+        41,
+        72
+      ],
+      "cloud/qresearch/engineering_receipts.py:_fail": [
+        39,
+        40
+      ],
+      "cloud/qresearch/engineering_receipts.py:_annotations": [
+        43,
+        79
+      ],
+      "cloud/qresearch/engineering_receipts.py:_text_node": [
+        82,
+        88
+      ],
+      "cloud/qresearch/engineering_receipts.py:_hash": [
+        91,
+        92
+      ],
+      "cloud/qresearch/engineering_receipts.py:_json": [
+        95,
+        106
+      ],
+      "cloud/qresearch/engineering_receipts.py:_context": [
+        109,
+        133
+      ],
+      "cloud/qresearch/engineering_receipts.py:_native": [
+        136,
+        176
+      ],
+      "cloud/qresearch/engineering_receipts.py:_tool": [
+        179,
+        211
+      ],
+      "cloud/qresearch/engineering_receipts.py:_ref": [
+        214,
+        220
+      ],
+      "cloud/qresearch/engineering_receipts.py:_report": [
+        223,
+        271
+      ],
+      "cloud/qresearch/engineering_receipts.py:_decode": [
+        274,
+        284
+      ],
+      "cloud/qresearch/engineering_receipts.py:_research_stdout": [
+        287,
+        335
+      ],
+      "cloud/qresearch/engineering_receipts.py:_platform": [
+        338,
+        340
+      ],
+      "cloud/qresearch/engineering_receipts.py:research_observation": [
+        343,
+        353
+      ],
+      "cloud/qresearch/engineering_receipts.py:backtest_submission": [
+        356,
+        366
+      ],
+      "cloud/qresearch/engineering_receipts.py:_logs": [
+        369,
+        403
+      ],
+      "cloud/qresearch/engineering_receipts.py:backtest_observation": [
+        406,
+        453
+      ],
+      "cloud/qresearch/engineering_receipts.py:pairs": [
+        96,
+        102
+      ],
+      "cloud/qresearch/engineering_receipts.py:visit": [
+        291,
+        330
+      ]
+    },
+    "actual_external_calls": 0,
+    "author_test_fixture_imports": false,
+    "scope": "Independent synthetic recovery replay through actual CLI/full copied source/Filesystem Registry; not platform or financial evidence."
+  },
+  "historical_literal_note": "Original independent_recovery.py and its be944 literal are preserved byte-for-byte. Current source binding is the new script path, ROOT.parent/source, actual 4a source copies, command log and this outer current_execution record; the historical literal does not identify the executed source.",
+  "evidence": [
+    "The original independent recovery script is byte-identical to the dc round copy. It actually runs against 4a source through full source copies, production CLI subprocesses, real source-manifest checks and Filesystem Registry, with no author fixture or mocked CLI/manifest/Registry.",
+    "Original 12 methods/36 subcases cover A->B, catalog/source changes, absent or corrupt current pointer, process restart, old-input settlement, identity/admission/deployment/local-byte tampering, never-prepared stale-input rejection, current register/claim identity gates, completed-input refusal and free idempotent settlement.",
+    "Four new positive fractional clocks (.5/.12/.1234/.12345) are embedded in lastModified on nested native TextContent nodes. Each actual standard CLI settlement completes the original A attempt after B is frozen and current source/catalog are changed, with no extra charge.",
+    "Three new refusal controls are unknown rows annotation, invalid calendar date 2025-02-29 and invalid timezone offset +24:00. Each rejects before state transition, preserves started/journal/quota and does not store the synthetic row sentinel; correcting the receipt then completes that same attempt without a new debit.",
+    "CLI entry, collection_task_cli, Registry, CollectionTaskPlan/Bridge, EngineeringTaskBridge, worker/parser file, collector and source adapter are raw-byte identical to dc49. The changing shared annotation parser is checked through the public recovery pipeline rather than by replacing admission logic."
+  ],
+  "new_parser_observations": [
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {
+        "audience": [
+          "assistant"
+        ],
+        "lastModified": "2026-10-27T00:30:00.5+08:00",
+        "priority": 0.5
+      },
+      "status": "completed"
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {
+        "audience": [
+          "assistant"
+        ],
+        "lastModified": "2026-10-27T00:30:00.12+08:00",
+        "priority": 0.5
+      },
+      "status": "completed"
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {
+        "audience": [
+          "assistant"
+        ],
+        "lastModified": "2026-10-27T00:30:00.1234+08:00",
+        "priority": 0.5
+      },
+      "status": "completed"
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {
+        "audience": [
+          "assistant"
+        ],
+        "lastModified": "2026-10-27T00:30:00.12345+08:00",
+        "priority": 0.5
+      },
+      "status": "completed"
+    },
+    {
+      "annotation": {
+        "rows": [
+          {
+            "sid": "independent-synthetic-side-row",
+            "value": 73
+          }
+        ]
+      },
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    },
+    {
+      "annotation": {
+        "lastModified": "2025-02-29T00:30:00+08:00"
+      },
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    },
+    {
+      "annotation": {
+        "lastModified": "2026-10-27T00:30:00+24:00"
+      },
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    }
+  ],
+  "original_base_observations": {
+    "A_to_B": {
+      "budget": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "journal_repeat_unchanged": true,
+      "repeat_status": "completed",
+      "status": "completed"
+    },
+    "base": {
+      "attempt": "4cd924b9774d40e3850f1bb829f4c61e",
+      "source_copy_complete": true,
+      "source_file_count": 1331,
+      "usage": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "worker": {
+        "missing_values": {
+          "dollar_volume": 2,
+          "has_fundamental_data": 0
+        },
+        "source_calls": 2,
+        "statistics": {
+          "cache_only_source_fetch_calls": 0,
+          "empty_windows": 0,
+          "record_count": 6,
+          "reused_windows": 0,
+          "source_fetch_calls": 2,
+          "window_count": 2
+        }
+      }
+    }
+  },
+  "actual_child_commands": {
+    "original": {
+      "count": 61,
+      "success": 28,
+      "expected_rejections": 33
+    },
+    "new_parser": {
+      "count": 17,
+      "success": 14,
+      "expected_rejections": 3
+    }
+  },
+  "confirmed_new_recovery_findings": [],
+  "minimal_new_failing_reproduction": null,
+  "accurate_source_function_ranges": {
+    "tools/collection_task_cli.py:execution_source_manifest": [
+      14,
+      25
+    ],
+    "tools/collection_task_cli.py:freeze_task": [
+      28,
+      54
+    ],
+    "tools/collection_task_cli.py:current_bridge": [
+      57,
+      65
+    ],
+    "tools/collection_task_cli.py:bridge_for_attempt": [
+      68,
+      94
+    ],
+    "tools/collection_task_cli.py:admitted_input": [
+      97,
+      126
+    ],
+    "tools/collection_task_cli.py:prepare_task": [
+      129,
+      152
+    ],
+    "tools/collection_task_cli.py:verify_current_source": [
+      155,
+      158
+    ],
+    "tools/collection_task_cli.py:execute_metadata_command": [
+      161,
+      198
+    ],
+    "tools/stage2_collection.py:catalog": [
+      15,
+      24
+    ],
+    "tools/stage2_collection.py:preview": [
+      27,
+      38
+    ],
+    "tools/stage2_collection.py:main": [
+      41,
+      72
+    ],
+    "cloud/qresearch/engineering_receipts.py:_fail": [
+      39,
+      40
+    ],
+    "cloud/qresearch/engineering_receipts.py:_annotations": [
+      43,
+      79
+    ],
+    "cloud/qresearch/engineering_receipts.py:_text_node": [
+      82,
+      88
+    ],
+    "cloud/qresearch/engineering_receipts.py:_hash": [
+      91,
+      92
+    ],
+    "cloud/qresearch/engineering_receipts.py:_json": [
+      95,
+      106
+    ],
+    "cloud/qresearch/engineering_receipts.py:_context": [
+      109,
+      133
+    ],
+    "cloud/qresearch/engineering_receipts.py:_native": [
+      136,
+      176
+    ],
+    "cloud/qresearch/engineering_receipts.py:_tool": [
+      179,
+      211
+    ],
+    "cloud/qresearch/engineering_receipts.py:_ref": [
+      214,
+      220
+    ],
+    "cloud/qresearch/engineering_receipts.py:_report": [
+      223,
+      271
+    ],
+    "cloud/qresearch/engineering_receipts.py:_decode": [
+      274,
+      284
+    ],
+    "cloud/qresearch/engineering_receipts.py:_research_stdout": [
+      287,
+      335
+    ],
+    "cloud/qresearch/engineering_receipts.py:_platform": [
+      338,
+      340
+    ],
+    "cloud/qresearch/engineering_receipts.py:research_observation": [
+      343,
+      353
+    ],
+    "cloud/qresearch/engineering_receipts.py:backtest_submission": [
+      356,
+      366
+    ],
+    "cloud/qresearch/engineering_receipts.py:_logs": [
+      369,
+      403
+    ],
+    "cloud/qresearch/engineering_receipts.py:backtest_observation": [
+      406,
+      453
+    ],
+    "cloud/qresearch/engineering_receipts.py:pairs": [
+      96,
+      102
+    ],
+    "cloud/qresearch/engineering_receipts.py:visit": [
+      291,
+      330
+    ]
+  },
+  "limits": [
+    "Synthetic source rows and native-shaped observations only; no real SDK, market, Research, LEAN, model, deployment or platform operation.",
+    "Already charged immutable configuration/admitted-input metadata remains within the declared trusted dispatcher/store boundary and is not a signed execution token.",
+    "Full source bytes before/after replay are unchanged. Copy-only 7/10/1 state is synthetic; production 6/9/1 is not modified.",
+    "No full platform envelope certification, real source coverage, financial validity or full stage2/whole-system acceptance follows from this compatibility result.",
+    "The old 24/36 admission suite and wider annotation/worker replays are assigned to root or other reviewers and are not claimed as additional runs here.",
+    "Package scripts, reports and logs only; cases/ and parser_cases/ are reconstructable repeated source copies. Run original replay before supplemental probe."
+  ],
+  "artifacts": [
+    "current_execution.json",
+    "first_results.json",
+    "first_output.txt",
+    "command_log.json",
+    "replay_stdout.txt",
+    "replay_stderr.txt",
+    "parser_first_results.json",
+    "parser_first_output.txt",
+    "parser_command_log.json",
+    "independent_recovery.py",
+    "new_parser_recovery.py"
+  ],
+  "actual_external_calls": 0,
+  "author_fixture_imports": false,
+  "artifact_sha256": {
+    "build_report.py": "1bb79c8cf5b1e9be9a7bbfedeec6b8752513f3f7064eaeda0fcec59c62398fbc",
+    "command_log.json": "ae16549bf1a265143a9d3f88c8d67743edffb8f5920cf01a5f17f1dbd1f877b9",
+    "current_execution.json": "66426d5b9c19c60cc1e62828a9e503858b63653afc411c7b16b705fc33ee36bf",
+    "execute_replay.py": "6a77528a2063fd9e0a42c1edc0c8eda98f2303eae6c533e8ee3c0e1e1db2f245",
+    "first_output.txt": "9a8a9ee3260c6fdd448a7a6beb004f49ab717048970854e31ce50d72eebfb544",
+    "first_results.json": "a9bfcb7ca3733dd8f4f507659a05c64481b0d49eff4e3ae35b4c33551cf187a3",
+    "independent_recovery.py": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4",
+    "new_parser_recovery.py": "b0e133a2754e69ec4d6da1c5a9d17f91b0c5577130fdd9a5b886ef1cc8c87a2a",
+    "parser_command_log.json": "0d49498263bab7eaef7bcd27b65e534703783a6fcbe58dd7bf47ced03467b8a1",
+    "parser_first_output.txt": "291fd4747ed3578e92f8284bac20e6114372a5051cd8e891138393fa0c3ec127",
+    "parser_first_results.json": "16552bf8e95d6963ce4f8b7403ffa2ac779559243f342727d6ac709ddfe3ae83",
+    "replay_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replay_stdout.txt": "d63a52ef97a3d352ab4b1ae0b6cfafd596d14a519d8dae4ce05edef4f1e71208"
+  }
+}

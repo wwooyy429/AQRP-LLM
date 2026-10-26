@@ -1,15 +1,15 @@
 {
-  "schema_version": 4,
-  "kind": "WR14_repair_candidate_pending_independent_review",
+  "schema_version": 5,
+  "kind": "offline_scope_accepted_with_nonblocking_metadata_correction",
   "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
   "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
     0,
     1
   ],
-  "stage2_status": "failed_reviewed_dc49_receipt_compatibility_pending_WR14_repair_review",
+  "stage2_status": "pending_platform_runtime_native_receipts_terminal_and_data_certification",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261027-dc49f0f-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-4a94430-windows/formal_report.json",
   "deployment_comparison_scope": "Historical d0 table retained; dc49 reviewer observed old75 cloud, 12 differing paths; developer made no new QC read",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -75,21 +75,20 @@
     "lean": 1
   },
   "blockers": [
-    "WR14_fixed_source_independent_repair_review",
     "existing_LEAN_delivered_terminal_and_reconciled_result",
     "new_implementation_cloud_deployment_and_completed_runtime_evidence",
     "historical_US200_financial_PIT_and_corporate_action_certification"
   ],
-  "source_configuration_budget_changed": true,
+  "source_configuration_budget_changed": false,
   "market_calls": 0,
   "model_API_calls": 0,
   "new_independent_review_dispatched": false,
   "financial_evidence": false,
-  "source_changed": true,
+  "source_changed": false,
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/review/wr14.md",
+  "candidate_development_document": "docs/review/wr15.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -105,24 +104,26 @@
     "actual_vendor_receipt_and_vintage_certification"
   ],
   "known_open_findings": [
-    "WR-14"
+    "WR-15"
   ],
   "developer_fixes_pending_independent_verification": [
-    "WR-14"
+    "WR-15"
   ],
-  "source_changed_this_round": [
-    "cloud/qresearch/engineering_receipts.py"
-  ],
-  "accepted_offline_scope": "WR09/10及本轮覆盖的已实现离线计算/采集接口",
-  "new_candidate_acceptance_scope": "pending_new_fixed_source_review; prior_7bf_offline_acceptance_preserved",
+  "source_changed_this_round": [],
+  "accepted_offline_scope": "WR01-14及已测离线准入/计算/采集/回执/恢复；非整阶段2",
+  "new_candidate_acceptance_scope": "metadata_only_correction; unchanged_software_acceptance_bound_to_4a94430",
   "documentation_and_archival_metadata_changed": true,
   "platform_comparison_from_independent_review": {
-    "candidate_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+    "candidate_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
     "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
     "old75_matching_files": 25,
     "candidate_different_or_missing_paths": 12,
     "this_archival_turn_new_QC_read": false
   },
-  "candidate_source_manifest_hash": "f40259398c2f617d09b992ae97557cd53391c8934e22201ee59c82b951fc78c3",
-  "collection_remote_protocol_and_registry_admission": "shared_admission_and_WR11_WR12_WR13_original_scopes_passed; WR14_repair_pending_independent_review"
+  "candidate_source_manifest_hash": "51f7019f11f9357707889a45083e697d741bb3d38bcc8ff534e48597cc7f6aa0",
+  "collection_remote_protocol_and_registry_admission": "passed_in_reviewed_offline_scope_on_4a94430; platform_and_data_not_accepted",
+  "known_open_blocking_findings": [],
+  "known_open_nonblocking_findings": [
+    "WR-15"
+  ]
 }

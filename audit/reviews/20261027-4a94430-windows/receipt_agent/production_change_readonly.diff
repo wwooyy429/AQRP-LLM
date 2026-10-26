@@ -1,0 +1,18 @@
+--- dc49f0f/cloud/qresearch/engineering_receipts.py
++++ 4a94430/cloud/qresearch/engineering_receipts.py
+@@ -70,10 +70,11 @@
+                 r"[0-9]{4}-[0-9]{2}-[0-9]{2}(?:[Tt ](?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:[.,][0-9]+)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])?)?", stamp) is None):
+             _fail("Annotation lastModified must be a registered ISO clock string")
+         try:
+-            parsed = stamp.replace("t", "T").replace(",", ".")
+-            if parsed.endswith(("Z", "z")):
+-                parsed = parsed[:-1] + "+00:00"
+-            datetime.fromisoformat(parsed)
++            # The grammar already checks time, offset and fractional digits.
++            # Validate only the calendar here: Python 3.10's fromisoformat
++            # rejects legal 1/2/4/5-digit fractions. No fraction conversion is
++            # needed for a content hint, and the original string stays intact.
++            datetime(int(stamp[:4]), int(stamp[5:7]), int(stamp[8:10]))
+         except ValueError:
+             _fail("Annotation lastModified is not a valid calendar clock")
+ 

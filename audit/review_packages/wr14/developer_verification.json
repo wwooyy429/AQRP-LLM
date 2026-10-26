@@ -73,7 +73,7 @@
   },
   "second_build_config_changed": false,
   "developer_original_outputs": "developer_outputs_manifest.json",
-  "developer_outputs_manifest_raw_sha256": "44e8ff2bc0ce87a76ef52b2c3d7f4d263166ca5bb14f0aaf5474e1516c869ddb",
+  "developer_outputs_manifest_raw_sha256": "b8170f1c123ef3eb3991cb519206f7db8a700f6673f406121b5535f4411c8df5",
   "protected_files_checked": 966,
   "protected_files_unchanged_in_registered_git_representation": true,
   "protected_check": "protected_files_check.json",
@@ -120,5 +120,17 @@
     "Full native success/failure receipts, prior terminal and historical data certification pending",
     "Only registered annotation fields/ISO forms; not arbitrary MCP extensions"
   ],
-  "documentation": "docs/review/wr14.md"
+  "documentation": "docs/review/wr14.md",
+  "manifest_hash_correction_WR15": {
+    "date": "2026-10-27",
+    "finding": "WR-15/P3/nonblocking_metadata",
+    "previous_declared_raw_sha256": "44e8ff2bc0ce87a76ef52b2c3d7f4d263166ca5bb14f0aaf5474e1516c869ddb",
+    "previous_declaration_scope": "Local CRLF representation, incorrectly labelled as fixed Git raw bytes",
+    "fixed_Git_LF_raw_sha256": "b8170f1c123ef3eb3991cb519206f7db8a700f6673f406121b5535f4411c8df5",
+    "prior_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+    "original_git_verification": "../wr15/original_git_developer_verification.json",
+    "original_workspace_manifest": "../wr15/original_workspace_developer_outputs_manifest.json",
+    "current_byte_policy": "The manifest is pinned with -text; exact LF bytes in Git and worktree; 48 original outputs untouched",
+    "WR14_software_result_unchanged": true
+  }
 }

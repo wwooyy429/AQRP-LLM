@@ -1,0 +1,131 @@
+{
+  "reviewer": "receipt_agent independent WR-14 repair review",
+  "commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+  "baseline_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "date": "2026-10-27",
+  "verdict": "WR-14在本次独立登记语法/边界及新旧worker回执链范围修复后通过；未发现可证实新缺陷。不是阶段2或完整系统验收。",
+  "findings": [],
+  "first_run": {
+    "methods": 10,
+    "passed_methods": 10,
+    "subcases": 803,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0
+  },
+  "method_subcases": {
+    "test_annotated_json_recursion_keeps_width_and_side_load_checks": 15,
+    "test_calendar_known_answers_and_long_fraction_without_conversion": 53,
+    "test_fixed_primary_schema_and_reviewer_helper_identity": 4,
+    "test_invalid_calendar_and_time_offset_grammar_still_rejected": 75,
+    "test_new_old_rejects_invalid_side_loads_clocks_without_ledger_mutation": 36,
+    "test_new_old_worker_reports_complete_all_microsecond_widths": 234,
+    "test_old_lean_three_stage_clock_hints_remain_compatible": 4,
+    "test_rejection_then_corrected_same_attempt_no_refetch_or_recharge": 2,
+    "test_wr13_unknown_annotations_priority_and_text_types_unchanged": 29,
+    "test_zero_to_six_digits_point_comma_offset_case_and_unchanged_hint": 351
+  },
+  "counts_are_overlapping_not_unique": true,
+  "production_analysis": {
+    "file": "cloud/qresearch/engineering_receipts.py",
+    "calendar_validation_line": 77,
+    "annotation_validator_line": 43,
+    "text_validator_line": 82,
+    "outer_shared_call_line": 157,
+    "recursive_shared_call_line": 316,
+    "registered_regex_unchanged": true,
+    "mechanism": "严格regex继续验证时间/offset/数字fraction；datetime(int年,int月,int日)只校验历法，不解析、舍入或改写小数。文本及注解原对象/字符串不变。",
+    "readonly_diff": "production_change_readonly.diff"
+  },
+  "known_answers": {
+    "lexical_and_string_preservation": 351,
+    "calendar_and_long_registered_fractions": 53,
+    "invalid_calendar_time_offset_rejections": 75,
+    "WR13_annotation_priority_text_rejections": 29,
+    "deep_json_width_and_side_load_checks": 15
+  },
+  "worker_and_ledger_design": {
+    "actual_pure_python_worker_executions": 2,
+    "families": [
+      "run_collection_task with independent SyntheticSource",
+      "run_research_task with independent SyntheticQB/ObjectStore"
+    ],
+    "observation_ledger_branches": "Each gets a fresh independent MemoryArtifactStore/Registry copy at the same prepaid attempt. Actual worker output is shared immutable input, not rerun per branch.",
+    "legal_branch_cases": 234,
+    "legal_completed": 234,
+    "illegal_branch_cases": 36,
+    "illegal_rejected": 36,
+    "same_attempt_reject_then_corrected_recovery_cases": 2,
+    "recovery_passed": 2,
+    "source_fetches_total": {
+      "collection": 3,
+      "old_research": 1
+    },
+    "original_base_ledgers_remain_started": true,
+    "parse_or_complete_adds_budget_charge": false,
+    "row_sentinel_persisted_in_ledger": false,
+    "fake_calendar": "Invented weekdays and constant numbers, not real exchange coverage or market data"
+  },
+  "old_LEAN_receipt_regression": {
+    "subcases": 4,
+    "result": "submission/read/logs outer .7Z, comma .70+05:45, .70000-03:30 all accepted; checked full receipt→Bridge/Registry completed",
+    "real_LEAN_execution": false
+  },
+  "string_scope": [
+    "0–6 digits, point/comma, T/t/space, Z/z, valid signed offsets, naive hints and date-only controls retain strings byte-for-byte.",
+    "1/2/4/5-digit forms now pass alongside 3/6-digit controls.",
+    "9/17/410/4096-digit fractions are tested only as numeric strings within the declared grammar; no other ISO variant requirement.",
+    "Century leap-year/year/month/day known answers, invalid calendar and invalid time/offset still reject.",
+    "Unknown rows/errors/_meta/outputs, nonstring text, bad roles/boolean or nonfinite/out-of-range priority still reject."
+  ],
+  "source_hashes_before_after_equal": true,
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/quantconnect.py": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319",
+    "cloud/qresearch/registry.py": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894"
+  },
+  "primary_schema": {
+    "repository": "modelcontextprotocol/modelcontextprotocol",
+    "file_commit": "c4c367f9f58296a7053f5c78a52fd02bfbb56a49",
+    "path": "schema/2025-11-25/schema.json",
+    "raw_sha256": "268a5f82ba70fd7e4b6dc4aa1e64f116f74b4d0edcb69dc046829c79dd4e97e7",
+    "source": "Copied byte-identical fixed official primary from prior independent review; no network this round.",
+    "scope": "Annotation field semantics only; declared narrower adapter subset, not arbitrary MCP/SDK certification."
+  },
+  "reviewer_helper": {
+    "source": "previous independently authored helper, no developer fixtures",
+    "raw_sha256": "d6f469e02b6e8129af4ecdaf679e7d877dee5959edc13f3f68a991777a19cf25",
+    "byte_equal_to_previous": true
+  },
+  "commands": "command_log.json",
+  "regression_inputs": "first_run_summary.json:inputs",
+  "first_run_files": [
+    "independent_fraction_boundaries.py",
+    "first_run_summary.json",
+    "first_run_unittest.txt"
+  ],
+  "reviewer_measurement_corrections_this_round": [],
+  "limits": [
+    "Only actual pure-Python synthetic workers and native-shaped receipts executed; no real AlgorithmImports/Python.NET/SDK.",
+    "No real deployment/input readback, native success/full failure receipt, old pending LEAN terminal or market data certification.",
+    "Formal research, final test and trading remain closed; this result does not expand previous numerical or data-exposure claims."
+  ],
+  "actions": {
+    "network": 0,
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deployment": 0,
+    "real_budget_changes": 0,
+    "candidate_source_edits": 0,
+    "actual_final_market_data_opened": 0
+  }
+}

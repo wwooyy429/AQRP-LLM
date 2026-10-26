@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "checked_at_local_date": "2026-10-27",
+  "purpose": "Raw developer replays and regressions for WR-14. Preserve initial failed preparations and actual successful rerun, without changing original review scripts or expected legal inputs.",
+  "byte_policy": "Exact original bytes including CRLF/BOM; rawSHA256, not LF source normalization",
+  "file_count": 48,
+  "total_original_bytes": 610410,
+  "all_archived_bytes_equal_original": true,
+  "phase_execution_identity": [
+    {
+      "phase": "before",
+      "parser_normalized_sha256": "6e1a7a46626aa6edd9a95131e3cd1c9d0239bc4ff261421fc2913a52e716a4dd",
+      "source_commit_before_repair": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+      "exit_codes": {
+        "minimal": 1,
+        "fractional": 1,
+        "annotations": 1
+      }
+    },
+    {
+      "phase": "after",
+      "parser_normalized_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+      "source_commit_before_repair": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+      "exit_codes": {
+        "minimal": 0,
+        "fractional": 1,
+        "annotations": 1
+      }
+    },
+    {
+      "phase": "after-built",
+      "parser_normalized_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+      "source_commit_before_repair": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+      "exit_codes": {
+        "minimal": 0,
+        "fractional": 0,
+        "annotations": 1
+      }
+    },
+    {
+      "phase": "after-ready",
+      "parser_normalized_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+      "source_commit_before_repair": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+      "exit_codes": {
+        "minimal": 0,
+        "fractional": 0,
+        "annotations": 0
+      }
+    }
+  ],
+  "phase_interpretation": {
+    "before": "Original parser reproduces product clock failures; annotation suite also lacks its official-schema fixture. Preserve both product failure and harness preparation failure.",
+    "after": "Minimal clock reproduction passes; first full-worker rerun uses stale generated deployment manifest and fails. Annotation run also incomplete. No inference of repaired full-chain success from this run.",
+    "after-built": "Rebuilt deployment allows original fractional full-worker probe to pass; annotations suite still lacks official-schema fixture. Preserve its preparation error.",
+    "after-ready": "With unchanged official-schema fixture available and rebuilt deployment, all three original commands exit 0."
+  },
+  "historical_literal_warning": "Original review scripts hardcode commit labels or infer baseline/candidate names from source directory naming. Output named baseline_be94426_fractional_clock.json in these replays is not proof that be94426 was executed. Outer execution_records phase, command source path and parser_normalized_sha256 identify actual tested parser; raw output is intentionally not rewritten.",
+  "supporting_fixture_reused": {
+    "archive_path": "audit/reviews/20261027-dc49f0f-windows/receipt_agent/official_mcp_schema_2025-11-25.json",
+    "origin_path": ".git/repair-work/wr14-original-after-ready/annotations/official_mcp_schema_2025-11-25.json",
+    "raw_sha256": "268a5f82ba70fd7e4b6dc4aa1e64f116f74b4d0edcb69dc046829c79dd4e97e7",
+    "bytes": 174323,
+    "identical": true
+  },
+  "real_market_rows_included": false,
+  "generated_synthetic_stores_included": false,
+  "actual_platform_calls_by_archive": 0,
+  "actual_model_calls_by_archive": 0,
+  "tests_rerun_during_archive": false,
+  "financial_evidence": false,
+  "files": [
+    {
+      "archive_path": "original_after_annotations.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after/annotations.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_annotations.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after/annotations.stdout",
+      "raw_sha256": "029fe44b464361932420a02edddcef51e3633379d2d9792c9c12e01805c70e3d",
+      "bytes": 54530
+    },
+    {
+      "archive_path": "original_after_annotations_role_corrected_summary.json",
+      "origin_path": ".git/repair-work/wr14-original-after/annotations/role_corrected_summary.json",
+      "raw_sha256": "ad23dda59ec904103b89132e05b97ac44d256cc62bed3f90318226dffe9bbd67",
+      "bytes": 28784
+    },
+    {
+      "archive_path": "original_after_annotations_role_corrected_unittest.txt",
+      "origin_path": ".git/repair-work/wr14-original-after/annotations/role_corrected_unittest.txt",
+      "raw_sha256": "5ce5cdccbb8546d6fba65f2fba9513656a8179ed590b9d5e06afaaccdd23679d",
+      "bytes": 52594
+    },
+    {
+      "archive_path": "original_after_built_annotations.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-built/annotations.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_built_annotations.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-built/annotations.stdout",
+      "raw_sha256": "02443ac9a1a0c984bc3301c2990ec8c478336053ba893769965c159385caa39e",
+      "bytes": 4452
+    },
+    {
+      "archive_path": "original_after_built_annotations_role_corrected_summary.json",
+      "origin_path": ".git/repair-work/wr14-original-after-built/annotations/role_corrected_summary.json",
+      "raw_sha256": "e657b7d41d174280f04c2eeacaddbd274b0a09877b44ce074accaa4e25ebfb7e",
+      "bytes": 28995
+    },
+    {
+      "archive_path": "original_after_built_annotations_role_corrected_unittest.txt",
+      "origin_path": ".git/repair-work/wr14-original-after-built/annotations/role_corrected_unittest.txt",
+      "raw_sha256": "2931ef9f1c323a9d8c11265bd9b4808dbe8b72796c7332233a9d693062dc066b",
+      "bytes": 2511
+    },
+    {
+      "archive_path": "original_after_built_execution_records.json",
+      "origin_path": ".git/repair-work/wr14-original-after-built/execution_records.json",
+      "raw_sha256": "d2030e46fa34916c05ef00f86896119a5a0c384a807864aab4635fa3003022d9",
+      "bytes": 3125
+    },
+    {
+      "archive_path": "original_after_built_fractional.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-built/fractional.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_built_fractional.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-built/fractional.stdout",
+      "raw_sha256": "5f03f959e4a0795e475ca12b735d8152501932584b8e781176af66d013ba29ff",
+      "bytes": 7732
+    },
+    {
+      "archive_path": "original_after_built_fractional_baseline_be94426_fractional_clock.json",
+      "origin_path": ".git/repair-work/wr14-original-after-built/fractional/baseline_be94426_fractional_clock.json",
+      "raw_sha256": "2c80ceae14f20aa62d15f078128effb7e91b055392897ec0f2000d99acc91906",
+      "bytes": 9403
+    },
+    {
+      "archive_path": "original_after_built_minimal.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-built/minimal.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_built_minimal.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-built/minimal.stdout",
+      "raw_sha256": "341b6fd6b884a9bf94a6b6221831fe4f96fd50663d668482d23ee98b8fa3e51d",
+      "bytes": 99
+    },
+    {
+      "archive_path": "original_after_execution_records.json",
+      "origin_path": ".git/repair-work/wr14-original-after/execution_records.json",
+      "raw_sha256": "b35f1a38aefab51b63fe14e9edde094c9fa44e5ab1cc272052d574a5c6f9fa8d",
+      "bytes": 3110
+    },
+    {
+      "archive_path": "original_after_fractional.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after/fractional.stderr",
+      "raw_sha256": "9ef7f1d8eea39fd09ed4d241824cdf989b0da0b461fcb79f52a05bc990eda0d1",
+      "bytes": 1088
+    },
+    {
+      "archive_path": "original_after_fractional.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after/fractional.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_minimal.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after/minimal.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_minimal.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after/minimal.stdout",
+      "raw_sha256": "341b6fd6b884a9bf94a6b6221831fe4f96fd50663d668482d23ee98b8fa3e51d",
+      "bytes": 99
+    },
+    {
+      "archive_path": "original_after_ready_annotations.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/annotations.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_ready_annotations.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/annotations.stdout",
+      "raw_sha256": "033244e3aa7f946b3f78bd938f4a6d4c2a87c7d1da33e2b0ee347ff4f93dbeaf",
+      "bytes": 3249
+    },
+    {
+      "archive_path": "original_after_ready_annotations_role_corrected_summary.json",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/annotations/role_corrected_summary.json",
+      "raw_sha256": "1258b2b3cb68c742afa59974885db8c5292b33312c93a94ca81ea967f2791c18",
+      "bytes": 28354
+    },
+    {
+      "archive_path": "original_after_ready_annotations_role_corrected_unittest.txt",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/annotations/role_corrected_unittest.txt",
+      "raw_sha256": "4cccc9adfb533d57e7bbc7ca85ab052b3023a950d1c1050cbcff284094412818",
+      "bytes": 1309
+    },
+    {
+      "archive_path": "original_after_ready_execution_records.json",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/execution_records.json",
+      "raw_sha256": "cb2f5716e0aefdc8af25659e2ea4f4f18b4dbf70a8c5ed0a108806010964d220",
+      "bytes": 3125
+    },
+    {
+      "archive_path": "original_after_ready_fractional.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/fractional.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_ready_fractional.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/fractional.stdout",
+      "raw_sha256": "f04c170e9c62e0b4fc30686ea9d5502cce81a9332d74908d41006ff98a5187bf",
+      "bytes": 7732
+    },
+    {
+      "archive_path": "original_after_ready_fractional_baseline_be94426_fractional_clock.json",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/fractional/baseline_be94426_fractional_clock.json",
+      "raw_sha256": "58568668f672a36b601613600da73770723871170bee76f6947913cec66cddd8",
+      "bytes": 9403
+    },
+    {
+      "archive_path": "original_after_ready_minimal.stderr",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/minimal.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_after_ready_minimal.stdout",
+      "origin_path": ".git/repair-work/wr14-original-after-ready/minimal.stdout",
+      "raw_sha256": "341b6fd6b884a9bf94a6b6221831fe4f96fd50663d668482d23ee98b8fa3e51d",
+      "bytes": 99
+    },
+    {
+      "archive_path": "original_baseline.stderr",
+      "origin_path": ".git/repair-work/wr14-baseline.stderr",
+      "raw_sha256": "57fdcf82613694ea25109d2a93df722e3840559b01ef4ee46584e2ad3f8b33a1",
+      "bytes": 260279
+    },
+    {
+      "archive_path": "original_baseline.stdout",
+      "origin_path": ".git/repair-work/wr14-baseline.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_baseline_summary.json",
+      "origin_path": ".git/repair-work/wr14-baseline-summary.json",
+      "raw_sha256": "ee17e7eb9dfb2172aa989e3143afc19e4f50b124f306225c8062f7f243d389ce",
+      "bytes": 23529
+    },
+    {
+      "archive_path": "original_baseline_test_input.py",
+      "origin_path": ".git/repair-work/wr14-baseline-test-input.py",
+      "raw_sha256": "446db143a5903ebc33071684c5c8372d432d701285ac5b5aea79ac088535bb60",
+      "bytes": 6358
+    },
+    {
+      "archive_path": "original_before_annotations.stderr",
+      "origin_path": ".git/repair-work/wr14-original-before/annotations.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_before_annotations.stdout",
+      "origin_path": ".git/repair-work/wr14-original-before/annotations.stdout",
+      "raw_sha256": "a1ccf1f40ae62688d9d53dc3c0ed847c02491d6d345020f511585729e18644c2",
+      "bytes": 7512
+    },
+    {
+      "archive_path": "original_before_annotations_role_corrected_summary.json",
+      "origin_path": ".git/repair-work/wr14-original-before/annotations/role_corrected_summary.json",
+      "raw_sha256": "3422b00d0ec82b99441ff33e53efa503b43ddae82bb1c789b9605e352814eac1",
+      "bytes": 29444
+    },
+    {
+      "archive_path": "original_before_annotations_role_corrected_unittest.txt",
+      "origin_path": ".git/repair-work/wr14-original-before/annotations/role_corrected_unittest.txt",
+      "raw_sha256": "b92fd11da7094641e5a54d25d908cebe7df448bd5524b2160dc12fbd58591b9b",
+      "bytes": 5576
+    },
+    {
+      "archive_path": "original_before_execution_records.json",
+      "origin_path": ".git/repair-work/wr14-original-before/execution_records.json",
+      "raw_sha256": "8e6b9418071f6359a5d19cfbcf5d7e37abf7d65809b660c3ab9923a059028918",
+      "bytes": 3084
+    },
+    {
+      "archive_path": "original_before_fractional.stderr",
+      "origin_path": ".git/repair-work/wr14-original-before/fractional.stderr",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_before_fractional.stdout",
+      "origin_path": ".git/repair-work/wr14-original-before/fractional.stdout",
+      "raw_sha256": "dd513961b238be3dba775e1462a6322f9b99779850f1ba9240cda4754722513e",
+      "bytes": 8126
+    },
+    {
+      "archive_path": "original_before_fractional_baseline_be94426_fractional_clock.json",
+      "origin_path": ".git/repair-work/wr14-original-before/fractional/baseline_be94426_fractional_clock.json",
+      "raw_sha256": "bf2c96bf8dfdb3acd765bd6b87b8404c98906009131aed06a3fd15776d658808",
+      "bytes": 9797
+    },
+    {
+      "archive_path": "original_before_minimal.stderr",
+      "origin_path": ".git/repair-work/wr14-original-before/minimal.stderr",
+      "raw_sha256": "36b7277a36f02c4ea21bcae80d7bbbec8f03b7f8736418e92b999e0ee5452cd6",
+      "bytes": 1106
+    },
+    {
+      "archive_path": "original_before_minimal.stdout",
+      "origin_path": ".git/repair-work/wr14-original-before/minimal.stdout",
+      "raw_sha256": "090b9f602fe8be40a8860676e446c02dc6c9a8ca284a2c64d45318fba737d40e",
+      "bytes": 64
+    },
+    {
+      "archive_path": "original_developer_replay.py",
+      "origin_path": ".git/repair-work/wr14_replay.py",
+      "raw_sha256": "883a97e41dedc1a89362d8938692e3a4ea087c62697e42342d8ca0030dd68cd1",
+      "bytes": 2180
+    },
+    {
+      "archive_path": "original_repair.stderr",
+      "origin_path": ".git/repair-work/wr14-repair.stderr",
+      "raw_sha256": "70f00f0dfce79e4f162c7519c2301dba69af317673b091795e6c6b714b5b91b6",
+      "bytes": 922
+    },
+    {
+      "archive_path": "original_repair.stdout",
+      "origin_path": ".git/repair-work/wr14-repair.stdout",
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "original_repair_summary.json",
+      "origin_path": ".git/repair-work/wr14-repair-summary.json",
+      "raw_sha256": "f26efced13ffdf2c8b40706247246b9b0253465d0b876b5f4a3ef423831e75a1",
+      "bytes": 718
+    },
+    {
+      "archive_path": "original_run_target.py",
+      "origin_path": ".git/repair-work/wr14-run-target.py",
+      "raw_sha256": "10739c08e13aa8e51d32637772adfb99b4097c4ed9d149292fcbbab4966aba6e",
+      "bytes": 1922
+    }
+  ]
+}

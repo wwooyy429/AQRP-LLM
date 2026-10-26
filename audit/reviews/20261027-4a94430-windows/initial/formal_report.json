@@ -1,0 +1,615 @@
+{
+  "review_id": "AQRP-20261027-4A94430-WINDOWS-10",
+  "reviewed_source_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+  "baseline_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "evidence_commits": {
+    "historical_runtime": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "historical_execution_archive": "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "current_delivery": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7"
+  },
+  "source_manifest_hash": "f40259398c2f617d09b992ae97557cd53391c8934e22201ee59c82b951fc78c3",
+  "source_manifest_files": 112,
+  "git_files_verified": 1331,
+  "execution_source_manifest_hash": "5983cd08abad2945499e3f1b855b50a1c8569d89eee9bb34c27604a236e13abe",
+  "deployment_hash": "1c01d8f707afd44f3a8830f10563e257c8f41ee079952b5fb7667f59ef35fd09",
+  "deployment_hash_scope": "本地29份源码候选；未部署运行",
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "python_executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "longdouble_nmant": 52,
+    "blas_threads_for_main_replays": 1,
+    "real_AlgorithmImports_executed": false,
+    "local_Python311_executed": false
+  },
+  "tool_capabilities": {
+    "GitHub": "只读PR/CI/固定Git源码",
+    "QuantConnect": "先list_projects再只读38436695项目；仅保存核对.py，未解析notebook内容或待终态任务",
+    "offline": "原生Windows合成、并发、独立进程和故障注入",
+    "write_scope": "独立审核临时区和新报告；无开发/生产修改"
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "章程、身份、源码清单、Registry预算及状态",
+      "implementation": "原范围已实现；新增共享额度路径已实现",
+      "evidence": "407仓库、原24/36共享准入及465/466审计检查",
+      "blockers": [],
+      "status": "通过",
+      "scope": "原验收范围和本轮共享准入范围；不扩大到阶段2回执",
+      "notes": [
+        "WR15/P3：开发输出清单raw哈希声明需更正，非阻断"
+      ]
+    },
+    {
+      "stage": 1,
+      "modules": "字段/算子、标签、模型、数值与时间",
+      "implementation": "原范围已实现",
+      "evidence": "既有12/10/16/19/56及d0回归实际通过",
+      "blockers": [],
+      "status": "修复后通过",
+      "scope": "既有离线范围与既有数值精度边界"
+    },
+    {
+      "stage": 2,
+      "modules": "历史源、缓存、采集任务、输入、worker、回执、CLI",
+      "implementation": "离线路径已实现；新版实际平台运行和数据认证未完成",
+      "evidence": "原最小新版0/旧版1；同14完整worker链新版14完成、旧版6完成8误拒绝；新增10/803及恢复2/7通过",
+      "blockers": [
+        "新版真实部署/输入和原生成功/完整失败回执缺证据",
+        "旧LEAN无已交付终态",
+        "历史US200及财务时点未认证"
+      ],
+      "status": "待验收",
+      "scope": "已测试离线任务/回执/恢复范围修复后通过；整阶段仍待真实平台与数据证据"
+    },
+    {
+      "stage": 3,
+      "modules": "Research评价、滚动验证、风险与增量",
+      "implementation": "部分离线统计基础",
+      "evidence": "基础数值回归；无完整真实研究链",
+      "blockers": [
+        "真实Research评价及滚动证据缺失"
+      ],
+      "status": "未验收",
+      "scope": "接口或局部计算不构成整阶段通过"
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN组合、订单、成交、现金、净值和成本",
+      "implementation": "工程宿主/提交基础",
+      "evidence": "旧无订单工程任务归档pending",
+      "blockers": [
+        "完整组合交易对账和终态证据缺失"
+      ],
+      "status": "未验收",
+      "scope": "工程宿主不等于交易验证"
+    },
+    {
+      "stage": 5,
+      "modules": "GPT受限生成和调用闭环",
+      "implementation": "受限协议基础；自动调用关闭",
+      "evidence": "静态配置与安全拒绝路径",
+      "blockers": [
+        "具体模型、次数与费用上限未配置；闭环未验收"
+      ],
+      "status": "未验收",
+      "scope": "本轮模型调用0"
+    },
+    {
+      "stage": 6,
+      "modules": "受限搜索、消融、组合增量",
+      "implementation": "完整链未交付",
+      "evidence": "无实际搜索和金融增量证据",
+      "blockers": [
+        "完整研究交付缺失"
+      ],
+      "status": "未实现/未验收",
+      "scope": "不由前置接口自动通过"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、独立最终测试、前向运行",
+      "implementation": "最终测试关闭",
+      "evidence": "暴露记录及关闭门槛保持",
+      "blockers": [
+        "完整冻结与独立执行器缺失",
+        "2024–2025已暴露；2026独立性未知"
+      ],
+      "status": "未验收",
+      "scope": "不打开最终数据"
+    }
+  ],
+  "tests": {
+    "actually_executed": true,
+    "suites": [
+      {
+        "id": "repository_verify",
+        "methods": 407,
+        "passed": 407,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": null,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_compatibility",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 22,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_pearson",
+        "methods": 10,
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 896,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_numeric",
+        "methods": 16,
+        "passed": 16,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 84,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_atomic",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 9,
+        "actually_executed": true
+      },
+      {
+        "id": "previous_adapted_56",
+        "methods": 56,
+        "passed": 56,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 25,
+        "actually_executed": true
+      },
+      {
+        "id": "d0_summary",
+        "methods": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 716,
+        "actually_executed": true
+      },
+      {
+        "id": "d0_compatibility",
+        "methods": 8,
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 16,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_source",
+        "methods": 8,
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 73,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_boundary",
+        "methods": 3,
+        "passed": 3,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 3,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_collection",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 31,
+        "actually_executed": true
+      },
+      {
+        "id": "7bf_dates",
+        "methods": 9,
+        "passed": 9,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 27,
+        "actually_executed": true
+      },
+      {
+        "id": "7bf_intervals",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 75,
+        "actually_executed": true
+      },
+      {
+        "id": "e513_admission",
+        "methods": 24,
+        "passed": 24,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 36,
+        "actually_executed": true
+      },
+      {
+        "id": "e513_receipts",
+        "methods": 14,
+        "passed": 14,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 54,
+        "actually_executed": true
+      },
+      {
+        "id": "be_carriers_corrected",
+        "methods": 15,
+        "passed": 15,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 80,
+        "actually_executed": true
+      },
+      {
+        "id": "dc_recovery_replay",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 36,
+        "actually_executed": true
+      },
+      {
+        "id": "dc_annotations_with_fixture",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 160,
+        "actually_executed": true
+      },
+      {
+        "id": "current_parser_recovery",
+        "methods": 2,
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 7,
+        "actually_executed": true
+      },
+      {
+        "id": "new_fractional_boundaries",
+        "methods": 10,
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 803,
+        "actually_executed": true
+      }
+    ],
+    "counts_are_overlapping_not_unique": true,
+    "original_public_reproductions": {
+      "unchanged_scripts": true,
+      "WR14_candidate_exit": 0,
+      "WR14_baseline_dc_exit": 1,
+      "WR11_WR12_WR13_candidate_exits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unit_methods": null
+    },
+    "original_worker_probe": {
+      "same_script_and_helper": true,
+      "variants": 14,
+      "candidate_completed": 14,
+      "candidate_incorrect_rejections": 0,
+      "baseline_dc_completed": 6,
+      "baseline_dc_incorrect_rejections": 8,
+      "historical_labels_not_current_identity": true,
+      "outer_binding": "original_probes/full_chain_bindings.json",
+      "unit_methods": null
+    },
+    "independent_worker_branches": {
+      "actual_pure_python_worker_executions": 2,
+      "families": [
+        "run_collection_task with independent SyntheticSource",
+        "run_research_task with independent SyntheticQB/ObjectStore"
+      ],
+      "observation_ledger_branches": "Each gets a fresh independent MemoryArtifactStore/Registry copy at the same prepaid attempt. Actual worker output is shared immutable input, not rerun per branch.",
+      "legal_branch_cases": 234,
+      "legal_completed": 234,
+      "illegal_branch_cases": 36,
+      "illegal_rejected": 36,
+      "same_attempt_reject_then_corrected_recovery_cases": 2,
+      "recovery_passed": 2,
+      "source_fetches_total": {
+        "collection": 3,
+        "old_research": 1
+      },
+      "original_base_ledgers_remain_started": true,
+      "parse_or_complete_adds_budget_charge": false,
+      "row_sentinel_persisted_in_ledger": false,
+      "fake_calendar": "Invented weekdays and constant numbers, not real exchange coverage or market data"
+    },
+    "audit_checks": {
+      "checks": 466,
+      "passed": 465,
+      "failed": 1,
+      "failed_finding": "WR-15",
+      "unit_methods": 0
+    },
+    "isolated_builds": {
+      "executed": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "all_1331_raw_files_unchanged": true
+    },
+    "developer_raw_output_verification": {
+      "files": 48,
+      "passed": 48,
+      "normalization_applied": false
+    },
+    "command_logs": [
+      "runs/execution_records.json",
+      "runs/dc_annotations_with_fixture/command.json",
+      "original_probes/command_log.json",
+      "receipt_agent/command_log.json",
+      "recovery_agent/current_execution.json",
+      "recovery_agent/command_log.json",
+      "recovery_agent/parser_command_log.json"
+    ],
+    "reviewer_measurement_corrections": {
+      "annotation_first_replay": {
+        "methods": 12,
+        "passed": 11,
+        "failed": 0,
+        "errors": 1,
+        "subcases": 156,
+        "error_records": 1,
+        "skipped": 0,
+        "product_failure": false,
+        "reason": "Original suite expects official schema in OUT; first replay omitted the unchanged fixture; rerun in new output directory with exact raw schema passed12/160, original script/assertions untouched"
+      },
+      "evidence_first": {
+        "checks": 465,
+        "passed": 461,
+        "failed": 4,
+        "reviewer_ZIP_target_selection_errors": 3,
+        "genuine_manifest_discrepancies": 1,
+        "reason": "Three checks selected nested historical reports instead of exact ZIP root formal_report.txt; correction preserves first run and keeps real raw mismatch failed. One additional CRLF diagnostic yields final466 checks"
+      }
+    },
+    "historical_harness_limits": "原样56历史50/3/3及认可适配差异保留；原脚本be/dc字面量和按路径推断label不作本轮源码身份，current_execution/实际路径与raw哈希绑定4a。",
+    "portable_runner": {
+      "help_and_syntax_checked": true,
+      "full_aggregate_executed": false,
+      "individual_acceptance_runs_actually_executed": true
+    }
+  },
+  "findings": [
+    {
+      "id": "WR-15",
+      "priority": "P3",
+      "blocking": false,
+      "source_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+      "file": "audit/review_packages/wr14/developer_verification.json",
+      "lines": [
+        76
+      ],
+      "title": "开发输出清单的raw哈希声明对应CRLF工作区字节，与固定Git中的LF原件不一致",
+      "trigger": "按developer_outputs_manifest_raw_sha256校验同提交developer_outputs_manifest.json的原始文件字节",
+      "expected": "明确固定Git原件的raw哈希；若同时记录工作区CRLF值，应分别说明字节表示和来源",
+      "actual": {
+        "declared_raw_sha256": "44e8ff2bc0ce87a76ef52b2c3d7f4d263166ca5bb14f0aaf5474e1516c869ddb",
+        "Git_raw_sha256": "b8170f1c123ef3eb3991cb519206f7db8a700f6673f406121b5535f4411c8df5",
+        "Git_raw_bytes": 16556,
+        "CRLF_bytes": 16917,
+        "LF_to_CRLF_matches_declared": true
+      },
+      "impact": "按声明值无法校验固定Git文件；仅换行表示解释差异。清单内48份输出原字节全过，源码/执行身份/预算不受影响，因此P3非阻断",
+      "minimal_reproduction": "python -B minimal_manifest_hash.py source（当前exit1；不修改文件）",
+      "fix": "更正固定Git原件的校验值，或明确区分Git LF与工作区CRLF两套原始字节身份；保留原输出和原声明记录",
+      "regression": "固定Git归档下载后直接read_bytes重算，并继续逐项核验48个原始输出；不使用隐式换行归一化冒充raw一致",
+      "evidence_level": [
+        "E1",
+        "E2"
+      ],
+      "introduced_by_this_commit": true
+    }
+  ],
+  "budget_replay": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_lean": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    },
+    "initial_usage_is_historical_aggregate": true,
+    "new_real_configurations": 0,
+    "new_real_Research": 0,
+    "new_real_LEAN": 0,
+    "new_model_calls": 0,
+    "authoritative_files_unchanged": true
+  },
+  "platform_evidence_level": {
+    "E1": "静态、哈希、AST和固定SDK合同",
+    "E2": "审核者实际合成执行；无真实AlgorithmImports",
+    "E3": "既有开发归档原生证据离线重解析",
+    "E4": "本轮只读QC源码和GitHub元数据",
+    "E5": null
+  },
+  "platform_state": {
+    "current_cloud_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "cloud_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+    "cloud_py_files": 25,
+    "candidate_differing_paths": 12,
+    "candidate_actual_runtime_verified": false,
+    "old_lean_external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "old_lean_archived_status": "pending",
+    "old_lean_current_terminal": null,
+    "polled_pending_lean": false,
+    "PR2_draft": true,
+    "CI_success_run_ids": [
+      40367991545
+    ],
+    "cloud_python_files_total": 26,
+    "cloud_separate_task_input_files": 1,
+    "unchanged_from_previous_readback": true,
+    "CI_jobs": [
+      {
+        "id": 121730794190,
+        "name": "synthetic-checks (3.10)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121730794705,
+        "name": "synthetic-checks (3.11)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "historical_findings": {
+    "WR-01_to_WR-10": "既有记录和各自通过范围保留；本轮对应离线回归通过；不覆盖原失败",
+    "WR-04": "24/36含混合任务与独立进程竞争通过",
+    "WR-08_precision_limit": "保留原普通精度/取消误差边界，不泛化纯相对误差",
+    "WR-09_WR-10": "9/27与12/75通过；Daily/Python微秒合同范围",
+    "WR-11": {
+      "status": "修复后通过",
+      "scope": "原不同载体/隐藏输出问题；原复现和14/54、新15/80通过；不扩大为所有递归元数据安全认证"
+    },
+    "WR-12": {
+      "status": "修复后通过",
+      "scope": "按原attempt结算、原输入绑定、切换/重启/缺失输入及拒绝篡改；原2复现及新12/36通过，预算不增加"
+    },
+    "WR-13": {
+      "status": "修复后通过",
+      "scope": "原未知annotations行/错误旁路、非字符串text、非法偏移；原最小和原五变体适配通过；普通fraction合法兼容由WR14另行阻断"
+    },
+    "WR-14": {
+      "status": "修复后通过",
+      "scope": "固定Python3.10普通小数秒、原MRE和14例完整链、原12/160与新10/803通过；保留WR13拒绝和原attempt恢复边界"
+    }
+  },
+  "unverified": [
+    "新版云端真实部署/输入读回/运行",
+    "真实成功与完整失败回执",
+    "旧LEAN已交付终态",
+    "完整历史US200、SID/分类/公司行动、财务修订及公开/实际送达/摄入时点",
+    "完整阶段3–7",
+    "2026独立性",
+    "具体GPT模型及调用次数/费用上限",
+    "Linux原生执行"
+  ],
+  "software_acceptance": {
+    "overall": "passed_in_reviewed_offline_scope_with_nonblocking_finding",
+    "WR14": "passed_after_fix",
+    "blocking_findings": [],
+    "nonblocking_findings": [
+      "WR-15"
+    ],
+    "shared_budget_tested_scope": "passed",
+    "stage0_1_prior_scope": "retained",
+    "whole_system": "not_accepted"
+  },
+  "data_certification": {
+    "historical_US200": false,
+    "financial_vintages": false,
+    "actual_availability": false,
+    "final_2024_2025_previously_exposed": true,
+    "independence_2026": null,
+    "final_test_enabled": false
+  },
+  "financial_evidence": false,
+  "official_annotation_contract": {
+    "source_commit": "c4c367f9f58296a7053f5c78a52fd02bfbb56a49",
+    "path": "schema/2025-11-25/schema.json",
+    "raw_sha256": "268a5f82ba70fd7e4b6dc4aa1e64f116f74b4d0edcb69dc046829c79dd4e97e7",
+    "scope": "三注解字段语义；适配器明确子集；不要求任意MCP扩展或全部ISO异体；hint不作实际送达时间"
+  }
+}
