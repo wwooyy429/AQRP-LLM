@@ -49,6 +49,10 @@ _IDENTITY_FIELDS = {"plan_hash", "config_id", "attempt_id", "stage", "project_id
                     "source_manifest_hash", "deployment_hash", "data_request_hash"}
 _FLAGS = {"market_values_exported", "economic_factor_tested", "final_data_accessed",
           "full_US200_coverage_certified", "actual_availability_verified"}
+JOINT_PROBE_FIELDS = {"dollar_volume", "has_fundamental_data", "time", "end_time"}
+JOINT_PROBE_CHECKS = {"collection_windows_completed", "collection_cache_only_replay", "collection_nonempty"}
+_PROBE_FLAGS = {"full_historical_US200_certified", "actual_availability_certified",
+                "research_certified", "row_values_exported", "financial_vintage_certified"}
 _COUNT_FIELDS = {
     "research": {"record_count", "history_calls_first", "history_calls_second", "expected_formation_count"},
     "lean": {"data_event_count", "slice_count", "orders_submitted", "runtime_error_count",
@@ -120,11 +124,13 @@ def _safe_evidence(raw):
     raw = _mapping(raw, "engineering evidence metadata")
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
                "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-               "unobserved_action_types_are_not_certified", "runtime_environment"}
+               "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe"}
     if not set(raw) <= allowed:
         raise EngineeringTaskError("Unknown engineering evidence cannot carry row-level data")
     for name, value in raw.items():
-        if name.endswith("_ref"):
+        if name == "collection_probe":
+            _safe_collection_probe(value)
+        elif name.endswith("_ref"):
             _safe_reference(value)
         elif name == "cache_payload_refs":
             if not isinstance(value, list) or len(value) > 5:
@@ -148,6 +154,58 @@ def _safe_evidence(raw):
             raise EngineeringTaskError("Unobserved corporate-action types remain uncertified")
 
 
+def _safe_collection_probe(raw):
+    """Only fixed aggregate observations and one cloud reference may leave QC."""
+    required = {"schema_version", "plan_hash", "receipt_ref", "window_count", "record_count",
+                "source_fetch_calls", "reused_windows", "empty_windows", "cache_only_source_fetch_calls",
+                "missing_values"} | _PROBE_FLAGS
+    if not isinstance(raw, dict) or set(raw) != required or type(raw["schema_version"]) is not int or raw["schema_version"] != 1:
+        raise EngineeringTaskError("Only the fixed joint collection observation summary is permitted")
+    _hash(raw["plan_hash"], "collection probe plan hash")
+    _safe_reference(raw["receipt_ref"])
+    if any(raw[name] is not False for name in _PROBE_FLAGS):
+        raise EngineeringTaskError("Collection observation cannot certify financial or availability history")
+    for name in ("window_count", "record_count", "source_fetch_calls", "reused_windows", "empty_windows", "cache_only_source_fetch_calls"):
+        maximum = 2000000 if name == "record_count" else 40
+        if type(raw[name]) is not int or not 0 <= raw[name] <= maximum:
+            raise EngineeringTaskError("Collection observation counts exceed the fixed pilot bounds")
+    missing = raw["missing_values"]
+    if (not isinstance(missing, dict) or set(missing) != JOINT_PROBE_FIELDS
+            or any(type(value) is not int or not 0 <= value <= raw["record_count"] for value in missing.values())):
+        raise EngineeringTaskError("Only selected-field missing counts may leave the collection pilot")
+    if (raw["window_count"] != 40 or raw["source_fetch_calls"] + raw["reused_windows"] != 40
+            or raw["empty_windows"] > raw["window_count"] or raw["cache_only_source_fetch_calls"] != 0
+            or not raw["window_count"] - raw["empty_windows"] <= raw["record_count"] <= (raw["window_count"] - raw["empty_windows"]) * 50000):
+        raise EngineeringTaskError("Collection observation does not prove complete cache-only replay")
+
+
+def validate_joint_report(report, document):
+    """Bind the optional summary to this exact parent; v1 stays unchanged."""
+    summary = report.get("evidence", {}).get("collection_probe")
+    applicable = document["schema_version"] == 2 and report["identity"]["stage"] == "research"
+    if not applicable:
+        if summary is not None:
+            raise EngineeringTaskError("Collection probe metadata belongs only to v2 Research")
+        return
+    if summary is None:
+        if report["status"] == "completed":
+            raise EngineeringTaskError("Completed joint Research requires its collection observation")
+        return
+    _safe_collection_probe(summary)
+    from .collection import HistoricalCollectionPlan
+    probe = document["collection_probe"]
+    plan = HistoricalCollectionPlan.from_dict(probe["collection_plan"], field_catalog=probe["field_catalog"])
+    expected_key = document["report_namespace"] + "/collection-probes/" + content_hash(document) + "/" + report["identity"]["attempt_id"] + ".json"
+    if summary["plan_hash"] != plan.hash or summary["receipt_ref"]["key"] != expected_key:
+        raise EngineeringTaskError("Collection observation differs from this parent's frozen probe")
+    checks = report["checks"]
+    if (not JOINT_PROBE_CHECKS <= set(checks)
+            or checks["collection_windows_completed"] != (summary["window_count"] == 40)
+            or checks["collection_cache_only_replay"] != (summary["cache_only_source_fetch_calls"] == 0)
+            or checks["collection_nonempty"] != (summary["record_count"] > 0)):
+        raise EngineeringTaskError("Collection checks disagree with the actual bounded observation")
+
+
 @dataclass(frozen=True, init=False)
 class EngineeringTaskPlan:
     """A canonical, fixed two-stock 2018 data-plumbing plan, not a factor.
@@ -163,7 +221,7 @@ class EngineeringTaskPlan:
         raise TypeError("Use EngineeringTaskPlan.from_dict with trusted discovered project IDs")
 
     @classmethod
-    def from_dict(cls, raw, *, discovered_project_ids):
+    def from_dict(cls, raw, *, discovered_project_ids, probe_field_catalog=None):
         value = _mapping(json.loads(canonical_json(raw)), "engineering plan")
         required = {"schema_version", "plan_id", "scope", "project_id", "source_manifest_hash",
                     "deployment_hash", "request_mode", "observation_window", "required_checks",
@@ -171,7 +229,9 @@ class EngineeringTaskPlan:
                     "economic_factor", "economic_model"}
         mode = value.get("request_mode")
         mode_keys = {"request_template", "symbol_resolution"} if mode == "symbol_resolution" else {"data_request"}
-        if set(value) != required | mode_keys or value["schema_version"] != 1 or type(value["schema_version"]) is not int:
+        version = value.get("schema_version")
+        extra = {"collection_probe"} if type(version) is int and version == 2 else set()
+        if set(value) != required | mode_keys | extra or type(version) is not int or version not in {1, 2}:
             raise EngineeringTaskError("A complete versioned engineering plan is required; unknown overrides are prohibited")
         if value["scope"] != "engineering" or value["orders_enabled"] is not False or value["financial_metrics_enabled"] is not False:
             raise EngineeringTaskError("This bridge permits engineering without orders or financial metrics only")
@@ -184,6 +244,27 @@ class EngineeringTaskPlan:
             raise EngineeringTaskError("Use a project returned by the trusted list_projects call")
         for key in ("source_manifest_hash", "deployment_hash"):
             _hash(value[key], key)
+        if version == 2:
+            if mode != "symbol_resolution":
+                raise EngineeringTaskError("Joint pilot requires the fixed historical two-symbol resolver")
+            from .collection import HistoricalCollectionPlan
+            probe = value["collection_probe"]
+            if not isinstance(probe, dict) or set(probe) != {"collection_plan", "field_catalog"}:
+                raise EngineeringTaskError("Joint engineering requires one explicit bounded collection probe")
+            catalog = probe["field_catalog"]
+            if not isinstance(catalog, dict) or set(catalog) != JOINT_PROBE_FIELDS:
+                raise EngineeringTaskError("Joint pilot permits only its four observed liquidity/clock fields")
+            if probe_field_catalog is not None and catalog != {name: probe_field_catalog.get(name) for name in JOINT_PROBE_FIELDS}:
+                raise EngineeringTaskError("Joint probe catalog differs from the trusted source catalog")
+            child = HistoricalCollectionPlan.from_dict(probe["collection_plan"], field_catalog=catalog)
+            cp = child.to_dict()
+            if (cp["source_manifest_hash"] != value["source_manifest_hash"] or set(cp["fields"]) != JOINT_PROBE_FIELDS
+                    or _time(cp["start"]) != _time("2018-01-01T00:00:00-05:00")
+                    or _time(cp["end_exclusive"]) != _time("2018-02-10T00:00:00-05:00")
+                    or cp["calendar_days_per_request"] != 1 or cp["max_batch_records"] != 1000
+                    or cp["max_records_per_window"] != 50000):
+                raise EngineeringTaskError("Joint collection probe must match the frozen 40-day development pilot")
+            value["collection_probe"] = {"collection_plan": cp, "field_catalog": child.field_catalog}
         validate_key(value["report_namespace"])
         if mode == "symbol_resolution":
             template = _mapping(value["request_template"], "request_template")
@@ -232,6 +313,8 @@ class EngineeringTaskPlan:
             retries = value["max_retries"][stage]
             if type(retries) is not int or not 0 <= retries <= 2:
                 raise EngineeringTaskError("Retries must be preregistered and bounded from zero through two")
+        if version == 2 and not JOINT_PROBE_CHECKS <= set(value["required_checks"]["research"]):
+            raise EngineeringTaskError("Joint Research must require the complete bounded collection observation")
         result = object.__new__(cls)
         object.__setattr__(result, "_encoded", canonical_json(value))
         return result
@@ -250,6 +333,8 @@ class EngineeringTaskPlan:
         value = self.to_dict()
         request = ({"request_template": value["request_template"], "symbol_resolution": value["symbol_resolution"]}
                    if value["request_mode"] == "symbol_resolution" else value["data_request"])
+        if value["schema_version"] == 2:
+            request = {"market_request": request, "collection_probe": value["collection_probe"]}
         return content_hash(request)
 
 
@@ -396,6 +481,7 @@ class EngineeringTaskBridge:
             raise EngineeringTaskError("Only fixed nonnegative engineering counts may leave cloud")
         self._resolution(report, report["identity"]["stage"])
         _safe_evidence(report.get("evidence", {}))
+        validate_joint_report(report, self.plan.to_dict())
 
     def _completion_metadata(self, observed):
         observed = _mapping(observed, "delivered completion metadata")

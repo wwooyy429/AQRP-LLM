@@ -273,7 +273,8 @@ class Registry:
             if identity in state["configs"]:
                 return identity
             package = json.loads(encoded)
-            if self._collection_plan(package) is not None:
+            if (self._collection_plan(package) is not None
+                    or (self._is_engineering_package(package) and package["plan"].get("schema_version") == 2)):
                 self._enforce_engineering_project(state, package)
             self._enforce_engineering_limit(state, "configurations", package)
             self._charge(state["usage"], "configurations", allocation)
@@ -298,6 +299,14 @@ class Registry:
             raise ValueError("Engineering packages require their complete fixed schema marker")
         if collection:
             Registry._collection_plan(package)
+        elif plan.get("schema_version") == 2:
+            # A joint pilot is one complete engineering configuration, never an
+            # unvalidated bag of child jobs. Replays use its frozen catalog;
+            # the dispatcher separately checks the trusted current catalog.
+            from .engineering_tasks import EngineeringTaskPlan
+            frozen = EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan.get("project_id"),))
+            if frozen.to_dict() != plan:
+                raise ValueError("Joint engineering registration requires its frozen canonical plan")
         return True
 
     @staticmethod

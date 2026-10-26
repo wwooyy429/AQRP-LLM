@@ -15,7 +15,7 @@ import re
 
 from .artifacts import canonical_json, content_hash, validate_key
 from .engineering_data import _identity_shape, _safe_evidence
-from .engineering_tasks import EngineeringTaskPlan
+from .engineering_tasks import EngineeringTaskPlan, validate_joint_report
 
 
 class ReceiptParseError(ValueError):
@@ -263,6 +263,7 @@ def _report(wrapper, payload):
             _fail("Resolution references disagree with their observed hashes")
     try:
         _safe_evidence(report.get("evidence", {}))
+        validate_joint_report(report, payload["plan"])
     except (ValueError, TypeError) as exc:
         raise ReceiptParseError("Unrecognized or row-level cloud evidence is prohibited") from exc
     _ref(reference)

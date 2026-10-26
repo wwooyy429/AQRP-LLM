@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "source_commit_at_start": "dd094f345f45b9d9cb78dd9295a6aefd587f4c68",
+  "purpose": "live_read_only_preflight_not_runtime_or_data_certification",
+  "project_listing": {
+    "success": true,
+    "projects": [
+      {
+        "projectId": 38436695,
+        "name": "Research/GenericResearch",
+        "language": "Py"
+      },
+      {
+        "projectId": 38437839,
+        "name": "Research/GenericSandbox",
+        "language": "Py"
+      },
+      {
+        "projectId": 38433336,
+        "name": "LLMQuantPlatform/FiveModuleEngineering20261026",
+        "language": "Py"
+      },
+      {
+        "projectId": 38433216,
+        "name": "LLMQuantPlatform/Engineering20261026",
+        "language": "Py"
+      },
+      {
+        "projectId": 38432534,
+        "name": "AlphaPlatform/EngineeringSmoke20261026",
+        "language": "Py"
+      }
+    ],
+    "page": 1,
+    "totalPages": 1,
+    "nextPage": null
+  },
+  "active_project": 38436695,
+  "cloud_files": [
+    "_engineering_task_input.py",
+    "engineering_smoke.py",
+    "main.py",
+    "qresearch/__init__.py",
+    "qresearch/artifacts.py",
+    "qresearch/audits.py",
+    "qresearch/cache.py",
+    "qresearch/contracts.py",
+    "qresearch/coverage.py",
+    "qresearch/engineering_data.py",
+    "qresearch/engineering_receipts.py",
+    "qresearch/engineering_tasks.py",
+    "qresearch/evaluation.py",
+    "qresearch/factors.py",
+    "qresearch/ingestion.py",
+    "qresearch/labels.py",
+    "qresearch/models.py",
+    "qresearch/pipeline.py",
+    "qresearch/point_in_time.py",
+    "qresearch/quantconnect.py",
+    "qresearch/registry.py",
+    "qresearch/runtime.py",
+    "qresearch/study.py",
+    "qresearch/universe.py",
+    "qresearch/workflow.py",
+    "research_config.py",
+    "research.ipynb"
+  ],
+  "protected_cloud_source_checks": [
+    {
+      "path": "main.py",
+      "cloud_chars": 2369,
+      "equals_archived_source_after_terminal_newline_normalization": true
+    },
+    {
+      "path": "_engineering_task_input.py",
+      "cloud_chars": 5542,
+      "equals_archived_source_after_terminal_newline_normalization": true
+    }
+  ],
+  "checked_source_scope": "main.py and original task input only; not all implementation files",
+  "pending_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+  "terminal_delivered": false,
+  "backtest_read_or_polled": false,
+  "new_cloud_writes": 0,
+  "budget_used": {
+    "configurations": 6,
+    "research": 9,
+    "lean": 1
+  },
+  "new_executions": {
+    "configurations": 0,
+    "research": 0,
+    "lean": 0,
+    "model_API": 0
+  },
+  "final_test_enabled": false,
+  "data_certification": false,
+  "financial_evidence": false,
+  "migration_document": {
+    "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/universes/equity/morningstar-migration",
+    "retrieved_via": "QuantConnect read_docs_page",
+    "content_utf8_sha256": "d8571475bfff648f3e8d58a7e4a69eb6b3126032a910f9b9dfbdc65867ca750c",
+    "content_chars": 5125,
+    "claims": [
+      "Entire historical fundamental dataset rebuilt from new feeds",
+      "Master switches October10; separate old branch retires October31 per migration page",
+      "Some preserved obsolete members throw NotSupportedException on read"
+    ],
+    "scope": "Documentation only; actual project branch/vendor delivery/vintages not verified"
+  }
+}

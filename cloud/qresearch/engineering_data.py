@@ -19,7 +19,7 @@ from .artifacts import canonical_json, content_hash
 from .cache import CacheMiss, SharedDataCache
 from .contracts import DataRequest, NY, RECORD_COLUMNS, aware
 from .coverage import produce_engineering_coverage
-from .engineering_tasks import EngineeringTaskPlan
+from .engineering_tasks import EngineeringTaskPlan, _safe_collection_probe, validate_joint_report
 from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConnectHistoryProvider
 
 
@@ -126,11 +126,13 @@ def _identity_shape(identity):
 def _safe_evidence(evidence):
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
         "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-        "unobserved_action_types_are_not_certified", "runtime_environment"}
+        "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe"}
     if not isinstance(evidence, dict) or not set(evidence) <= allowed:
         raise ValueError("Unknown engineering evidence metadata")
     for name, value in evidence.items():
-        if name.endswith("_ref") or name == "cache_payload_refs":
+        if name == "collection_probe":
+            _safe_collection_probe(value)
+        elif name.endswith("_ref") or name == "cache_payload_refs":
             refs = value if name == "cache_payload_refs" else [value]
             if not isinstance(refs, list) or len(refs) > 5:
                 raise ValueError("Invalid cloud evidence references")
@@ -238,8 +240,46 @@ def _finish(store, payload, checks, statistics, resolution, *, evidence=None):
         "market_values_exported": False, "economic_factor_tested": False,
         "final_data_accessed": False, "full_US200_coverage_certified": False,
         "actual_availability_verified": False, "evidence": evidence or {}}
+    validate_joint_report(report, payload["plan"])
     reference = _save(store, payload["report_key"], report)
     return {"cloud_report": report, "report_ref": reference}
+
+
+def _run_collection_probe(qb, store, plan, payload, *, api):
+    """One fixed substep of the precharged parent, never a second task/ledger."""
+    from .collection import HistoricalCollectionPlan, HistoricalSnapshotCollector
+    from .historical_source import QuantConnectSnapshotSource
+    document = plan.to_dict()
+    raw = document["collection_probe"]
+    child = HistoricalCollectionPlan.from_dict(raw["collection_plan"], field_catalog=raw["field_catalog"])
+    key = document["report_namespace"] + "/collection-probes/" + plan.hash + "/" + payload["identity"]["attempt_id"] + ".json"
+    reader = HistoricalSnapshotCollector(store, None, child)
+    if store.exists(key):
+        receipt = json.loads(store.read_bytes(key))
+        if (not isinstance(receipt, dict) or set(receipt) != {"identity", "collection_plan_hash", "first", "cache_only_replay"}
+                or receipt["identity"] != payload["identity"] or receipt["collection_plan_hash"] != child.hash):
+            raise ValueError("Saved joint collection receipt differs from this parent")
+        first, second = receipt["first"], receipt["cache_only_replay"]
+        observed = reader.collect()
+        if (not isinstance(first, dict) or set(first) != set(observed) or second != observed
+                or any(first[name] != value for name, value in observed.items() if name not in {"provider_calls", "reused_windows"})):
+            raise ValueError("Saved joint collection receipt differs from verified cache")
+    else:
+        source = QuantConnectSnapshotSource(qb, child.field_catalog, api=api)
+        first = HistoricalSnapshotCollector(store, source, child).collect()
+        second = reader.collect()
+        receipt = {"identity": payload["identity"], "collection_plan_hash": child.hash,
+                   "first": first, "cache_only_replay": second}
+    reference = _save(store, key, receipt)
+    summary = {"schema_version": 1, "plan_hash": child.hash, "receipt_ref": reference,
+        "window_count": first["window_count"], "record_count": first["record_count"],
+        "source_fetch_calls": first["provider_calls"], "reused_windows": first["reused_windows"],
+        "empty_windows": first["empty_windows"], "cache_only_source_fetch_calls": second["provider_calls"],
+        "missing_values": first["missing_values"], "full_historical_US200_certified": False,
+        "actual_availability_certified": False, "research_certified": False,
+        "row_values_exported": False, "financial_vintage_certified": False}
+    _safe_collection_probe(summary)
+    return summary
 
 
 def run_research_task(payload, *, api=None, quantbook_factory=None):
@@ -310,11 +350,17 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
         "symbol_registry_resolved": resolution["permanent_sid_count"] == 2}
     statistics = {"record_count": len(records), "history_calls_first": first_calls,
         "history_calls_second": second_calls, "expected_formation_count": len(schedule)}
-    return _finish(store, payload, checks, statistics, resolution,
-        evidence={"coverage_report_ref": coverage["report_ref"], "cache_payload_refs": source_refs,
+    evidence = {"coverage_report_ref": coverage["report_ref"], "cache_payload_refs": source_refs,
                   "coverage_certification_gaps": coverage["research_certification_gaps"],
                   "lean_engine_version": str(api.Globals.version), "vendor_revision_known": False,
-                  "runtime_environment": _runtime_environment(api)})
+                  "runtime_environment": _runtime_environment(api)}
+    if document["schema_version"] == 2:
+        summary = _run_collection_probe(qb, store, plan, payload, api=api)
+        evidence["collection_probe"] = summary
+        checks.update(collection_windows_completed=summary["window_count"] == 40,
+                      collection_cache_only_replay=summary["cache_only_source_fetch_calls"] == 0,
+                      collection_nonempty=summary["record_count"] > 0)
+    return _finish(store, payload, checks, statistics, resolution, evidence=evidence)
 
 
 def initialize_receiver(algorithm, payload, *, api=None):
