@@ -272,7 +272,10 @@ class Registry:
             state = self._replay()
             if identity in state["configs"]:
                 return identity
-            self._enforce_engineering_limit(state, "configurations", json.loads(encoded))
+            package = json.loads(encoded)
+            if self._collection_plan(package) is not None:
+                self._enforce_engineering_project(state, package)
+            self._enforce_engineering_limit(state, "configurations", package)
             self._charge(state["usage"], "configurations", allocation)
             self.store.write_once("configurations/" + identity + ".json", encoded)
             self._append({"kind": "config_registered", "config_id": identity, "allocation": allocation})
@@ -285,14 +288,66 @@ class Registry:
         plan = package.get("plan")
         marked = "engineering_task_schema_version" in package
         engineering_plan = isinstance(plan, dict) and plan.get("scope") == "engineering"
-        if not marked and not engineering_plan:
+        collection = Registry._collection_candidate(plan)
+        if not marked and not engineering_plan and not collection:
             return False
         if (type(package.get("engineering_task_schema_version")) is not int
                 or package["engineering_task_schema_version"] != 1
                 or set(package) != {"engineering_task_schema_version", "plan"}
                 or not engineering_plan):
             raise ValueError("Engineering packages require their complete fixed schema marker")
+        if collection:
+            Registry._collection_plan(package)
         return True
+
+    @staticmethod
+    def _collection_candidate(plan: Any) -> bool:
+        # Reserved collection shape must not become an unbounded generic task
+        # by dropping the envelope marker or changing scope/task_kind.
+        return isinstance(plan, dict) and (plan.get("task_kind") == "historical_collection"
+            or "collection_plan" in plan or "field_catalog" in plan)
+
+    @staticmethod
+    def _collection_plan(package: dict):
+        if not isinstance(package, dict) or not Registry._collection_candidate(package.get("plan")):
+            return None
+        plan = package["plan"]
+        if (set(package) != {"engineering_task_schema_version", "plan"}
+                or type(package.get("engineering_task_schema_version")) is not int
+                or package["engineering_task_schema_version"] != 1):
+            raise ValueError("Collection tasks require the shared engineering package marker")
+        # This validates persisted shape/identity only. The trusted dispatcher
+        # separately supplies actual discovered projects and trusted catalog.
+        from .collection_tasks import CollectionTaskPlan
+        frozen = CollectionTaskPlan.from_dict(plan,
+            discovered_project_ids=(plan.get("project_id"),), field_catalog=plan.get("field_catalog"))
+        if frozen.to_dict() != plan:
+            raise ValueError("Collection registration requires the already frozen canonical plan")
+        return frozen
+
+    def _enforce_engineering_project(self, state: dict, package: dict) -> None:
+        """A new charge cannot overlap unresolved engineering input on a project.
+
+        Called only under the authoritative transaction lock. Existing logical
+        operation reuse is handled before this guard, so cached reads stay free.
+        """
+        if not self._is_engineering_package(package):
+            return
+        project = package["plan"].get("project_id")
+        if type(project) is not int or project <= 0:
+            raise RegistryError("Engineering admission requires a positive project identity")
+        for record in state["attempts"].values():
+            if record["status"] not in _OPEN_STATES:
+                continue
+            old = json.loads(self.store.read_bytes("configurations/" + record["config_id"] + ".json"))
+            if self._is_engineering_package(old) and old["plan"].get("project_id") == project:
+                raise RegistryError("Unresolved engineering work on this project requires reconciliation")
+
+    @staticmethod
+    def _collection_operation(plan, stage: str, operation_key: str) -> None:
+        if plan is not None and (stage != "research"
+                or operation_key != "collection-plan:" + plan.hash + ":research"):
+            raise RegistryError("Collection tasks permit only their fixed Research operation")
 
     def _engineering_config_ids(self, state: dict) -> set[str]:
         return {identity for identity in state["configs"]
@@ -328,13 +383,19 @@ class Registry:
         identity = sha256(encoded).hexdigest()
         with self.store.locked(self.LOCK):
             state = self._replay()
+            package = json.loads(encoded)
+            collection = self._collection_plan(package)
+            if collection is not None and kind == "lean":
+                raise RegistryError("Collection tasks permit only Research admission")
             if kind == "configurations" and identity in state["configs"]:
                 return
             same = [record for record in state["attempts"].values()
                     if record["config_id"] == identity and record["stage"] == kind]
             if same and same[-1]["status"] in _OPEN_STATES | {"completed"}:
                 return
-            self._enforce_engineering_limit(state, kind, json.loads(encoded))
+            if collection is not None or kind != "configurations":
+                self._enforce_engineering_project(state, package)
+            self._enforce_engineering_limit(state, kind, package)
 
     def _verify_import(self, full_config: dict, source_reference: dict, allocation: str) -> None:
         """Verify a copied historical charge receipt, not a newly invented waiver."""
@@ -413,6 +474,9 @@ class Registry:
             state = self._replay()
             if config_id not in state["configs"]:
                 raise RegistryError("Register the complete configuration before execution")
+            package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
+            collection = self._collection_plan(package)
+            self._collection_operation(collection, stage, operation_key)
             existing_id = state["operations"].get(operation_id)
             if existing_id:
                 existing = state["attempts"][existing_id]
@@ -425,7 +489,12 @@ class Registry:
             for record in state["attempts"].values():
                 if record["config_id"] == config_id and record["stage"] == stage and record["status"] in _OPEN_STATES:
                     return self._attempt(record)
-            package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
+            self._enforce_engineering_project(state, package)
+            if collection is not None:
+                previous = [record for record in state["attempts"].values()
+                    if record["config_id"] == config_id and record["stage"] == stage]
+                if len(previous) >= 1 + collection.to_dict()["max_retries"]:
+                    raise RegistryError("Preregistered collection retry bound reached")
             self._enforce_engineering_limit(state, stage, package)
             self._charge(state["usage"], stage, allocation)
             record = {"kind": "attempt_started", "attempt_id": uuid4().hex,

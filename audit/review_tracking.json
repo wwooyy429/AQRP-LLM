@@ -33,11 +33,11 @@
     {
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
-      "implementation": "工程桥、小样例及历史快照采集离线候选已实现",
+      "implementation": "已有离线快照接口7bf通过；新增采集预算与任务协议候选待独立复验",
       "evidence": "固定7bf独立仓库336、归档源8/边界3/采集19、新日期缓存9及端点12通过，覆盖重叠不累计",
       "blocking_findings": [],
       "status": "pending_acceptance",
-      "scope": "已测离线接口通过；预算桥、平台运行及完整数据认证仍缺证据",
+      "scope": "原7bf已测离线范围通过；当前Registry与新任务桥未独立验收，平台和数据认证仍缺证据",
       "implemented_offline_scope": "passed_after_fix"
     },
     {
@@ -95,7 +95,7 @@
   },
   "latest_independent_report": "audit/reviews/20261026-7bf716f-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/wr09_wr10/developer_verification.json",
-  "current_handoff": "docs/review/wr09-wr10.md",
+  "current_handoff": "docs/stage2-collection-task-bridge.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -812,7 +812,7 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "7bf_fixed_source_accepted_only_in_tested_offline_scope; archival_commit_does_not_change_accepted_identity",
+  "new_candidate_acceptance": "pending_collection_task_bridge_fixed_source_independent_review; prior_acceptance_binds_7bf_only",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -826,5 +826,13 @@
     "counts_overlap": true,
     "real_SDK_executed": false,
     "market_or_model_calls": 0
+  },
+  "current_candidate": {
+    "parent_commit": "47b5f715d88d22252a3a47f1dc418039b8b2f0d2",
+    "source_manifest_hash": "78eb6e757ebdf83c4a0641c8874b7c82b45371989370a400b2a41b5354240104",
+    "independently_accepted": false,
+    "cloud_deployed": false,
+    "developer_repository_tests": 376,
+    "stage0_registry_changed_after_prior_acceptance": true
   }
 }

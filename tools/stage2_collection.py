@@ -40,8 +40,15 @@ def preview(raw, *, implementation_hash):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("template", "validate"))
+    parser.add_argument("command", choices=("template", "validate", "freeze-task", "register-task", "claim-task", "prepare-task", "research-result", "task-status"))
     parser.add_argument("--plan", type=Path)
+    parser.add_argument("--task-file", type=Path)
+    parser.add_argument("--projects-file", type=Path)
+    parser.add_argument("--tool-file", type=Path)
+    parser.add_argument("--attempt")
+    parser.add_argument("--allocation", choices=("normal", "reserve"), default="normal")
+    parser.add_argument("--retry-of")
+    parser.add_argument("--reason")
     args = parser.parse_args()
     if args.command == "template":
         template = read_json(ROOT / "templates" / "historical_collection.json")
@@ -52,9 +59,14 @@ def main():
                           "required_explicit_values": [key for key, value in template.items() if value is None],
                           "source_field_count": len(fields), "market_calls": 0}))
         return
+    if args.command not in {"template", "validate"}:
+        from collection_task_cli import execute_metadata_command
+        print(json.dumps(execute_metadata_command(args, field_catalog=catalog())))
+        return
     if args.plan is None:
         parser.error("validate requires --plan; this does not authorize a cloud execution")
-    print(json.dumps(preview(read_json(args.plan), implementation_hash=source_manifest()["source_hash"])))
+    from collection_task_cli import execution_source_manifest
+    print(json.dumps(preview(read_json(args.plan), implementation_hash=execution_source_manifest()["source_hash"])))
 
 
 if __name__ == "__main__":
