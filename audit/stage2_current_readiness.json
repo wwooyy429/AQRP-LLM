@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "kind": "collection_budget_task_bridge_candidate_developer_verified",
+  "kind": "WR11_WR12_repair_candidate_pending_independent_review",
   "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
   "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
     0,
     1
   ],
-  "stage2_status": "pending_acceptance",
+  "stage2_status": "failed_reviewed_e513_pending_independent_repair_review",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261026-7bf716f-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261026-e513c66-windows/formal_report.json",
   "deployment_comparison_scope": "Historical d0-versus-old75 table retained; latest7bf reviewer comparison separately recorded; no new platform read by archiving developer",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -75,7 +75,7 @@
     "lean": 1
   },
   "blockers": [
-    "new_collection_bridge_fixed_source_independent_review",
+    "WR11_WR12_fixed_source_independent_repair_review",
     "existing_LEAN_delivered_terminal_and_reconciled_result",
     "new_implementation_cloud_deployment_and_completed_runtime_evidence",
     "historical_US200_financial_PIT_and_corporate_action_certification"
@@ -89,7 +89,7 @@
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/stage2-collection-task-bridge.md",
+  "candidate_development_document": "docs/review/wr11-wr12.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -104,14 +104,18 @@
     "verified_complete_financial_value_catalog",
     "actual_vendor_receipt_and_vintage_certification"
   ],
-  "known_open_findings": [],
-  "developer_fixes_pending_independent_verification": [],
+  "known_open_findings": [
+    "WR-11",
+    "WR-12"
+  ],
+  "developer_fixes_pending_independent_verification": [
+    "WR-11",
+    "WR-12"
+  ],
   "source_changed_this_round": [
-    "cloud/qresearch/registry.py",
-    "cloud/qresearch/collection_tasks.py",
-    "cloud/qresearch/collection_execution.py",
-    "tools/stage2_collection.py",
-    "tools/collection_task_cli.py"
+    "cloud/qresearch/engineering_receipts.py",
+    "tools/collection_task_cli.py",
+    "tools/stage2_collection.py"
   ],
   "accepted_offline_scope": "WR09/10及本轮覆盖的已实现离线计算/采集接口",
   "new_candidate_acceptance_scope": "pending_new_fixed_source_review; prior_7bf_offline_acceptance_preserved",
@@ -123,6 +127,6 @@
     "candidate_different_or_missing_paths": 9,
     "this_archival_turn_new_QC_read": false
   },
-  "candidate_source_manifest_hash": "78eb6e757ebdf83c4a0641c8874b7c82b45371989370a400b2a41b5354240104",
-  "collection_remote_protocol_and_registry_admission": "implemented_developer_verified_pending_independent_review"
+  "candidate_source_manifest_hash": "bb6346f5d345b6827fe577314e91a675b981522434b3417d87b88d72674b96f0",
+  "collection_remote_protocol_and_registry_admission": "shared_admission_passed_in_e513_tested_scope; bridge_WR11_WR12_repair_pending_independent_review"
 }

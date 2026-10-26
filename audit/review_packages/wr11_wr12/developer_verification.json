@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "purpose": "WR11_WR12_developer_repair_evidence_not_independent_acceptance",
+  "date": "2026-10-26",
+  "failed_review_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "original_independent_report": "audit/reviews/20261026-e513c66-windows/formal_report.json",
+  "original_archive_raw_files": 254,
+  "original_archive_manifest_raw_sha256": "900898fa4e512cee3436838722414f1916bac192eb4939fa9549b32718a842b6",
+  "original_archive_byte_equal": true,
+  "prior_failure_and_harness_corrections_preserved": true,
+  "candidate_source_manifest_hash": "bb6346f5d345b6827fe577314e91a675b981522434b3417d87b88d72674b96f0",
+  "candidate_source_files": 108,
+  "implementation_hash": "8a91f7bbf4d94cd4bfd0ba44bc42b41f26216449280bbe591b59dbe532f3caff",
+  "deployment_python_files": 29,
+  "configuration_hash_unchanged": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "nativeWindows",
+    "BLAS_threads": 1
+  },
+  "fixes": {
+    "WR-11": {
+      "developer_status": "fixed_pending_independent_verification",
+      "semantics": "Inspect every present native carrier; full decoded typed JSON equality for mirrors; reject hidden/error/extra output and unknown metadata; shared old/new receipt path",
+      "baseline_methods": 6,
+      "baseline_corrected_failure_records": 14,
+      "first_harness_error_preserved": true,
+      "new_final_methods": 6
+    },
+    "WR-12": {
+      "developer_status": "fixed_pending_independent_verification",
+      "semantics": "Resolve immutable charged config/catalog and admitted input by attempt; results/status/previously admitted inputs independent of mutable current pointer/catalog; current source still gates new charges and fresh inputs",
+      "baseline_new_methods": 7,
+      "baseline_passed": 1,
+      "baseline_failures": 2,
+      "baseline_errors": 4,
+      "new_final_methods": 9,
+      "additional_input_integrity_guard": "Verify original manifest/input hash and available local input bytes; missing local input may recover from immutable admitted binding without writes/refetch/charge"
+    }
+  },
+  "final_repository_methods": 391,
+  "new_repository_methods": 15,
+  "full_verification": {
+    "chunk_id": "a76132",
+    "wall_time_seconds": 0.0000127,
+    "exit_code": 0,
+    "original_token_count": 71,
+    "output": "{\"local_tests_passed\": true, \"source_hash\": \"bb6346f5d345b6827fe577314e91a675b981522434b3417d87b88d72674b96f0\", \"external_review_status\": \"pending_GPT_Work\", \"test_output\": \"----------------------------------------------------------------------\\nRan 391 tests in 23.543s\\n\\nOK\\n\"}\r\n"
+  },
+  "original_public_baseline_exits": {
+    "parallel_carrier": 1,
+    "CLI_pointer": 1,
+    "CLI_catalog": 1
+  },
+  "repaired_original_public_exits": {
+    "parallel_carrier": 0,
+    "CLI_pointer": 0,
+    "CLI_catalog": 0
+  },
+  "original_public_scripts_unchanged": true,
+  "CLI_public_replays_use_source_only_isolated_copies": true,
+  "original_independent_receipt_script_developer_replay": {
+    "methods": 14,
+    "subcases": 54,
+    "passed": 14,
+    "original_script_unchanged": true,
+    "not_new_independent_acceptance": true
+  },
+  "targeted_legacy_compatibility": {
+    "old_receipt_methods": 12,
+    "collection_bridge_methods": 11,
+    "CLI_methods": 6,
+    "all_passed": true,
+    "counts_overlap": true
+  },
+  "developer_raw_outputs": "developer_outputs_manifest.json",
+  "public_reproduction_records": "public_and_regression_runs.json",
+  "second_build_config_changed": false,
+  "authoritative_Registry_code_unchanged_this_repair": true,
+  "protected_budget_config_ledger_old_task_inputs_and_previous_reviews_unchanged": true,
+  "budget": {
+    "used": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "extra_resource_purchases": 0
+  },
+  "cloud": {
+    "new_project_operations": 0,
+    "deployed": false,
+    "real_SDK_executed": false,
+    "old_backtest": "39cafa1e9b11f91b27e396b66d033a6d",
+    "delivered_terminal_received": false,
+    "polled": false,
+    "old_source_or_input_changed": false
+  },
+  "known_open_findings_pending_independent_verification": [
+    "WR-11",
+    "WR-12"
+  ],
+  "new_candidate_independently_accepted": false,
+  "stage2": "failed_reviewed_e513_pending_repair_review",
+  "whole_system": "not_accepted",
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "prior_accepted_scopes_preserved": true,
+  "shared_admission_e513_tested_scope_preserved": true,
+  "remaining_gaps": [
+    "fixed_source_GPT_Work_repair_verification",
+    "new_cloud_deployment_and_success_full_failure_runtime_evidence",
+    "prior_backtest_terminal_reconciliation",
+    "historical_US200_financial_actual_timing_vintages_corporate_action_certification"
+  ],
+  "documentation": "docs/review/wr11-wr12.md"
+}

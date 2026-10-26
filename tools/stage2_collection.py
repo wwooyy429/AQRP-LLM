@@ -61,7 +61,10 @@ def main():
         return
     if args.command not in {"template", "validate"}:
         from collection_task_cli import execute_metadata_command
-        print(json.dumps(execute_metadata_command(args, field_catalog=catalog())))
+        # Settlement/status use the already charged attempt's persisted catalog.
+        # Today's catalog remains mandatory for every new registration/execution.
+        fields = catalog() if args.command in {"freeze-task", "register-task", "claim-task"} else None
+        print(json.dumps(execute_metadata_command(args, field_catalog=fields)))
         return
     if args.plan is None:
         parser.error("validate requires --plan; this does not authorize a cloud execution")

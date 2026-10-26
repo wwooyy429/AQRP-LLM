@@ -1,0 +1,11 @@
+{
+  "kind": "reviewer observation code error, not a production result",
+  "cases": ["pointer", "catalog"],
+  "exit_codes": [1, 1],
+  "actual_error": "TypeError: list indices must be integers or slices, not str",
+  "location": "root_cli_reconciliation.py:63",
+  "source": "first actual tool invocation; complete stack traces remain in chat tool output",
+  "preserved_script": "root_cli_reconciliation_first.py",
+  "correction": "Read existing attempt through bridge._record instead of treating snapshot.attempts list as a dict; assertions and production inputs unchanged",
+  "unit_methods": null
+}

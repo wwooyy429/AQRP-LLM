@@ -89,22 +89,47 @@ def _native(result):
         _fail("Actual MCP result must be a JSON object")
     if "isError" in result and result["isError"] is not False:
         _fail("Native tool error is not a completion")
-    if "structuredContent" in result and result["structuredContent"] is not None:
-        return result["structuredContent"]
+    wrapped = "structuredContent" in result or "content" in result
+    if not wrapped:
+        return result
+    # Every present output carrier must be inspected. Taking a preferred one
+    # would hide displayed rows, stderr or an execution error in its mirror.
+    if (set(result) - {"isError", "structuredContent", "content", "_meta"}
+            or result.get("_meta") not in (None, {})):
+        _fail("Unknown native envelope metadata cannot hide additional output")
+    structured = result.get("structuredContent")
+    carriers = [] if structured is None else [structured]
     if "content" in result:
         blocks = result["content"]
-        if not isinstance(blocks, list) or not blocks:
+        if not isinstance(blocks, list) or (not blocks and structured is None):
             _fail("Native content is missing")
         texts = []
         for block in blocks:
-            if not isinstance(block, dict) or block.get("type") != "text" or not isinstance(block.get("text"), str):
+            if (not isinstance(block, dict) or block.get("type") != "text"
+                    or not isinstance(block.get("text"), str)
+                    or set(block) - {"type", "text", "annotations"}
+                    or block.get("annotations") not in (None, {})):
                 _fail("Only text native observations are permitted")
             texts.append(block["text"])
         if len(texts) == 1:
             text = texts[0]
-            return _json(text) if text.lstrip().startswith(("{", "[")) else text
-        return texts
-    return result
+            carriers.append(_json(text) if text.lstrip().startswith(("{", "[")) else text)
+        elif texts:
+            carriers.append(texts)
+    if not carriers:
+        _fail("Native observation is missing")
+    # Canonical JSON ignores object-key ordering/formatting but preserves typed
+    # values, output order, status and errors. Multiple mirrored representations
+    # are one observation only when their full decoded semantics agree.
+    try:
+        first = canonical_json(carriers[0])
+        if any(canonical_json(carrier) != first for carrier in carriers[1:]):
+            _fail("Native output carriers disagree or contain additional output")
+    except (TypeError, ValueError) as exc:
+        if isinstance(exc, ReceiptParseError):
+            raise
+        raise ReceiptParseError("Native observations are not supported JSON values") from None
+    return carriers[0]
 
 
 def _tool(envelope, tool_name, payload, *, external_id=None):

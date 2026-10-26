@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -15,7 +15,7 @@
+ sys.dont_write_bytecode=True
+ ROOT=Path(__file__).resolve().parent
+ SOURCE=ROOT.parent/'source'
+-OLD=Path(r'C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source')
++OLD=Path('B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-e513c66-20261026\\baselines\\fbe2454\\source')
+ LEGACY=len(sys.argv)>1 and sys.argv[1]=='--legacy-source'
+ sys.path.insert(0,str((OLD if LEGACY else SOURCE)/'cloud'))
+ import numpy as np

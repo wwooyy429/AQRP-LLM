@@ -1,0 +1,170 @@
+ .gitattributes                                     |    1 +
+ README.md                                          |    2 +-
+ audit/7bf_acceptance_archive_check.json            |   41 +
+ audit/deployment.json                              |    8 +-
+ ...ction-source-usage-regression.post_fix_probe.py |   37 +
+ ...ion-source-usage-regression.post_fix_stderr.txt |    0
+ ...ion-source-usage-regression.post_fix_stdout.txt |    1 +
+ ...ection-source-usage-regression.pre_fix_probe.py |   27 +
+ ...tion-source-usage-regression.pre_fix_stdout.txt |    1 +
+ ...on-source-usage-regression.pre_fix_summary.json |   10 +
+ .../collection_bridge/developer_verification.json  |  152 +
+ .../collection_bridge/probe_manifest.json          |   13 +
+ audit/review_tracking.json                         |  271 +-
+ .../20261026-7bf716f-windows/RUN_REVIEW.txt        |   11 +
+ .../20261026-7bf716f-windows/archive_manifest.json |  938 ++++++
+ .../baseline_minimal_history_boundary.json         |   23 +
+ .../baseline_minimal_history_boundary.stderr.txt   |    4 +
+ .../baseline_minimal_history_boundary.stdout.txt   |   23 +
+ .../baseline_minimal_missing_date.json             |   33 +
+ .../baseline_minimal_missing_date.stderr.txt       |    4 +
+ .../baseline_minimal_missing_date.stdout.txt       |   33 +
+ .../20261026-7bf716f-windows/bundle_checksums.json |    6 +
+ .../candidate_minimal_history_boundary.json        |   28 +
+ .../candidate_minimal_history_boundary.stderr.txt  |    0
+ .../candidate_minimal_history_boundary.stdout.txt  |   28 +
+ .../candidate_minimal_missing_date.json            |   33 +
+ .../candidate_minimal_missing_date.stderr.txt      |    0
+ .../candidate_minimal_missing_date.stdout.txt      |   33 +
+ .../20261026-7bf716f-windows/change_stat.txt       |  150 +
+ .../date_cache_agent/bad-baseline-command.json     |   13 +
+ .../date_cache_agent/build_report.py               |   39 +
+ .../date_cache_agent/collection-baseline.diff      |   16 +
+ .../date_cache_agent/first_output.txt              |   14 +
+ .../date_cache_agent/first_results.json            |  253 ++
+ .../date_cache_agent/good-baseline-command.json    |   13 +
+ .../historical_source-baseline.diff                |   48 +
+ .../date_cache_agent/independent_date_cache.py     |  269 ++
+ .../date_cache_agent/review_report.json            |  278 ++
+ .../20261026-7bf716f-windows/environment.json      |   14 +
+ .../evidence_agent/build_1.stderr.txt              |    0
+ .../evidence_agent/build_1.stdout.txt              |    1 +
+ .../evidence_agent/build_2.stderr.txt              |    0
+ .../evidence_agent/build_2.stdout.txt              |    1 +
+ .../evidence_agent/build_stability.json            |   48 +
+ .../evidence_agent/build_stability.json.sha256     |    1 +
+ .../evidence_agent/compare_qc_and_build.py         |  115 +
+ .../evidence_agent/delivery_evidence_report.json   | 3420 ++++++++++++++++++++
+ .../evidence_agent/delivery_evidence_report.sha256 |    1 +
+ .../evidence_agent/qc_readback_comparison.json     |   90 +
+ .../qc_readback_comparison.json.sha256             |    1 +
+ .../evidence_agent/verify_delivery.py              |  178 +
+ .../20261026-7bf716f-windows/formal_report.json    |  499 +++
+ .../20261026-7bf716f-windows/formal_report.txt     |   79 +
+ .../20261026-7bf716f-windows/github_metadata.json  |   42 +
+ .../interval_agent/baseline_start_only.json        |   49 +
+ .../interval_agent/baseline_summary.json           |  157 +
+ .../interval_agent/baseline_unittest.txt           |  251 ++
+ .../interval_agent/candidate_start_only.json       |   49 +
+ .../interval_agent/candidate_summary.json          |  407 +++
+ .../interval_agent/candidate_unittest.txt          |   17 +
+ .../interval_agent/command_log.json                |   45 +
+ .../interval_agent/independent_intervals.py        |  339 ++
+ .../interval_agent/manifest.json                   |   15 +
+ .../interval_agent/report.json                     |   90 +
+ .../interval_agent/report.md                       |   17 +
+ .../interval_agent/start_only_probe.py             |   63 +
+ .../interval_agent/static_contracts.json           |   80 +
+ .../interval_agent/write_report.py                 |   99 +
+ .../original_probe_execution.json                  |   70 +
+ .../replay_archived_script.py                      |   27 +
+ .../requirements-audit.txt                         |    6 +
+ .../20261026-7bf716f-windows/run_main_checks.py    |   27 +
+ .../20261026-7bf716f-windows/run_offline_review.py |   44 +
+ .../run_original_probes.py                         |   19 +
+ .../runs/archived_atomic.stderr.txt                |    0
+ .../runs/archived_atomic.stdout.txt                |    1 +
+ .../runs/archived_atomic/output.txt                |   24 +
+ .../runs/archived_atomic/process_output.txt        |   26 +
+ .../runs/archived_atomic/replay.json               |  376 +++
+ .../runs/archived_atomic/results.json              |  320 ++
+ .../runs/archived_compatibility.stderr.txt         |    0
+ .../runs/archived_compatibility.stdout.txt         |    1 +
+ .../runs/archived_compatibility/process_output.txt |    1 +
+ .../runs/archived_compatibility/replay.json        |   73 +
+ .../runs/archived_compatibility/test_output.txt    |   17 +
+ .../runs/archived_compatibility/test_results.json  |   15 +
+ .../runs/archived_numeric.stderr.txt               |    0
+ .../runs/archived_numeric.stdout.txt               |    1 +
+ .../runs/archived_numeric/process_output.txt       |   23 +
+ .../runs/archived_numeric/replay.json              |  115 +
+ .../runs/archived_numeric/test_output.txt          |   21 +
+ .../runs/archived_numeric/test_results.json        |   59 +
+ .../runs/archived_pearson.stderr.txt               |    0
+ .../runs/archived_pearson.stdout.txt               |    1 +
+ .../runs/archived_pearson/process_output.txt       |    1 +
+ .../runs/archived_pearson/replay.json              |   91 +
+ .../runs/archived_pearson/test_output.txt          |   15 +
+ .../runs/archived_pearson/test_results.json        |   33 +
+ .../runs/baseline_boundary.stderr.txt              |    0
+ .../runs/baseline_boundary.stdout.txt              |    1 +
+ .../runs/baseline_boundary/replay.json             |   56 +
+ .../secondary_source_output_counted.txt            |   39 +
+ .../secondary_source_results_counted.json          |   92 +
+ .../runs/baseline_boundary/stderr.txt              |    0
+ .../runs/baseline_boundary/stdout.txt              |   39 +
+ .../runs/baseline_source.stderr.txt                |    0
+ .../runs/baseline_source.stdout.txt                |    1 +
+ .../runs/baseline_source/replay.json               |   56 +
+ .../baseline_source/source_review_output_first.txt |   28 +
+ .../source_review_results_first.json               |   95 +
+ .../runs/baseline_source/stderr.txt                |    0
+ .../runs/baseline_source/stdout.txt                |   28 +
+ .../runs/d0_compatibility.stderr.txt               |    0
+ .../runs/d0_compatibility.stdout.txt               |    1 +
+ .../runs/d0_compatibility/output.txt               |   13 +
+ .../runs/d0_compatibility/results.json             |  113 +
+ .../runs/d0_summary.stderr.txt                     |    0
+ .../runs/d0_summary.stdout.txt                     |    1 +
+ .../runs/d0_summary/output.txt                     |   16 +
+ .../runs/d0_summary/results.json                   |   80 +
+ .../runs/execution_records.json                    |  222 ++
+ .../runs/fbe_boundary.stderr.txt                   |    0
+ .../runs/fbe_boundary.stdout.txt                   |    1 +
+ .../runs/fbe_boundary/replay.json                  |   56 +
+ .../secondary_source_output_counted.txt            |    8 +
+ .../secondary_source_results_counted.json          |  116 +
+ .../runs/fbe_boundary/stderr.txt                   |    0
+ .../runs/fbe_boundary/stdout.txt                   |    8 +
+ .../runs/fbe_collection.stderr.txt                 |    0
+ .../runs/fbe_collection.stdout.txt                 |    1 +
+ .../runs/fbe_collection/replay.json                |   56 +
+ .../runs/fbe_collection/stderr.txt                 |    0
+ .../runs/fbe_collection/stdout.txt                 |   26 +
+ .../runs/fbe_collection/verification_output.txt    |   24 +
+ .../runs/fbe_collection/verification_results.json  |   68 +
+ .../runs/fbe_source.stderr.txt                     |    0
+ .../runs/fbe_source.stdout.txt                     |    1 +
+ .../runs/fbe_source/replay.json                    |   56 +
+ .../runs/fbe_source/source_review_output_first.txt |   13 +
+ .../fbe_source/source_review_results_first.json    |   83 +
+ .../runs/fbe_source/stderr.txt                     |    0
+ .../runs/fbe_source/stdout.txt                     |   13 +
+ .../runs/previous_adapted_56.stderr.txt            |    0
+ .../runs/previous_adapted_56.stdout.txt            |    1 +
+ .../runs/previous_adapted_56/harness.diff          |   31 +
+ .../independent_test_output.txt                    |   61 +
+ .../independent_test_results.json                  |  222 ++
+ .../runs/previous_adapted_56/process_output.txt    |   63 +
+ .../runs/previous_adapted_56/replay.json           |  277 ++
+ .../audit/stage_verification.json                  |  195 ++
+ .../runs/repository_verify.stderr.txt              |    0
+ .../runs/repository_verify.stdout.txt              |    1 +
+ .../source_git_manifest.json                       |  772 +++++
+ audit/stage2_current_readiness.json                |   57 +-
+ audit/stage_verification.json                      |   26 +-
+ cloud/qresearch/collection_execution.py            |  145 +
+ cloud/qresearch/collection_tasks.py                |  166 +
+ cloud/qresearch/registry.py                        |   77 +-
+ cloud/research_config.py                           |    2 +-
+ docs/review/wr09-wr10.md                           |   19 +-
+ docs/stage2-collection-task-bridge.md              |   58 +
+ docs/stage2-continuation.md                        |    2 +-
+ docs/stage2-snapshot-collection.md                 |    6 +-
+ templates/collection_task.json                     |   13 +
+ tests/test_collection_admission.py                 |  368 +++
+ tests/test_collection_task_cli.py                  |  132 +
+ tests/test_collection_tasks.py                     |  224 ++
+ tools/collection_task_cli.py                       |  128 +
+ tools/stage2_collection.py                         |   16 +-
+ 169 files changed, 14823 insertions(+), 79 deletions(-)

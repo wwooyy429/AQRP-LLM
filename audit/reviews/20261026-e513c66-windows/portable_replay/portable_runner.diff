@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -1,7 +1,7 @@
+ from pathlib import Path
+-import json,os,shutil,subprocess,time
++import json,os,shutil,subprocess,time,sys
+ R=Path(__file__).parent;SRC=R/'source';RUN=R/'runs';RUN.mkdir(exist_ok=True)
+-PY=Path(r'C:\Users\11638\.codex\tmp\aqrp-review-20261026\venv\Scripts\python.exe')
++PY=Path(sys.executable)
+ env=dict(os.environ,PYTHONIOENCODING='utf-8',PYTHONDONTWRITEBYTECODE='1',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1')
+ records=[]
+ def run(label,args,cwd=R):
+@@ -23,5 +23,5 @@
+ for label,path in [('fbe_source','source_agent/independent_source_review.py'),('fbe_boundary','source_agent/secondary_source_review_counted.py'),('fbe_collection','collection_agent/independent_collection.py')]:
+     run(label,[R/'replay_archived_script.py','--source',SRC,'--script',failed_archive/path,'--output',RUN/label])
+ accepted=SRC/'audit/reviews/20261026-7bf716f-windows'
+-run('7bf_dates',[R/'replay_archived_script.py','--source',SRC,'--script',accepted/'date_cache_agent/independent_date_cache.py','--output',RUN/'7bf_dates'])
++run('7bf_dates',[R/'replay_archived_script.py','--source',SRC,'--script',R/'portable_date_cache/independent_date_cache.py','--output',RUN/'7bf_dates'])
+ run('7bf_intervals',[accepted/'interval_agent/independent_intervals.py','--source',SRC,'--label','candidate','--out',RUN/'7bf_intervals'])

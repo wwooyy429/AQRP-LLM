@@ -1,0 +1,11 @@
+--- first
++++ corrected
+@@ -60,7 +60,7 @@
+ except Exception as exc:
+     observed=None;error={'type':type(exc).__name__,'message':str(exc)}
+ after=bridge_first.registry.snapshot()
+-pending_record=after['attempts'][attempt_id]
++pending_record=bridge_first._record(attempt_id)
+ # Positive control: the identical delivered observation validates and settles
+ # when the original frozen plan/catalog are used, with no new execution debit.
+ parsed=collection_research_observation(admission['payload'],admission['deployment'],native,field_catalog=old_catalog)

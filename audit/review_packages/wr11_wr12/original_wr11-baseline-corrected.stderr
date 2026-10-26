@@ -1,0 +1,119 @@
+test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers (test_wr11_carriers.CarrierCompletionChainTests) ... test_conflict_in_either_direction_and_native_block_types_rejected (test_wr11_carriers.NativeCarrierTests) ... FAIL
+test_nonempty_unregistered_envelope_output_is_not_ignored (test_wr11_carriers.NativeCarrierTests) ... test_parallel_text_display_or_error_cannot_be_discarded (test_wr11_carriers.NativeCarrierTests) ... test_single_and_equivalent_dual_json_carriers_preserve_observation (test_wr11_carriers.NativeCarrierTests) ... ok
+test_type_changes_and_duplicate_json_keys_are_not_equivalent (test_wr11_carriers.NativeCarrierTests) ... 
+======================================================================
+FAIL: test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers (test_wr11_carriers.CarrierCompletionChainTests) (variant='text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 105, in test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers
+    with self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers (test_wr11_carriers.CarrierCompletionChainTests) (variant='display')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 105, in test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers
+    with self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers (test_wr11_carriers.CarrierCompletionChainTests) (variant='error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 105, in test_cli_complete_chain_accepts_equivalent_and_rejects_extra_carriers
+    with self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_conflict_in_either_direction_and_native_block_types_rejected (test_wr11_carriers.NativeCarrierTests) (direction=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 47, in test_conflict_in_either_direction_and_native_block_types_rejected
+    with self.subTest(direction=structured["success"]), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_conflict_in_either_direction_and_native_block_types_rejected (test_wr11_carriers.NativeCarrierTests) (direction=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 47, in test_conflict_in_either_direction_and_native_block_types_rejected
+    with self.subTest(direction=structured["success"]), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_conflict_in_either_direction_and_native_block_types_rejected (test_wr11_carriers.NativeCarrierTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 50, in test_conflict_in_either_direction_and_native_block_types_rejected
+    with self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonempty_unregistered_envelope_output_is_not_ignored (test_wr11_carriers.NativeCarrierTests) (extra=['status'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 65, in test_nonempty_unregistered_envelope_output_is_not_ignored
+    with self.subTest(extra=list(extra)), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonempty_unregistered_envelope_output_is_not_ignored (test_wr11_carriers.NativeCarrierTests) (extra=['outputs'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 65, in test_nonempty_unregistered_envelope_output_is_not_ignored
+    with self.subTest(extra=list(extra)), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonempty_unregistered_envelope_output_is_not_ignored (test_wr11_carriers.NativeCarrierTests) (extra=['_meta'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 65, in test_nonempty_unregistered_envelope_output_is_not_ignored
+    with self.subTest(extra=list(extra)), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_parallel_text_display_or_error_cannot_be_discarded (test_wr11_carriers.NativeCarrierTests) (extra_kind='SYNTHETIC-EXTRA-ROW ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 40, in test_parallel_text_display_or_error_cannot_be_discarded
+    with self.assertRaises(ReceiptParseError) as error:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_parallel_text_display_or_error_cannot_be_discarded (test_wr11_carriers.NativeCarrierTests) (extra_kind='{"outputs": [{"outpu')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 40, in test_parallel_text_display_or_error_cannot_be_discarded
+    with self.assertRaises(ReceiptParseError) as error:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_parallel_text_display_or_error_cannot_be_discarded (test_wr11_carriers.NativeCarrierTests) (extra_kind='{"status": "error", ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 40, in test_parallel_text_display_or_error_cannot_be_discarded
+    with self.assertRaises(ReceiptParseError) as error:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_type_changes_and_duplicate_json_keys_are_not_equivalent (test_wr11_carriers.NativeCarrierTests) (text='{"status": "completed", "success": 1, "execution_count": 1, "outputs": []}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 59, in test_type_changes_and_duplicate_json_keys_are_not_equivalent
+    with self.subTest(text=text), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_type_changes_and_duplicate_json_keys_are_not_equivalent (test_wr11_carriers.NativeCarrierTests) (text='{"status":"completed","success":true,"success":false,"outputs":[]}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr11_carriers.py", line 59, in test_type_changes_and_duplicate_json_keys_are_not_equivalent
+    with self.subTest(text=text), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.318s
+
+FAILED (failures=14)

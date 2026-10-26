@@ -2,8 +2,9 @@
 from pathlib import Path
 import hashlib
 import json
+import re
 
-from qresearch.artifacts import canonical_json, content_hash
+from qresearch.artifacts import canonical_json, content_hash, validate_key
 from qresearch.collection_tasks import CollectionTaskPlan, CollectionTaskBridge
 from qresearch.collection_execution import collection_research_observation
 from research import ROOT, read_json, write_changed, open_registry, export_usage
@@ -64,10 +65,73 @@ def current_bridge(*, field_catalog):
     return CollectionTaskBridge(registry, plan)
 
 
+def bridge_for_attempt(attempt, *, registry=None):
+    """Resolve historical results from charged immutable identity, not today.
+
+    The catalog was checked when this configuration was admitted. Reusing that
+    persisted catalog for settlement grants no new registration/dispatch rights.
+    """
+    if not isinstance(attempt, str) or re.fullmatch(r"[0-9a-f]{32}", attempt) is None:
+        raise ValueError("An existing canonical collection attempt ID is required")
+    registry = open_registry() if registry is None else registry
+    matches = [record for record in registry.snapshot()["attempts"] if record["attempt_id"] == attempt]
+    if len(matches) != 1:
+        raise ValueError("Unknown charged collection attempt")
+    record = matches[0]
+    encoded = registry.store.read_bytes("configurations/" + record["config_id"] + ".json")
+    package = json.loads(encoded)
+    if (canonical_json(package) != encoded or content_hash(package) != record["config_id"]
+            or set(package) != {"engineering_task_schema_version", "plan"}
+            or type(package["engineering_task_schema_version"]) is not int or package["engineering_task_schema_version"] != 1
+            or not isinstance(package["plan"], dict) or package["plan"].get("task_kind") != "historical_collection"):
+        raise ValueError("Attempt does not identify an immutable collection configuration")
+    raw = package["plan"]
+    plan = CollectionTaskPlan.from_dict(raw, discovered_project_ids=(raw["project_id"],), field_catalog=raw["field_catalog"])
+    bridge = CollectionTaskBridge(registry, plan)
+    if bridge.config_id != record["config_id"]:
+        raise ValueError("Persisted collection configuration is not canonical")
+    bridge._record(attempt)
+    return bridge
+
+
+def admitted_input(bridge, attempt):
+    """Check persisted input bytes/bindings without reading new source files."""
+    record = bridge._record(attempt)
+    encoded = bridge.store.read_bytes("collection/admitted-inputs/" + record["attempt_id"] + ".json")
+    admission = json.loads(encoded)
+    expected_path = "audit/collection_task_inputs/" + record["attempt_id"] + ".py"
+    if (canonical_json(admission) != encoded or not isinstance(admission, dict)
+            or set(admission) != {"payload", "deployment", "input_path", "cloud_input_path"}
+            or admission["input_path"] != expected_path or admission["cloud_input_path"] != "_collection_task_input.py"):
+        raise ValueError("Admitted collection input shape or destination changed")
+    payload = admission["payload"]
+    if not isinstance(payload, dict) or not isinstance(payload.get("deployment_manifest"), dict) or not payload["deployment_manifest"]:
+        raise ValueError("Original deployment manifest is missing")
+    manifest = payload["deployment_manifest"]
+    for name, digest in manifest.items():
+        validate_key(name)
+        if not name.endswith(".py") or not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None:
+            raise ValueError("Invalid original deployment file identity")
+    if (payload != dict(bridge.payload(record["attempt_id"]), deployment_manifest=manifest)
+            or content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]):
+        raise ValueError("Admitted input differs from its immutable registered attempt")
+    text = "TASK_INPUT_JSON = " + repr(canonical_json(payload).decode("utf-8")) + "\n"
+    expected = {"source_manifest_hash": payload["identity"]["source_manifest_hash"],
+                "deployment_hash": payload["identity"]["deployment_hash"], "input_hash": hashlib.sha256(text.encode("utf-8")).hexdigest()}
+    if admission["deployment"] != expected:
+        raise ValueError("Original admitted input hash or deployment identity changed")
+    path = ROOT / expected_path
+    if path.exists() and path.read_bytes() != text.encode("utf-8"):
+        raise ValueError("Stored local input bytes differ from the admitted payload")
+    return admission
+
+
 def prepare_task(bridge, attempt):
     record = bridge._record(attempt)
     if record["status"] not in {"started", "pending", "ambiguous"}:
         raise ValueError("Finalized collection tasks cannot create a fresh remote input")
+    if bridge.store.exists("collection/admitted-inputs/" + record["attempt_id"] + ".json"):
+        return admitted_input(bridge, record["attempt_id"])
     payload = bridge.payload(attempt)
     manifest = read_json(ROOT / "audit/deployment.json")["source_files"]
     if (content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]
@@ -94,12 +158,22 @@ def verify_current_source(bridge):
         raise ValueError("Re-freeze source and deployment before new configuration or Research charging")
 
 
-def execute_metadata_command(args, *, field_catalog):
+def execute_metadata_command(args, *, field_catalog=None):
     if args.command == "freeze-task":
         if args.task_file is None or args.projects_file is None:
             raise ValueError("freeze-task requires an explicit task file and actual project listing")
         return freeze_task(read_json(args.task_file), read_json(args.projects_file), field_catalog=field_catalog)
-    bridge = current_bridge(field_catalog=field_catalog)
+    if args.command == "task-status":
+        registry = open_registry()
+        if getattr(args, "attempt", None):
+            bridge_for_attempt(args.attempt, registry=registry)
+        return registry.snapshot()
+    if args.command in {"research-result", "prepare-task"}:
+        if not args.attempt:
+            raise ValueError("An existing precharged attempt ID is required")
+        bridge = bridge_for_attempt(args.attempt)
+    else:
+        bridge = current_bridge(field_catalog=field_catalog)
     try:
         if args.command in {"register-task", "claim-task"}:
             verify_current_source(bridge)
@@ -107,8 +181,6 @@ def execute_metadata_command(args, *, field_catalog):
             return {"config_id": bridge.register(allocation=args.allocation), "plan_hash": bridge.plan.hash}
         if args.command == "claim-task":
             return vars(bridge.claim(allocation=args.allocation, retry_of=args.retry_of, reason=args.reason))
-        if args.command == "task-status":
-            return bridge.registry.snapshot()
         if not args.attempt:
             raise ValueError("An existing precharged attempt ID is required")
         if args.command == "prepare-task":
@@ -116,11 +188,9 @@ def execute_metadata_command(args, *, field_catalog):
         if args.command == "research-result":
             if args.tool_file is None:
                 raise ValueError("An actual native completed Research observation is required")
-            bridge._record(args.attempt)
-            admission = json.loads(bridge.store.read_bytes("collection/admitted-inputs/" + args.attempt + ".json"))
-            if admission["payload"] != dict(bridge.payload(args.attempt), deployment_manifest=admission["payload"]["deployment_manifest"]):
-                raise ValueError("Admitted input differs from the registered collection attempt")
-            parsed = collection_research_observation(admission["payload"], admission["deployment"], read_json(args.tool_file), field_catalog=field_catalog)
+            admission = admitted_input(bridge, args.attempt)
+            parsed = collection_research_observation(admission["payload"], admission["deployment"], read_json(args.tool_file),
+                field_catalog=bridge.plan.to_dict()["field_catalog"])
             bridge.record_submission(args.attempt, parsed["submission"])
             return vars(bridge.consume_completion(args.attempt, completion_source=lambda _: parsed["completion"]))
         raise ValueError("Unknown collection metadata command")
