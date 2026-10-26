@@ -120,7 +120,7 @@ def _safe_evidence(raw):
     raw = _mapping(raw, "engineering evidence metadata")
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
                "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-               "unobserved_action_types_are_not_certified"}
+               "unobserved_action_types_are_not_certified", "runtime_environment"}
     if not set(raw) <= allowed:
         raise EngineeringTaskError("Unknown engineering evidence cannot carry row-level data")
     for name, value in raw.items():
@@ -138,6 +138,10 @@ def _safe_evidence(raw):
         elif name == "lean_engine_version":
             if not isinstance(value, str) or not value or len(value) > 100 or "\n" in value or "\r" in value:
                 raise EngineeringTaskError("Invalid engine version metadata")
+        elif name == "runtime_environment":
+            if (not isinstance(value, dict) or set(value) != {"python", "pandas", "numpy", "lean"}
+                    or any(not isinstance(version, str) or not version or len(version) > 100 or "\n" in version or "\r" in version for version in value.values())):
+                raise EngineeringTaskError("Runtime environment contains version strings only")
         elif name == "vendor_revision_known" and value is not False:
             raise EngineeringTaskError("The historical vendor revision is not certified")
         elif name == "unobserved_action_types_are_not_certified" and value is not True:

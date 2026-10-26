@@ -16,6 +16,7 @@ from hashlib import sha256
 import json
 import math
 import os
+import stat
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import threading
 import time
@@ -198,22 +199,41 @@ class FilesystemArtifactStore:
     def _path(self, key: str) -> Path:
         validate_key(key)
         target = self.root.joinpath(*key.split("/"))
+
+        def comparable(path: Path) -> str:
+            value = str(path)
+            if os.name == "nt":
+                if value.startswith("\\\\?\\UNC\\"):
+                    value = "\\\\" + value[8:]
+                elif value.startswith("\\\\?\\"):
+                    value = value[4:]
+            return os.path.normcase(value)
+
+        # self.root was resolved once at construction. Keep that boundary
+        # pinned; resolving it again could follow a subsequently replaced root.
+        root_path = comparable(self.root)
+
+        def require_inside(path: Path) -> None:
+            try:
+                inside = os.path.commonpath((root_path, comparable(path))) == root_path
+            except ValueError as exc:
+                raise ValueError("Artifact path escapes store root") from exc
+            if not inside:
+                raise ValueError("Artifact path escapes store root")
+
+        # Resolve stable directories, not an ordinary leaf being deleted by
+        # another cooperating writer. On NTFS that leaf can temporarily resolve
+        # to $Extend/$Deleted despite having no link or escaping ancestor.
+        # Existing symlink/reparse leaves must still resolve inside the root.
+        require_inside(target.parent.resolve())
         try:
-            # Windows resolve() can temporarily return an extended-length path
-            # when another thread removes a lock while resolution is in flight.
-            def comparable(path: Path) -> str:
-                resolved = str(path.resolve())
-                if os.name == "nt":
-                    if resolved.startswith("\\\\?\\UNC\\"):
-                        resolved = "\\\\" + resolved[8:]
-                    elif resolved.startswith("\\\\?\\"):
-                        resolved = resolved[4:]
-                return os.path.normcase(resolved)
-            root_path = comparable(self.root)
-            if os.path.commonpath((root_path, comparable(target))) != root_path:
-                raise ValueError("Outside store root")
-        except (ValueError, OSError) as exc:
-            raise ValueError("Artifact path escapes store root") from exc
+            metadata = target.lstat()
+        except FileNotFoundError:
+            metadata = None
+        if metadata is not None and (
+                stat.S_ISLNK(metadata.st_mode)
+                or getattr(metadata, "st_file_attributes", 0) & getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)):
+            require_inside(target.resolve())
         return target
 
     def read_bytes(self, key: str) -> bytes:

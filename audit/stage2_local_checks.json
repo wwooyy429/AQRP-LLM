@@ -23,12 +23,42 @@
       "finding": "Resolution accepted two identities whose ticker set differed from the fixed plan",
       "repair": "Validate exact declared ticker set before any artifact writes",
       "status": "owned_tests_14_passed_after_repair"
+    },
+    {
+      "id": "S2-INTEGRATION-01",
+      "source_commit": "fb551b7fe67ec76532fc5e14f9ff1afcaf53e40c",
+      "kind": "synthetic_parser_to_bridge_failure",
+      "findings": [
+        "Research acknowledged status rejected by bridge",
+        "LEAN raw orders and log_receipts metadata rejected by bridge",
+        "Mutable plan_id grouping admitted three renamed configurations despite the stop bound"
+      ],
+      "repair": "Align native parser metadata and add full-chain tests; count all engineering plans in the authoritative registry",
+      "status": "repaired_full_parser_bridge_and_renamed_stop_regressions_passed",
+      "market_calls": 0
+    },
+    {
+      "id": "S2-LOCAL-03",
+      "kind": "actual_synthetic_multiprocess_test_failure",
+      "report": "audit/reviews/stage2-local-214-path-failure.json",
+      "finding": "Concurrent process claim saw ValueError Artifact path escapes store root",
+      "status": "owned_tests_21_and_integrated_217_passed",
+      "real_market_executions": 0,
+      "cause": "Windows resolving a concurrently deleted ordinary leaf returned NTFS internal $Extend/$Deleted path",
+      "repair": "Resolve stable parent; lstat leaf; resolve only actual link/reparse leaves; retain permission errors",
+      "diagnostic_stress": {
+        "iterations": 8000,
+        "before_false_rejections": 192,
+        "after_failures": 0,
+        "native_windows_junction_boundaries": "passed"
+      }
     }
   ],
   "integrated_checks": {
-    "synthetic_tests_run": 210,
-    "passed": 210,
+    "synthetic_tests_run": 217,
+    "passed": 217,
     "external_calls": 0,
-    "stage2_acceptance": "pending_real_task_and_independent_review"
+    "stage2_acceptance": "pending_real_task_and_independent_review",
+    "failed": 0
   }
 }

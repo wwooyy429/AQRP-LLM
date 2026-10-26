@@ -31,7 +31,9 @@ def freeze(projects):
     raw["source_manifest_hash"] = source_manifest()["source_hash"]
     deployment = read_json(ROOT / "audit" / "deployment.json")["source_files"]
     raw["deployment_hash"] = content_hash(deployment)
-    raw["request_template"]["data_version"] += "-" + raw["deployment_hash"][:16]
+    # Raw snapshot identity is independent of controller/parser code changes.
+    # Failed/corrupt source snapshots require an explicit new data_version;
+    # editing unrelated software must not automatically download prices again.
     raw["request_template"]["universe_hash"] = content_hash({"scope": "fixed_engineering_fixture",
         "resolution": raw["symbol_resolution"], "not_historical_US200": True})
     plan = EngineeringTaskPlan.from_dict(raw, discovered_project_ids=ids)
@@ -85,8 +87,10 @@ def _limits(bridge, kind):
     selected = []
     for config in snapshot["config_ids"]:
         package = json.loads(bridge.store.read_bytes("configurations/" + config + ".json"))
-        if (package.get("engineering_task_schema_version") == 1
-                and package["plan"]["plan_id"] == bridge.plan.to_dict()["plan_id"]):
+        # This round's bound covers all engineering plans in the authoritative
+        # registry, including renamed plans and another discovered project.
+        # A mutable label/project cannot reset the stop counter.
+        if package.get("engineering_task_schema_version") == 1:
             selected.append(config)
     if kind == "configurations":
         count = len(selected)

@@ -10,8 +10,10 @@ import ast
 import hashlib
 import json
 import re
+import platform
 
 import pandas as pd
+import numpy as np
 
 from .artifacts import canonical_json, content_hash
 from .cache import CacheMiss, SharedDataCache
@@ -22,6 +24,11 @@ from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConne
 
 
 STORE_PREFIX = "aqrp/engineering/v2"
+
+
+def _runtime_environment(api):
+    return {"python": platform.python_version(), "pandas": pd.__version__,
+        "numpy": np.__version__, "lean": str(api.Globals.version)}
 
 
 def load_task_input(path):
@@ -119,7 +126,7 @@ def _identity_shape(identity):
 def _safe_evidence(evidence):
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
         "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-        "unobserved_action_types_are_not_certified"}
+        "unobserved_action_types_are_not_certified", "runtime_environment"}
     if not isinstance(evidence, dict) or not set(evidence) <= allowed:
         raise ValueError("Unknown engineering evidence metadata")
     for name, value in evidence.items():
@@ -139,6 +146,10 @@ def _safe_evidence(evidence):
         elif name == "lean_engine_version":
             if not isinstance(value, str) or not value or len(value) > 100 or "\n" in value:
                 raise ValueError("Invalid engine version metadata")
+        elif name == "runtime_environment":
+            if (not isinstance(value, dict) or set(value) != {"python", "pandas", "numpy", "lean"}
+                    or any(not isinstance(version, str) or not version or len(version) > 100 or "\n" in version or "\r" in version for version in value.values())):
+                raise ValueError("Only runtime version strings can leave cloud")
         elif name == "vendor_revision_known" and value is not False:
             raise ValueError("Vendor revision has not been certified")
         elif name == "unobserved_action_types_are_not_certified" and value is not True:
@@ -302,7 +313,8 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
     return _finish(store, payload, checks, statistics, resolution,
         evidence={"coverage_report_ref": coverage["report_ref"], "cache_payload_refs": source_refs,
                   "coverage_certification_gaps": coverage["research_certification_gaps"],
-                  "lean_engine_version": str(api.Globals.version), "vendor_revision_known": False})
+                  "lean_engine_version": str(api.Globals.version), "vendor_revision_known": False,
+                  "runtime_environment": _runtime_environment(api)})
 
 
 def initialize_receiver(algorithm, payload, *, api=None):
@@ -326,7 +338,8 @@ def initialize_receiver(algorithm, payload, *, api=None):
     algorithm.set_benchmark(securities["AAPL"].symbol)
     algorithm._engineering_state = {"payload": payload, "plan": plan, "request": request,
         "store": store, "securities": securities, "records": [], "bar_keys": [],
-        "actions": [], "order_events": 0, "slices": 0, "engine_version": str(api.Globals.version)}
+        "actions": [], "order_events": 0, "slices": 0, "engine_version": str(api.Globals.version),
+        "runtime_environment": _runtime_environment(api)}
 
 
 def receive_slice(algorithm, data):
@@ -406,4 +419,5 @@ def finish_receiver(algorithm):
     return _finish(store, payload, checks, statistics, payload["research_resolution"],
         evidence={"received_bar_ref": raw_ref, "corporate_action_ref": action_ref,
                   "unobserved_action_types_are_not_certified": True,
-                  "lean_engine_version": state["engine_version"], "vendor_revision_known": False})
+                  "lean_engine_version": state["engine_version"], "vendor_revision_known": False,
+                  "runtime_environment": state["runtime_environment"]})

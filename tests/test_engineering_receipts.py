@@ -7,10 +7,11 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "cloud"))
-from qresearch.artifacts import canonical_json, content_hash
+from qresearch.artifacts import MemoryArtifactStore, canonical_json, content_hash
 from qresearch.engineering_receipts import (ReceiptParseError, research_observation,
     backtest_submission, backtest_observation)
-from qresearch.engineering_tasks import EngineeringTaskPlan
+from qresearch.engineering_tasks import EngineeringTaskBridge, EngineeringTaskPlan
+from qresearch.registry import Registry
 
 
 def context(stage):
@@ -48,7 +49,8 @@ def report(payload):
             if stage == "research" else {"data_event_count": 8, "slice_count": 4, "orders_submitted": 0, "runtime_error_count": 0},
         "resolution": resolution, "market_values_exported": False, "economic_factor_tested": False,
         "final_data_accessed": False, "full_US200_coverage_certified": False, "actual_availability_verified": False,
-        "evidence": {"lean_engine_version": "2.5.0.0", "vendor_revision_known": False}}
+        "evidence": {"lean_engine_version": "2.5.0.0", "vendor_revision_known": False,
+            "runtime_environment": {"python": "3.11.0", "pandas": "2.3.3", "numpy": "1.26.4", "lean": "2.5.0.0"}}}
     return {"cloud_report": value, "report_ref": {"key": payload["report_key"], "sha256": content_hash(value)}}
 
 
@@ -92,6 +94,7 @@ class EngineeringReceiptTests(unittest.TestCase):
         tool = research_tool(payload)
         parsed = research_observation(payload, deployment, tool)
         self.assertTrue(parsed["submission"]["accepted"])
+        self.assertEqual(parsed["submission"]["status"], "submitted")
         self.assertEqual(parsed["submission"]["external_id"], "qc-research:17:" + "1" * 32)
         self.assertEqual(parsed["completion"]["cloud_report"], report(payload)["cloud_report"])
         self.assertEqual(parsed["submission"]["raw_receipt"]["response_sha256"], content_hash(tool["result"]))
@@ -191,12 +194,65 @@ class EngineeringReceiptTests(unittest.TestCase):
         tool = completed_tool()
         completion = backtest_observation(payload, deployment, "native-backtest-id", tool, log_tools(payload, pages=2))
         self.assertEqual(completion["platform"]["status"], "completed")
-        self.assertEqual(completion["platform"]["raw_receipt"]["orders"], 0)
+        self.assertEqual(completion["platform"]["raw_receipt"]["orders_count"], 0)
+        self.assertEqual(completion["platform"]["raw_receipt"]["log_receipt_count"], 2)
+        self.assertNotIn("log_receipts", completion["platform"]["raw_receipt"])
         self.assertEqual(completion["platform"]["raw_receipt"]["response_sha256"], content_hash(tool["result"]))
         self.assertNotIn("SENSITIVE_FINANCIAL_SENTINEL", json.dumps(completion))
         self.assertNotIn("runtimeStatistics", json.dumps(completion))
         self.assertNotIn("Net Profit", json.dumps(completion))
         self.assertEqual(completion["cloud_report"], report(payload)["cloud_report"])
+
+    def test_real_parser_receipts_complete_research_then_LEAN_through_persistent_bridge(self):
+        # This is an integration fixture, not a parallel handwritten receipt
+        # schema: every receipt consumed below is emitted by the real parsers.
+        base, research_deployment = context("research")
+        plan = EngineeringTaskPlan.from_dict(base["plan"], discovered_project_ids=[17])
+        store = MemoryArtifactStore()
+        limits = {name: {"total": 5, "normal": 4, "reserve": 1}
+                  for name in ("configurations", "research", "lean")}
+        registry = Registry(store, limits)
+        bridge = EngineeringTaskBridge(registry, plan)
+        bridge.register()
+
+        research_attempt = bridge.claim("research")
+        self.assertTrue(research_attempt.should_execute)
+        research_payload = bridge.payload(research_attempt)
+        actual_cell_envelope = research_tool(research_payload)
+        research = research_observation(research_payload, research_deployment, actual_cell_envelope)
+        submitted = bridge.record_submission(research_attempt, research["submission"])
+        self.assertEqual(submitted.status, "pending")
+        finished = bridge.consume_completion(submitted,
+            completion_source=lambda _: deepcopy(research["completion"]))
+        self.assertEqual(finished.status, "completed")
+
+        lean_attempt = bridge.claim("lean")
+        self.assertTrue(lean_attempt.should_execute)
+        lean_payload = bridge.payload(lean_attempt)
+        self.assertEqual(lean_payload["research_resolution"], research["completion"]["cloud_report"]["resolution"])
+        lean_deployment = dict(research_deployment, input_hash="0" * 64)
+        create_envelope = envelope("create_backtest", {"projectId": 17, "backtestName": "Synthetic Integration"},
+            {"success": True, "backtestId": "native-backtest-id"})
+        lean_submission = backtest_submission(lean_payload, lean_deployment, create_envelope)
+        lean_pending = bridge.record_submission(lean_attempt, lean_submission)
+        self.assertEqual(lean_pending.status, "pending")
+        delivered = backtest_observation(lean_payload, lean_deployment, lean_pending.external_id,
+            completed_tool(), log_tools(lean_payload, pages=2))
+        lean_finished = bridge.consume_completion(lean_pending,
+            completion_source=lambda _: deepcopy(delivered))
+        self.assertEqual(lean_finished.status, "completed")
+        self.assertFalse(bridge.read_result(lean_finished)["financial_evidence"])
+        self.assertNotIn("SENSITIVE_FINANCIAL_SENTINEL", str(store._data))
+        self.assertEqual({name: registry.snapshot()["usage"][name]["total"]
+            for name in ("configurations", "research", "lean")},
+            {"configurations": 1, "research": 1, "lean": 1})
+
+        restarted = EngineeringTaskBridge(Registry(store, limits), plan)
+        repeated = restarted.claim("lean")
+        self.assertFalse(repeated.should_execute)
+        self.assertEqual(repeated.attempt_id, lean_finished.attempt_id)
+        self.assertEqual(restarted.read_result(repeated)["cloud_report"], delivered["cloud_report"])
+        self.assertEqual(restarted.registry.snapshot()["usage"]["lean"]["total"], 1)
 
     def test_running_unknown_partial_and_ordered_backtests_are_rejected(self):
         payload, deployment = context("lean")

@@ -279,7 +279,7 @@ def research_observation(payload, deployment, tool_envelope):
     external = "qc-research:" + str(payload["identity"]["project_id"]) + ":" + payload["identity"]["attempt_id"]
     raw.update(marker_count=1, stdout_only=True)
     submission = {"identity": payload["identity"], "identity_kind": payload["external_identity_kind"],
-        "external_id": external, "accepted": True, "status": "acknowledged", "deployment": deployment, "raw_receipt": raw}
+        "external_id": external, "accepted": True, "status": "submitted", "deployment": deployment, "raw_receipt": raw}
     completion = {"platform": _platform(payload, deployment, external, raw), **wrapper}
     return {"submission": submission, "completion": completion}
 
@@ -364,7 +364,7 @@ def backtest_observation(payload, deployment, external_id, tool_envelope, log_en
             raise ReceiptParseError("Native total order count is invalid") from exc
         if isinstance(value, bool) or not count.is_finite() or count != 0:
             _fail("Engineering backtests must have zero actual orders")
-        raw["orders"] = 0
+        raw["orders_count"] = 0
     error_present = bool(backtest.get("error") or backtest.get("stacktrace") or backtest.get("hasInitializeError"))
     failed = status == "Runtime Error" or (backtest["completed"] and error_present)
     if not failed and (status != "Completed." or backtest["completed"] is not True or progress != 1 or error_present):
@@ -377,5 +377,8 @@ def backtest_observation(payload, deployment, external_id, tool_envelope, log_en
     if failed:
         return {"platform": platform}
     wrapper, log_receipts = _logs(payload, external_id, log_envelopes)
-    raw["log_receipts"] = log_receipts
+    # Persist the fixed observations' digest/count, not an array that could be
+    # mistaken for row payloads by the bridge's metadata residency boundary.
+    raw["log_receipt_count"] = len(log_receipts)
+    raw["log_receipts_sha256"] = content_hash(log_receipts)
     return {"platform": platform, **wrapper}
