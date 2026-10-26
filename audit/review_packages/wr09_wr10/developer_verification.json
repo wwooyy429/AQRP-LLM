@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "purpose": "WR09_WR10_developer_repair_evidence_not_independent_acceptance",
+  "date": "2026-10-26",
+  "failed_review_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "original_independent_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json",
+  "original_archive_manifest_raw_sha256": "14796b0aff9f14c168abd957baf396fa4ecc85025631ffd99b651c716fc319cb",
+  "original_archive_files": 129,
+  "original_archive_all_byte_equal": true,
+  "official_static_contract_files": 20,
+  "candidate_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
+  "candidate_source_files": 97,
+  "deployment_python_files": 27,
+  "implementation_hash": "c07f5fb9cf061032aafab91c1089d76804eef9a54c3e918501e80341f34073de",
+  "historical_source_normalized_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+  "configuration_hash_unchanged": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "native_Windows",
+    "blas_threads": 1
+  },
+  "fixes": {
+    "WR-09": {
+      "developer_status": "fixed_pending_independent_verification",
+      "semantics": "Resolved exact minimum date sentinel becomes null; don't use default-period HasValue to remove fallback; reject legacy known-date sentinel cache without overwrite/refetch",
+      "final_new_repository_methods": 6,
+      "original_added_test_replay": {
+        "methods": 5,
+        "failed_methods": 3,
+        "failure_records": 6,
+        "passed_methods": 2,
+        "exit_code": 1,
+        "raw_stderr": "original_wr09-original-byte.stderr",
+        "raw_stdout": "original_wr09-original-byte.stdout"
+      }
+    },
+    "WR-10": {
+      "developer_status": "fixed_pending_independent_verification",
+      "semantics": "Map both frozen boundaries backward1us on absolute UTC timeline before NY-naive SDK request; stored interval remains [start,end)",
+      "final_new_repository_methods": 8,
+      "supported_precision": "Verified DAILY Fundamental source and Python datetime microsecond grid; no arbitrary100ns custom history claim"
+    }
+  },
+  "original_public_failures": "original_public_reproductions.json",
+  "full_verification": {
+    "chunk_id": "b96582",
+    "wall_time_seconds": 0.0000101,
+    "exit_code": 0,
+    "original_token_count": 71,
+    "output": "{\"local_tests_passed\": true, \"source_hash\": \"8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381\", \"external_review_status\": \"pending_GPT_Work\", \"test_output\": \"----------------------------------------------------------------------\\nRan 336 tests in 13.910s\\n\\nOK\\n\"}\r\n"
+  },
+  "final_repository_methods": 336,
+  "new_repository_methods": 14,
+  "targeted_runs": [
+    {
+      "pattern": "test_wr09_missing_dates.py",
+      "chunk_id": "bfbccb",
+      "wall_time_seconds": 4.3704895,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": "----------------------------------------------------------------------\r\nRan 5 tests in 0.041s\r\n\r\nOK\r\n"
+    },
+    {
+      "pattern": "test_wr10_history_intervals.py",
+      "chunk_id": "1b052f",
+      "wall_time_seconds": 2.0439672,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": "----------------------------------------------------------------------\r\nRan 8 tests in 0.233s\r\n\r\nOK\r\n"
+    },
+    {
+      "pattern": "test_historical_source.py",
+      "chunk_id": "4b14c9",
+      "wall_time_seconds": 2.0072522,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": "----------------------------------------------------------------------\r\nRan 13 tests in 0.258s\r\n\r\nOK\r\n"
+    },
+    {
+      "pattern": "test_collection.py",
+      "chunk_id": "f0c6d7",
+      "wall_time_seconds": 1.9900765,
+      "exit_code": 0,
+      "original_token_count": 26,
+      "output": "----------------------------------------------------------------------\r\nRan 25 tests in 0.136s\r\n\r\nOK\r\n"
+    }
+  ],
+  "developer_archived_test_replays": {
+    "source": 8,
+    "boundary": 3,
+    "collection": 19,
+    "all_passed": true,
+    "record": "developer_archive_replays.json",
+    "not_new_independent_acceptance": true
+  },
+  "peer_review": {
+    "original_public_scripts_unchanged": true,
+    "both_original_public_probes_exit_code": 0,
+    "additional_source_driven_synthetic_probes_passed": 12,
+    "scope": "Ordinary/spring/fall1/2/7-day and consecutive DST/final windows, readonly cache; developer peer review only"
+  },
+  "stable_second_build": {
+    "config_changed": false,
+    "source_files": 27
+  },
+  "protected_prior_paths_unchanged": true,
+  "old_pending_LEAN": {
+    "id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "terminal_delivered": false,
+    "polled": false,
+    "relaunched": false,
+    "source_input_replaced": false
+  },
+  "budget": {
+    "used": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "extra_resource_purchases": 0
+  },
+  "candidate_deployed": false,
+  "real_SDK_executed": false,
+  "financial_evidence": false,
+  "known_open_findings_pending_independent_verification": [
+    "WR-09",
+    "WR-10"
+  ],
+  "stage2": "failed_reviewed_fbe_source_pending_independent_repair_review",
+  "prior_stage0_stage1_d0_acceptance_preserved": true,
+  "prior_2024_2025_exposure_preserved": true,
+  "market_research_enabled": false,
+  "final_test_enabled": false,
+  "live_trading_enabled": false,
+  "documentation": "docs/review/wr09-wr10.md"
+}

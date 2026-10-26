@@ -7,9 +7,9 @@
     0,
     1
   ],
-  "stage2_status": "pending_acceptance",
+  "stage2_status": "failed_reviewed_fbe_source_pending_independent_repair_review",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261026-d0b9c98-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json",
   "deployment_comparison_scope": "Accepted d0 local manifest versus archived old75 cloud manifest; not a new QC readback",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -87,10 +87,10 @@
   "new_independent_review_dispatched": false,
   "financial_evidence": false,
   "source_changed": true,
-  "source_catalog_and_inactive_template_added": true,
+  "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/stage2-snapshot-collection.md",
+  "candidate_development_document": "docs/review/wr09-wr10.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -103,5 +103,17 @@
     "remote_collection_task_protocol_and_atomic_budget_admission",
     "verified_complete_financial_value_catalog",
     "actual_vendor_receipt_and_vintage_certification"
+  ],
+  "known_open_findings": [
+    "WR-09",
+    "WR-10"
+  ],
+  "developer_fixes_pending_independent_verification": [
+    "WR-09",
+    "WR-10"
+  ],
+  "source_changed_this_round": [
+    "cloud/qresearch/historical_source.py",
+    "cloud/qresearch/collection.py"
   ]
 }

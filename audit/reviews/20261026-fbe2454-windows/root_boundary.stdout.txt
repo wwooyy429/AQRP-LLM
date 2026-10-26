@@ -1,0 +1,23 @@
+{
+  "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "real_SDK_executed": false,
+  "upstream_contract": "history accepts EndTime > start and EndTime <= end; pandas index=EndTime",
+  "requested_plan_interval": "[2018-01-03T00:00:00-05:00,2018-01-04T00:00:00-05:00)",
+  "actual_history_arguments": [
+    [
+      "2018-01-03T00:00:00",
+      "2018-01-04T00:00:00"
+    ]
+  ],
+  "SDK_contract_returned": [
+    "2018-01-04T00:00:00"
+  ],
+  "rows": null,
+  "error": {
+    "type": "HistoricalSourceError",
+    "message": "Duplicate or out-of-window native universe snapshot"
+  },
+  "expected_snapshot_times": [
+    "2018-01-03T00:00:00-05:00"
+  ]
+}

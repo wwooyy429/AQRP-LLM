@@ -1,0 +1,45 @@
+test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) ... test_public_collector_fails_with_legal_native_endpoint (__main__.AdditionalSourceTests) ... ERROR
+test_valid_fallback_dates_and_zero_remain_values (__main__.AdditionalSourceTests) ... ok
+
+======================================================================
+ERROR: test_public_collector_fails_with_legal_native_endpoint (__main__.AdditionalSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source_agent\secondary_source_review.py", line 58, in test_public_collector_fails_with_legal_native_endpoint
+    try:result=collector.collect()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source\cloud\qresearch\collection.py", line 372, in collect
+    reference, manifest, fetched = self._collect_window(start, end)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source\cloud\qresearch\collection.py", line 336, in _collect_window
+    for raw in self._source_rows(start, end):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source\cloud\qresearch\collection.py", line 316, in _source_rows
+    raise CollectionError("Historical source iteration failed; unfinished intent retained") from None
+qresearch.collection.CollectionError: Historical source iteration failed; unfinished intent retained
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source_agent\secondary_source_review.py", line 51, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source_agent\secondary_source_review.py", line 51, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-fbe2454-20261026\source_agent\secondary_source_review.py", line 51, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.015s
+
+FAILED (failures=3, errors=1)

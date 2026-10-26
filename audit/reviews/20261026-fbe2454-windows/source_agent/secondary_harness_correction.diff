@@ -1,0 +1,28 @@
+--- secondary_source_review_first.py
++++ secondary_source_review.py
+@@ -8,6 +8,7 @@
+ from independent_source_review import (NS,QB,Symbol,series,fundamental,source,fetch,at,FIELDS,
+     QuantConnectSnapshotSource,HistoricalSourceError,HistoricalCollectionPlan,
+     HistoricalSnapshotCollector,MemoryArtifactStore,plan,Recorder)
++from qresearch.collection import CollectionError
+ 
+ OUT=Path(__file__).resolve().parent
+ OBS={}
+@@ -56,7 +57,7 @@
+         collector=HistoricalSnapshotCollector(MemoryArtifactStore(),src,plan(),synthetic=True)
+         result=None;error=None
+         try:result=collector.collect()
+-        except HistoricalSourceError as exc:error=str(exc)
++        except CollectionError as exc:error=str(exc)
+         OBS["collector"]={"error":error,"result":result,"api_calls":len(qb.calls)}
+         self.assertIsNone(error,"A legal native endpoint prevents completion of the one-day collection window")
+ 
+@@ -72,6 +73,6 @@
+         "first_failure":result.records[0] if result.records else None,"all_failures":result.records,
+         "observations":OBS,"real_sdk_executed":False,"platform_calls":0,
+         "evidence_kind":"immutable official LEAN static contract plus synthetic native-shape replay"}
+-    (OUT/"secondary_source_output_first.txt").write_text(output,encoding="utf-8")
+-    (OUT/"secondary_source_results_first.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
++    (OUT/"secondary_source_output_final.txt").write_text(output,encoding="utf-8")
++    (OUT/"secondary_source_results_final.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
+     sys.exit(not result.wasSuccessful())

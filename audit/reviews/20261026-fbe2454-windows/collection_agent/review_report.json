@@ -1,0 +1,358 @@
+{
+  "reviewed_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "verdict_in_tested_scope": "No newly confirmed defect in snapshot plan/cache/atomicity/failure/read-only handling.",
+  "first_execution": {
+    "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+    "methods": 19,
+    "passed_methods": 19,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 31,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "failures": [],
+    "errors": [],
+    "observations": {
+      "process_messages": [
+        [
+          "fetch",
+          66572
+        ],
+        [
+          "done",
+          1,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ]
+      ]
+    },
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "pandas": "2.3.3",
+    "actual_external_calls": 0,
+    "developer_helpers_imported": false,
+    "command": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe -B C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\independent_collection.py",
+    "scope": "independent synthetic collection behavior; no financial or actual platform evidence",
+    "exit_code": 0
+  },
+  "verification_execution": {
+    "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+    "methods": 19,
+    "passed_methods": 19,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 31,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "failures": [],
+    "errors": [],
+    "observations": {
+      "process_messages": [
+        [
+          "fetch",
+          68956
+        ],
+        [
+          "done",
+          1,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ],
+        [
+          "done",
+          0,
+          [
+            {
+              "key": "historical-snapshots/v1/windows/74fd372fa5144b7b1e37c02cb2b9ce178adc9c1d21c10226fc2a22eb23a4110f.json",
+              "sha256": "6e751c7187cbb9d270f71aa32ab93c73f9db8715d48c872a434248ac80191769"
+            }
+          ]
+        ]
+      ]
+    },
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "pandas": "2.3.3",
+    "actual_external_calls": 0,
+    "developer_helpers_imported": false,
+    "command": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe -B C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\independent_collection.py",
+    "scope": "independent synthetic collection behavior; no financial or actual platform evidence",
+    "exit_code": 0
+  },
+  "unique_methods": 19,
+  "subcases_per_execution": 31,
+  "reproducibility_note": "First suite passed. Its filesystem fixtures used fixed directories; before a repeat, the audit harness alone was changed to create a fresh UUID store subtree each run. Original first script and results are preserved. No test assertion or production source changed; final reproducible harness again passed 19 methods / 31 subcases. Do not add the two executions into 38 distinct methods.",
+  "first_script_archive": "first_independent_collection.py",
+  "source_locations": {
+    "cloud/qresearch/collection.py:CollectionError": [
+      22,
+      23
+    ],
+    "cloud/qresearch/collection.py:CollectionMiss": [
+      26,
+      27
+    ],
+    "cloud/qresearch/collection.py:CollectionInterrupted": [
+      30,
+      31
+    ],
+    "cloud/qresearch/collection.py:CollectionIntegrityError": [
+      34,
+      35
+    ],
+    "cloud/qresearch/collection.py:_text": [
+      48,
+      51
+    ],
+    "cloud/qresearch/collection.py:_time": [
+      54,
+      61
+    ],
+    "cloud/qresearch/collection.py:_catalog": [
+      64,
+      81
+    ],
+    "cloud/qresearch/collection.py:HistoricalCollectionPlan": [
+      85,
+      156
+    ],
+    "cloud/qresearch/collection.py:HistoricalSnapshotCollector": [
+      159,
+      381
+    ],
+    "cloud/qresearch/collection.py:__init__": [
+      166,
+      173
+    ],
+    "cloud/qresearch/collection.py:from_dict": [
+      93,
+      131
+    ],
+    "cloud/qresearch/collection.py:identity": [
+      133,
+      134
+    ],
+    "cloud/qresearch/collection.py:to_dict": [
+      136,
+      137
+    ],
+    "cloud/qresearch/collection.py:field_catalog": [
+      140,
+      141
+    ],
+    "cloud/qresearch/collection.py:hash": [
+      144,
+      145
+    ],
+    "cloud/qresearch/collection.py:windows": [
+      147,
+      156
+    ],
+    "cloud/qresearch/collection.py:_window": [
+      175,
+      176
+    ],
+    "cloud/qresearch/collection.py:_identity": [
+      178,
+      179
+    ],
+    "cloud/qresearch/collection.py:_key": [
+      181,
+      182
+    ],
+    "cloud/qresearch/collection.py:_row": [
+      184,
+      219
+    ],
+    "cloud/qresearch/collection.py:_write_batch": [
+      221,
+      226
+    ],
+    "cloud/qresearch/collection.py:_document": [
+      228,
+      245
+    ],
+    "cloud/qresearch/collection.py:_load_window": [
+      247,
+      298
+    ],
+    "cloud/qresearch/collection.py:read_window": [
+      300,
+      302
+    ],
+    "cloud/qresearch/collection.py:_source_rows": [
+      304,
+      317
+    ],
+    "cloud/qresearch/collection.py:_collect_window": [
+      319,
+      365
+    ],
+    "cloud/qresearch/collection.py:collect": [
+      367,
+      381
+    ],
+    "cloud/qresearch/quantconnect.py:ObjectStoreArtifactStore": [
+      20,
+      99
+    ],
+    "cloud/qresearch/quantconnect.py:ExchangeCalendar": [
+      102,
+      146
+    ],
+    "cloud/qresearch/quantconnect.py:QuantConnectHistoryProvider": [
+      149,
+      248
+    ],
+    "cloud/qresearch/quantconnect.py:__init__": [
+      162,
+      185
+    ],
+    "cloud/qresearch/quantconnect.py:_key": [
+      42,
+      43
+    ],
+    "cloud/qresearch/quantconnect.py:_writable": [
+      45,
+      47
+    ],
+    "cloud/qresearch/quantconnect.py:exists": [
+      49,
+      50
+    ],
+    "cloud/qresearch/quantconnect.py:read_bytes": [
+      52,
+      56
+    ],
+    "cloud/qresearch/quantconnect.py:locked": [
+      59,
+      70
+    ],
+    "cloud/qresearch/quantconnect.py:_save": [
+      72,
+      74
+    ],
+    "cloud/qresearch/quantconnect.py:write_once": [
+      76,
+      87
+    ],
+    "cloud/qresearch/quantconnect.py:append_event": [
+      89,
+      99
+    ],
+    "cloud/qresearch/quantconnect.py:_local_day": [
+      108,
+      110
+    ],
+    "cloud/qresearch/quantconnect.py:_from_exchange": [
+      113,
+      116
+    ],
+    "cloud/qresearch/quantconnect.py:close_on": [
+      118,
+      125
+    ],
+    "cloud/qresearch/quantconnect.py:decisions": [
+      127,
+      146
+    ],
+    "cloud/qresearch/quantconnect.py:_index_sid": [
+      187,
+      198
+    ],
+    "cloud/qresearch/quantconnect.py:fetch": [
+      200,
+      248
+    ],
+    "tools/stage2_collection.py:catalog": [
+      15,
+      24
+    ],
+    "tools/stage2_collection.py:preview": [
+      27,
+      38
+    ],
+    "tools/stage2_collection.py:main": [
+      41,
+      57
+    ]
+  },
+  "confirmed_findings": [],
+  "minimal_failing_reproduction": null,
+  "budget_and_scope_notes": [
+    "collection.py imports no Registry/workflow dispatcher and calls no project/task submission interface; its source.fetch is an injected producer contract. Actual remote admission is explicitly deferred in module docs and docs/stage2-snapshot-collection.md. This declared missing integration is not reported as a new defect.",
+    "Cloud read-only adapter rejects its first intent write before any injected source call. Existing completed caches read with zero writes and zero new source calls.",
+    "Filesystem tests prove same-root cooperating process locking; in-process ObjectStore adapter tests prove same-namespace adapter locking. Cross-node cloud producers are explicitly unsupported, not certified by these synthetic tests.",
+    "Window completion is atomic; a failed later window retains a readable completed prefix and a blocking failed intent. This is documented per-window progress, not an all-plan transaction.",
+    "Catalog semantics, plan id, data version, projection and implementation-hash declarations are in cache identity. New frozen identities intentionally cause new source calls; arbitrary plans are not a cross-plan deduplication contract.",
+    "Source-manifest matching to current implementation occurs in CLI preview, not in the injected collector API. The API depends on the declared trusted source/dispatcher boundary; no normal route into the old engineering budget bridge was found.",
+    "No real market/platform/model calls, source edits, budget changes or financial conclusions."
+  ],
+  "artifact_sha256": {
+    "build_report.py": "7f8f45ae9475f9a6627d6e392aff825891f9d146f03e92238688215600278216",
+    "first_independent_collection.py": "bcaa6010439e5b4dfa5fd098cae6bc23979603b672bec8079ca491177512afa0",
+    "first_output.txt": "8cce15130700cdf14f1c114997637f9e19f169245d7ae91b57184e9abb167f72",
+    "first_results.json": "e3766f2b4460ecf0e0020fc6f5c34448f77c6a622a59908ac046ccc07c789b23",
+    "independent_collection.py": "eb1b037ad0be98ec582762a16ccf5906f4317d7815af3d7e410f198560b6d403",
+    "verification_output.txt": "c917488048b4b0f852cd46f14058a6e8388e76be7b5c5b13c8a1aef506539436",
+    "verification_results.json": "1d24237f8aea3dd57f73fd042ca6a11e709c819c150b9e57f82b34d0031927ad"
+  }
+}

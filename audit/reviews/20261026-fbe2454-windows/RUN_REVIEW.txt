@@ -1,0 +1,9 @@
+固定fbe独立审核复现，仅使用合成数据。
+Python3.10.11；依赖实测版本见requirements-audit.txt。
+最小复现：python -B minimal_missing_date.py source；python -B minimal_history_boundary.py source。当前均退出1，分别为WR-09/10，不能把它们改为expectedFailure冒充通过。
+独立采集：python -B collection_agent/independent_collection.py（19方法通过）；独立源：python -B source_agent/independent_source_review.py（8方法7过1败）；附加边界：python -B source_agent/secondary_source_review_counted.py（3方法1过2败）。首次及中间原件完整保留。
+便携重放：python -B run_offline_review.py --out ../fbe-offline-rerun-NEW
+输出目录必须不存在。聚合入口仅检查了语法及--help，没有在本轮整套再次执行；报告来自各原始入口的实际执行。预期当前整体exit1，意外的退出模式exit2。它不会触发真实SDK/市场/模型/Research/LEAN或预算。
+source为fbe313份Git原件；baselines/d0b9c98/source为270份旧Git原件。官方SDK20份静态源码并非真实云端版本认证，19份在source_agent/official_sdk_static，另一份upstream_history_factory.cs及扩展清单。部分浏览器展示行号去空行，以保存原字节及根扩展原始行号为准。
+采集缓存文件均为合成/对抗测试产物，不是市场数据或真实认证。evidence_agent中本机临时Git路径用于记录实际来源，跨机器可据source_git_manifest和原JSON复算；外围逐文件SHA在artifact_manifest.json，运行verify_artifacts.py核验。
+原样56历史异常不兼容及适配差异、d0审核器错误和相对精度探针差异均保留，不声称原样56通过。没有授权部署、合并、轮询、市场/模型调用、购买或交易。
