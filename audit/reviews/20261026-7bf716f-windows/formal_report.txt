@@ -1,0 +1,79 @@
+AQRP-LLM 独立修复复审正式报告
+审核编号：AQRP-20261026-7BF716F-WINDOWS-06
+固定源码：7bf716f45fd6183951a492f0201012af717070f0
+比较基线：fbe2454e6ea10aa59211c01f236c54bb251527be
+
+总体结论：WR-09、WR-10在本轮实际覆盖的离线/固定SDK合同范围修复后通过，无新增生产阻断发现。阶段0/1原范围及已实现离线采集接口回归通过。阶段2整体验收仍待完成，完整系统未验收。修复不构成数据或金融认证，financial_evidence=false。
+本轮没有开发者工作区/生产源码/预算/配置修改、PR提交批准合并、市场/模型调用、部署、购买或交易，也未读/轮询未终结LEAN。
+证据等级：E1静态源码、哈希、事件链及固定官方SDK合同；E2审核者本轮实际离线合成执行；E3开发者归档原生平台JSON离线重解析；E4审核者当前只读QC源码与GitHub元数据；E5独立金融证据无。合成API对象不是实际SDK运行。
+
+全系统覆盖矩阵
+阶段0 | 规范、配置、身份、Registry、准入 | 原工程核心及计划身份保持 | 336仓库、准入19、适配56、219静态检查、两次稳定构建 | passed_after_fix | 原已验离线工程及本轮身份回归，不授予真实采集执行许可
+阶段1 | 因子、PIT、标签、模型、共享评价 | 原d0计算内核未改 | 既有12/10/16/19/56、d0的11/8均通过 | passed_after_fix | 原已验离线范围及精度限制保留
+阶段2 | 历史快照采集、源适配、缓存、QC任务桥 | WR09/10源适配及缓存读取已修复；远端采集预算桥未接入 | 归档8/3/19通过；新增日期缓存9、端点12通过；原失败负对照保留 | pending_acceptance | 已测离线采集范围通过；仍缺预算桥、新版部署运行、旧LEAN终态及完整数据认证
+阶段3 | 滚动Research评价 | 部分指标及六轮合成链已实现 | 既有摘要11/兼容8回归通过 | pending_acceptance | 已实现离线范围保持，完整Research未验收
+阶段4 | 组合、订单、成交、成本、风险、账本 | 工程宿主/接口，完整交易验证未交付 | 未新增真实完整交易证据 | not_accepted | 完整阶段仍未验收
+阶段5 | GPT提案、网关、控制器 | 部分接口，模型及额度未配置 | 离线回归，真实GPT闭环未执行 | not_accepted | 完整阶段仍未验收
+阶段6 | 去重、相关、搜索、组合增量 | 部分接口，完整搜索及增量未交付 | 相关接口回归通过，无实际搜索证据 | not_accepted | 完整阶段仍未验收
+阶段7 | 冻结、独立最终执行、前向、监控 | 门禁存在，完整执行及前向证据未交付 | 分区、暴露及关闭开关不变 | not_accepted | 完整阶段仍未验收
+
+WR-09修复后通过（本轮范围）
+historical_source.py:84-99只把最小日期哨兵转null，按已解析Value判断，不读取默认期HasValue，也没有过早日期阈值；有效fallback、0001-01-02、正常日期、零值和False保留。collection.py:212-218拒绝旧完成批次中的date.min，沿248-299原有整窗重验路径生效，没有重写旧缺失计数或静默清洗后复用。
+根代理逐字节重跑原公开最小复现：新提交两个日期null、missing各1、重复collect新增调用0，退出0；同脚本旧fbe仍保存0001-01-01、missing各0并退出1。脚本内source_commit仍是历史fbe字面量，不能拿它冒称当前源码；当前真实身份由外层7bf及文件哈希/执行参数绑定。
+新增独立9方法27子例全部通过。使用fbe实际公开源码在子进程写出旧缓存，不借开发者夹具。坏缓存在第二batch含哨兵，当前read_window/collect、有无source等4种尝试整窗拒绝，不返回前面合法batch，所有文件字节不变、新fetch0。合法fbe旧缓存可复用。新源→collector→read两窗5行链通过，两个日期缺失数为1和4，重读不新取数。fallback对象的has_value属性设为一读即抛错仍通过，确认没有误用默认期标记。
+
+WR-10修复后通过（本轮范围）
+historical_source.py:120-127在UTC绝对时间线上将请求左右端点各减1微秒，再转NY naive；174-177实际调用该映射。结果仍按冻结[start,end)验证。对已核对的Daily基本面及Python微秒网格，原生(start-1us,end-1us]对应冻结窗口，没有仅放宽end检查。
+根代理重跑原公开最小复现：新请求2018-01-02T23:59:59.999999到01-03T23:59:59.999999，返回01-03快照，退出0；旧fbe同脚本仍拒绝合法end，退出1。原脚本与原失败不改。
+新增独立12方法75子例全部通过；覆盖2012/2018/2020/2023春秋DST、1/2/7日、20日连续窗口、UTC等价输入、重复小时的不同瞬间、末微秒、空窗、最终边界、越界/重复/混合响应及失败意图保留。另两条start-only公共API探针，新版取回1行；旧版漏start，静默产生0行/空窗。原子窗口失败保护保持有效。
+同一新脚本选2个核心方法在旧fbe执行，21子例因旧生产端点异常产生21条错误记录，归属2个错误方法；不是21个方法，也不是当前审核器异常。固定官方LEAN20份源码及原合同保持字节一致。
+边界：这里不认证任意自定义100ns .NET tick历史，也不把固定源码/合成重放当作真实SDK、云端数据或资源占用认证。
+
+实际执行（方法与子例分列，重叠不累计为独有测试）
+repository_verify: 方法336，通过336，失败0，错误0，跳过0，子例None，退出0。
+archived_compatibility: 方法12，通过12，失败0，错误0，跳过0，子例22，退出0。
+archived_pearson: 方法10，通过10，失败0，错误0，跳过0，子例896，退出0。
+archived_numeric: 方法16，通过16，失败0，错误0，跳过0，子例84，退出0。
+archived_atomic: 方法19，通过19，失败0，错误0，跳过0，子例9，退出0。
+previous_adapted: 方法56，通过56，失败0，错误0，跳过0，子例25，退出0。
+d0_summary_class: 方法11，通过11，失败0，错误0，跳过0，子例716，退出0。
+d0_compatibility_class: 方法8，通过8，失败0，错误0，跳过0，子例16，退出0。
+fbe_source_original: 方法8，通过8，失败0，错误0，跳过0，子例73，退出0。
+fbe_boundary_original_counted: 方法3，通过3，失败0，错误0，跳过0，子例3，退出0。
+fbe_collection_original: 方法19，通过19，失败0，错误0，跳过0，子例31，退出0。
+new_independent_dates_cache: 方法9，通过9，失败0，错误0，跳过0，子例27，退出0。
+new_independent_intervals: 方法12，通过12，失败0，错误0，跳过0，子例75，退出0。
+baseline_fbe_source: 方法8，通过7，失败1，错误0，跳过0，子例73，退出1。
+baseline_fbe_boundary: 方法3，通过1，失败2，错误0，跳过0，子例3，退出1。
+new_interval_baseline_selected: 方法2，通过0，失败0，错误2，跳过0，子例21，退出1。
+
+336仓库、所有既有12/10/16/19/56、d0摘要11/兼容8、fbe源8/边界3/采集19及新9/12均实际通过，无skip或expectedFailure冒充通过。原fbe源8负对照7过1败（2失败记录），边界3负对照1过2败（4记录），独立保存。
+12/10和d0的11/8仅运行类方法，原main机器专属辅助不冒称重跑；fbe的8/3/19运行原字节脚本main。原样56历史50通过/3失败/3错误及认可适配完整保留；此前审核器异常捕获/计数修正和d0相对精度限制仍保留。
+既有tests/test_historical_source.py两处原生请求参数断言更新为已核对的减1微秒合同，数据/缺失/计数预期未放宽；独立原脚本不改字节也通过。开发侧14项新增仓库回归包含在336内，不能重复宣传。
+219项哈希/AST/JSON检查通过，单元方法数0；两次构建exit0、451文件字节无变，不计新增测试方法。
+
+实际命令与环境
+python -B tools/stages.py verify（独立副本runs/repository_source）
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_compatibility --suite compatibility
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_pearson --suite pearson
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_numeric --suite numeric
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_atomic --suite atomic
+python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/previous_adapted_56 --mode adapted
+d0原类由replay_public_class.py重放；fbe原脚本由replay_archived_script.py以独立源码副本和禁止联网环境运行。全参数、解释器和cwd见runs/execution_records.json。
+python -B date_cache_agent/independent_date_cache.py
+python -B interval_agent/independent_intervals.py --source source --label candidate --out interval_agent
+原生Windows-10-10.0.26300-SP0；Python3.10.11、numpy1.26.4、pandas2.3.3；longdouble尾数位52，主重放线程1。传递依赖实际版本见environment.json和requirements-audit.txt。未在Linux独立执行，真实AlgorithmImports未执行。
+
+版本/部署/预算/平台/数据
+451 Git文件逐字节一致；本轮无交付ZIP。97源码hash8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381；27py本地候选部署hash b451bddbb58c6ecb060b3bda383a39a00a36407c1a5962a8d1e0412166553223。相对fbe生产仅collection.py、historical_source.py及生成research_config.py变化。配置hash仍272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94，预算/目录/模板/CLI未改。
+fbe129份原件及20份官方SDK源码逐字节一致，原失败与修正记录保留；更早177份证据不变。37保护文件、12事件链及投影不变。配置6/12（正常6/预留0）、Research9/20（正常6/预留3）、LEAN1/16（正常1/预留0）。本轮新配置、Research、LEAN及模型调用均0；早期汇总起点不冒称已逐项重建。
+审核者本轮先list_projects，再read_project(38436695)，只保存.py，排除notebook。当前25部署源仍全部匹配旧75，部署hash dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6，与候选9路径不同。旧任务输入SHA95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0仍绑定既有bfd00f2611fd4496b9498d4597618a8e。新版未部署/编译/运行。
+LEAN39cafa1e9b11f91b27e396b66d033a6d仅归档pending；当前终态null，未轮询/读日志/重交。PR1/2读取时仍草稿未合并；PR2 base6a1edbf、head固定7bf。CI40324890898/40324883792同head成功，仅作元数据，不代替独立测试。
+采集远端协议及Registry预算原子准入仍未接入；真实源码部署/运行、旧LEAN终态、全市场SID/分类/交易日、财务数值/修订/公开/实际送达、公司行动与完整历史US200仍需证据。字段缺失处理修复不是这些数据认证。
+2024-2025暴露保留，2026独立性null。具体GPT模型/次数/费用额度仍null；市场、模型、最终测试、交易四开关关闭。本轮无金融评价，不能推导因子有效、稳健盈利或可实盘。
+
+最小复验与后续
+python -B minimal_missing_date.py source
+python -B minimal_history_boundary.py source
+原字节脚本在当前source均exit0；改参数为baselines/fbe2454/source均exit1。输出历史fbe字面量仅是原脚本内容，真实执行身份见original_probe_execution.json。
+本轮无新增阻断修复任务。阶段2应继续补齐预算任务桥、授权范围内真实平台终态/运行及数据认证；阶段3-7各自缺失交付仍需独立验收，不能用局部修复通过替代完整系统验收。

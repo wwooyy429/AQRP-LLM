@@ -1,0 +1,90 @@
+{
+  "reviewer": "independent interval_agent",
+  "date": "2026-10-26",
+  "candidate_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "baseline_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "finding_id": "WR-10",
+  "verdict": "修复在已核对的Daily基本面、Python datetime微秒网格及固定官方合同范围通过独立复验",
+  "new_confirmed_defects": [],
+  "candidate_results": {
+    "methods": 12,
+    "passed_methods": 12,
+    "subcases": 75,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "additional_start_only_public_api_probes": 2,
+    "additional_probe_passed": 2
+  },
+  "baseline_control": {
+    "methods": 2,
+    "error_methods": 2,
+    "subcases": 21,
+    "error_records": 21,
+    "failure_records": 0,
+    "skipped": 0,
+    "first_failure": {
+      "test": "test_reference_contract_dense_microsecond_edges (__main__.IndependentIntervals)",
+      "subtest": "test_reference_contract_dense_microsecond_edges (__main__.IndependentIntervals) (initial='2016-02-28', days=1)",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\independent_intervals.py\", line 145, in test_reference_contract_dense_microsecond_edges\n    rows = list(self.source(qb).fetch(left, right, CATALOG))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source\\cloud\\qresearch\\historical_source.py\", line 182, in fetch\n    raise HistoricalSourceError(\"Duplicate or out-of-window native universe snapshot\")\nqresearch.historical_source.HistoricalSourceError: Duplicate or out-of-window native universe snapshot\n"
+    },
+    "start_only_public_api_probes": {
+      "direct_expected": 1,
+      "direct_actual": 0,
+      "collector_expected": 1,
+      "collector_actual": 0,
+      "collector_empty_windows": 1
+    }
+  },
+  "method_subcases": {
+    "test_aware_repeated_fall_hour_is_two_distinct_instants": 2,
+    "test_daily_one_two_seven_day_across_dst_years": 24,
+    "test_empty_windows_complete_without_coverage_claim": 3,
+    "test_failed_end_response_keeps_intent_and_blocks_retry": 2,
+    "test_final_boundary_keeps_last_microsecond": 3,
+    "test_frontier_contract_blocks_future_and_pre_request": 2,
+    "test_invalid_request_ranges_never_dispatch": 9,
+    "test_outside_response_and_duplicate_rejected": 5,
+    "test_public_chain_source_to_collector": 9,
+    "test_reference_contract_dense_microsecond_edges": 12,
+    "test_sparse_daily_chain_retains_metadata_and_zero": 1,
+    "test_utc_inputs_preserve_frozen_ny_midnight": 3
+  },
+  "source_hashes_before_and_after_equal": true,
+  "source_hashes": {
+    "cloud/qresearch/historical_source.py": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+    "cloud/qresearch/collection.py": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+    "cloud/qresearch/contracts.py": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+    "cloud/qresearch/artifacts.py": "8d7eaf550891af9aa9493595c5ebc1a7b9eb92df4e80ded1912d304698e810b7"
+  },
+  "static_contracts": "static_contracts.json",
+  "commands": "command_log.json",
+  "regression_inputs": "candidate_summary.json:inputs",
+  "first_baseline_error": "baseline_summary.json:first_failure",
+  "method": "独立FakeQB只实施(start,end] EndTime合同；使用标准库datetime/zoneinfo在UTC时间线上计算预期端点；不复用开发者夹具。公共QuantConnectSnapshotSource→HistoricalSnapshotCollector→MemoryArtifactStore→缓存复读全链；检查原冻结窗口与实际SDK请求分别保持其合同。",
+  "equivalence": "在整数微秒网格上，A-1us < t <= B-1us 等价于 A <= t < B；UTC平移后转NY naive交给算法时区解释。",
+  "evidence_limits": [
+    "只读核对固定官方源码，不执行真实SDK、Python.NET、Research或LEAN。",
+    "不推广到任意100ns .NET tick/custom history；固定Daily午夜数据及Python datetime微秒网格是本结论范围。",
+    "日历分窗不是交易所日历；合成通过不证明全市场SID、历史成员、字段值/修订、实际送达或财务证据。",
+    "预算桥和真实部署/运行不在本次WR-10修复验收内；不将已声明缺证据项单独伪报为新缺陷。"
+  ],
+  "actions": {
+    "real_SDK": 0,
+    "market": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "model_API": 0,
+    "deployment": 0,
+    "budget_changes": 0,
+    "candidate_source_edits": 0,
+    "baseline_source_edits": 0,
+    "actual_final_market_data_opened": 0
+  },
+  "reviewer_process_notes": [
+    "首个定向静态文件路径缺少归档前缀导致rg失败，已按目录修正。",
+    "早期宽范围diff输出截断，未用截断内容支撑结论。",
+    "独立测试首次候选运行即12/75通过；无中途修生产源码或改测试掩盖候选失败。",
+    "基线故障回放和候选输出分别保留，报告不覆盖旧正式失败结论。"
+  ]
+}

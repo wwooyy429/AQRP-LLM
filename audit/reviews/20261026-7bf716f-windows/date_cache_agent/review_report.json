@@ -1,0 +1,278 @@
+{
+  "source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "task_scope": "WR09 minimum date missingness, existing cache rejection and legitimate cache compatibility",
+  "verdict": "WR09 fix passes this independent synthetic source/cache scope; no newly confirmed defect.",
+  "methods": 9,
+  "passed_methods": 9,
+  "subcases": 27,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "skipped": 0,
+  "minimal_new_failing_reproduction": null,
+  "first_execution_output": "first_output.txt",
+  "first_execution_result": "first_results.json",
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\date_cache_agent\\independent_date_cache.py"
+  ],
+  "evidence": [
+    "Public QuantConnectSnapshotSource projection maps Python date.min, datetime.min, pandas Timestamp(datetime.min) and canonical minimum ISO date string to None; other missing variants stay None.",
+    "Public resolved Value remains available without consulting default-period HasValue; test property raises if read. 0001-01-02, 1899-12-31, valid leap day and timezone-aware normal dates survive; numeric zero, negative zero and False survive.",
+    "Fresh two-window source -> collector -> read chain stores five independent synthetic names with date gaps 1 and 4, and second collect performs zero new source calls.",
+    "Unmodified fbe source and collector, run in an isolated subprocess against new synthetic inputs, actually write the wrong minimum-date cache. Current collector rejects both read_window and collect for that cache with source=None and a fetch-counting spy; all persisted bytes unchanged and spy calls zero.",
+    "The old wrong date is deliberately in the second batch after an entirely legitimate first batch. Whole-window read rejects rather than yielding a partial list.",
+    "An independently generated legitimate fbe cache containing nulls, zero, 0001-01-02 and 2000-02-29 still reads and reuses with no new calls or byte changes.",
+    "Invalid strings and directly supplied serialized minimum-date rows fail without completed publication and leave an intent that blocks auto-retry."
+  ],
+  "accurate_source_lines": {
+    "sentinel_projection": "cloud/qresearch/historical_source.py:84-99",
+    "stored_date_validation": "cloud/qresearch/collection.py:212-218",
+    "whole_window_validation_and_row_revalidation": "cloud/qresearch/collection.py:248-299",
+    "public_read": "cloud/qresearch/collection.py:301-303",
+    "completed_cache_checked_before_intent_or_fetch": "cloud/qresearch/collection.py:320-333"
+  },
+  "baseline_comparison": {
+    "baseline": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+    "unchanged_protected_collection_functions": {
+      "HistoricalCollectionPlan": true,
+      "_load_window": true,
+      "read_window": true,
+      "_collect_window": true,
+      "collect": true
+    },
+    "source_locations": {
+      "cloud/qresearch/collection.py:CollectionError": {
+        "start": 22,
+        "end": 23
+      },
+      "cloud/qresearch/collection.py:CollectionMiss": {
+        "start": 26,
+        "end": 27
+      },
+      "cloud/qresearch/collection.py:CollectionInterrupted": {
+        "start": 30,
+        "end": 31
+      },
+      "cloud/qresearch/collection.py:CollectionIntegrityError": {
+        "start": 34,
+        "end": 35
+      },
+      "cloud/qresearch/collection.py:_text": {
+        "start": 48,
+        "end": 51
+      },
+      "cloud/qresearch/collection.py:_time": {
+        "start": 54,
+        "end": 61
+      },
+      "cloud/qresearch/collection.py:_catalog": {
+        "start": 64,
+        "end": 81
+      },
+      "cloud/qresearch/collection.py:HistoricalCollectionPlan": {
+        "start": 85,
+        "end": 156
+      },
+      "cloud/qresearch/collection.py:HistoricalSnapshotCollector": {
+        "start": 159,
+        "end": 382
+      },
+      "cloud/qresearch/collection.py:__init__": {
+        "start": 166,
+        "end": 173
+      },
+      "cloud/qresearch/collection.py:from_dict": {
+        "start": 93,
+        "end": 131
+      },
+      "cloud/qresearch/collection.py:identity": {
+        "start": 133,
+        "end": 134
+      },
+      "cloud/qresearch/collection.py:to_dict": {
+        "start": 136,
+        "end": 137
+      },
+      "cloud/qresearch/collection.py:field_catalog": {
+        "start": 140,
+        "end": 141
+      },
+      "cloud/qresearch/collection.py:hash": {
+        "start": 144,
+        "end": 145
+      },
+      "cloud/qresearch/collection.py:windows": {
+        "start": 147,
+        "end": 156
+      },
+      "cloud/qresearch/collection.py:_window": {
+        "start": 175,
+        "end": 176
+      },
+      "cloud/qresearch/collection.py:_identity": {
+        "start": 178,
+        "end": 179
+      },
+      "cloud/qresearch/collection.py:_key": {
+        "start": 181,
+        "end": 182
+      },
+      "cloud/qresearch/collection.py:_row": {
+        "start": 184,
+        "end": 220
+      },
+      "cloud/qresearch/collection.py:_write_batch": {
+        "start": 222,
+        "end": 227
+      },
+      "cloud/qresearch/collection.py:_document": {
+        "start": 229,
+        "end": 246
+      },
+      "cloud/qresearch/collection.py:_load_window": {
+        "start": 248,
+        "end": 299
+      },
+      "cloud/qresearch/collection.py:read_window": {
+        "start": 301,
+        "end": 303
+      },
+      "cloud/qresearch/collection.py:_source_rows": {
+        "start": 305,
+        "end": 318
+      },
+      "cloud/qresearch/collection.py:_collect_window": {
+        "start": 320,
+        "end": 366
+      },
+      "cloud/qresearch/collection.py:collect": {
+        "start": 368,
+        "end": 382
+      },
+      "cloud/qresearch/historical_source.py:HistoricalSourceError": {
+        "start": 21,
+        "end": 22
+      },
+      "cloud/qresearch/historical_source.py:_clock": {
+        "start": 25,
+        "end": 35
+      },
+      "cloud/qresearch/historical_source.py:_attribute": {
+        "start": 38,
+        "end": 56
+      },
+      "cloud/qresearch/historical_source.py:_scalar": {
+        "start": 59,
+        "end": 107
+      },
+      "cloud/qresearch/historical_source.py:_universe_identity": {
+        "start": 110,
+        "end": 117
+      },
+      "cloud/qresearch/historical_source.py:_history_endpoint": {
+        "start": 120,
+        "end": 127
+      },
+      "cloud/qresearch/historical_source.py:QuantConnectSnapshotSource": {
+        "start": 130,
+        "end": 217
+      },
+      "cloud/qresearch/historical_source.py:observed_liquidity_record": {
+        "start": 220,
+        "end": 257
+      },
+      "cloud/qresearch/historical_source.py:__init__": {
+        "start": 137,
+        "end": 145
+      },
+      "cloud/qresearch/historical_source.py:_all_symbols": {
+        "start": 148,
+        "end": 150
+      },
+      "cloud/qresearch/historical_source.py:fetch": {
+        "start": 152,
+        "end": 211
+      },
+      "cloud/qresearch/historical_source.py:provenance": {
+        "start": 213,
+        "end": 217
+      }
+    }
+  },
+  "observations": {
+    "legacy_rejection": {
+      "written_by_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+      "old_sentinel_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": "0001-01-01",
+        "financial_statements.period_ending_date.value": "0001-01-01",
+        "has_fundamental_data": false,
+        "time": "2021-11-08T12:17:00"
+      },
+      "first_window_batches": 2,
+      "current_attempts": 4,
+      "current_source_calls": 0,
+      "all_store_bytes_unchanged": true,
+      "old_missing_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": 1,
+        "financial_statements.period_ending_date.value": 1,
+        "has_fundamental_data": 0,
+        "time": 0
+      },
+      "baseline_source_calls": 2
+    },
+    "new_chain": {
+      "record_count": 5,
+      "window_count": 2,
+      "missing_values": {
+        "dollar_volume": 0,
+        "financial_statements.file_date.value": 1,
+        "financial_statements.period_ending_date.value": 4,
+        "has_fundamental_data": 0,
+        "time": 0
+      },
+      "source_calls": 2,
+      "second_new_calls": 0,
+      "stored_dates": [
+        {
+          "financial_statements.file_date.value": null,
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "2021-10-27",
+          "financial_statements.period_ending_date.value": "2021-09-30"
+        },
+        {
+          "financial_statements.file_date.value": "2021-10-26",
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "0001-01-02",
+          "financial_statements.period_ending_date.value": null
+        },
+        {
+          "financial_statements.file_date.value": "1899-12-31",
+          "financial_statements.period_ending_date.value": null
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Synthetic native shape only; no actual SDK or market response executed.",
+    "WR10 endpoint correctness is separately assigned; these date fixtures intentionally place snapshots inside both old and new request intervals.",
+    "Budget bridge remains the explicitly declared missing integration; this review changes no budgets, registry entries, production or developer files.",
+    "No financial validity or stage2/full-system acceptance follows from this scoped software result."
+  ],
+  "artifact_sha256": {
+    "bad-baseline-command.json": "191faddd355095830645c017b4db356e93eb3886a7226dc7b944c00d4cb6f7e9",
+    "build_report.py": "2cedcd02165b426b21b0920589e20bf7f8fef1514a7cdb1447ed9c47fe56f062",
+    "collection-baseline.diff": "44c137a584b58ddcfc66f7b04876e43d31d7938f6d4f8474ffd2114ba0c937f3",
+    "first_output.txt": "97905a06d7df9e780caf8c6f8c5eb12abadb61e727e6e9b9c158b30936ac56be",
+    "first_results.json": "1c02b3c975da2f35b3f211836c2e703872e8ab0a5ed9001ac52d9eefdd942f76",
+    "good-baseline-command.json": "702e96ea35d9928efea2aa41f784961c044f2e183481d68be0295a3767a15457",
+    "historical_source-baseline.diff": "67953319a7e0243173e5203ac064a9a9053bb5541f5e395ab33d09b950338e82",
+    "independent_date_cache.py": "c99943847bd5fcf372d3829d25963f5125746665c0116d28df81d222e885a6bd"
+  }
+}

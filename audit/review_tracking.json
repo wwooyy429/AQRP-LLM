@@ -1,15 +1,15 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
-  "source_manifest_hash": "ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb",
+  "reviewed_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "accepted_stages": [
     0,
     1
   ],
-  "acceptance_scope": "阶段0/1原d0已验范围保留；fbe新增源适配失败，本次修复候选待独立复验",
-  "software_acceptance": "failed_new_snapshot_source_on_reviewed_fbe; prior_stage0_stage1_scope_retained",
+  "acceptance_scope": "WR-09/10及本轮覆盖的已实现离线计算和采集接口；阶段0/1原已验范围保留",
+  "software_acceptance": "passed_after_fix_in_tested_offline_scope_on_7bf; stage2_pending; whole_system_not_accepted",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -34,13 +34,11 @@
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
       "implementation": "工程桥、小样例及历史快照采集离线候选已实现",
-      "evidence": "固定fbe独立采集19通过、源8中7过1败、边界3中1过2败；原件归档",
-      "blocking_findings": [
-        "WR-09",
-        "WR-10"
-      ],
-      "status": "failed_pending_independent_repair_review",
-      "scope": "开发侧修复已实现但未独立复验；实际平台和完整数据未认证"
+      "evidence": "固定7bf独立仓库336、归档源8/边界3/采集19、新日期缓存9及端点12通过，覆盖重叠不累计",
+      "blocking_findings": [],
+      "status": "pending_acceptance",
+      "scope": "已测离线接口通过；预算桥、平台运行及完整数据认证仍缺证据",
+      "implemented_offline_scope": "passed_after_fix"
     },
     {
       "stage": 3,
@@ -85,20 +83,17 @@
       "status": "not_accepted"
     }
   ],
-  "known_open_findings": [
-    "WR-09",
-    "WR-10"
-  ],
+  "known_open_findings": [],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-06": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-07": "independently_verified_resolved_in_tested_scope_on_7b0dcce",
     "WR-08": "independently_verified_resolved_in_tested_scope_on_d0b9c98",
-    "WR-09": "fixed_in_new_candidate_pending_independent_verification",
-    "WR-10": "fixed_in_new_candidate_pending_independent_verification"
+    "WR-09": "independently_verified_resolved_in_tested_scope_on_7bf716f",
+    "WR-10": "independently_verified_resolved_in_tested_scope_on_7bf716f"
   },
-  "latest_independent_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261026-7bf716f-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/wr09_wr10/developer_verification.json",
   "current_handoff": "docs/review/wr09-wr10.md",
   "historical_accepted_version": {
@@ -520,6 +515,179 @@
         }
       ],
       "latest_independent_report": "audit/reviews/20261026-7b0dcce-windows/formal_report.json"
+    },
+    {
+      "reviewed_source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+      "source_manifest_hash": "ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb",
+      "software_acceptance": {
+        "overall": "failed",
+        "scope": "fbe新增历史快照源适配",
+        "blocking_findings": [
+          "WR-09",
+          "WR-10"
+        ],
+        "existing_stage0_stage1": "原已验范围回归通过",
+        "snapshot_collector": "通过已覆盖的独立合成范围",
+        "snapshot_source": "failed",
+        "whole_system": "not_accepted"
+      },
+      "stage_results": [
+        {
+          "stage": 0,
+          "modules": "规范、配置、身份、Registry、原子准入",
+          "implementation": "既有工程核心保持，新目录/计划身份已纳清单",
+          "evidence": "仓库322、准入19、适配56、95静态检查、两次稳定构建",
+          "status": "passed_after_fix",
+          "scope": "原已验离线范围及本轮身份/配置回归；不授予采集执行许可",
+          "blocking_findings": []
+        },
+        {
+          "stage": 1,
+          "modules": "因子、PIT、标签、模型、共享评价",
+          "implementation": "原d0实现未改",
+          "evidence": "322仓库及12/10/16/19/56、d0摘要11/兼容8回归通过",
+          "status": "passed_after_fix",
+          "scope": "原已验离线范围及数值精度限制保留",
+          "blocking_findings": []
+        },
+        {
+          "stage": 2,
+          "modules": "历史快照采集、缓存、源适配、QC任务桥",
+          "implementation": "新增采集库/源适配/元数据CLI；预算任务桥尚未接入",
+          "evidence": "采集19/19；源主套8方法7过1败；边界3方法1过2败；官方固定源码合同",
+          "status": "failed",
+          "scope": "新增源适配范围失败；预算桥、部署、LEAN终态及完整数据认证仍待完成",
+          "blocking_findings": [
+            "WR-09",
+            "WR-10"
+          ]
+        },
+        {
+          "stage": 3,
+          "modules": "滚动Research评价",
+          "implementation": "部分指标及六轮合成链已实现",
+          "evidence": "既有12/10和d0摘要11/兼容8回归通过",
+          "status": "pending_acceptance",
+          "scope": "原已实现离线统计范围保持；完整Research未验收",
+          "blocking_findings": []
+        },
+        {
+          "stage": 4,
+          "modules": "订单、成交、成本、风险、账本",
+          "implementation": "工程宿主/接口，完整交易验证未交付",
+          "evidence": "既有离线回归，未新增真实交易链证据",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 5,
+          "modules": "GPT提案、受限网关、控制器",
+          "implementation": "部分接口已实现；模型及额度未配置",
+          "evidence": "既有离线回归；真实GPT闭环未执行",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 6,
+          "modules": "去重、相关、搜索、组合增量",
+          "implementation": "部分接口已实现，完整搜索/增量未交付",
+          "evidence": "相关接口回归通过；无实际搜索证据",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 7,
+          "modules": "冻结、独立最终执行、前向、监控",
+          "implementation": "门禁存在；完整执行/前向证据未交付",
+          "evidence": "分区、暴露、关闭开关不变",
+          "status": "not_accepted",
+          "blocking_findings": []
+        }
+      ],
+      "latest_independent_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json"
+    },
+    {
+      "reviewed_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+      "source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
+      "software_acceptance": {
+        "status": "passed_after_fix",
+        "scope": "WR09/10及本轮覆盖的已实现离线计算/采集接口",
+        "new_blocking_findings": [],
+        "stage2": "pending_acceptance",
+        "whole_system": "not_accepted"
+      },
+      "stage_results": [
+        {
+          "stage": 0,
+          "modules": "规范、配置、身份、Registry、准入",
+          "implementation": "原工程核心及计划身份保持",
+          "evidence": "336仓库、准入19、适配56、219静态检查、两次稳定构建",
+          "status": "passed_after_fix",
+          "scope": "原已验离线工程及本轮身份回归，不授予真实采集执行许可",
+          "blocking_findings": []
+        },
+        {
+          "stage": 1,
+          "modules": "因子、PIT、标签、模型、共享评价",
+          "implementation": "原d0计算内核未改",
+          "evidence": "既有12/10/16/19/56、d0的11/8均通过",
+          "status": "passed_after_fix",
+          "scope": "原已验离线范围及精度限制保留",
+          "blocking_findings": []
+        },
+        {
+          "stage": 2,
+          "modules": "历史快照采集、源适配、缓存、QC任务桥",
+          "implementation": "WR09/10源适配及缓存读取已修复；远端采集预算桥未接入",
+          "evidence": "归档8/3/19通过；新增日期缓存9、端点12通过；原失败负对照保留",
+          "status": "pending_acceptance",
+          "implemented_offline_scope": "passed_after_fix",
+          "scope": "已测离线采集范围通过；仍缺预算桥、新版部署运行、旧LEAN终态及完整数据认证",
+          "blocking_findings": []
+        },
+        {
+          "stage": 3,
+          "modules": "滚动Research评价",
+          "implementation": "部分指标及六轮合成链已实现",
+          "evidence": "既有摘要11/兼容8回归通过",
+          "status": "pending_acceptance",
+          "scope": "已实现离线范围保持，完整Research未验收",
+          "blocking_findings": []
+        },
+        {
+          "stage": 4,
+          "modules": "组合、订单、成交、成本、风险、账本",
+          "implementation": "工程宿主/接口，完整交易验证未交付",
+          "evidence": "未新增真实完整交易证据",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 5,
+          "modules": "GPT提案、网关、控制器",
+          "implementation": "部分接口，模型及额度未配置",
+          "evidence": "离线回归，真实GPT闭环未执行",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 6,
+          "modules": "去重、相关、搜索、组合增量",
+          "implementation": "部分接口，完整搜索及增量未交付",
+          "evidence": "相关接口回归通过，无实际搜索证据",
+          "status": "not_accepted",
+          "blocking_findings": []
+        },
+        {
+          "stage": 7,
+          "modules": "冻结、独立最终执行、前向、监控",
+          "implementation": "门禁存在，完整执行及前向证据未交付",
+          "evidence": "分区、暴露及关闭开关不变",
+          "status": "not_accepted",
+          "blocking_findings": []
+        }
+      ],
+      "latest_independent_report": "audit/reviews/20261026-7bf716f-windows/formal_report.json"
     }
   ],
   "repair_acceptance": {
@@ -557,14 +725,42 @@
       "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4"
     },
     "WR-09": {
-      "status": "pending_independent_verification",
-      "reviewed_failure_source": "fbe2454e6ea10aa59211c01f236c54bb251527be",
-      "developer_evidence": "audit/review_packages/wr09_wr10/developer_verification.json"
+      "status": "passed_after_fix_in_tested_scope",
+      "locations": {
+        "cloud/qresearch/historical_source.py": [
+          84,
+          99
+        ],
+        "cloud/qresearch/collection.py": [
+          212,
+          218
+        ]
+      },
+      "missing_dates": null,
+      "each_missing_count": 1,
+      "valid_fallback_preserved": true,
+      "date_0001_01_02_preserved": true,
+      "old_bad_cache_rejected_without_write_or_fetch": true,
+      "old_good_cache_reused": true,
+      "full_new_chain": "两窗5行，两个日期缺失数1/4，重读无新调用",
+      "source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+      "original_failure_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json"
     },
     "WR-10": {
-      "status": "pending_independent_verification",
-      "reviewed_failure_source": "fbe2454e6ea10aa59211c01f236c54bb251527be",
-      "developer_evidence": "audit/review_packages/wr09_wr10/developer_verification.json"
+      "status": "passed_after_fix_in_tested_scope",
+      "locations": {
+        "cloud/qresearch/historical_source.py": [
+          120,
+          127,
+          174,
+          177
+        ]
+      },
+      "mechanism": "UTC绝对时间线上两个请求端点各减1微秒，再转NY naive；行验证仍保留原[start,end)",
+      "coverage": "1/2/7日、多年份春秋DST、20日连续窗口、末微秒、UTC等价、重复小时、空窗、最终边界及异常响应",
+      "arbitrary_dotnet_100ns_tick_equivalence_certified": false,
+      "source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+      "original_failure_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json"
     }
   },
   "whole_system_acceptance": "not_accepted",
@@ -616,10 +812,19 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "pending_fixed_commit_independent_review; accepted_stages retain original d0 scope only",
+  "new_candidate_acceptance": "7bf_fixed_source_accepted_only_in_tested_offline_scope; archival_commit_does_not_change_accepted_identity",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
-    "status": "retained_original_accepted_scope_by_fbe_review"
+    "status": "retained_original_accepted_scope_by_7bf_review"
+  },
+  "independent_review_execution_scope": {
+    "source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+    "repository_methods": 336,
+    "new_date_cache_methods": 9,
+    "new_interval_methods": 12,
+    "counts_overlap": true,
+    "real_SDK_executed": false,
+    "market_or_model_calls": 0
   }
 }

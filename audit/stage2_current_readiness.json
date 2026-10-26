@@ -1,16 +1,16 @@
 {
-  "schema_version": 2,
-  "kind": "stage2_snapshot_collection_candidate_not_deployed",
-  "accepted_offline_source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
-  "accepted_source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
+  "schema_version": 3,
+  "kind": "post_7bf_offline_acceptance_stage2_remaining_gaps",
+  "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
     0,
     1
   ],
-  "stage2_status": "failed_reviewed_fbe_source_pending_independent_repair_review",
+  "stage2_status": "pending_acceptance",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261026-fbe2454-windows/formal_report.json",
-  "deployment_comparison_scope": "Accepted d0 local manifest versus archived old75 cloud manifest; not a new QC readback",
+  "latest_independent_report": "audit/reviews/20261026-7bf716f-windows/formal_report.json",
+  "deployment_comparison_scope": "Historical d0-versus-old75 table retained; latest7bf reviewer comparison separately recorded; no new platform read by archiving developer",
   "deployment_file_count": 25,
   "deployment_differences": [
     {
@@ -75,23 +75,22 @@
     "lean": 1
   },
   "blockers": [
+    "collection_remote_protocol_and_existing_registry_atomic_budget_admission",
     "existing_LEAN_delivered_terminal_and_reconciled_result",
-    "new_candidate_fixed_commit_independent_review",
-    "new_collection_remote_protocol_and_budget_admission",
-    "accepted_new_implementation_cloud_deployment_and_runtime_evidence",
-    "historical_US200_and_financial_PIT_data_certification"
+    "new_implementation_cloud_deployment_and_completed_runtime_evidence",
+    "historical_US200_financial_PIT_and_corporate_action_certification"
   ],
-  "source_configuration_budget_changed": true,
+  "source_configuration_budget_changed": false,
   "market_calls": 0,
   "model_API_calls": 0,
   "new_independent_review_dispatched": false,
   "financial_evidence": false,
-  "source_changed": true,
+  "source_changed": false,
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
   "candidate_development_document": "docs/review/wr09-wr10.md",
-  "new_candidate_independently_accepted": false,
+  "new_candidate_independently_accepted": true,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
     "frozen_snapshot_collection_plan",
@@ -104,16 +103,17 @@
     "verified_complete_financial_value_catalog",
     "actual_vendor_receipt_and_vintage_certification"
   ],
-  "known_open_findings": [
-    "WR-09",
-    "WR-10"
-  ],
-  "developer_fixes_pending_independent_verification": [
-    "WR-09",
-    "WR-10"
-  ],
-  "source_changed_this_round": [
-    "cloud/qresearch/historical_source.py",
-    "cloud/qresearch/collection.py"
-  ]
+  "known_open_findings": [],
+  "developer_fixes_pending_independent_verification": [],
+  "source_changed_this_round": [],
+  "accepted_offline_scope": "WR09/10及本轮覆盖的已实现离线计算/采集接口",
+  "new_candidate_acceptance_scope": "fixed_7bf_tested_offline_interfaces_only_not_stage2_or_financial_acceptance",
+  "documentation_and_archival_metadata_changed": true,
+  "platform_comparison_from_independent_review": {
+    "candidate_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+    "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "old75_matching_files": 25,
+    "candidate_different_or_missing_paths": 9,
+    "this_archival_turn_new_QC_read": false
+  }
 }

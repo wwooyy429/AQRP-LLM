@@ -1,0 +1,3420 @@
+{
+  "candidate_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
+  "previous_independently_reviewed_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "actually_executed": "Read-only raw Git/previous artifact byte hashes, AST and journal/metadata parsing",
+  "unit_test_methods_executed_by_this_script": 0,
+  "platform_calls_by_this_script": 0,
+  "delivery_ZIP_supplied": false,
+  "check_count": 219,
+  "passed_checks": 219,
+  "failed_checks": 0,
+  "Git": {
+    "tracked_source_files": 451,
+    "exact_disk_byte_match": true,
+    "entire_raw_file_hash_map_sha256": "b8c960b243e75b9e22344b3835b9d21a54c8a1a228225bc4623c875c8c33f159"
+  },
+  "source_manifest": {
+    "count": 97,
+    "hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
+    "previous_fbe_count": 94,
+    "previous_fbe_hash": "ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb",
+    "original_d0_acceptance_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45"
+  },
+  "complete_fbe_to_candidate_diff": [
+    {
+      "path": ".gitattributes",
+      "kind": "modified",
+      "baseline_raw_sha256": "47026c11fb60d4e6d2d345dfbafbc8b4d83a570daa1df036b33780d6d143090a",
+      "candidate_raw_sha256": "09dd3882441f8795b209bb140f51df3f6324e5774e350033004fae6bb75c2d96"
+    },
+    {
+      "path": "README.md",
+      "kind": "modified",
+      "baseline_raw_sha256": "e1a36e165dd30dbaa9eb3c411b9b58bf9f2f7c5cbd4bf13029d45bb6fb4c3b41",
+      "candidate_raw_sha256": "efc9d1647994d206ae4d2bbd00a22690489960859d1fa0c9033474aa8c1fccfb"
+    },
+    {
+      "path": "audit/deployment.json",
+      "kind": "modified",
+      "baseline_raw_sha256": "37c953280d8bd49497b6b0dbe5f6e458cc27c37d2caaaa963dec88e20a2d070d",
+      "candidate_raw_sha256": "69d007ec199e1ea48ae3b3d26beef36357f98da2b93d4571ba16e75d224c419e"
+    },
+    {
+      "path": "audit/review_packages/wr09_wr10/developer_archive_replays.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "0c654069f538bd602a108e439f060431f194ba53129579fea36d407606d2add7"
+    },
+    {
+      "path": "audit/review_packages/wr09_wr10/developer_verification.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6a73e668e46d2da1be23ebb0a5e03bbc7758a39929f1d08a74925d968cedd708"
+    },
+    {
+      "path": "audit/review_packages/wr09_wr10/original_public_reproductions.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6ad19f77cdaeef8d242c4d1dccc132727943ec3641595c92606171c108b70d65"
+    },
+    {
+      "path": "audit/review_packages/wr09_wr10/original_wr09-original-byte.stderr",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f87b092d4c3ab1ac573e882ee88f7ca6f6f8390bd379f7f02bb9fe89295380e9"
+    },
+    {
+      "path": "audit/review_packages/wr09_wr10/original_wr09-original-byte.stdout",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/review_tracking.json",
+      "kind": "modified",
+      "baseline_raw_sha256": "225067f3f2a6f943b5fa17923e80100e703c9828fbb7a2d01bb7f79d3f5b8df1",
+      "candidate_raw_sha256": "96b80acd9813b1e96ef1ff48145837ea41fbf2f19469db356b8a9c56ed53f6ff"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/RUN_REVIEW.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "df94d35769bf7bb5ef41253bf873640dd93ac119e13c5c804a43a78658a43731"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/archive_manifest.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "14796b0aff9f14c168abd957baf396fa4ecc85025631ffd99b651c716fc319cb"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/bundle_checksums.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "bf14290b96626f9d8e586e16888d48364bb24b5aa1196676cf3f1daf3ee17739"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/build_report.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "7f8f45ae9475f9a6627d6e392aff825891f9d146f03e92238688215600278216"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/first_independent_collection.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "bcaa6010439e5b4dfa5fd098cae6bc23979603b672bec8079ca491177512afa0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/first_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "8cce15130700cdf14f1c114997637f9e19f169245d7ae91b57184e9abb167f72"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/first_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3766f2b4460ecf0e0020fc6f5c34448f77c6a622a59908ac046ccc07c789b23"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/independent_collection.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "eb1b037ad0be98ec582762a16ccf5906f4317d7815af3d7e410f198560b6d403"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/review_report.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "56843ad09363a6721716ee9b3591f276f2c7bc3d816d753738394ae73d296452"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/verification_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "c917488048b4b0f852cd46f14058a6e8388e76be7b5c5b13c8a1aef506539436"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/collection_agent/verification_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "1d24237f8aea3dd57f73fd042ca6a11e709c819c150b9e57f82b34d0031927ad"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/environment.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "ad530524f7354e0831eda8e205db0fa0664830fabc76063bc0fba9d5b4e4a7b4"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_1.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_1.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "d8d37050277e7a56f2f75a8d902fcfba69636f24012ff1274a3ac538573a9466"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_2.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_2.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "d8d37050277e7a56f2f75a8d902fcfba69636f24012ff1274a3ac538573a9466"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_stability.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "fe7cbe9d92ef42f660ceef032a190b8a5d7c1fff8744e45a5eef0b32ac9f1bc7"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/build_stability.json.sha256",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "07706a3b9a2dc76e0cdde5b88cf435b419b18562a30eb4434e78521e2eb4b6ce"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/compare_qc_and_build.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "42218dfbfdc4d9cb3e62f80e9712dad602e1be792228dafa07c6387e8a8585fe"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/delivery_evidence_report.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "54c517238e05b5af07827610c85601798b6df6b44739ea84dee54b447b1507ca"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/delivery_evidence_report.sha256",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e8d25ea78f4e29a280482a18f9abad354899ed18aabcd8eff5e49cd380e93042"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/qc_readback_comparison.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "31150c43f3d6a1ce18e06efedcba71cafd7330bf4c10221a62c4735f8dc1637d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/qc_readback_comparison.json.sha256",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f8331b45112ef94a13c38af1db0c837af7f686da749bb649cb13d63794a7fc5a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/evidence_agent/verify_delivery.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "58fdcf1ff699def62e2f314accd47e2b96ca4a0b3787d0540f8583d4ee02b81f"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/formal_report.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "ba9a72b5a900ac424c93be7b9aecefe3c68c1e9bd6654f50d0b2d71cc8692026"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/formal_report.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "25eb573f35dd72dd20bd5ed8c91351497edd061187f4e416f00b0b4d5a7f2158"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/github_metadata.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "30d9fa2407890e5f0f0a296e81d9c03f4a4931738887d028b588d0881e290e03"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/minimal_history_boundary.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "80257575327ca1d712497a205074db0dc4c2e40a0ff63ee2ac6935ed838f0a44"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/minimal_missing_date.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "05a87b3191f00783d3bb068ef2124a5f70e613ffa721f4cd42402619a5fe49ff"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/replay_public_class.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f91f8dcb89988500583e017c231899fc32667e0f58a3d41be3bd7e262eed636d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/requirements-audit.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "721ed9b794f41bb99bf1feeec407b45dc3a6b4d2311bb3a0976bcbe9241c88ff"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_boundary.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e0e285eb33cd56f3d0aaf88799ae9b1d3f172d40f8be4cc0bb75d00229e36f5f"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_boundary.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "ce44d78faeeb4f64f8cd4c7c39d9538a6e2c8546a1a4902b8add5d91595f3448"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_boundary_execution.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "00ad2e7aa70bf7ce67fc3824fdec6bb3e40605dd410c0de6d1f8021abe98c4bd"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_boundary_result.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "bcec73f4d6e109ba305d3e073bf079fdc37c1a0b7aa7ad727f0dd70664ef8cd0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_execution_records.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "a68b4652efef39ec2c4b6214625d31cd1a6bac2db54ccf3e8c540868587d944c"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_missing_date.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "1fe20c595a29f6aebdd044fc960b08c7554934ed3174be76162ee0c1bfdfaff4"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_missing_date.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "7b78e2ab439cefc569d97db8063dbf70e3ef7e34e17809ff8a8b2a01ccdbb836"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/root_missing_date_result.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "fbbc0e08c4def5d8ca3265e436dd553046224b3e85a7963cb2b2b02dce4dc4b5"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/run_boundary_confirmation.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "2650c6ab738e4629eed0e545d563b7c51ef77c955c97626225185d2cabc5f95a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/run_main_checks.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "04948dfc3a569d69b9dc4df95f1ea424d692963efff4ce8565a662be45439fc0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/run_offline_review.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "8e4251e08e37cef16cc16284335f475aecf903d839372c51c528a5273c888d8e"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/run_root_confirmation.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "eb36d02f353a3ed5fd0c785b291391f57da0439fcd32403716111b759f288d92"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "4756673e46a95a03045e8adf5d68e837c8a1143ea52bfbdfec04175634c56289"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic/output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "48db0687ad874df9b299dc5ce71ba7950295645e785821694da93ea4a5bd85a0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic/process_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "84e96ba6cf26e1ed80fb76fd9eb6b3b4bcb6fd98c60f4153c00e397a324f2b0a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic/replay.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "3d486a39306dc7a48a81a2a8e8db4452b580036ed8480ec3015b1baac952bb3d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_atomic/results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f75f196e1dac45812405431e02464248e22cc35fbea91e132cb1173a9904eeec"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "81d6d6cbfc26d55d928395e932dc052e006023faa1debece088ab280cc561d93"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility/process_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "b1177117bdf3d9a077d61ab9282a872e780eeee66f1adc5d632ab4402770f3ab"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility/replay.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e013cc8fe35d76663e1c924069e096ada47d4abf12f952d34a61c1daf8a105f1"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility/test_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "9e1da5c411a3709398479ca74200528efbadad6b623bdc02af44568b8afd72f0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_compatibility/test_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "b6fb7ee3921dbd1fe4b922b82d189363ac919e87247792058b197becce06a727"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dd53024fdd919da9339233e624ff2b1a1bd9f0b23b178d866099f26931a5f932"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric/process_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "4e75efc75fafc0575517b9126da7be5aab92bd0adf377180967c6cf810daf8ea"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric/replay.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "3d7f2e3b3ba9605fb66bfb791298378d3fd51fcc91c6f38c99d501d015f7b24b"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric/test_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e5587935a3894339c61b05a2273f3644b4593cc8fc4f5de8a7bb5717a51a6da4"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_numeric/test_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "8d4c76d0a10567324dfa3cdc0acd68fb9510dcb2507f516b65bbc1a7ca65c2de"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "38e0db87eca05252b99aff2db74af931ef3aa8c30d94939cc5829be0da08f77a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson/process_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "24c77527b098df0d5288eb293f8f988a108ace80b3380c8615aefac3969f48df"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson/replay.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6e17bb6de5564d60c04ad63682c47fceb87905c460d634d7cb671d5488a06ad1"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson/test_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e48e133df796c6c5d836524961371c96743c063d3a2500a5066d4b4bda2b1c8c"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/archived_pearson/test_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "2b8e1a9e6e0a06dcbca0233595b3371777674e7b6d9926c516752da3a8aed35e"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_compatibility.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_compatibility.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "2fca2184105d52ebb2862119c2923b2922075df5ee90579043ea1a48286f4bcc"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_compatibility/output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "a2607f201f383124c6a036320a6aae335e4e0a8fbd0f7cd4dcfd8de6ea2e24bb"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_compatibility/results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "428f3bb07c0bc38c4f9dd14d931413cb14d8a6dee23f7cc2608818cead4c281e"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_summary.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_summary.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "96032aec94a36cd8db25ac58e0d571da55070e449ca1e998482d9d8fea5ae80f"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_summary/output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "8328696abaa285da3026654d3934dc771600ae81a91fab6a131fdf41bdc93ed7"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/d0_summary/results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e9699b5d14c03f7f739599daa311a0399ab452c8305f3688d07f67dbac0fa89d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/execution_records.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "9b9e13931d61c8b31ca2e8b0786339d67c2a18d9944ae15508cede8229c60ee6"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "c78c4d777870a90f9c3bdd4e31c7afc95cf74ca2cb5004b47e0d9b59a4e7a9d7"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56/independent_test_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e2761260dd8a41c14175274246c74f1f06ad9ef5a98f4edce128a696017e320d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56/independent_test_results.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "4fa868042c0e5904a82c38625279924c937241e03abb2962836c14d4e9ffc775"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56/process_output.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "85f55944bbbdd108c42994b9527a95679a038113f59b32bfaee95cb933273fba"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/previous_adapted_56/replay.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e906cada19188a6fb7482cd03121fa79cfdc7cabf1e796d8e6c5e586c1c984ce"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/repository_source/audit/stage_verification.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "faa260f10245b651157f4518770f0b68bb1016032dbbe7b892e8165f78d3d444"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/repository_verify.stderr.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/runs/repository_verify.stdout.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dd2059601e5dfb6669ea14b5ae6e772c2d3e6e9414168c71f3598b7f22b6560a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/README.md",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "492b9eb0a4f5852349b8d37c7726c07e10ebad8fb698d77bbafe045186259647"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/artifact_hashes.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "8466576769b5b1e719dfc637d127f269ae7a9d41004ae3e834f663e88a71c999"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/capture_official_sources.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "3064c813f35366237798fa6a0343d7885f4af5b5f4ef098eecd3f348c84e9bd4"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/finalize_source_summary.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "50270536bb6ff7cd27090f842747f5830dd5aaeaf71d4c903e7c1fd95ea88b31"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/independent_source_review.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "7022d476eaab65e8ce300a1556aeaeffc6ea0db8427057ab5ddb1c2c6e460ec6"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/minimal_native_endpoint.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "c027004699dc1caa04ab2e4aa6495cd1fb4d5b4e140deaac83ec742d4258ffd7"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/minimal_native_endpoint_result.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6694d0719b2b662d423f146e8de2e964964895ff460639c654816947aa82aa79"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Algorithm__QCAlgorithm.History.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__FineFundamental.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Fundamental.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "89c885e5d5020cf24c6270a3515d1b7d57b634dd369bee861be960a89bfc5343"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__FundamentalUniverse.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__CompanyReference.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "43bf63efa3851b6e44788bf09f3181f1f556b40910e41f0c8a497920fbe6b583"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "43b563dcce806ee14aea742725ca467c1d92306ddaf4842b26ef2dbd988779d8"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "29b7cad6d4ef92fb05c7551581045dea94ab70b1cc1df6416777d8836167b776"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f5605d5a59a4253671cf50d645411a9ff6086075ca1dca0524d2adfb1ffe7cad"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6a4f7802471fdb38c4a6164abedc8091bbf043dc6720223f4b39c436bf8972c5"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__SecurityReference.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "49fbb6ea0c2966fa738da9064f18c8b22d41f6ad0589f8d95ec33ab17add02ce"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__MultiPeriodField.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e6d22fa8a2aa8de1c640fe82768830226dffe7471f6266445456584ed328a9ca"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseDataCollection.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "464415043bef50d74965a338a8d71c12f881d70157e41fc99b25364088df24c1"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "1f74c362342faa23eeddb2cbd31c5fbcbf8edc01f7fd9b1a963c06878925e4d0"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Python__PandasConverter.DataFrameGenerator.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "cf7cfeddfa27f0c025da861f640ef7b958bef2e55db30026071394afbdd7ea25"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Python__PandasData.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "ddbfbd559684f5ba409fb9d4a2ea07324d9fe50c41d1cb770b6c57510cc847a2"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e630da61ea29d4ebffc87bf76029c31d1ce633ba13996c60ecc6f877aab70d5b"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "d77d17b0ef797476ac3c3902324a4d0a833a70dbdce28fdff71adf0ee66a9411"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Research__QuantBook.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static_manifest.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dc00648a3fdec1c723e70f4aa8458f80cc2acc7dceb32d1c3106b13d421dc441"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/review_summary.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "a6ac06a2ecae9ba992b0dd536a8499d43ff5003b5d1eb38141c2f975a9907439"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_counting_correction.diff",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "df2e485ca09869e64d300b8701aa41d3fd9af856fc47a574624aa8e27d13d772"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_harness_correction.diff",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "0456da919669f081740490dbac12c823bc65ae8aba1e7ed2ad9d4e7dbad65d9d"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_output_counted.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "c5a41fae8e74488010e07c5c91b54104153ba4c4dfafe763194e66fc231c6887"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_output_final.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "f30131e541fd208dfcfb31d95e5547c40f82d84062a5371952ebe26da5d6d678"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_output_first.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "6531dddef3818544591f3f6a056e6aef87730618428a44daca9f4a1e1705e839"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_results_counted.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "36efecf08be11931f5b4fc5ab5454cf32ca86e943fe1b5b8f40cf8460a7897a6"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_results_final.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e01e20e1bd0280e6ab0a9494dc69c1f78931b13d9b6cd7cf988e9b49526a3435"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_results_first.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "dde5bbeb1b15f188a34bf9a8eb68c548ba1b09d99b05992af3ec8b773bb4a0d9"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_review.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e6f321b04e1e67c9189f4bdf02f096833c832741331c74b63466b11865dbbf3c"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_review_counted.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "0b0bc14523127331a00bc6f56f77185ffe2aafeb2e3c13abb340938ac2b49591"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/secondary_source_review_first.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "ed8792fb55d0b8a97693cc1366c4135cea608506adb80dd76d73b3ae4f287529"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/source_review_output_first.txt",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "d0b4b7295fe71779a5af10163029b72dd1f85cf49f0c25c5908b0140e0c61d94"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_agent/source_review_results_first.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "aba6328e236c70d6b49186257602025b1e8b666cf218228ac95af77fe7104af2"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/source_git_manifest.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "d577bbee05cbf43dd0a46c448d850eef65d3b2824a0b8c8ef5c369722b8ef46a"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/upstream_factory_extension.json",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "e5acabeffec6fdea7cb018ff8f91e7e954515f743a1eeb546c78753b47288550"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/upstream_history_factory.cs",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1"
+    },
+    {
+      "path": "audit/reviews/20261026-fbe2454-windows/verify_artifacts.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "5627bc57d0cf4cbb2375c90292cb3b7877aa5d31ec7ceefb19fb5ae0dd197c58"
+    },
+    {
+      "path": "audit/stage2_current_readiness.json",
+      "kind": "modified",
+      "baseline_raw_sha256": "c6e7d8689e78b1a241e86307a85754ab4bac6e84858fd3143f03464b13883102",
+      "candidate_raw_sha256": "320adbf51af9f84668c7706bd14ae79431ea9c1b945e74d2d4283bcc61a0c77c"
+    },
+    {
+      "path": "audit/stage_verification.json",
+      "kind": "modified",
+      "baseline_raw_sha256": "c2c52faec2f95ff4005916b5e98e78f374c8837884017af7e6128400b2c4856c",
+      "candidate_raw_sha256": "9f06f0056e68d2a56c7f857435655240ac21038e6a95af1ada011b10c7493db9"
+    },
+    {
+      "path": "cloud/qresearch/collection.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "84a1af8801f98a4c254151f3aee0ffed18ee5031fcc072e46254e5ec1c2e891e",
+      "candidate_raw_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b"
+    },
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "503c83b7e2af4213b2c262fe9c786e28ebc042a2ac1149c31ede98ccd0805887",
+      "candidate_raw_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "280d1014fd125b3ac8d97f19370610ac28e060b680507dcee9ac85766efea49f",
+      "candidate_raw_sha256": "c370d986c828ddf85d8c1fe2938197a7124c1e42eb9c2dd251da273f39ef11fa"
+    },
+    {
+      "path": "docs/review/wr09-wr10.md",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "17f77050def5cec2abeed8d362725fa76cf96e93013e7069a665ea730ea0ac34"
+    },
+    {
+      "path": "docs/stage2-snapshot-collection.md",
+      "kind": "modified",
+      "baseline_raw_sha256": "3e364398c55ffb0d211d83327ed841ba34939f10c63be676e0340033cf94d953",
+      "candidate_raw_sha256": "fe8bf3c596f8b45b6e5e3120c4607d60c3cc6a000e81a9f9aae7f194c428611b"
+    },
+    {
+      "path": "tests/test_historical_source.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "bfafb1c84ca702e4c278ffa5f3ca2619f07e668399884e2db05b5471599924ec",
+      "candidate_raw_sha256": "fc370258cea097c0d83d3bf1ddc133f804dcfa8a9042442e576829a1be836318"
+    },
+    {
+      "path": "tests/test_wr09_missing_dates.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "0179dd5bb9901af350390495d0f913ff1610df2cc8ea154aefda47864cf233c9"
+    },
+    {
+      "path": "tests/test_wr10_history_intervals.py",
+      "kind": "added",
+      "baseline_raw_sha256": null,
+      "candidate_raw_sha256": "211dffb87ad61aad607a32d7025be0b4136cb85d770a7572fb93d9f39cc0fa37"
+    }
+  ],
+  "complete_production_diff": [
+    {
+      "path": "cloud/qresearch/collection.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "84a1af8801f98a4c254151f3aee0ffed18ee5031fcc072e46254e5ec1c2e891e",
+      "candidate_raw_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b"
+    },
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "503c83b7e2af4213b2c262fe9c786e28ebc042a2ac1149c31ede98ccd0805887",
+      "candidate_raw_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "modified",
+      "baseline_raw_sha256": "280d1014fd125b3ac8d97f19370610ac28e060b680507dcee9ac85766efea49f",
+      "candidate_raw_sha256": "c370d986c828ddf85d8c1fe2938197a7124c1e42eb9c2dd251da273f39ef11fa"
+    }
+  ],
+  "old_fbe_original_files": [
+    {
+      "name": "RUN_REVIEW.txt",
+      "sha256": "df94d35769bf7bb5ef41253bf873640dd93ac119e13c5c804a43a78658a43731",
+      "bytes": 1805,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\RUN_REVIEW.txt"
+      ]
+    },
+    {
+      "name": "bundle_checksums.json",
+      "sha256": "bf14290b96626f9d8e586e16888d48364bb24b5aa1196676cf3f1daf3ee17739",
+      "bytes": 389,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\bundle_checksums.json"
+      ]
+    },
+    {
+      "name": "collection_agent/build_report.py",
+      "sha256": "7f8f45ae9475f9a6627d6e392aff825891f9d146f03e92238688215600278216",
+      "bytes": 3354,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\build_report.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\build_report.py"
+      ]
+    },
+    {
+      "name": "collection_agent/first_independent_collection.py",
+      "sha256": "bcaa6010439e5b4dfa5fd098cae6bc23979603b672bec8079ca491177512afa0",
+      "bytes": 19648,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\first_independent_collection.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\first_independent_collection.py"
+      ]
+    },
+    {
+      "name": "collection_agent/first_output.txt",
+      "sha256": "8cce15130700cdf14f1c114997637f9e19f169245d7ae91b57184e9abb167f72",
+      "bytes": 2158,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\first_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\first_output.txt"
+      ]
+    },
+    {
+      "name": "collection_agent/first_results.json",
+      "sha256": "e3766f2b4460ecf0e0020fc6f5c34448f77c6a622a59908ac046ccc07c789b23",
+      "bytes": 2149,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\first_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\first_results.json"
+      ]
+    },
+    {
+      "name": "collection_agent/independent_collection.py",
+      "sha256": "eb1b037ad0be98ec582762a16ccf5906f4317d7815af3d7e410f198560b6d403",
+      "bytes": 19742,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\independent_collection.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\independent_collection.py"
+      ]
+    },
+    {
+      "name": "collection_agent/review_report.json",
+      "sha256": "56843ad09363a6721716ee9b3591f276f2c7bc3d816d753738394ae73d296452",
+      "bytes": 11685,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\review_report.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\review_report.json"
+      ]
+    },
+    {
+      "name": "collection_agent/verification_output.txt",
+      "sha256": "c917488048b4b0f852cd46f14058a6e8388e76be7b5c5b13c8a1aef506539436",
+      "bytes": 2158,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\verification_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\verification_output.txt"
+      ]
+    },
+    {
+      "name": "collection_agent/verification_results.json",
+      "sha256": "1d24237f8aea3dd57f73fd042ca6a11e709c819c150b9e57f82b34d0031927ad",
+      "bytes": 2149,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\collection_agent\\verification_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\collection_agent\\verification_results.json"
+      ]
+    },
+    {
+      "name": "environment.json",
+      "sha256": "ad530524f7354e0831eda8e205db0fa0664830fabc76063bc0fba9d5b4e4a7b4",
+      "bytes": 452,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\environment.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\environment.json"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_1.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_1.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_1.stderr.txt"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_1.stdout.txt",
+      "sha256": "d8d37050277e7a56f2f75a8d902fcfba69636f24012ff1274a3ac538573a9466",
+      "bytes": 137,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_1.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_1.stdout.txt"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_2.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_2.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_2.stderr.txt"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_2.stdout.txt",
+      "sha256": "d8d37050277e7a56f2f75a8d902fcfba69636f24012ff1274a3ac538573a9466",
+      "bytes": 137,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_2.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_2.stdout.txt"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_stability.json",
+      "sha256": "fe7cbe9d92ef42f660ceef032a190b8a5d7c1fff8744e45a5eef0b32ac9f1bc7",
+      "bytes": 2352,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_stability.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_stability.json"
+      ]
+    },
+    {
+      "name": "evidence_agent/build_stability.json.sha256",
+      "sha256": "07706a3b9a2dc76e0cdde5b88cf435b419b18562a30eb4434e78521e2eb4b6ce",
+      "bytes": 88,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\build_stability.json.sha256",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\build_stability.json.sha256"
+      ]
+    },
+    {
+      "name": "evidence_agent/compare_qc_and_build.py",
+      "sha256": "42218dfbfdc4d9cb3e62f80e9712dad602e1be792228dafa07c6387e8a8585fe",
+      "bytes": 8628,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\compare_qc_and_build.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\compare_qc_and_build.py"
+      ]
+    },
+    {
+      "name": "evidence_agent/delivery_evidence_report.json",
+      "sha256": "54c517238e05b5af07827610c85601798b6df6b44739ea84dee54b447b1507ca",
+      "bytes": 45263,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\delivery_evidence_report.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\delivery_evidence_report.json"
+      ]
+    },
+    {
+      "name": "evidence_agent/delivery_evidence_report.sha256",
+      "sha256": "e8d25ea78f4e29a280482a18f9abad354899ed18aabcd8eff5e49cd380e93042",
+      "bytes": 97,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\delivery_evidence_report.sha256",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\delivery_evidence_report.sha256"
+      ]
+    },
+    {
+      "name": "evidence_agent/qc_readback_comparison.json",
+      "sha256": "31150c43f3d6a1ce18e06efedcba71cafd7330bf4c10221a62c4735f8dc1637d",
+      "bytes": 4457,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\qc_readback_comparison.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\qc_readback_comparison.json"
+      ]
+    },
+    {
+      "name": "evidence_agent/qc_readback_comparison.json.sha256",
+      "sha256": "f8331b45112ef94a13c38af1db0c837af7f686da749bb649cb13d63794a7fc5a",
+      "bytes": 95,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\qc_readback_comparison.json.sha256",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\qc_readback_comparison.json.sha256"
+      ]
+    },
+    {
+      "name": "evidence_agent/verify_delivery.py",
+      "sha256": "58fdcf1ff699def62e2f314accd47e2b96ca4a0b3787d0540f8583d4ee02b81f",
+      "bytes": 19010,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\evidence_agent\\verify_delivery.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\evidence_agent\\verify_delivery.py"
+      ]
+    },
+    {
+      "name": "formal_report.json",
+      "sha256": "ba9a72b5a900ac424c93be7b9aecefe3c68c1e9bd6654f50d0b2d71cc8692026",
+      "bytes": 17666,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\formal_report.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\formal_report.json"
+      ]
+    },
+    {
+      "name": "formal_report.txt",
+      "sha256": "25eb573f35dd72dd20bd5ed8c91351497edd061187f4e416f00b0b4d5a7f2158",
+      "bytes": 13023,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\formal_report.txt"
+      ]
+    },
+    {
+      "name": "github_metadata.json",
+      "sha256": "30d9fa2407890e5f0f0a296e81d9c03f4a4931738887d028b588d0881e290e03",
+      "bytes": 1245,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\github_metadata.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\github_metadata.json"
+      ]
+    },
+    {
+      "name": "minimal_history_boundary.py",
+      "sha256": "80257575327ca1d712497a205074db0dc4c2e40a0ff63ee2ac6935ed838f0a44",
+      "bytes": 2546,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\minimal_history_boundary.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\minimal_history_boundary.py"
+      ]
+    },
+    {
+      "name": "minimal_missing_date.py",
+      "sha256": "05a87b3191f00783d3bb068ef2124a5f70e613ffa721f4cd42402619a5fe49ff",
+      "bytes": 3211,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\minimal_missing_date.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\minimal_missing_date.py"
+      ]
+    },
+    {
+      "name": "replay_public_class.py",
+      "sha256": "f91f8dcb89988500583e017c231899fc32667e0f58a3d41be3bd7e262eed636d",
+      "bytes": 3610,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\replay_public_class.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\replay_public_class.py"
+      ]
+    },
+    {
+      "name": "requirements-audit.txt",
+      "sha256": "721ed9b794f41bb99bf1feeec407b45dc3a6b4d2311bb3a0976bcbe9241c88ff",
+      "bytes": 97,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\requirements-audit.txt"
+      ]
+    },
+    {
+      "name": "root_boundary.stderr.txt",
+      "sha256": "e0e285eb33cd56f3d0aaf88799ae9b1d3f172d40f8be4cc0bb75d00229e36f5f",
+      "bytes": 344,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_boundary.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_boundary.stderr.txt"
+      ]
+    },
+    {
+      "name": "root_boundary.stdout.txt",
+      "sha256": "ce44d78faeeb4f64f8cd4c7c39d9538a6e2c8546a1a4902b8add5d91595f3448",
+      "bytes": 678,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_boundary.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_boundary.stdout.txt"
+      ]
+    },
+    {
+      "name": "root_boundary_execution.json",
+      "sha256": "00ad2e7aa70bf7ce67fc3824fdec6bb3e40605dd410c0de6d1f8021abe98c4bd",
+      "bytes": 599,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_boundary_execution.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_boundary_execution.json"
+      ]
+    },
+    {
+      "name": "root_boundary_result.json",
+      "sha256": "bcec73f4d6e109ba305d3e073bf079fdc37c1a0b7aa7ad727f0dd70664ef8cd0",
+      "bytes": 676,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_boundary_result.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_boundary_result.json"
+      ]
+    },
+    {
+      "name": "root_execution_records.json",
+      "sha256": "a68b4652efef39ec2c4b6214625d31cd1a6bac2db54ccf3e8c540868587d944c",
+      "bytes": 710,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_execution_records.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_execution_records.json"
+      ]
+    },
+    {
+      "name": "root_missing_date.stderr.txt",
+      "sha256": "1fe20c595a29f6aebdd044fc960b08c7554934ed3174be76162ee0c1bfdfaff4",
+      "bytes": 327,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_missing_date.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_missing_date.stderr.txt"
+      ]
+    },
+    {
+      "name": "root_missing_date.stdout.txt",
+      "sha256": "7b78e2ab439cefc569d97db8063dbf70e3ef7e34e17809ff8a8b2a01ccdbb836",
+      "bytes": 1047,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_missing_date.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_missing_date.stdout.txt"
+      ]
+    },
+    {
+      "name": "root_missing_date_result.json",
+      "sha256": "fbbc0e08c4def5d8ca3265e436dd553046224b3e85a7963cb2b2b02dce4dc4b5",
+      "bytes": 1045,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\root_missing_date_result.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\root_missing_date_result.json"
+      ]
+    },
+    {
+      "name": "run_boundary_confirmation.py",
+      "sha256": "2650c6ab738e4629eed0e545d563b7c51ef77c955c97626225185d2cabc5f95a",
+      "bytes": 899,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\run_boundary_confirmation.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\run_boundary_confirmation.py"
+      ]
+    },
+    {
+      "name": "run_main_checks.py",
+      "sha256": "04948dfc3a569d69b9dc4df95f1ea424d692963efff4ce8565a662be45439fc0",
+      "bytes": 1981,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\run_main_checks.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\run_main_checks.py"
+      ]
+    },
+    {
+      "name": "run_offline_review.py",
+      "sha256": "8e4251e08e37cef16cc16284335f475aecf903d839372c51c528a5273c888d8e",
+      "bytes": 3054,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\run_offline_review.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\run_offline_review.py"
+      ]
+    },
+    {
+      "name": "run_root_confirmation.py",
+      "sha256": "eb36d02f353a3ed5fd0c785b291391f57da0439fcd32403716111b759f288d92",
+      "bytes": 988,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\run_root_confirmation.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\run_root_confirmation.py"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic.stdout.txt",
+      "sha256": "4756673e46a95a03045e8adf5d68e837c8a1143ea52bfbdfec04175634c56289",
+      "bytes": 66,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic/output.txt",
+      "sha256": "48db0687ad874df9b299dc5ce71ba7950295645e785821694da93ea4a5bd85a0",
+      "bytes": 1475,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic\\output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic\\output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic/process_output.txt",
+      "sha256": "84e96ba6cf26e1ed80fb76fd9eb6b3b4bcb6fd98c60f4153c00e397a324f2b0a",
+      "bytes": 1589,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic\\process_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic\\process_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic/replay.json",
+      "sha256": "3d486a39306dc7a48a81a2a8e8db4452b580036ed8480ec3015b1baac952bb3d",
+      "bytes": 13327,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic\\replay.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic\\replay.json"
+      ]
+    },
+    {
+      "name": "runs/archived_atomic/results.json",
+      "sha256": "f75f196e1dac45812405431e02464248e22cc35fbea91e132cb1173a9904eeec",
+      "bytes": 8118,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_atomic\\results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_atomic\\results.json"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility.stdout.txt",
+      "sha256": "81d6d6cbfc26d55d928395e932dc052e006023faa1debece088ab280cc561d93",
+      "bytes": 73,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility/process_output.txt",
+      "sha256": "b1177117bdf3d9a077d61ab9282a872e780eeee66f1adc5d632ab4402770f3ab",
+      "bytes": 110,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility\\process_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility\\process_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility/replay.json",
+      "sha256": "e013cc8fe35d76663e1c924069e096ada47d4abf12f952d34a61c1daf8a105f1",
+      "bytes": 5048,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility\\replay.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility\\replay.json"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility/test_output.txt",
+      "sha256": "9e1da5c411a3709398479ca74200528efbadad6b623bdc02af44568b8afd72f0",
+      "bytes": 1204,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility\\test_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility\\test_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_compatibility/test_results.json",
+      "sha256": "b6fb7ee3921dbd1fe4b922b82d189363ac919e87247792058b197becce06a727",
+      "bytes": 297,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_compatibility\\test_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_compatibility\\test_results.json"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric.stdout.txt",
+      "sha256": "dd53024fdd919da9339233e624ff2b1a1bd9f0b23b178d866099f26931a5f932",
+      "bytes": 67,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric/process_output.txt",
+      "sha256": "4e75efc75fafc0575517b9126da7be5aab92bd0adf377180967c6cf810daf8ea",
+      "bytes": 1590,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric\\process_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric\\process_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric/replay.json",
+      "sha256": "3d7f2e3b3ba9605fb66bfb791298378d3fd51fcc91c6f38c99d501d015f7b24b",
+      "bytes": 6119,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric\\replay.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric\\replay.json"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric/test_output.txt",
+      "sha256": "e5587935a3894339c61b05a2273f3644b4593cc8fc4f5de8a7bb5717a51a6da4",
+      "bytes": 1430,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric\\test_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric\\test_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_numeric/test_results.json",
+      "sha256": "8d4c76d0a10567324dfa3cdc0acd68fb9510dcb2507f516b65bbc1a7ca65c2de",
+      "bytes": 1431,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_numeric\\test_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_numeric\\test_results.json"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson.stdout.txt",
+      "sha256": "38e0db87eca05252b99aff2db74af931ef3aa8c30d94939cc5829be0da08f77a",
+      "bytes": 67,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson/process_output.txt",
+      "sha256": "24c77527b098df0d5288eb293f8f988a108ace80b3380c8615aefac3969f48df",
+      "bytes": 111,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson\\process_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson\\process_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson/replay.json",
+      "sha256": "6e17bb6de5564d60c04ad63682c47fceb87905c460d634d7cb671d5488a06ad1",
+      "bytes": 5556,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson\\replay.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson\\replay.json"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson/test_output.txt",
+      "sha256": "e48e133df796c6c5d836524961371c96743c063d3a2500a5066d4b4bda2b1c8c",
+      "bytes": 1125,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson\\test_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson\\test_output.txt"
+      ]
+    },
+    {
+      "name": "runs/archived_pearson/test_results.json",
+      "sha256": "2b8e1a9e6e0a06dcbca0233595b3371777674e7b6d9926c516752da3a8aed35e",
+      "bytes": 773,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\archived_pearson\\test_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\archived_pearson\\test_results.json"
+      ]
+    },
+    {
+      "name": "runs/d0_compatibility.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_compatibility.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_compatibility.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_compatibility.stdout.txt",
+      "sha256": "2fca2184105d52ebb2862119c2923b2922075df5ee90579043ea1a48286f4bcc",
+      "bytes": 108,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_compatibility.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_compatibility.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_compatibility/output.txt",
+      "sha256": "a2607f201f383124c6a036320a6aae335e4e0a8fbd0f7cd4dcfd8de6ea2e24bb",
+      "bytes": 860,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_compatibility\\output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_compatibility\\output.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_compatibility/results.json",
+      "sha256": "428f3bb07c0bc38c4f9dd14d931413cb14d8a6dee23f7cc2608818cead4c281e",
+      "bytes": 5599,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_compatibility\\results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_compatibility\\results.json"
+      ]
+    },
+    {
+      "name": "runs/d0_summary.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_summary.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_summary.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_summary.stdout.txt",
+      "sha256": "96032aec94a36cd8db25ac58e0d571da55070e449ca1e998482d9d8fea5ae80f",
+      "bytes": 111,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_summary.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_summary.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_summary/output.txt",
+      "sha256": "8328696abaa285da3026654d3934dc771600ae81a91fab6a131fdf41bdc93ed7",
+      "bytes": 1187,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_summary\\output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_summary\\output.txt"
+      ]
+    },
+    {
+      "name": "runs/d0_summary/results.json",
+      "sha256": "e9699b5d14c03f7f739599daa311a0399ab452c8305f3688d07f67dbac0fa89d",
+      "bytes": 5277,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\d0_summary\\results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\d0_summary\\results.json"
+      ]
+    },
+    {
+      "name": "runs/execution_records.json",
+      "sha256": "9b9e13931d61c8b31ca2e8b0786339d67c2a18d9944ae15508cede8229c60ee6",
+      "bytes": 5337,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\execution_records.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\execution_records.json"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56.stdout.txt",
+      "sha256": "c78c4d777870a90f9c3bdd4e31c7afc95cf74ca2cb5004b47e0d9b59a4e7a9d7",
+      "bytes": 94,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56.stdout.txt"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56/independent_test_output.txt",
+      "sha256": "e2761260dd8a41c14175274246c74f1f06ad9ef5a98f4edce128a696017e320d",
+      "bytes": 4746,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56\\independent_test_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56\\independent_test_output.txt"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56/independent_test_results.json",
+      "sha256": "4fa868042c0e5904a82c38625279924c937241e03abb2962836c14d4e9ffc775",
+      "bytes": 5492,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56\\independent_test_results.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56\\independent_test_results.json"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56/process_output.txt",
+      "sha256": "85f55944bbbdd108c42994b9527a95679a038113f59b32bfaee95cb933273fba",
+      "bytes": 4850,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56\\process_output.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56\\process_output.txt"
+      ]
+    },
+    {
+      "name": "runs/previous_adapted_56/replay.json",
+      "sha256": "e906cada19188a6fb7482cd03121fa79cfdc7cabf1e796d8e6c5e586c1c984ce",
+      "bytes": 10525,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\previous_adapted_56\\replay.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\previous_adapted_56\\replay.json"
+      ]
+    },
+    {
+      "name": "runs/repository_source/audit/stage_verification.json",
+      "sha256": "faa260f10245b651157f4518770f0b68bb1016032dbbe7b892e8165f78d3d444",
+      "bytes": 12241,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\repository_source\\audit\\stage_verification.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\repository_source\\audit\\stage_verification.json"
+      ]
+    },
+    {
+      "name": "runs/repository_verify.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\repository_verify.stderr.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\repository_verify.stderr.txt"
+      ]
+    },
+    {
+      "name": "runs/repository_verify.stdout.txt",
+      "sha256": "dd2059601e5dfb6669ea14b5ae6e772c2d3e6e9414168c71f3598b7f22b6560a",
+      "bytes": 282,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\runs\\repository_verify.stdout.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\runs\\repository_verify.stdout.txt"
+      ]
+    },
+    {
+      "name": "source_agent/README.md",
+      "sha256": "492b9eb0a4f5852349b8d37c7726c07e10ebad8fb698d77bbafe045186259647",
+      "bytes": 8014,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\README.md",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\README.md"
+      ]
+    },
+    {
+      "name": "source_agent/artifact_hashes.json",
+      "sha256": "8466576769b5b1e719dfc637d127f269ae7a9d41004ae3e834f663e88a71c999",
+      "bytes": 4601,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\artifact_hashes.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\artifact_hashes.json"
+      ]
+    },
+    {
+      "name": "source_agent/capture_official_sources.py",
+      "sha256": "3064c813f35366237798fa6a0343d7885f4af5b5f4ef098eecd3f348c84e9bd4",
+      "bytes": 2573,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\capture_official_sources.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\capture_official_sources.py"
+      ]
+    },
+    {
+      "name": "source_agent/finalize_source_summary.py",
+      "sha256": "50270536bb6ff7cd27090f842747f5830dd5aaeaf71d4c903e7c1fd95ea88b31",
+      "bytes": 7745,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\finalize_source_summary.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\finalize_source_summary.py"
+      ]
+    },
+    {
+      "name": "source_agent/independent_source_review.py",
+      "sha256": "7022d476eaab65e8ce300a1556aeaeffc6ea0db8427057ab5ddb1c2c6e460ec6",
+      "bytes": 15601,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\independent_source_review.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\independent_source_review.py"
+      ]
+    },
+    {
+      "name": "source_agent/minimal_native_endpoint.py",
+      "sha256": "c027004699dc1caa04ab2e4aa6495cd1fb4d5b4e140deaac83ec742d4258ffd7",
+      "bytes": 2131,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\minimal_native_endpoint.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\minimal_native_endpoint.py"
+      ]
+    },
+    {
+      "name": "source_agent/minimal_native_endpoint_result.json",
+      "sha256": "6694d0719b2b662d423f146e8de2e964964895ff460639c654816947aa82aa79",
+      "bytes": 488,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\minimal_native_endpoint_result.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\minimal_native_endpoint_result.json"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Algorithm__QCAlgorithm.History.cs",
+      "sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "bytes": 96096,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Algorithm__QCAlgorithm.History.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Algorithm__QCAlgorithm.History.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__FineFundamental.cs",
+      "sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8",
+      "bytes": 3166,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__FineFundamental.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__FineFundamental.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Fundamental.cs",
+      "sha256": "89c885e5d5020cf24c6270a3515d1b7d57b634dd369bee861be960a89bfc5343",
+      "bytes": 5599,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Fundamental.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Fundamental.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__FundamentalUniverse.cs",
+      "sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+      "bytes": 6192,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__FundamentalUniverse.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__FundamentalUniverse.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__CompanyReference.cs",
+      "sha256": "43bf63efa3851b6e44788bf09f3181f1f556b40910e41f0c8a497920fbe6b583",
+      "bytes": 17699,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__CompanyReference.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__CompanyReference.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+      "sha256": "43b563dcce806ee14aea742725ca467c1d92306ddaf4842b26ef2dbd988779d8",
+      "bytes": 5971,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+      "sha256": "29b7cad6d4ef92fb05c7551581045dea94ab70b1cc1df6416777d8836167b776",
+      "bytes": 5766,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+      "sha256": "f5605d5a59a4253671cf50d645411a9ff6086075ca1dca0524d2adfb1ffe7cad",
+      "bytes": 5872,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+      "sha256": "6a4f7802471fdb38c4a6164abedc8091bbf043dc6720223f4b39c436bf8972c5",
+      "bytes": 6228,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__Generated__SecurityReference.cs",
+      "sha256": "49fbb6ea0c2966fa738da9064f18c8b22d41f6ad0589f8d95ec33ab17add02ce",
+      "bytes": 14773,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__SecurityReference.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__Generated__SecurityReference.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__Fundamental__MultiPeriodField.cs",
+      "sha256": "e6d22fa8a2aa8de1c640fe82768830226dffe7471f6266445456584ed328a9ca",
+      "bytes": 12953,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__MultiPeriodField.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__Fundamental__MultiPeriodField.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseDataCollection.cs",
+      "sha256": "464415043bef50d74965a338a8d71c12f881d70157e41fc99b25364088df24c1",
+      "bytes": 8847,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__UniverseSelection__BaseDataCollection.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__UniverseSelection__BaseDataCollection.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+      "sha256": "1f74c362342faa23eeddb2cbd31c5fbcbf8edc01f7fd9b1a963c06878925e4d0",
+      "bytes": 4150,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Python__PandasConverter.DataFrameGenerator.cs",
+      "sha256": "cf7cfeddfa27f0c025da861f640ef7b958bef2e55db30026071394afbdd7ea25",
+      "bytes": 15556,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Python__PandasConverter.DataFrameGenerator.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Python__PandasConverter.DataFrameGenerator.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Common__Python__PandasData.cs",
+      "sha256": "ddbfbd559684f5ba409fb9d4a2ea07324d9fe50c41d1cb770b6c57510cc847a2",
+      "bytes": 33701,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Python__PandasData.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Common__Python__PandasData.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+      "sha256": "e630da61ea29d4ebffc87bf76029c31d1ce633ba13996c60ecc6f877aab70d5b",
+      "bytes": 4357,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+      "sha256": "d77d17b0ef797476ac3c3902324a4d0a833a70dbdce28fdff71adf0ee66a9411",
+      "bytes": 4719,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__DataFeeds__SubscriptionDataSourceReader.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+      "sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842",
+      "bytes": 10344,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static/Research__QuantBook.cs",
+      "sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6",
+      "bytes": 64082,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static\\Research__QuantBook.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static\\Research__QuantBook.cs"
+      ]
+    },
+    {
+      "name": "source_agent/official_sdk_static_manifest.json",
+      "sha256": "dc00648a3fdec1c723e70f4aa8458f80cc2acc7dceb32d1c3106b13d421dc441",
+      "bytes": 10361,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\official_sdk_static_manifest.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\official_sdk_static_manifest.json"
+      ]
+    },
+    {
+      "name": "source_agent/review_summary.json",
+      "sha256": "a6ac06a2ecae9ba992b0dd536a8499d43ff5003b5d1eb38141c2f975a9907439",
+      "bytes": 8810,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\review_summary.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\review_summary.json"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_counting_correction.diff",
+      "sha256": "df2e485ca09869e64d300b8701aa41d3fd9af856fc47a574624aa8e27d13d772",
+      "bytes": 1790,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_counting_correction.diff",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_counting_correction.diff"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_harness_correction.diff",
+      "sha256": "0456da919669f081740490dbac12c823bc65ae8aba1e7ed2ad9d4e7dbad65d9d",
+      "bytes": 1669,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_harness_correction.diff",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_harness_correction.diff"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_output_counted.txt",
+      "sha256": "c5a41fae8e74488010e07c5c91b54104153ba4c4dfafe763194e66fc231c6887",
+      "bytes": 3458,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_output_counted.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_output_counted.txt"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_output_final.txt",
+      "sha256": "f30131e541fd208dfcfb31d95e5547c40f82d84062a5371952ebe26da5d6d678",
+      "bytes": 3426,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_output_final.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_output_final.txt"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_output_first.txt",
+      "sha256": "6531dddef3818544591f3f6a056e6aef87730618428a44daca9f4a1e1705e839",
+      "bytes": 3898,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_output_first.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_output_first.txt"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_results_counted.json",
+      "sha256": "36efecf08be11931f5b4fc5ab5454cf32ca86e943fe1b5b8f40cf8460a7897a6",
+      "bytes": 5900,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_results_counted.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_results_counted.json"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_results_final.json",
+      "sha256": "e01e20e1bd0280e6ab0a9494dc69c1f78931b13d9b6cd7cf988e9b49526a3435",
+      "bytes": 4663,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_results_final.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_results_final.json"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_results_first.json",
+      "sha256": "dde5bbeb1b15f188a34bf9a8eb68c548ba1b09d99b05992af3ec8b773bb4a0d9",
+      "bytes": 5647,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_results_first.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_results_first.json"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_review.py",
+      "sha256": "e6f321b04e1e67c9189f4bdf02f096833c832741331c74b63466b11865dbbf3c",
+      "bytes": 4682,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_review.py"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_review_counted.py",
+      "sha256": "0b0bc14523127331a00bc6f56f77185ffe2aafeb2e3c13abb340938ac2b49591",
+      "bytes": 4947,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review_counted.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_review_counted.py"
+      ]
+    },
+    {
+      "name": "source_agent/secondary_source_review_first.py",
+      "sha256": "ed8792fb55d0b8a97693cc1366c4135cea608506adb80dd76d73b3ae4f287529",
+      "bytes": 4639,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review_first.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\secondary_source_review_first.py"
+      ]
+    },
+    {
+      "name": "source_agent/source_review_output_first.txt",
+      "sha256": "d0b4b7295fe71779a5af10163029b72dd1f85cf49f0c25c5908b0140e0c61d94",
+      "bytes": 1990,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\source_review_output_first.txt",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\source_review_output_first.txt"
+      ]
+    },
+    {
+      "name": "source_agent/source_review_results_first.json",
+      "sha256": "aba6328e236c70d6b49186257602025b1e8b666cf218228ac95af77fe7104af2",
+      "bytes": 4616,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\source_review_results_first.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_agent\\source_review_results_first.json"
+      ]
+    },
+    {
+      "name": "source_git_manifest.json",
+      "sha256": "d577bbee05cbf43dd0a46c448d850eef65d3b2824a0b8c8ef5c369722b8ef46a",
+      "bytes": 75054,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\source_git_manifest.json"
+      ]
+    },
+    {
+      "name": "upstream_factory_extension.json",
+      "sha256": "e5acabeffec6fdea7cb018ff8f91e7e954515f743a1eeb546c78753b47288550",
+      "bytes": 888,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\upstream_factory_extension.json",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\upstream_factory_extension.json"
+      ]
+    },
+    {
+      "name": "upstream_history_factory.cs",
+      "sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+      "bytes": 9300,
+      "exact_matching_original_paths": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\upstream_history_factory.cs",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\upstream_history_factory.cs"
+      ]
+    },
+    {
+      "name": "verify_artifacts.py",
+      "sha256": "5627bc57d0cf4cbb2375c90292cb3b7877aa5d31ec7ceefb19fb5ae0dd197c58",
+      "bytes": 342,
+      "exact_matching_original_paths": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\verify_artifacts.py"
+      ]
+    }
+  ],
+  "official_static_contracts": {
+    "files": [
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Research__QuantBook.cs",
+        "sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Research/QuantBook.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Algorithm__QCAlgorithm.History.cs",
+        "sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+        "sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Python__PandasData.cs",
+        "sha256": "ddbfbd559684f5ba409fb9d4a2ea07324d9fe50c41d1cb770b6c57510cc847a2",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Python/PandasData.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Python__PandasConverter.DataFrameGenerator.cs",
+        "sha256": "cf7cfeddfa27f0c025da861f640ef7b958bef2e55db30026071394afbdd7ea25",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Python/PandasConverter.DataFrameGenerator.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__FundamentalUniverse.cs",
+        "sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Fundamental.cs",
+        "sha256": "89c885e5d5020cf24c6270a3515d1b7d57b634dd369bee861be960a89bfc5343",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Fundamental.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__FineFundamental.cs",
+        "sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FineFundamental.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+        "sha256": "d77d17b0ef797476ac3c3902324a4d0a833a70dbdce28fdff71adf0ee66a9411",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/DataFeeds/SubscriptionDataSourceReader.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+        "sha256": "e630da61ea29d4ebffc87bf76029c31d1ce633ba13996c60ecc6f877aab70d5b",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/DataFeeds/BaseDataCollectionAggregatorReader.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseDataCollection.cs",
+        "sha256": "464415043bef50d74965a338a8d71c12f881d70157e41fc99b25364088df24c1",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/BaseDataCollection.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__MultiPeriodField.cs",
+        "sha256": "e6d22fa8a2aa8de1c640fe82768830226dffe7471f6266445456584ed328a9ca",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/MultiPeriodField.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+        "sha256": "1f74c362342faa23eeddb2cbd31c5fbcbf8edc01f7fd9b1a963c06878925e4d0",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/BaseFundamentalDataProvider.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+        "sha256": "29b7cad6d4ef92fb05c7551581045dea94ab70b1cc1df6416777d8836167b776",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/FinancialStatementsFileDate.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+        "sha256": "6a4f7802471fdb38c4a6164abedc8091bbf043dc6720223f4b39c436bf8972c5",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/FinancialStatementsPeriodEndingDate.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+        "sha256": "43b563dcce806ee14aea742725ca467c1d92306ddaf4842b26ef2dbd988779d8",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/FinancialStatementsAccessionNumber.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+        "sha256": "f5605d5a59a4253671cf50d645411a9ff6086075ca1dca0524d2adfb1ffe7cad",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/FinancialStatementsFormType.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__SecurityReference.cs",
+        "sha256": "49fbb6ea0c2966fa738da9064f18c8b22d41f6ad0589f8d95ec33ab17add02ce",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/SecurityReference.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/source_agent/official_sdk_static/Common__Data__Fundamental__Generated__CompanyReference.cs",
+        "sha256": "43bf63efa3851b6e44788bf09f3181f1f556b40910e41f0c8a497920fbe6b583",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Generated/CompanyReference.cs",
+        "source_kind": "19-file original static SDK capture"
+      },
+      {
+        "archive_path": "audit/reviews/20261026-fbe2454-windows/upstream_history_factory.cs",
+        "sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+        "upstream_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequestFactory.cs",
+        "source_kind": "Additional original static factory hop"
+      }
+    ],
+    "count": 20,
+    "upstream_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+    "new_downloads_this_subtask": 0,
+    "real_SDK_executed": false
+  },
+  "older_evidence_file_count": 177,
+  "protected_prior_runtime_files": {
+    "count": 37,
+    "changed": []
+  },
+  "new_cache_behavior_identity": {
+    "projected_exact_min_date_sentinel_becomes_null": true,
+    "stored_exact_min_date_sentinel_is_rejected": true,
+    "row_validation_shared_by_write_and_read": true,
+    "existing_cache_helpers_AST_unchanged": true,
+    "cache_identity_unchanged_and_binds_frozen_plan_with_source_manifest_and_selected_catalog": true,
+    "old_bytes_not_migrated_or_overwritten": true,
+    "interpretation": "Repair changes source projection and validity checks, not stored historical facts. A legacy sentinel row is now invalid; refusal does not certify actual data coverage or receipt/vintage and does not authorize automatic source refetch."
+  },
+  "budget_replay": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_lean": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    },
+    "initial_usage_is_historical_aggregate": true
+  },
+  "deployment": {
+    "local_candidate_hash": "b451bddbb58c6ecb060b3bda383a39a00a36407c1a5962a8d1e0412166553223",
+    "local_files": 27,
+    "configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+    "implementation_hash": "c07f5fb9cf061032aafab91c1089d76804eef9a54c3e918501e80341f34073de",
+    "previous_fbe_hash": "cb8e63f4d7e175c26d8e2c2cef0cbcc685a048de84bb112ba890b44cb26597a3",
+    "historical_runtime_source": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "historical_runtime_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6"
+  },
+  "acceptance_boundary": "d0 tested stage0/1 scope retained; prior fbe WR09/WR10 failures retained; candidate repair awaiting independent review. Developer replay literals are historical, outer metadata claims must not be mistaken for this subtask execution.",
+  "unverified": [
+    "No unit-suite rerun by this evidence script; developer 336/replays remain developer records",
+    "No SDK, source collection, deployment, platform compile/run or pending LEAN terminal/log read",
+    "No full historical universe, financial vintage/delivery or independent financial test"
+  ],
+  "checks": [
+    {
+      "check": "451_git_files_in_read_only_source",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_source_bytes_equal_fixed_Git_archive",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "independent_manifest_matches_stage_verification_map",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "independent_manifest_matches_declared_hashes",
+      "passed": true,
+      "details": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381"
+    },
+    {
+      "check": "97_source_files",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_336_method_output_recorded_only_as_developer_evidence",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_production_diff_exact_three_paths",
+      "passed": true,
+      "details": [
+        {
+          "path": "cloud/qresearch/collection.py",
+          "kind": "modified",
+          "baseline_raw_sha256": "84a1af8801f98a4c254151f3aee0ffed18ee5031fcc072e46254e5ec1c2e891e",
+          "candidate_raw_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b"
+        },
+        {
+          "path": "cloud/qresearch/historical_source.py",
+          "kind": "modified",
+          "baseline_raw_sha256": "503c83b7e2af4213b2c262fe9c786e28ebc042a2ac1149c31ede98ccd0805887",
+          "candidate_raw_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556"
+        },
+        {
+          "path": "cloud/research_config.py",
+          "kind": "modified",
+          "baseline_raw_sha256": "280d1014fd125b3ac8d97f19370610ac28e060b680507dcee9ac85766efea49f",
+          "candidate_raw_sha256": "c370d986c828ddf85d8c1fe2938197a7124c1e42eb9c2dd251da273f39ef11fa"
+        }
+      ]
+    },
+    {
+      "check": "all_other_existing_production_bytes_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "source_catalog_and_inactive_template_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "previous_d0_evaluation_and_budget_code_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "generated_active_configuration_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "generated_config_diff_only_implementation_digest",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "implementation_digest_recomputed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "deployment_file_map_recomputed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "deployment_27_python_files",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "deployment_implementation_configuration_and_source_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "collector_all_methods_except_row_AST_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "legacy_min_date_rejected_by_shared_read_write_row_validation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "cache_identity_still_binds_plan_catalog_and_source_manifest",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "legacy_read_validation_does_not_rewrite_or_refetch",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "history_dates_resolve_value_then_exact_min_sentinel",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "history_endpoint_absolute_UTC_microsecond_mapping",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_RUN_REVIEW.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_bundle_checksums.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/build_report.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/first_independent_collection.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/first_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/first_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/independent_collection.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/review_report.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/verification_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_collection_agent/verification_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_environment.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_1.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_1.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_2.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_2.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_stability.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/build_stability.json.sha256",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/compare_qc_and_build.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/delivery_evidence_report.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/delivery_evidence_report.sha256",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/qc_readback_comparison.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/qc_readback_comparison.json.sha256",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_evidence_agent/verify_delivery.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_formal_report.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_formal_report.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_github_metadata.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_minimal_history_boundary.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_minimal_missing_date.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_replay_public_class.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_requirements-audit.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_boundary.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_boundary.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_boundary_execution.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_boundary_result.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_execution_records.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_missing_date.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_missing_date.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_root_missing_date_result.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_run_boundary_confirmation.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_run_main_checks.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_run_offline_review.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_run_root_confirmation.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic/output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic/process_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic/replay.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_atomic/results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility/process_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility/replay.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility/test_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_compatibility/test_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric/process_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric/replay.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric/test_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_numeric/test_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson/process_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson/replay.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson/test_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/archived_pearson/test_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_compatibility.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_compatibility.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_compatibility/output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_compatibility/results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_summary.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_summary.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_summary/output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/d0_summary/results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/execution_records.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56/independent_test_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56/independent_test_results.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56/process_output.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/previous_adapted_56/replay.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/repository_source/audit/stage_verification.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/repository_verify.stderr.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_runs/repository_verify.stdout.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/README.md",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/artifact_hashes.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/capture_official_sources.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/finalize_source_summary.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/independent_source_review.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/minimal_native_endpoint.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/minimal_native_endpoint_result.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Algorithm__QCAlgorithm.History.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__FineFundamental.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Fundamental.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__FundamentalUniverse.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__CompanyReference.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__Generated__SecurityReference.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__Fundamental__MultiPeriodField.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseDataCollection.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Python__PandasConverter.DataFrameGenerator.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Common__Python__PandasData.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static/Research__QuantBook.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/official_sdk_static_manifest.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/review_summary.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_counting_correction.diff",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_harness_correction.diff",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_output_counted.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_output_final.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_output_first.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_results_counted.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_results_final.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_results_first.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_review.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_review_counted.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/secondary_source_review_first.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/source_review_output_first.txt",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_agent/source_review_results_first.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_source_git_manifest.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_upstream_factory_extension.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_upstream_history_factory.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archived_fbe_original_verify_artifacts.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "archive_exact_129_entries",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_archive_manifest_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Research__QuantBook.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Algorithm__QCAlgorithm.History.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Python__PandasData.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Python__PandasConverter.DataFrameGenerator.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__FundamentalUniverse.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Fundamental.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__FineFundamental.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Engine__DataFeeds__SubscriptionDataSourceReader.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Engine__DataFeeds__BaseDataCollectionAggregatorReader.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__UniverseSelection__BaseDataCollection.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__MultiPeriodField.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__UniverseSelection__BaseFundamentalDataProvider.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFileDate.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsPeriodEndingDate.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsAccessionNumber.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__FinancialStatementsFormType.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__SecurityReference.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_official_sdk_static/Common__Data__Fundamental__Generated__CompanyReference.cs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_HistoryRequestFactory_20th_file",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_fixed_SDK_20_distinct_files",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "official_static_commit_is_historical_frozen_LEAN",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "original_fbe_formal_failure_bound_to_original_source",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "original_WR09_failure_not_overwritten",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "original_secondary_harness_error_preserved",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "final_corrected_method_counts_preserve_two_failing_methods",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "first_and_fixed_collection_harness_pass_records_separate",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "reviewer_harness_and_count_correction_diffs_retained",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_older_pass_and_failure_evidence_bytes_unchanged",
+      "passed": true,
+      "details": {
+        "files": 177,
+        "changed": []
+      }
+    },
+    {
+      "check": "developer_replays_explicit_role_and_actual_manifest",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "historical_script_literals_explicit_not_actual_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_replay_scripts_exist_as_original_unchanged_bytes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_old_public_failures_preserved_as_negative_control",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_marks_findings_pending_independent_verification",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "37_prior_protected_runtime_files_unchanged",
+      "passed": true,
+      "details": {
+        "count": 37,
+        "changed": []
+      }
+    },
+    {
+      "check": "journal_complete_tail",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_1_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_2_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_3_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_4_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_5_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_6_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_7_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_8_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_9_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_10_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_11_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_12_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "journal_has_12_events",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "configuration_272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "configuration_272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94_single_registration",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "completed_result_3a09202e77234016b17a17204cf061a2",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "configuration_dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "configuration_dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f_single_registration",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "completed_result_746bb41966c04fbcbe036148fa849f6e",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_global_limits_respected",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "usage_projection_matches_registry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "no_new_charge_totals_still_6_9_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "same_archived_pending_lean",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_execution_flags_false",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "readiness_and_tracking_keep_original_d0_scope",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_repair_not_accepted_in_metadata",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "latest_metadata_preserves_original_fbe_failed_review",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "readiness_and_developer_usage_matches_registry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "readiness_preserves_pending_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "actual_collection_admission_and_certification_still_missing",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "financial_evidence": false
+}
