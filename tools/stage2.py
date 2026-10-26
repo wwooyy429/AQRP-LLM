@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import canonical_json, content_hash
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge
+from qresearch.registry import BudgetExceeded
 from research import read_json, write_changed, open_registry, export_usage
 from stages import source_manifest
 
@@ -81,29 +82,12 @@ def prepare(bridge, attempt):
 
 
 def _limits(bridge, kind):
-    # A local engineering stop condition, in addition to the user's global caps.
-    # One normal job and one explicit repair per stage/config, including failures.
-    snapshot = bridge.registry.snapshot()
-    selected = []
-    for config in snapshot["config_ids"]:
-        package = json.loads(bridge.store.read_bytes("configurations/" + config + ".json"))
-        # This round's bound covers all engineering plans in the authoritative
-        # registry, including renamed plans and another discovered project.
-        # A mutable label/project cannot reset the stop counter.
-        if package.get("engineering_task_schema_version") == 1:
-            selected.append(config)
-    if kind == "configurations":
-        count = len(selected)
-        if bridge.config_id in selected:
-            return
-    else:
-        attempts = [x for x in snapshot["attempts"] if x["config_id"] in selected and x["stage"] == kind]
-        same = [x for x in attempts if x["config_id"] == bridge.config_id]
-        if same and same[-1]["status"] in {"completed", "started", "pending", "ambiguous"}:
-            return  # Registry returns reuse/unresolved, never a fresh submission.
-        count = len(attempts)
-    if count >= 2:
-        raise ValueError("Stage2 engineering stop condition reached; no further configuration or execution")
+    # Compatibility/status preview only. Registry transactions recheck the
+    # shared stop condition atomically with registration or attempt charging.
+    try:
+        bridge.registry.check_engineering_admission(bridge.package, kind)
+    except BudgetExceeded as exc:
+        raise ValueError(str(exc)) from exc
 
 
 def main():
@@ -125,12 +109,10 @@ def main():
         return
     bridge = current_bridge()
     if args.command == "register":
-        _limits(bridge, "configurations")
         result = {"config_id": bridge.register(allocation=args.allocation), "plan_hash": bridge.plan.hash}
     elif args.command == "claim":
         if not args.stage:
             parser.error("--stage required")
-        _limits(bridge, args.stage)
         result = vars(bridge.claim(args.stage, allocation=args.allocation,
             retry_of=args.retry_of, reason=args.reason))
     elif args.command == "prepare":

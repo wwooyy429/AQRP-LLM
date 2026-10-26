@@ -1,6 +1,6 @@
 """Causal feature views; price windows preserve missing exchange sessions."""
 import pandas as pd
-from .contracts import PITWindow, aware, validate_records
+from .contracts import PITWindow, aware, canonical_membership, formation_index, validate_records
 
 
 def causal_window(records, decisions, sids, policies, expected_events, max_age=None, membership=None):
@@ -13,14 +13,16 @@ def causal_window(records, decisions, sids, policies, expected_events, max_age=N
     certify a vendor's historical release timestamps or repair their absence.
     """
     data = validate_records(records)
-    times = pd.DatetimeIndex([aware(x) for x in decisions])
+    times = formation_index(decisions)
     if not len(times) or not times.is_unique or not times.is_monotonic_increasing:
         raise ValueError("Sorted unique formation times required")
     expected = {aware(k): aware(v) for k, v in expected_events.items()}
     if set(times) != set(expected):
         raise ValueError("Every formation must map to its actual completed exchange session")
     if membership is not None:
-        if not membership.index.equals(times) or set(membership.columns) != set(sids):
+        membership = canonical_membership(membership)
+        if (not membership.index.equals(times) or not membership.columns.is_unique
+                or set(membership.columns) != set(sids)):
             raise ValueError("Historical membership must cover every formation and union SID exactly")
         if membership.isna().any().any() or any(str(kind) != "bool" for kind in membership.dtypes):
             raise ValueError("Historical membership must contain explicit booleans")

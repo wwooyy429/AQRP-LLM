@@ -5,7 +5,7 @@ import json
 import pandas as pd
 from .artifacts import canonical_json, content_hash
 from .cache import merge_requests
-from .contracts import DataRequest, aware, digest
+from .contracts import DataRequest, aware, canonical_membership, formation_index, digest
 from .factors import FactorSpec, evaluate_factors, structure_similarity
 from .point_in_time import causal_window
 from .audits import FORMULA_ISSUER, COVERAGE_ISSUER, verify_evidence
@@ -51,8 +51,9 @@ def execution_plan_identity(request, decisions, sids, policies, expected_events,
         raise ValueError("Each formation needs its actual preceding completed session")
     if any(not request.start <= events[time] < request.end for time in times):
         raise ValueError("Completed sessions must lie inside the frozen request")
-    index = pd.DatetimeIndex(times)
-    if (not isinstance(membership, pd.DataFrame) or not membership.index.equals(index)
+    index = formation_index(times)
+    membership = canonical_membership(membership)
+    if (not membership.index.equals(index)
             or not membership.columns.is_unique or set(membership.columns) != set(names)
             or membership.isna().any().any()
             or not all(pd.api.types.is_bool_dtype(kind) for kind in membership.dtypes)):
@@ -181,7 +182,10 @@ class ResearchEngine:
         expected_events = {aware(key): aware(value) for key, value in dict(expected_events).items()}
         max_age = dict(max_age or {})
         if membership is not None:
-            membership = membership.reindex(columns=sids).copy(deep=True)
+            membership = canonical_membership(membership)
+            if not membership.columns.is_unique or set(membership.columns) != set(sids):
+                raise ValueError("Historical membership must cover every formation and union SID exactly")
+            membership = membership.reindex(columns=sids)
         authorization = None
         if not self.synthetic:
             authorization = self._authorize(specs, request, decisions, sids, policies,

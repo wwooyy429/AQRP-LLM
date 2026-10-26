@@ -256,6 +256,9 @@ class EngineeringTaskPlan:
 class EngineeringTaskBridge:
     """One authoritative Registry; no second budget counter or polling loop.
 
+    Registry enforces the shared engineering-round stop atomically with every
+    new configuration/attempt debit, including direct Bridge and Registry use.
+
     ``adapter`` implements submit_research/submit_backtest(payload,
     operation_key=...). ``completion_source(payload)`` is trusted program I/O,
     returning platform terminal metadata plus the cloud metadata report and its

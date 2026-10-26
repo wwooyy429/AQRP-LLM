@@ -197,13 +197,18 @@ def walk_forward_evaluate(records: pd.DataFrame, feature_columns: Sequence[str],
 
 
 def _correlation(left: np.ndarray, right: np.ndarray, method: str) -> float:
-    if len(left) < 2 or np.std(left) == 0 or np.std(right) == 0:
+    if len(left) < 2:
         return float("nan")
     if method == "spearman":
+        # Spearman depends only on order. Testing raw-value variance first can
+        # underflow for distinct, finite scores (or overflow at large scales).
+        # Average ranks preserve ties and have a well-scaled variance.
         left = pd.Series(left).rank(method="average").to_numpy()
         right = pd.Series(right).rank(method="average").to_numpy()
     elif method != "pearson":
         raise EvaluationError("Correlation method must be pearson or spearman")
+    if np.std(left) == 0 or np.std(right) == 0:
+        return float("nan")
     return float(np.corrcoef(left, right)[0, 1])
 
 

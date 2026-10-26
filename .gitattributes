@@ -3,3 +3,6 @@
 *.json text eol=lf
 *.jsonl text eol=lf
 *.md text eol=lf
+# Preserve original review evidence bytes, including Windows line endings.
+audit/reviews/20261026-75f24629-windows/* -text
+audit/review_packages/wr04_wr06/** -text

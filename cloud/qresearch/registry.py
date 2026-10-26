@@ -118,6 +118,10 @@ class Registry:
 
     JOURNAL = "registry/events.jsonl"
     LOCK = "registry/transaction"
+    # The fixed engineering round allows one run and one repair per resource.
+    # This is an admission policy on the authoritative ledger, not a separate
+    # counter keyed by a mutable plan name, project, allocation or store object.
+    ENGINEERING_STOP_LIMIT = 2
 
     def __init__(self, store: Any, limits: Mapping[str, Any],
                  usage: Mapping[str, Any] | None = None,
@@ -268,10 +272,69 @@ class Registry:
             state = self._replay()
             if identity in state["configs"]:
                 return identity
+            self._enforce_engineering_limit(state, "configurations", json.loads(encoded))
             self._charge(state["usage"], "configurations", allocation)
             self.store.write_once("configurations/" + identity + ".json", encoded)
             self._append({"kind": "config_registered", "config_id": identity, "allocation": allocation})
         return identity
+
+    @staticmethod
+    def _is_engineering_package(package: dict) -> bool:
+        if not isinstance(package, dict):
+            return False
+        plan = package.get("plan")
+        marked = "engineering_task_schema_version" in package
+        engineering_plan = isinstance(plan, dict) and plan.get("scope") == "engineering"
+        if not marked and not engineering_plan:
+            return False
+        if (type(package.get("engineering_task_schema_version")) is not int
+                or package["engineering_task_schema_version"] != 1
+                or set(package) != {"engineering_task_schema_version", "plan"}
+                or not engineering_plan):
+            raise ValueError("Engineering packages require their complete fixed schema marker")
+        return True
+
+    def _engineering_config_ids(self, state: dict) -> set[str]:
+        return {identity for identity in state["configs"]
+                if self._is_engineering_package(json.loads(
+                    self.store.read_bytes("configurations/" + identity + ".json")))}
+
+    def _enforce_engineering_limit(self, state: dict, kind: str, package: dict) -> None:
+        """Check the round stop under LOCK immediately before a new charge.
+
+        Every engineering registration and execution entry point reaches these
+        Registry transactions, including callers which bypass the CLI/Bridge.
+        Completed, unresolved and failed-without-retry reuse is resolved before
+        this check; old failures and all allocations still count toward the cap.
+        """
+        if not self._is_engineering_package(package):
+            return
+        selected = self._engineering_config_ids(state)
+        count = (len(selected) if kind == "configurations" else
+                 sum(record["config_id"] in selected and record["stage"] == kind
+                     for record in state["attempts"].values()))
+        if count >= self.ENGINEERING_STOP_LIMIT:
+            raise BudgetExceeded("Stage2 engineering stop condition reached for " + kind)
+
+    def check_engineering_admission(self, full_config: dict, kind: str) -> None:
+        """Read-only preview; actual mutations always recheck under the same lock.
+
+        This is only for status/preflight reporting. It does not reserve a slot
+        or grant permission to submit an external task.
+        """
+        if kind not in _BUDGET_KEYS:
+            raise ValueError("Unknown engineering admission resource")
+        encoded = canonical_json(full_config)
+        identity = sha256(encoded).hexdigest()
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            if kind == "configurations" and identity in state["configs"]:
+                return
+            same = [record for record in state["attempts"].values()
+                    if record["config_id"] == identity and record["stage"] == kind]
+            if same and same[-1]["status"] in _OPEN_STATES | {"completed"}:
+                return
+            self._enforce_engineering_limit(state, kind, json.loads(encoded))
 
     def _verify_import(self, full_config: dict, source_reference: dict, allocation: str) -> None:
         """Verify a copied historical charge receipt, not a newly invented waiver."""
@@ -324,6 +387,7 @@ class Registry:
                 return identity
             if identity in state["configs"]:
                 raise RegistryError("Configuration is already registered; its charge cannot be refunded by import")
+            self._enforce_engineering_limit(state, "configurations", json.loads(encoded))
             used = sum(item["allocation"] == allocation for item in state["imports"].values())
             if used >= self.initial_usage["configurations"][allocation]:
                 raise RegistryError("Imports exceed the preserved allocation usage")
@@ -361,6 +425,8 @@ class Registry:
             for record in state["attempts"].values():
                 if record["config_id"] == config_id and record["stage"] == stage and record["status"] in _OPEN_STATES:
                     return self._attempt(record)
+            package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
+            self._enforce_engineering_limit(state, stage, package)
             self._charge(state["usage"], stage, allocation)
             record = {"kind": "attempt_started", "attempt_id": uuid4().hex,
                       "config_id": config_id, "stage": stage, "operation_key": operation_key,

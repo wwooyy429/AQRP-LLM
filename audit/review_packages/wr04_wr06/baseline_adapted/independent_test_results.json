@@ -1,0 +1,264 @@
+{
+  "actually_executed": true,
+  "test_methods": 56,
+  "passed_methods": 45,
+  "failures": 10,
+  "errors": 1,
+  "skipped": 0,
+  "subcases": 25,
+  "subcases_are_not_extra_methods": true,
+  "failure_details": [
+    {
+      "test": "test_WR04_configuration_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 185, in test_WR04_configuration_process_race\n    def test_WR04_configuration_process_race(self): self.race('configurations',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'registered': '1f7d3d5314fc15cbf5641db1ab2808390f48019a4196fe6d0a7167ce659fe2e9'}, {'ok': True, 'registered': '294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938'}]\n"
+    },
+    {
+      "test": "test_WR04_configuration_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 184, in test_WR04_configuration_thread_race\n    def test_WR04_configuration_thread_race(self): self.race('configurations',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'registered': '294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938'}, {'ok': True, 'registered': '1f7d3d5314fc15cbf5641db1ab2808390f48019a4196fe6d0a7167ce659fe2e9'}]\n"
+    },
+    {
+      "test": "test_WR04_direct_claim_enforces_stop (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 199, in test_WR04_direct_claim_enforces_stop\n    with self.assertRaises((EngineeringTaskError,BudgetExceeded,ValueError)):\nAssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.registry.BudgetExceeded'>, <class 'ValueError'>) not raised\n"
+    },
+    {
+      "test": "test_WR04_direct_register_enforces_stop (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 193, in test_WR04_direct_register_enforces_stop\n    with self.assertRaises((EngineeringTaskError,BudgetExceeded,ValueError)):\nAssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.registry.BudgetExceeded'>, <class 'ValueError'>) not raised\n"
+    },
+    {
+      "test": "test_WR04_direct_submit_enforces_stop (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 207, in test_WR04_direct_submit_enforces_stop\n    with self.assertRaises((EngineeringTaskError,BudgetExceeded,ValueError)):\nAssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.registry.BudgetExceeded'>, <class 'ValueError'>) not raised\n"
+    },
+    {
+      "test": "test_WR04_lean_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 189, in test_WR04_lean_process_race\n    def test_WR04_lean_process_race(self): self.race('lean',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'should_execute': True, 'attempt_id': 'b9abe64b1b094680b8b8ffc165b4884a'}, {'ok': True, 'should_execute': True, 'attempt_id': '6913c4a216e84edb8e3ad825cc700e19'}]\n"
+    },
+    {
+      "test": "test_WR04_lean_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 188, in test_WR04_lean_thread_race\n    def test_WR04_lean_thread_race(self): self.race('lean',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'should_execute': True}, {'ok': True, 'should_execute': True}]\n"
+    },
+    {
+      "test": "test_WR04_research_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 187, in test_WR04_research_process_race\n    def test_WR04_research_process_race(self): self.race('research',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'should_execute': True, 'attempt_id': '409311192c94425aa678f657570fe40c'}, {'ok': True, 'should_execute': True, 'attempt_id': '5a9b509690b2412ab9eb5ff185fcb940'}]\n"
+    },
+    {
+      "test": "test_WR04_research_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 186, in test_WR04_research_thread_race\n    def test_WR04_research_thread_race(self): self.race('research',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 178, in race\n    self.assertEqual(len(winners),1,answers)\nAssertionError: 2 != 1 : [{'ok': True, 'should_execute': True}, {'ok': True, 'should_execute': True}]\n"
+    },
+    {
+      "test": "test_rank_ic_is_invariant_to_small_positive_scale (__main__.ArithmeticTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 440, in test_rank_ic_is_invariant_to_small_positive_scale\n    self.assertAlmostEqual(got,1.,msg='Spearman must rank distinct finite values before testing variance')\nAssertionError: nan != 1.0 within 7 places (nan difference) : Spearman must rank distinct finite values before testing variance\n"
+    }
+  ],
+  "error_details": [
+    {
+      "test": "test_cache_pit_factor_pipeline_complete_synthetic_chain (__main__.FullChainTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\independent_review.py\", line 584, in test_cache_pit_factor_pipeline_complete_synthetic_chain\n    payload=engine.evaluate([factor()],req,[time],['X','Y','Z'],{'close':'exact_session'},{time:event},membership=membership)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\source\\cloud\\qresearch\\runtime.py\", line 218, in evaluate\n    window = causal_window(records, decisions, tuple(sids), policies, expected_events, max_age, membership)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-jw2mr617\\source\\cloud\\qresearch\\point_in_time.py\", line 24, in causal_window\n    raise ValueError(\"Historical membership must cover every formation and union SID exactly\")\nValueError: Historical membership must cover every formation and union SID exactly\n"
+    }
+  ],
+  "observations": {
+    "__main__.AdmissionTests.test_WR04_configuration_process_race": {
+      "kind": "configurations",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 3,
+          "normal": 3,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "registered": "1f7d3d5314fc15cbf5641db1ab2808390f48019a4196fe6d0a7167ce659fe2e9"
+        },
+        {
+          "ok": true,
+          "registered": "294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_configuration_thread_race": {
+      "kind": "configurations",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 3,
+          "normal": 3,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "registered": "294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938"
+        },
+        {
+          "ok": true,
+          "registered": "1f7d3d5314fc15cbf5641db1ab2808390f48019a4196fe6d0a7167ce659fe2e9"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_lean_process_race": {
+      "kind": "lean",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 3,
+          "normal": 2,
+          "reserve": 1
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "b9abe64b1b094680b8b8ffc165b4884a"
+        },
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "6913c4a216e84edb8e3ad825cc700e19"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_lean_thread_race": {
+      "kind": "lean",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 3,
+          "normal": 2,
+          "reserve": 1
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true
+        },
+        {
+          "ok": true,
+          "should_execute": true
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_research_process_race": {
+      "kind": "research",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 3,
+          "normal": 2,
+          "reserve": 1
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "409311192c94425aa678f657570fe40c"
+        },
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "5a9b509690b2412ab9eb5ff185fcb940"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_research_thread_race": {
+      "kind": "research",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 3,
+          "normal": 2,
+          "reserve": 1
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true
+        },
+        {
+          "ok": true,
+          "should_execute": true
+        }
+      ]
+    },
+    "__main__.ArithmeticTests.test_rank_ic_is_invariant_to_small_positive_scale": {
+      "actual_ic": null,
+      "expected_ic": 1.0,
+      "prediction_scale": 1e-200
+    }
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "longdouble_nmant": 52
+  },
+  "developer_test_fixtures_imported": false,
+  "market_calls": 0
+}

@@ -1,0 +1,152 @@
+{
+  "actually_executed": true,
+  "test_methods": 56,
+  "passed_methods": 50,
+  "failures": 3,
+  "errors": 3,
+  "skipped": 0,
+  "subcases": 25,
+  "subcases_are_not_extra_methods": true,
+  "failure_details": [
+    {
+      "test": "test_WR04_configuration_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 176, in test_WR04_configuration_process_race\n    def test_WR04_configuration_process_race(self): self.race('configurations',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 173, in race\n    self.assertTrue(all(a['ok'] for a in answers),answers)\nAssertionError: False is not true : [{'ok': True, 'registered': '294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938'}, {'ok': False, 'type': 'BudgetExceeded', 'message': 'Stage2 engineering stop condition reached for configurations'}]\n"
+    },
+    {
+      "test": "test_WR04_lean_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 180, in test_WR04_lean_process_race\n    def test_WR04_lean_process_race(self): self.race('lean',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 173, in race\n    self.assertTrue(all(a['ok'] for a in answers),answers)\nAssertionError: False is not true : [{'ok': True, 'should_execute': True, 'attempt_id': '97e410c9898a4b7381469285102a476a'}, {'ok': False, 'type': 'BudgetExceeded', 'message': 'Stage2 engineering stop condition reached for lean'}]\n"
+    },
+    {
+      "test": "test_WR04_research_process_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 178, in test_WR04_research_process_race\n    def test_WR04_research_process_race(self): self.race('research',True)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 173, in race\n    self.assertTrue(all(a['ok'] for a in answers),answers)\nAssertionError: False is not true : [{'ok': True, 'should_execute': True, 'attempt_id': '57febb4db789413182116a32a815186e'}, {'ok': False, 'type': 'BudgetExceeded', 'message': 'Stage2 engineering stop condition reached for research'}]\n"
+    }
+  ],
+  "error_details": [
+    {
+      "test": "test_WR04_configuration_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 175, in test_WR04_configuration_thread_race\n    def test_WR04_configuration_thread_race(self): self.race('configurations',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 170, in race\n    with ThreadPoolExecutor(max_workers=2) as ex: answers=list(ex.map(work,zip(docs,retries)))\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 621, in result_iterator\n    yield _result_or_cancel(fs.pop())\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 319, in _result_or_cancel\n    return fut.result(timeout)\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 458, in result\n    return self.__get_result()\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 403, in __get_result\n    raise self._exception\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 166, in work\n    if kind=='configurations': return {'ok':True,'registered':b.register()}\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\engineering_tasks.py\", line 277, in register\n    return self.registry.register_config(self.package, allocation=allocation)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 275, in register_config\n    self._enforce_engineering_limit(state, \"configurations\", json.loads(encoded))\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 317, in _enforce_engineering_limit\n    raise BudgetExceeded(\"Stage2 engineering stop condition reached for \" + kind)\nqresearch.registry.BudgetExceeded: Stage2 engineering stop condition reached for configurations\n"
+    },
+    {
+      "test": "test_WR04_lean_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 179, in test_WR04_lean_thread_race\n    def test_WR04_lean_thread_race(self): self.race('lean',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 170, in race\n    with ThreadPoolExecutor(max_workers=2) as ex: answers=list(ex.map(work,zip(docs,retries)))\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 621, in result_iterator\n    yield _result_or_cancel(fs.pop())\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 319, in _result_or_cancel\n    return fut.result(timeout)\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 458, in result\n    return self.__get_result()\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 403, in __get_result\n    raise self._exception\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 167, in work\n    a=b.claim(kind,retry_of=retry,reason='synthetic repair' if retry else None,\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\engineering_tasks.py\", line 324, in claim\n    return self.registry.begin_attempt(self.config_id, stage, allocation=allocation,\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 429, in begin_attempt\n    self._enforce_engineering_limit(state, stage, package)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 317, in _enforce_engineering_limit\n    raise BudgetExceeded(\"Stage2 engineering stop condition reached for \" + kind)\nqresearch.registry.BudgetExceeded: Stage2 engineering stop condition reached for lean\n"
+    },
+    {
+      "test": "test_WR04_research_thread_race (__main__.AdmissionTests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 177, in test_WR04_research_thread_race\n    def test_WR04_research_thread_race(self): self.race('research',False)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 170, in race\n    with ThreadPoolExecutor(max_workers=2) as ex: answers=list(ex.map(work,zip(docs,retries)))\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 621, in result_iterator\n    yield _result_or_cancel(fs.pop())\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 319, in _result_or_cancel\n    return fut.result(timeout)\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 458, in result\n    return self.__get_result()\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\_base.py\", line 403, in __get_result\n    raise self._exception\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\independent_review.py\", line 167, in work\n    a=b.claim(kind,retry_of=retry,reason='synthetic repair' if retry else None,\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\engineering_tasks.py\", line 324, in claim\n    return self.registry.begin_attempt(self.config_id, stage, allocation=allocation,\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 429, in begin_attempt\n    self._enforce_engineering_limit(state, stage, package)\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-review-replay-h9xkmj55\\source\\cloud\\qresearch\\registry.py\", line 317, in _enforce_engineering_limit\n    raise BudgetExceeded(\"Stage2 engineering stop condition reached for \" + kind)\nqresearch.registry.BudgetExceeded: Stage2 engineering stop condition reached for research\n"
+    }
+  ],
+  "observations": {
+    "__main__.AdmissionTests.test_WR04_configuration_process_race": {
+      "kind": "configurations",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "registered": "294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for configurations"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_lean_process_race": {
+      "kind": "lean",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 1,
+          "reserve": 1
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "97e410c9898a4b7381469285102a476a"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for lean"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_research_process_race": {
+      "kind": "research",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 1,
+          "reserve": 1
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "57febb4db789413182116a32a815186e"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for research"
+        }
+      ]
+    },
+    "__main__.ArithmeticTests.test_rank_ic_is_invariant_to_small_positive_scale": {
+      "actual_ic": 1.0,
+      "expected_ic": 1.0,
+      "prediction_scale": 1e-200
+    }
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "longdouble_nmant": 52
+  },
+  "developer_test_fixtures_imported": false,
+  "market_calls": 0
+}
