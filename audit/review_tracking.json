@@ -33,11 +33,11 @@
     {
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
-      "implementation": "工程桥及小样例已实现",
+      "implementation": "工程桥、小样例及历史快照采集离线候选已实现",
       "evidence": "准入19及适配56通过；旧平台归档E3；当前源码只读E4",
       "blocking_findings": [],
       "status": "pending_acceptance",
-      "scope": "候选未部署或运行、LEAN无交付终态、完整数据未认证"
+      "scope": "新增采集候选未独立验收或部署；旧LEAN无交付终态，完整数据未认证"
     },
     {
       "stage": 3,
@@ -92,7 +92,7 @@
   },
   "latest_independent_report": "audit/reviews/20261026-d0b9c98-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/wr08/developer_verification.json",
-  "current_handoff": "docs/stage2-continuation.md",
+  "current_handoff": "docs/stage2-snapshot-collection.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -597,5 +597,6 @@
     "完整历史US200、财务修订版本及实际供应商送达认证",
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
-  ]
+  ],
+  "new_candidate_acceptance": "pending_fixed_commit_independent_review; accepted_stages refer only to reviewed_source_commit"
 }

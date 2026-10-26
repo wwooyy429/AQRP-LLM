@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "purpose": "stage2_snapshot_collection_developer_evidence_only",
+  "date": "2026-10-26",
+  "parent_commit": "f88efaf63fb1436a904957c00ac8a1d351d30474",
+  "independently_accepted_prior_source": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "candidate_source_manifest_hash": "ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb",
+  "candidate_source_file_count": 94,
+  "deployment_python_file_count": 27,
+  "configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "implementation_hash": "9f64ab605dba658ee22cb452e7777171fe083287d28cf47353875819d7844aa6",
+  "test_environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "native_Windows",
+    "market_calls": 0
+  },
+  "full_verification": {
+    "chunk_id": "19240d",
+    "wall_time_seconds": 0.0000249,
+    "exit_code": 0,
+    "original_token_count": 71,
+    "output": "{\"config_changed\": true, \"configuration_hash\": \"272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94\", \"source_files\": 27}\r\n{\"local_tests_passed\": true, \"source_hash\": \"ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb\", \"external_review_status\": \"pending_GPT_Work\", \"test_output\": \"----------------------------------------------------------------------\\nRan 322 tests in 13.324s\\n\\nOK\\n\"}\r\n"
+  },
+  "final_repository_tests": 322,
+  "new_tests": 42,
+  "early_failure_preserved": {
+    "command": "python -B -m unittest discover -s tests -p test_collection_cli.py -v",
+    "tests_run": 4,
+    "errors": 1,
+    "failure": "KeyError: 'field_whitelist'",
+    "cause": "New test used a nonexistent configuration key; actual key is factor_field_whitelist",
+    "repair": "Corrected test to assert the existing factor_field_whitelist remains empty",
+    "production_configuration_changed": false,
+    "exact_full_output_saved": false,
+    "rerun": "4 tests passed; then included in final 322-test verification"
+  },
+  "targeted_rerun_outputs": [
+    {
+      "pattern": "test_collection_cli.py",
+      "chunk_id": "e6b1cc",
+      "wall_time_seconds": 5.5137914,
+      "exit_code": 0,
+      "original_token_count": 134,
+      "output": "test_inactive_or_final_plan_does_not_preview (test_collection_cli.CollectionCLITests) ... ok\r\ntest_manifest_mismatch_rejected_and_preview_exports_only_metadata (test_collection_cli.CollectionCLITests) ... ok\r\ntest_template_is_inactive_and_catalog_does_not_enable_factor_fields (test_collection_cli.CollectionCLITests) ... ok\r\ntest_unreviewed_catalog_flags_cannot_open_certification (test_collection_cli.CollectionCLITests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.101s\r\n\r\nOK\r\n"
+    },
+    {
+      "pattern": "test_historical_source.py",
+      "chunk_id": "15bf63",
+      "wall_time_seconds": 1.9050071,
+      "exit_code": 0,
+      "original_token_count": 372,
+      "output": "test_calls_and_universe_reused_and_snapshot_bound_enforced (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_classification_is_conservative_and_no_session_inference (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_collection_ingestion_chain_reuses_and_unknown_timing_cannot_rank (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_dst_uses_local_midnights_and_aware_response_preserves_instant (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_empty_series_is_not_certification (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_intervals_final_frontier_and_projection_rejected_before_history (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_malformed_response_and_outside_or_duplicate_snapshots_rejected (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_missing_properties_and_nan_stay_missing (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_native_request_error_is_redacted (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_scalar_type_errors_and_retired_property_fail_closed_without_native_values (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_single_bulk_call_preserves_no_financial_coverage_and_permanent_sid (test_historical_source.HistoricalSourceTests) ... ok\r\ntest_wrong_mixed_or_changed_universe_identity_rejected (test_historical_source.HistoricalSourceTests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 12 tests in 0.449s\r\n\r\nOK\r\n"
+    }
+  ],
+  "source_review": {
+    "kind": "development_peer_review_not_GPT_Work_stage_acceptance",
+    "original_finding": "P2: response first-level universe identity was discarded; mixed-universe snapshots accepted",
+    "first_repair": "Bound stable response universe and compare native expected universe",
+    "followup_finding": "Native symbols with same display string and different permanent IDs could alias",
+    "final_repair": "Native objects compare permanent IDs; typed string identities anchored for documented string-shaped responses",
+    "independent_followup_probes": 5,
+    "followup_expected_results": 5,
+    "scope": "synthetic mixed identity, native alias, cross-fetch change rejected; native/string positive accepted",
+    "stage_accepted": false
+  },
+  "build_idempotence": {
+    "second_build_config_changed": false,
+    "same_configuration_hash": true
+  },
+  "protected_prior_paths_unchanged": true,
+  "pending_task_input_normalized_sha256": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
+  "pending_LEAN": {
+    "backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "delivered_terminal_received": false,
+    "polled": false,
+    "source_or_input_replaced": false
+  },
+  "budget": {
+    "global_usage": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "extra_resource_purchases": 0
+  },
+  "remaining_gaps": [
+    "old_LEAN_terminal_reconciliation",
+    "fixed_commit_GPT_Work_review",
+    "collection_remote_task_protocol_and_atomic_admission",
+    "new_candidate_cloud_deployment_and_runtime_validation",
+    "full_market_historical_SID_classification_session_coverage",
+    "financial_value_fields_and_actual_receipt_vintage_certification"
+  ],
+  "new_candidate_cloud_deployed": false,
+  "new_candidate_independently_accepted": false,
+  "stage2_status": "pending_acceptance",
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "documentation": "docs/stage2-snapshot-collection.md"
+}
