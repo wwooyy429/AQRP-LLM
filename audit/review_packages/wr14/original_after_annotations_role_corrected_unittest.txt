@@ -1,0 +1,492 @@
+test_annotation_invalid_calendar_registered_clock_rejected (__main__.IndependentAnnotationTests) ... ok
+test_annotation_registered_positive_subset (__main__.IndependentAnnotationTests) ... ok
+test_annotation_unknown_keys_types_priorities_rejected (__main__.IndependentAnnotationTests) ... ok
+test_deep_json_text_malformed_duplicate_annotation_keys_rejected (__main__.IndependentAnnotationTests) ... ok
+test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) ... test_lean_receipts_shared_outer_standard_annotations_and_rejections (__main__.IndependentAnnotationTests) ... ERROR
+test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) ... test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) ... test_official_schema_registered_field_contract (__main__.IndependentAnnotationTests) ... ERROR
+test_outer_nested_and_deep_json_positive_paths (__main__.IndependentAnnotationTests) ... ok
+test_recursive_unknown_side_loads_rejected (__main__.IndependentAnnotationTests) ... ok
+test_text_node_nonstring_or_unknown_fields_rejected (__main__.IndependentAnnotationTests) ... ok
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='collection', nonstring_text='dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='collection', nonstring_text='list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='collection', nonstring_text='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='old_research', nonstring_text='dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='old_research', nonstring_text='list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_full_workers_nonstring_text_cannot_extract_valid_marker (__main__.IndependentAnnotationTests) (family='old_research', nonstring_text='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 253, in test_full_workers_nonstring_text_cannot_extract_valid_marker
+    h=Harness(family);actual=marker(h.wrapper)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_lean_receipts_shared_outer_standard_annotations_and_rejections (__main__.IndependentAnnotationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 259, in test_lean_receipts_shared_outer_standard_annotations_and_rejections
+    h=Harness('old_research');h.finish(h.parse(native_shape(marker(h.wrapper),GOOD,'content')))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='collection', shape='root')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='collection', shape='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='collection', shape='wrappers')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='collection', shape='json_text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='old_research', shape='root')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='old_research', shape='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='old_research', shape='wrappers')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_and_old_actual_synthetic_workers_complete (__main__.IndependentAnnotationTests) (family='old_research', shape='json_text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 233, in test_new_and_old_actual_synthetic_workers_complete
+    h=Harness(family);usage=h.reg.snapshot()['usage']['research']['total']
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='root', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='root', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='content', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='content', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='outputs', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='outputs', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='json_text', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='collection', shape='json_text', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='root', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='root', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='content', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='content', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='outputs', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='outputs', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='json_text', unknown_annotation='rows')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_new_old_full_worker_negative_annotation_gate_no_mutation (__main__.IndependentAnnotationTests) (family='old_research', shape='json_text', unknown_annotation='errors')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 245, in test_new_old_full_worker_negative_annotation_gate_no_mutation
+    h=Harness(family);before=deepcopy(h.local._data);usage=deepcopy(h.reg.snapshot()['usage'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 149, in __init__
+    self.wrapper=run_research_task(self.payload,api=API,quantbook_factory=lambda:self.qb)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 252, in run_research_task
+    plan, document, identity = _context(payload, "research")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 110, in _context
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+======================================================================
+ERROR: test_official_schema_registered_field_contract (__main__.IndependentAnnotationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_annotations_role_corrected.py", line 163, in test_official_schema_registered_field_contract
+    schema=json.loads((OUT/'official_mcp_schema_2025-11-25.json').read_text(encoding='utf-8'))['$defs']
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\wr14-original-after\\annotations\\official_mcp_schema_2025-11-25.json'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.317s
+
+FAILED (errors=32)

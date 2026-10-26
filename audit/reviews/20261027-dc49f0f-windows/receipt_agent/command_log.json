@@ -1,0 +1,62 @@
+[
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\independent_annotations.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent'",
+    "tool_chunk_id": "291b61",
+    "exit_code": 1,
+    "purpose": "首次12/160：Role顺序测量失败1，时间验证产品错误记录2；原件保留"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\independent_annotations_role_corrected.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent'",
+    "tool_chunk_id": "4a2ccb",
+    "exit_code": 1,
+    "purpose": "只改Role集合比较：12/160，0失败记录，2时间错误记录保持"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\fractional_clock_probe.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent'",
+    "tool_chunk_id": "d30da1",
+    "exit_code": 1,
+    "purpose": "普通微秒内fraction完整新旧worker14例，候选8误拒绝"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\fractional_clock_probe.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent'",
+    "tool_chunk_id": "d7143d",
+    "exit_code": 0,
+    "purpose": "同一14例同一脚本旧be94426全完成；仅嵌套注解排除旧outer拒绝"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\adapted_nested_annotations_probe.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\adapted_nested_annotations_probe.json'",
+    "tool_chunk_id": "a2a187",
+    "exit_code": 0,
+    "purpose": "原5变体另存适配：2正例完成，3负例捕获预期拒绝"
+  },
+  {
+    "purpose": "发现官方schema文件最后变更commit",
+    "tool_chunk_id": "10d034",
+    "exit_code": 0,
+    "command": "Invoke-RestMethod -Uri 'https://api.github.com/repos/modelcontextprotocol/modelcontextprotocol/commits?path=schema/2025-11-25/schema.json&per_page=1' -Headers @{ 'User-Agent' = 'AQRP-Independent-Review' }"
+  },
+  {
+    "purpose": "只读固定官方schema原字节",
+    "tool_chunk_id": "328f4e",
+    "exit_code": 0,
+    "command": "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/c4c367f9f58296a7053f5c78a52fd02bfbb56a49/schema/2025-11-25/schema.json' -OutFile 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\official_mcp_schema_2025-11-25.json'"
+  },
+  {
+    "purpose": "为分版本探针抽出审核者自建worker/QB/Harness定义，不导入开发fixture",
+    "tool_chunk_id": "c5fefc",
+    "exit_code": 0,
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\prepare_fractional_harness.py'"
+  },
+  {
+    "purpose": "官方primary页面读取",
+    "tool": "web.run",
+    "references": [
+      "turn18view0",
+      "turn19view0"
+    ],
+    "urls": [
+      "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/schema/2025-11-25/schema.json",
+      "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/c4c367f9f58296a7053f5c78a52fd02bfbb56a49/schema/2025-11-25/schema.json"
+    ]
+  }
+]

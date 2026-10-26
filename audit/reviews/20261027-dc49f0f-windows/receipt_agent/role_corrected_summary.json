@@ -1,0 +1,816 @@
+{
+  "commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "command_argv": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\independent_annotations_role_corrected.py",
+    "--source",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source",
+    "--out",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "numpy": "1.26.4",
+  "pandas": "2.3.3",
+  "script_sha256": "0360453df4ff754ac8b7df9bd46c9a3fbdf9e14acefecfad17607075e6836076",
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "6e1a7a46626aa6edd9a95131e3cd1c9d0239bc4ff261421fc2913a52e716a4dd",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/quantconnect.py": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319",
+    "cloud/qresearch/registry.py": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894"
+  },
+  "methods": 12,
+  "subcases": 160,
+  "failure_records": 0,
+  "error_records": 2,
+  "skipped": 0,
+  "success": false,
+  "first_failure": {
+    "method": "test_annotation_registered_positive_subset (__main__.IndependentAnnotationTests)",
+    "subtest": "test_annotation_registered_positive_subset (__main__.IndependentAnnotationTests) (positive_annotation=16, value=\"{'lastModified': '2018-01-03T00:00:00.123456789+05:45'}\")",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 76, in _annotations\n    datetime.fromisoformat(parsed)\nValueError: Invalid isoformat string: '2018-01-03T00:00:00.123456789+05:45'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\independent_annotations_role_corrected.py\", line 178, in test_annotation_registered_positive_subset\n    with self.case(positive_annotation=number,value=str(value)):_annotations(value)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 78, in _annotations\n    _fail(\"Annotation lastModified is not a valid calendar clock\")\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 40, in _fail\n    raise ReceiptParseError(message)\nqresearch.engineering_receipts.ReceiptParseError: Annotation lastModified is not a valid calendar clock\n"
+  },
+  "inputs": [
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "0000-01-01"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-02-29"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-13-01"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T24:00:00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:60Z"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T12:60:00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00+24:00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00-24:00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00+05:60"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00+00:00:01"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00+0500"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "20180103"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03Z"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "2018-01-03T00:00:00."
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": ""
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "unsupported_or_invalid_clock": "INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "non_string_clock": "None"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "non_string_clock": "False"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "non_string_clock": "0"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "non_string_clock": "[]"
+    },
+    {
+      "method": "test_annotation_invalid_calendar_registered_clock_rejected",
+      "non_string_clock": "{}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 0,
+      "value": "None"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 1,
+      "value": "{}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 2,
+      "value": "{'audience': []}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 3,
+      "value": "{'audience': ['user', 'assistant', 'user']}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 4,
+      "value": "{'priority': 0}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 5,
+      "value": "{'priority': 1}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 6,
+      "value": "{'priority': -0.0}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 7,
+      "value": "{'priority': 0.9999999999999999}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 8,
+      "value": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 9,
+      "value": "{'lastModified': '0001-01-01'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 10,
+      "value": "{'lastModified': '9999-12-31'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 11,
+      "value": "{'lastModified': '2016-02-29'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 12,
+      "value": "{'lastModified': '2018-01-03T00:00:00'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 13,
+      "value": "{'lastModified': '2018-01-03 00:00:00'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 14,
+      "value": "{'lastModified': '2018-01-03t00:00:00z'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 15,
+      "value": "{'lastModified': '2018-01-03T23:59:59Z'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 16,
+      "value": "{'lastModified': '2018-01-03T00:00:00.123456789+05:45'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 17,
+      "value": "{'lastModified': '2018-01-03T00:00:00,5-03:30'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 18,
+      "value": "{'lastModified': '2018-01-03T00:00:00+23:59'}"
+    },
+    {
+      "method": "test_annotation_registered_positive_subset",
+      "positive_annotation": 19,
+      "value": "{'lastModified': '2018-01-03T00:00:00-00:00'}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 0,
+      "value": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 1,
+      "value": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 2,
+      "value": "{'outputs': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 3,
+      "value": "{'_meta': {'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 4,
+      "value": "{'audience': ['system']}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 5,
+      "value": "{'audience': 'user'}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 6,
+      "value": "{'audience': [True]}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 7,
+      "value": "{'audience': None}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 8,
+      "value": "{'priority': True}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 9,
+      "value": "{'priority': None}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 10,
+      "value": "{'priority': '0.5'}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 11,
+      "value": "{'priority': []}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 12,
+      "value": "{'priority': -0.01}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 13,
+      "value": "{'priority': 1.01}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 14,
+      "value": "{'priority': nan}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 15,
+      "value": "{'priority': inf}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 16,
+      "value": "{'priority': -inf}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 17,
+      "value": "{'priority': 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000}"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 18,
+      "value": "[]"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 19,
+      "value": "annotation string"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 20,
+      "value": "False"
+    },
+    {
+      "method": "test_annotation_unknown_keys_types_priorities_rejected",
+      "invalid_annotation": 21,
+      "value": "42"
+    },
+    {
+      "method": "test_deep_json_text_malformed_duplicate_annotation_keys_rejected",
+      "deep_json": "{\"type\":\"text\",\"text\":\"AQRP_ENGINEERING_JSON abc\",\"annotations\":{\"priority\":0,\"priority\":1}}"
+    },
+    {
+      "method": "test_deep_json_text_malformed_duplicate_annotation_keys_rejected",
+      "deep_json": "{\"type\":\"text\",\"text\":\"AQRP_ENGINEERING_JSON abc\",\"annotations\":{\"priority\":NaN}}"
+    },
+    {
+      "method": "test_deep_json_text_malformed_duplicate_annotation_keys_rejected",
+      "deep_json": "{\"type\":\"text\",\"text\":\"AQRP_ENGINEERING_JSON abc\",\"annotations\":{\"rows\":[]}}"
+    },
+    {
+      "method": "test_deep_json_text_malformed_duplicate_annotation_keys_rejected",
+      "deep_json": "{\"type\":\"text\",\"text\": {\"content\":[\"AQRP_ENGINEERING_JSON abc\"]}}"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "collection",
+      "nonstring_text": "dict"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "collection",
+      "nonstring_text": "list"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "collection",
+      "nonstring_text": "bool"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "old_research",
+      "nonstring_text": "dict"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "old_research",
+      "nonstring_text": "list"
+    },
+    {
+      "method": "test_full_workers_nonstring_text_cannot_extract_valid_marker",
+      "family": "old_research",
+      "nonstring_text": "bool"
+    },
+    {
+      "method": "test_lean_receipts_shared_outer_standard_annotations_and_rejections",
+      "lean_invalid_outer_annotation": "submission"
+    },
+    {
+      "method": "test_lean_receipts_shared_outer_standard_annotations_and_rejections",
+      "lean_invalid_outer_annotation": "read"
+    },
+    {
+      "method": "test_lean_receipts_shared_outer_standard_annotations_and_rejections",
+      "lean_invalid_outer_annotation": "logs"
+    },
+    {
+      "method": "test_lean_receipts_shared_outer_standard_annotations_and_rejections",
+      "lean_positive": "standard_annotation_three_stages"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "collection",
+      "shape": "root"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "collection",
+      "shape": "content"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "collection",
+      "shape": "wrappers"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "collection",
+      "shape": "json_text"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "old_research",
+      "shape": "root"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "old_research",
+      "shape": "content"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "old_research",
+      "shape": "wrappers"
+    },
+    {
+      "method": "test_new_and_old_actual_synthetic_workers_complete",
+      "family": "old_research",
+      "shape": "json_text"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "root",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "root",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "content",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "content",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "outputs",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "outputs",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "json_text",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "collection",
+      "shape": "json_text",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "root",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "root",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "content",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "content",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "outputs",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "outputs",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "json_text",
+      "unknown_annotation": "rows"
+    },
+    {
+      "method": "test_new_old_full_worker_negative_annotation_gate_no_mutation",
+      "family": "old_research",
+      "shape": "json_text",
+      "unknown_annotation": "errors"
+    },
+    {
+      "method": "test_official_schema_registered_field_contract",
+      "schema_check": "annotation_fields"
+    },
+    {
+      "method": "test_official_schema_registered_field_contract",
+      "schema_check": "role_enum"
+    },
+    {
+      "method": "test_official_schema_registered_field_contract",
+      "schema_check": "priority_interval"
+    },
+    {
+      "method": "test_official_schema_registered_field_contract",
+      "schema_check": "text_string"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "root",
+      "annotation": "ABSENT"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "root",
+      "annotation": "None"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "root",
+      "annotation": "{}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "root",
+      "annotation": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "content",
+      "annotation": "ABSENT"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "content",
+      "annotation": "None"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "content",
+      "annotation": "{}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "content",
+      "annotation": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "outputs",
+      "annotation": "ABSENT"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "outputs",
+      "annotation": "None"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "outputs",
+      "annotation": "{}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "outputs",
+      "annotation": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "wrappers",
+      "annotation": "ABSENT"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "wrappers",
+      "annotation": "None"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "wrappers",
+      "annotation": "{}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "wrappers",
+      "annotation": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "json_text",
+      "annotation": "ABSENT"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "json_text",
+      "annotation": "None"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "json_text",
+      "annotation": "{}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "json_text",
+      "annotation": "{'audience': ['assistant', 'user', 'assistant'], 'priority': 0.125, 'lastModified': '2016-02-29T12:34:56.123456+05:45'}"
+    },
+    {
+      "method": "test_outer_nested_and_deep_json_positive_paths",
+      "shape": "outer_only_standard_annotations"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "root",
+      "annotation": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "root",
+      "annotation": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "root",
+      "annotation": "{'priority': True}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "root",
+      "annotation": "{'audience': ['tool']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "content",
+      "annotation": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "content",
+      "annotation": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "content",
+      "annotation": "{'priority': True}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "content",
+      "annotation": "{'audience': ['tool']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "outputs",
+      "annotation": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "outputs",
+      "annotation": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "outputs",
+      "annotation": "{'priority': True}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "outputs",
+      "annotation": "{'audience': ['tool']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "wrappers",
+      "annotation": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "wrappers",
+      "annotation": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "wrappers",
+      "annotation": "{'priority': True}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "wrappers",
+      "annotation": "{'audience': ['tool']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "json_text",
+      "annotation": "{'rows': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "json_text",
+      "annotation": "{'errors': ['INDEPENDENT-DC49-SYNTHETIC-ROW-SECRET']}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "json_text",
+      "annotation": "{'priority': True}"
+    },
+    {
+      "method": "test_recursive_unknown_side_loads_rejected",
+      "shape": "json_text",
+      "annotation": "{'audience': ['tool']}"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "None"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "False"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "True"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "0"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "1.5"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "{}"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "[]"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "nonstring_text": "{'text': 'AQRP_ENGINEERING_JSON abc'}"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "text_unknown_field": "rows"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "text_unknown_field": "error"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "text_unknown_field": "outputs"
+    },
+    {
+      "method": "test_text_node_nonstring_or_unknown_fields_rejected",
+      "text_unknown_field": "_meta"
+    }
+  ],
+  "actions": {
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deploy": 0,
+    "real_budget_changes": 0,
+    "candidate_source_edits": 0
+  },
+  "scope": "registered annotation/clock subset, invented weekday calendar and constant numbers for actual pure-Python worker execution; not actual SDK/cloud/data evidence"
+}

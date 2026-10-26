@@ -1,0 +1,222 @@
+{
+  "actually_executed": true,
+  "test_methods": 56,
+  "passed_methods": 56,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "subcases": 25,
+  "subcases_are_not_extra_methods": true,
+  "failure_details": [],
+  "error_details": [],
+  "observations": {
+    "__main__.AdmissionTests.test_WR04_configuration_process_race": {
+      "kind": "configurations",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "registered": "294302b3cfa6d4df969d79690dd31aeb0c65ef9722affce9e747446c964de938"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for configurations"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_configuration_thread_race": {
+      "kind": "configurations",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for configurations"
+        },
+        {
+          "ok": true,
+          "registered": "1f7d3d5314fc15cbf5641db1ab2808390f48019a4196fe6d0a7167ce659fe2e9"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_lean_process_race": {
+      "kind": "lean",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 1,
+          "reserve": 1
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "b8a44f50415a44a19fcaac4b03e69fff"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for lean"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_lean_thread_race": {
+      "kind": "lean",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for lean"
+        },
+        {
+          "ok": true,
+          "should_execute": true
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_research_process_race": {
+      "kind": "research",
+      "processes": true,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 1,
+          "reserve": 1
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "3b085090da924e3a9ee3648d9ea625b2"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for research"
+        }
+      ]
+    },
+    "__main__.AdmissionTests.test_WR04_research_thread_race": {
+      "kind": "research",
+      "processes": false,
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "responses": [
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Stage2 engineering stop condition reached for research"
+        },
+        {
+          "ok": true,
+          "should_execute": true
+        }
+      ]
+    },
+    "__main__.ArithmeticTests.test_rank_ic_is_invariant_to_small_positive_scale": {
+      "actual_ic": 1.0,
+      "expected_ic": 1.0,
+      "prediction_scale": 1e-200
+    }
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "longdouble_nmant": 52
+  },
+  "developer_test_fixtures_imported": false,
+  "market_calls": 0
+}
