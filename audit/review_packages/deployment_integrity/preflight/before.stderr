@@ -1,0 +1,760 @@
+test_existing_admission_recovery_does_not_read_current_sources (test_deployment_preflight.LocalPreflightTests) ... ok
+test_first_prepare_rejects_stale_source_before_input_or_admission (test_deployment_preflight.LocalPreflightTests) ... test_generated_fixed_input_is_not_implementation (test_deployment_preflight.LocalPreflightTests) ... ok
+test_missing_or_extra_local_python_blocks_freeze (test_deployment_preflight.LocalPreflightTests) ... test_register_and_claim_reject_stale_source_without_debit (test_deployment_preflight.LocalPreflightTests) ... test_stale_local_source_blocks_freeze_and_preview_before_any_writes (test_deployment_preflight.LocalPreflightTests) ... test_v2_current_source_catalog_identity_still_blocks_new_claim (test_deployment_preflight.LocalPreflightTests) ... ok
+test_valid_local_freeze_preview_is_readonly_for_both_versions (test_deployment_preflight.LocalPreflightTests) ... ok
+test_all_mirrors_errors_and_unregistered_annotations_are_checked (test_deployment_preflight.NativeSourceReferenceTests) ... test_content_only_structured_only_and_direct_successful_record (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_exact_implementation_hash_normalizes_only_BOM_and_line_endings (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_explicit_input_binding_uses_exact_UTF8_bytes (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_manifest_and_native_unknown_fields_are_not_silently_ignored (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_missing_extra_and_changed_reference_never_ready (test_deployment_preflight.NativeSourceReferenceTests) ... test_native_match_outputs_only_metadata_and_never_dispatches (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_notebook_content_is_not_part_of_source_comparison_or_output (test_deployment_preflight.NativeSourceReferenceTests) ... FAIL
+test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) ... 
+======================================================================
+FAIL: test_first_prepare_rejects_stale_source_before_input_or_admission (test_deployment_preflight.LocalPreflightTests) (version=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 126, in test_first_prepare_rejects_stale_source_before_input_or_admission
+    with self.assertRaises(ValueError):cli.prepare(f.bridge,attempt)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_first_prepare_rejects_stale_source_before_input_or_admission (test_deployment_preflight.LocalPreflightTests) (version=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 126, in test_first_prepare_rejects_stale_source_before_input_or_admission
+    with self.assertRaises(ValueError):cli.prepare(f.bridge,attempt)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_extra_local_python_blocks_freeze (test_deployment_preflight.LocalPreflightTests) (mutate='missing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 101, in test_missing_or_extra_local_python_blocks_freeze
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=True)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_missing_or_extra_local_python_blocks_freeze (test_deployment_preflight.LocalPreflightTests) (mutate='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 101, in test_missing_or_extra_local_python_blocks_freeze
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=True)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_register_and_claim_reject_stale_source_without_debit (test_deployment_preflight.LocalPreflightTests) (version=1, command='register')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 117, in test_register_and_claim_reject_stale_source_without_debit
+    with self.assertRaises(ValueError):f.command(command,'research' if command=='claim' else None)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_register_and_claim_reject_stale_source_without_debit (test_deployment_preflight.LocalPreflightTests) (version=1, command='claim')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 117, in test_register_and_claim_reject_stale_source_without_debit
+    with self.assertRaises(ValueError):f.command(command,'research' if command=='claim' else None)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_register_and_claim_reject_stale_source_without_debit (test_deployment_preflight.LocalPreflightTests) (version=2, command='register')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 117, in test_register_and_claim_reject_stale_source_without_debit
+    with self.assertRaises(ValueError):f.command(command,'research' if command=='claim' else None)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_register_and_claim_reject_stale_source_without_debit (test_deployment_preflight.LocalPreflightTests) (version=2, command='claim')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 117, in test_register_and_claim_reject_stale_source_without_debit
+    with self.assertRaises(ValueError):f.command(command,'research' if command=='claim' else None)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stale_local_source_blocks_freeze_and_preview_before_any_writes (test_deployment_preflight.LocalPreflightTests) (version=1, preview=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 92, in test_stale_local_source_blocks_freeze_and_preview_before_any_writes
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=preview)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stale_local_source_blocks_freeze_and_preview_before_any_writes (test_deployment_preflight.LocalPreflightTests) (version=1, preview=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 92, in test_stale_local_source_blocks_freeze_and_preview_before_any_writes
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=preview)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stale_local_source_blocks_freeze_and_preview_before_any_writes (test_deployment_preflight.LocalPreflightTests) (version=2, preview=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 92, in test_stale_local_source_blocks_freeze_and_preview_before_any_writes
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=preview)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stale_local_source_blocks_freeze_and_preview_before_any_writes (test_deployment_preflight.LocalPreflightTests) (version=2, preview=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 92, in test_stale_local_source_blocks_freeze_and_preview_before_any_writes
+    with self.assertRaises(ValueError):cli.freeze({'success':True,'projects':[{'projectId':17}]},plan_file=f.root/'plan.json',preview=preview)
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_all_mirrors_errors_and_unregistered_annotations_are_checked (test_deployment_preflight.NativeSourceReferenceTests) (change='mirror')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 218, in test_all_mirrors_errors_and_unregistered_annotations_are_checked
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_all_mirrors_errors_and_unregistered_annotations_are_checked (test_deployment_preflight.NativeSourceReferenceTests) (change='extra_text')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 218, in test_all_mirrors_errors_and_unregistered_annotations_are_checked
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_all_mirrors_errors_and_unregistered_annotations_are_checked (test_deployment_preflight.NativeSourceReferenceTests) (change='isError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 218, in test_all_mirrors_errors_and_unregistered_annotations_are_checked
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_all_mirrors_errors_and_unregistered_annotations_are_checked (test_deployment_preflight.NativeSourceReferenceTests) (change='annotations')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 218, in test_all_mirrors_errors_and_unregistered_annotations_are_checked
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_content_only_structured_only_and_direct_successful_record (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 210, in test_content_only_structured_only_and_direct_successful_record
+    for form in forms:self.assertTrue(self.check(form)['preflight_passed'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) (name='../stub.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 196, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.subTest(name=name),self.assertRaises(ValueError):self.check(project_tool([{'filePath':name,'content':'x'}]))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) (name='/stub.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 196, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.subTest(name=name),self.assertRaises(ValueError):self.check(project_tool([{'filePath':name,'content':'x'}]))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) (name='a\\stub.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 196, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.subTest(name=name),self.assertRaises(ValueError):self.check(project_tool([{'filePath':name,'content':'x'}]))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) (name='stub.py\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 196, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.subTest(name=name),self.assertRaises(ValueError):self.check(project_tool([{'filePath':name,'content':'x'}]))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests) (name='C:/stub.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 196, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.subTest(name=name),self.assertRaises(ValueError):self.check(project_tool([{'filePath':name,'content':'x'}]))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_duplicate_and_unsafe_paths_are_rejected (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 199, in test_duplicate_and_unsafe_paths_are_rejected
+    with self.assertRaises(ValueError):self.check(project_tool(files))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_exact_implementation_hash_normalizes_only_BOM_and_line_endings (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 167, in test_exact_implementation_hash_normalizes_only_BOM_and_line_endings
+    self.assertTrue(self.check(good)['source_reference_matches'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_explicit_input_binding_uses_exact_UTF8_bytes (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 180, in test_explicit_input_binding_uses_exact_UTF8_bytes
+    self.assertTrue(self.check(project_tool(files),input_hash=digest)['input_binding_verified'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_manifest_and_native_unknown_fields_are_not_silently_ignored (test_deployment_preflight.NativeSourceReferenceTests) (manifest={'stub.py': '585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 203, in test_manifest_and_native_unknown_fields_are_not_silently_ignored
+    with self.subTest(manifest=manifest),self.assertRaises(ValueError):self.check(manifest=manifest,digest=digest)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_manifest_and_native_unknown_fields_are_not_silently_ignored (test_deployment_preflight.NativeSourceReferenceTests) (manifest={'stub.py': 'bad'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 203, in test_manifest_and_native_unknown_fields_are_not_silently_ignored
+    with self.subTest(manifest=manifest),self.assertRaises(ValueError):self.check(manifest=manifest,digest=digest)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_manifest_and_native_unknown_fields_are_not_silently_ignored (test_deployment_preflight.NativeSourceReferenceTests) (manifest={'_engineering_task_input.py': '585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 203, in test_manifest_and_native_unknown_fields_are_not_silently_ignored
+    with self.subTest(manifest=manifest),self.assertRaises(ValueError):self.check(manifest=manifest,digest=digest)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_manifest_and_native_unknown_fields_are_not_silently_ignored (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 205, in test_manifest_and_native_unknown_fields_are_not_silently_ignored
+    with self.assertRaises(ValueError):self.check(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_missing_extra_and_changed_reference_never_ready (test_deployment_preflight.NativeSourceReferenceTests) (field='missing_from_returned_reference')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 176, in test_missing_extra_and_changed_reference_never_ready
+    r=self.check(project_tool(files));self.assertFalse(r['preflight_passed']);self.assertEqual(r[field],paths)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_missing_extra_and_changed_reference_never_ready (test_deployment_preflight.NativeSourceReferenceTests) (field='unexpected_in_returned_reference')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 176, in test_missing_extra_and_changed_reference_never_ready
+    r=self.check(project_tool(files));self.assertFalse(r['preflight_passed']);self.assertEqual(r[field],paths)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_missing_extra_and_changed_reference_never_ready (test_deployment_preflight.NativeSourceReferenceTests) (field='different_paths')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 176, in test_missing_extra_and_changed_reference_never_ready
+    r=self.check(project_tool(files));self.assertFalse(r['preflight_passed']);self.assertEqual(r[field],paths)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_native_match_outputs_only_metadata_and_never_dispatches (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 157, in test_native_match_outputs_only_metadata_and_never_dispatches
+    r=self.check();self.assertTrue(r['source_reference_matches']);self.assertTrue(r['preflight_passed'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_notebook_content_is_not_part_of_source_comparison_or_output (test_deployment_preflight.NativeSourceReferenceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 162, in test_notebook_content_is_not_part_of_source_comparison_or_output
+    first=self.check();tool=project_tool();tool['result']['structuredContent']['project']['files'][1]['content']='OTHER_NOTEBOOK_DATA'
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) (change='tool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 193, in test_tool_project_listing_and_internal_identity_are_bound
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool,listing)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) (change='argument')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 193, in test_tool_project_listing_and_internal_identity_are_bound
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool,listing)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) (change='internal')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 193, in test_tool_project_listing_and_internal_identity_are_bound
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool,listing)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) (change='listing')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 193, in test_tool_project_listing_and_internal_identity_are_bound
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool,listing)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+======================================================================
+FAIL: test_tool_project_listing_and_internal_identity_are_bound (test_deployment_preflight.NativeSourceReferenceTests) (change='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 149, in verifier
+    try:module=importlib.import_module('deployment_preflight')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'deployment_preflight'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 193, in test_tool_project_listing_and_internal_identity_are_bound
+    with self.subTest(change=change),self.assertRaises(ValueError):self.check(tool,listing)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 153, in check
+    return self.verifier()(project_tool() if tool is None else tool,projects() if listing is None else listing,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_preflight.py", line 150, in verifier
+    except ImportError:self.fail('Missing pure native deployment preflight')
+AssertionError: Missing pure native deployment preflight
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.350s
+
+FAILED (failures=39)

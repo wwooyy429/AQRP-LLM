@@ -15,7 +15,7 @@ import platform
 import pandas as pd
 import numpy as np
 
-from .artifacts import canonical_json, content_hash
+from .artifacts import canonical_json, content_hash, validate_key
 from .cache import CacheMiss, SharedDataCache
 from .contracts import DataRequest, NY, RECORD_COLUMNS, aware
 from .coverage import produce_engineering_coverage
@@ -24,6 +24,69 @@ from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConne
 
 
 STORE_PREFIX = "aqrp/engineering/v2"
+
+
+_DEPLOYMENT_FAILURE_MESSAGES = {
+    "invalid_manifest": "Missing or changed frozen source manifest",
+    "manifest_hash_mismatch": "Missing or changed frozen source manifest",
+    "invalid_path": "Invalid implementation source path",
+    "source_unreadable": "Implementation source is unavailable",
+    "source_decode_error": "Implementation source is not UTF-8",
+    "source_hash_mismatch": "Cloud implementation differs from the frozen deployment",
+}
+
+
+def _deployment_path_valid(name):
+    if (not isinstance(name, str) or not name.endswith(".py")
+            or name == "_engineering_task_input.py" or any(ord(character) == 127 for character in name)):
+        return False
+    try:
+        validate_key(name)
+        name.encode("utf-8")
+    except (TypeError, ValueError, UnicodeError):
+        return False
+    return True
+
+
+class DeploymentVerificationError(ValueError):
+    """Bounded source metadata only; never OS paths, contents or exceptions."""
+
+    def __init__(self, failure_kind, *, path=None, expected_sha256=None, observed_sha256=None):
+        if failure_kind not in _DEPLOYMENT_FAILURE_MESSAGES:
+            raise ValueError("Unknown deployment diagnostic kind") from None
+        diagnostic = {"schema_version": 1, "failure_kind": failure_kind}
+        if isinstance(path, str):
+            if (_deployment_path_valid(path) and len(path) <= 160
+                    and re.fullmatch(r"[A-Za-z0-9_./-]+", path) is not None):
+                diagnostic["path"] = path
+            else:
+                diagnostic["path_sha256"] = hashlib.sha256(path.encode("utf-8", errors="surrogatepass")).hexdigest()
+        for name, value in (("expected_sha256", expected_sha256), ("observed_sha256", observed_sha256)):
+            if isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None:
+                diagnostic[name] = value
+        self._diagnostics = diagnostic
+        super().__init__(_DEPLOYMENT_FAILURE_MESSAGES[failure_kind] + "; diagnostics="
+                         + canonical_json(diagnostic).decode("ascii"))
+
+    @property
+    def diagnostics(self):
+        return dict(self._diagnostics)
+
+
+def source_bytes_sha256(raw: bytes):
+    """The existing UTF-8-sig/universal-newline identity, without stripping EOF.
+
+    Hashing raw bytes from one read also lets mismatch diagnostics identify the
+    same observation that caused rejection. No imports, whitespace or source
+    syntax are removed; this is equivalent to read_text(encoding='utf-8-sig').
+    """
+    if type(raw) is not bytes:
+        raise ValueError("Deployment source must be bytes") from None
+    try:
+        text = raw.decode("utf-8-sig")
+    except UnicodeError:
+        raise ValueError("Deployment source must contain valid UTF-8") from None
+    return hashlib.sha256(text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")).hexdigest()
 
 
 def _runtime_environment(api):
@@ -68,20 +131,46 @@ def verify_deployment(manifest, expected_hash, *, source_root=None):
     The input contains the plan and therefore is explicitly outside the code
     manifest; its own bytes are pinned in the platform submission receipt.
     """
-    if not isinstance(manifest, dict) or not manifest or content_hash(manifest) != expected_hash:
-        raise ValueError("Missing or changed frozen source manifest")
-    root = Path(source_root or Path(__file__).resolve().parents[1]).resolve()
-    observed = {}
+    if (not isinstance(manifest, dict) or not manifest or not isinstance(expected_hash, str)
+            or re.fullmatch(r"[0-9a-f]{64}", expected_hash) is None):
+        raise DeploymentVerificationError("invalid_manifest") from None
+    # Validate the entire declared set before resolving or reading any source.
+    for name, expected in manifest.items():
+        if not _deployment_path_valid(name):
+            raise DeploymentVerificationError("invalid_path", path=name) from None
+        if not isinstance(expected, str) or re.fullmatch(r"[0-9a-f]{64}", expected) is None:
+            raise DeploymentVerificationError("invalid_manifest", path=name) from None
+    manifest_hash = content_hash(manifest)
+    if manifest_hash != expected_hash:
+        raise DeploymentVerificationError("manifest_hash_mismatch", expected_sha256=expected_hash,
+                                          observed_sha256=manifest_hash) from None
+    try:
+        root = Path(source_root or Path(__file__).resolve().parents[1]).resolve()
+    except (OSError, RuntimeError, TypeError, ValueError):
+        raise DeploymentVerificationError("source_unreadable") from None
+    paths = []
     for name, expected in sorted(manifest.items()):
-        path = root / name
-        if (not isinstance(name, str) or not name.endswith(".py") or "\\" in name
-                or name.startswith("/") or ".." in name.split("/")
-                or not path.resolve().is_relative_to(root)
-                or name == "_engineering_task_input.py"):
-            raise ValueError("Invalid implementation source path")
-        actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+        try:
+            path = root / name
+            contained = path.resolve().is_relative_to(root)
+        except (OSError, RuntimeError, TypeError, ValueError):
+            raise DeploymentVerificationError("invalid_path", path=name) from None
+        if not contained:
+            raise DeploymentVerificationError("invalid_path", path=name) from None
+        paths.append((name, expected, path))
+    observed = {}
+    for name, expected, path in paths:
+        try:
+            raw = path.read_bytes()
+        except (OSError, ValueError):
+            raise DeploymentVerificationError("source_unreadable", path=name, expected_sha256=expected) from None
+        try:
+            actual = source_bytes_sha256(raw)
+        except ValueError:
+            raise DeploymentVerificationError("source_decode_error", path=name, expected_sha256=expected) from None
         if actual != expected:
-            raise ValueError("Cloud implementation differs from the frozen deployment")
+            raise DeploymentVerificationError("source_hash_mismatch", path=name,
+                expected_sha256=expected, observed_sha256=actual) from None
         observed[name] = actual
     return content_hash(observed)
 

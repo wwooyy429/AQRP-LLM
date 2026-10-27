@@ -269,7 +269,11 @@ class JointFreezeBoundaryTests(unittest.TestCase):
             root = Path(directory)
             (root / "config").mkdir(); (root / "audit").mkdir()
             (root / "config/quantconnect.json").write_text(json.dumps({"active_project_id": 17}), encoding="utf-8")
-            (root / "audit/deployment.json").write_text(json.dumps({"source_files": {"stub.py": "b" * 64}}), encoding="utf-8")
+            (root / "cloud").mkdir()
+            stub = b"synthetic_stub = 1\n"
+            (root / "cloud/stub.py").write_bytes(stub)
+            import hashlib
+            (root / "audit/deployment.json").write_text(json.dumps({"source_files": {"stub.py": hashlib.sha256(stub).hexdigest()}}), encoding="utf-8")
             plan_file = root / "joint.json"
             plan_file.write_text(json.dumps(joint_document()), encoding="utf-8")
             pointer = root / "audit/engineering_current.json"
@@ -298,7 +302,11 @@ class JointFreezeBoundaryTests(unittest.TestCase):
             root = Path(directory)
             (root / "config").mkdir(); (root / "audit").mkdir()
             (root / "config/quantconnect.json").write_text(json.dumps({"active_project_id": 17}), encoding="utf-8")
-            (root / "audit/deployment.json").write_text(json.dumps({"source_files": {"stub.py": "b" * 64}}), encoding="utf-8")
+            (root / "cloud").mkdir()
+            stub = b"synthetic_stub = 1\n"
+            (root / "cloud/stub.py").write_bytes(stub)
+            import hashlib
+            (root / "audit/deployment.json").write_text(json.dumps({"source_files": {"stub.py": hashlib.sha256(stub).hexdigest()}}), encoding="utf-8")
             raw = joint_document()
             raw["collection_probe"]["field_catalog"]["dollar_volume"]["unit"] = "untrusted-injected-unit"
             plan_file = root / "joint.json"

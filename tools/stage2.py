@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import canonical_json, content_hash, validate_key
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, submission_protocol
+from qresearch.engineering_data import verify_deployment
 from qresearch.registry import BudgetExceeded
 from research import read_json, write_changed, open_registry, export_usage
 from stages import source_manifest
@@ -22,6 +23,27 @@ from stages import source_manifest
 
 def _write(path, document):
     write_changed(path, json.dumps(document, ensure_ascii=False, indent=2) + "\n")
+
+
+def local_deployment_preflight(*, expected_hash=None):
+    """Check the declared build against physical local sources before writing.
+
+    This establishes a local prerequisite only. It does not certify a cloud
+    readback, worker packaging, market coverage or permission to dispatch.
+    """
+    record = read_json(ROOT / "audit" / "deployment.json")
+    if not isinstance(record, dict) or "source_files" not in record:
+        raise ValueError("A built local deployment manifest is required")
+    manifest = record["source_files"]
+    expected = content_hash(manifest) if expected_hash is None else expected_hash
+    verify_deployment(manifest, expected, source_root=ROOT / "cloud")
+    observed = {path.relative_to(ROOT / "cloud").as_posix()
+                for path in (ROOT / "cloud").rglob("*")
+                if path.is_file() and path.suffix.lower() == ".py" and "__pycache__" not in path.parts
+                and path.relative_to(ROOT / "cloud").as_posix() != "_engineering_task_input.py"}
+    if observed != set(manifest):
+        raise ValueError("The complete managed local Python set differs from the frozen deployment")
+    return manifest
 
 
 def freeze(projects, *, plan_file=None, preview=False):
@@ -46,7 +68,7 @@ def freeze(projects, *, plan_file=None, preview=False):
             raise ValueError("Joint pilot cannot override the trusted source catalog")
         probe["field_catalog"] = expected
         probe["collection_plan"]["source_manifest_hash"] = raw["source_manifest_hash"]
-    deployment = read_json(ROOT / "audit" / "deployment.json")["source_files"]
+    deployment = local_deployment_preflight()
     raw["deployment_hash"] = content_hash(deployment)
     # Raw snapshot identity is independent of controller/parser code changes.
     # Failed/corrupt source snapshots require an explicit new data_version;
@@ -156,11 +178,7 @@ def prepare(bridge, attempt):
     if record["status"] not in {"started", "pending", "ambiguous"}:
         raise ValueError("Finalized engineering attempts cannot create fresh input")
     payload = bridge.payload(attempt)
-    if bridge.plan.to_dict()["schema_version"] == 2:
-        joint_preflight(bridge)
-    manifest = read_json(ROOT / "audit" / "deployment.json")["source_files"]
-    if content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]:
-        raise ValueError("Re-freeze and register a new plan after changing implementation")
+    manifest = joint_preflight(bridge)
     payload["deployment_manifest"] = manifest
     text = "TASK_INPUT_JSON = " + repr(canonical_json(payload).decode()) + "\n"
     path = ROOT / "audit" / "task_inputs" / (attempt + ".py")
@@ -184,14 +202,20 @@ def prepare(bridge, attempt):
 
 def joint_preflight(bridge):
     document = bridge.plan.to_dict()
+    manifest = local_deployment_preflight(expected_hash=document["deployment_hash"])
     if document["schema_version"] != 2:
-        return
+        # Legacy full manifests included mutable budget usage. Rechecking that
+        # identity here would invalidate a v1 plan after its own first debit.
+        # Its frozen physical implementation remains strictly checked above;
+        # v2 provides the stable controller/catalog identity for new pilots.
+        return manifest
     from collection_task_cli import execution_source_manifest
     from stage2_collection import catalog
     EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],), probe_field_catalog=catalog())
     if (execution_source_manifest()["source_hash"] != document["source_manifest_hash"]
-            or content_hash(read_json(ROOT / "audit/deployment.json")["source_files"]) != document["deployment_hash"]):
+            or content_hash(manifest) != document["deployment_hash"]):
         raise ValueError("Joint engineering source and deployment must be frozen before new charging")
+    return manifest
 
 
 def _limits(bridge, kind):

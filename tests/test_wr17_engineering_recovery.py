@@ -3,6 +3,7 @@ from copy import deepcopy
 import contextlib
 import io
 import json
+import hashlib
 from pathlib import Path
 import sys
 import tempfile
@@ -22,7 +23,8 @@ from test_engineering_receipts import (context, report, research_tool, envelope,
 from test_phase2_joint_boundaries import joint_document, CATALOG, wrapper
 
 
-MANIFEST = {"stub.py": "b" * 64}
+STUB_SOURCE = b"synthetic_stub = 1\n"
+MANIFEST = {"stub.py": hashlib.sha256(STUB_SOURCE).hexdigest()}
 SOURCE = "a" * 64
 
 
@@ -32,6 +34,8 @@ class SyntheticFixture:
         self.root = Path(self.directory.name)
         (self.root / "config").mkdir()
         (self.root / "audit").mkdir()
+        (self.root / "cloud").mkdir()
+        (self.root / "cloud" / "stub.py").write_bytes(STUB_SOURCE)
         self.listing = {"success": True, "projects": [{"projectId": 17}]}
         self.store = MemoryArtifactStore()
         limits = {name: {"total": 10, "normal": 8, "reserve": 2}
