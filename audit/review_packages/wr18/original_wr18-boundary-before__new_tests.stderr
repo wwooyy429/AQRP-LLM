@@ -1,0 +1,171 @@
+test_absent_submission_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... FAIL
+test_bridge_and_shared_registry_reject_the_three_original_invalid_paths (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... test_completion_identity_status_and_ref_mismatches_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... ok
+test_empty_completion_receipt_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... FAIL
+test_every_completion_deployment_component_must_match_original_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... test_filesystem_matching_dependency_does_not_reenter_transaction_lock (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... ok
+test_matching_bridge_completion_and_direct_completion_each_allow_one_lean (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... ok
+test_missing_original_submission_evidence_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... FAIL
+test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... test_summary_identity_external_and_input_tampering_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) ... 
+======================================================================
+FAIL: test_absent_submission_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 95, in test_absent_submission_cannot_be_completed_dependency
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_bridge_and_shared_registry_reject_the_three_original_invalid_paths (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='input_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 178, in test_bridge_and_shared_registry_reject_the_three_original_invalid_paths
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_bridge_and_shared_registry_reject_the_three_original_invalid_paths (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='empty_raw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 178, in test_bridge_and_shared_registry_reject_the_three_original_invalid_paths
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_bridge_and_shared_registry_reject_the_three_original_invalid_paths (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='no_submission')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 178, in test_bridge_and_shared_registry_reject_the_three_original_invalid_paths
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_empty_completion_receipt_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 90, in test_empty_completion_receipt_cannot_be_completed_dependency
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_every_completion_deployment_component_must_match_original_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (component='input_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 83, in test_every_completion_deployment_component_must_match_original_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_missing_original_submission_evidence_cannot_be_completed_dependency (test_wr18_completion_dependency.WR18CompletionDependencyTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 103, in test_missing_original_submission_evidence_cannot_be_completed_dependency
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='unaccepted')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 126, in test_rehashed_invalid_original_submission_is_not_a_checked_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='empty_raw')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 126, in test_rehashed_invalid_original_submission_is_not_a_checked_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='wrong_identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 126, in test_rehashed_invalid_original_submission_is_not_a_checked_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='wrong_external')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 126, in test_rehashed_invalid_original_submission_is_not_a_checked_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_rehashed_invalid_original_submission_is_not_a_checked_submission (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='wrong_input')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 126, in test_rehashed_invalid_original_submission_is_not_a_checked_submission
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_summary_identity_external_and_input_tampering_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='identity')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 145, in test_summary_identity_external_and_input_tampering_are_rejected
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_summary_identity_external_and_input_tampering_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='external')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 145, in test_summary_identity_external_and_input_tampering_are_rejected
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_summary_identity_external_and_input_tampering_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='input')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 145, in test_summary_identity_external_and_input_tampering_are_rejected
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_summary_identity_external_and_input_tampering_are_rejected (test_wr18_completion_dependency.WR18CompletionDependencyTests) (mutation='kind')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 145, in test_summary_identity_external_and_input_tampering_are_rejected
+    self.assert_denied_without_write(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr18_completion_dependency.py", line 55, in assert_denied_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.535s
+
+FAILED (failures=16)

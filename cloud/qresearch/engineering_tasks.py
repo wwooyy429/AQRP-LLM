@@ -433,6 +433,51 @@ class EngineeringTaskBridge:
     def _submission_key(self, attempt_id):
         return "engineering/submissions/" + attempt_id + ".json"
 
+    def _recorded_submission(self, payload):
+        """Read and validate the original checked submission, without a lock.
+
+        Both live settlement and dependency admission use this exact loader.
+        It reads immutable metadata only; it must not call Registry/payload
+        helpers because dependency admission already owns the transaction lock.
+        """
+        identity = payload["identity"]
+        attempt = identity["attempt_id"]
+        try:
+            encoded = self.store.read_bytes(self._submission_key(attempt))
+            submission = json.loads(encoded)
+            required = {"external_id", "identity", "deployment", "receipt_ref", "identity_kind"}
+            if (canonical_json(submission) != encoded or not isinstance(submission, dict)
+                    or set(submission) != required or submission["identity"] != identity
+                    or submission["identity_kind"] != payload["external_identity_kind"]):
+                raise EngineeringTaskError("Recorded submission differs from the frozen task")
+            self._deployment(submission["deployment"])
+            external = _string(submission["external_id"], "recorded external identity")
+            if len(external) > 256 or "\n" in external or "\r" in external:
+                raise EngineeringTaskError("Recorded external identity is invalid")
+            if (identity["stage"] == "research" and external !=
+                    "qc-research:" + str(identity["project_id"]) + ":" + attempt):
+                raise EngineeringTaskError("Recorded Research identity differs from this attempt")
+            ref = submission["receipt_ref"]
+            _safe_reference(ref)
+            expected_key = "engineering/evidence/" + attempt + "/submission/" + ref["sha256"] + ".json"
+            if ref["key"] != expected_key:
+                raise EngineeringTaskError("Original submission reference differs from this attempt")
+            original = self.store.read_bytes(ref["key"])
+            receipt = json.loads(original)
+            if canonical_json(receipt) != original or content_hash(receipt) != ref["sha256"]:
+                raise EngineeringTaskError("Original submission reference bytes changed")
+            self._submission_metadata(_mapping(receipt, "original submission observation"))
+            if (receipt.get("accepted") is not True or not receipt["raw_receipt"]
+                    or any(receipt.get(name) != submission[name] for name in
+                           ("identity", "identity_kind", "deployment", "external_id"))):
+                raise EngineeringTaskError("Original accepted submission observation is missing or inconsistent")
+            if (identity["stage"] == "lean" and (receipt["raw_receipt"].get("success") is not True
+                    or receipt["raw_receipt"].get("backtestId") != external)):
+                raise EngineeringTaskError("Original LEAN submission is not a backtest acknowledgement")
+            return submission
+        except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
+            raise EngineeringTaskError("A matching original checked submission is required") from exc
+
     def _deployment(self, raw):
         raw = _mapping(raw, "deployment observation")
         document = self.plan.to_dict()
@@ -614,24 +659,16 @@ class EngineeringTaskBridge:
         self._resolution(report, stage)
         return report["status"] == "completed" and counts_passed and all(checks[name] for name in required)
 
-    def consume_completion(self, attempt, *, completion_source=None):
-        """Read a delivered completion; never poll or accept a free status flag."""
-        record = self._record(attempt)
-        if record["status"] in {"completed", "failed"}:
-            return self._attempt(record)
-        source = self.completion_source if completion_source is None else completion_source
-        if not callable(source):
-            raise EngineeringTaskError("A trusted completion reader is required; a free result dictionary is not evidence")
-        if not self.store.exists(self._submission_key(record["attempt_id"])):
-            raise EngineeringTaskError("Reconcile and record the actual submission identity before completion")
-        submission = json.loads(self.store.read_bytes(self._submission_key(record["attempt_id"])))
-        payload = self.payload(record["attempt_id"])
-        payload["external_id"] = submission["external_id"]
-        observed = source(json.loads(canonical_json(payload)))
-        # The boundary runs before persisting even a rejected raw observation.
-        # Rows accidentally returned by a trusted I/O adapter must remain cloud-only.
+    def _completion_contract(self, payload, submission, observed):
+        """Validate one terminal against its original submission; no writes.
+
+        Research validation does not call any Registry method and is safe under
+        its transaction lock. Live LEAN settlement additionally verifies the
+        Research resolution through its existing public path, outside that lock.
+        Return status and pass flag separately: a terminal failure is evidence,
+        but never a completed Research dependency.
+        """
         self._completion_metadata(observed)
-        reference = self._save(record["attempt_id"], "completion", observed)
         platform = _mapping(observed.get("platform"), "platform terminal observation")
         expected = dict(payload["identity"], external_id=submission["external_id"])
         if (platform.get("identity") != expected or platform.get("terminal") is not True
@@ -642,7 +679,7 @@ class EngineeringTaskBridge:
             raise EngineeringTaskError("An actual platform receipt is required")
         status = platform.get("status")
         if status in {"failed", "runtime_error", "compile_error"}:
-            return self.registry.fail(record["attempt_id"], {"platform_status": status, "evidence_ref": reference}, reconciliation=reference["sha256"])
+            return status, False
         if status != "completed":
             raise EngineeringTaskError("Submission or compilation success is not execution completion")
         report = observed.get("cloud_report")
@@ -650,10 +687,30 @@ class EngineeringTaskBridge:
         report_ref = _mapping(observed.get("report_ref"), "cloud report reference")
         if set(report_ref) != {"key", "sha256"} or report_ref["key"] != payload["report_key"] or report_ref["sha256"] != content_hash(report):
             raise EngineeringTaskError("Cloud report reference does not identify the expected immutable report")
+        return status, passed
+
+    def consume_completion(self, attempt, *, completion_source=None):
+        """Read a delivered completion; never poll or accept a free status flag."""
+        record = self._record(attempt)
+        if record["status"] in {"completed", "failed"}:
+            return self._attempt(record)
+        source = self.completion_source if completion_source is None else completion_source
+        if not callable(source):
+            raise EngineeringTaskError("A trusted completion reader is required; a free result dictionary is not evidence")
+        payload = self.payload(record["attempt_id"])
+        submission = self._recorded_submission(payload)
+        payload["external_id"] = submission["external_id"]
+        observed = source(json.loads(canonical_json(payload)))
+        # Check the entire contract before saving any rejected observation.
+        # Rows accidentally returned by trusted I/O must remain cloud-only.
+        status, passed = self._completion_contract(payload, submission, observed)
+        reference = self._save(record["attempt_id"], "completion", observed)
+        if status in {"failed", "runtime_error", "compile_error"}:
+            return self.registry.fail(record["attempt_id"], {"platform_status": status, "evidence_ref": reference}, reconciliation=reference["sha256"])
         if not passed:
             return self.registry.fail(record["attempt_id"], {"reason": "Observed engineering checks failed", "evidence_ref": reference}, reconciliation=reference["sha256"])
         result = {"scope": "engineering", "identity": payload["identity"], "external_id": submission["external_id"],
-                  "cloud_report": report, "report_ref": report_ref, "platform_evidence_ref": reference,
+                  "cloud_report": observed["cloud_report"], "report_ref": observed["report_ref"], "platform_evidence_ref": reference,
                   "financial_evidence": False}
         return self.registry.complete(record["attempt_id"], result, external_id=submission["external_id"])
 

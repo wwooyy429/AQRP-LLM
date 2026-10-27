@@ -1,15 +1,15 @@
 {
   "schema_version": 5,
-  "kind": "WR16_WR17_developer_repair_candidate",
+  "kind": "WR18_developer_repair_candidate",
   "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
   "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
     0,
     1
   ],
-  "stage2_status": "failed_reviewed_8f_joint_candidate_pending_repair_retest",
+  "stage2_status": "failed_reviewed_ae_WR18_pending_repair_retest",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261027-8f7236e-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json",
   "deployment_comparison_scope": "Historical d0 table retained; dc49 reviewer observed old75 cloud, 12 differing paths; developer made no new QC read",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -75,7 +75,7 @@
     "lean": 1
   },
   "blockers": [
-    "WR16_WR17_independent_repair_review",
+    "WR18_independent_repair_review",
     "existing_LEAN_delivered_terminal_and_reconciled_result",
     "new_implementation_cloud_deployment_and_completed_runtime_evidence",
     "historical_US200_financial_PIT_and_corporate_action_certification"
@@ -89,7 +89,7 @@
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/review/wr16-wr17.md",
+  "candidate_development_document": "docs/review/wr18.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -105,37 +105,38 @@
     "actual_vendor_receipt_and_vintage_certification"
   ],
   "known_open_findings": [
-    "WR-16",
-    "WR-17"
+    "WR-18"
   ],
   "developer_fixes_pending_independent_verification": [
-    "WR-16",
-    "WR-17"
+    "WR-18"
   ],
   "source_changed_this_round": [
     "cloud/qresearch/registry.py",
-    "tools/stage2.py"
+    "cloud/qresearch/engineering_tasks.py"
   ],
   "accepted_offline_scope": "WR01-14及已测离线准入/计算/采集/回执/恢复；非整阶段2",
-  "new_candidate_acceptance_scope": "pending_new_fixed_source_WR16_WR17_review; prior_original_scopes_preserved",
+  "new_candidate_acceptance_scope": "pending_new_fixed_source_WR18_review; WR16_WR17_original_scopes_retained",
   "documentation_and_archival_metadata_changed": true,
   "platform_comparison_from_independent_review": {
-    "candidate_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+    "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
     "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
     "old75_matching_files": 25,
     "candidate_different_or_missing_paths": 12,
     "this_archival_turn_new_QC_read": false,
-    "old75_task_inputs_matching": 1
+    "old75_task_inputs_matching": 1,
+    "listed_python_files": 18,
+    "readable_unlisted_files": 8,
+    "cloud_inventory_certified": false
   },
-  "candidate_source_manifest_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8",
+  "candidate_source_manifest_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f",
   "collection_remote_protocol_and_registry_admission": "prior_scopes_retained; new_joint_admission_repair_pending_review",
   "known_open_blocking_findings": [
-    "WR-16",
-    "WR-17"
+    "WR-18"
   ],
   "known_open_nonblocking_findings": [],
   "live_preflight_record": "audit/stage2_live_preflight.json",
   "joint_preview": "audit/stage2_joint_preview.json",
   "last_archived_lean_status": "pending",
-  "current_platform_lean_status": null
+  "current_platform_lean_status": null,
+  "cloud_inventory_certified": false
 }

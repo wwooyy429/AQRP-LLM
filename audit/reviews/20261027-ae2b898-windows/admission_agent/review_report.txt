@@ -1,0 +1,8 @@
+WR16 independent ae2b898 review
+Original three bypasses: fixed (original byte MRE exit0; six selected original methods all pass).
+New checked same-parent dependency guard: FAIL, WR18/P2.
+Existing recorded submission input d*64 conflicts with completion input e*64; the same observation is rejected by Bridge.consume_completion but accepted after public Registry.complete as a new same-parent LEAN prerequisite, debiting LEAN0->1. Empty raw{} and missing submission reproduce the same root omission. This is internal consistency, not remote signature or global-budget bypass.
+15 unique unit methods:12 pass,3 fail,0 errors,0 skips;4 subcases all pass. Original MRE3 cases and standalone WR18 MRE3 negative+1 positive cases overlap and are not additional methods.
+The new suite includes legitimate max1 failure retry after filesystem restart, actual checked Research->LEAN, no-charge LEAN reuse, filesystem lock and a deliberately nonreentrant store. Two actual Windows child processes race old retry vs joint first claim with1 remaining Research slot; exactly1 execution permit and1 BudgetExceeded, total2. Actual joint-worker/platform/market/model calls0.
+WR18 code: registry.py375-428 (especially416-425); begin_attempt new-charge guard584 before charge592. Bridge original contract: engineering_tasks.py625-642. Generic Registry.complete642-664 remains a trusted metadata writer.
+All evidence and exact commands/hashes: review_report.json. First results preserved; no production modifications.

@@ -1,0 +1,24 @@
+只读报告 QA：未运行新测试，未访问平台，未修改正式报告或生产文件。
+
+OK: 364 metadata checks and zero unit methods
+OK: fixed Git / review / execution identity
+OK: local deployment / implementation / active config identity
+OK: two builds and previews no source writes
+OK: budget replay and pending identity
+OK: findings identical between formal and standalone
+OK: reported cloud file counts and inventory boundary
+OK: no candidate deployment or runtime certification
+OK: narrow WR16/17 closure and WR18 software blocking only
+
+逐行核对问题位置：Registry 416–425 确实只核对来源/部署hash及报告/引用；Bridge 625–642 确实另要求submission、完整deployment及非空raw_receipt。WR18的三负一正原始结果与报告描述一致；全局cap仍有效及合成账本、未真实执行的范围声明适当。
+历史证据摘要与350+14检查结果一致：1398旧证据文件、208原件+11引用、65开发raw输出、最终3328项清单/ZIP，以及首包漏6历史源的失败/修正均有保留。
+
+需要修正或确认的编辑项：
+1. formal_report.txt及formal_report.json的platform_evidence_level.source_reads把26份一概说成raw等旧75，应改为25份实现等Git75/cloud，1份独立任务输入等已准入归档。compare_cloud_sources.py对输入的baseline实际取source/audit/task_inputs/bfd00f...py；cloud_comparison.json输入行old_git_raw_sha256字段名宜另加baseline_kind说明。目录18份/8份已知可读但未列/不认证全集的表述准确。
+2. tests.new_recovery_failure_settlement_probes 当前若为null，需补recovery_agent/failure_settlement_result.json的1程序/4合成手工探针全过；保持与5方法46子例分列，实际追加CLI28、synthetic finish6，不把它们称真实原生失败交付。此项root已说明准备补。
+
+读取时的文档 raw SHA256：
+formal_report.json 53a8acda7d90d75f804b9cbb53713f8fac632e6974ece44e465f6de7fa101ae3
+formal_report.txt 68e2a3053fcbfe78a4a13d6845434ca60d8ccba75440c4d9247b5d328dc31324
+findings.json b746b7daa44b0bcf957986df182a0d0f2abdc5b9e424d40ed967378baa6d83e8
+cloud_comparison.json 1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46

@@ -1,0 +1,250 @@
+{
+  "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\source",
+  "scope": "WR16 original constraints, strict checked dependency, shared admission, lock compatibility, synthetic new boundaries",
+  "verdict": {
+    "WR16_original_three_bypasses": "PASS after fix: fixed operation / Research prerequisite / max_retries=0",
+    "new_same_parent_checked_research_verification": "FAIL: WR18/P2 new helper accepts internal contradiction or absent required evidence",
+    "full_stage2_or_system_acceptance": false
+  },
+  "actual_commands": [
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\admission_agent\\minimal_joint_registry.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\source"
+      ],
+      "unit_methods": 0,
+      "scenario_cases": 3,
+      "exit_code": 0,
+      "output": "mre_current.stdout",
+      "stderr": "mre_current.stderr",
+      "purpose": "Original bytes replay, does not add independent unit-method count"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\admission_agent\\replay_quick.py"
+      ],
+      "unit_methods": 6,
+      "subcases": 0,
+      "passed_methods": 6,
+      "failed_methods": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0,
+      "output": "replay_quick_first.stdout",
+      "runner_output_note": "The script preserves unittest runner output and summary JSON; outer process stderr was not separately redirected for this first run."
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\admission_agent\\independent_wr16_boundaries.py"
+      ],
+      "unit_methods": 9,
+      "subcases": 4,
+      "passed_methods": 6,
+      "failed_methods": 3,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 1,
+      "output": "new_first.stdout",
+      "runner_output_note": "The script preserves unittest runner output and summary JSON; outer process stderr was not separately redirected for this first run."
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\admission_agent\\minimal_checked_dependency.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\source"
+      ],
+      "unit_methods": 0,
+      "scenario_cases": 4,
+      "exit_code": 1,
+      "output": "minimal_checked_dependency_first.stdout",
+      "stderr": "minimal_checked_dependency_first.stderr",
+      "purpose": "Standalone MRE and same-observation cross-interface negative controls. Three negative scenarios overlap new suite; not 4 additional unit methods."
+    }
+  ],
+  "unique_unit_method_totals": {
+    "methods": 15,
+    "passed_methods": 12,
+    "failed_methods": 3,
+    "error_methods": 0,
+    "skipped_methods": 0,
+    "subcases": 4,
+    "passed_subcases": 4,
+    "subcases_are_not_added_to_methods": true,
+    "old_and_new_MRE_scenarios_are_not_added_to_unit_methods": true
+  },
+  "new_method_table": [
+    {
+      "method": "test_empty_native_receipt_must_not_be_verified_research",
+      "outcome": "FAIL",
+      "subcases": 0
+    },
+    {
+      "method": "test_filesystem_verified_lean_does_not_reacquire_transaction_lock",
+      "outcome": "PASS",
+      "subcases": 0
+    },
+    {
+      "method": "test_input_hash_conflicting_with_recorded_submission_must_refuse",
+      "outcome": "FAIL",
+      "subcases": 0
+    },
+    {
+      "method": "test_max_one_retry_is_legitimate_after_failure_and_restart",
+      "outcome": "PASS",
+      "subcases": 0
+    },
+    {
+      "method": "test_no_recorded_submission_must_not_be_verified_research",
+      "outcome": "FAIL",
+      "subcases": 0
+    },
+    {
+      "method": "test_nonreentrant_transaction_store_accepts_valid_dependency",
+      "outcome": "PASS",
+      "subcases": 0
+    },
+    {
+      "method": "test_strict_identity_and_missing_completion_evidence_refuse_before_charge",
+      "outcome": "PASS",
+      "subcases": 4
+    },
+    {
+      "method": "test_valid_complete_parent_research_allows_lean_and_reuse",
+      "outcome": "PASS",
+      "subcases": 0
+    },
+    {
+      "method": "test_windows_process_race_shares_last_research_slot",
+      "outcome": "PASS",
+      "subcases": 0
+    }
+  ],
+  "original_script_byte_equality": {
+    "quick_joint_probes.py": true,
+    "minimal_joint_registry.py": true
+  },
+  "archived_before_fix_reference": {
+    "source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+    "mre_exit_code": 1,
+    "stdout": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_registry.stdout",
+    "stderr": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_registry.stderr",
+    "note": "Archived original first failure is referenced, not falsely described as re-executed during ae review.",
+    "stdout_sha256": "4c77355ac4b5c972502cb7317453ef07fbfb8f643258b0ee8bb4650ec4969ff4",
+    "stderr_sha256": "d46b7ba821c14a65ac66c3696667513740f9ec25600b5fa4c8837f41a643a6f8"
+  },
+  "WR18": {
+    "severity": "P2",
+    "title": "Joint checked Research guard omits saved submission / full deployment binding / nonempty terminal receipt",
+    "primary_reproduction": "Record actual synthetic submission input_hash=d*64. Supply same-identity completion input_hash=e*64. Bridge.consume_completion rejects this exact observed object. Publish canonical evidence and result through public Registry.complete, without modifying recorded submission, existing result bytes or journal. Registry.begin_attempt for the same parent fixed LEAN op returns should_execute=True and debits LEAN total 0→1.",
+    "same_root_supplementary_cases": [
+      "Empty platform.raw_receipt={} is refused by Bridge but admitted by Registry dependency guard.",
+      "No engineering/submissions/<attempt>.json exists; Bridge refuses completion, Registry dependency guard admits LEAN."
+    ],
+    "expected": "The authoritative shared new-charge path rejects internally contradictory or incomplete checked Research before any new LEAN debit.",
+    "actual": "All three malformed completion scenarios admitted; valid checked Research also admitted.",
+    "evidence_lines": [
+      {
+        "file": "cloud/qresearch/registry.py",
+        "start": 375,
+        "end": 428,
+        "meaning": "New helper validates identity and canonical evidence, but does not read saved submission, compare full deployment/input_hash, or require nonempty raw receipt."
+      },
+      {
+        "file": "cloud/qresearch/registry.py",
+        "start": 416,
+        "end": 425,
+        "meaning": "Only shape validation and plan source/deployment hashes are enforced."
+      },
+      {
+        "file": "cloud/qresearch/registry.py",
+        "start": 561,
+        "end": 592,
+        "meaning": "Shared LOCK; joint admission line584, engineering cap line591, new budget charge line592."
+      },
+      {
+        "file": "cloud/qresearch/engineering_tasks.py",
+        "start": 625,
+        "end": 642,
+        "meaning": "Existing trusted Bridge requires a recorded submission, exact whole deployment and nonempty actual raw terminal receipt."
+      },
+      {
+        "file": "cloud/qresearch/registry.py",
+        "start": 642,
+        "end": 664,
+        "meaning": "Generic public complete writes canonical result/journal digest and does not itself enforce engineering business evidence."
+      }
+    ],
+    "why_p2": "A caller using the documented public Registry bypass path can obtain a new LEAN execution entitlement and spend its slot from evidence the trusted completion boundary explicitly refuses. This violates the newly added verified same-parent dependency contract. Reproduction is synthetic and has not caused a platform execution; global/domain caps still apply.",
+    "trust_boundary": "This is an internally checkable consistency omission, not a claim that local hashes authenticate a remote platform, or that trusted generic callers cannot fabricate self-consistent JSON.",
+    "fix_recommendation": "Factor a pure evidence validator shared by Bridge and Registry. While already under Registry.LOCK, read and validate saved submission and its evidence using direct store reads, require exact same identity/external/deployment including input_hash, and require nonempty safe completion raw_receipt. Do not call public snapshot/read_result/payload from the held transaction.",
+    "regression_tasks": [
+      "Three malformed dependencies each reject before charge and no new attempt_started event.",
+      "A complete Bridge-recorded Research must permit same-parent fixed LEAN.",
+      "Preserve max1 legitimate retry and no-charge reuse.",
+      "Preserve filesystem lock and explicit nonreentrant-store positive controls.",
+      "Preserve mixed legacy/joint two-process last-slot atomicity."
+    ]
+  },
+  "positive_controls": {
+    "bridge_checked_research_to_lean": true,
+    "lean_reuse_same_attempt_no_debit": true,
+    "max1_failure_retry_after_filesystem_restart": true,
+    "filesystem_lock_no_reentry": true,
+    "explicit_nonreentrant_store_no_reentry": true,
+    "strict_negative_subcases": [
+      "wrong_report_identity",
+      "failed_platform",
+      "wrong_parent_probe",
+      "missing_evidence"
+    ],
+    "windows_process_race": {
+      "independent_child_processes": 2,
+      "new_execution_permits": 1,
+      "BudgetExceeded": 1,
+      "research_total_after": 2,
+      "actual_joint_worker_invocations": 0,
+      "actual_source_fetch_or_platform_execution": 0
+    }
+  },
+  "fixture_origin": "Independent plans/report helper authored by this reviewer in prior/current rounds. New suite imports only our original quick helper, and standalone MRE imports no audit helpers or developer fixtures.",
+  "actual_remote_calls": 0,
+  "actual_market_fetches": 0,
+  "actual_research_or_lean_executions": 0,
+  "actual_model_calls": 0,
+  "actual_worker_invocations": 0,
+  "production_source_or_authoritative_ledger_mutations": 0,
+  "evidence_hashes": {
+    "minimal_joint_registry.py": "cf82888c10bb15dba38d45191a5a2b948512bac1b4f7454a1154c0800bf25074",
+    "quick_joint_probes.py": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7",
+    "replay_quick.py": "9f4b3493a4a93cb14859c234b842c1ab082590dbb4f9834e8fb8433eed2c2292",
+    "independent_wr16_boundaries.py": "e20ee355f0e35ee4a655e59c7d7cad554f2e58a6e7ee4b9111da11b4f4cb5bc2",
+    "minimal_checked_dependency.py": "c23bc1c5dbfa4aa78528ea9276eea8f7732ab5871f498d5669ffdecb0a18dfcd",
+    "mre_current.stdout": "38d99b60cf67857509c0b7fd78642a6dc7b73a0acce4a0519f1826800cd66b8d",
+    "mre_current.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replay_quick_first.json": "4ba287a6e4076f70ceb9921d3822e71377f973843b810d095107e3f6149d956f",
+    "replay_quick_first.stdout": "8ba39da2fc46895573772a722ce5fd48082099a8ed94d003228f3125876c9c9b",
+    "new_first_results.json": "c385fe51579e6214ed6451f2719737cd8e56cf9860f799917698f910a0fb7677",
+    "new_first.stdout": "453a2dce1276371ce59d0bc19dcf03af46ba5d2837dec1f528cf6299acf80fbf",
+    "minimal_checked_dependency_first.json": "c91d522b2b15625c3c99987b640b251b5d79aae3fa327c141121f1452aab407c",
+    "minimal_checked_dependency_first.stdout": "c91d522b2b15625c3c99987b640b251b5d79aae3fa327c141121f1452aab407c",
+    "minimal_checked_dependency_first.stderr": "ed230d3f3b08f261d5719b8dd5c1366cce5e6e566b197bb7f68f2f84df9d6842"
+  },
+  "production_file_hashes": {
+    "cloud/qresearch/registry.py": "0eff8ba966022d75663dd16c233b361f2b48427078ed02db1001c03cc07843c7",
+    "cloud/qresearch/engineering_tasks.py": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32"
+  },
+  "limitations": [
+    "Only synthetic temporary or memory ledgers used. No actual terminal delivery or remote authenticity certified.",
+    "The 442 repository tests and historical regression suites are parent-agent work, not executed or counted by this child.",
+    "No full stage2, financial validity, live data, autonomous operation or final-test acceptance implied.",
+    "First failures retained; no test assertions or production sources changed."
+  ]
+}

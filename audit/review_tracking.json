@@ -1,15 +1,15 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
-  "source_manifest_hash": "a4f6a9fae042f15675b43e3ad024cd3ea8592de71246a50e4a46d9a05d763217",
+  "reviewed_source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "source_manifest_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8",
   "accepted_stages": [
     0,
     1
   ],
-  "acceptance_scope": "WR16/17联合候选失败；旧0/1及WR01-15各自通过范围保留",
-  "software_acceptance": "failed_stage2_joint_candidate_WR16_WR17; prior_stage0_1_scope_preserved",
+  "acceptance_scope": "WR16/17原复验范围通过；新增WR18失败；阶段2及完整系统未验收",
+  "software_acceptance": "failed_WR18; WR16_and_WR17_passed_in_retested_scope; prior_stage0_1_scope_preserved",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -34,13 +34,12 @@
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
       "implementation": "已有离线快照接口7bf通过；新增采集预算与任务协议候选待独立复验",
-      "evidence": "8f独立423仓库及联合worker9/81通过；共享准入7项四负例失败，确认WR16/17",
+      "evidence": "ae独立442仓库、原7方法、联合worker9/81及恢复5/46通过；新共享9项6过3失败，确认WR18",
       "blocking_findings": [
-        "WR-16",
-        "WR-17"
+        "WR-18"
       ],
       "status": "failed_pending_independent_repair_review",
-      "scope": "先前通过范围保留；联合候选软件失败，开发修复待新固定SHA复验",
+      "scope": "WR16/17原复验范围通过；WR18开发修复待新固定SHA独立复验",
       "implemented_offline_scope": "prior_scopes_preserved_joint_candidate_pending_repair_review",
       "missing_evidence": [
         "new_cloud_runtime_and_native_success_failure_receipts",
@@ -92,8 +91,7 @@
     }
   ],
   "known_open_findings": [
-    "WR-16",
-    "WR-17"
+    "WR-18"
   ],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
@@ -108,12 +106,13 @@
     "WR-13": "independently_verified_resolved_in_original_scope_on_dc49f0f",
     "WR-14": "independently_verified_resolved_in_original_scope_on_4a94430",
     "WR-15": "independently_verified_metadata_correction_on_8f7236e",
-    "WR-16": "developer_fixed_pending_independent_verification",
-    "WR-17": "developer_fixed_pending_independent_verification"
+    "WR-16": "independently_verified_resolved_in_retested_scope_on_ae2b898",
+    "WR-17": "independently_verified_resolved_in_retested_scope_on_ae2b898",
+    "WR-18": "developer_fixed_pending_independent_verification"
   },
-  "latest_independent_report": "audit/reviews/20261027-8f7236e-windows/formal_report.json",
-  "developer_fix_evidence": "audit/review_packages/wr16_wr17/developer_verification.json",
-  "current_handoff": "docs/review/wr16-wr17.md",
+  "latest_independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json",
+  "developer_fix_evidence": "audit/review_packages/wr18/developer_verification.json",
+  "current_handoff": "docs/review/wr18.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -1209,6 +1208,80 @@
         }
       ],
       "latest_independent_report": "audit/reviews/20261027-8f7236e-windows/formal_report.json"
+    },
+    {
+      "reviewed_source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "source_manifest_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8",
+      "software_acceptance": "failed_WR18; WR16_and_WR17_passed_in_retested_scope; prior_stage0_1_scope_preserved",
+      "stage_results": [
+        {
+          "stage": 0,
+          "modules": "StudySpec/AuditEvidence、身份、规范和预算",
+          "implementation": "已实现离线组件",
+          "acceptance": "原范围修复后通过",
+          "evidence": "442及相关历史回归",
+          "blocking_findings": []
+        },
+        {
+          "stage": 1,
+          "modules": "受限因子、执行标签、固定模型协议和数值",
+          "implementation": "已实现离线组件",
+          "acceptance": "原范围修复后通过",
+          "evidence": "Pearson10/896、数值16/84、IC摘要11/716等",
+          "blocking_findings": []
+        },
+        {
+          "stage": 2,
+          "modules": "QC桥、缓存、历史快照、联合准入和原attempt恢复",
+          "implementation": "已有离线实现，真实运行及认证未完成",
+          "acceptance": "软件失败；整体验收待定",
+          "evidence": "原WR16/17通过；新依赖完整性负例失败",
+          "blocking_findings": [
+            "WR-18"
+          ]
+        },
+        {
+          "stage": 3,
+          "modules": "固定模型、六轮滚动、标签匹配及Research报告",
+          "implementation": "部分实现",
+          "acceptance": "未验收",
+          "evidence": "无候选真实研究及独立指标认证",
+          "blocking_findings": []
+        },
+        {
+          "stage": 4,
+          "modules": "LEAN交易、成本/成交/风险、组合账本及一致性",
+          "implementation": "部分实现",
+          "acceptance": "未验收",
+          "evidence": "零订单合成接收器不构成交易验收",
+          "blocking_findings": []
+        },
+        {
+          "stage": 5,
+          "modules": "GPT受限提案、持久调度、修复及记忆",
+          "implementation": "部分实现",
+          "acceptance": "未验收",
+          "evidence": "模型/调用额度未配置，自动调用关闭",
+          "blocking_findings": []
+        },
+        {
+          "stage": 6,
+          "modules": "受限搜索、相似度、消融及选择偏差",
+          "implementation": "部分实现",
+          "acceptance": "未验收",
+          "evidence": "未开展正式市场搜索",
+          "blocking_findings": []
+        },
+        {
+          "stage": 7,
+          "modules": "冻结、独立最终执行器、前向监控及回滚",
+          "implementation": "部分实现",
+          "acceptance": "未验收",
+          "evidence": "最终测试关闭",
+          "blocking_findings": []
+        }
+      ],
+      "latest_independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json"
     }
   ],
   "repair_acceptance": {
@@ -1322,16 +1395,28 @@
       "independent_report": "audit/reviews/20261027-8f7236e-windows/formal_report.json"
     },
     "WR-16": {
-      "status": "pending_independent_verification",
+      "status": "passed_after_fix_in_retested_scope",
       "priority": "P2",
       "reviewed_failure_source": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
-      "developer_evidence": "audit/review_packages/wr16_wr17/developer_verification.json"
+      "developer_evidence": "audit/review_packages/wr16_wr17/developer_verification.json",
+      "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json",
+      "scope": "原固定operation/前置Research/重试上限三类准入范围修复后通过；不覆盖新增WR-18完成证据一致性"
     },
     "WR-17": {
-      "status": "pending_independent_verification",
+      "status": "passed_after_fix_in_retested_scope",
       "priority": "P2",
       "reviewed_failure_source": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
-      "developer_evidence": "audit/review_packages/wr16_wr17/developer_verification.json"
+      "developer_evidence": "audit/review_packages/wr16_wr17/developer_verification.json",
+      "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json",
+      "scope": "修复后通过：原MRE及5方法46子例验证统一冻结和按原attempt恢复"
+    },
+    "WR-18": {
+      "status": "pending_independent_verification",
+      "priority": "P2",
+      "reviewed_failure_source": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "developer_evidence": "audit/review_packages/wr18/developer_verification.json"
     }
   },
   "whole_system_acceptance": "not_accepted",
@@ -1383,15 +1468,15 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "WR16_WR17_developer_repaired_pending_new_fixed_source_review",
+  "new_candidate_acceptance": "WR18_developer_repaired_pending_new_fixed_source_review",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
     "status": "retained_original_accepted_scope_by_7bf_review"
   },
   "independent_review_execution_scope": {
-    "source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
-    "repository_methods": 423,
+    "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+    "repository_methods": 442,
     "new_carrier_methods": 15,
     "new_recovery_methods": 12,
     "counts_overlap": true,
@@ -1411,21 +1496,28 @@
     "original_admission_passed": 3,
     "original_admission_failed": 4,
     "joint_worker_methods": 9,
-    "joint_worker_subcases": 81
+    "joint_worker_subcases": 81,
+    "shared_admission_methods": 9,
+    "shared_admission_subcases": 4,
+    "shared_admission_passed": 6,
+    "shared_admission_failed": 3,
+    "engineering_recovery_methods": 5,
+    "engineering_recovery_subcases": 46
   },
   "current_candidate": {
-    "parent_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
-    "source_manifest_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8",
+    "parent_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+    "source_manifest_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f",
     "independently_accepted": false,
     "cloud_deployed": false,
-    "developer_repository_tests": 442,
+    "developer_repository_tests": 453,
     "registry_or_WR12_CLI_changed_this_repair": true,
     "metadata_and_documentation_only": false,
     "runtime_engine_and_test_sources_unchanged": false,
-    "kind": "WR16_WR17_repair_candidate",
+    "kind": "WR18_shared_completion_contract_repair",
     "registry_changed": true,
-    "Engineering_CLI_changed": true,
-    "Collection_WR12_CLI_changed": false
+    "Engineering_CLI_changed": false,
+    "Collection_WR12_CLI_changed": false,
+    "Engineering_completion_contract_changed": true
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -1434,8 +1526,7 @@
     "status": "passed_in_tested_scope"
   },
   "known_open_blocking_findings": [
-    "WR-16",
-    "WR-17"
+    "WR-18"
   ],
   "known_open_nonblocking_findings": []
 }

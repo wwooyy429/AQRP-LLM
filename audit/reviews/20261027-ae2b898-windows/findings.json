@@ -1,0 +1,29 @@
+[
+  {
+    "id": "WR-18",
+    "priority": "P2",
+    "reviewed_source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+    "title": "共享准入把与原提交不一致或缺提交证据的Research当作合格LEAN依赖",
+    "locations": [
+      {
+        "file": "cloud/qresearch/registry.py",
+        "line": 416,
+        "end_line": 425
+      },
+      {
+        "file": "cloud/qresearch/engineering_tasks.py",
+        "line": 625,
+        "end_line": 642
+      }
+    ],
+    "trigger": "在独立合成账本中用公开Registry.complete保存canonical/hash自洽的Research结果，再经共享Registry申请同父LEAN；完成回执input_hash与已记录提交不同，或raw_receipt为空，或没有提交记录。",
+    "expected": "同一LOCK内、LEAN扣费前核对原提交存在及身份，完整deployment含input_hash相等，原生回执元数据非空；不合格依赖拒绝且账本与用量不变。",
+    "actual": "三种路径均被Bridge.consume_completion拒绝（缺提交时在读取回执前拒绝）；共享Registry仍返回should_execute=true且LEAN用量0→1。合法匹配Bridge完成记录则正常允许LEAN。主审核代理原字节MRE及更短主案例均再次复现。",
+    "cause": "新增_joint_research_complete只检查source_manifest_hash/deployment_hash及完成证据形状/哈希，漏掉原提交存在、完整deployment对应和raw_receipt非空，弱于既有Bridge完成合同。",
+    "scope_and_severity": "属于任务依赖及预算准入可靠性P2，阻断本候选软件验收。只用公开API与合成内存账本，未修改原journal、未真实执行LEAN；全局预算及工程2/2/2上限仍有效。不是要求账本提供远程签名或抵御任意文件写入者。WR-16原三类准入MRE通过，不扩大其关闭范围覆盖本新增证据一致性问题。",
+    "reproduction": "python -B minimal_wr18.py source（本候选exit1）；完整三负一正：python -B root_confirmation/minimal_checked_dependency.py source（exit1）。",
+    "minimal_fix": "提取不重新获取锁的纯完成合同校验，在Registry同一事务内读取并校验原提交及引用，比较含input_hash的完整deployment并要求非空raw_receipt；复用Bridge相同规则，避免两个入口校验强度不同。",
+    "regression_tests": "直接Registry与Bridge对同观测一致拒绝：input_hash冲突、缺/错提交、空回执、错外部ID/阶段/引用；拒绝无新扣费/attempt。保留合法Research→LEAN、幂等、max1重试、FS重启及最后槽并发。",
+    "introduced_by_commit": null
+  }
+]

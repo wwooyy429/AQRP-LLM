@@ -1,0 +1,83 @@
+{
+  "candidate_sha": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "methods": 8,
+  "subtests": 73,
+  "failure_records": 0,
+  "errors": 0,
+  "skips": 0,
+  "failing_or_error_methods": 0,
+  "passed_methods": 8,
+  "first_failure": null,
+  "all_failures": [],
+  "observations": {
+    "missing_date_projection": {
+      "row": {
+        "sid": "SYNTHETIC-SID-A",
+        "snapshot_at": "2017-05-23T00:00:00-04:00",
+        "values": {
+          "company_reference.is_reit": false,
+          "dollar_volume": 17.5,
+          "end_time": "2017-05-23T00:00:00",
+          "financial_statements.accession_number.value": "SYNTHETIC-0001",
+          "financial_statements.file_date.value": null,
+          "financial_statements.form_type.value": "10-Q",
+          "financial_statements.period_ending_date.value": null,
+          "has_fundamental_data": false,
+          "market_cap": 12345,
+          "security_reference.common_share_sub_type": null,
+          "security_reference.exchange_id": "NAS",
+          "security_reference.is_depositary_receipt": false,
+          "security_reference.security_type": "ST00000001",
+          "security_reference.share_class_status": "I",
+          "time": "2017-05-22T00:00:00"
+        }
+      },
+      "collection": {
+        "schema_version": 1,
+        "plan_hash": "1acbfa050cfd3be58e9ca965a8c6541e4905641f26891287411f31617f0f98e1",
+        "synthetic": true,
+        "window_refs": [
+          {
+            "key": "historical-snapshots/v1/windows/ab29f99a7760259d80b5e20d0b001552bd470270a2c4c76304a844cf6089c0c2.json",
+            "sha256": "8de3e072681bc384b4bbb0a499faf6cd657d3dea7e658e05c769a0044407c749"
+          }
+        ],
+        "window_count": 1,
+        "record_count": 1,
+        "provider_calls": 1,
+        "reused_windows": 0,
+        "empty_windows": 0,
+        "missing_values": {
+          "company_reference.is_reit": 0,
+          "dollar_volume": 0,
+          "end_time": 0,
+          "financial_statements.accession_number.value": 0,
+          "financial_statements.file_date.value": 1,
+          "financial_statements.form_type.value": 0,
+          "financial_statements.period_ending_date.value": 1,
+          "has_fundamental_data": 0,
+          "market_cap": 0,
+          "security_reference.common_share_sub_type": 1,
+          "security_reference.exchange_id": 0,
+          "security_reference.is_depositary_receipt": 0,
+          "security_reference.security_type": 0,
+          "security_reference.share_class_status": 0,
+          "time": 0
+        },
+        "full_historical_US200_certified": false,
+        "actual_availability_certified": false,
+        "research_certified": false,
+        "row_values_exported": false
+      }
+    }
+  },
+  "source_unchanged": true,
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "real_sdk_executed": false,
+  "platform_calls": 0,
+  "financial_evidence": false
+}

@@ -1,0 +1,28 @@
+只读报告 QA：未运行新测试，未访问平台，未修改正式报告或生产文件。
+
+OK: 364 metadata checks and zero unit methods
+OK: fixed Git / review / execution identity
+OK: local deployment / implementation / active config identity
+OK: two builds and previews no source writes
+OK: budget replay and pending identity
+OK: findings identical between formal and standalone
+OK: reported cloud file counts and inventory boundary
+OK: no candidate deployment or runtime certification
+OK: narrow WR16/17 closure and WR18 software blocking only
+ERROR: 25 Git75 implementations and one admitted archive input separated
+OK: four manual failure probes recorded separately with synthetic limits
+
+逐行核对问题位置：Registry 416–425 确实只核对来源/部署hash及报告/引用；Bridge 625–642 确实另要求submission、完整deployment及非空raw_receipt。WR18的三负一正原始结果与报告描述一致；全局cap仍有效及合成账本、未真实执行的范围声明适当。
+历史证据摘要与350+14检查结果一致：1398旧证据文件、208原件+11引用、65开发raw输出、最终3328项清单/ZIP，以及首包漏6历史源的失败/修正均有保留。
+
+初次QA提出的两处编辑项均已解决；初稿QA保留为qa_first.txt/qa_report_first.py：
+1. 正式文本和JSON明确25份实现等Git75/cloud，另1份独立输入等原已准入归档。cloud_comparison为每行新增baseline_kind/reference、历史基线hash；输入基线引用明确。目录18份/其余8份已知可读/未认证全集的表述准确；cloud_comparison_first.json保留初版。
+2. 失败结算摘要现已按1程序/4合成手工探针全过记录，与5方法46子例分列；实际追加CLI28、synthetic finish6，worker0。明确Research fixed-check false不是一次真实Research运行失败，LEAN Runtime Error envelope也为合成，未扩大为真实原生失败认证。
+
+最终未发现需要进一步修改的实质性错误。WR16/17关闭限原及本轮已测范围；WR18阻断当前候选软件，阶段2整体及全系统未验收、financial_evidence=false，无扩大。
+
+读取时的文档 raw SHA256：
+formal_report.json 53a8acda7d90d75f804b9cbb53713f8fac632e6974ece44e465f6de7fa101ae3
+formal_report.txt 68e2a3053fcbfe78a4a13d6845434ca60d8ccba75440c4d9247b5d328dc31324
+findings.json b746b7daa44b0bcf957986df182a0d0f2abdc5b9e424d40ed967378baa6d83e8
+cloud_comparison.json 1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46

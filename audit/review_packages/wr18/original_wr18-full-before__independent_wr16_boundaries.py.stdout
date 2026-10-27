@@ -1,0 +1,46 @@
+test_empty_native_receipt_must_not_be_verified_research (__main__.NewBoundaries) ... FAIL
+test_filesystem_verified_lean_does_not_reacquire_transaction_lock (__main__.NewBoundaries) ... ok
+test_input_hash_conflicting_with_recorded_submission_must_refuse (__main__.NewBoundaries) ... FAIL
+test_max_one_retry_is_legitimate_after_failure_and_restart (__main__.NewBoundaries) ... ok
+test_no_recorded_submission_must_not_be_verified_research (__main__.NewBoundaries) ... FAIL
+test_nonreentrant_transaction_store_accepts_valid_dependency (__main__.NewBoundaries) ... ok
+test_strict_identity_and_missing_completion_evidence_refuse_before_charge (__main__.NewBoundaries) ... ok
+test_valid_complete_parent_research_allows_lean_and_reuse (__main__.NewBoundaries) ... ok
+test_windows_process_race_shares_last_research_slot (__main__.NewBoundaries) ... ok
+
+======================================================================
+FAIL: test_empty_native_receipt_must_not_be_verified_research (__main__.NewBoundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 131, in test_empty_native_receipt_must_not_be_verified_research
+    def test_empty_native_receipt_must_not_be_verified_research(self):self.assert_incomplete_refused('empty_raw')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 128, in assert_incomplete_refused
+    self.assertIsNotNone(error,'Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency')
+AssertionError: unexpectedly None : Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency
+
+======================================================================
+FAIL: test_input_hash_conflicting_with_recorded_submission_must_refuse (__main__.NewBoundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 130, in test_input_hash_conflicting_with_recorded_submission_must_refuse
+    def test_input_hash_conflicting_with_recorded_submission_must_refuse(self):self.assert_incomplete_refused('input_hash_conflict')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 128, in assert_incomplete_refused
+    self.assertIsNotNone(error,'Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency')
+AssertionError: unexpectedly None : Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency
+
+======================================================================
+FAIL: test_no_recorded_submission_must_not_be_verified_research (__main__.NewBoundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 132, in test_no_recorded_submission_must_not_be_verified_research
+    def test_no_recorded_submission_must_not_be_verified_research(self):self.assert_incomplete_refused('missing_submission')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\wr18-full-before\admission_agent\independent_wr16_boundaries.py", line 128, in assert_incomplete_refused
+    self.assertIsNotNone(error,'Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency')
+AssertionError: unexpectedly None : Incomplete or contradictory checked Research evidence was admitted as the LEAN dependency
+
+----------------------------------------------------------------------
+Ran 9 tests in 5.195s
+
+FAILED (failures=3)
+
+{"methods": 9, "passed_methods": 6, "failed_methods": 3, "error_methods": 0, "subcases": 4, "exit_code": 1}

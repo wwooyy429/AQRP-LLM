@@ -397,7 +397,8 @@ class Registry:
             if (not isinstance(result, dict) or set(result) != {"scope", "identity", "external_id", "cloud_report",
                     "report_ref", "platform_evidence_ref", "financial_evidence"}
                     or result["scope"] != "engineering" or result["identity"] != identity
-                    or result["external_id"] != external or result["financial_evidence"] is not False
+                    or result["external_id"] != external or record.get("external_id") != external
+                    or result["financial_evidence"] is not False
                     or not isinstance(result["cloud_report"], dict)
                     or result["cloud_report"].get("identity") != identity):
                 raise ValueError("Research result does not identify this checked parent")
@@ -413,16 +414,15 @@ class Registry:
             observed = json.loads(encoded)
             if not isinstance(observed, dict) or observed.get("cloud_report") != result["cloud_report"]:
                 raise ValueError("Research completion report differs from its checked identity")
-            bridge._completion_metadata(observed)
-            platform = observed["platform"]
-            if (platform["identity"] != dict(identity, external_id=external)
-                    or platform["status"] != "completed" or platform["terminal"] is not True
-                    or platform["deployment"]["source_manifest_hash"] != document["source_manifest_hash"]
-                    or platform["deployment"]["deployment_hash"] != document["deployment_hash"]
+            payload = {"identity": identity, "report_key": key,
+                       "external_identity_kind": "logical_research_execution_receipt"}
+            submission = bridge._recorded_submission(payload)
+            status, passed = bridge._completion_contract(payload, submission, observed)
+            if (status != "completed" or passed is not True
+                    or submission["external_id"] != external
                     or observed.get("cloud_report") != result["cloud_report"]
                     or observed.get("report_ref") != result["report_ref"]
-                    or result["report_ref"] != {"key": key, "sha256": content_hash(result["cloud_report"])}
-                    or not bridge._cloud_report(result["cloud_report"], {"identity": identity})):
+                    or result["report_ref"] != {"key": key, "sha256": content_hash(result["cloud_report"])}):
                 raise ValueError("Research completion does not prove the frozen dependency")
         except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
             raise RegistryError("Joint LEAN requires the verified same-plan Research result") from exc

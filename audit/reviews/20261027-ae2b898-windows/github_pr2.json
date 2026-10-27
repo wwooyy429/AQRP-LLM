@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "固定8f7236e独立审核确认联合候选软件失败：WR-16/P2为直接Registry准入绕过v2固定operation、Research前置及max_retries；WR-17/P2为v1 freeze覆盖同项目pending任务指针，导致原attempt的CLI恢复失败。本候选将v2业务约束放入共享准入事务，并统一v1/v2冻结保护、按原已扣费attempt恢复任务。\n\n修复候选 `ae2b8985f3799c246e90341370f86d80483f63ed`，120份源码清单 `00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8`。\n[复验入口](https://github.com/wwooyy429/AQRP-LLM/blob/ae2b8985f3799c246e90341370f86d80483f63ed/docs/review/wr16-wr17.md) · [开发验证](https://github.com/wwooyy429/AQRP-LLM/blob/ae2b8985f3799c246e90341370f86d80483f63ed/audit/review_packages/wr16_wr17/developer_verification.json) · [原独立报告](https://github.com/wwooyy429/AQRP-LLM/blob/ae2b8985f3799c246e90341370f86d80483f63ed/audit/reviews/20261027-8f7236e-windows/formal_report.json)。\n\nWR-16修复：\n- v2联合计划直接Registry/Bridge均先检查固定operation，合法幂等复用不重复收费。新尝试在同一LOCK内、扣费/写入前核对每阶段重试上限及同父Research前置。\n- LEAN依赖匹配已核验的Research身份、报告、原生观察元数据和已存完成引用；普通completed标记或错父报告不足以准入，不嵌套重入文件锁。\n- 修复范围明确为schema2联合协议；v1通用Registry和Collection原有operation语义保留，不宣称全部任意工程任务现在统一执行v2业务规则。全局预算及工程2/2/2上限原本有效，本轮未改变。\n\nWR-17修复：\n- 所有v1/v2 freeze在同一Registry锁内检查项目未结算任务，拒绝前不写计划、项目证据或当前指针；预览只读。\n- prepare、Research结果、LEAN提交/结果、带attempt的status均从显式已扣费attempt的不可变配置重建原Bridge；不依赖可变当前指针、新目录或新源码。\n- 原准入输入验证规范化JSON、部署文件身份、父计划/阶段/operation、固定目标路径及原输入字节哈希。本地文件丢失只返回原绑定元数据，不重建或取得派发权；终结任务不能创建新输入。Collection WR-12模块本轮未改。\n\n验证：\n- 两个完整原MRE `admission_agent/minimal_joint_registry.py` 和 `minimal_pending_freeze.py` 脚本未改，修复前各exit1、修复后各exit0。原7方法准入套件从3过/4失败变为7/7通过；包括旧实际attempt在隔离副本的CLI prepare恢复。\n- 新WR16最终8方法通过：最初6方法中4方法10条失败，原输入保留；后增不合格completed依赖及临时Filesystem正向链。含合法重试、并发幂等、max0拒绝和文件锁下真实合成Research→LEAN。\n- 新WR17相同测试输入11方法/24子例从2过、4断言失败方法、5异常方法（9失败/10异常记录）变为全部通过；覆盖v1/v2冻结、指针/源码/目录变化、缺失/篡改输入及原生形状回执。原错误为产品缺口，不标成审核器错误。\n- 原生Windows锁定Python3.10.11/NumPy1.26.4/pandas2.3.3执行规定入口 `python -B tools/stages.py verify`，442项通过；二次构建无变化。另5组兼容套件通过，覆盖重叠不累计独有案例。全部为合成或复制账本测试，不是新金融/云端证据。\n- 新独立报告208份原件逐字节归档，11个重复脚本/schema引用；3328目录/ZIP及1563候选/1545基线Git字节检查、14回执及2侧车检查通过。原审核者schema/helper准备错误、修正和失败全保留，清单rawSHA256 `e3d89278369b0561dcf61a6f4777ac509e7d3d6ca8294524dc4a20bed0186752`。\n- 开发原始证据65份/230642字节，清单rawSHA256 `71c90abe043ad281da2c953932ed3e9231aaebc9263dfc2d64f51b8c481c091f`。远端291份变更与预期逐字节一致，原件字节保留，工作区干净。\n\nWR-01～15仅保留各自实际通过范围，WR-15哈希更正在8f原独立审核中已复验通过。WR-16/17仍为开发侧已修复、待新固定SHA独立复验；阶段2及完整系统仍未验收。\n\n旧回测 `39cafa1e9b11f91b27e396b66d033a6d` 只有归档pending，当前完成/失败均未知，不能据此断言仍在运行。本轮未查询、轮询、读日志、重交或改其云端源码/输入。累计配置6/12、Research9/20、LEAN1/16和权威12事件保持；本轮实际配置登记/Research/LEAN/模型/部署/购买/交易均0。更新的联合预览仅为只读元数据，不是注册或执行授权。\n\n原生终态、候选真实运行、完整历史US200、财务原报/修订版本、实际公开/供应商送达/历史摄入和未观察公司行动仍缺证据。正式研究、自动GPT、最终测试及交易关闭，2024–2025暴露、2026独立性未知和既有精度限制保留，financial_evidence=false。保持草稿，不合并。\n\n发布后CI：[Actions run 40436072138](https://github.com/wwooyy429/AQRP-LLM/actions/runs/40436072138) completed/success；Python3.10、3.11任务均通过。最终源码清单与实际测试一致，工作区干净，权威12事件及6/9/1累计用量重放不变。CI不替代GPT Work独立复验。",
+    "title": "阶段2：修复WR-16共享准入与WR-17原任务恢复，待复验",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "ae2b8985f3799c246e90341370f86d80483f63ed",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "c64f69522152284cd51a704cd75e58ef83c25bc7",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-27T02:03:58Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 18,
+    "changed_files": 1784,
+    "additions": 248944,
+    "deletions": 154,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "阶段2：修复WR-16共享准入与WR-17原任务恢复，待复验"
+  },
+  "isError": false
+}

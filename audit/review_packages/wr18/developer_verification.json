@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "purpose": "WR18_developer_repair_not_independent_or_financial_acceptance",
+  "failed_review_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "original_independent_report": "audit/reviews/20261027-ae2b898-windows/formal_report.json",
+  "independent_original_files": 463,
+  "independent_original_bytes": 2832117,
+  "independent_archive_manifest_raw_sha256": "b00b1adda18a836c4336082e66ba9fdb1cd61d8144158b0c4ab482cf567c6494",
+  "independent_archive_refs_note": "251 mixed manifest references include224 command-output references; not251 native receipts",
+  "prior_originals_byte_equal": true,
+  "candidate_source_manifest_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f",
+  "candidate_source_files": 122,
+  "implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+  "changed_runtime_files": [
+    "cloud/qresearch/registry.py",
+    "cloud/qresearch/engineering_tasks.py"
+  ],
+  "fix": {
+    "shared_contract": "Bridge and v2 Registry dependency use identical original-submission loader and terminal/report validation",
+    "submission": "Canonical exact summary and referenced original, matching namespace/hash/identity/kind/external/full deployment; acceptedTrue and nonemptyraw",
+    "completion": "Full deployment includinginput_hash, matching identity/external, nonemptyraw, terminalstatus/report/ref",
+    "journal_binding": "Completed Research record external_id matches original/observation/result",
+    "admission": "Under same RegistryLOCK, require statuscompleted and passedisTrue before newLeancharge/write; no nestedResearchRegistrycalls",
+    "failures": "Legitimate failed/runtime_error/compile_error settle and retain evidence without refund; never qualifyResearchdependency",
+    "scope": "v2 dependency enforcement and shared Bridge validation; legacy v1 generic Registry operation semantics unchanged",
+    "provenance_limit": "Operational trusted-dispatcher boundary and content integrity, not cryptographic remote-origin proof"
+  },
+  "targeted_and_original_regressions": {
+    "kind": "WR18_developer_peer_regressions_not_GPT_Work_acceptance",
+    "same_final_test_input": true,
+    "test_sha256": "6312dc437c58cb9bfc5fb644a8644a6c5f6e16656faca12e9bafb4c107838d13",
+    "initial10_baseline": {
+      "methods": 10,
+      "passed_methods": 3,
+      "failed_methods": 7,
+      "failure_records": 16,
+      "errors": 0,
+      "location": "wr18-boundary-before"
+    },
+    "final11_baseline": {
+      "phase": "before",
+      "source": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\wr18-counted-before\\source",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\wr18_counted_tests.py",
+        "before"
+      ],
+      "methods": 11,
+      "passed_methods": 3,
+      "failed_methods": 8,
+      "error_methods": 0,
+      "failure_records": 18,
+      "error_records": 0,
+      "subcases": 23,
+      "skipped": 0,
+      "test_raw_sha256": "6312dc437c58cb9bfc5fb644a8644a6c5f6e16656faca12e9bafb4c107838d13",
+      "seconds": 0.5,
+      "source_raw_sha256": {
+        "registry.py": "0eff8ba966022d75663dd16c233b361f2b48427078ed02db1001c03cc07843c7",
+        "engineering_tasks.py": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32"
+      },
+      "exit_code": 1,
+      "actual_cloud_or_model_calls": 0
+    },
+    "final11_after": {
+      "phase": "after",
+      "source": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\wr18_counted_tests.py",
+        "after"
+      ],
+      "methods": 11,
+      "passed_methods": 11,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "failure_records": 0,
+      "error_records": 0,
+      "subcases": 23,
+      "skipped": 0,
+      "test_raw_sha256": "6312dc437c58cb9bfc5fb644a8644a6c5f6e16656faca12e9bafb4c107838d13",
+      "seconds": 0.5310000000026776,
+      "source_raw_sha256": {
+        "registry.py": "3d6a77c93ba88822ec5cb4b8393c85d977b4f33e1e8a0945cf4e4c282927bd92",
+        "engineering_tasks.py": "c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e"
+      },
+      "exit_code": 0,
+      "actual_cloud_or_model_calls": 0
+    },
+    "original_full_9_before": {
+      "methods": 9,
+      "passed_methods": 6,
+      "failed_methods": 3,
+      "error_methods": 0,
+      "subcases": 4
+    },
+    "original_full_9_after": {
+      "methods": 9,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "subcases": 4
+    },
+    "original_full_MRE": {
+      "before_exit": 1,
+      "after_exit": 0,
+      "scenarios": 4,
+      "positive_checked_control_passed": true,
+      "scripts_unchanged": true
+    },
+    "original_short_MRE": {
+      "before_exit": 1,
+      "after_exit": 1,
+      "after_meaning": "Uncaught newly safe RegistryError before LEAN grant; NOT a product regression, full MRE handles expected refusal"
+    },
+    "compatibility": {
+      "purpose": "developer_compatibility_replay_after_shared_completion_contract",
+      "records": [
+        {
+          "name": "test_engineering_tasks.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_engineering_tasks.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 0.9850000000005821,
+          "stdout": "test_engineering_tasks.py.stdout",
+          "stderr": "test_engineering_tasks.py.stderr",
+          "methods": 21
+        },
+        {
+          "name": "test_engineering_receipts.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_engineering_receipts.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 0.9369999999980791,
+          "stdout": "test_engineering_receipts.py.stdout",
+          "stderr": "test_engineering_receipts.py.stderr",
+          "methods": 12
+        },
+        {
+          "name": "test_collection_tasks.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_collection_tasks.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 1.0160000000032596,
+          "stdout": "test_collection_tasks.py.stdout",
+          "stderr": "test_collection_tasks.py.stderr",
+          "methods": 11
+        },
+        {
+          "name": "test_collection_task_cli.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_collection_task_cli.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 1.0619999999980791,
+          "stdout": "test_collection_task_cli.py.stdout",
+          "stderr": "test_collection_task_cli.py.stderr",
+          "methods": 6
+        },
+        {
+          "name": "test_wr16_registry_admission.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_wr16_registry_admission.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 1.4219999999986612,
+          "stdout": "test_wr16_registry_admission.py.stdout",
+          "stderr": "test_wr16_registry_admission.py.stderr",
+          "methods": 8
+        },
+        {
+          "name": "test_wr17_engineering_recovery.py",
+          "command": [
+            "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+            "-B",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_wr17_engineering_recovery.py",
+            "-v"
+          ],
+          "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+          "exit_code": 0,
+          "seconds": 1.8130000000019209,
+          "stdout": "test_wr17_engineering_recovery.py.stdout",
+          "stderr": "test_wr17_engineering_recovery.py.stderr",
+          "methods": 11
+        }
+      ],
+      "actual_cloud_or_model_calls": 0
+    },
+    "actual_cloud_or_model_calls": 0
+  },
+  "full_repository_verification": {
+    "command": "python -B tools/stages.py verify",
+    "methods": 453,
+    "passed": true,
+    "output": "----------------------------------------------------------------------\nRan 453 tests in 33.528s\n\nOK\n",
+    "source_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f"
+  },
+  "environment": {
+    "platform": "nativeWindows",
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "BLAS_threads": 1
+  },
+  "second_build_config_changed": false,
+  "preview_is_registration_or_authorization": false,
+  "developer_originals": {
+    "files": 62,
+    "bytes": 409989,
+    "manifest": "original_outputs_manifest.json",
+    "manifest_raw_sha256": "ca20dc1a06f5752bee3c0359cfe14fa926ae773c62ec689dbf7510299a692376"
+  },
+  "protected_configuration_usage_ledger_old_task_inputs_pointer_exposure_and_WR17_CLI_unchanged": true,
+  "old_backtest": {
+    "id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "last_archived_status": "pending",
+    "current_platform_status": null,
+    "completion_or_failure_confirmed": false,
+    "read_or_polled": false,
+    "logs_read": false,
+    "source_or_input_changed": false
+  },
+  "budget_used": {
+    "configurations": 6,
+    "research": 9,
+    "lean": 1
+  },
+  "budget_added": {
+    "configurations": 0,
+    "research": 0,
+    "lean": 0,
+    "model_API": 0
+  },
+  "authoritative_events": 12,
+  "new_cloud_project_operations": 0,
+  "deployed": false,
+  "extra_purchase": 0,
+  "financial_evidence": false,
+  "known_open_findings_pending_independent_retest": [
+    "WR-18"
+  ],
+  "WR16_WR17": "Independently passed in original retested scopes onae2b898; not extended toWR18",
+  "stage2": "software_failed_on_reviewed_ae_candidate; newrepair_pending_independent_retest",
+  "whole_system": "not_accepted",
+  "cloud_inventory_certified": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "independence_2026": null,
+  "documentation": "docs/review/wr18.md",
+  "limitations": [
+    "No new cloud/runtime/native terminal evidence",
+    "Full historical US200/financial vintage/publication/vendor delivery/ingestion not certified",
+    "Overlapping tests and subcases not summed as unique tests",
+    "Original shortMRE afterexit1 is uncaught safety rejection; fullMREafterexit0"
+  ]
+}

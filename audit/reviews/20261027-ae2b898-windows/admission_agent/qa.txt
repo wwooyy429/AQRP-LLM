@@ -1,0 +1,27 @@
+Read-only final QA, WR18/admission scope; no tests rerun (0 unit methods).
+
+No substantive error found in formal_report.json, formal_report.txt, findings.json or minimal_wr18.py within this scope.
+
+1. WR18/P2 accurately distinguishes the repaired original WR16 operation / prerequisite / max_retry cases from the new checked-dependency omission. The primary case is internally contradictory saved submission input d versus completion e, not an unprovable platform-signature claim.
+2. Both short and full MREs preserve a matching Bridge-completed Research -> LEAN positive control. The same conflicting observed object is first refused by Bridge, then its canonical evidence/result is published through public store/Registry.complete APIs; direct Registry admission grants LEAN and debits 0->1. No prior journal bytes or previously published result bytes are modified.
+3. registry.py416-425 is the exact weaker completion guard; engineering_tasks.py625-642 is the existing submission / whole-deployment / nonempty receipt contract. The broader helper375-428 and charge592 remain consistent with the reported cause.
+4. For missing submission, Bridge refuses before calling the completion reader (625-626). This is consistent with the report's missing-submission completion-request counterexample; it does not claim that Bridge inspected the absent submission's remote result.
+5. Counts match retained evidence: new9 methods=6pass/3fail,4 passing subcases,0errors/skips. Old6 all pass and overlap root's original7; report explicitly avoids adding them or repeat MRE scenarios as unique methods. Full MRE3negative+1positive and short1negative+1positive each exit1,0unitmethods.
+6. The two Windows subprocess last-slot probe and FS/nonreentrant-store positives are reported as process/compatibility coverage, not actual joint worker or platform execution. Global and engineering caps remain in force. P2/failed candidate acceptance is appropriately limited to task-dependency admission reliability; no financial or full-stage acceptance is inferred.
+7. Root full MRE bytes exactly equal the child's original c23bc1c5dbfa4aa78528ea9276eea8f7732ab5871f498d5669ffdecb0a18dfcd. Short root MRE hash matches its saved execution record. findings.json equals formal_report.json.findings.
+
+Other agents'442/recovery/metadata/platform claims were not independently re-executed by this QA. Only read-only content and evidence/identity checks performed.
+
+Read-only mechanical checks:
+{
+  "findings_equals_formal_findings": true,
+  "ae_identity": true,
+  "new9_counts": true,
+  "own_first_new_counts": true,
+  "old6_overlap_marked": true,
+  "full_root_mre_exact_original_bytes": true,
+  "full_root_mre_reported_exit1": true,
+  "short_root_mre_reported_exit1": true,
+  "short_root_script_hash": true,
+  "locations": true
+}
