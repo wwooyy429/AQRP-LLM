@@ -2,14 +2,14 @@
   "schema_version": 17,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-  "source_manifest_hash": "be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e",
+  "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "source_manifest_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
   "accepted_stages": [
     0,
     1
   ],
   "acceptance_scope": "66ff72f本轮新增及回归的已测离线软件通过；阶段2整体及数据/金融认证未通过",
-  "software_acceptance": "passed_in_independently_tested_offline_scope_on66ff72f",
+  "software_acceptance": "failed_on_deb85d9_WR21_P1_WR20_P2_current_developer_fixes_pending_review",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -39,18 +39,22 @@
     {
       "stage": 2,
       "modules": "QC、采集缓存、任务桥、原生回执、冻结预检",
-      "implementation": "新增离线范围通过；新版未部署/运行",
-      "evidence": "独立合成链、旧LEAN原生失败及只读源码",
+      "implementation": "原生失败及worker诊断等独立局部范围通过；WR20/21新增修补未独立验收",
+      "evidence": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
       "blockers": [
-        "新版真实成功运行",
-        "失败worker具体源码差异",
-        "Research原生异常适配及实证",
+        "WR-21/P1待修复复验",
+        "WR-20/P2待修复复验",
+        "真实Research/LEAN成功链",
+        "旧worker源码差异",
         "完整数据认证"
       ],
-      "status": "pending_acceptance",
-      "independent_report_status": "待验收／证据不足",
-      "reviewed_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-      "blocking_findings": [],
+      "status": "software_failed_on_deb85d9_current_repairs_pending_review",
+      "independent_report_status": "软件验收失败；开发修补待新固定版本复审",
+      "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "blocking_findings": [
+        "WR-21",
+        "WR-20"
+      ],
       "acceptance_gates": [
         {
           "id": "G1",
@@ -165,7 +169,18 @@
       ]
     }
   ],
-  "known_open_findings": [],
+  "known_open_findings": [
+    {
+      "id": "WR-21",
+      "priority": "P1",
+      "status": "developer_fixed_pending_independent_review"
+    },
+    {
+      "id": "WR-20",
+      "priority": "P2",
+      "status": "developer_fixed_pending_independent_review"
+    }
+  ],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
@@ -182,11 +197,13 @@
     "WR-16": "independently_verified_resolved_in_retested_scope_on_ae2b898",
     "WR-17": "independently_verified_resolved_in_retested_scope_on_ae2b898",
     "WR-18": "independently_verified_resolved_in_retested_offline_scope_on81fbe52",
-    "WR-19": "independently_verified_metadata_correction_on84414ab"
+    "WR-19": "independently_verified_metadata_correction_on84414ab",
+    "WR-21": "developer_fixed_pending_independent_review",
+    "WR-20": "developer_fixed_pending_independent_review"
   },
-  "latest_independent_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/native_runtime_failure/developer_verification.json",
-  "current_handoff": "audit/review_packages/stage2_completion_runtime/README.md",
+  "current_handoff": "audit/review_packages/wr20_wr21/README.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -334,7 +351,7 @@
     "research": 10,
     "lean": 1
   },
-  "new_market_or_model_calls": 1,
+  "new_market_or_model_calls": 0,
   "new_independent_review_dispatched": false,
   "review_history": [
     {
@@ -1593,6 +1610,14 @@
       "new_WR": [],
       "stage2_whole_accepted": false,
       "financial_evidence": false
+    },
+    {
+      "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
+      "verdict": "software_failed_WR21_P1_WR20_P2",
+      "stage2_accepted": false,
+      "developer_fix_review_pending": true,
+      "financial_evidence": false
     }
   ],
   "repair_acceptance": {
@@ -1791,7 +1816,7 @@
     "真实因子/模型/组合、成本后增量、独立最终评估和前向运行",
     "2026最终区间独立性；2024–2025既往暴露已知"
   ],
-  "new_candidate_acceptance": "pending_unified_independent_review_actual_Research_failed_no_LEAN_success",
+  "new_candidate_acceptance": "WR20_WR21_developer_fixed_pending_independent_review_stage2_not_accepted",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -2044,36 +2069,30 @@
     }
   },
   "current_candidate": {
-    "parent_commit": "a6b14b05e913daa894c9049b428e953954b40e08",
-    "kind": "consolidated_stage2_development_with_real_Research_failure_and_posthoc_parser_repair",
-    "source_manifest_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
-    "execution_source_manifest_hash": "b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41",
-    "deployment_hash": "7944228dfbb38c8d305bf3b86460c51b10557316aa098db6c0342c569239604f",
-    "implementation_hash": "7c7d8412e891d549d94beba004f20d8a5f8c87fa88a7b700c24f98f1039f13ef",
+    "parent_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+    "kind": "offline_WR20_IPO_and_WR21_dispatch_repair",
+    "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+    "execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
+    "implementation_hash": "712ffda1823796f08ac4db281fc97e1a7e6798f938c22701ab4b0f524e1324bb",
+    "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
     "independently_accepted": false,
     "cloud_deployed": false,
-    "software_acceptance_bound_to": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+    "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
     "prior_software_approval_not_extended": true,
-    "registry_changed": false,
+    "registry_source_changed": false,
+    "authoritative_registry_or_budget_changed": false,
     "Engineering_CLI_changed": true,
     "Collection_WR12_CLI_changed": false,
-    "metadata_and_documentation_only": false,
-    "runtime_engine_and_test_sources_unchanged": false,
-    "developer_repository_tests": 612,
-    "developer_extra_probe_methods": {
-      "G3": 8,
-      "G4_peer1": 14,
-      "G4_peer2": 9
-    },
-    "counts_overlap": true,
-    "real_failed_Research_cell_observed": true,
+    "developer_repository_tests": 630,
+    "developer_targeted_test_counts_overlap_repository": true,
+    "developer_replayed_independent_tests_are_not_independent_acceptance": true,
     "worker_old_root_cause_proven": false,
     "financial_data_certified": false,
-    "review_package": "audit/review_packages/stage2_completion_runtime/README.md",
-    "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-    "controller_repair_cloud_executed": false,
-    "reconciled_actual_attempt_status": "failed",
-    "budget_usage_changed_by_authorized_admission": true
+    "review_package": "audit/review_packages/wr20_wr21/README.md",
+    "new_configuration_registrations": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_deployments": 0
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -2081,7 +2100,10 @@
     "subcases": 36,
     "status": "passed_in_tested_scope"
   },
-  "known_open_blocking_findings": [],
+  "known_open_blocking_findings": [
+    "WR-21",
+    "WR-20"
+  ],
   "known_open_nonblocking_findings": [],
   "historical_independent_review_execution_scope_ae2b898": {
     "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -2122,7 +2144,7 @@
   "metadata_acceptance": "WR19_passed_at84414ab",
   "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
   "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-  "latest_software_independent_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
+  "latest_software_independent_report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
   "latest_metadata_review_execution_scope": {
     "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "report_path": "audit/reviews/20261027-84414ab-windows/formal_report.json",
@@ -2386,24 +2408,23 @@
   "remaining_stage2_acceptance_gates": [
     {
       "id": "G1",
-      "status": "actual7fc_Research_failed_new_controller_candidate_not_cloud_executed",
-      "requirement": "A qualifying Research, collection/cache replay and dependent LEAN success are still required",
-      "actual_evidence": "audit/stage2_completion_reconciliation.json"
+      "status": "actual_Research_failed_no_qualifying_LEAN_success",
+      "requirement": "Real qualifying Research, collection/cache and dependent LEAN success remain missing"
     },
     {
       "id": "G2",
-      "status": "old_LEAN_worker_source_difference_insufficient",
-      "requirement": "Controlled source/format/hash diagnostics implemented; no actual mismatch observation from this Research failure and no proof of old worker bytes"
+      "status": "old_worker_source_difference_insufficient",
+      "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
     },
     {
       "id": "G3",
-      "status": "implemented_with_actual_failed_cell_and_recovery_pending_independent_review",
-      "requirement": "Independent fixed-version review of source binding, native two-carrier error parsing and original-attempt failure recovery"
+      "status": "native_failure_scope_passed_on_deb85d9_WR21_repair_pending_review",
+      "requirement": "Independent exact-version retest of new dispatch-required success/failure settlement"
     },
     {
       "id": "G4",
-      "status": "software_evidence_audit_implemented_authenticated_full_data_insufficient",
-      "requirement": "Historical US200, financial vintage, actual vendor availability/ingestion and security-master/action receipts remain unsupported"
+      "status": "WR20_repair_pending_review_full_historical_data_insufficient",
+      "requirement": "Independent IPO fix retest and authenticated full historical US200/financial timing evidence"
     }
   ],
   "current_round_stop_reached": true,

@@ -1,0 +1,1232 @@
+{
+  "fixed_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "kind": "static_system_stage0_7_matrix_not_new_software_acceptance",
+  "software_methods_executed": 0,
+  "software_suites_or_builds": 0,
+  "new_platform_calls": 0,
+  "production_code_executed": false,
+  "identity": {
+    "raw_files": 4270,
+    "review_files": 138,
+    "review_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
+    "execution_hash": "b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41",
+    "local_deployment_hash": "7944228dfbb38c8d305bf3b86460c51b10557316aa098db6c0342c569239604f",
+    "implementation_hash": "7c7d8412e891d549d94beba004f20d8a5f8c87fa88a7b700c24f98f1039f13ef",
+    "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94"
+  },
+  "active_configuration": {
+    "id": "GENERIC-WF-001",
+    "status": "generic_design_no_registered_factor",
+    "generated_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+    "active_factor_spec": null,
+    "active_model_spec": null,
+    "active_trading_spec": null,
+    "complete_strategy_configurations_frozen": 0
+  },
+  "stages": [
+    {
+      "stage": 0,
+      "name": "规范、审计及预算骨架",
+      "static_implementation": "implemented_offline_components",
+      "acceptance_boundary": "既有固定版本阶段0离线范围保留；本矩阵不作新软件验收。",
+      "implemented": [
+        "StudySpec和交易/模型/标签/数据组成身份；AuditEvidence及原始引用验证。",
+        "唯一配置入口、生成配置/源码与执行身份；不可变配置、事件链预算登记。"
+      ],
+      "missing_or_unverified": [
+        "合同形状与hash不认证真实数据覆盖、经济机制、远程来源或真实执行。",
+        "本轮deb最终软件验收由主审报告核定；本矩阵不扩大旧66批准。"
+      ],
+      "references": [
+        "config/development.json:21",
+        "cloud/qresearch/study.py:189",
+        "cloud/qresearch/study.py:332",
+        "cloud/qresearch/audits.py:34",
+        "cloud/qresearch/registry.py:108",
+        "tools/stages.py:31"
+      ]
+    },
+    {
+      "stage": 1,
+      "name": "受限因子、标签与固定模型",
+      "static_implementation": "implemented_offline_components",
+      "acceptance_boundary": "既有阶段1离线范围保留；无已登记经济因子或已选生产模型。",
+      "implemented": [
+        "受限JSON表达式及有限窗口、因果数据窗口、逐日历史成员约束。",
+        "实际进出场/费用/现金分配的多头完整往返标签及成熟时点。",
+        "identity/ridge固定模型、训练统计和版本化模型工件。"
+      ],
+      "missing_or_unverified": [
+        "当前字段白名单为空，FactorSpec/ModelSpec/TradingSpec均未激活。",
+        "标签不支持部分成交、空头、非现金公司行动或通用组合账本。",
+        "既有精度验收不等于所有近零值都有统一相对精度保证。"
+      ],
+      "references": [
+        "config/development.json:22",
+        "cloud/qresearch/factors.py:88",
+        "cloud/qresearch/factors.py:30",
+        "cloud/qresearch/point_in_time.py:6",
+        "cloud/qresearch/labels.py:166",
+        "cloud/qresearch/models.py:32",
+        "cloud/qresearch/models.py:106"
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "QuantConnect数据、任务与恢复",
+      "static_implementation": "new_stage2_components_with_WR20_data_observation_failure",
+      "acceptance_boundary": "新deb本地交付未独立通过，数据观测组件存在WR20/P2；真实执行身份为7fc5ef而不是本地deb。新Research实际CollectionError失败，未准入新LEAN。",
+      "implemented": [
+        "共享缓存、交易日历、批量History、历史快照/采集/永久SID及覆盖合同。",
+        "同父Research→LEAN、原生提交/终态/拒绝适配和原attempt恢复。",
+        "既有部署身份预检与安全逐文件诊断；前轮旧LEAN原件曾以旧81镜像12→13→13验证失败，不计本轮额外重放。",
+        "worker身份诊断/单次读取、Research固定cell入口许可、原生失败绑定与有界数据观测/私有分区重核组件。"
+      ],
+      "missing_or_unverified": [
+        "WR20：上市前liquidity可误填IPO20期，错误observations_passed；这不是vendor/research认证批准，也不是此次真实CollectionError的根因。",
+        "实际7fc执行的Research在源取数迭代CollectionError失败，底层cause未提供；没有成功工程报告、没有新LEAN、新版成功云端运行。",
+        "旧LEAN具体worker源码差异仍未知；新worker诊断提取能力不等于已取得完整worker或证明旧根因。",
+        "有真实原生Research失败及17事件恢复事实，本地失败后2处部署文件变化须按新固定版本独立验收；不能沿用7fc或旧66批准。",
+        "完整历史US200、财务原报/修订vintage、实际公开/供应商送达/历史摄入及公司行动认证仍缺。"
+      ],
+      "references": [
+        "config/development.json:23",
+        "cloud/qresearch/cache.py:27",
+        "cloud/qresearch/quantconnect.py:149",
+        "cloud/qresearch/historical_source.py:130",
+        "cloud/qresearch/collection.py:159",
+        "cloud/qresearch/engineering_tasks.py:348",
+        "audit/stage2_terminal_reconciliation.json:7",
+        "audit/stage2_deployment_root_cause.json:170",
+        "audit/review_packages/stage2_completion_runtime/REVIEW_INSTRUCTIONS.md:15",
+        "cloud/qresearch/data_certification.py:302",
+        "cloud/qresearch/data_certification.py:479",
+        "tools/data_certification.py:14",
+        "audit/stage2_completion_round_report.json:3",
+        "audit/stage2_completion_round_report.json:50"
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Research六轮评价",
+      "static_implementation": "partial_generic_evaluation_core",
+      "acceptance_boundary": "阶段3未验收，当前不能开展正式市场因子研究。",
+      "implemented": [
+        "固定8年训练+1年验证的六轮滚动、成熟标签/边界剔除、训练期拟合。",
+        "注册Study匹配因子/模型/标签/交易/数据计划，IC摘要和候选/基线共同样本及相关计算。"
+      ],
+      "missing_or_unverified": [
+        "未注册生产因子、模型、交易规范或合格真实数据审计批准。",
+        "没有候选真实Research报告、完整市场指标独立复算或净组合增量证据。",
+        "分层收益评价尚未实现；数据观测合规报告不能替代真实生产研究批准。"
+      ],
+      "references": [
+        "config/development.json:24",
+        "cloud/qresearch/evaluation.py:36",
+        "cloud/qresearch/evaluation.py:133",
+        "cloud/qresearch/pipeline.py:165",
+        "cloud/qresearch/runtime.py:91",
+        "config/research.json:191"
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "组合、成交、成本与风险",
+      "static_implementation": "contracts_and_engineering_receiver_only",
+      "acceptance_boundary": "阶段4未验收；零订单工程接收器和单笔标签不是完整交易系统。",
+      "implemented": [
+        "显式成本/成交/风险合同校验和实际往返标签。",
+        "工程接收器禁止订单事件，主机无任务时退出并提示交易adapter未登记。"
+      ],
+      "missing_or_unverified": [
+        "通用LEAN组合交易adapter、组合账本、完整成交/成本/风险规则和Study生产绑定缺失。",
+        "Research/LEAN真实因子→信号→订单→持仓对账、净值/成本复核、压力测试及组合增量未验收。",
+        "本次旧LEAN在初始化失败，原生返回没有订单统计，不能推断真实订单数为0。"
+      ],
+      "references": [
+        "config/development.json:25",
+        "cloud/qresearch/study.py:119",
+        "templates/trading_spec.json:4",
+        "templates/trading_spec.json:34",
+        "cloud/main.py:25",
+        "cloud/main.py:35",
+        "audit/stage2_terminal_reconciliation.json:76"
+      ]
+    },
+    {
+      "stage": 5,
+      "name": "有界GPT闭环与持久调度",
+      "static_implementation": "persistent_program_controller_only",
+      "acceptance_boundary": "阶段5未验收，自动GPT关闭；provider=GPT不代表模型或API已配置。",
+      "implemented": [
+        "WorkflowController可登记、审计、预算、提交/等待、判定、修复上限、归档和冻结；外部adapter注入。",
+        "受限规范/字段/算子和固定审计合同可以校验提案，但LLM不能提供审批布尔位。"
+      ],
+      "missing_or_unverified": [
+        "当前GPT模型/调用数/花费额度均null，未见启用的GPT客户端及端到端自动提案研究闭环。",
+        "开发记忆、持续真实平台调度、受限自动修复全过程尚无独立验收。"
+      ],
+      "references": [
+        "config/development.json:26",
+        "config/development.json:11",
+        "config/development.json:14",
+        "config/development.json:15",
+        "cloud/qresearch/workflow.py:113",
+        "cloud/qresearch/study.py:6"
+      ]
+    },
+    {
+      "stage": 6,
+      "name": "受限搜索、消融与选择偏差",
+      "static_implementation": "partial_similarity_and_correlation_primitives",
+      "acceptance_boundary": "阶段6未验收；未开展本轮正式经济因子搜索。",
+      "implemented": [
+        "因子结构相似度与逐对Pearson/Spearman相关工具。",
+        "研究章程要求先固定模型研究因子，再固定因子研究模型，并记录全部试验。"
+      ],
+      "missing_or_unverified": [
+        "没有已登记的实际比较矩阵、模型/因子搜索、消融结果、验证复用计量或选择偏差结论。",
+        "净组合增量和成本压力依赖阶段4，尚无真实金融证据。"
+      ],
+      "references": [
+        "config/development.json:27",
+        "cloud/qresearch/factors.py:360",
+        "cloud/qresearch/evaluation.py:331",
+        "docs/research_charter.md:9",
+        "config/workflow.json:37"
+      ]
+    },
+    {
+      "stage": 7,
+      "name": "冻结、独立最终执行与前向监控",
+      "static_implementation": "freeze_metadata_skeleton_only",
+      "acceptance_boundary": "阶段7未验收；最终测试、前向交易和自动监控回滚未开放。",
+      "implemented": [
+        "冻结开发归档的元数据包，但明确final_execution_enabled=false且要求独立执行器。",
+        "最终年度重估/截止退出/不反馈研究的计划字段与测试区间访问保护。"
+      ],
+      "missing_or_unverified": [
+        "独立最终执行器未配置、完整发布/前向模拟/监控及回滚未验收。",
+        "2024–2025已有研究暴露；2026独立性待审核，整个最终区间不能称untouched holdout。"
+      ],
+      "references": [
+        "config/development.json:28",
+        "cloud/qresearch/workflow.py:517",
+        "config/research.json:169",
+        "config/research.json:170",
+        "cloud/qresearch/contracts.py:90",
+        "audit/data_exposure.json:32"
+      ]
+    }
+  ],
+  "controls": {
+    "declared_execution": {
+      "market_research_enabled": false,
+      "llm_runtime_enabled": false,
+      "final_test_enabled": false,
+      "live_trading_enabled": false,
+      "llm_provider": "GPT",
+      "llm_model": null,
+      "llm_call_limit": null,
+      "llm_spend_limit_usd": null,
+      "missing_settings_policy": "Stop the affected stage; do not infer credentials, budget, costs or financial design."
+    },
+    "workflow_orders_enabled": false,
+    "quantconnect_backtest_submission_enabled": false,
+    "quantconnect_live_deployment_enabled": false,
+    "final_evaluation_execution_enabled": false,
+    "independent_final_executor_configured": false,
+    "budget_final_evaluation_execution_enabled": false,
+    "scope": "Current declared configuration and actual active study bindings; not certification that arbitrary manual external calls are technically impossible.",
+    "references": [
+      "config/development.json:10",
+      "config/development.json:11",
+      "config/development.json:12",
+      "config/development.json:13",
+      "config/research.json:191",
+      "config/research.json:192",
+      "config/research.json:193",
+      "config/workflow.json:8",
+      "config/quantconnect.json:16",
+      "config/budget.json:58",
+      "config/data.json:5",
+      "config/data.json:54",
+      "config/source_catalog.json:5",
+      "config/source_catalog.json:6",
+      "config/source_catalog.json:7",
+      "audit/data_exposure.json:10",
+      "audit/data_exposure.json:33",
+      "docs/research_charter.md:11",
+      "README.md:1"
+    ]
+  },
+  "fields_operators_models_trading": {
+    "factor_field_whitelist": [],
+    "operator_catalog": [
+      "add",
+      "subtract",
+      "multiply",
+      "safe_divide",
+      "positive_log",
+      "positive_session_lag",
+      "trailing_mean",
+      "trailing_std",
+      "trailing_correlation",
+      "cross_section_rank",
+      "cross_section_zscore",
+      "asof_available_join"
+    ],
+    "expression_core": [
+      "field",
+      "add",
+      "subtract",
+      "multiply",
+      "safe_divide",
+      "positive_log",
+      "lag",
+      "rolling_mean",
+      "rolling_std",
+      "rolling_corr",
+      "rank",
+      "zscore"
+    ],
+    "operator_scope": "asof_available_join belongs to PIT data preparation; expression core hasfield plus fixed aliases. Catalog does not authorize unrestricted parameter mining.",
+    "engineering_source_catalog_fields": 15,
+    "factor_fields_enabled": false,
+    "financial_vendor_revision_certified": false,
+    "actual_availability_certified": false,
+    "model_families_implemented": [
+      "identity",
+      "ridge"
+    ],
+    "active_model": null,
+    "trading_template_status": "template_not_registered",
+    "engineering_source_catalog": {
+      "schema_version": 1,
+      "source": "quantconnect_fundamental_universe",
+      "purpose": "engineering_source_observation_only",
+      "factor_fields_enabled": false,
+      "vendor_revision_certified": false,
+      "actual_availability_certified": false,
+      "fields": {
+        "dollar_volume": {
+          "kind": "number",
+          "role": "supplied_daily_liquidity",
+          "unit": "USD",
+          "period_accessor": null
+        },
+        "has_fundamental_data": {
+          "kind": "boolean",
+          "role": "coverage_observation_not_eligibility_filter",
+          "unit": "flag",
+          "period_accessor": null
+        },
+        "time": {
+          "kind": "text",
+          "role": "native_clock_not_vendor_receipt",
+          "unit": "native_ISO_clock",
+          "period_accessor": null
+        },
+        "end_time": {
+          "kind": "text",
+          "role": "native_clock_not_vendor_receipt",
+          "unit": "native_ISO_clock",
+          "period_accessor": null
+        },
+        "market_cap": {
+          "kind": "number",
+          "role": "valuation_observation_not_statement_vintage",
+          "unit": "USD",
+          "period_accessor": null
+        },
+        "security_reference.security_type": {
+          "kind": "text",
+          "role": "observed_classification_without_receipt",
+          "unit": "Morningstar_code",
+          "period_accessor": null
+        },
+        "security_reference.common_share_sub_type": {
+          "kind": "text",
+          "role": "observed_classification_without_receipt",
+          "unit": "Morningstar_code",
+          "period_accessor": null
+        },
+        "security_reference.is_depositary_receipt": {
+          "kind": "boolean",
+          "role": "observed_classification_without_receipt",
+          "unit": "flag",
+          "period_accessor": null
+        },
+        "security_reference.share_class_status": {
+          "kind": "text",
+          "role": "observed_listing_without_receipt",
+          "unit": "Morningstar_code",
+          "period_accessor": null
+        },
+        "security_reference.exchange_id": {
+          "kind": "text",
+          "role": "observed_exchange_without_receipt",
+          "unit": "Morningstar_code",
+          "period_accessor": null
+        },
+        "company_reference.is_reit": {
+          "kind": "boolean",
+          "role": "observed_classification_without_receipt",
+          "unit": "flag",
+          "period_accessor": null
+        },
+        "financial_statements.period_ending_date.value": {
+          "kind": "date",
+          "role": "reported_period_metadata",
+          "unit": "ISO_date",
+          "period_accessor": "value"
+        },
+        "financial_statements.file_date.value": {
+          "kind": "date",
+          "role": "supplier_file_date_may_be_approximated_not_receipt",
+          "unit": "ISO_date",
+          "period_accessor": "value"
+        },
+        "financial_statements.accession_number.value": {
+          "kind": "text",
+          "role": "filing_identifier_observation",
+          "unit": "identifier",
+          "period_accessor": "value"
+        },
+        "financial_statements.form_type.value": {
+          "kind": "text",
+          "role": "filing_type_observation",
+          "unit": "form_type",
+          "period_accessor": "value"
+        }
+      }
+    },
+    "expression_bounds": {
+      "max_window": 2520,
+      "max_constant": 1000000000000.0,
+      "max_nodes": 256,
+      "max_depth": 32
+    },
+    "trading_template": {
+      "schema_version": 1,
+      "status": "template_not_registered",
+      "capital": null,
+      "account_type": null,
+      "position_construction": null,
+      "rebalance_rule": null,
+      "entry_rule": null,
+      "exit_rule": null,
+      "costs": {
+        "commission": null,
+        "spread": null,
+        "slippage": null,
+        "impact": null,
+        "borrow": null
+      },
+      "fills": {
+        "order_type": null,
+        "participation_cap": null,
+        "stale_data_policy": null,
+        "partial_fill_policy": null,
+        "corporate_action_and_delisting_rules": null
+      },
+      "risk": {
+        "gross_exposure": null,
+        "net_exposure": null,
+        "single_security": null,
+        "issuer": null,
+        "sector": null,
+        "beta": null,
+        "drawdown": null
+      },
+      "stress_tests": [],
+      "orders_enabled": false
+    }
+  },
+  "partitions": {
+    "timezone": "America/New_York",
+    "development_end_exclusive": "2024-01-01",
+    "first_training_start": "2010-01-01",
+    "rolling_type": "fixed_length_rolling",
+    "folds": [
+      {
+        "round": 1,
+        "training_start": "2010-01-01",
+        "training_end": "2017-12-31",
+        "validation_start": "2018-01-01",
+        "validation_end": "2018-12-31"
+      },
+      {
+        "round": 2,
+        "training_start": "2011-01-01",
+        "training_end": "2018-12-31",
+        "validation_start": "2019-01-01",
+        "validation_end": "2019-12-31"
+      },
+      {
+        "round": 3,
+        "training_start": "2012-01-01",
+        "training_end": "2019-12-31",
+        "validation_start": "2020-01-01",
+        "validation_end": "2020-12-31"
+      },
+      {
+        "round": 4,
+        "training_start": "2013-01-01",
+        "training_end": "2020-12-31",
+        "validation_start": "2021-01-01",
+        "validation_end": "2021-12-31"
+      },
+      {
+        "round": 5,
+        "training_start": "2014-01-01",
+        "training_end": "2021-12-31",
+        "validation_start": "2022-01-01",
+        "validation_end": "2022-12-31"
+      },
+      {
+        "round": 6,
+        "training_start": "2015-01-01",
+        "training_end": "2022-12-31",
+        "validation_start": "2023-01-01",
+        "validation_end": "2023-12-31"
+      }
+    ],
+    "final_window": {
+      "start": "2024-01-01",
+      "end": "2026-10-23",
+      "execution_enabled": false
+    },
+    "annual_final_refit_segments": [
+      {
+        "prediction_year": 2024,
+        "training_start": "2016-01-01",
+        "training_end": "2023-12-31",
+        "prediction_start": "2024-01-01",
+        "prediction_end": "2024-12-31",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      },
+      {
+        "prediction_year": 2025,
+        "training_start": "2017-01-01",
+        "training_end": "2024-12-31",
+        "prediction_start": "2025-01-01",
+        "prediction_end": "2025-12-31",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      },
+      {
+        "prediction_year": 2026,
+        "training_start": "2018-01-01",
+        "training_end": "2025-12-31",
+        "prediction_start": "2026-01-01",
+        "prediction_end": "2026-10-23",
+        "training_years": 8,
+        "parameter_updates": "Only parameters declared trainable in the frozen model/estimator procedure; no model-family, factor, hyperparameter or trading-rule search."
+      }
+    ],
+    "final_tail_rule": "All final scored trades/labels must actually exit no later than2026-10-23; never request later prices to complete them",
+    "no_test_feedback": true,
+    "embargo_sessions": null,
+    "embargo_rule": "Derive and freeze from maximum label span, entry/exit delays and overlap before any performance evaluation; no inherited fixed20-session value.",
+    "warmup_start": null,
+    "warmup_rule": "Derive and register from the exact FactorSpec and financial reporting lookback before requesting data; keep all research inputs before2024."
+  },
+  "exposure": {
+    "ledger": {
+      "schema_version": 1,
+      "record_date": "2026-10-26",
+      "factor_specific_sources_and_results_retained": false,
+      "records": [
+        {
+          "start": "2024-01-01",
+          "end": "2025-12-31",
+          "exposure": "prior research screening and direction decisions",
+          "independent_test_eligible": false
+        },
+        {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "exposure": "technical data-clock/schema fixtures; no new-factor performance",
+          "independence_claim": false
+        },
+        {
+          "start": "2020-08-27",
+          "end": "2020-09-03",
+          "exposure": "technical corporate-action fixture; no new-factor performance",
+          "independence_claim": false
+        },
+        {
+          "start": "2018-01-01",
+          "end": "2018-12-31",
+          "exposure": "Two-symbol shared-cache and calendar engineering fixture; no economic factor, return or IC computed",
+          "independence_claim": false
+        }
+      ],
+      "requested_final_window": "2024-01-01/2026-10-23",
+      "whole_window_uncontaminated": false,
+      "year2026_independence": "requires independent review",
+      "note": "Deleting old files cannot erase prior research exposure; this minimal fact ledger contains no old factor formulas, parameters or performance."
+    },
+    "whole_window_untouched_independent_holdout": false,
+    "year2026_independently_certified": false,
+    "qualification": "2026 is unknown/pending independent review, not proven contaminated or proven independent. Deletion does not erase2024–2025 exposure."
+  },
+  "budget": {
+    "authoritative_events": 17,
+    "used": {
+      "configurations": 7,
+      "research": 10,
+      "lean": 1
+    },
+    "round_engineering_used": {
+      "configurations": 2,
+      "research": 2,
+      "lean": 1
+    },
+    "limits": {
+      "full_configurations": 12,
+      "research_execution_attempts": 20,
+      "lean_submission_attempts": 16,
+      "optimization_jobs": 0,
+      "extra_resource_purchases": 0,
+      "extra_spend_USD": 0
+    },
+    "no_refund_on_failure": true,
+    "configuration_and_research_round_caps_reached": true,
+    "no_automatic_retry": true,
+    "source_of_fact": "parent source_evidence_verification.json and immutable completion_round_report; native_agent independently replays15→17→17; this static matrix did not rewrite or replay authority"
+  },
+  "global_missing": [
+    "WR20 data-observation IPO eligibility fix and independent retest",
+    "current local parser/entry fixes acceptance, matching real successful bounded Research/LEAN reports",
+    "oldworker actual-byte evidence and root-cause repair",
+    "authoritative full historical US200/PIT/financial-vintage and actual-availability evidence",
+    "registered production factor/model/trading design and general portfolio engine",
+    "enabled bounded GPT closed loop",
+    "independent final executor and forward monitoring/rollback"
+  ],
+  "references": {
+    "config/development.json:21": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 21,
+      "end_line": 21,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 0, \"name\": \"contracts_and_scaffold\", \"depends_on\": [], \"deliverables\": [\"StudySpec\", \"AuditEvidence\", \"stage_plan\", \"repository_and_review_identity\"], \"acceptance\": [\"reject_incomplete_contracts\", \"hash_semantic_changes\", \"preserve_budget_and_exposure\", \"independent_work_review\"]},"
+    },
+    "cloud/qresearch/study.py:189": {
+      "path": "cloud/qresearch/study.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\study.py",
+      "line": 189,
+      "end_line": 328,
+      "raw_sha256": "7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16",
+      "excerpt": "class StudySpec:"
+    },
+    "cloud/qresearch/study.py:332": {
+      "path": "cloud/qresearch/study.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\study.py",
+      "line": 332,
+      "end_line": 407,
+      "raw_sha256": "7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16",
+      "excerpt": "class AuditEvidence:"
+    },
+    "cloud/qresearch/audits.py:34": {
+      "path": "cloud/qresearch/audits.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\audits.py",
+      "line": 34,
+      "end_line": 54,
+      "raw_sha256": "9a88ed0136ea784a4cea44f9140650fc9519a247e59231b80527385af2215ff8",
+      "excerpt": "def verify_evidence(store, raw, *, subject_hash, source_hash, issuer, required_checks, scope, require_passed=True):"
+    },
+    "cloud/qresearch/registry.py:108": {
+      "path": "cloud/qresearch/registry.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\registry.py",
+      "line": 108,
+      "end_line": 688,
+      "raw_sha256": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c",
+      "excerpt": "class Registry:"
+    },
+    "tools/stages.py:31": {
+      "path": "tools/stages.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\tools\\stages.py",
+      "line": 31,
+      "end_line": 55,
+      "raw_sha256": "bd29e9dd11586e7f7a22e16dae8ba272bceb41e2a9193683fae9021209dfa495",
+      "excerpt": "def verify():"
+    },
+    "config/development.json:22": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 22,
+      "end_line": 22,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 1, \"name\": \"offline_calculation\", \"depends_on\": [0], \"deliverables\": [\"restricted_factor_core\", \"execution_labels\", \"fixed_model_protocol\", \"known_answer_tests\"], \"acceptance\": [\"three_manual_factor_answers\", \"three_manual_label_answers\", \"future_and_missing_data_boundaries\", \"independent_work_recomputation\"]},"
+    },
+    "cloud/qresearch/factors.py:88": {
+      "path": "cloud/qresearch/factors.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\factors.py",
+      "line": 88,
+      "end_line": 222,
+      "raw_sha256": "d43afbbd99ddb29b6843dbacdfa2b475192a0814147e963dc81f2465c7123ed9",
+      "excerpt": "class FactorSpec:"
+    },
+    "cloud/qresearch/factors.py:30": {
+      "path": "cloud/qresearch/factors.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\factors.py",
+      "line": 30,
+      "end_line": 30,
+      "raw_sha256": "d43afbbd99ddb29b6843dbacdfa2b475192a0814147e963dc81f2465c7123ed9",
+      "excerpt": "OPERATORS = frozenset({"
+    },
+    "cloud/qresearch/point_in_time.py:6": {
+      "path": "cloud/qresearch/point_in_time.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\point_in_time.py",
+      "line": 6,
+      "end_line": 55,
+      "raw_sha256": "e9a4ece0970df03f65e6f46b2e645716db67831f656af027ea2c2dcc748ba1e6",
+      "excerpt": "def causal_window(records, decisions, sids, policies, expected_events, max_age=None, membership=None):"
+    },
+    "cloud/qresearch/labels.py:166": {
+      "path": "cloud/qresearch/labels.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\labels.py",
+      "line": 166,
+      "end_line": 258,
+      "raw_sha256": "7da022b68a05eaf1ce2b833481a7209ac859deca637040ec74c42b6519504552",
+      "excerpt": "def build_execution_labels(trades, protocol):"
+    },
+    "cloud/qresearch/models.py:32": {
+      "path": "cloud/qresearch/models.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\models.py",
+      "line": 32,
+      "end_line": 97,
+      "raw_sha256": "b4eaa254da9e353c7c7332f7b13463e6757bf7cda5935ba8239b6bcfc432d92c",
+      "excerpt": "class ModelSpec:"
+    },
+    "cloud/qresearch/models.py:106": {
+      "path": "cloud/qresearch/models.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\models.py",
+      "line": 106,
+      "end_line": 200,
+      "raw_sha256": "b4eaa254da9e353c7c7332f7b13463e6757bf7cda5935ba8239b6bcfc432d92c",
+      "excerpt": "class FrozenModel:"
+    },
+    "config/development.json:23": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 23,
+      "end_line": 23,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 2, \"name\": \"quantconnect_integration\", \"depends_on\": [1], \"deliverables\": [\"single_task_adapter\", \"historical_universe_ingestion\", \"availability_coverage_audit\"], \"acceptance\": [\"small_real_data_fixture\", \"minimal_completed_backtest\", \"raw_and_adjustment_trace\", \"failure_recovery\", \"full_universe_coverage_is_separate_gate\"]},"
+    },
+    "cloud/qresearch/cache.py:27": {
+      "path": "cloud/qresearch/cache.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\cache.py",
+      "line": 27,
+      "end_line": 106,
+      "raw_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+      "excerpt": "class SharedDataCache:"
+    },
+    "cloud/qresearch/quantconnect.py:149": {
+      "path": "cloud/qresearch/quantconnect.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\quantconnect.py",
+      "line": 149,
+      "end_line": 248,
+      "raw_sha256": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319",
+      "excerpt": "class QuantConnectHistoryProvider:"
+    },
+    "cloud/qresearch/historical_source.py:130": {
+      "path": "cloud/qresearch/historical_source.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\historical_source.py",
+      "line": 130,
+      "end_line": 217,
+      "raw_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+      "excerpt": "class QuantConnectSnapshotSource:"
+    },
+    "cloud/qresearch/collection.py:159": {
+      "path": "cloud/qresearch/collection.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\collection.py",
+      "line": 159,
+      "end_line": 382,
+      "raw_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+      "excerpt": "class HistoricalSnapshotCollector:"
+    },
+    "cloud/qresearch/engineering_tasks.py:348": {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\engineering_tasks.py",
+      "line": 348,
+      "end_line": 817,
+      "raw_sha256": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+      "excerpt": "class EngineeringTaskBridge:"
+    },
+    "audit/stage2_terminal_reconciliation.json:7": {
+      "path": "audit/stage2_terminal_reconciliation.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\stage2_terminal_reconciliation.json",
+      "line": 7,
+      "end_line": 7,
+      "raw_sha256": "3c3deb546451bcc1b1c92c622fa0723abbfe4052d3bb2bd3dae0ba1103ec9570",
+      "excerpt": "  \"registry_status\": \"failed\","
+    },
+    "audit/stage2_deployment_root_cause.json:170": {
+      "path": "audit/stage2_deployment_root_cause.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\stage2_deployment_root_cause.json",
+      "line": 170,
+      "end_line": 170,
+      "raw_sha256": "2cbfa433fb0634c0e7c915a1c76b66d030bf262717037e9a89bac9710e5bd5ae",
+      "excerpt": "  \"runtime_transform_root_cause_proven\": false,"
+    },
+    "audit/review_packages/stage2_completion_runtime/REVIEW_INSTRUCTIONS.md:15": {
+      "path": "audit/review_packages/stage2_completion_runtime/REVIEW_INSTRUCTIONS.md",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\review_packages\\stage2_completion_runtime\\REVIEW_INSTRUCTIONS.md",
+      "line": 15,
+      "end_line": 15,
+      "raw_sha256": "b12a2b44c2df6bf32f4a60a4afd7b28e46fab544551e30ae8451f324246e463d",
+      "excerpt": "5. data_certification：真实值只留QC Cloud、固定范围/预热/calendar/SID/200/20和原refs哈希；所有已知老eligible候选历史缺失不能靠rank201补位掩盖，未知分类和IPO必须正确处理；财务版本/实际可用时间、date-only next close、RAW价格及行动边界。汇总需重新核对私有原始输入，拒空counts/refs加自由true、缺报告、重叠、扩全史或哈希自洽伪造；观测符合不得授予供应商真实性、完整数据或生产批准。"
+    },
+    "config/development.json:24": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 24,
+      "end_line": 24,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 3, \"name\": \"research_evaluation\", \"depends_on\": [2], \"deliverables\": [\"registered_fixed_model\", \"six_rolling_folds\", \"matched_labels\", \"research_report\"], \"acceptance\": [\"independent_metric_recomputation\", \"training_only_fitting\", \"label_maturity\", \"candidate_baseline_sample_match\"]},"
+    },
+    "cloud/qresearch/evaluation.py:36": {
+      "path": "cloud/qresearch/evaluation.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\evaluation.py",
+      "line": 36,
+      "end_line": 41,
+      "raw_sha256": "4225343241686feceaafc70353983125d06eb7b8ad90a7bdbbd231789e591ba4",
+      "excerpt": "def six_rolling_folds() -> tuple[RollingFold, ...]:"
+    },
+    "cloud/qresearch/evaluation.py:133": {
+      "path": "cloud/qresearch/evaluation.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\evaluation.py",
+      "line": 133,
+      "end_line": 197,
+      "raw_sha256": "4225343241686feceaafc70353983125d06eb7b8ad90a7bdbbd231789e591ba4",
+      "excerpt": "def walk_forward_evaluate(records: pd.DataFrame, feature_columns: Sequence[str],"
+    },
+    "cloud/qresearch/pipeline.py:165": {
+      "path": "cloud/qresearch/pipeline.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\pipeline.py",
+      "line": 165,
+      "end_line": 231,
+      "raw_sha256": "82e0d00cce38d57a31fc3976fede01f3923b914df7023790238c12790f7e617c",
+      "excerpt": "def evaluate_registered_study(study, features, execution_trades, *, audit_store=None,"
+    },
+    "cloud/qresearch/runtime.py:91": {
+      "path": "cloud/qresearch/runtime.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\runtime.py",
+      "line": 91,
+      "end_line": 167,
+      "raw_sha256": "488592714f509fd0451bf14241929316def76f251bbb6877b0d49b7e0a631303",
+      "excerpt": "    def _authorize(self, specs, request, decisions, sids, policies, expected_events, max_age, membership):"
+    },
+    "config/research.json:191": {
+      "path": "config/research.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\research.json",
+      "line": 191,
+      "end_line": 191,
+      "raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "excerpt": "  \"active_factor_spec\": null,"
+    },
+    "config/development.json:25": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 25,
+      "end_line": 25,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 4, \"name\": \"portfolio_and_execution\", \"depends_on\": [3], \"deliverables\": [\"generic_LEAN_trading_adapter\", \"explicit_cost_fill_risk\", \"portfolio_ledger\", \"parity_and_stress_report\"], \"acceptance\": [\"field_factor_signal_order_position_trace\", \"net_value_and_cost_reconciliation\", \"same_frozen_calculation\", \"stress_and_incremental_tests\"]},"
+    },
+    "cloud/qresearch/study.py:119": {
+      "path": "cloud/qresearch/study.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\study.py",
+      "line": 119,
+      "end_line": 185,
+      "raw_sha256": "7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16",
+      "excerpt": "def validate_trading_spec(raw, *, purpose):"
+    },
+    "templates/trading_spec.json:4": {
+      "path": "templates/trading_spec.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\templates\\trading_spec.json",
+      "line": 4,
+      "end_line": 4,
+      "raw_sha256": "2f0ab93e3ef62e202d92f64f61530acf81280ed6ebd5c5c481f48d3ca40a91e9",
+      "excerpt": "  \"capital\": null,"
+    },
+    "templates/trading_spec.json:34": {
+      "path": "templates/trading_spec.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\templates\\trading_spec.json",
+      "line": 34,
+      "end_line": 34,
+      "raw_sha256": "2f0ab93e3ef62e202d92f64f61530acf81280ed6ebd5c5c481f48d3ca40a91e9",
+      "excerpt": "  \"orders_enabled\": false"
+    },
+    "cloud/main.py:25": {
+      "path": "cloud/main.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\main.py",
+      "line": 25,
+      "end_line": 25,
+      "raw_sha256": "032d6dd00486cd2daf4141427e7fcc6336bb4b93c22f2f542b5c58bd85976b21",
+      "excerpt": "        self.quit(\"Research infrastructure loaded. Trading adapter is not registered; use research.ipynb.\")"
+    },
+    "cloud/main.py:35": {
+      "path": "cloud/main.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\main.py",
+      "line": 35,
+      "end_line": 35,
+      "raw_sha256": "032d6dd00486cd2daf4141427e7fcc6336bb4b93c22f2f542b5c58bd85976b21",
+      "excerpt": "            raise RuntimeError(\"Orders are forbidden in the engineering receiver\")"
+    },
+    "audit/stage2_terminal_reconciliation.json:76": {
+      "path": "audit/stage2_terminal_reconciliation.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\stage2_terminal_reconciliation.json",
+      "line": 76,
+      "end_line": 76,
+      "raw_sha256": "3c3deb546451bcc1b1c92c622fa0723abbfe4052d3bb2bd3dae0ba1103ec9570",
+      "excerpt": "  \"orders_count\": null,"
+    },
+    "config/development.json:26": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 26,
+      "end_line": 26,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 5, \"name\": \"bounded_llm_loop\", \"depends_on\": [4], \"deliverables\": [\"llm_adapter\", \"proposal_gateway\", \"workflow_controller\", \"development_memory\"], \"acceptance\": [\"reject_invalid_fields_and_future_inputs\", \"duplicate_does_not_resubmit\", \"budget_enforced_before_execution\", \"bounded_repairs_and_no_test_feedback\"]},"
+    },
+    "config/development.json:11": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 11,
+      "end_line": 11,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"llm_runtime_enabled\": false,"
+    },
+    "config/development.json:14": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 14,
+      "end_line": 14,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"llm_provider\": \"GPT\","
+    },
+    "config/development.json:15": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 15,
+      "end_line": 15,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"llm_model\": null,"
+    },
+    "cloud/qresearch/workflow.py:113": {
+      "path": "cloud/qresearch/workflow.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\workflow.py",
+      "line": 113,
+      "end_line": 530,
+      "raw_sha256": "925422b251b9834715e231b38e72cb2849c8bf4698d1ab01231c192f5a684168",
+      "excerpt": "class WorkflowController:"
+    },
+    "cloud/qresearch/study.py:6": {
+      "path": "cloud/qresearch/study.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\study.py",
+      "line": 6,
+      "end_line": 6,
+      "raw_sha256": "7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16",
+      "excerpt": "from the trusted dispatcher, never from an LLM proposal."
+    },
+    "config/development.json:27": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 27,
+      "end_line": 27,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 6, \"name\": \"restricted_search\", \"depends_on\": [5], \"deliverables\": [\"comparison_matrix\", \"complexity_and_similarity_checks\", \"ablation\", \"selection_bias_diagnostics\"], \"acceptance\": [\"all_trials_recorded\", \"fixed_model_then_fixed_factors\", \"net_portfolio_increment\", \"validation_reuse_accounted\"]},"
+    },
+    "cloud/qresearch/factors.py:360": {
+      "path": "cloud/qresearch/factors.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\factors.py",
+      "line": 360,
+      "end_line": 372,
+      "raw_sha256": "d43afbbd99ddb29b6843dbacdfa2b475192a0814147e963dc81f2465c7123ed9",
+      "excerpt": "def structure_similarity(left: FactorSpec, right: FactorSpec) -> dict[str, Any]:"
+    },
+    "cloud/qresearch/evaluation.py:331": {
+      "path": "cloud/qresearch/evaluation.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\evaluation.py",
+      "line": 331,
+      "end_line": 343,
+      "raw_sha256": "4225343241686feceaafc70353983125d06eb7b8ad90a7bdbbd231789e591ba4",
+      "excerpt": "def pairwise_factor_correlations(features: pd.DataFrame) -> dict[str, pd.DataFrame]:"
+    },
+    "docs/research_charter.md:9": {
+      "path": "docs/research_charter.md",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\docs\\research_charter.md",
+      "line": 9,
+      "end_line": 9,
+      "raw_sha256": "fb79280b241bcfab92cba85d2a4aec762feab236d89829042769e72dae182150",
+      "excerpt": "先固定模型研究因子，再固定因子研究模型。年度重估只更新冻结程序声明的可训练参数，并保留每个拟合版本的窗口、截止时点和哈希。更换经济逻辑、方向、参数范围、预处理、模型族、超参数或交易规则属于新配置。"
+    },
+    "config/workflow.json:37": {
+      "path": "config/workflow.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\workflow.json",
+      "line": 37,
+      "end_line": 37,
+      "raw_sha256": "bc40a6857d59d9cf43490306f471b9b5b8a922e4ab790c4ec337749e0b361302",
+      "excerpt": "  \"execution_prerequisites\": ["
+    },
+    "config/development.json:28": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 28,
+      "end_line": 28,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    {\"id\": 7, \"name\": \"freeze_and_forward\", \"depends_on\": [6], \"deliverables\": [\"release_bundle\", \"independent_final_executor\", \"forward_simulator\", \"monitoring_and_rollback\", \"round_conclusion\"], \"acceptance\": [\"complete_freeze\", \"annual_refit_and_tail_rules\", \"no_final_feedback\", \"preserve_prior_exposure\", \"pass_or_fail_or_insufficient_evidence\"]"
+    },
+    "cloud/qresearch/workflow.py:517": {
+      "path": "cloud/qresearch/workflow.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\workflow.py",
+      "line": 517,
+      "end_line": 530,
+      "raw_sha256": "925422b251b9834715e231b38e72cb2849c8bf4698d1ab01231c192f5a684168",
+      "excerpt": "    def freeze(self, config_id):"
+    },
+    "config/research.json:169": {
+      "path": "config/research.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\research.json",
+      "line": 169,
+      "end_line": 169,
+      "raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "excerpt": "    \"independent_executor_configured\": false,"
+    },
+    "config/research.json:170": {
+      "path": "config/research.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\research.json",
+      "line": 170,
+      "end_line": 170,
+      "raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "excerpt": "    \"execution_enabled\": false,"
+    },
+    "cloud/qresearch/contracts.py:90": {
+      "path": "cloud/qresearch/contracts.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\contracts.py",
+      "line": 90,
+      "end_line": 143,
+      "raw_sha256": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+      "excerpt": "class PITWindow:"
+    },
+    "audit/data_exposure.json:32": {
+      "path": "audit/data_exposure.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\data_exposure.json",
+      "line": 32,
+      "end_line": 32,
+      "raw_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+      "excerpt": "  \"whole_window_uncontaminated\": false,"
+    },
+    "config/development.json:10": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 10,
+      "end_line": 10,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"market_research_enabled\": false,"
+    },
+    "config/development.json:12": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 12,
+      "end_line": 12,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"final_test_enabled\": false,"
+    },
+    "config/development.json:13": {
+      "path": "config/development.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\development.json",
+      "line": 13,
+      "end_line": 13,
+      "raw_sha256": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+      "excerpt": "    \"live_trading_enabled\": false,"
+    },
+    "config/research.json:192": {
+      "path": "config/research.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\research.json",
+      "line": 192,
+      "end_line": 192,
+      "raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "excerpt": "  \"active_model_spec\": null,"
+    },
+    "config/research.json:193": {
+      "path": "config/research.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\research.json",
+      "line": 193,
+      "end_line": 193,
+      "raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "excerpt": "  \"active_trading_spec\": null,"
+    },
+    "config/workflow.json:8": {
+      "path": "config/workflow.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\workflow.json",
+      "line": 8,
+      "end_line": 8,
+      "raw_sha256": "bc40a6857d59d9cf43490306f471b9b5b8a922e4ab790c4ec337749e0b361302",
+      "excerpt": "  \"orders_enabled\": false,"
+    },
+    "config/quantconnect.json:16": {
+      "path": "config/quantconnect.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\quantconnect.json",
+      "line": 16,
+      "end_line": 16,
+      "raw_sha256": "b292f10c2e2902e5decbf07b7c040c6e59d7f16f5f5d2a521f0468e047631a3e",
+      "excerpt": "  \"backtest_submission_enabled\": false,"
+    },
+    "config/budget.json:58": {
+      "path": "config/budget.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\budget.json",
+      "line": 58,
+      "end_line": 58,
+      "raw_sha256": "29d38d4542f4ad60678b3541e483b107d9b0edf501464f53036c124029936df5",
+      "excerpt": "  \"final_evaluation_execution_enabled\": false"
+    },
+    "config/data.json:5": {
+      "path": "config/data.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\data.json",
+      "line": 5,
+      "end_line": 5,
+      "raw_sha256": "ee7aacfd24589e4fe2c6090f27550ca61b587e87ba5e135cb85611b5f98a32e3",
+      "excerpt": "    \"end_exclusive\": \"2024-01-01\","
+    },
+    "config/data.json:54": {
+      "path": "config/data.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\data.json",
+      "line": 54,
+      "end_line": 54,
+      "raw_sha256": "ee7aacfd24589e4fe2c6090f27550ca61b587e87ba5e135cb85611b5f98a32e3",
+      "excerpt": "  \"factor_field_whitelist\": [],"
+    },
+    "config/source_catalog.json:5": {
+      "path": "config/source_catalog.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\source_catalog.json",
+      "line": 5,
+      "end_line": 5,
+      "raw_sha256": "209dd8cc968d5c8f87bdd7124c198eb61048dd8dbac9d48f205555302cd6479e",
+      "excerpt": "  \"factor_fields_enabled\": false,"
+    },
+    "config/source_catalog.json:6": {
+      "path": "config/source_catalog.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\source_catalog.json",
+      "line": 6,
+      "end_line": 6,
+      "raw_sha256": "209dd8cc968d5c8f87bdd7124c198eb61048dd8dbac9d48f205555302cd6479e",
+      "excerpt": "  \"vendor_revision_certified\": false,"
+    },
+    "config/source_catalog.json:7": {
+      "path": "config/source_catalog.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\config\\source_catalog.json",
+      "line": 7,
+      "end_line": 7,
+      "raw_sha256": "209dd8cc968d5c8f87bdd7124c198eb61048dd8dbac9d48f205555302cd6479e",
+      "excerpt": "  \"actual_availability_certified\": false,"
+    },
+    "audit/data_exposure.json:10": {
+      "path": "audit/data_exposure.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\data_exposure.json",
+      "line": 10,
+      "end_line": 10,
+      "raw_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+      "excerpt": "      \"independent_test_eligible\": false"
+    },
+    "audit/data_exposure.json:33": {
+      "path": "audit/data_exposure.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\data_exposure.json",
+      "line": 33,
+      "end_line": 33,
+      "raw_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+      "excerpt": "  \"year2026_independence\": \"requires independent review\","
+    },
+    "docs/research_charter.md:11": {
+      "path": "docs/research_charter.md",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\docs\\research_charter.md",
+      "line": 11,
+      "end_line": 11,
+      "raw_sha256": "fb79280b241bcfab92cba85d2a4aec762feab236d89829042769e72dae182150",
+      "excerpt": "采用config/research.json的六轮固定8年加1年滚动程序。开发选择只能用训练和开发验证结果。最终区间2024至2026年10月23日由独立执行器管理；完整区间含先前研究暴露，不能认证为未触碰独立测试。不得通过删除文件或换名称去掉这个标记。"
+    },
+    "README.md:1": {
+      "path": "README.md",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\README.md",
+      "line": 1,
+      "end_line": 1,
+      "raw_sha256": "cc61891415d8dad635845a76a48d175846eea2cb8712509475d95f517c97fa53",
+      "excerpt": "# AQRP-LLM：LLM＋QuantConnect因子研究平台"
+    },
+    "cloud/qresearch/data_certification.py:302": {
+      "path": "cloud/qresearch/data_certification.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\data_certification.py",
+      "line": 302,
+      "end_line": 476,
+      "raw_sha256": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+      "excerpt": "def audit_data_certification(store, plan, *, calendar, ingestor=None, liquidity_refs=(), financial_refs=(),"
+    },
+    "cloud/qresearch/data_certification.py:479": {
+      "path": "cloud/qresearch/data_certification.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\cloud\\qresearch\\data_certification.py",
+      "line": 479,
+      "end_line": 616,
+      "raw_sha256": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+      "excerpt": "def summarize_certification_scope(store, scope_manifest, expected_hash, *, calendar, synthetic=False):"
+    },
+    "tools/data_certification.py:14": {
+      "path": "tools/data_certification.py",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\tools\\data_certification.py",
+      "line": 14,
+      "end_line": 37,
+      "raw_sha256": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1",
+      "excerpt": "def main():"
+    },
+    "audit/stage2_completion_round_report.json:3": {
+      "path": "audit/stage2_completion_round_report.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\stage2_completion_round_report.json",
+      "line": 3,
+      "end_line": 3,
+      "raw_sha256": "80fb8377cd506f8e2a8dcfd706859b4aa74d3eefc379d0ae12f24741905e70e2",
+      "excerpt": "  \"actual_cloud_source_commit\": \"7fc5ef2e9d2379d29f48d05a1f3cc760000884d6\","
+    },
+    "audit/stage2_completion_round_report.json:50": {
+      "path": "audit/stage2_completion_round_report.json",
+      "absolute_path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source\\audit\\stage2_completion_round_report.json",
+      "line": 50,
+      "end_line": 50,
+      "raw_sha256": "80fb8377cd506f8e2a8dcfd706859b4aa74d3eefc379d0ae12f24741905e70e2",
+      "excerpt": "  \"current_event_count\": 17,"
+    }
+  },
+  "conclusion": "Prior scoped0/1 and old fixed-version conclusions retained. Newdeb data observed-scope component fails WR20/P2; full stage2/system, actual successful runtime, full data/vendor certification and financial validity are unaccepted.",
+  "financial_evidence": false,
+  "implementation_versions": {
+    "current_local_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+    "actual_executed_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "current_local_deployment_hash": "7944228dfbb38c8d305bf3b86460c51b10557316aa098db6c0342c569239604f",
+    "actual_cloud_deployment_hash": "3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118",
+    "local_deployment_paths": 31,
+    "actual_known_implementation_reference_paths": 31,
+    "local_equal_to_executed_reference_paths": 29,
+    "local_different_from_executed_reference_paths": [
+      "qresearch/engineering_receipts.py",
+      "research_config.py"
+    ],
+    "current_source_inventory_certification": false,
+    "actual_cloud_success": false
+  },
+  "data_certification_observed_scope": {
+    "implemented": true,
+    "independently_executed_methods": 13,
+    "passed_methods": 12,
+    "failed_methods": 1,
+    "scenario_checks": 43,
+    "failed_scenario_records": 2,
+    "finding": "WR20/P2",
+    "all_vendor_full_history_research_approval_flags_still_false": true,
+    "actual_historical_source_authentication_supported": false
+  }
+}

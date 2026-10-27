@@ -242,10 +242,13 @@ def _research_dispatch_key(attempt):
     return "engineering/research-dispatch/" + attempt + ".json"
 
 
-def _read_research_dispatch(bridge, payload, deployment):
+def _read_research_dispatch(bridge, payload, deployment, *, require_dispatch=False):
     from qresearch.engineering_receipts import _research_binding
     key = _research_dispatch_key(payload["identity"]["attempt_id"])
     if not bridge.store.exists(key):
+        if require_dispatch:
+            _read_research_entry_protocol(bridge, payload, deployment)
+            raise EngineeringTaskError("New Research entries require their original dispatch binding before settlement")
         return None
     _read_research_entry_protocol(bridge, payload, deployment)
     encoded = bridge.store.read_bytes(key)
@@ -307,8 +310,14 @@ def settle_research_result(bridge, attempt, tool_envelope):
     from qresearch.engineering_receipts import research_observation
     admission = admitted_input(bridge, attempt)
     payload, deployment = admission["payload"], admission["deployment"]
-    binding = _read_research_dispatch(bridge, payload, deployment)
-    observed = research_observation(payload, deployment, tool_envelope, dispatch_binding=binding)
+    entry_key = "engineering/research-entry-protocol/" + payload["identity"]["attempt_id"] + ".json"
+    # Presence of the immutable first-admission marker selects the new protocol
+    # for BOTH success and failure. A missing dispatch cannot fall back to the
+    # explicitly retained pre-marker success grammar, including terminal replay.
+    require_dispatch = bridge.store.exists(entry_key)
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+    observed = research_observation(payload, deployment, tool_envelope,
+        dispatch_binding=binding, dispatch_required=require_dispatch)
     record = bridge._record(attempt)
     if record["status"] == "failed":
         # The general Bridge deliberately rejects a new accepted submission

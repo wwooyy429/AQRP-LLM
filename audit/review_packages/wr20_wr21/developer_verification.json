@@ -1,0 +1,74 @@
+{
+  "kind": "developer_offline_repair_verification",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "runs": [
+    {
+      "label": "build",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/research.py",
+        "build"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "elapsed_seconds": 0.313,
+      "stdout": "final_build.stdout",
+      "stderr": "final_build.stderr"
+    },
+    {
+      "label": "verify",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/stages.py",
+        "verify"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "elapsed_seconds": 100.875,
+      "stdout": "final_verify.stdout",
+      "stderr": "final_verify.stderr"
+    }
+  ],
+  "local_tests_passed": true,
+  "test_methods": 630,
+  "test_seconds": 99.393,
+  "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+  "protected_file_count": 38,
+  "all_protected_bytes_unchanged": true,
+  "real_journal_events": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "new_market_configuration_registrations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_model_calls": 0,
+  "new_deployments": 0,
+  "engineering_stop_retained": true,
+  "final_test_enabled": false,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
+  "implementation_hash": "712ffda1823796f08ac4db281fc97e1a7e6798f938c22701ab4b0f524e1324bb",
+  "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+  "active_economic_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "baseline_protected_metadata_files": 45,
+  "all_baseline_protected_metadata_unchanged": true,
+  "source_fixes": {
+    "WR-21": "developer_fixed_pending_independent_review",
+    "WR-20": "developer_fixed_pending_independent_review"
+  },
+  "original_review_archive_check": "audit/deb85d9_review_archive_check.json",
+  "original_review_archive_is_selective": true,
+  "root_native_packet_replay": "verification/root_native_replay.json",
+  "notes": [
+    "WR21 baseline failure records include missing new interface errors; not all are product failures",
+    "WR20 first targeted run includes an immutable-store fixture reuse error, retained before fresh-store correction",
+    "Original WR21 MRE hardcoded deb85d9 label is historical; execution metadata records current source hashes",
+    "Targeted, original independent suite replays and repository methods overlap; do not sum as unique tests"
+  ]
+}

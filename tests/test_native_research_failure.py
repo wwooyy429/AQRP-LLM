@@ -300,7 +300,7 @@ class NativeResearchFailureTests(unittest.TestCase):
         for native in (cell_error(), {"success": False, "errors": ["Request timed out"]}):
             with SyntheticFixture(1) as fixture:
                 before = fixture.registry.snapshot(); saved = dict(fixture.store._data)
-                with self.assertRaises(receipts.ReceiptParseError):
+                with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError)):
                     fixture.command("research-result", attempt=fixture.attempt, tool=error_tool(native))
                 self.assertEqual(fixture.registry.snapshot(), before)
                 self.assertEqual(fixture.store._data, saved)

@@ -1,0 +1,9 @@
+数据认证独立首跑：13方法，12通过、1失败、0错误，43场景；同一WR20方法有2个失败记录。4个metadata CLI进程，无提供商/预算/真实账本调用，原源码未改。
+
+上市前流动性被计入IPO的20期窗口，错误报告observations_passed
+独立201名称/21session/两形成时点合成输入，SID200明确listing_effective_at与security master effective_from=2018-01-25；只有5/6个上市后完成session，却提供15条上市前liquidity rows并将SID200列为DollarVolume第一。
+实际：audit_data_certification返回observations_passed，全部12项checks=true，observed_member_cells=400；新上市SID被排到首位。Jan04上市的19→20边界也误过首个19session形成时点。
+范围：新数据观测合规审计的P2软件缺陷。所有vendor/full-US200/actual-availability/research认证及financial_evidence标志仍固定false；没有真实市场调用、预算改变或实际因子选择证据，不把它扩大成供应商真实性绕过或真实Research失败原因。
+复现：python -B cert_agent/minimal_wr20.py --output wr20_confirmation/result.json（当前exit1；仅旁边原创cert_fixture.py及生产模块）。first_ipo_probe.py和13方法首套件的原件保持。
+
+原始结果、合法年轻IPO剔除和19→20换仓正控、精确路径行/hash均见report.json及finding_WR20.json。

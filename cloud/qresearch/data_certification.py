@@ -233,7 +233,15 @@ class _VerifiedBatchView:
     _gaps = staticmethod(HistoricalBatchIngestor._gaps)
 
     def __init__(self, liquid, financial):
-        self._rows = {"liquidity": liquid, "financial": financial}
+        # A source's then-known listing clock is a lower bound for its session
+        # observations, not merely for the later formation clock. Keep unknown
+        # listing evidence in the view so the shared gap check still rejects it.
+        # Session stamps denote completed exchange-session closes; equality is
+        # included, while a listing after that close starts with a later close.
+        # Original batches, references and input counts remain unchanged.
+        post_listing = [row for row in liquid if row["listing_effective_at"] is None
+            or _clock(row["listing_effective_at"]) <= _clock(row["session"])]
+        self._rows = {"liquidity": post_listing, "financial": financial}
 
     def _combined_records(self, references, kind):
         return self._rows[kind]

@@ -1,0 +1,19 @@
+--- prior_recognized_runner
++++ new_runner_historical_pending_fixture
+@@ -6,6 +6,7 @@
+ RUN.mkdir(exist_ok=True)
+ PY = Path(r'C:\Users\11638\.codex\tmp\aqrp-review-20261026\venv\Scripts\python.exe')
+ env = dict(os.environ, PYTHONIOENCODING='utf-8', PYTHONDONTWRITEBYTECODE='1', OPENBLAS_NUM_THREADS='1', OMP_NUM_THREADS='1', MKL_NUM_THREADS='1')
++env['AQRP_REVIEW_HISTORICAL_RUNTIME'] = str(R/'legacy_pending_runtime')
+ records = []
+ 
+ def run(label, args, cwd=R):
+@@ -39,7 +40,7 @@
+ run('7bf_dates', [R/'replay_archived_script.py', '--source', SRC, '--script', archive/'date_cache_agent/independent_date_cache.py', '--output', RUN/'7bf_dates'])
+ run('7bf_intervals', [archive/'interval_agent/independent_intervals.py', '--source', SRC, '--label', 'candidate', '--out', RUN/'7bf_intervals'])
+ archive = SRC/'audit/reviews/20261026-e513c66-windows'
+-run('e513_admission', [R/'replay_archived_script.py', '--source', SRC, '--script', archive/'admission_agent/independent_admission.py', '--output', RUN/'e513_admission'])
++run('e513_admission', [R/'replay_archived_script.py', '--source', SRC, '--script', R/'legacy_adapter/admission_agent/independent_admission.py', '--output', RUN/'e513_admission'])
+ run('e513_receipts', [archive/'portable_replay/receipt_agent/independent_receipts.py', '--source', SRC, '--out', RUN/'e513_receipts'])
+ archive = SRC/'audit/reviews/20261026-be94426-windows'
+ run('be_carriers_corrected', [archive/'receipt_agent/independent_carrier_boundaries_corrected.py', '--source', SRC, '--out', RUN/'be_carriers_corrected'])

@@ -192,6 +192,112 @@ class DataCertificationTests(unittest.TestCase):
         self.assertFalse(result['checks']['all_known_eligible_candidate_histories_complete'])
         self.assertEqual(result['status'],'insufficient_evidence')
 
+    def configure_ipo(self, listing, *, drop_pre=False, available=None):
+        """SID0 has highest liquidity but initially no mature listed history."""
+        stamp = ts(listing)
+        available_at = ts(available) if available else stamp
+        rows = deepcopy(self.liquid)
+        for row in rows:
+            if row['sid'] == SID[0]:
+                row.update(dollar_volume=1000000, listing_effective_at=stamp.isoformat(),
+                    listing_available_at=available_at.isoformat(),
+                    classification_effective_at=stamp.isoformat(),
+                    classification_available_at=available_at.isoformat())
+        if drop_pre:
+            rows = [row for row in rows if row['sid'] != SID[0] or pd.Timestamp(row['session']) >= stamp]
+        self.change_source('liquidity', rows)
+        masters = deepcopy(self.table_rows['security_master'])
+        masters[0].update(effective_from=stamp.isoformat(), available_at=available_at.isoformat())
+        self.change_table('security_master', masters)
+
+    def claim_ipo_on_last_formation(self):
+        members = deepcopy(self.table_rows['membership'])
+        members[-1]['sids'] = [SID[0]] + RANKED[:-1]
+        self.change_table('membership', members)
+        prices = deepcopy(self.table_rows['prices'])
+        for row in prices:
+            if row['sid'] == RANKED[-1] and row['session'] == self.calendar.sessions[-1].isoformat():
+                row['sid'] = SID[0]
+        self.change_table('prices', prices)
+
+    def test_pre_listing_rows_cannot_admit_five_session_ipo(self):
+        self.configure_ipo('2018-01-25')
+        members = deepcopy(self.table_rows['membership'])
+        for row in members:
+            row['sids'] = [SID[0]] + RANKED[:-1]
+        self.change_table('membership', members)
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['membership_mismatch_formations'], 2)
+        self.assertFalse(result['checks']['ranked_membership_matches'])
+        self.assertEqual(result['counts']['liquidity_record_count'], 201 * 21)
+        self.assertEqual(result['ranked_membership_hash'], content_hash(
+            [[row['formation_at'], RANKED] for row in self.table_rows['membership']]))
+        self.assertFalse(result['research_certified'])
+
+    def test_young_ipo_remains_excluded_with_or_without_declared_pre_listing_rows(self):
+        self.configure_ipo('2018-01-25')
+        with_pre_listing = self.audit()
+        self.configure_ipo('2018-01-25', drop_pre=True)
+        post_listing_only = self.audit()
+        for result in (with_pre_listing, post_listing_only):
+            self.assertEqual(result['status'], 'observations_passed')
+            self.assertFalse(result['full_historical_US200_certified'])
+        self.assertEqual(with_pre_listing['ranked_membership_hash'], post_listing_only['ranked_membership_hash'])
+        self.assertGreater(with_pre_listing['counts']['liquidity_record_count'],
+            post_listing_only['counts']['liquidity_record_count'])
+
+    def test_ipo_nineteen_then_twenty_completed_session_known_answer(self):
+        self.configure_ipo('2018-01-03')
+        self.claim_ipo_on_last_formation()
+        result = self.audit()
+        self.assertEqual(result['status'], 'observations_passed')
+        expected = [[self.table_rows['membership'][0]['formation_at'], RANKED],
+            [self.table_rows['membership'][-1]['formation_at'], [SID[0]] + RANKED[:-1]]]
+        self.assertEqual(result['ranked_membership_hash'], content_hash(expected))
+        self.assertFalse(result['financial_evidence'])
+
+    def test_listing_intraday_or_at_close_uses_inclusive_completed_close(self):
+        for listing in ('2018-01-03 12:00', '2018-01-03 16:00'):
+            with self.subTest(listing=listing):
+                self.setUp()
+                self.configure_ipo(listing)
+                self.claim_ipo_on_last_formation()
+                self.assertEqual(self.audit()['status'], 'observations_passed')
+
+    def test_listing_after_session_close_cannot_count_that_session(self):
+        self.configure_ipo('2018-01-03 16:01')
+        result = self.audit()
+        self.assertEqual(result['status'], 'observations_passed')
+        self.assertEqual(result['ranked_membership_hash'], content_hash(
+            [[row['formation_at'], RANKED] for row in self.table_rows['membership']]))
+
+    def test_listing_announcement_after_formation_stays_unavailable(self):
+        self.configure_ipo('2018-01-03', available='2018-01-31 10:00')
+        self.claim_ipo_on_last_formation()
+        self.assertEqual(self.audit()['status'], 'observations_passed')
+
+    def test_unknown_listing_clock_is_not_removed_as_pre_listing_noise(self):
+        rows = deepcopy(self.liquid)
+        rows[0]['listing_effective_at'] = None
+        self.change_source('liquidity', rows)
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertGreater(result['counts']['unavailable_liquidity_formations'], 0)
+
+    def test_recent_classification_or_mapping_does_not_reset_old_listing_history(self):
+        rows = deepcopy(self.liquid)
+        for row in rows:
+            row['classification_effective_at'] = ts('2018-01-25').isoformat()
+            row['classification_available_at'] = ts('2018-01-25').isoformat()
+        self.change_source('liquidity', rows)
+        masters = deepcopy(self.table_rows['security_master'])
+        for row in masters:
+            row['effective_from'] = ts('2018-01-25').isoformat()
+            row['available_at'] = ts('2018-01-25').isoformat()
+        self.change_table('security_master', masters)
+        self.assertEqual(self.audit()['status'], 'observations_passed')
+
     def test_modeled_end_time_never_promoted_to_actual_receipt(self):
         rows = deepcopy(self.liquid)
         for row in rows:

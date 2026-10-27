@@ -1,0 +1,21 @@
+{
+  "id": "WR-21",
+  "priority": "P1",
+  "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "title": "新Research准入缺派发绑定仍接受成功，进而解锁同父LEAN",
+  "locations": [
+    {"file":"tools/stage2.py","line":248,"end_line":250},
+    {"file":"tools/stage2.py","line":310,"end_line":311},
+    {"file":"cloud/qresearch/engineering_receipts.py","line":554,"end_line":568}
+  ],
+  "trigger": "新v2父计划经真实生产CLI freeze/register/claim/prepare，research-entry-protocol确实存在，research-dispatch始终未创建；提供同attempt/input/deployment且形状合规的合成成功报告，但cell index=999，未经read-cell绑定。",
+  "expected": "新协议任务缺原始dispatch绑定时，research-result拒绝且账本/产物/预算不变，不能记Research completed或满足LEAN依赖。合法已绑定成功及明确旧无marker任务兼容仍须可用。",
+  "actual": "CLI research-result返回0并将started转为completed；根审核独立重放后，再运行同父claim --stage lean，返回started且should_execute=true。变化只发生在隔离合成账本，真实17事件及7/10/1用量未改。",
+  "cause": "_read_research_dispatch遇缺文件直接返回None，未区分已有新entry协议的任务；settle_research_result将None传给research_observation，后者跳过绑定检查进入旧成功marker分支。完整结果合同随后把该结果视为合格同父Research。",
+  "positive_controls": ["实际read-cell绑定index17后成功完成。","隔离建模的历史无entry marker任务仍成功恢复。","根审核另测两Windows进程竞争：只发一个许可；retarget拒绝；未知先前结果不发许可；旧准入恢复不补协议。"],
+  "scope_and_severity": "P1任务完成证据完整性缺陷，可使新入口的固定cell和派发规则失效并准入下游。没有证明真实失败归档伪造、全局预算上限突破、实际新LEAN提交或金融泄漏；真实本轮已满停止门仍保留。",
+  "reproduction": "在新工作目录复制entry_agent/minimal_new_success_without_dispatch.py及quick_joint_probes.py、independent_cli_gates.py、independent_wr16_boundaries.py，目录父级放固定source；执行前者。当前退出1。原首次17CLI及根独立17CLI均保留；根wr21_confirmation/downstream_execution.json另证实1次合成LEAN准入。",
+  "minimal_fix": "在结算前明确区分新协议与历史准入；凡新协议任务，成功和失败都必须有匹配原attempt、项目、cell源/索引、input及deployment的原始dispatch绑定。缺失或损坏保持未决且不写入。只对明确历史任务保留legacy成功兼容，不能关闭全部成功路径。",
+  "regression_tasks": ["新entry存在但dispatch缺失，合法形状成功也拒绝且全artifact/usage不变。","新entry缺失/损坏或原dispatch/cell/input/项目错配不得被当legacy。","拒绝后同父LEAN仍不准入。","合法绑定成功与原f5d失败15→17→17保持可用。","明确旧任务无新marker的恢复仍通过；双进程仅一个许可及未知结果不重跑保持。"],
+  "root_confirmation": {"MRE_exit":1,"MRE_actual_CLI_processes":17,"downstream_synthetic_CLI_processes":1,"actual_provider_calls":0,"actual_authoritative_budget_changes":0}
+}

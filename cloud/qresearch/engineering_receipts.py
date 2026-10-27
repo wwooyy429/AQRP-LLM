@@ -287,7 +287,7 @@ def _decode(encoded, payload):
     return _report(wrapper, payload)
 
 
-def _research_stdout(native):
+def _research_stdout(native, *, cell_index=None):
     lines = []
     wrappers = {"outputs", "output", "cells", "results", "result", "content"}
     metadata = {"execution_count", "status", "success", "execution_state", "cell_index", "index", "metadata"}
@@ -331,6 +331,8 @@ def _research_stdout(native):
                 _fail("Research execution is not completed")
             elif key in {"execution_count", "cell_index", "index"} and value is not None and (type(value) is not int or value < 0):
                 _fail("Invalid Research execution metadata")
+            elif key in {"cell_index", "index"} and value is not None and cell_index is not None and value != cell_index:
+                _fail("Native successful-cell index differs from the original dispatch")
     visit(native)
     nonempty = [line for line in lines if line.strip()]
     if len(nonempty) != 1 or not nonempty[0].startswith(_PREFIX):
@@ -545,12 +547,17 @@ def research_execution_failure(payload, deployment, tool_envelope, *, dispatch_b
         "completion": {"platform": _platform(payload, deployment, external, raw, status="runtime_error")}}
 
 
-def research_observation(payload, deployment, tool_envelope, *, dispatch_binding=None):
+def research_observation(payload, deployment, tool_envelope, *, dispatch_binding=None, dispatch_required=False):
     """Parse completed success, or a separately bound registered cell error.
 
-    Legacy successful markers still bind their own identity without a new
-    dispatch record. Legacy failures without that prior record stay unresolved.
+    Controllers set dispatch_required from the original admission protocol, not
+    from the success/error output shape. Only explicit pre-protocol admissions
+    retain the unbound success grammar; unbound failures remain unresolved.
     """
+    if type(dispatch_required) is not bool:
+        _fail("Research dispatch requirement must be an explicit boolean")
+    if dispatch_required and dispatch_binding is None:
+        _fail("Original pre-dispatch Research source/input binding is required")
     if dispatch_binding is not None:
         # Both grammars remain closed: a success-shaped cell must satisfy the
         # original marker parser; every other shape must satisfy strict error.
@@ -565,7 +572,8 @@ def research_observation(payload, deployment, tool_envelope, *, dispatch_binding
             return research_execution_failure(payload, deployment, tool_envelope, dispatch_binding=dispatch_binding)
     payload, deployment = _context(payload, deployment, "research")
     native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload)
-    wrapper = _decode(_research_stdout(native), payload)
+    wrapper = _decode(_research_stdout(native,
+        cell_index=raw["arguments"]["index"] if dispatch_binding is not None else None), payload)
     external = "qc-research:" + str(payload["identity"]["project_id"]) + ":" + payload["identity"]["attempt_id"]
     raw.update(marker_count=1, stdout_only=True)
     submission = {"identity": payload["identity"], "identity_kind": payload["external_identity_kind"],

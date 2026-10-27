@@ -1,0 +1,29 @@
+from pathlib import Path
+import hashlib,json
+R=Path(__file__).resolve().parents[1];O=Path(__file__).resolve().parent;S=R/'source'
+read=lambda p:json.loads((O/p).read_text(encoding='utf-8-sig'))
+results=read('first_results.json');ipo=read('first_ipo_result.json')
+finding={'id':'WR-20','priority':'P2','reviewed_source_commit':'deb85d9f27441b275ab8b108f0232ecd2707a1e8',
+ 'title':'上市前流动性被计入IPO的20期窗口，错误报告observations_passed',
+ 'locations':[{'file':'cloud/qresearch/data_certification.py','line':374,'end_line':390},{'file':'cloud/qresearch/ingestion.py','line':367,'end_line':380},{'file':'config/universe.json','line':31}],
+ 'trigger':'独立201名称/21session/两形成时点合成输入，SID200明确listing_effective_at与security master effective_from=2018-01-25；只有5/6个上市后完成session，却提供15条上市前liquidity rows并将SID200列为DollarVolume第一。',
+ 'expected':'拒绝自相矛盾的上市前历史，或将其排除出有效排名窗口；不足20个真实上市后session的IPO不能进入US200且不能获得全部观测检查通过。',
+ 'actual':'audit_data_certification返回observations_passed，全部12项checks=true，observed_member_cells=400；新上市SID被排到首位。Jan04上市的19→20边界也误过首个19session形成时点。',
+ 'cause':'expected_candidates只把在trailing首日前已上市的名称纳入缺历史计数，却将未按listing_effective_at过滤的rank_input整体交给ranker。liquidity_rows_asof只将listing等时钟并入可用时间max；ranker只数20个日期和最后一行listed，不排除这些日期早于已知上市日。',
+ 'positive_controls':['合法201个老名称基线通过：400成员单元、8040已知候选session单元。','IPO晚上市且移除上市前行，只有5/6session时被正确排除，原200老名称观测通过。','Jan04上市、只留上市后行：首形成19session被排除，次形成20session进入，正确换仓通过。','将上市日设为2017-12-01且20个真实历史session完整，排名通过。'],
+ 'scope_and_severity':'新数据观测合规审计的P2软件缺陷。所有vendor/full-US200/actual-availability/research认证及financial_evidence标志仍固定false；没有真实市场调用、预算改变或实际因子选择证据，不把它扩大成供应商真实性绕过或真实Research失败原因。',
+ 'reproduction':'python -B cert_agent/minimal_wr20.py --output wr20_confirmation/result.json（当前exit1；仅旁边原创cert_fixture.py及生产模块）。first_ipo_probe.py和13方法首套件的原件保持。',
+ 'minimal_fix':'在观测私有输入和rank窗口上复用明确的历史上市资格：上市前行不贡献有效20期，显式IPO不足20期不得成为排名候选；同时保持已知老eligible缺历史不能靠rank201填洞的检查。不能仅放宽report状态或取消反例断言。',
+ 'regression_tasks':['Jan25 IPO有15条上市前行时拒绝/观测不通过；无该假行时合法排除。','Jan04 IPO分别19与20个上市后完整session：前者排除、后者允许。','早上市且记录完备可排名；非IPO的历史classification版本更新不得误当新上市。','保持老eligible丢单session/全历史时不能rank201补位掩盖；保留unknown/PIT/日期/RAW/summary重算及false认证标志。']}
+report={'source_commit':'deb85d9f27441b275ab8b108f0232ecd2707a1e8','scope':'Independent data-certification known answers and boundary suite plus metadata CLI; not developer test replay','verdict':{'data_certification_software':'failed_WR20_P2','whole_stage2_accepted':False,'vendor_data_certified':False,'financial_evidence':False},
+ 'actually_executed':{'methods':results['methods'],'passed_methods':results['passed_methods'],'failed_methods':results['failed_methods'],'error_methods':results['error_methods'],'failure_records':results['failure_records'],'scenario_checks':results['scenario_checks'],'scenario_checks_not_added_to_methods':True,'CLI_processes':len(read('cli_command_log.json')),'first_IPO_probe_scripts':1,'minimal_script_created_for_root_independent_confirmation':True},
+ 'findings':[finding],'known_answer':{'names':201,'calendar_liquidity_sessions':21,'formations':2,'expected_members':400,'known_eligible_candidate_session_cells':8040},
+ 'passed_boundaries':['old eligible gaps including rank201 spare-name compensation','unknown classification/missing master/ambiguous mapping','legal young IPO exclusion and19→20 turnover','date-only next exchange close and exact one-cell miss','financial later vintage does not backfill, modeled/missing actual receipt fails','RAW/OHLC/action schema and causality','fixed200/20 and calendar/formation requirements','summary reopens private input and refuses altered rows, fake counts, empty refs/free true, overlapping partitions and false approval claims','missing partitions and two-day to full-history expansion remain insufficient','real rows local store refused; capabilities/validate-plan CLI never dispatches/approves and rejects duplicate JSON/unknown override'],
+ 'source_files_raw_sha256':results['source_module_raw_sha256'],'input_origin':'Original independent synthetic rows in cert_fixture.py; no author fixtures imported; in-memory store only','source_unchanged':results['source_unchanged'],'actual_QC_market_model_calls':results['actual_market_model_QC_calls'],'actual_registry_writes':0,
+ 'first_results_preserved':{'no_assertions_or_production_edited':True,'suite_exit':1,'first_ipo_exit':1,'auditor_fixture_or_runner_errors':0},
+ 'counting_limit':'43 hand-named scenario checks are grouped within13 unittest methods;2 failure records are the same WR20 method at2 listing boundaries. First MRE and root replay overlap suite scenarios, not extra unique methods.',
+ 'evidence_files':['cert_fixture.py','first_ipo_probe.py','first_ipo_result.json','first_ipo_execution.json','first_ipo.stdout','first_ipo.stderr','minimal_wr20.py','independent_certification.py','first_unittest.txt','first_results.json','suite_execution.json','suite_first.stdout','suite_first.stderr','cli_command_log.json']}
+report['evidence_hashes']={p:hashlib.sha256((O/p).read_bytes()).hexdigest() for p in report['evidence_files']}
+(O/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');(O/'finding_WR20.json').write_text(json.dumps(finding,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+text='数据认证独立首跑：13方法，12通过、1失败、0错误，43场景；同一WR20方法有2个失败记录。4个metadata CLI进程，无提供商/预算/真实账本调用，原源码未改。\n\n'+finding['title']+'\n'+finding['trigger']+'\n实际：'+finding['actual']+'\n范围：'+finding['scope_and_severity']+'\n复现：'+finding['reproduction']+'\n\n原始结果、合法年轻IPO剔除和19→20换仓正控、精确路径行/hash均见report.json及finding_WR20.json。\n'
+(O/'report.txt').write_text(text,encoding='utf-8');print(json.dumps({'methods':results['methods'],'passed':results['passed_methods'],'failed':results['failed_methods'],'errors':results['error_methods'],'scenario_checks':results['scenario_checks'],'report_raw_sha256':hashlib.sha256((O/'report.json').read_bytes()).hexdigest()},ensure_ascii=False,indent=2))

@@ -7,9 +7,9 @@
     0,
     1
   ],
-  "stage2_status": "not_accepted_G1_failed_G2_G4_insufficient_G3_evidence_pending_unified_review",
+  "stage2_status": "not_accepted_WR20_WR21_repairs_pending_independent_review_G1_failed_G2_G4_insufficient",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
   "deployment_comparison_scope": "Historical d0 detail table retained; active archived ae2-vs-known25 comparison corrected to9 differing+4 outside reference=13. Earlier dc49 count12 remains historical. No current platform inventory certification.",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -81,7 +81,7 @@
     "G4_historical_US200_financial_vintage_actual_receipts_insufficient",
     "engineering_configuration_and_Research_stop_caps_reached"
   ],
-  "source_configuration_budget_changed": true,
+  "source_configuration_budget_changed": false,
   "market_calls": null,
   "model_API_calls": 0,
   "new_independent_review_dispatched": false,
@@ -89,8 +89,8 @@
   "source_changed": true,
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
-  "authoritative_budget_changed": true,
-  "candidate_development_document": "audit/review_packages/stage2_completion_runtime/README.md",
+  "authoritative_budget_changed": false,
+  "candidate_development_document": "docs/review/wr20-wr21.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -105,8 +105,22 @@
     "verified_complete_financial_value_catalog_and_vendor_receipt_protocol",
     "full_historical_US200_and_financial_data_certification"
   ],
-  "known_open_findings": [],
-  "developer_fixes_pending_independent_verification": [],
+  "known_open_findings": [
+    {
+      "id": "WR-21",
+      "priority": "P1",
+      "status": "developer_fixed_pending_independent_review"
+    },
+    {
+      "id": "WR-20",
+      "priority": "P2",
+      "status": "developer_fixed_pending_independent_review"
+    }
+  ],
+  "developer_fixes_pending_independent_verification": [
+    "WR-21",
+    "WR-20"
+  ],
   "source_changed_this_round": [
     "cloud/qresearch/engineering_data.py",
     "cloud/qresearch/engineering_receipts.py",
@@ -176,9 +190,12 @@
       "raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46"
     }
   },
-  "candidate_source_manifest_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
+  "candidate_source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
   "collection_remote_protocol_and_registry_admission": "passed_in_retested_offline_scope_on81fbe52; platform_and_data_not_accepted",
-  "known_open_blocking_findings": [],
+  "known_open_blocking_findings": [
+    "WR-21",
+    "WR-20"
+  ],
   "known_open_nonblocking_findings": [],
   "live_preflight_record": "audit/stage2_live_preflight.json",
   "joint_preview": "audit/stage2_joint_preview.json",
@@ -211,22 +228,16 @@
     "independently_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json"
   },
-  "latest_software_independent_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
+  "latest_software_independent_report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
   "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
   "metadata_acceptance": "WR19_passed_at84414ab",
   "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
-  "candidate_execution_source_manifest_hash": "b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41",
+  "candidate_execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
   "latest_read_only_preflight": "audit/stage2_deployment_root_cause.json",
-  "current_candidate_change_scope": {
-    "implementation_changed": true,
-    "active_economic_research_configuration_changed": false,
-    "engineering_configuration_and_budget_usage_changed": true,
-    "posthoc_parser_not_cloud_executed": true
-  },
+  "current_candidate_change_scope": "offline_WR20_WR21_only_no_new_real_dispatch",
   "developer_features_pending_independent_verification": [
-    "controlled_worker_diagnostics_and_strict_extraction",
-    "fixed_Research_entry_dispatch_binding_native_exception_and_recovery",
-    "cloud_data_evidence_audit_and_private_partition_recomputation"
+    "WR21_new_protocol_success_failure_dispatch",
+    "WR20_post_listing_twenty_session_rank_view"
   ],
   "source_configuration_budget_changed_scope": "One new engineering configuration and one Research precharge, reserve allocation; no economic factor/model/trading design or budget limits changed.",
   "reconciled_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
@@ -241,14 +252,14 @@
   "worker_source_bytes_or_hashes_observed": false,
   "original_worker_failure_repaired": false,
   "root_cause_proven": false,
-  "developer_repository_tests": 612,
+  "developer_repository_tests": 630,
   "developer_extra_boundary_probe_methods": {
     "G3": 8,
     "G4_peer1": 14,
     "G4_peer2": 9
   },
-  "new_configuration_count": 1,
-  "new_Research_execution_count": 1,
+  "new_configuration_count": 0,
+  "new_Research_execution_count": 0,
   "new_LEAN_submission_count": 0,
   "read_or_polled_this_turn_scope": "No repeated read_backtest/status polling in repair; read_project and old completed-task list used for source diagnosis only.",
   "original_task_and_budget_preserved": true,
@@ -292,54 +303,43 @@
   "remaining_acceptance_gates": [
     {
       "id": "G1",
-      "status": "actual7fc_Research_failed_new_controller_candidate_not_cloud_executed",
-      "requirement": "A qualifying Research, collection/cache replay and dependent LEAN success are still required",
-      "actual_evidence": "audit/stage2_completion_reconciliation.json"
+      "status": "actual_Research_failed_no_qualifying_LEAN_success",
+      "requirement": "Real qualifying Research, collection/cache and dependent LEAN success remain missing"
     },
     {
       "id": "G2",
-      "status": "old_LEAN_worker_source_difference_insufficient",
-      "requirement": "Controlled source/format/hash diagnostics implemented; no actual mismatch observation from this Research failure and no proof of old worker bytes"
+      "status": "old_worker_source_difference_insufficient",
+      "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
     },
     {
       "id": "G3",
-      "status": "implemented_with_actual_failed_cell_and_recovery_pending_independent_review",
-      "requirement": "Independent fixed-version review of source binding, native two-carrier error parsing and original-attempt failure recovery"
+      "status": "native_failure_scope_passed_on_deb85d9_WR21_repair_pending_review",
+      "requirement": "Independent exact-version retest of new dispatch-required success/failure settlement"
     },
     {
       "id": "G4",
-      "status": "software_evidence_audit_implemented_authenticated_full_data_insufficient",
-      "requirement": "Historical US200, financial vintage, actual vendor availability/ingestion and security-master/action receipts remain unsupported"
+      "status": "WR20_repair_pending_review_full_historical_data_insufficient",
+      "requirement": "Independent IPO fix retest and authenticated full historical US200/financial timing evidence"
     }
   ],
   "latest_independent_platform_observation": {
-    "project_id": 38436695,
-    "backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
-    "old_status": "runtime_error",
-    "old_terminal": true,
-    "native_error_isError": true,
-    "native_success": false,
-    "diagnostic_strings": 2,
-    "failure_tasks": 1,
-    "native_wrapper_sha256": "867148e882d39a024d12d68a01803ba80c282f05b872f16616dfded53c7eea27",
-    "normalized_observation_hash": "ff5002cdf15423e9a7f45a0b5b5744d89c675506ef7331df49bdec9b4f5c3233",
-    "completed_field": null,
-    "progress": null,
-    "orders": null,
-    "financial_statistics": null,
-    "initialization_failure": "Cloud implementation differs from the frozen deployment",
-    "current_returned_old_implementation_matches": 25,
-    "current_returned_input_matches": 1,
-    "returned_source_reference_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
-    "original_input_hash": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
-    "raw_candidate_matches_in_old25": 16,
-    "worker_source_verified": false,
-    "full_cloud_inventory_certified": false,
-    "candidate_deployed": false,
-    "candidate_cloud_successful_run": false
+    "list_projects": 1,
+    "read_open_project": 1,
+    "read_file": 32,
+    "jupyter_read_cell_source_only": 1
   },
-  "latest_independent_platform_observation_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
-  "latest_independent_cloud_comparison": "audit/reviews/20261027-66ff72f-windows/cloud_comparison.json",
+  "latest_independent_platform_observation_report": "audit/reviews/20261027-deb85d9-windows/formal_report.json",
+  "latest_independent_cloud_comparison": {
+    "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+    "actual_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "read_files": 32,
+    "implementations": 31,
+    "input": 1,
+    "matching_local_implementations_on_reviewed_commit": 29,
+    "differing_local_implementations_on_reviewed_commit": 2,
+    "current_repair_cloud_inventory_observed": false,
+    "notebook_market_outputs_read": false
+  },
   "independent_review_execution_scope": {
     "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
     "repository_methods": 530,
@@ -408,5 +408,6 @@
     "actual_vendor_receipt_and_vintage_certification"
   ],
   "postnative_developer_peer_methods": 8,
-  "actual_native_failure_adapter_evidence_available": true
+  "actual_native_failure_adapter_evidence_available": true,
+  "latest_independent_reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8"
 }

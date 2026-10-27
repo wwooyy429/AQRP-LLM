@@ -1,0 +1,32 @@
+ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.RecoveryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\independent_recovery.py", line 98, in setUpClass
+    success(call(cls.base,['register-task']))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\independent_recovery.py", line 76, in success
+    if result.returncode:raise AssertionError('Unexpected command failure: '+result.stderr)
+AssertionError: Unexpected command failure: Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\tools\stage2_collection.py", line 76, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\tools\stage2_collection.py", line 67, in main
+    print(json.dumps(execute_metadata_command(args, field_catalog=fields)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\tools\collection_task_cli.py", line 181, in execute_metadata_command
+    return {"config_id": bridge.register(allocation=args.allocation), "plan_hash": bridge.plan.hash}
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\cloud\qresearch\engineering_tasks.py", line 369, in register
+    return self.registry.register_config(self.package, allocation=allocation)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\cloud\qresearch\registry.py", line 279, in register_config
+    self._enforce_engineering_limit(state, "configurations", package)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-deb85d9-20261027\collection_recovery_replay\cases\7f3e0e7d\prepared\cloud\qresearch\registry.py", line 460, in _enforce_engineering_limit
+    raise BudgetExceeded("Stage2 engineering stop condition reached for " + kind)
+qresearch.registry.BudgetExceeded: Stage2 engineering stop condition reached for configurations
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 12.173s
+
+FAILED (errors=1)
+
+{"methods": 0, "passed_methods": -1, "failed_methods": 0, "error_methods": 1, "skipped": 0, "subcases": 0, "exit_code": 1}

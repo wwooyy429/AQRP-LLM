@@ -107,7 +107,20 @@ class SyntheticFixture:
         return research_tool(payload, value)
 
     def settle_research(self):
+        # Model an actual new-entry dispatch before its synthetic successful
+        # result; legacy fixtures with no first-admission marker stay legacy.
+        self.pin_research_dispatch()
         return self.command("research-result", attempt=self.attempt, tool=self.research_observation())
+
+    def pin_research_dispatch(self):
+        entry_key = "engineering/research-entry-protocol/" + self.attempt + ".json"
+        dispatch_key = "engineering/research-dispatch/" + self.attempt + ".json"
+        if self.store.exists(entry_key) and not self.store.exists(dispatch_key):
+            from qresearch.engineering_receipts import research_cell_source
+            source = research_cell_source(self.admission["payload"], self.admission["deployment"])
+            self.command("research-dispatch", attempt=self.attempt,
+                tool=envelope("jupyter_read_cell", {"projectId": 17, "index": 0},
+                    {"cellType": "code", "source": source.splitlines(keepends=True)}))
 
     def alter_current_context(self, *, pointer=True):
         if pointer:
@@ -164,6 +177,7 @@ class WR17EngineeringRecoveryTests(unittest.TestCase):
     def test_original_research_receipt_settles_without_current_pointer_or_extra_charge(self):
         for version in (1, 2):
             with self.subTest(version=version), SyntheticFixture(version) as fixture:
+                fixture.pin_research_dispatch()
                 fixture.alter_current_context(pointer=False)
                 before = fixture.registry.snapshot()["usage"]
                 with patch.object(collection_cli, "catalog", side_effect=AssertionError("No current catalog on settlement")):
