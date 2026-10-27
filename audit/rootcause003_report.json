@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "kind": "root_cause_investigation_after_closed_engineering_round",
+  "date": "2026-10-28",
+  "user_request": "请查明原因",
+  "baseline_commit": "fbb24d3150bbf9d7a549f75d14cecd6063c43f22",
+  "status": "sufficient_code_defect_identified_and_reproduced_offline_repair_not_applied",
+  "finding_id": "RC003",
+  "finding_is_new_independent_WR_number": false,
+  "conclusion": "Both one-day native history boundaries are shifted backward by one microsecond. LEAN skips the previous source-file date because only its closed last microsecond remains, then rejects the current file record because its EndTime exceeds the shifted end. Under the standard US-equity configuration this loses every one-day window even with source records present.",
+  "production_locations": [
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "line": 120,
+      "role": "both-boundary microsecond transform"
+    },
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "line": 204,
+      "role": "native universe-history request"
+    }
+  ],
+  "example": {
+    "logical_window": [
+      "2018-01-09T00:00:00-05:00",
+      "2018-01-10T00:00:00-05:00"
+    ],
+    "request": [
+      "2018-01-08T23:59:59.999999",
+      "2018-01-09T23:59:59.999999"
+    ],
+    "enumerated_source_dates": [
+      "2018-01-09"
+    ],
+    "source_date_EndTime": "2018-01-10T00:00:00",
+    "accepted_EndTimes": []
+  },
+  "causal_steps": [
+    "Logical NY [2018-01-09 00:00, 2018-01-10 00:00) becomes native [2018-01-08 23:59:59.999999, 2018-01-09 23:59:59.999999].",
+    "The source-date enumerator checks only the remaining first-day interval. NY equity is closed during its final microsecond, so source date Jan8 is not enumerated.",
+    "A Jan8 Fundamental source item would have EndTime Jan9 00:00 and belong in the logical window, but that file was skipped.",
+    "The enumerated Jan9 file has EndTime Jan10 00:00; the strict native upper filter excludes it.",
+    "The result is empty before projection, consistent with the zero-row DataFrame and the later 40 empty windows."
+  ],
+  "verification": {
+    "source_equivalent_test_methods": 14,
+    "all_passed": true,
+    "frozen_one_day_windows": 40,
+    "reproduced_empty_windows_with_synthetic_records": 40,
+    "production_endpoint_matches_the_model": true,
+    "actual_LEAN_SDK_executed_locally": false,
+    "new_cloud_execution_performed": false,
+    "703_existing_synthetic_regressions_passed": true,
+    "overlapping_test_counts_are_not_summed": true
+  },
+  "source_identity": {
+    "cloud_reported_LEAN_version": "2.5.0.0.18207",
+    "public_research_image": "quantconnect/research:18207",
+    "public_PDB_SourceLink_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+    "public_image_binary_hashes_equal_actual_cloud_binary_hashes_proven": false,
+    "condition": "standard US-equity hours, no per-universe AlwaysOpen override, one-day Fundamental EndTime and current frozen endpoints"
+  },
+  "why_existing_tests_missed_it": "Native-shaped FakeQB tests supplied already-formed responses and asserted endpoint arguments. They did not jointly simulate exchange-hours source-file date enumeration and the downstream EndTime filter. Passing parameter assertions did not validate this SDK boundary.",
+  "repair_requirements_not_implemented": [
+    "Separate the logical feature window from the native source-file retrieval window.",
+    "Read from the entire prior NY source-calendar date at midnight. In timezone-aware code use a calendar-day offset, preserving midnight across DST; do not blindly subtract an absolute24-hour duration.",
+    "Keep an upper cutoff that excludes the logical end and crop observed snapshot EndTime strictly to [logical_start, logical_end).",
+    "Do not merely delete the one-microsecond adjustment or enlarge chunks until nonempty: those can include an upper-end snapshot or hide the missing first snapshot.",
+    "Preserve raw clocks, weekends and missing source files; never backfill or relabel absent observations.",
+    "Freeze a new full configuration and explicit cache/source version; retain all old failed intents and empty-window artifacts.",
+    "Before any real verification, admit a bounded new round and debit existing quota; final testing remains closed."
+  ],
+  "remaining_unknowns": [
+    "actual cloud binary/source-byte mapping and any exchange-hours override",
+    "whether historical files are actually delivered under the account data permissions",
+    "whether there are additional independent source or adapter defects after this one is repaired",
+    "a repaired real Research and qualifying LEAN success",
+    "full historical US200 and financial publication/vintage/actual delivery coverage"
+  ],
+  "old_f5_failure_cause_retroactively_rewritten": false,
+  "budget": {
+    "global_usage": {
+      "configurations": 9,
+      "research": 12,
+      "lean": 1
+    },
+    "global_limits_unchanged": true,
+    "new_configuration_debits": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "engineering_round002_remains_closed": true
+  },
+  "activity": {
+    "production_source_or_configuration_changed": false,
+    "cloud_source_or_notebook_written": false,
+    "QuantConnect_readonly_metadata_or_documentation_calls": 6,
+    "readonly_lookup_failures": 2,
+    "lookup_failure_reason": "Concurrent documentation/API lookups exceeded the single A1 assistant capacity; sequential lookups then succeeded. This is unrelated evidence and does not explain the prior completed Research zero-data result.",
+    "official_public_code_only_downloaded": true,
+    "licensed_market_rows_downloaded": false,
+    "automatic_factor_generation_LLM_runtime_enabled": false
+  },
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "production_fix_applied": false,
+  "independent_GPT_Work_acceptance": false,
+  "evidence": [
+    {
+      "path": "audit/review_packages/rootcause003/date_grid_source_evidence.json",
+      "raw_sha256": "7c56fc2623cd8a676e78d9a5b3cae17e390e1062ca1702840ca50f4646104a95"
+    },
+    {
+      "path": "audit/review_packages/rootcause003/date_grid_reproduction.json",
+      "raw_sha256": "ac13263bd21c1a288c46a4b8b142110c5dabcb5688f28d4bc2f28c84316f7084"
+    },
+    {
+      "path": "audit/review_packages/rootcause003/request_chain_evidence.json",
+      "raw_sha256": "341bbc83366c02bb4f91e7bc0e56d4a12e4394a350847f4d50036a62c552cd6f"
+    },
+    {
+      "path": "audit/review_packages/rootcause003/request_chain_reproduction.json",
+      "raw_sha256": "69afd0c195a32639a167d6104d4035e00b1b334ff74ea5237df385cc9c1f1068"
+    },
+    {
+      "path": "audit/rootcause003_offline_verification.json",
+      "raw_sha256": "bd3f480d7ce51dedca578b972a3528dfe2cdeb9bc2f763becfc6db5349745856"
+    },
+    {
+      "path": "audit/tool_observations/d45af7fcfdc849c888694aaa6dd7c0ae-research.json",
+      "raw_sha256": "04a8f858240552766ae0425043fd1ef50321916df84461cc68d59f2a85269d2e"
+    }
+  ]
+}

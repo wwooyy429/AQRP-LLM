@@ -28,7 +28,7 @@
     1
   ],
   "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "stage2_status": "pending_real_joint_success_new_software_review_and_data_certification",
+  "stage2_status": "pending_boundary_repair_real_joint_success_independent_review_and_data_certification",
   "new_candidate_independently_accepted": false,
   "current_activity": {
     "kind": "bounded_live_engineering_round",
@@ -84,6 +84,7 @@
   "known_open_software_findings_from_independent_reports": [],
   "new_candidate_review_status": "pending_exact_commit_independent_review",
   "blockers": [
+    "confirmed_endpoint_boundary_defect_not_yet_repaired",
     "nonempty real historical-universe source, with source/config/entitlement evidence",
     "qualifying same-parent Research followed by a completed verified LEAN receiver",
     "new round-control and empty-response code independently reviewed on an exact commit",
@@ -106,5 +107,23 @@
   "financial_evidence": false,
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
-  "year2026_independence": "not_certified"
+  "year2026_independence": "not_certified",
+  "current_activity_scope": "The current_activity counters describe closed engineering round002. The separate root-cause investigation is read-only metadata work with no charged execution.",
+  "root_cause_investigation": {
+    "finding_id": "RC003",
+    "report": "audit/rootcause003_report.json",
+    "status": "sufficient_code_defect_identified_and_reproduced_offline_repair_not_applied",
+    "production_fix_applied": false,
+    "cloud_revalidated": false,
+    "new_Research_executions": 0,
+    "new_configuration_debits": 0,
+    "final_test_enabled": false
+  },
+  "known_open_developer_findings": [
+    {
+      "id": "RC003",
+      "status": "source_equivalent_defect_confirmed_repair_pending",
+      "scope": "native history endpoint versus source-file date enumeration"
+    }
+  ]
 }

@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "scope": "read_only_public_sdk_request_chain_and_independent_boundary_review",
+  "public_sdk_source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+  "cloud_binary_bytes_matching_this_public_revision_proven": false,
+  "production_source_changed": false,
+  "market_data_loaded": false,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "budget_mutations": 0,
+  "conclusion": "A sufficient source-equivalent software cause is identified: microsecond-shifted one-day logical windows skip the required prior source-file date after its market close, while the current source file EndTime exceeds the same shifted upper bound. Nonempty synthetic source data can therefore be returned as empty in every window.",
+  "not_claimed": [
+    "actual cloud file access or vendor permissions are available",
+    "the public Docker binary hashes equal the cloud binary hashes",
+    "a repaired cloud execution passed",
+    "full historical US200, financial vintage or historical receipt timing is certified"
+  ],
+  "causal_chain": [
+    {
+      "path": "Common/Data/Fundamental/FundamentalUniverse.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+      "line": 112,
+      "through_line": 112,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs#L112",
+      "meaning": "Fundamental-universe symbol is US Equity, not a Base custom-data symbol."
+    },
+    {
+      "path": "Common/Data/UniverseSelection/FundamentalUniverseFactory.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "afa8ef09e94699ba3a7818af0e6aa77ee5ac755b2f51a24133964f5b280f99e7",
+      "line": 98,
+      "through_line": 110,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/FundamentalUniverseFactory.cs#L98",
+      "meaning": "Factory fixes FundamentalUniverse concrete type, daily, NY data/exchange zones, no fill-forward and extendedHours=false."
+    },
+    {
+      "path": "Common/Extensions.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "c34e4f3c1403ba1b09a6d0582271f6e9a67bb0ee62d274d06b9f546f751e22ae",
+      "line": 222,
+      "through_line": 250,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Extensions.cs#L222",
+      "meaning": "Only SecurityType.Base receives the absent-custom-data AlwaysOpen fallback. Equity uses the ordinary market/symbol/type entry."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "line": 1409,
+      "through_line": 1427,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs#L1409",
+      "meaning": "History obtains the market-hours entry by requested type; an already-existing matching Security may override it."
+    },
+    {
+      "path": "Common/Data/HistoryRequest.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "1cc88953e8bff8373dc3ec9e6bae01947d6e611e3f44a0fb1fa10d64e93a5f15",
+      "line": 103,
+      "through_line": 108,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequest.cs#L103",
+      "meaning": "HistoryRequest delegates source-file date enumeration to Time.EachTradeableDayInTimeZone with its exact local start and end."
+    },
+    {
+      "path": "Common/Time.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "ffff9ee93b45d03367bd4a262e7222afacce5d9a7ca836d7d3bdf0bb70e0ce8e",
+      "line": 571,
+      "through_line": 596,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Time.cs#L571",
+      "meaning": "Enumeration starts from from (including its time of day); requires an open market interval before yielding a file date. The end date is rounded up only to include its full source date."
+    },
+    {
+      "path": "Common/Data/Fundamental/FundamentalUniverse.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+      "line": 59,
+      "through_line": 60,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs#L59",
+      "meaning": "Universe CSV uses the requested source file date and FoldingCollection reader."
+    },
+    {
+      "path": "Common/Data/Fundamental/FundamentalUniverse.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+      "line": 77,
+      "through_line": 77,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs#L77",
+      "meaning": "Each CSV row creates a Fundamental at the source file date."
+    },
+    {
+      "path": "Common/Data/Fundamental/FineFundamental.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8",
+      "line": 31,
+      "through_line": 35,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FineFundamental.cs#L31",
+      "meaning": "Fundamental inherited EndTime is Time plus one day, not the file date itself."
+    },
+    {
+      "path": "Engine/DataFeeds/Enumerators/BaseDataCollectionAggregatorEnumerator.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "c2e05e90f2e8698342cb2d366e3027d91198c86913fb5cec7a986e2947208e7d",
+      "line": 96,
+      "through_line": 96,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/DataFeeds/Enumerators/BaseDataCollectionAggregatorEnumerator.cs#L96",
+      "meaning": "Folding aggregation copies the child Time and EndTime to the universe collection."
+    },
+    {
+      "path": "Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842",
+      "line": 215,
+      "through_line": 223,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs#L215",
+      "meaning": "The final history filter accepts only start < EndTime <= end; it does not round the microsecond endpoints."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.Universe.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "560b391532445fb0dd2392dbb18ac2386a4230adecc76eaf6cb49ef756d20582",
+      "line": 207,
+      "through_line": 218,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.Universe.cs#L207",
+      "meaning": "Adding this universe sets settings, flags pending additions and calls UniverseManager.Add; no AlwaysOpen market-hours override."
+    },
+    {
+      "path": "Common/Securities/UniverseManager.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "89a4fd162dca10a260f12afe4bbaca93fdd680168342ce6698c3776073ca14f0",
+      "line": 57,
+      "through_line": 67,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Securities/UniverseManager.cs#L57",
+      "meaning": "UniverseManager inserts and queues a change; it does not replace the market-hours entry."
+    },
+    {
+      "path": "Engine/DataFeeds/DataManager.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "357695df1d36a951011f682bb25348a253e0d203e15b9cfc110479eb63d6ff99",
+      "line": 115,
+      "through_line": 115,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/DataFeeds/DataManager.cs#L115",
+      "meaning": "Even later processing of the add event constructs its universe Security from the configured MHDB exchange hours."
+    }
+  ],
+  "standard_calendar": {
+    "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Data/market-hours/market-hours-database.json",
+    "raw_sha256": "f44effe21e7937a76a426bdb6a0de427b6440160b811b33bb6ed28c0f04ea1f0",
+    "key": "Equity-usa-[*]",
+    "regular_monday": [
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      }
+    ],
+    "overnight_23_59_interval_open": false,
+    "weekends_have_sessions": false,
+    "data_and_exchange_zone": "America/New_York"
+  },
+  "known_workday_example": {
+    "logical_window": [
+      "2018-01-09T00:00:00",
+      "2018-01-10T00:00:00"
+    ],
+    "physical_window_from_current_code": [
+      "2018-01-08T23:59:59.999999",
+      "2018-01-09T23:59:59.999999"
+    ],
+    "needed_prior_source_file": "2018-01-08",
+    "prior_file_excluded_by_calendar_enumeration": true,
+    "current_source_file": "2018-01-09",
+    "its_Fundamental_EndTime": "2018-01-10T00:00:00",
+    "current_file_record_excluded_by_upper_bound": true
+  },
+  "excluded_as_sufficient_static_causes": [
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "line": 1101,
+      "through_line": 1118,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs#L1101",
+      "meaning": "Range creation forwards explicit start/end to the history factory; algorithm StartDate is not a lower history bound."
+    },
+    {
+      "path": "Common/Data/HistoryRequestFactory.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+      "line": 86,
+      "through_line": 87,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequestFactory.cs#L86",
+      "meaning": "Date-range bounds are converted to UTC without clamping them to the algorithm start date."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "line": 1048,
+      "through_line": 1057,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs#L1048",
+      "meaning": "Only requests later than the notebook frontier are clamped here; the frozen2018 windows precede its2019 frontier."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "line": 1318,
+      "through_line": 1348,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs#L1318",
+      "meaning": "Missing registered subscriptions alone does not force no request: a concrete non-common FundamentalUniverse type receives a fallback config."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "line": 1486,
+      "through_line": 1493,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs#L1486",
+      "meaning": "Equity-universe symbols are valid because the canonical exclusion only concerns derivative canonical symbols."
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.Python.cs",
+      "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+      "raw_sha256": "99dfc0d7003eb20df6761982e83e6b5803590062ea0825f9bace11c71685a3ce",
+      "line": 326,
+      "through_line": 329,
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.Python.cs#L326",
+      "meaning": "The public18207 unannotated Python callback overload supports FundamentalUniverse. Old coarse overload documentation alone does not prove an actual overload mismatch."
+    }
+  ],
+  "independent_review_of_date_grid_transcription": {
+    "strict_time_filter_checked": "start < EndTime <= end",
+    "fundamental_factory_extended_hours_value": false,
+    "fundamental_factory_extended_hours_check_passed": true,
+    "previous_day_weekend_and_holiday_file_absence": "No assumption that every day has data; source-date exclusion mechanism also applies to a known workday with a guaranteed synthetic row.",
+    "nonempty_source_counterexample": "Synthetic Jan8 row exists at EndTime Jan9, but the required Jan8 source file is never enumerated in the current Jan9 logical day request.",
+    "whole_date_control_warning": "Using logical start/end directly can return the upper endpoint, which belongs outside the desired half-open label window; it is not an acceptable one-line blind fix.",
+    "multi_day_control_warning": "A wider multi-day batch may become nonempty while still losing its first target snapshot.",
+    "calendar_state_review_note": "Initial helper included all session states. The frozen public helper now explicitly defaults include_extended=false to market-only; the independent14-test recheck passed without modifying the existing date-grid evidence.",
+    "fix_not_implemented_here": "A possible repair is to include the full prior source date and then crop by the declared logical modeled-selection clock; this needs a separately frozen configuration and regression tests.",
+    "recheck": {
+      "scope": "developer_auxiliary_independent_recheck_not_GPT_Work_acceptance",
+      "program": "audit/review_packages/rootcause003/date_grid_reproducer.py",
+      "program_sha256": "e41b975bdae93a37cf8ad4876f183efa4222cfd1c43ef4b2badf8d60d0b35f7d",
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "all_passed": true,
+      "existing_date_grid_evidence_bytes_unchanged": true,
+      "market_provider_calls": 0,
+      "Research_executions": 0,
+      "LEAN_submissions": 0
+    }
+  },
+  "complementary_synthetic_model": {
+    "program": "audit/review_packages/rootcause003/request_chain_reproducer.py",
+    "program_sha256": "5cdcca1227dbf589e28b30046315843dc63da1124bb709bd96a20503ad12eb75",
+    "report": "audit/review_packages/rootcause003/request_chain_reproduction.json",
+    "report_sha256": "69afd0c195a32639a167d6104d4035e00b1b334ff74ea5237df385cc9c1f1068",
+    "assertions": 5,
+    "all_passed": true,
+    "overlapping_test_counts_not_summed": true,
+    "calendar_assumption": "Synthetic weekdays09:30-16:00, no historical holidays asserted."
+  }
+}
