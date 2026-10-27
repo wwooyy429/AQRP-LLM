@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "kind": "developer_auxiliary_independent_RC003_boundary_review",
+  "source_hashes": {
+    "cloud/qresearch/historical_source.py": "c7dc3c21973a5e45f5995e5bb43403e7eb920eed463417f2863f35d8afe34ebf",
+    "tests/test_historical_source.py": "9588008abda49fb0c64b0ad212bc6a00dd7571f806a7b6a9d6b649679c5078d3",
+    "tests/test_wr10_history_intervals.py": "3f975d0b69494e01fdb064d5cf08657559c2329c17fa27ec1fcff89cd64a827f",
+    "tests/test_phase2_joint_plan.py": "5e2a6a4f835ef33dc6e8d57e31cc64126a97ad6fad414ec64ffc1872f82db506",
+    "tests/test_history_source_date_grid.py": "bffd544c59a03d18592e7954cf4a64fcfbdd274cfb642e2285dd1f2d2e9fa1ce"
+  },
+  "source_bytes_unchanged_during_check": true,
+  "command": "python -B .git/repair-work/phase2-fix-all/boundary-review/independent_rc003.py",
+  "test_methods": 10,
+  "test_seconds": 0.102,
+  "exit_code": 0,
+  "blocking_findings": [],
+  "production_source_configuration_registry_or_cloud_modified": false,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "independent_GPT_Work_acceptance": false,
+  "reviewed_boundaries": [
+    "manual nonempty prior-source file known answer",
+    "native/logical lower clipping before value access",
+    "identity and duplicate rejection even before clipping",
+    "exclusive logical end and submicrosecond rejection",
+    "UTC input spelling and NY calendar-day/DST lookback",
+    "last development interval and final-window rejection",
+    "observed empty source is not filled",
+    "partial batch plus failed intent prohibits source refetch"
+  ],
+  "fixture_review": "New source-date fixture models SDK source-date enumeration plus EndTime filter. Its weekday-only calendar and29 recovered clocks are explicitly synthetic known answers, not historical exchange coverage. Old joint fixture strict(start,end] correction is necessary after the left endpoint becomes exact midnight; the production clock contract remains strict.",
+  "limits": [
+    "Equivalent synthetic/model boundary review, no actual SDK, market data or repaired cloud run.",
+    "Not formal GPT Work software approval; tests overlap product boundaries and counts must not be summed as unique coverage."
+  ]
+}

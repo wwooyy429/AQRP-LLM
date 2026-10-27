@@ -22,6 +22,16 @@ class HistoricalSourceError(SourceDiagnosticError):
     """A native history response cannot satisfy the declared projection."""
 
 
+# These owned, literal errors select a closed diagnostic token. Never derive
+# a code from a native SID, exception message, field value or type name.
+_NATIVE_FAILURE_CODES = {
+    "Native source property access failed": "native_property_failed",
+    "Missing native permanent SID": "native_sid_missing",
+    "Noncanonical native permanent SID": "native_sid_noncanonical",
+    "Duplicate native permanent SID": "native_sid_duplicate",
+}
+
+
 def _clock(value, *, native=False):
     try:
         stamp = pd.Timestamp(value)
@@ -179,9 +189,8 @@ class QuantConnectSnapshotSource:
                 ModuleNotFoundError: "import_error", HistoricalSourceError: "source_contract"}
             diagnostic["exception_kind"] = kinds.get(type(error), "other")
             if type(error) is HistoricalSourceError:
-                diagnostic["failure_code"] = ("native_property_failed"
-                    if (len(error.args) == 1 and type(error.args[0]) is str
-                        and error.args[0] == "Native source property access failed") else "source_contract")
+                message = error.args[0] if len(error.args) == 1 and type(error.args[0]) is str else None
+                diagnostic["failure_code"] = _NATIVE_FAILURE_CODES.get(message, "source_contract")
             raise HistoricalSourceError("Historical source failed; unfinished intent retained",
                 diagnostic=diagnostic) from None
 
@@ -276,9 +285,13 @@ class QuantConnectSnapshotSource:
                 diagnostic["stage"] = "row_identity"
                 symbol = _attribute(item, "symbol")
                 native_sid = _attribute(symbol, "id") if symbol is not None else None
-                sid = str(native_sid) if native_sid is not None else ""
-                if not sid or sid.strip() != sid or len(sid) > 256 or sid in seen_sids:
-                    raise HistoricalSourceError("Unique native permanent SIDs are required")
+                if native_sid is None:
+                    raise HistoricalSourceError("Missing native permanent SID")
+                sid = str(native_sid)
+                if not sid or sid.strip() != sid or len(sid) > 256:
+                    raise HistoricalSourceError("Noncanonical native permanent SID")
+                if sid in seen_sids:
+                    raise HistoricalSourceError("Duplicate native permanent SID")
                 seen_sids.add(sid)
                 diagnostic["stage"] = "field_projection"
                 values = {}

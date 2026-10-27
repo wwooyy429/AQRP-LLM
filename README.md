@@ -2,15 +2,15 @@
 
 ## 当前阶段与本轮结果（2026-10-28）
 
-**仍处于阶段2，整体验收未通过。** 新一轮按用户授权登记配置2、Research2、LEAN1的预留额度，总预算不变。已消耗2个配置、2次Research，未提交LEAN；本轮达到预登记停止条件并关闭，未用LEAN预占已释放，失败扣费不退回。累计配置9/12、Research12/20、LEAN1/16。
+**阶段2仍未全部完成。** RC003时间边界已修复并在真实Research中取得非空Series/list；随后在永久SID身份校验处失败。诊断记录的5124是中断前单次fetch已投影行数，不是整次Research完成总数。原始回执已按同一attempt结算，未提交LEAN，未丢弃或自动去重异常行。
 
-第一次真实Research因零行DataFrame响应被严格Series合同拒绝。窄化兼容修复后，第二次Research执行完成并返回可验证原生报告，但40个历史股票池采集窗口全部为空，唯一未通过检查是`collection_nonempty`。行情缓存/日历检查通过，两个行情预取计数均为0；这不能证明历史股票池完整。没有满足全部检查的Research父任务，因此没有提交LEAN，也没有因子IC、收益或成本结果。当轮未查明空源原因；后续已定位可离线复现的时间边界缺陷，见下方RC003记录。
+已补missing／noncanonical／duplicate三个闭集SID错误码，保持原严格拒绝和失败意图；最新724项合成回归通过。新诊断尚未部署或真实执行。实际最后运行源码为`d2b23f379602fb4ec16f66a2aed36b10b9486023`，32份托管源码读回一致并编译成功；完整联合Research→LEAN成功仍缺失。
 
-当前云端运行源码为固定提交`0656cb758c412ecedb5fa3af180407b720677d6e`，32份托管源码已读回一致并编译成功。开发方完整离线验证703项合成测试通过；这不替代GPT Work对准确版本的独立审核。见[本轮报告](audit/stage2_round002_report.json)、[数据认证](audit/stage2_round002_data_certification.json)、[失败分析](audit/stage2_round002_failure_analysis.json)及[当前状态](audit/stage2_current_readiness.json)。
+累计配置10/12、Research13/20、LEAN1/16，总预算及分配未变。修复配置预留4/4已用满，正常配置仍余2个。当前工程轮已关闭，未使用的Research／LEAN预占已释放而非退款；下一次云端诊断需要用户明确允许使用正常配置余额，不能静默绕过原reserve-only准入。
 
-既有独立批准仍只绑定`44676db609b3b7c2175fa7fa4f19c8ccf8165458`及其实际已测范围：WR-25、WR-26、WR-27修复后通过，见[独立正式报告](audit/reviews/20261027-44676db-windows/formal_report.txt)。阶段0／1已测离线范围通过；阶段2新增代码和真实联调结果待复审，阶段3–7未验收。原旧worker差异、完整历史US200、财务数值版本及历史实际送达／摄入认证仍不足。
+用户已指定QuantConnect MCP为数据来源，目录与文档查询已完成；它们没有返回逐条历史实际送达／摄入回执。财务数值目录、认证执行桥、完整US200和财务版本／可用时点认证继续列为未完成。详见[本次修复进度](audit/phase2_repair_progress.json)、[原生证据核对](audit/phase2_repair_integrity.json)及[数据认证要求](audit/phase2_repair_data_evidence_requirements.json)。
 
-正式因子研究、自动GPT API、交易和最终测试继续关闭。2024–2025已暴露，2026独立性未认证；未购买额外资源。旧批准、失败、修补与原17事件前缀按原版本保留。PR #2保持草稿。
+旧独立批准仍只绑定44676db及原已测范围。新增修复和诊断待固定版本GPT Work独立复审；阶段3–7未验收。正式因子研究、自动生成API、交易和最终测试保持关闭；2024–2025已暴露事实保留。
 
 ## 空窗口原因排查 RC003（2026-10-28）
 

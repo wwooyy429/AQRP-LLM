@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "purpose": "exact_public_sdk_nonempty_universe_container_preflight",
+  "conclusion": "The standard public LEAN18207 + QuantConnect.pythonnet2.0.66 conversion path returns a native Python list for each Series.data cell. Existing list/tuple admission is appropriate; arbitrary Iterable admission is not justified.",
+  "lean_source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+  "pythonnet_nuget_version": "2.0.66",
+  "pythonnet_nuget_repository_commit": "56b3b6e72cf1f0c00bee0ebc77b8c3edcd2764f2",
+  "pythonnet_nuget_sha256": "5d147a167fde5251f7d2e197f7e27183c3f310d106d35dc978cf159f37b6a250",
+  "chain": [
+    {
+      "path": "Common/Data/UniverseSelection/BaseDataCollection.cs",
+      "raw_sha256": "464415043bef50d74965a338a8d71c12f881d70157e41fc99b25364088df24c1",
+      "lines": [
+        49
+      ],
+      "matched_invariant": "public List<BaseData> Data { get; set; }"
+    },
+    {
+      "path": "Research/QuantBook.cs",
+      "raw_sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6",
+      "lines": [
+        955
+      ],
+      "matched_invariant": "dataPoint.Data = FilterUniverseData("
+    },
+    {
+      "path": "Common/Python/PandasData.cs",
+      "raw_sha256": "ddbfbd559684f5ba409fb9d4a2ea07324d9fe50c41d1cb770b6c57510cc847a2",
+      "lines": [
+        372
+      ],
+      "matched_invariant": "using var pyObject = serie.Values[i].ToPython();"
+    },
+    {
+      "path": "src/runtime/Converter.cs",
+      "raw_sha256": "922d3f2062437660dba6592dcf1590d13a188bc2d0de74c4bc2f5e2190b90944",
+      "lines": [
+        295
+      ],
+      "matched_invariant": "type = value.GetType();"
+    },
+    {
+      "path": "src/runtime/Converter.cs",
+      "raw_sha256": "922d3f2062437660dba6592dcf1590d13a188bc2d0de74c4bc2f5e2190b90944",
+      "lines": [
+        309
+      ],
+      "matched_invariant": "type.IsGenericType && value is IList"
+    },
+    {
+      "path": "src/runtime/Converter.cs",
+      "raw_sha256": "922d3f2062437660dba6592dcf1590d13a188bc2d0de74c4bc2f5e2190b90944",
+      "lines": [
+        311,
+        439
+      ],
+      "matched_invariant": "using var resultlist = new PyList();"
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.Python.cs",
+      "raw_sha256": "99dfc0d7003eb20df6761982e83e6b5803590062ea0825f9bace11c71685a3ce",
+      "lines": [
+        2135
+      ],
+      "matched_invariant": "history = dynamic[\"data\"];"
+    },
+    {
+      "path": "Common/PandasMapper.py",
+      "raw_sha256": "ccb3cd5d3d6f3d0914a611cd2c868756547353663e189f63f16cb4b3ddd5f375",
+      "lines": [
+        146
+      ],
+      "matched_invariant": "Series = pd.Series"
+    }
+  ],
+  "synthetic_pandas_list_cell_preserved": true,
+  "actual_dotnet_or_pythonnet_executed": false,
+  "cloud_actual_assembly_hashes_bound": false,
+  "production_source_changed": false,
+  "budget_mutated": false,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "market_rows_loaded": false,
+  "limitations": [
+    "Source/package proof does not attest the actual cloud Python.Runtime assembly bytes or custom registered encoders.",
+    "If actual SDK differs, existing snapshot_container diagnostic must establish that difference before admitting another container type."
+  ]
+}

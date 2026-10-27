@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "developer_auxiliary_independent_SID_diagnostic_increment_review",
+  "source_hashes": {
+    "cloud/qresearch/historical_source.py": "fd3ca6292a0855bf7446692d662a27753206d15eafff3b7854bc77425e7ab5e4",
+    "cloud/qresearch/collection.py": "b607391a716a9466170721cc3bb96917c395dfe88bf4401d48513b025a5477b2",
+    "tests/test_native_sid_diagnostics.py": "f23075e6cb40de4cdcca62773f715b0ff1f815006f3a580549ff5c9e5ccea2af"
+  },
+  "source_bytes_unchanged_during_check": true,
+  "runs": [
+    {
+      "script": "independent_sid_review.py",
+      "tests": 9,
+      "seconds": 0.136,
+      "exit_code": 0
+    },
+    {
+      "script": "independent_rc003.py",
+      "tests": 10,
+      "seconds": 0.108,
+      "exit_code": 0
+    }
+  ],
+  "counts_are_separate_overlapping_checks_not_unique_coverage": true,
+  "blocking_findings": [],
+  "findings_scope": "Only closed SID failure-code classification/privacy and retained rejection/intents; does not repair or prove the cause of the observed real SID violation.",
+  "previous_RC003_review_remains_bound_to_c7dc_source": true,
+  "new_keys_or_schema_change": false,
+  "data_rows_dropped_or_deduplicated": false,
+  "source_configuration_registry_or_cloud_modified": false,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "independent_GPT_Work_acceptance": false
+}

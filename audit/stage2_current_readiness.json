@@ -1,6 +1,6 @@
 {
   "schema_version": 6,
-  "kind": "bounded_live_engineering_round_closed",
+  "kind": "phase2_repair_partial_real_identity_failure_and_budget_permission_pending",
   "previous_readiness": {
     "commit": "65b8025b8618021eddd50520fe87c764b60af377",
     "path": "audit/stage2_current_readiness.json",
@@ -28,28 +28,28 @@
     1
   ],
   "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "stage2_status": "pending_boundary_repair_real_joint_success_independent_review_and_data_certification",
+  "stage2_status": "pending_SID_source_quality_normal_budget_permission_real_joint_success_and_data_certification",
   "new_candidate_independently_accepted": false,
   "current_activity": {
     "kind": "bounded_live_engineering_round",
-    "baseline_commit": "65b8025b8618021eddd50520fe87c764b60af377",
-    "round_id": "stage2-cloud-round-002",
-    "quantconnect_reads": 104,
-    "quantconnect_writes": 38,
-    "explicit_compile_calls": 2,
-    "new_Research_executions": 2,
+    "baseline_commit": "2069ef583526b8f2e7c7dfd1dda3c9fb175f6a98",
+    "round_id": "stage2-repair-round-003",
+    "quantconnect_reads": 42,
+    "quantconnect_writes": 4,
+    "explicit_compile_calls": 1,
+    "new_Research_executions": 1,
     "new_LEAN_submissions": 0,
-    "new_deployments": 2
+    "new_deployments": 1
   },
-  "current_activity_checker": "audit/review_packages/stage2_round002/verify_integrity.py; old tools/review_metadata.py contract checks historical offline_repair metadata and cannot approve this live-round schema.",
-  "candidate_runtime_source_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+  "current_activity_checker": "audit/review_packages/phase2_repair/verify_repair_evidence.py",
+  "candidate_runtime_source_commit": "d2b23f379602fb4ec16f66a2aed36b10b9486023",
   "candidate_cloud_deployed": true,
   "managed_cloud_files_verified": 32,
   "cloud_runtime_source_identity_verified_in_Research": true,
   "cloud_runtime_joint_gate_passed": false,
-  "current_Research_attempt": "d45af7fcfdc849c888694aaa6dd7c0ae",
-  "current_Research_platform_status": "completed",
-  "current_Research_engineering_status": "failed",
+  "current_Research_attempt": "e17fd1ac2d3e433e909aef149c7afeec",
+  "current_Research_platform_status": "runtime_error",
+  "current_Research_engineering_status": "no_complete_report",
   "current_Research_ledger_status": "failed",
   "pending_backtest_id": null,
   "new_LEAN_submissions": 0,
@@ -63,34 +63,33 @@
   },
   "engineering_round_status": "closed",
   "engineering_stop_caps": {
-    "configurations": 2,
-    "lean": 1,
-    "research": 2
+    "configurations": 1,
+    "research": 2,
+    "lean": 2
   },
   "engineering_observed_used": {
-    "configurations": 2,
-    "research": 2,
+    "configurations": 1,
+    "research": 1,
     "lean": 0
   },
   "unused_LEAN_reservation_released": true,
   "legacy_stop_caps_preserved": true,
   "current_round_stop_reached": true,
   "global_usage": {
-    "configurations": 9,
-    "research": 12,
+    "configurations": 10,
+    "research": 13,
     "lean": 1
   },
   "global_limits_unchanged": true,
   "known_open_software_findings_from_independent_reports": [],
   "new_candidate_review_status": "pending_exact_commit_independent_review",
   "blockers": [
-    "confirmed_endpoint_boundary_defect_not_yet_repaired",
-    "nonempty real historical-universe source, with source/config/entitlement evidence",
-    "qualifying same-parent Research followed by a completed verified LEAN receiver",
-    "new round-control and empty-response code independently reviewed on an exact commit",
-    "old failed worker-specific source mismatch explanation remains unproven",
-    "complete historical US200, permanent-SID/classification/corporate-action evidence",
-    "financial values, publication/vintage and actual historical delivery/ingestion evidence"
+    "identify actual SID failure subtype and repair data-quality handling without silently omitting constituents",
+    "obtain a complete successful same-plan Research receipt",
+    "run and await a same-plan LEAN receiver terminal result; inspect strict worker diagnostics if it fails",
+    "independent fixed-version software review",
+    "financial observation catalog/ingestion and full certification execution bridge",
+    "full historical US200, financial vintage/publication and actual historical receipt/ingestion evidence"
   ],
   "certification_status": "insufficient_evidence",
   "reports": [
@@ -98,7 +97,11 @@
     "audit/stage2_round002_data_certification.json",
     "audit/stage2_round002_failure_analysis.json",
     "audit/stage2_round002_integrity.json",
-    "audit/stage2_round002_source_comparison.json"
+    "audit/stage2_round002_source_comparison.json",
+    "audit/phase2_repair_progress.json",
+    "audit/phase2_repair_integrity.json",
+    "audit/phase2_repair_sid_offline_verification.json",
+    "audit/phase2_repair_data_evidence_requirements.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -108,22 +111,26 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "The current_activity counters describe closed engineering round002. The separate root-cause investigation is read-only metadata work with no charged execution.",
+  "current_activity_scope": "Closed repair round003 includes metadata/docs queries, one source snapshot and one charged Research. Local SID diagnostic changes were not dispatched.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
-    "status": "sufficient_code_defect_identified_and_reproduced_offline_repair_not_applied",
-    "production_fix_applied": false,
+    "status": "RC003_repaired_nonempty_native_observation_then_separate_SID_identity_failure",
+    "production_fix_applied": true,
     "cloud_revalidated": false,
     "new_Research_executions": 0,
     "new_configuration_debits": 0,
-    "final_test_enabled": false
+    "final_test_enabled": false,
+    "cloud_nonempty_repair_observation": true,
+    "cloud_revalidation_scope": "partial_nonempty_observation_not_joint_success"
   },
   "known_open_developer_findings": [
     {
-      "id": "RC003",
-      "status": "source_equivalent_defect_confirmed_repair_pending",
-      "scope": "native history endpoint versus source-file date enumeration"
+      "id": "SID-IDENTITY",
+      "status": "actual_failure_subtype_unknown_diagnostic_ready_not_dispatched",
+      "scope": "strict source permanent-SID identity validation"
     }
-  ]
+  ],
+  "latest_local_SID_diagnostic_deployed": false,
+  "normal_budget_permission_pending": true
 }

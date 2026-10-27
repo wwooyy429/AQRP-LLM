@@ -1,0 +1,115 @@
+{
+  "SID_rows_dropped_or_deduplicated": false,
+  "actual_SID_failure_subtype_proven": false,
+  "all_Research_checks_passed": false,
+  "attempt": {
+    "diagnostic": {
+      "exception_kind": "source_contract",
+      "failure_code": "source_contract",
+      "index_kind": "multiindex",
+      "index_levels": 2,
+      "index_names": "expected",
+      "native_calls": 1,
+      "projection_kind": "text",
+      "projection_position": 4,
+      "response_kind": "series",
+      "response_rows": 1,
+      "rows_emitted": 5124,
+      "schema_version": 1,
+      "snapshot_kind": "list",
+      "snapshots_seen": 1,
+      "stage": "row_identity"
+    },
+    "diagnostic_scope": "one failing native fetch; not whole Research totals",
+    "dispatch_binding_sha256": "fdc9b224bbc63eea57482d9e38793fcf98246b36413416043feecd1c7575eeec",
+    "frozen_deployment": {
+      "deployment_hash": "2e99a744d3bf5b898221d340d9298a6c64660c37fc3317064a317756170e7bb1",
+      "input_hash": "dc2d4390430394b65b471de1c72f93e5ad0765ddf22fc4427608b9e8c7df7b24",
+      "source_manifest_hash": "3eb2a590fc93b48f92227d60513e6b961447019ec2001bdf8497d5063946dc18"
+    },
+    "id": "e17fd1ac2d3e433e909aef149c7afeec",
+    "identity": {
+      "attempt_id": "e17fd1ac2d3e433e909aef149c7afeec",
+      "config_id": "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d",
+      "data_request_hash": "f26e4c1ed796a7ad5cc4d0743c133d96a3627940afb9dcd0ca989c880b118627",
+      "deployment_hash": "2e99a744d3bf5b898221d340d9298a6c64660c37fc3317064a317756170e7bb1",
+      "plan_hash": "82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016",
+      "project_id": 38436695,
+      "source_manifest_hash": "3eb2a590fc93b48f92227d60513e6b961447019ec2001bdf8497d5063946dc18",
+      "stage": "research"
+    },
+    "ledger_status": "failed",
+    "native_packet_sha256": "b8b0acf8b153f81952ac0e4083f42099fbe09a97fc6085f0a4a136ab727938fb",
+    "platform_status": "runtime_error"
+  },
+  "baseline_commit": "2069ef583526b8f2e7c7dfd1dda3c9fb175f6a98",
+  "budget_policy_and_allocations_unchanged": true,
+  "counts": {
+    "failure_refunds": 0,
+    "new_LEAN_submissions": 0,
+    "new_Research_executions": 1,
+    "new_configuration_charges": 1
+  },
+  "current_event_count": 34,
+  "data_exposure_normalized_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+  "data_exposure_unchanged_under_declared_LF_policy": true,
+  "final_test_enabled": false,
+  "financial_evidence": false,
+  "global_usage": {
+    "configurations": {
+      "normal": 6,
+      "reserve": 4,
+      "total": 10
+    },
+    "lean": {
+      "normal": 1,
+      "reserve": 0,
+      "total": 1
+    },
+    "research": {
+      "normal": 6,
+      "reserve": 7,
+      "total": 13
+    }
+  },
+  "independent_GPT_Work_acceptance": false,
+  "journal_sha256": "520ab8b0584a0b2d58d5ebb99eb043031c887b6fcac6b065c62d50f08c8b846f",
+  "kind": "developer_read_only_repair_evidence_integrity",
+  "new_LEAN_completed": false,
+  "normal_budget_use_authorized_in_this_receipt": false,
+  "original_28_event_prefix_preserved": true,
+  "round": {
+    "close_reason": "Research reached a nonempty native snapshot but failed strict permanent-SID identity validation. A diagnostic/source change requires a new configuration; retain failed intent, do not retry same frozen input. Release unused reservation without refund.",
+    "config_ids": [
+      "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d"
+    ],
+    "grant": {
+      "allocation": "reserve",
+      "authorization_ref": {
+        "key": "engineering/rounds/user-authorizations/95ababa157f9d6a24231b0194e4dfa0c07f5bab962289282f965624b0b81f25d.json",
+        "sha256": "95ababa157f9d6a24231b0194e4dfa0c07f5bab962289282f965624b0b81f25d"
+      },
+      "extra_spend_usd": 0,
+      "final_test_enabled": false,
+      "limits": {
+        "configurations": 1,
+        "lean": 2,
+        "research": 2
+      },
+      "project_id": 38436695,
+      "round_id": "stage2-repair-round-003",
+      "schema_version": 1
+    },
+    "initial_config_ids": [
+      "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d"
+    ],
+    "status": "closed",
+    "usage": {
+      "configurations": 1,
+      "lean": 0,
+      "research": 1
+    }
+  },
+  "schema_version": 1,
+  "source_boundary_repair_has_real_nonempty_observation": true
+}
