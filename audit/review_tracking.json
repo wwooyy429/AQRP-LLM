@@ -8,7 +8,7 @@
     0,
     1
   ],
-  "acceptance_scope": "保留既有固定范围；新增原生编译拒绝及原子结算候选待独立审核；阶段2整体待定",
+  "acceptance_scope": "既有固定范围保留；旧LEAN真实失败已结算；新增编译拒绝/运行失败适配候选待独立审核；阶段2待定",
   "software_acceptance": "retained_81fbe52_scope; no_new_software_test_or_approval_at84414ab",
   "financial_evidence": false,
   "stage_acceptance": [
@@ -33,15 +33,16 @@
     {
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
-      "implementation": "原有81f离线范围保留；新增原生编译拒绝与原子结算候选待审核",
-      "evidence": "WR19元数据844独立通过；新候选478仓库及12开发侧边界通过，不是新增独立验收",
+      "implementation": "旧任务原生初始化失败已按81f转换链结算；新增原生失败解析候选待审核",
+      "evidence": "493仓库、15专用及8开发侧边界通过；原生失败/原attempt镜像与真实结算可核对；非整阶段通过",
       "blocking_findings": [],
       "status": "pending_acceptance",
       "scope": "已测离线软件通过，真实运行及数据认证未通过",
       "implemented_offline_scope": "passed_in_retested_offline_scope_on81fbe52",
       "missing_evidence": [
-        "new_cloud_runtime_and_native_success_failure_receipts",
-        "existing_LEAN_delivered_terminal",
+        "new_parser_fixed_commit_independent_review",
+        "new_cloud_runtime_and_native_success_receipts",
+        "Research_native_execution_failure_adapter_and_receipt",
         "historical_data_certification"
       ],
       "nonblocking_findings": []
@@ -109,7 +110,7 @@
     "WR-19": "independently_verified_metadata_correction_on84414ab"
   },
   "latest_independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json",
-  "developer_fix_evidence": "audit/review_packages/native_rejection/developer_verification.json",
+  "developer_fix_evidence": "audit/review_packages/native_runtime_failure/developer_verification.json",
   "current_handoff": "docs/stage2-next.md",
   "historical_accepted_version": {
     "schema_version": 2,
@@ -1608,7 +1609,7 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "pending_fixed_commit_independent_review_of_native_compile_rejection_and_atomic_settlement",
+  "new_candidate_acceptance": "pending_fixed_commit_review_of_compile_rejection_and_native_runtime_failure",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -1716,25 +1717,27 @@
     "scope": "Exact suite counts copied from the fixed 81f independent report; prior ae2 counts retain their own source identity."
   },
   "current_candidate": {
-    "parent_commit": "268f420e9d066e7e7859566a65c0ce65523bec82",
-    "source_manifest_hash": "073ef722fd41768ba87013ad40c45efa6320891167ba63b4dcdacb2b6218bfcd",
+    "parent_commit": "168fb0c415d081bbcb25b1ff1b38a7da201eb5e9",
+    "source_manifest_hash": "9c8e61eb8473bed129956c05bf63e4adc4a2ca96cd4a76ebfa653e1d9aca128f",
     "independently_accepted": false,
     "cloud_deployed": false,
-    "registry_or_WR12_CLI_changed_this_repair": true,
+    "registry_or_WR12_CLI_changed_this_repair": false,
     "metadata_and_documentation_only": false,
     "runtime_engine_and_test_sources_unchanged": false,
-    "kind": "native_compile_rejection_development_candidate",
-    "registry_changed": true,
-    "Engineering_CLI_changed": true,
+    "kind": "actual_native_runtime_failure_adapter_and_original_attempt_settlement",
+    "registry_changed": false,
+    "Engineering_CLI_changed": false,
     "Collection_WR12_CLI_changed": false,
     "Engineering_completion_contract_changed": false,
     "software_acceptance_bound_to": "81fbe5294055423e88ee5aeae48ca6223e7971da",
-    "developer_repository_tests": 478,
-    "execution_source_manifest_hash": "49ed388611c1a2a41bf3c905746c4140e171942638a1fd2990d93bc44031fc07",
-    "implementation_hash": "752e83fd917f5680ffc647f70b1c88b5f36204d07e11c9e59a73099a2b544413",
-    "deployment_hash": "d2496d0f2524bda1ba4875df599d2496ad44e8a360536190cafe9243227392fb",
+    "developer_repository_tests": 493,
+    "execution_source_manifest_hash": "e35bc0f53950e08dcddead85d1b1a7c16a567deda9103dfcce95e4dd306e2ab8",
+    "implementation_hash": "c7386b0d8be6194ad8a51a57d1c1ff9f0891dd137e515a5ef4616ef8fbb03cb7",
+    "deployment_hash": "84c05b9f98369f5b482415abedf704f168b27ddd04a1375770d68edb61b7173b",
     "new_failure_feature_independently_accepted": false,
-    "prior_success_and_completion_scope_retained": true
+    "prior_success_and_completion_scope_retained": true,
+    "relative_change_scope": "Relative to168: native runtime parser/test/generated identity; 168 compile-rejection changes remain pending review",
+    "new_native_runtime_failure_independently_accepted": false
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -1816,5 +1819,6 @@
     "all_raw_equal_baseline": true,
     "real_SDK_executed": false,
     "market_or_model_calls": 0
-  }
+  },
+  "old_task_terminal_reconciliation": "audit/stage2_terminal_reconciliation.json"
 }

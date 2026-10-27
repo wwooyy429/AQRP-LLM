@@ -1,0 +1,41 @@
+{
+  "tool_file": "audit\\tool_observations\\bfd00f2611fd4496b9498d4597618a8e-terminal-runtime-error.json",
+  "tool_file_raw_sha256": "867148e882d39a024d12d68a01803ba80c282f05b872f16616dfded53c7eea27",
+  "parser_source_raw_sha256": "11863a4d6995ada9cd32afdb02bb66057ec1c82e9de70c0fd2111b1a844e04b1",
+  "observed": {
+    "platform": {
+      "identity": {
+        "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+        "config_id": "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+        "data_request_hash": "db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85",
+        "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+        "plan_hash": "f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+        "project_id": 38436695,
+        "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+        "stage": "lean",
+        "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+      },
+      "status": "runtime_error",
+      "terminal": true,
+      "deployment": {
+        "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+        "input_hash": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
+        "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06"
+      },
+      "raw_receipt": {
+        "tool_name": "mcp__quantconnect__read_backtest",
+        "arguments": {
+          "backtestId": "39cafa1e9b11f91b27e396b66d033a6d",
+          "projectId": 38436695
+        },
+        "response_sha256": "f7ebb8d7020b8028275dfbe695c572e64ed3870bdea3b31a38d40c1f64832315",
+        "success": false,
+        "native_runtime_error": true,
+        "diagnostic_count": 2
+      }
+    }
+  },
+  "real_ledger_touched": false,
+  "provider_called": false,
+  "actual_original_response_replay": true
+}

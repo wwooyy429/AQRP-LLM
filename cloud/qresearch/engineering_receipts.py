@@ -133,10 +133,11 @@ def _context(payload, deployment, stage):
     return payload, _json(canonical_json(deployment))
 
 
-def _native(result):
+def _native(result, *, allow_tool_error=False):
     if not isinstance(result, dict):
         _fail("Actual MCP result must be a JSON object")
-    if "isError" in result and result["isError"] is not False:
+    if ("isError" in result and result["isError"] is not False
+            and not (allow_tool_error is True and result["isError"] is True)):
         _fail("Native tool error is not a completion")
     wrapped = "structuredContent" in result or "content" in result
     if not wrapped:
@@ -176,7 +177,7 @@ def _native(result):
     return carriers[0]
 
 
-def _tool(envelope, tool_name, payload, *, external_id=None):
+def _tool(envelope, tool_name, payload, *, external_id=None, allow_tool_error=False):
     if not isinstance(envelope, dict) or set(envelope) != {"tool_name", "arguments", "result"} or envelope["tool_name"] != tool_name:
         _fail("Wrong native tool observation")
     args = envelope["arguments"]
@@ -204,7 +205,7 @@ def _tool(envelope, tool_name, payload, *, external_id=None):
     try:
         raw = {"tool_name": tool_name, "arguments": _json(canonical_json(args)),
                "response_sha256": content_hash(envelope["result"])}
-        return _native(envelope["result"]), raw
+        return _native(envelope["result"], allow_tool_error=allow_tool_error), raw
     except (TypeError, ValueError) as exc:
         if isinstance(exc, ReceiptParseError):
             raise
@@ -472,8 +473,38 @@ def _logs(payload, external_id, envelopes):
     return _decode("".join(chunks[index] for index in range(declared)), payload), receipts
 
 
+def backtest_runtime_failure(payload, deployment, external_id, tool_envelope):
+    """Recognize the native connector's explicit delivered runtime-error form.
+
+    This tool form has no returned backtest object. Its identity comes from the
+    trusted dispatcher's exact read arguments and is checked against the
+    original accepted submission by the Bridge. The fixed terminal marker is
+    distinct from transport errors; isError or success=False alone proves no
+    terminal state. Diagnostic text is inspected transiently and never stored.
+    """
+    payload, deployment = _context(payload, deployment, "lean")
+    native, raw = _tool(tool_envelope, "mcp__quantconnect__read_backtest", payload,
+                        external_id=external_id, allow_tool_error=True)
+    if (not isinstance(tool_envelope["result"], dict)
+            or tool_envelope["result"].get("isError") is not True
+            or not isinstance(native, dict) or set(native) != {"success", "errors"}
+            or native["success"] is not False):
+        _fail("An explicit native completed-runtime-error envelope is required")
+    errors = native["errors"]
+    if (not isinstance(errors, list) or len(errors) < 2
+            or errors[0] != "The backtest ended with a runtime error."
+            or any(not isinstance(value, str) or not value.strip()
+                   or value.strip() == errors[0] for value in errors[1:])):
+        _fail("A native runtime terminal marker and nonempty diagnostics are required")
+    raw.update(success=False, native_runtime_error=True, diagnostic_count=len(errors) - 1)
+    return {"platform": _platform(payload, deployment, external_id, raw, status="runtime_error")}
+
+
 def backtest_observation(payload, deployment, external_id, tool_envelope, log_envelopes):
     """Parse only after automatic completion delivery; never perform polling."""
+    if (isinstance(tool_envelope, dict) and isinstance(tool_envelope.get("result"), dict)
+            and tool_envelope["result"].get("isError") is True):
+        return backtest_runtime_failure(payload, deployment, external_id, tool_envelope)
     payload, deployment = _context(payload, deployment, "lean")
     native, raw = _tool(tool_envelope, "mcp__quantconnect__read_backtest", payload, external_id=external_id)
     if not isinstance(native, dict) or native.get("success") is not True or native.get("errors"):

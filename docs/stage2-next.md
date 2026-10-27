@@ -2,13 +2,25 @@
 
 WR-19元数据核对已在84414ab通过，软件通过仍固定81fbe52的已测范围；阶段2整体待定。本轮后续开发产生新的软件候选，须对最终固定提交独立审核，不能沿用旧版本的软件批准。
 
+## 旧任务的真实终态更新
+
+用户登录后，平台历史列表显示原工程任务`AQRP Stage2 Data Reception f5c08d0b bfd00f26`为Runtime Error。随后对原项目及原backtest ID的一次结果读取返回真实MCP失败封装：`isError=true`、`success=false`、明确的“The backtest ended with a runtime error.”及初始化异常诊断。原因是`Cloud implementation differs from the frozen deployment`。这是原回测的运行失败，不是新的编译拒绝或新提交。
+
+完整原生工具封装保存在`audit/tool_observations/bfd00f2611fd4496b9498d4597618a8e-terminal-runtime-error.json`。该返回没有backtest对象、completed、progress或订单统计；不能补造这些字段、推断零订单或认定数据验证成功。两条诊断是同一次初始化失败的字符串观察，不是两次失败。具体差异文件没有原生摘要，原因尚不能细分为换行、打包或某份文件版本。
+
+81f固定解析器会拒绝这个实际失败封装。新增适配只在精确read_backtest上下文、严格isError=true、success=false、固定终态标记和有效诊断同时成立时识别runtime_error，并检查所有输出载体。普通网络/超时错误不能成为终态。原返回ID缺席时只绑定原已接受任务及实际工具参数，不虚构新ID。诊断正文不进入共享失败账本，只保存原响应哈希及计数。
+
+结算核对使用已审核81f Bridge/Registry和原attempt，不使用新编译拒绝入口，也不补旧协议标记。先在隔离账本验证失败转换、同回执幂等及输入/外部ID错配拒绝，再处理原账本；实际结果见`audit/stage2_terminal_reconciliation.json`。新的解析适配仍待固定版本独立审核，结算事实不授予软件或阶段2验收。
+
+原账本现已按上述路径从pending结算为failed，事件由12增至13；配置6、Research9、LEAN1用量不变，不退款，不创建成功结果。原输入、提交指针、预算及暴露记录保持。镜像重复同回执仍为13事件；重放历史镜像应从168提交的12事件账本构造，不能把当前真实账本重置或再次执行真实结算脚本。
+
 ## 已完成的只读预检
 
 本轮重新调用QuantConnect `list_projects`，再读取返回的主项目38436695。`read_project`返回26份Python文件：25份已知旧实现和1份原任务输入。经明确的UTF-8/换行及文件末尾换行规范化，它们分别匹配旧75实现Git参考与268f归档中的原输入。原输入是在旧实现提交之后才归档，不能假称存在于75提交中。
 
 机器记录为`audit/stage2_next_project_listing.json`及`audit/stage2_next_preflight.json`。固定268f候选与本次返回参考比较仍为16份同哈希、9份不同、4份不在参考中；该记录单独绑定268f，不更新WR-19的ae2归档比较。这里的缺席不认证当前云端缺文件或完整文件全集。项目返回还包含notebook条目；未执行notebook，归档未保存其内容。未读取回测状态/结果/日志，未修改云端源码或输入，未提交新任务。
 
-旧任务仍只有归档pending：attempt `bfd00f2611fd4496b9498d4597618a8e`，backtest `39cafa1e9b11f91b27e396b66d033a6d`，其当前完成或失败均未知。本轮原生平台页面显示尚未登录，未取得终态；已经请求用户自行登录，不传递密码或API密钥。不轮询未交付的回测，不把登录页或已知源码状态当成运行证据。
+前次预检只有归档pending：attempt `bfd00f2611fd4496b9498d4597618a8e`，backtest `39cafa1e9b11f91b27e396b66d033a6d`；当时平台页面尚未登录，终态未知。本轮已登录并取得上述真实终态，原pending记录按历史事实保留。不轮询未交付的回测，不把登录页或已知源码状态当成运行证据。
 
 ## 编译拒绝的固定处理入口
 

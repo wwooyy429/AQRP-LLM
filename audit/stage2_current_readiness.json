@@ -1,6 +1,6 @@
 {
   "schema_version": 5,
-  "kind": "native_compile_rejection_candidate_pending_review_and_platform_evidence",
+  "kind": "old_LEAN_failure_reconciled_new_runtime_adapter_pending_review",
   "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
   "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
@@ -49,9 +49,9 @@
       "archived_cloud_sha256": "563b63a6b87cfd68a837c3e071d8bfff2bce7b8f535138b56136068dfce8faaa"
     }
   ],
-  "pending_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
-  "terminal_received": false,
-  "read_or_polled_this_turn": false,
+  "pending_backtest_id": null,
+  "terminal_received": true,
+  "read_or_polled_this_turn": true,
   "pending_source_or_task_input_changed": false,
   "engineering_stop_caps": {
     "configurations": 2,
@@ -75,9 +75,9 @@
     "lean": 1
   },
   "blockers": [
-    "existing_LEAN_delivered_terminal_and_reconciled_result",
-    "new_native_rejection_software_fixed_commit_independent_review",
+    "new_native_adapters_fixed_commit_independent_review",
     "new_implementation_cloud_deployment_and_completed_runtime_evidence",
+    "Research_native_execution_failure_adapter_and_actual_receipt",
     "historical_US200_financial_PIT_and_corporate_action_certification"
   ],
   "source_configuration_budget_changed": false,
@@ -99,8 +99,8 @@
     "read_only_plan_preview"
   ],
   "unimplemented_collection_scope": [
-    "actual_cloud_dispatch_and_runtime_validation",
-    "dedicated_native_failed_cell_parser_and_end_to_end_failure_reconciliation_evidence",
+    "actual_new_cloud_dispatch_and_successful_runtime_validation",
+    "Research_native_failed_cell_parser_and_end_to_end_failure_receipt",
     "verified_complete_financial_value_catalog",
     "actual_vendor_receipt_and_vintage_certification"
   ],
@@ -108,14 +108,11 @@
   "developer_fixes_pending_independent_verification": [],
   "source_changed_this_round": [
     "cloud/qresearch/engineering_receipts.py",
-    "cloud/qresearch/engineering_tasks.py",
-    "cloud/qresearch/registry.py",
     "cloud/research_config.py",
-    "tools/stage2.py",
-    "tests/test_native_backtest_rejection.py"
+    "tests/test_native_runtime_failure.py"
   ],
   "accepted_offline_scope": "WR01-18及本轮实际覆盖的离线准入/计算/采集/回执/恢复；非阶段2整体",
-  "new_candidate_acceptance_scope": "new_native_compile_rejection_and_atomic_settlement_pending_fixed_commit_independent_review",
+  "new_candidate_acceptance_scope": "Native compile-rejection and runtime-failure adapters pending fixed-commit independent review",
   "documentation_and_archival_metadata_changed": true,
   "platform_comparison_from_independent_review": {
     "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -158,14 +155,14 @@
       "raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46"
     }
   },
-  "candidate_source_manifest_hash": "073ef722fd41768ba87013ad40c45efa6320891167ba63b4dcdacb2b6218bfcd",
+  "candidate_source_manifest_hash": "9c8e61eb8473bed129956c05bf63e4adc4a2ca96cd4a76ebfa653e1d9aca128f",
   "collection_remote_protocol_and_registry_admission": "passed_in_retested_offline_scope_on81fbe52; platform_and_data_not_accepted",
   "known_open_blocking_findings": [],
   "known_open_nonblocking_findings": [],
   "live_preflight_record": "audit/stage2_live_preflight.json",
   "joint_preview": "audit/stage2_joint_preview.json",
-  "last_archived_lean_status": "pending",
-  "current_platform_lean_status": null,
+  "last_archived_lean_status": "Runtime Error",
+  "current_platform_lean_status": "Runtime Error",
   "cloud_inventory_certified": false,
   "WR19_comparison_correction": {
     "date": "2026-10-27",
@@ -197,7 +194,7 @@
   "software_acceptance_bound_to_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
   "metadata_acceptance": "WR19_passed_at84414ab",
   "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
-  "candidate_execution_source_manifest_hash": "49ed388611c1a2a41bf3c905746c4140e171942638a1fd2990d93bc44031fc07",
+  "candidate_execution_source_manifest_hash": "e35bc0f53950e08dcddead85d1b1a7c16a567deda9103dfcce95e4dd306e2ab8",
   "latest_read_only_preflight": "audit/stage2_next_preflight.json",
   "current_candidate_change_scope": {
     "implementation_changed": true,
@@ -205,7 +202,17 @@
     "budget_usage_changed": false
   },
   "developer_features_pending_independent_verification": [
-    "native_compile_rejection_and_atomic_settlement"
+    "native_compile_rejection_and_atomic_settlement",
+    "native_runtime_failure_adapter"
   ],
-  "source_configuration_budget_changed_scope": "No registered formal research configuration or budget admission changed; implementation changes are declared separately."
+  "source_configuration_budget_changed_scope": "No registered formal research configuration or budget admission changed; implementation changes are declared separately.",
+  "reconciled_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+  "prior_archived_lean_status": "pending",
+  "original_attempt_registry_status": "failed",
+  "completed_result_read_count": 1,
+  "backtest_poll_count": 0,
+  "terminal_read_scope": "One actual result read after native UI terminal confirmation; no polling or resubmission",
+  "terminal_reconciliation": "audit/stage2_terminal_reconciliation.json",
+  "old_LEAN_native_failure_receipt_observed": true,
+  "old_LEAN_failure_settlement_verified": true
 }
