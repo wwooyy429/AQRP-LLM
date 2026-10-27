@@ -1,0 +1,95 @@
+{
+  "kind": "independent_developer_synthetic_G4_native_agent_boundary_probe",
+  "extra_methods": 14,
+  "actually_executed_final_methods": 14,
+  "all_passed": true,
+  "reviewed_G4_raw_hashes": {
+    "cloud/qresearch/data_certification.py": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1",
+    "tests/test_data_certification.py": "d9508d5ba4083587ed08588640604ffb21dacc3a8ef1dd76b70a7b8e7c4d806d"
+  },
+  "source_stable_during_run": true,
+  "final_probe_raw_sha256": "d85d630c43bf09dbe2b787ed26adea7a0b651fb984f9c8a4c8fde5ffdfd2554b",
+  "script_bytes_stable_during_final_run": true,
+  "initial_three_failures_preserved": {
+    "source_raw_sha256": "a9be3db7f00de05a15f799ab38c6abec66f36c3a91cde656dfe7bf4f829deb3c",
+    "results": [
+      {
+        "probe": "zero_counts_all_checks_true",
+        "rejected": false,
+        "status": "observations_passed",
+        "formation_count": 0,
+        "research_certified": false
+      },
+      {
+        "probe": "empty_refs_all_checks_true",
+        "rejected": false,
+        "status": "observations_passed",
+        "formation_count": 2,
+        "research_certified": false
+      },
+      {
+        "probe": "missing_known_top_candidate_session_with_rank201_substitution",
+        "status": "observations_passed",
+        "observed_member_cells": 400,
+        "unavailable_liquidity_formations": 0,
+        "research_certified": false
+      }
+    ],
+    "QC_calls": 0,
+    "real_ledger_writes": 0
+  },
+  "original_three_after_explicit_calendar_adaptation": {
+    "source_raw_sha256": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+    "results": [
+      {
+        "probe": "zero_counts_all_checks_true",
+        "rejected": true
+      },
+      {
+        "probe": "empty_refs_all_checks_true",
+        "rejected": true
+      },
+      {
+        "probe": "missing_known_top_candidate_session_with_rank201_substitution",
+        "status": "insufficient_evidence",
+        "observed_member_cells": 400,
+        "unavailable_liquidity_formations": 0,
+        "research_certified": false
+      }
+    ],
+    "QC_calls": 0,
+    "real_ledger_writes": 0
+  },
+  "adaptation_record": {
+    "exit_code": 0,
+    "original_script_raw_sha256": "73d7dbe2b33296a24ee45664011ce0974ffbe5c1b65b983faf9dd8123abd8777",
+    "adapted_script_raw_sha256": "2126020364bdbcbc8008da4ec1b9f7628908008b731f4d79e42a2b3be5d83d4a",
+    "adaptation": "Pass same frozen calendar to new mandatory API, separate output path, add explicit denial/insufficient assertions. Original mutation logic unchanged.",
+    "source_raw_sha256": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+    "QC_calls": 0,
+    "real_ledger_writes": 0
+  },
+  "pre_peer_source_reconstruction_matches_observed_original_hash": true,
+  "pre_peer_source_reconstructed_not_original_live_snapshot": true,
+  "new_blocking_findings_after_fix": [],
+  "earlier_additional_run": {
+    "actually_executed_methods": 36,
+    "extra_methods": 14,
+    "imported_repository_methods_repeated": 22,
+    "all_passed": true,
+    "outputs": "additional_first.stdout/additional_first.stderr",
+    "script_was_overwritten_in_shared_scratch_by_other_peer_after_execution": true,
+    "cannot_bind_first_execution_to_current_probe_py": true,
+    "first_summary_failure": "StopIteration while looking for the overwritten class name; no product change or real operations",
+    "correction": "Rebuilt independently named native_agent_additional_probe.py, pinned script hash before/after, reran only its 14 methods; old outputs retained"
+  },
+  "counting_scope": "Final 14 extra methods and the three original mutation replays overlap. Earlier 36 also replayed 22 repository methods. Do not sum these as unique checks.",
+  "G4_vendor_or_full_history_authentication_claimed": false,
+  "GPT_Work_approval": false,
+  "real_QC_calls": 0,
+  "real_Research_or_LEAN_executions": 0,
+  "real_ledger_or_budget_writes": 0,
+  "tracked_files_modified_by_peer": 0,
+  "financial_evidence": false
+}

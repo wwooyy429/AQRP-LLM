@@ -1,0 +1,84 @@
+{
+  "baseline_commit": "a6b14b05e913daa894c9049b428e953954b40e08",
+  "same_final_test_bytes": true,
+  "baseline_import_error_is_absent_new_module_not_17_distinct_bugs": true,
+  "baseline_test_loader_methods": 1,
+  "candidate_test_methods": 17,
+  "compatibility_test_methods": 44,
+  "source75_25_files_strictly_verified": true,
+  "original_frozen_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+  "runs": [
+    {
+      "label": "baseline_exact_final_test",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_worker_identity.py",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\stage2-completion\\worker-identity\\baseline_a6",
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "db286a5f0f7da5bbd7f2311ed29fde519a063e03b24c699fa6601971a5cb1d70"
+    },
+    {
+      "label": "candidate_exact_final_test",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_worker_identity.py",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f42d9e642fe062c84ccbe5a289e19ec8dff47e968a32660040e81fce5659b667"
+    },
+    {
+      "label": "legacy_compatibility",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_deployment_integrity_diagnostics",
+        "tests.test_engineering_data",
+        "tests.test_native_runtime_failure",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668",
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d1f777faccc68d64fb53150903b430b8bc3c55fe962df17988429f6ad0b91e93"
+    }
+  ],
+  "source_raw_sha256": {
+    "cloud/qresearch/worker_identity.py": "8687d932dfeb952fb508742d5df5ab9f70eaaddc3929d2a9a74e7093f8da5961",
+    "cloud/qresearch/engineering_data.py": "3fa74ae36578b1e69bb35a5db572b9f01d6e8567096b5491ddde45ba06553cf3",
+    "tests/test_worker_identity.py": "9085fbb106ffdb071b0010a8bfb5bbbc53d9b18b3514b0eb29d94620e650eda3"
+  },
+  "controlled_worker_observation_schema": 1,
+  "enhanced_error_schema": 2,
+  "default_error_schema": 1,
+  "default_hash_and_EOF_policy_unchanged": true,
+  "same_source_read": true,
+  "G2_actual_old_worker_root_cause_proven": false,
+  "G2_actual_new_worker_observation": false,
+  "real_QC_calls": 0,
+  "real_Research_executions": 0,
+  "real_LEAN_submissions": 0,
+  "real_budget_writes": 0,
+  "financial_evidence": false
+}

@@ -9,6 +9,7 @@ metadata and the cloud's bounded engineering report may enter the ledger.
 import base64
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
+import hashlib
 import json
 import math
 import re
@@ -184,7 +185,7 @@ def _tool(envelope, tool_name, payload, *, external_id=None, allow_tool_error=Fa
     if not isinstance(args, dict) or type(args.get("projectId")) is not int or args["projectId"] != payload["identity"]["project_id"]:
         _fail("Native tool project does not match the admitted task")
     allowed = {"projectId"}
-    if tool_name.endswith("jupyter_execute_cell"):
+    if tool_name.endswith(("jupyter_execute_cell", "jupyter_read_cell")):
         allowed.add("index")
         if type(args.get("index")) is not int or args["index"] < 0:
             _fail("An explicit Research cell index is required")
@@ -342,8 +343,184 @@ def _platform(payload, deployment, external_id, raw, status="completed"):
             "terminal": True, "deployment": deployment, "raw_receipt": raw}
 
 
-def research_observation(payload, deployment, tool_envelope):
-    """Parse one completed cell's marker into separate acknowledgement/result."""
+def research_cell_source(payload, deployment):
+    """Canonical no-catch cell, bound to one admitted raw input and identity.
+
+    The input is read once and parsed as an inert literal; it is never imported
+    as executable Python. No exception is caught into a successful output. A
+    failed cell must instead deliver its actual native error observation.
+    """
+    payload, deployment = _context(payload, deployment, "research")
+    return (
+        "import ast as _aqrp_ast\n"
+        "import base64 as _aqrp_base64\n"
+        "import hashlib as _aqrp_hashlib\n"
+        "import json as _aqrp_json\n"
+        "from pathlib import Path as _aqrp_Path\n"
+        "import sys as _aqrp_sys\n"
+        "import importlib as _aqrp_importlib\n"
+        "import importlib.util as _aqrp_import_util\n"
+        "for _aqrp_name in list(_aqrp_sys.modules):\n"
+        "    if _aqrp_name == 'qresearch' or _aqrp_name.startswith('qresearch.'):\n"
+        "        _aqrp_sys.modules.pop(_aqrp_name, None)\n"
+        "_aqrp_importlib.invalidate_caches()\n"
+        "_aqrp_spec = _aqrp_import_util.find_spec('qresearch')\n"
+        "_aqrp_locations = list(_aqrp_spec.submodule_search_locations or ()) if _aqrp_spec is not None else []\n"
+        "if len(_aqrp_locations) != 1 or not isinstance(_aqrp_locations[0], str) or not _aqrp_locations[0]:\n"
+        "    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\n"
+        "if not _aqrp_Path(_aqrp_locations[0]).is_absolute():\n"
+        "    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\n"
+        "_aqrp_root = _aqrp_Path(_aqrp_locations[0]).resolve().parent\n"
+        "_aqrp_input = (_aqrp_root / '_engineering_task_input.py').read_bytes()\n"
+        "if _aqrp_hashlib.sha256(_aqrp_input).hexdigest() != " + repr(deployment["input_hash"]) + ":\n"
+        "    raise ValueError('Frozen Research input identity differs')\n"
+        "_aqrp_tree = _aqrp_ast.parse(_aqrp_input.decode('utf-8-sig'))\n"
+        "if (len(_aqrp_tree.body) != 1 or not isinstance(_aqrp_tree.body[0], _aqrp_ast.Assign)\n"
+        "        or len(_aqrp_tree.body[0].targets) != 1\n"
+        "        or not isinstance(_aqrp_tree.body[0].targets[0], _aqrp_ast.Name)\n"
+        "        or _aqrp_tree.body[0].targets[0].id != 'TASK_INPUT_JSON'\n"
+        "        or not isinstance(_aqrp_tree.body[0].value, _aqrp_ast.Constant)\n"
+        "        or not isinstance(_aqrp_tree.body[0].value.value, str)):\n"
+        "    raise ValueError('Frozen Research input must be one inert JSON assignment')\n"
+        "_aqrp_payload = _aqrp_json.loads(_aqrp_tree.body[0].value.value)\n"
+        "if not isinstance(_aqrp_payload, dict) or _aqrp_payload.get('identity') != " + repr(payload["identity"]) + ":\n"
+        "    raise ValueError('Frozen Research input identity differs')\n"
+        "from qresearch.engineering_data import run_research_task as _aqrp_run\n"
+        "from qresearch.artifacts import canonical_json as _aqrp_canonical\n"
+        "_aqrp_result = _aqrp_run(_aqrp_payload)\n"
+        "print('AQRP_ENGINEERING_JSON ' + _aqrp_base64.b64encode(_aqrp_canonical(_aqrp_result)).decode('ascii'))\n"
+    )
+
+
+def research_dispatch_binding(payload, deployment, read_cell_envelope):
+    """Observe the canonical source before dispatch; no I/O or admission here.
+
+    The controller must save this result once, before executing the cell. It
+    does not turn arbitrary local JSON into proof of native tool provenance.
+    Only the documented read-cell source shape is supported; output fields or
+    unknown cell metadata are not silently discarded.
+    """
+    payload, deployment = _context(payload, deployment, "research")
+    native, raw = _tool(read_cell_envelope, "mcp__quantconnect__jupyter_read_cell", payload)
+    if (not isinstance(native, dict) or set(native) != {"cellType", "source"}
+            or native["cellType"] != "code" or not isinstance(native["source"], list)
+            or any(not isinstance(line, str) for line in native["source"])):
+        _fail("An actual code-cell source read without outputs is required")
+    source = research_cell_source(payload, deployment)
+    if "".join(native["source"]) != source:
+        _fail("Read Research cell source differs from the fixed admitted entry")
+    return {"schema_version": 1, "protocol": "native_research_error_v1",
+        "identity": payload["identity"], "deployment": deployment,
+        "arguments": raw["arguments"],
+        "cell_source_sha256": hashlib.sha256(source.encode("utf-8")).hexdigest(),
+        "cell_read_response_sha256": raw["response_sha256"]}
+
+
+def research_entry_protocol(payload, deployment):
+    """Pin new-entry semantics during first admission, never on old recovery."""
+    payload, deployment = _context(payload, deployment, "research")
+    return {"schema_version": 1, "protocol": "fixed_research_entry_before_dispatch_v1",
+        "identity": payload["identity"], "deployment": deployment,
+        "cell_source_sha256": hashlib.sha256(research_cell_source(payload, deployment).encode("utf-8")).hexdigest()}
+
+
+def _research_binding(binding, payload, deployment, arguments):
+    required = {"schema_version", "protocol", "identity", "deployment", "arguments",
+                "cell_source_sha256", "cell_read_response_sha256"}
+    if not isinstance(binding, dict) or set(binding) != required:
+        _fail("Original pre-dispatch Research source/input binding is required")
+    try:
+        same = (canonical_json(binding["identity"]) == canonical_json(payload["identity"])
+                and canonical_json(binding["deployment"]) == canonical_json(deployment)
+                and canonical_json(binding["arguments"]) == canonical_json(arguments))
+    except (TypeError, ValueError):
+        _fail("Original pre-dispatch Research source/input binding is invalid")
+    if (not same
+            or type(binding["schema_version"]) is not int or binding["schema_version"] != 1
+            or binding["protocol"] != "native_research_error_v1"
+            or not _hash(binding["cell_read_response_sha256"])
+            or binding["cell_source_sha256"] != hashlib.sha256(
+                research_cell_source(payload, deployment).encode("utf-8")).hexdigest()):
+        _fail("Original pre-dispatch Research source/input binding is required")
+    if (not isinstance(arguments, dict) or set(arguments) != {"projectId", "index"}
+            or type(arguments["projectId"]) is not int or arguments["projectId"] != payload["identity"]["project_id"]
+            or type(arguments["index"]) is not int or arguments["index"] < 0):
+        _fail("Research dispatch arguments must identify the original project and cell")
+
+
+def _research_error(native, index):
+    """A deliberately narrow nbformat error grammar, not generic tool failure.
+
+    The direct/list node mirrors the existing execute-cell stream shape. An
+    explicit one-cell error wrapper is supported for adapters returning cell
+    metadata. There is no observed real QC failed-cell sample yet; synthetic
+    grammar coverage cannot establish that external compatibility.
+    """
+    node = native
+    if isinstance(node, dict) and "outputs" in node:
+        allowed = {"status", "outputs", "execution_count", "cell_index", "metadata"}
+        if (set(node) - allowed or node.get("status") != "error"
+                or node.get("metadata") not in (None, {})):
+            _fail("Only an explicit completed native cell error is registered")
+        if "execution_count" in node and (type(node["execution_count"]) is not int or node["execution_count"] < 1):
+            _fail("A native failed execution count must be positive")
+        if "cell_index" in node and (type(node["cell_index"]) is not int or node["cell_index"] != index):
+            _fail("Native failed-cell index differs from the original dispatch")
+        node = node["outputs"]
+    if isinstance(node, list):
+        if len(node) != 1:
+            _fail("Exactly one native error output and no side output is required")
+        node = node[0]
+    if (not isinstance(node, dict) or set(node) != {"output_type", "ename", "evalue", "traceback"}
+            or node["output_type"] != "error" or not isinstance(node["ename"], str)
+            or re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]{0,127}", node["ename"]) is None
+            or not isinstance(node["evalue"], str) or len(node["evalue"]) > 65536
+            or not isinstance(node["traceback"], list) or not 1 <= len(node["traceback"]) <= 128
+            or any(not isinstance(line, str) or len(line) > 65536 for line in node["traceback"])
+            or not any(line.strip() for line in node["traceback"])
+            or sum(map(len, node["traceback"])) > 262144):
+        _fail("A bounded native nbformat error output is required")
+    return len(node["traceback"])
+
+
+def research_execution_failure(payload, deployment, tool_envelope, *, dispatch_binding):
+    """One definite failed cell, bound to its immutable pre-dispatch source.
+
+    isError/false success alone cannot establish execution or terminal state.
+    Timeout, network failures, caught errors and printed error dictionaries are
+    rejected. Exceptions are inspected transiently; only hashes/counts persist.
+    """
+    payload, deployment = _context(payload, deployment, "research")
+    native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+    _research_binding(dispatch_binding, payload, deployment, raw["arguments"])
+    count = _research_error(native, raw["arguments"]["index"])
+    external = "qc-research:" + str(payload["identity"]["project_id"]) + ":" + payload["identity"]["attempt_id"]
+    raw.update(native_research_error=True, error_output_count=1, traceback_line_count=count,
+        dispatch_binding_sha256=content_hash(dispatch_binding))
+    submission = {"identity": payload["identity"], "identity_kind": payload["external_identity_kind"],
+        "external_id": external, "accepted": True, "status": "submitted", "deployment": deployment, "raw_receipt": raw}
+    return {"submission": submission,
+        "completion": {"platform": _platform(payload, deployment, external, raw, status="runtime_error")}}
+
+
+def research_observation(payload, deployment, tool_envelope, *, dispatch_binding=None):
+    """Parse completed success, or a separately bound registered cell error.
+
+    Legacy successful markers still bind their own identity without a new
+    dispatch record. Legacy failures without that prior record stay unresolved.
+    """
+    if dispatch_binding is not None:
+        # Both grammars remain closed: a success-shaped cell must satisfy the
+        # original marker parser; every other shape must satisfy strict error.
+        payload, deployment = _context(payload, deployment, "research")
+        native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+        _research_binding(dispatch_binding, payload, deployment, raw["arguments"])
+        try:
+            _research_error(native, raw["arguments"]["index"])
+        except ReceiptParseError:
+            pass
+        else:
+            return research_execution_failure(payload, deployment, tool_envelope, dispatch_binding=dispatch_binding)
     payload, deployment = _context(payload, deployment, "research")
     native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload)
     wrapper = _decode(_research_stdout(native), payload)

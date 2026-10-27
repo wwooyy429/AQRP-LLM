@@ -14,7 +14,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import canonical_json, content_hash, validate_key
-from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, submission_protocol
+from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, EngineeringTaskError, submission_protocol
 from qresearch.engineering_data import verify_deployment
 from qresearch.registry import BudgetExceeded
 from research import read_json, write_changed, open_registry, export_usage
@@ -197,6 +197,14 @@ def prepare(bridge, attempt):
         # Existing admission recovery above deliberately never backfills this.
         bridge.store.write_once("engineering/submission-protocol/" + attempt + ".json",
                                 canonical_json(submission_protocol(payload, deployment)))
+    else:
+        # Old admitted input recovery above must never manufacture this marker.
+        # It pins that this new admission requires the fixed no-catch Research
+        # entry before a dispatch binding can be written. Started alone does
+        # not establish that a legacy cell was never sent to the platform.
+        from qresearch.engineering_receipts import research_entry_protocol
+        bridge.store.write_once("engineering/research-entry-protocol/" + attempt + ".json",
+                                canonical_json(research_entry_protocol(payload, deployment)))
     return admission
 
 
@@ -218,6 +226,109 @@ def joint_preflight(bridge):
     return manifest
 
 
+def research_cell(bridge, attempt):
+    """Produce the fixed no-catch entry only; this does not authorize a call."""
+    record = bridge._record(attempt)
+    if record["stage"] != "research":
+        raise EngineeringTaskError("Only a Research attempt has a Research cell")
+    from qresearch.engineering_receipts import research_cell_source
+    admission = admitted_input(bridge, attempt)
+    source = research_cell_source(admission["payload"], admission["deployment"])
+    return {"source": source, "cell_source_sha256": hashlib.sha256(source.encode("utf-8")).hexdigest(),
+            "execution_started": False, "budget_charged": False, "ready_to_dispatch": False}
+
+
+def _research_dispatch_key(attempt):
+    return "engineering/research-dispatch/" + attempt + ".json"
+
+
+def _read_research_dispatch(bridge, payload, deployment):
+    from qresearch.engineering_receipts import _research_binding
+    key = _research_dispatch_key(payload["identity"]["attempt_id"])
+    if not bridge.store.exists(key):
+        return None
+    _read_research_entry_protocol(bridge, payload, deployment)
+    encoded = bridge.store.read_bytes(key)
+    binding = json.loads(encoded)
+    if canonical_json(binding) != encoded:
+        raise EngineeringTaskError("Original Research dispatch binding is not canonical")
+    _research_binding(binding, payload, deployment, binding.get("arguments") if isinstance(binding, dict) else None)
+    return binding
+
+
+def _read_research_entry_protocol(bridge, payload, deployment):
+    from qresearch.engineering_receipts import research_entry_protocol
+    expected = canonical_json(research_entry_protocol(payload, deployment))
+    key = "engineering/research-entry-protocol/" + payload["identity"]["attempt_id"] + ".json"
+    if not bridge.store.exists(key) or bridge.store.read_bytes(key) != expected:
+        raise EngineeringTaskError("Original Research entry protocol is required; legacy inputs cannot be backfilled")
+
+
+def research_dispatch(bridge, attempt, tool_envelope):
+    """Pin actual read-cell source once before dispatch; repeat never reruns.
+
+    A missing response after this marker stays unresolved. This method cannot
+    know whether the caller sent the subsequent API request, so its marker may
+    not be deleted/backfilled to obtain another free execution. The trusted
+    dispatcher supplies the actual source-read observation and performs the
+    single precharged call only when should_execute is true.
+    """
+    record = bridge._record(attempt)
+    if record["stage"] != "research":
+        raise EngineeringTaskError("Only a charged Research attempt can pin a Research dispatch")
+    admission = admitted_input(bridge, attempt)
+    payload, deployment = admission["payload"], admission["deployment"]
+    from qresearch.engineering_receipts import research_dispatch_binding
+    binding = research_dispatch_binding(payload, deployment, tool_envelope)
+    _read_research_entry_protocol(bridge, payload, deployment)
+    existing = _read_research_dispatch(bridge, payload, deployment)
+    if existing is not None:
+        if existing != binding:
+            raise EngineeringTaskError("A previous Research dispatch cannot be retargeted")
+        return {"binding": existing, "should_execute": False, "budget_charged": False}
+    joint_preflight(bridge)
+    with bridge.store.locked(bridge.registry.LOCK):
+        current = bridge.registry._replay()["attempts"][record["attempt_id"]]
+        if (current["status"] != "started" or current.get("external_id") is not None
+                or bridge.store.exists(bridge._submission_key(record["attempt_id"]))):
+            raise EngineeringTaskError("Only an undispatched started Research attempt can pin new execution")
+        key = _research_dispatch_key(record["attempt_id"])
+        if bridge.store.exists(key):
+            encoded = bridge.store.read_bytes(key)
+            if encoded != canonical_json(binding):
+                raise EngineeringTaskError("A concurrent Research dispatch differs")
+            return {"binding": binding, "should_execute": False, "budget_charged": False}
+        bridge.store.write_once(key, canonical_json(binding))
+    return {"binding": binding, "should_execute": True, "budget_charged": False}
+
+
+def settle_research_result(bridge, attempt, tool_envelope):
+    """Parse before writes and retain exact failed-result replay semantics."""
+    from qresearch.engineering_receipts import research_observation
+    admission = admitted_input(bridge, attempt)
+    payload, deployment = admission["payload"], admission["deployment"]
+    binding = _read_research_dispatch(bridge, payload, deployment)
+    observed = research_observation(payload, deployment, tool_envelope, dispatch_binding=binding)
+    record = bridge._record(attempt)
+    if record["status"] == "failed":
+        # The general Bridge deliberately rejects a new accepted submission
+        # after failure. Replays here require both immutable original receipts,
+        # not merely the same logical id or another apparently failed cell.
+        original = bridge._recorded_submission(payload)
+        receipt = observed["submission"]
+        if original["receipt_ref"]["sha256"] != content_hash(receipt):
+            raise EngineeringTaskError("A different Research receipt cannot replace the original failure")
+        bridge._completion_contract(payload, original, observed["completion"])
+        digest = content_hash(observed["completion"])
+        expected = {"key": "engineering/evidence/" + attempt + "/completion/" + digest + ".json", "sha256": digest}
+        if (not isinstance(record.get("error"), dict) or record["error"].get("evidence_ref") != expected
+                or bridge.store.read_bytes(expected["key"]) != canonical_json(observed["completion"])):
+            raise EngineeringTaskError("Original Research terminal evidence differs")
+        return bridge._attempt(record)
+    bridge.record_submission(attempt, observed["submission"])
+    return bridge.consume_completion(attempt, completion_source=lambda _: observed["completion"])
+
+
 def _limits(bridge, kind):
     # Compatibility/status preview only. Registry transactions recheck the
     # shared stop condition atomically with registration or attempt charging.
@@ -229,7 +340,7 @@ def _limits(bridge, kind):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("preview", "freeze", "register", "claim", "prepare", "research-result", "backtest-submission", "backtest-rejection", "backtest-result", "status"))
+    parser.add_argument("command", choices=("preview", "freeze", "register", "claim", "prepare", "research-cell", "research-dispatch", "research-result", "backtest-submission", "backtest-rejection", "backtest-result", "status"))
     parser.add_argument("--plan-file", type=Path)
     parser.add_argument("--projects-file", type=Path)
     parser.add_argument("--tool-file", type=Path)
@@ -251,7 +362,7 @@ def main():
             bridge_for_attempt(args.attempt, registry=registry)
         print(json.dumps(registry.snapshot(), ensure_ascii=True))
         return
-    if args.command in {"prepare", "research-result", "backtest-submission", "backtest-rejection", "backtest-result"}:
+    if args.command in {"prepare", "research-cell", "research-dispatch", "research-result", "backtest-submission", "backtest-rejection", "backtest-result"}:
         if not args.attempt:
             parser.error("--attempt is required for an existing charged task")
         bridge = bridge_for_attempt(args.attempt)
@@ -270,6 +381,12 @@ def main():
         if not args.attempt:
             parser.error("--attempt required")
         result = prepare(bridge, args.attempt)
+    elif args.command == "research-cell":
+        result = research_cell(bridge, args.attempt)
+    elif args.command == "research-dispatch":
+        if not args.tool_file:
+            parser.error("--tool-file with the actual read-cell observation is required")
+        result = research_dispatch(bridge, args.attempt, read_json(args.tool_file))
     else:
         if not args.attempt or not args.tool_file:
             parser.error("--attempt and --tool-file with actual tool metadata required")
@@ -278,9 +395,7 @@ def main():
         payload, deployment = admitted["payload"], admitted["deployment"]
         native = read_json(args.tool_file)
         if args.command == "research-result":
-            observed = research_observation(payload, deployment, native)
-            bridge.record_submission(args.attempt, observed["submission"])
-            result = vars(bridge.consume_completion(args.attempt, completion_source=lambda _: observed["completion"]))
+            result = vars(settle_research_result(bridge, args.attempt, native))
         elif args.command == "backtest-submission":
             result = vars(bridge.record_submission(args.attempt, backtest_submission(payload, deployment, native)))
         elif args.command == "backtest-rejection":
@@ -291,7 +406,8 @@ def main():
             record = bridge._record(args.attempt)
             observed = backtest_observation(payload, deployment, record["external_id"], native, read_json(args.logs_file))
             result = vars(bridge.consume_completion(args.attempt, completion_source=lambda _: observed))
-    export_usage(bridge.registry)
+    if args.command not in {"research-cell", "research-dispatch"}:
+        export_usage(bridge.registry)
     print(json.dumps(result, ensure_ascii=True))
 
 

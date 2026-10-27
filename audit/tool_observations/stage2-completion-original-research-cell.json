@@ -1,0 +1,30 @@
+{
+  "tool_name": "mcp__quantconnect__jupyter_read_cell",
+  "arguments": {
+    "projectId": 38436695,
+    "index": 1
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"source\":[\"import sys, importlib, base64\\n\",\"for _module_name in list(sys.modules):\\n\",\"    if _module_name == 'qresearch' or _module_name.startswith('qresearch.'):\\n\",\"        sys.modules.pop(_module_name, None)\\n\",\"importlib.invalidate_caches()\\n\",\"import qresearch.engineering_data as _engineering\\n\",\"_task = _engineering.load_task_input(_engineering.Path(_engineering.__file__).resolve().parents[1] / '_engineering_task_input.py')\\n\",\"_result = _engineering.run_research_task(_task)\\n\",\"print('AQRP_ENGINEERING_JSON ' + base64.b64encode(_engineering.canonical_json(_result)).decode('ascii'))\\n\"],\"cellType\":\"code\"}"
+      }
+    ],
+    "structuredContent": {
+      "source": [
+        "import sys, importlib, base64\n",
+        "for _module_name in list(sys.modules):\n",
+        "    if _module_name == 'qresearch' or _module_name.startswith('qresearch.'):\n",
+        "        sys.modules.pop(_module_name, None)\n",
+        "importlib.invalidate_caches()\n",
+        "import qresearch.engineering_data as _engineering\n",
+        "_task = _engineering.load_task_input(_engineering.Path(_engineering.__file__).resolve().parents[1] / '_engineering_task_input.py')\n",
+        "_result = _engineering.run_research_task(_task)\n",
+        "print('AQRP_ENGINEERING_JSON ' + base64.b64encode(_engineering.canonical_json(_result)).decode('ascii'))\n"
+      ],
+      "cellType": "code"
+    },
+    "isError": false
+  }
+}

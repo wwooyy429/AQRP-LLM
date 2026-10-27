@@ -21,6 +21,8 @@ from .contracts import DataRequest, NY, RECORD_COLUMNS, aware
 from .coverage import produce_engineering_coverage
 from .engineering_tasks import EngineeringTaskPlan, _safe_collection_probe, validate_joint_report
 from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConnectHistoryProvider
+from .worker_identity import (controlled_source_observation, path_fingerprint,
+    validate_source_observation, MAX_WORKER_DIAGNOSTIC_BYTES)
 
 
 STORE_PREFIX = "aqrp/engineering/v2"
@@ -51,7 +53,8 @@ def _deployment_path_valid(name):
 class DeploymentVerificationError(ValueError):
     """Bounded source metadata only; never OS paths, contents or exceptions."""
 
-    def __init__(self, failure_kind, *, path=None, expected_sha256=None, observed_sha256=None):
+    def __init__(self, failure_kind, *, path=None, expected_sha256=None, observed_sha256=None,
+                 worker_observation=None):
         if failure_kind not in _DEPLOYMENT_FAILURE_MESSAGES:
             raise ValueError("Unknown deployment diagnostic kind") from None
         diagnostic = {"schema_version": 1, "failure_kind": failure_kind}
@@ -64,13 +67,19 @@ class DeploymentVerificationError(ValueError):
         for name, value in (("expected_sha256", expected_sha256), ("observed_sha256", observed_sha256)):
             if isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None:
                 diagnostic[name] = value
-        self._diagnostics = diagnostic
+        if worker_observation is not None:
+            validate_source_observation(worker_observation)
+            diagnostic.update(schema_version=2, worker_observation=worker_observation)
+            if (len(_DEPLOYMENT_FAILURE_MESSAGES[failure_kind].encode("ascii"))
+                    + len(b"; diagnostics=") + len(canonical_json(diagnostic)) > MAX_WORKER_DIAGNOSTIC_BYTES):
+                raise ValueError("Worker diagnostics exceed their metadata bound") from None
+        self._diagnostics = json.loads(canonical_json(diagnostic))
         super().__init__(_DEPLOYMENT_FAILURE_MESSAGES[failure_kind] + "; diagnostics="
                          + canonical_json(diagnostic).decode("ascii"))
 
     @property
     def diagnostics(self):
-        return dict(self._diagnostics)
+        return json.loads(canonical_json(self._diagnostics))
 
 
 def source_bytes_sha256(raw: bytes):
@@ -125,12 +134,31 @@ def _load(store, reference):
     return json.loads(encoded)
 
 
-def verify_deployment(manifest, expected_hash, *, source_root=None):
+def _worker_observation(root, path, *, explicit_root, read_status, raw=None):
+    context = {"root_selection": "explicit" if explicit_root else "verifier_module_parent",
+        "source_root_sha256": path_fingerprint(str(root)), "source_path_sha256": path_fingerprint(str(path)),
+        "verifier_path_sha256": None, "verifier_within_source_root": None,
+        "inspected_source_is_verifier": None}
+    try:
+        verifier = Path(__file__).resolve()
+        context.update(verifier_path_sha256=path_fingerprint(str(verifier)),
+            verifier_within_source_root=verifier.is_relative_to(root), inspected_source_is_verifier=path == verifier)
+    except (OSError, RuntimeError, TypeError, ValueError):
+        pass
+    return controlled_source_observation(root_context=context, read_status=read_status, raw=raw)
+
+
+def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagnostics=False):
     """Verify implementation bytes separately from the generated job input.
 
     The input contains the plan and therefore is explicitly outside the code
     manifest; its own bytes are pinned in the platform submission receipt.
+    The default retains schema1 diagnostics. Admitted runtime contexts opt in to
+    bounded schema2 observations of the same bytes that caused rejection; these
+    observations cannot establish the source of an earlier failed worker.
     """
+    if type(worker_diagnostics) is not bool:
+        raise ValueError("Worker diagnostics selection must be boolean") from None
     if (not isinstance(manifest, dict) or not manifest or not isinstance(expected_hash, str)
             or re.fullmatch(r"[0-9a-f]{64}", expected_hash) is None):
         raise DeploymentVerificationError("invalid_manifest") from None
@@ -160,17 +188,25 @@ def verify_deployment(manifest, expected_hash, *, source_root=None):
         paths.append((name, expected, path))
     observed = {}
     for name, expected, path in paths:
+        def observation(status, raw=None):
+            return (_worker_observation(root, path, explicit_root=bool(source_root),
+                read_status=status, raw=raw) if worker_diagnostics else None)
         try:
             raw = path.read_bytes()
-        except (OSError, ValueError):
-            raise DeploymentVerificationError("source_unreadable", path=name, expected_sha256=expected) from None
+        except (OSError, ValueError) as error:
+            status = "missing" if isinstance(error, FileNotFoundError) else (
+                "permission_denied" if isinstance(error, PermissionError) else "unreadable")
+            raise DeploymentVerificationError("source_unreadable", path=name, expected_sha256=expected,
+                worker_observation=observation(status)) from None
         try:
             actual = source_bytes_sha256(raw)
         except ValueError:
-            raise DeploymentVerificationError("source_decode_error", path=name, expected_sha256=expected) from None
+            raise DeploymentVerificationError("source_decode_error", path=name, expected_sha256=expected,
+                worker_observation=observation("read", raw)) from None
         if actual != expected:
             raise DeploymentVerificationError("source_hash_mismatch", path=name,
-                expected_sha256=expected, observed_sha256=actual) from None
+                expected_sha256=expected, observed_sha256=actual,
+                worker_observation=observation("read", raw)) from None
         observed[name] = actual
     return content_hash(observed)
 
@@ -196,7 +232,8 @@ def _context(payload, stage, *, source_root=None):
     report_key = document["report_namespace"] + "/reports/" + plan.hash + "/" + stage + "/" + identity["attempt_id"] + ".json"
     if payload.get("report_key") != report_key:
         raise ValueError("Engineering result destination differs from the admitted attempt")
-    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"], source_root=source_root)
+    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"],
+                      source_root=source_root, worker_diagnostics=True)
     return plan, document, identity
 
 
