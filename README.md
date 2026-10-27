@@ -2,17 +2,21 @@
 
 ## 当前阶段与本轮结果（2026-10-28）
 
-**阶段2仍未全部完成。** RC003时间边界已修复并在真实Research中取得非空Series/list；随后在永久SID身份校验处失败。诊断记录的5124是中断前单次fetch已投影行数，不是整次Research完成总数。原始回执已按同一attempt结算，未提交LEAN，未丢弃或自动去重异常行。
+**阶段2整体验收仍待定。** 在用户明确允许的正常额度内，已完成真实SID诊断和工程采集修复。诊断确认同一快照含重复永久SID；此前5124仅为中断fetch的局部计数，原失败回执和未完成intent均保留。
 
-已补missing／noncanonical／duplicate三个闭集SID错误码，保持原严格拒绝和失败意图；最新724项合成回归通过。新诊断尚未部署或真实执行。实际最后运行源码为`d2b23f379602fb4ec16f66a2aed36b10b9486023`，32份托管源码读回一致并编译成功；完整联合Research→LEAN成功仍缺失。
+冻结源码`662ccd876b67ca0949f921a53c4c33df37cfbbf1`的765项合成测试通过，32份云端源码读回一致。显式collection v2保留每个源投影和其顺序，重复/冲突均计数；默认v1仍严格拒重，没有丢行、去重或自动挑选版本。
 
-累计配置10/12、Research13/20、LEAN1/16，总预算及分配未变。修复配置预留4/4已用满，正常配置仍余2个。当前工程轮已关闭，未使用的Research／LEAN预占已释放而非退款；下一次云端诊断需要用户明确允许使用正常配置余额，不能静默绕过原reserve-only准入。
+真实Research的13项固定工程检查全部通过：40窗口保留208223条投影观测，27条重复、选定四字段的冲突0条、13个空日历窗口；缓存重放新增取数0次。这些计数不认证完整历史股票池，投影相同也不证明完整原始记录相同。同一冻结配置的LEAN仍为pending，尚不能计作运行成功。
 
-用户已指定QuantConnect MCP为数据来源，目录与文档查询已完成；它们没有返回逐条历史实际送达／摄入回执。财务数值目录、认证执行桥、完整US200和财务版本／可用时点认证继续列为未完成。详见[本次修复进度](audit/phase2_repair_progress.json)、[原生证据核对](audit/phase2_repair_integrity.json)及[数据认证要求](audit/phase2_repair_data_evidence_requirements.json)。
+累计配置12/12、Research15/20、LEAN2/16；本轮用量2配置、2Research、1LEAN，在授权2/4/2内。原总预算、8正常＋4预留配置结构及额外费用0保持不变；配置余额已用满，不能再登记新语义配置或静默重置额度。
 
-旧独立批准仍只绑定44676db及原已测范围。新增修复和诊断待固定版本GPT Work独立复审；阶段3–7未验收。正式因子研究、自动生成API、交易和最终测试保持关闭；2024–2025已暴露事实保留。
+完整US200、财务数值接入、历史版本与公开/实际送达/摄入凭证、认证执行桥和固定版本独立审核仍未完成。QuantConnect MCP目录与文档不是逐条历史回执。正式因子研究、自动生成API、交易及最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。
 
-## 空窗口原因排查 RC003（2026-10-28）
+详见[本轮证据报告](audit/stage2_normal004_report.json)、[可复验核对程序](audit/review_packages/normal004/verify_round_evidence.py)、[观测保留协议](docs/collection_observations.md)和[当前阶段状态](audit/stage2_current_readiness.json)。独立批准仍仅绑定既有44676db及原已测范围；本轮开发测试和云端工程成功不构成GPT Work批准或因子金融有效性证据。
+
+## 历史查因快照：RC003（修复执行前）
+
+以下保留当时查因事实和当时额度；当前运行与预算以上方最新报告为准。
 
 已确认一个足以造成全部一日窗口为空的代码缺陷：`_history_endpoint`把两侧日期都减去1微秒，但LEAN按首日剩余开市区间枚举源文件。前一源日期的最后1微秒已闭市，所需文件被跳过；当前文件的Fundamental结束时间又超过请求上界而被剔除。因此源文件即使有记录，也可能40窗全部为空。
 
@@ -86,7 +90,7 @@ config/*.json是设置的唯一编辑入口。运行 `python -B tools/research.p
 
 云端research.ipynb保留一个可复用的工程检查单元，调用engineering_smoke.run；重新实际执行仍须预扣Research次数。正式因子接口为DataRequest、ResearchEngine.prepare、causal_window、FactorSpec.from_dict、evaluate_factors与walk_forward_evaluate。ResearchEngine真实因子计算还要求冻结实现哈希、匹配的公式/时序与覆盖审计、固定模型、标签和预登记比较协议；当前这些研究批准项尚未成立。QuantBook的start_date是历史请求截止时点，需满足请求结束≤qb.time≤2024-01-01。
 
-## 验证范围与剩余工作
+## 早期工程验证快照与当时剩余工作（累计值已过时）
 
 云端14份Python源码已读回一致，编译成功，存在纯Python辅助模块的通用风格提示。首次云端检查因QuantBook截止时点设错返回空数据，已记录失败；修复并新增截止时点检查后通过。2次Research实际执行均计预算，失败没有返还。累计使用：配置5/12，Research8/20（正常5、修复预留3），LEAN0/16，无额外购买。
 

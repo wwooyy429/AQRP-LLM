@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import unittest
 
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT / "cloud"), str(ROOT / "tests")]
 from qresearch.artifacts import MemoryArtifactStore, canonical_json, content_hash
 from qresearch.engineering_rounds import validate_grant

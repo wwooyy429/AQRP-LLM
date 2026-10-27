@@ -1,0 +1,127 @@
+AQRP-LLM：normal004 本轮独立软件审核指令
+
+你是本轮独立审核员。请实际检查源码、构造你自己的边界与已知答案测试，并复验原生回执和预算证据。开发者日志、此入口及同包辅助测试均不能代替你的独立结论。请勿执行云端任务、下载行情或打开最终测试集。
+
+一、固定审核身份与范围
+
+仓库：https://github.com/wwooyy429/AQRP-LLM
+云端修复运行源码提交：662ccd876b67ca0949f921a53c4c33df37cfbbf1。
+此前诊断运行源码提交：42b45c830aac691fe0763bfc6363997947625bc1。
+本轮预算基线提交：eaf6b70aca485a292b4575fc99df312dc9560510。
+此前独立通过结论仅保留44676db609b3b7c2175fa7fa4f19c8ccf8165458所声明的离线范围；不是完整阶段2或整个系统验收通过。
+
+首先记录实际拿到的“审核资料提交”哈希及工作树状态。本入口和证据可能位于后续仅更新audit的资料提交中；不得将该资料提交误称为云端运行源码提交。核对资料提交与662ccd之间的cloud、tools和tests源码差异，任何额外源码变化必须单独列出。预算使用投影的已登记变化应与真实账本一致，不能因为账面增加而当成预算上限变更。
+
+审核范围包括本轮normal额度准入、SID故障诊断、v2原始投影出现次序保留协议、Research/LEAN共享任务桥、原生回执身份绑定、预算扣费、失败及恢复边界，以及受影响的既有计算与数据管线回归。范围外的完整历史US200/财务版本/历史实际可用时间认证仍须明确列为未完成。
+
+二、先读约束与证据
+
+读取AGENTS.md、config/development.json及研究章程、时间分区、预算、数据字典和已有数据暴露文件。遵循逐阶段验收；不要由开发者测试通过推导独立验收通过。
+
+本轮入口资料：
+  audit/stage2_normal004_baseline.json
+  audit/stage2_normal004_preregistration.json
+  audit/stage2_normal004_repair_preregistration.json
+  audit/stage2_normal004_offline_verification.json
+  audit/stage2_normal004_repaired_offline_verification.json
+  audit/stage2_normal004_deployment.json
+  audit/stage2_normal004_repaired_deployment.json
+  audit/review_packages/normal004/public_copy_reproducibility.json
+  audit/review_packages/normal004/verify_round_evidence.py
+  audit/review_packages/normal004/round_evidence_source_checked_pending_lean.json
+  audit/phase2_repair_data_evidence_requirements.json
+  audit/stage2_current_readiness.json
+
+authoritative预算为audit/runtime/registry/baseline.json与追加events.jsonl；config/budget.json仅为投影。真实市场数据与逐行派生值必须留在QuantConnect Cloud。Git中只允许源码、合成样本和许可的计数、哈希、引用等审核元数据。
+
+三、独立离线复现
+
+在仓库根目录、已有依赖环境中执行，完整记录命令、退出码、测试数、失败及未执行事项。所有下列命令均为离线程序，不应接触市场数据供应商或提交回测。
+
+  python -B tools/stages.py verify
+  python -B audit/review_packages/normal004/test_independent_normal_gate.py
+  python -B audit/review_packages/normal004/test_independent_occurrences.py
+  python -B audit/review_packages/normal004/verify_round_evidence.py
+
+开发者在固定修复源码上记录765项合成测试通过。请自行重新运行，不能直接将765作为你的测试结果。公开辅助脚本两份共18项；public_copy_reproducibility.json记录了各自原始私有文件哈希、公开适配文件哈希、仅ROOT从parents[4]改为parents[3]的单行差异，以及从公开位置真实运行的完整日志。私有.git文件并非审核者运行这些公开副本的前提。
+
+请自行另建边界样本，勿仅重跑开发者用例。不得用合成测试结果填补真实数据覆盖或金融有效性证据。
+
+四、重点独立测试：额度与恢复
+
+全局限额：配置12=normal8+reserve4；Research20=normal12+reserve8；LEAN16=normal8+reserve8。原额度划分、节点、额外费用0与最终测试关闭不得改变。
+
+本轮显式例外grant为stage2-normal-repair-round-004，allocation=normal，上限2配置/4Research/2LEAN。核对用户授权问题、回答“允许”、scope、原始限额哈希和内容引用。哈希只能检测元数据变更，不证明发言者身份；正常额度例外必须由可信操作员转录原始人类授权，不得由LLM提案自行生成批准。
+
+独立检查：generic normal scope、缺失/模糊回答、authority_kind错误、问答或限额哈希变更、布尔值冒充计数、跨allocation扣费、并发重复注册、同round扩大上限、旧配置重绑及关闭后重启应被拒绝。原reserve格式和旧任务恢复应保持兼容；legacy engineering stop=2不能被新normal grant重置。
+
+分别验证每种资源的normal/reserve/total余额，不能将Research剩余或LEAN剩余用于配置，也不能借reserve扩张normal。失败必须保留扣费。未知提交须先对账，不得自动重发；collection unfinished intent不可免费重新抓取。释放未使用预留不等于退还失败费用。
+
+本入口建立时真实累计为12配置、15Research、2LEAN，本round使用2配置、2Research、1LEAN。配置总额度已用满；后续若需语义修改，不能改写已冻结配置或无偿增加配置。以你核验时的严格账本为准，允许已送达的终态增加结算事件，不允许伪造费用退款或提高总上限。
+
+五、重点独立测试：v2投影保留与隔离
+
+v1计划字段、缓存根、批次及清单格式保持原严格约定；默认QuantConnectSnapshotSource仍要求同snapshot内SID唯一。
+
+v2必须显式指定observation_policy='retain_source_occurrences'，只用于工程观测保留。新行恰为sid、snapshot_at、source_record_index、values四列。source_record_index是整个snapshot的原生来源序号，从0连续、跨批次连续、换snapshot才重置，不能按SID分别重置，也不是证券永久身份或供应商版本号。
+
+所有投影出现均保留，不能选首条、末条、最大值、平均值，不能静默删除或去重。max_records、record_count及缺失值计数必须包含所有出现。duplicate_projection_records指同SID/snapshot首投影之后的出现数；conflicting_projection_records只比较冻结选定字段与首投影的差异，不代表整个原生Fundamental对象相等或不等。
+
+请独立测试重复跨batch、相同SID跨snapshot、全部相同或部分冲突、序号缺口/倒序/重号、bool/float/负数/None、记录上限、source失败和部分批次留下的intent。重新计算伪造批次/清单哈希仍不能绕过序号、计数、计划身份及false认证标记复验。
+
+检查缺失、非规范和SecurityIdentifier.Empty的SID仍失败；原生属性访问及转换异常仍封闭处理，不能输出SID、行情值、原生异常文本或用原生文本选择诊断码。缓存只读复放不能再次调用来源。
+
+v2四列投影应被既有observed_liquidity_record三列适配器拒绝，不能隐式去除序号后进入因子、选股或财务摄入。注意HistoricalBatchIngestor拒绝的是重复vintage identity，不能泛称它拒绝任何不同source_revision的同SID/session记录。未单独解决重复投影的来源含义和真实可用时间前，不得生成经济研究输入。
+
+全部US200、实际可用时间、Research认证、财务版本和金融证据标记继续为false。工程任务成功不能将这些标记打开。
+
+六、严格复验真实Research证据
+
+诊断attempt：b9f952c1de3a44f9b06e5c552f7d1af3。
+原生packet：audit/tool_observations/b9f952c1de3a44f9b06e5c552f7d1af3-research.json。
+真实终态failed/runtime_error，owned诊断码native_sid_duplicate。5124仅是失败fetch在中断前发出的局部投影数，不能当成整个Research完成数量或已通过窗口。
+
+修复attempt：2d1095df62dc4222bffd8000c0737d38。
+原生packet：audit/tool_observations/2d1095df62dc4222bffd8000c0737d38-research.json。
+固定配置：4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c。
+固定plan：9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5。
+记录的真实Research终态completed，13项固定工程检查为true。
+
+工程price样本仍是2018 AAPL/MSFT、raw模式共享缓存；2510条价格字段记录，250次形成，首次及再次prefetch的price History调用均为0。这证明复用了已存在的工程缓存，不能推导有新的行情抓取或新的金融因子结论。
+
+四字段观测probe独立于price记录计数：40个日历窗口、208223条全部保留投影、27条重复投影、选定字段冲突0、空窗口13；cache-only source_fetch_calls=0。不能把空窗口自动当成已证明的非交易日，也不能将四个选定字段缺失0解释为财务数据或完整股票池缺失0。
+
+核对原始admitted input、生成cell、执行前dispatch binding、source_manifest_hash、deployment_hash、输入哈希和实际原生packet。复验必须使用各自冻结计划，不能依赖可变current指针。两个Research原始回执的内存重放应保持全部元数据字节不变。
+
+七、LEAN pending边界与未来终态
+
+本入口建立时LEAN attempt为37dc855045e14ca49c88fd9d75f40cf7，原生平台backtestId为3e68866a46ca88ff16481c31b3c2c822。当前仅确认预扣、真实create_backtest提交成功及不可变回执绑定；严格账本仍pending。编译成功、提交成功与运行完成必须分别报告。
+
+提交packet为audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-submission.json。
+现有核验程序应给出native_submission_verified=true、same_plan_LEAN_completed=false。
+
+不得轮询刚提交回测。只有平台实际送达终态、由执行方严格归档并结算后，才能检查真实终态packet和日志；不可在本次独立审核中另发新任务补结果。
+
+未来已归档LEAN终态可使用固定程序复验，例如：
+  python -B audit/review_packages/normal004/verify_round_evidence.py --lean-packet 37dc855045e14ca49c88fd9d75f40cf7=audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-result.json --lean-logs 37dc855045e14ca49c88fd9d75f40cf7=audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-logs.json
+
+只有示例文件实际存在时才运行；若归档名称不同，替换为实际文件路径。程序要求实际原生backtest identity、输入与source绑定、严格ledger状态及原始completion evidence一致。成功终态还须验证原生日志内的共享程序报告、固定检查和0订单；不能用开发者自由填写的completed标记替代。若仍pending、回执缺失或尚待对账，结论保留“云端运行待完成”，不能判定完整链路通过。
+
+八、预算、暴露与既往审核边界
+
+核验程序只把真实Registry读入MemoryArtifactStore，不写真实账本、不提交任务、不调用数据供应商。其已有pending结果是时间点快照；后续终态应生成新结果，保留旧记录。
+
+独立确认原34-event前缀、authoritative baseline字节、全局限额、normal/reserve划分、预算投影、原数据暴露事实及legacy stop未改变。2024–2025已被接触的事实不得删除；预留2024–2026窗口不得称为完整未接触样本。最终测试、正式因子研究、自动LLM执行与实盘保持关闭。
+
+完整历史US200/真实日历与候选库存、原始价格和公司行动、财务数值及其原始报告版本、公开精度、历史实际供应商送达和摄入凭证，仍是单独门槛。已经查询到的QuantConnect MCP目录或说明不是这些逐版本凭证，也不能据此断言平台永远无法提供。软件可处理缺口，不能凭空制造缺失来源证据。
+
+九、交付你的独立结论
+
+请给出：
+1. 审核资料commit、固定云端源码commit、环境与实际执行命令/退出码/测试数。
+2. 你自行构造的关键反例、预期值、实际值和可复现测试。
+3. 每个软件发现的严重度、精确文件行、触发路径、影响和最小复现；区分已修复回归、真实新增缺陷和未获得外部证据。
+4. 分别说明离线软件、真实Research、真实LEAN终态、完整历史覆盖与来源认证、完整系统验收的状态。仅对确实覆盖的固定版本范围判通过；必要时输出“范围内通过，整体仍待定/证据不足”。
+5. 预算与暴露核验、未执行事项、尚未认证的门槛，以及可交还开发者的下一步清单。
+
+本轮不进行因子金融有效性验收，不输出未经过真实工具计算的IC、收益、成本或风险指标，不启动独立最终测试。辅助测试与本入口均不是已经获得的GPT Work独审批准。

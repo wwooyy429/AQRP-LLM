@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "kind": "normal_allocation_engineering_repair_evidence",
+  "source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+  "diagnostic_source_commit": "42b45c830aac691fe0763bfc6363997947625bc1",
+  "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+  "round_id": "stage2-normal-repair-round-004",
+  "human_normal_exception": "explicitly_allowed",
+  "grant_limits": {
+    "configurations": 2,
+    "lean": 2,
+    "research": 4
+  },
+  "round_usage": {
+    "configurations": 2,
+    "lean": 1,
+    "research": 2
+  },
+  "round_status": "open",
+  "global_usage": {
+    "configurations": {
+      "total": 12,
+      "normal": 8,
+      "reserve": 4
+    },
+    "research": {
+      "total": 15,
+      "normal": 8,
+      "reserve": 7
+    },
+    "lean": {
+      "total": 2,
+      "normal": 2,
+      "reserve": 0
+    }
+  },
+  "global_limits_unchanged": true,
+  "extra_spend_usd": 0,
+  "attempts": {
+    "diagnostic": {
+      "attempt_id": "b9f952c1de3a44f9b06e5c552f7d1af3",
+      "config_id": "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c",
+      "stage": "research",
+      "status": "failed",
+      "external_id": "qc-research:38436695:b9f952c1de3a44f9b06e5c552f7d1af3"
+    },
+    "research": {
+      "attempt_id": "2d1095df62dc4222bffd8000c0737d38",
+      "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+      "stage": "research",
+      "status": "completed",
+      "external_id": "qc-research:38436695:2d1095df62dc4222bffd8000c0737d38"
+    },
+    "lean": {
+      "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+      "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "3e68866a46ca88ff16481c31b3c2c822"
+    }
+  },
+  "diagnostic": {
+    "failure_code": "native_sid_duplicate",
+    "rows_emitted": 5124,
+    "count_scope": "failing fetch only; not completed total",
+    "original_intent_retained": true
+  },
+  "research": {
+    "status": "completed",
+    "check_count": 13,
+    "checks": {
+      "cache_only_consumer": true,
+      "collection_cache_only_replay": true,
+      "collection_nonempty": true,
+      "collection_windows_completed": true,
+      "coverage_observed_complete": true,
+      "development_only": true,
+      "final_request_rejected": true,
+      "raw_data_received": true,
+      "read_only_write_rejected": true,
+      "same_partition_ids": true,
+      "second_prefetch_no_history": true,
+      "source_snapshot_matches": true,
+      "symbol_registry_resolved": true
+    },
+    "price_cache": {
+      "expected_formation_count": 250,
+      "history_calls_first": 0,
+      "history_calls_second": 0,
+      "record_count": 2510
+    },
+    "collection": {
+      "actual_availability_certified": false,
+      "cache_only_source_fetch_calls": 0,
+      "conflicting_projection_records": 0,
+      "duplicate_projection_records": 27,
+      "empty_windows": 13,
+      "financial_vintage_certified": false,
+      "full_historical_US200_certified": false,
+      "missing_values": {
+        "dollar_volume": 0,
+        "end_time": 0,
+        "has_fundamental_data": 0,
+        "time": 0
+      },
+      "observation_policy": "retain_source_occurrences",
+      "plan_hash": "81d0fd54805d746e7ef6b9099b25ab858d8156c23207cbd69d1be1aec377ebe0",
+      "receipt_ref": {
+        "key": "engineering/occurrence-retention-normal004-v2/collection-probes/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/2d1095df62dc4222bffd8000c0737d38.json",
+        "sha256": "7c84c526080e50f39acdcaf0b884520cba6c8675d54ac34e4c3a012a5d5853ea"
+      },
+      "record_count": 208223,
+      "research_certified": false,
+      "reused_windows": 0,
+      "row_values_exported": false,
+      "schema_version": 2,
+      "source_fetch_calls": 40,
+      "window_count": 40
+    },
+    "report_ref": {
+      "key": "engineering/occurrence-retention-normal004-v2/reports/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/research/2d1095df62dc4222bffd8000c0737d38.json",
+      "sha256": "3ec427fa72593a9ac0ecece35035f64436b615eae5032946ace3ea1160e63249"
+    },
+    "runtime_environment": {
+      "lean": "2.5.0.0.18207",
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python": "3.11.14"
+    }
+  },
+  "lean": {
+    "compilation_and_submission_confirmed": true,
+    "terminal_evidence_consumed": false,
+    "ledger_status": "pending",
+    "backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+    "report_ref": null,
+    "checks": null
+  },
+  "same_plan_research_lean_completed": false,
+  "supplier_duplicate_semantics_resolved": false,
+  "full_historical_US200_certified": false,
+  "actual_availability_certified": false,
+  "financial_vintage_certified": false,
+  "independently_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified",
+  "remaining_gates": [
+    "fixed-version GPT Work independent software review",
+    "financial numeric catalog/period/vintage ingestion and certification execution bridge",
+    "historical all-market constituents/classification and full US200 certification",
+    "actual historical publication/vendor revision/delivery/ingestion receipts",
+    "resolve duplicate observation semantics before any economic-panel conversion"
+  ],
+  "implementation_scope": "Retain every selected-field occurrence under engineering-only protocol2; default protocol1 stays strict. Ordinals are source-response positions, not permanent security or vendor-version identities.",
+  "evidence_checker": "audit/review_packages/normal004/verify_round_evidence.py",
+  "protected_test_window": "disabled; 2024-2025 previously used",
+  "offline_tests": {
+    "source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "count": 765,
+    "passed": true,
+    "report": "audit/stage2_normal004_repaired_offline_verification.json",
+    "independent_acceptance": false
+  },
+  "local_operator_corrections": [
+    "Wrong local pilot filename read rejected before changes; used actual existing filename.",
+    "Private payload decoder already returned parsed JSON; redundant JSON parse removed before cloud dispatch.",
+    "Private metadata print had a parenthesis error and a default-GBK read; no provider or ledger action occurred.",
+    "One newly authored synthetic test made an extra source call; test setup corrected; zero-test filename probe excluded from test counts."
+  ]
+}

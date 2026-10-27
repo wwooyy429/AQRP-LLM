@@ -1,10 +1,10 @@
 {
-  "schema_version": 6,
-  "kind": "phase2_repair_partial_real_identity_failure_and_budget_permission_pending",
+  "schema_version": 7,
+  "kind": "phase2_normal_round_research_completed_lean_pending",
   "previous_readiness": {
-    "commit": "65b8025b8618021eddd50520fe87c764b60af377",
+    "commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "path": "audit/stage2_current_readiness.json",
-    "sha256": "7a70ee831519fb3ac0913d3cb3d54396132e26b015e4b729638fc23d0ce50729"
+    "sha256": "8b3739395c48778f7451ed3ed439c28095ca8f7f0bf5dca1ceab1bad9abadeab"
   },
   "accepted_offline_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
   "accepted_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
@@ -28,31 +28,29 @@
     1
   ],
   "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "stage2_status": "pending_SID_source_quality_normal_budget_permission_real_joint_success_and_data_certification",
+  "stage2_status": "pending_native_LEAN_terminal_and_historical_data_certification",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "bounded_live_engineering_round",
-    "baseline_commit": "2069ef583526b8f2e7c7dfd1dda3c9fb175f6a98",
-    "round_id": "stage2-repair-round-003",
-    "quantconnect_reads": 42,
-    "quantconnect_writes": 4,
-    "explicit_compile_calls": 1,
-    "new_Research_executions": 1,
-    "new_LEAN_submissions": 0,
-    "new_deployments": 1
+    "kind": "explicit_normal_allocation_engineering_exception",
+    "round_id": "stage2-normal-repair-round-004",
+    "baseline_commit": "eaf6b70aca485a292b4575fc99df312dc9560510",
+    "new_Research_executions": 2,
+    "new_LEAN_submissions": 1,
+    "new_deployments": 2,
+    "managed_source_readbacks": 64
   },
-  "current_activity_checker": "audit/review_packages/phase2_repair/verify_repair_evidence.py",
-  "candidate_runtime_source_commit": "d2b23f379602fb4ec16f66a2aed36b10b9486023",
+  "current_activity_checker": "audit/review_packages/normal004/verify_round_evidence.py",
+  "candidate_runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
   "candidate_cloud_deployed": true,
   "managed_cloud_files_verified": 32,
   "cloud_runtime_source_identity_verified_in_Research": true,
   "cloud_runtime_joint_gate_passed": false,
-  "current_Research_attempt": "e17fd1ac2d3e433e909aef149c7afeec",
-  "current_Research_platform_status": "runtime_error",
-  "current_Research_engineering_status": "no_complete_report",
-  "current_Research_ledger_status": "failed",
-  "pending_backtest_id": null,
-  "new_LEAN_submissions": 0,
+  "current_Research_attempt": "2d1095df62dc4222bffd8000c0737d38",
+  "current_Research_platform_status": "completed",
+  "current_Research_engineering_status": "completed_all_13_checks",
+  "current_Research_ledger_status": "completed",
+  "pending_backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+  "new_LEAN_submissions": 1,
   "new_LEAN_success": false,
   "old_failed_LEAN_ref": {
     "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
@@ -61,35 +59,35 @@
     "worker_specific_cause_proven": false,
     "repolled_this_round": false
   },
-  "engineering_round_status": "closed",
+  "engineering_round_status": "open",
   "engineering_stop_caps": {
-    "configurations": 1,
-    "research": 2,
-    "lean": 2
+    "configurations": 2,
+    "lean": 2,
+    "research": 4
   },
   "engineering_observed_used": {
-    "configurations": 1,
-    "research": 1,
-    "lean": 0
+    "configurations": 2,
+    "lean": 1,
+    "research": 2
   },
-  "unused_LEAN_reservation_released": true,
+  "unused_LEAN_reservation_released": false,
   "legacy_stop_caps_preserved": true,
-  "current_round_stop_reached": true,
+  "current_round_stop_reached": false,
   "global_usage": {
-    "configurations": 10,
-    "research": 13,
-    "lean": 1
+    "configurations": 12,
+    "research": 15,
+    "lean": 2
   },
   "global_limits_unchanged": true,
   "known_open_software_findings_from_independent_reports": [],
   "new_candidate_review_status": "pending_exact_commit_independent_review",
   "blockers": [
-    "identify actual SID failure subtype and repair data-quality handling without silently omitting constituents",
-    "obtain a complete successful same-plan Research receipt",
-    "run and await a same-plan LEAN receiver terminal result; inspect strict worker diagnostics if it fails",
-    "independent fixed-version software review",
-    "financial observation catalog/ingestion and full certification execution bridge",
-    "full historical US200, financial vintage/publication and actual historical receipt/ingestion evidence"
+    "fixed-version GPT Work independent software review",
+    "financial numeric catalog/period/vintage ingestion and certification execution bridge",
+    "historical all-market constituents/classification and full US200 certification",
+    "actual historical publication/vendor revision/delivery/ingestion receipts",
+    "resolve duplicate observation semantics before any economic-panel conversion",
+    "same-plan LEAN native terminal engineering success still absent"
   ],
   "certification_status": "insufficient_evidence",
   "reports": [
@@ -101,7 +99,8 @@
     "audit/phase2_repair_progress.json",
     "audit/phase2_repair_integrity.json",
     "audit/phase2_repair_sid_offline_verification.json",
-    "audit/phase2_repair_data_evidence_requirements.json"
+    "audit/phase2_repair_data_evidence_requirements.json",
+    "audit/stage2_normal004_report.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -111,26 +110,29 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "Closed repair round003 includes metadata/docs queries, one source snapshot and one charged Research. Local SID diagnostic changes were not dispatched.",
+  "current_activity_scope": "Two charged Research runs: strict duplicate diagnostic failed, explicit occurrence-retention protocol2 completed; one prepaid same-plan LEAN submission. No duplicate was removed or silently selected.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
-    "status": "RC003_repaired_nonempty_native_observation_then_separate_SID_identity_failure",
+    "status": "RC003_repaired_and_bounded_Research_complete_with_explicit_occurrence_retention",
     "production_fix_applied": true,
-    "cloud_revalidated": false,
+    "cloud_revalidated": true,
     "new_Research_executions": 0,
     "new_configuration_debits": 0,
     "final_test_enabled": false,
     "cloud_nonempty_repair_observation": true,
-    "cloud_revalidation_scope": "partial_nonempty_observation_not_joint_success"
+    "cloud_revalidation_scope": "bounded_engineering_Research_only_not_full_US200_or_financial_certification"
   },
   "known_open_developer_findings": [
     {
-      "id": "SID-IDENTITY",
-      "status": "actual_failure_subtype_unknown_diagnostic_ready_not_dispatched",
-      "scope": "strict source permanent-SID identity validation"
+      "id": "SID-OBSERVATION-AMBIGUITY",
+      "status": "preserved_for_engineering_not_resolved_for_economic_use",
+      "scope": "27 duplicate projections observed; 0 conflicting projections among selected four fields does not prove full-record equality"
     }
   ],
-  "latest_local_SID_diagnostic_deployed": false,
-  "normal_budget_permission_pending": true
+  "latest_local_SID_diagnostic_deployed": true,
+  "normal_budget_permission_pending": false,
+  "current_LEAN_attempt": "37dc855045e14ca49c88fd9d75f40cf7",
+  "current_LEAN_ledger_status": "pending",
+  "latest_backtest_id": "3e68866a46ca88ff16481c31b3c2c822"
 }

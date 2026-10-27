@@ -6,7 +6,7 @@ import sys
 from types import SimpleNamespace as NS
 import unittest
 
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT / 'cloud'), str(ROOT / 'tests')]
 from qresearch.artifacts import MemoryArtifactStore, canonical_json, content_hash
 from qresearch.collection import (HistoricalCollectionPlan, HistoricalSnapshotCollector,
