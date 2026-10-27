@@ -186,7 +186,7 @@
   },
   "latest_independent_report": "audit/reviews/20261027-66ff72f-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/native_runtime_failure/developer_verification.json",
-  "current_handoff": "docs/stage2-completion.md",
+  "current_handoff": "audit/review_packages/stage2_completion_runtime/README.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -330,11 +330,11 @@
   "final_evaluation_enabled": false,
   "prior_2024_2025_exposure_preserved": true,
   "research_budget_usage": {
-    "configurations": 6,
-    "research": 9,
+    "configurations": 7,
+    "research": 10,
     "lean": 1
   },
-  "new_market_or_model_calls": 0,
+  "new_market_or_model_calls": 1,
   "new_independent_review_dispatched": false,
   "review_history": [
     {
@@ -1791,7 +1791,7 @@
     "真实因子/模型/组合、成本后增量、独立最终评估和前向运行",
     "2026最终区间独立性；2024–2025既往暴露已知"
   ],
-  "new_candidate_acceptance": "pending_unified_fixed_commit_independent_review_of_consolidated_stage2",
+  "new_candidate_acceptance": "pending_unified_independent_review_actual_Research_failed_no_LEAN_success",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -2045,11 +2045,11 @@
   },
   "current_candidate": {
     "parent_commit": "a6b14b05e913daa894c9049b428e953954b40e08",
-    "kind": "consolidated_stage2_G2_G3_G4_software_and_bounded_G1_preparation",
-    "source_manifest_hash": "0bb5d85f90c4f4e7a43209ffb7bb90850048715f339e82ed23d52e5968d8d655",
-    "execution_source_manifest_hash": "89bc58058beab1315d3fa82fee8c0f22d6272fd80152b1938987453acc78a8c6",
-    "deployment_hash": "3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118",
-    "implementation_hash": "a411d71c27ba174a253307db129dcff82a4eb7244e3489ec6c6bd41cbf89312d",
+    "kind": "consolidated_stage2_development_with_real_Research_failure_and_posthoc_parser_repair",
+    "source_manifest_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
+    "execution_source_manifest_hash": "b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41",
+    "deployment_hash": "7944228dfbb38c8d305bf3b86460c51b10557316aa098db6c0342c569239604f",
+    "implementation_hash": "7c7d8412e891d549d94beba004f20d8a5f8c87fa88a7b700c24f98f1039f13ef",
     "independently_accepted": false,
     "cloud_deployed": false,
     "software_acceptance_bound_to": "66ff72ffaaff8c91c008898e6527c91131176c2a",
@@ -2059,17 +2059,21 @@
     "Collection_WR12_CLI_changed": false,
     "metadata_and_documentation_only": false,
     "runtime_engine_and_test_sources_unchanged": false,
-    "developer_repository_tests": 601,
+    "developer_repository_tests": 612,
     "developer_extra_probe_methods": {
       "G3": 8,
       "G4_peer1": 14,
       "G4_peer2": 9
     },
     "counts_overlap": true,
-    "real_failed_Research_cell_observed": false,
+    "real_failed_Research_cell_observed": true,
     "worker_old_root_cause_proven": false,
     "financial_data_certified": false,
-    "review_package": "audit/review_packages/stage2_completion/developer_outputs_manifest.json"
+    "review_package": "audit/review_packages/stage2_completion_runtime/README.md",
+    "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "controller_repair_cloud_executed": false,
+    "reconciled_actual_attempt_status": "failed",
+    "budget_usage_changed_by_authorized_admission": true
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -2404,5 +2408,6 @@
       "status": "证据不足",
       "requirement": "补全历史当时US200、永久SID/映射/公司行动、原始价格、供应商DollarVolume、财务公开/版本/实际送达及摄入证据；两股工程样例和模型化end_time不足。"
     }
-  ]
+  ],
+  "current_round_stop_reached": true
 }

@@ -453,8 +453,8 @@ def _research_error(native, index):
 
     The direct/list node mirrors the existing execute-cell stream shape. An
     explicit one-cell error wrapper is supported for adapters returning cell
-    metadata. There is no observed real QC failed-cell sample yet; synthetic
-    grammar coverage cannot establish that external compatibility.
+    metadata. A delivered CollectionError has been observed in the direct-node
+    form; other registered forms retain their synthetic compatibility scope.
     """
     node = native
     if isinstance(node, dict) and "outputs" in node:
@@ -483,6 +483,46 @@ def _research_error(native, index):
     return len(node["traceback"])
 
 
+def _research_execution_native(tool_envelope, payload):
+    """Narrowly compare the observed duplicate Research-error text carriers.
+
+    The actual connector delivered one failed execution as exactly two top-level
+    text representations of the same direct nbformat error. Every text is a
+    complete error JSON object, with identical typed semantics and annotations.
+    An actual JSON array of errors, nested wrappers, printed values or arbitrary
+    duplicate success outputs are not this transport representation.
+
+    Per-carrier single-text projections are validation views ONLY: _tool and
+    _native still inspect every retained outer field/annotation and any original
+    structured mirror. No projected envelope is archived or claimed as native.
+    The returned response hash is always of the COMPLETE UNCHANGED result.
+    Global _native and all other callers' default carrier rules stay unchanged.
+    """
+    result = tool_envelope.get("result") if isinstance(tool_envelope, dict) else None
+    blocks = result.get("content") if isinstance(result, dict) else None
+    if not isinstance(blocks, list) or len(blocks) != 2:
+        native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+        return native, raw, None
+    first, annotations, raw, native = None, None, None, None
+    for block in blocks:
+        parsed = _json(_text_node(block))
+        if not isinstance(parsed, dict) or parsed.get("output_type") != "error":
+            _fail("Duplicate Research text carriers must each be a direct native error JSON object")
+        projection = dict(result, content=[block])
+        native, raw = _tool(dict(tool_envelope, result=projection),
+            "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+        _research_error(native, raw["arguments"]["index"])
+        typed = canonical_json(parsed)
+        hints = canonical_json(block.get("annotations"))
+        if first is None:
+            first, annotations = typed, hints
+        elif typed != first or hints != annotations:
+            _fail("Duplicate Research error representations disagree")
+    raw["response_sha256"] = content_hash(result)
+    count = len(blocks) + (1 if result.get("structuredContent") is not None else 0)
+    return native, raw, count
+
+
 def research_execution_failure(payload, deployment, tool_envelope, *, dispatch_binding):
     """One definite failed cell, bound to its immutable pre-dispatch source.
 
@@ -491,12 +531,14 @@ def research_execution_failure(payload, deployment, tool_envelope, *, dispatch_b
     rejected. Exceptions are inspected transiently; only hashes/counts persist.
     """
     payload, deployment = _context(payload, deployment, "research")
-    native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+    native, raw, representations = _research_execution_native(tool_envelope, payload)
     _research_binding(dispatch_binding, payload, deployment, raw["arguments"])
     count = _research_error(native, raw["arguments"]["index"])
     external = "qc-research:" + str(payload["identity"]["project_id"]) + ":" + payload["identity"]["attempt_id"]
     raw.update(native_research_error=True, error_output_count=1, traceback_line_count=count,
         dispatch_binding_sha256=content_hash(dispatch_binding))
+    if representations is not None:
+        raw["native_error_representation_count"] = representations
     submission = {"identity": payload["identity"], "identity_kind": payload["external_identity_kind"],
         "external_id": external, "accepted": True, "status": "submitted", "deployment": deployment, "raw_receipt": raw}
     return {"submission": submission,
@@ -513,7 +555,7 @@ def research_observation(payload, deployment, tool_envelope, *, dispatch_binding
         # Both grammars remain closed: a success-shaped cell must satisfy the
         # original marker parser; every other shape must satisfy strict error.
         payload, deployment = _context(payload, deployment, "research")
-        native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+        native, raw, _ = _research_execution_native(tool_envelope, payload)
         _research_binding(dispatch_binding, payload, deployment, raw["arguments"])
         try:
             _research_error(native, raw["arguments"]["index"])

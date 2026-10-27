@@ -2,7 +2,9 @@
 
 ## 当前复审状态（2026-10-27）
 
-用户已授权[集中补齐阶段2后统一验收](docs/stage2-completion.md)。新增worker受控诊断、Research原生异常与一次性派发绑定、证据型数据审计及严格分区重算已通过开发侧601项离线检查；属于新软件候选，尚未取得GPT Work对本轮固定版本的批准。运行事实和四项缺口以audit/stage2_current_readiness.json及本轮原生回执为准；不将旧66软件批准延伸为新版本或数据认证。
+用户已授权[集中补齐阶段2后统一验收](docs/stage2-completion.md)。本轮软件开发及云端联调记录已整理：7fc5ef2的31份源码逐文件读回且编译通过，唯一一次新Research在历史快照来源迭代时真实失败，未提交LEAN。平台把同一异常返回为两个相同MCP文本表示，后续仅在本地修补固定解析器并将原attempt结算failed，没有云端重跑。修补后612项离线检查通过；新增软件和全部实际证据仍待统一独立审核，不能称阶段2通过。送审入口见[audit/review_packages/stage2_completion_runtime/README.md](audit/review_packages/stage2_completion_runtime/README.md)。
+
+当前预算配置7/12、Research10/20、LEAN1/16；工程域配置／Research已各达2次，故按预登记条件停止本轮实际执行。账本17事件，旧13事件前缀保留；源采集底层原因尚不明，失败意图不删除、不免费重试。旧LEAN worker差异、完整US200和财务真实版本／送达认证仍不足，正式研究、最终测试及交易关闭。
 
 GPT Work已对固定`66ff72ffaaff8c91c008898e6527c91131176c2a`完成独立审核：本轮新增及回归的离线软件范围通过，未发现新增软件缺陷。仓库530项、新增独立18方法／132子例及历史套件在明示夹具适配后通过；套件有重叠，不合计为独有检查。原始报告与复验入口见[本轮独立审核归档](audit/reviews/20261027-66ff72f-windows/formal_report.txt)。此次接纳仅更新审核元数据，程序、配置及源码／执行身份保持66不变。
 

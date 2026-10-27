@@ -1,0 +1,31 @@
+# 阶段2集中开发与真实失败联调送审
+
+本轮按用户授权集中开发、完整离线检查、一次有界云端联调，最终统一送审。结论为：开发代码及失败回执恢复已验证；真实联合Research失败，LEAN未准入；阶段2整体仍未通过。以本目录所在最终Git提交作为待审版本，不能把旧66批准或开发测试当作本轮独立验收。
+
+## 两个代码身份必须分开
+
+实际云端部署和执行固定于 `7fc5ef2e9d2379d29f48d05a1f3cc760000884d6`，其601项离线测试通过、31份源码读回一致、统一编译通过；这些不代表运行完成。运行使用plan `4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7`，config `8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1`，Research attempt `f5d05f5b964b4a1d924e4b70cd207386`。
+
+失败返回后只在本地固定解析器新增Research双MCP错误载体兼容，没有再次部署或执行云端。最终612项离线检查通过，用时75.908秒，见verification/postnative_verification.json。当前本地候选与实际7fc返回参考31文件中29同、2不同（engineering_receipts.py及生成配置），见audit/stage2_completion_final_source_comparison.json；这不是新的云端读取或worker完整清单。最终控制器source清单138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78、稳定execution清单b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41、部署7944228dfbb38c8d305bf3b86460c51b10557316aa098db6c0342c569239604f，不能称这些新身份已经云端运行。
+
+## 实际原生失败与结算
+
+原件为audit/tool_observations/f5d05f5b964b4a1d924e4b70cd207386-research.json，文件SHA-256 `14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3`。实际MCP isError=false不代表cell成功；两个text均为完整、相同的direct nbformat error，CollectionError及固定信息 `Historical source iteration failed; unfinished intent retained`。没有工程成功报告；窗口数、历史请求数、接收记录数、订单和金融统计均未提供，保持null，不推断0。
+
+底层来源异常被既有隐私包装隐藏，本次不能判定是SDK、API响应形状、字段或时钟问题，也不能把它当正常缺失数据。失败采集意图留云端，不删除或覆盖后免费重跑。当前没有取得旧75失败LEAN的具体worker差异；本次Research异常也没有新的worker mismatch诊断，G2仍证据不足。
+
+新窄适配只支持恰两个顶层text分别为严格直接error JSON且typed语义完全一致。内部单载体投影仅用于逐一验证，不是原生原件；最终response_sha256为完整未改result的content_hash `6a5371b3ff243998baded6dc2f9627b110af793a94907a4a73859ced3d5f4f0b`。单个JSON数组内两个error仍拒绝；不同文本、未知注解、镜像冲突、隐藏值、网络超时、打印错误字典不能成为失败终态。全局_native及成功路径保持。
+
+按一次逻辑失败、2个MCP表示结算。原生traceback数组有9个条目，物理换行计数为43（sum(len(item.splitlines()))）；旧协议字段traceback_line_count=9实际表示数组条目数，保留原不可变证据并在此明确语义，不把它称为9个物理行。固定cell SHA `33c34e9fbbf958f6518966cee185e947d96a4c610b7c0a942d206dec252e3340`、input SHA `03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b`和派发前read_cell绑定均保持。
+
+先在隔离副本验证15→17→17、同回执幂等、错cell拒绝及LEAN依赖阻断，再按原attempt实际结算failed。实际账本13个旧事件前缀不变，新增配置、预扣、ack和失败后共17事件，未创建成功产物。见audit/stage2_completion_reconciliation.json。本包verification/settle_native_failure.py是此次操作记录，不能对当前真实账本再次运行；复现须从7fc的13事件加原准入资料重建隔离15事件环境。
+
+## 开发与验收范围
+
+集中开发原包见audit/review_packages/stage2_completion/，有G2受控诊断、G3固定入口及一次性协议、G4数据证据审计/私有分区重算、初始失败和修正。G4的空证据假通过、历史缺失被rank201补位已修。当前来源目录15个观察字段、0个可认证财务值字段；即使观测符合，正式供应商来源/版本/历史送达、全历史US200/财务认证和Research批准仍false。
+
+本包新增40份原字节材料，清单为developer_outputs_manifest.json；包括真实双载体修前拒绝/修后接收、专用11项、相关124项及额外8方法开发侧探针。各套件有重叠，不累计为独有检查。初始两载体合成夹具深复制保留了别名，已保留原件并改为独立block后重放；内部投影不能冒称原件。所有开发测试及peer不是GPT Work独立验收。
+
+本轮新增配置1、实际Research1、LEAN0，均按reserve预登记；预算配置7/12、Research10/20、LEAN1/16。工程域配置/Research各2已达停止条件，虽LEAN名义余1，失败Research不授予LEAN资格。实际运行已停止，不自行增额。最终测试、正式研究、自动GPT和交易关闭；2024–2025已暴露、2026独立性未知，financial_evidence=false。
+
+独立审核指令见REVIEW_INSTRUCTIONS.md。审核应分别报告软件、真实运行、数据认证和金融证据，不能将“代码通过”写成“阶段2通过”。

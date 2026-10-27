@@ -1,0 +1,120 @@
+test_annotations_must_be_consistent_registered_hints (test_research_error_representations.ResearchErrorRepresentationTests) ... ERROR
+test_consistent_structured_mirror_is_counted_but_conflicts_reject (test_research_error_representations.ResearchErrorRepresentationTests) ... ERROR
+test_default_native_and_success_semantics_are_unchanged (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_different_error_or_non_JSON_side_output_cannot_be_deduplicated (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_duplicate_carrier_form_does_not_expand_to_nested_or_success_errors (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_every_annotation_and_unknown_envelope_field_is_validated (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_exactly_observed_two_carriers_and_typed_dispatch_arguments (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_multiple_actual_error_nodes_in_one_JSON_array_remain_multiple (test_research_error_representations.ResearchErrorRepresentationTests) ... ok
+test_real_packet_is_one_logical_failure_and_two_native_representations (test_research_error_representations.ResearchErrorRepresentationTests) ... ERROR
+test_semantically_equal_JSON_formatting_does_not_change_typed_error (test_research_error_representations.ResearchErrorRepresentationTests) ... ERROR
+test_two_complete_typed_error_mirrors_use_full_original_response_hash (test_research_error_representations.ResearchErrorRepresentationTests) ... ERROR
+
+======================================================================
+ERROR: test_annotations_must_be_consistent_registered_hints (test_research_error_representations.ResearchErrorRepresentationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 124, in test_annotations_must_be_consistent_registered_hints
+    self.assertEqual(self.parse(tool)["completion"]["platform"]["status"], "runtime_error")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 43, in parse
+    return receipts.research_observation(self.payload, self.deployment, tool, dispatch_binding=self.binding)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 526, in research_observation
+    wrapper = _decode(_research_stdout(native), payload)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 334, in _research_stdout
+    visit(native)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 303, in visit
+    visit(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 297, in visit
+    visit(_json(node))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 310, in visit
+    _fail("Research errors, stderr and displayed values are prohibited")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 41, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Research errors, stderr and displayed values are prohibited
+
+======================================================================
+ERROR: test_consistent_structured_mirror_is_counted_but_conflicts_reject (test_research_error_representations.ResearchErrorRepresentationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 80, in test_consistent_structured_mirror_is_counted_but_conflicts_reject
+    self.assertEqual(self.parse(tool)["completion"]["platform"]["raw_receipt"]["native_error_representation_count"], 3)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 43, in parse
+    return receipts.research_observation(self.payload, self.deployment, tool, dispatch_binding=self.binding)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 516, in research_observation
+    native, raw = _tool(tool_envelope, "mcp__quantconnect__jupyter_execute_cell", payload, allow_tool_error=True)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 209, in _tool
+    return _native(envelope["result"], allow_tool_error=allow_tool_error), raw
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 173, in _native
+    _fail("Native output carriers disagree or contain additional output")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 41, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Native output carriers disagree or contain additional output
+
+======================================================================
+ERROR: test_real_packet_is_one_logical_failure_and_two_native_representations (test_research_error_representations.ResearchErrorRepresentationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 53, in test_real_packet_is_one_logical_failure_and_two_native_representations
+    result = receipts.research_observation(admission["payload"], admission["deployment"], tool, dispatch_binding=binding)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 526, in research_observation
+    wrapper = _decode(_research_stdout(native), payload)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 334, in _research_stdout
+    visit(native)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 303, in visit
+    visit(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 297, in visit
+    visit(_json(node))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 310, in visit
+    _fail("Research errors, stderr and displayed values are prohibited")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 41, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Research errors, stderr and displayed values are prohibited
+
+======================================================================
+ERROR: test_semantically_equal_JSON_formatting_does_not_change_typed_error (test_research_error_representations.ResearchErrorRepresentationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 153, in test_semantically_equal_JSON_formatting_does_not_change_typed_error
+    self.assertEqual(self.parse(tool)["completion"]["platform"]["raw_receipt"]["error_output_count"], 1)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 43, in parse
+    return receipts.research_observation(self.payload, self.deployment, tool, dispatch_binding=self.binding)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 526, in research_observation
+    wrapper = _decode(_research_stdout(native), payload)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 334, in _research_stdout
+    visit(native)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 303, in visit
+    visit(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 297, in visit
+    visit(_json(node))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 310, in visit
+    _fail("Research errors, stderr and displayed values are prohibited")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 41, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Research errors, stderr and displayed values are prohibited
+
+======================================================================
+ERROR: test_two_complete_typed_error_mirrors_use_full_original_response_hash (test_research_error_representations.ResearchErrorRepresentationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 69, in test_two_complete_typed_error_mirrors_use_full_original_response_hash
+    result = self.parse(tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\tests\test_research_error_representations.py", line 43, in parse
+    return receipts.research_observation(self.payload, self.deployment, tool, dispatch_binding=self.binding)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 526, in research_observation
+    wrapper = _decode(_research_stdout(native), payload)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 334, in _research_stdout
+    visit(native)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 303, in visit
+    visit(item)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 297, in visit
+    visit(_json(node))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 310, in visit
+    _fail("Research errors, stderr and displayed values are prohibited")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\stage2-completion\research-representation\baseline7fc_final\cloud\qresearch\engineering_receipts.py", line 41, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Research errors, stderr and displayed values are prohibited
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.040s
+
+FAILED (errors=5)
