@@ -358,6 +358,85 @@ class Registry:
                 or operation_key != "collection-plan:" + plan.hash + ":research"):
             raise RegistryError("Collection tasks permit only their fixed Research operation")
 
+    @staticmethod
+    def _joint_engineering_plan(package: dict):
+        """Return the complete v2 contract, without changing legacy v1 claims."""
+        if not Registry._is_engineering_package(package) or package["plan"].get("schema_version") != 2:
+            return None
+        from .engineering_tasks import EngineeringTaskPlan
+        plan = package["plan"]
+        return EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan["project_id"],))
+
+    @staticmethod
+    def _joint_operation(plan, stage: str, operation_key: str) -> None:
+        if plan is not None and operation_key != "engineering-plan:" + plan.hash + ":" + stage:
+            raise RegistryError("Joint engineering permits only its fixed stage operation")
+
+    def _joint_research_complete(self, state: dict, config_id: str, plan) -> None:
+        """Validate the same parent's checked Research while already under LOCK.
+
+        Do not call snapshot/read_result or Bridge.payload here: their public
+        methods would reacquire the filesystem transaction lock. Replay has
+        already verified the stored result's journal digest and canonical JSON.
+        """
+        operation = "engineering-plan:" + plan.hash + ":research"
+        records = [record for record in state["attempts"].values()
+                   if record["config_id"] == config_id and record["stage"] == "research"
+                   and record["operation_key"] == operation]
+        if not records or records[-1]["status"] != "completed":
+            raise RegistryError("Joint LEAN requires completed Research for this exact plan first")
+        record, document = records[-1], plan.to_dict()
+        identity = {"plan_hash": plan.hash, "config_id": config_id,
+                    "attempt_id": record["attempt_id"], "stage": "research",
+                    "project_id": document["project_id"], "source_manifest_hash": document["source_manifest_hash"],
+                    "deployment_hash": document["deployment_hash"], "data_request_hash": plan.request_hash}
+        key = document["report_namespace"] + "/reports/" + plan.hash + "/research/" + record["attempt_id"] + ".json"
+        external = "qc-research:" + str(document["project_id"]) + ":" + record["attempt_id"]
+        try:
+            result = json.loads(self.store.read_bytes(record["result_key"]))
+            if (not isinstance(result, dict) or set(result) != {"scope", "identity", "external_id", "cloud_report",
+                    "report_ref", "platform_evidence_ref", "financial_evidence"}
+                    or result["scope"] != "engineering" or result["identity"] != identity
+                    or result["external_id"] != external or result["financial_evidence"] is not False
+                    or not isinstance(result["cloud_report"], dict)
+                    or result["cloud_report"].get("identity") != identity):
+                raise ValueError("Research result does not identify this checked parent")
+            from .engineering_tasks import EngineeringTaskBridge, _safe_reference
+            bridge = EngineeringTaskBridge(self, plan)
+            reference = result["platform_evidence_ref"]
+            _safe_reference(reference)
+            if reference["key"] != "engineering/evidence/" + record["attempt_id"] + "/completion/" + reference["sha256"] + ".json":
+                raise ValueError("Research completion reference differs from the attempt")
+            encoded = self.store.read_bytes(reference["key"])
+            if sha256(encoded).hexdigest() != reference["sha256"] or canonical_json(json.loads(encoded)) != encoded:
+                raise ValueError("Research completion reference bytes changed")
+            observed = json.loads(encoded)
+            if not isinstance(observed, dict) or observed.get("cloud_report") != result["cloud_report"]:
+                raise ValueError("Research completion report differs from its checked identity")
+            bridge._completion_metadata(observed)
+            platform = observed["platform"]
+            if (platform["identity"] != dict(identity, external_id=external)
+                    or platform["status"] != "completed" or platform["terminal"] is not True
+                    or platform["deployment"]["source_manifest_hash"] != document["source_manifest_hash"]
+                    or platform["deployment"]["deployment_hash"] != document["deployment_hash"]
+                    or observed.get("cloud_report") != result["cloud_report"]
+                    or observed.get("report_ref") != result["report_ref"]
+                    or result["report_ref"] != {"key": key, "sha256": content_hash(result["cloud_report"])}
+                    or not bridge._cloud_report(result["cloud_report"], {"identity": identity})):
+                raise ValueError("Research completion does not prove the frozen dependency")
+        except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
+            raise RegistryError("Joint LEAN requires the verified same-plan Research result") from exc
+
+    def _joint_admission(self, state: dict, config_id: str, stage: str, plan) -> None:
+        if plan is None:
+            return
+        previous = [record for record in state["attempts"].values()
+                    if record["config_id"] == config_id and record["stage"] == stage]
+        if len(previous) >= 1 + plan.to_dict()["max_retries"][stage]:
+            raise RegistryError("Preregistered joint engineering retry bound reached")
+        if stage == "lean":
+            self._joint_research_complete(state, config_id, plan)
+
     def _engineering_config_ids(self, state: dict) -> set[str]:
         return {identity for identity in state["configs"]
                 if self._is_engineering_package(json.loads(
@@ -486,6 +565,8 @@ class Registry:
             package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
             collection = self._collection_plan(package)
             self._collection_operation(collection, stage, operation_key)
+            joint = self._joint_engineering_plan(package)
+            self._joint_operation(joint, stage, operation_key)
             existing_id = state["operations"].get(operation_id)
             if existing_id:
                 existing = state["attempts"][existing_id]
@@ -497,7 +578,10 @@ class Registry:
                 raise RegistryError("retry_of must refer to this logical operation's last failed attempt")
             for record in state["attempts"].values():
                 if record["config_id"] == config_id and record["stage"] == stage and record["status"] in _OPEN_STATES:
+                    if joint is not None:
+                        raise RegistryError("Unresolved joint engineering operation requires reconciliation")
                     return self._attempt(record)
+            self._joint_admission(state, config_id, stage, joint)
             self._enforce_engineering_project(state, package)
             if collection is not None:
                 previous = [record for record in state["attempts"].values()

@@ -7,12 +7,13 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import re
 import sys
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
-from qresearch.artifacts import canonical_json, content_hash
+from qresearch.artifacts import canonical_json, content_hash, validate_key
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge
 from qresearch.registry import BudgetExceeded
 from research import read_json, write_changed, open_registry, export_usage
@@ -64,15 +65,10 @@ def freeze(projects, *, plan_file=None, preview=False):
     reference = {"schema_version": 1, "plan_key": key, "plan_hash": plan.hash,
         "project_listing_ref": {"key": proof_key, "sha256": content_hash(projects)},
         "configuration_registered": False, "execution_started": False}
-    if raw["schema_version"] == 2:
-        # A freeze must not replace the old task's settlement pointer while its
-        # project input is unresolved. No new identity/slot may bypass it.
-        with registry.store.locked(registry.LOCK):
-            registry._enforce_engineering_project(registry._replay(), {"engineering_task_schema_version": 1, "plan": plan.to_dict()})
-            registry.store.write_once(key, canonical_json(plan.to_dict()))
-            registry.store.write_once(proof_key, canonical_json(projects))
-            _write(ROOT / "audit" / "engineering_current.json", reference)
-    else:
+    # Every plan version shares the same project input. Check before any
+    # pointer/plan/listing write, under the ledger's transaction lock.
+    with registry.store.locked(registry.LOCK):
+        registry._enforce_engineering_project(registry._replay(), {"engineering_task_schema_version": 1, "plan": plan.to_dict()})
         registry.store.write_once(key, canonical_json(plan.to_dict()))
         registry.store.write_once(proof_key, canonical_json(projects))
         _write(ROOT / "audit" / "engineering_current.json", reference)
@@ -92,29 +88,75 @@ def current_bridge():
     return EngineeringTaskBridge(registry, plan)
 
 
+def bridge_for_attempt(attempt, *, registry=None):
+    """Recover a charged Engineering task without consulting mutable pointers.
+
+    The configuration was admitted with its project/source/catalog at dispatch.
+    Reading it again authorizes settlement only, not a new charge or dispatch.
+    """
+    if not isinstance(attempt, str) or re.fullmatch(r"[0-9a-f]{32}", attempt) is None:
+        raise ValueError("An existing canonical engineering attempt ID is required")
+    registry = open_registry() if registry is None else registry
+    records = [item for item in registry.snapshot()["attempts"] if item["attempt_id"] == attempt]
+    if len(records) != 1:
+        raise ValueError("Unknown charged engineering attempt")
+    record = records[0]
+    encoded = registry.store.read_bytes("configurations/" + record["config_id"] + ".json")
+    package = json.loads(encoded)
+    if (canonical_json(package) != encoded or content_hash(package) != record["config_id"]
+            or not isinstance(package, dict) or set(package) != {"engineering_task_schema_version", "plan"}
+            or type(package["engineering_task_schema_version"]) is not int or package["engineering_task_schema_version"] != 1
+            or not isinstance(package["plan"], dict) or package["plan"].get("task_kind") == "historical_collection"):
+        raise ValueError("Attempt does not identify an immutable Engineering configuration")
+    raw = package["plan"]
+    plan = EngineeringTaskPlan.from_dict(raw, discovered_project_ids=(raw.get("project_id"),))
+    bridge = EngineeringTaskBridge(registry, plan)
+    if bridge.config_id != record["config_id"]:
+        raise ValueError("Persisted Engineering configuration is not canonical")
+    bridge._record(attempt)
+    return bridge
+
+
+def admitted_input(bridge, attempt):
+    """Validate original metadata and input bytes for either plan version."""
+    record = bridge._record(attempt)
+    encoded = bridge.store.read_bytes("engineering/admitted-inputs/" + record["attempt_id"] + ".json")
+    admission = json.loads(encoded)
+    expected_path = "audit/task_inputs/" + record["attempt_id"] + ".py"
+    if (canonical_json(admission) != encoded or not isinstance(admission, dict)
+            or set(admission) != {"payload", "deployment", "input_path", "cloud_input_path"}
+            or admission["input_path"] != expected_path or admission["cloud_input_path"] != "_engineering_task_input.py"):
+        raise ValueError("Original engineering input shape or destination changed")
+    payload = admission["payload"]
+    if not isinstance(payload, dict) or not isinstance(payload.get("deployment_manifest"), dict) or not payload["deployment_manifest"]:
+        raise ValueError("Original engineering deployment manifest is missing")
+    manifest = payload["deployment_manifest"]
+    for name, digest in manifest.items():
+        validate_key(name)
+        if not name.endswith(".py") or not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None:
+            raise ValueError("Invalid original engineering deployment identity")
+    if (payload != dict(bridge.payload(record["attempt_id"]), deployment_manifest=manifest)
+            or content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]):
+        raise ValueError("Original engineering input differs from its frozen attempt")
+    text = "TASK_INPUT_JSON = " + repr(canonical_json(payload).decode("utf-8")) + "\n"
+    deployment = {"source_manifest_hash": payload["identity"]["source_manifest_hash"],
+        "deployment_hash": payload["identity"]["deployment_hash"], "input_hash": hashlib.sha256(text.encode("utf-8")).hexdigest()}
+    if admission["deployment"] != deployment:
+        raise ValueError("Original engineering input hash or deployment changed")
+    path = ROOT / expected_path
+    if path.exists() and path.read_bytes() != text.encode("utf-8"):
+        raise ValueError("Local engineering input bytes differ from the admitted payload")
+    return admission
+
+
 def prepare(bridge, attempt):
+    record = bridge._record(attempt)
+    if bridge.store.exists("engineering/admitted-inputs/" + record["attempt_id"] + ".json"):
+        return admitted_input(bridge, record["attempt_id"])
+    if record["status"] not in {"started", "pending", "ambiguous"}:
+        raise ValueError("Finalized engineering attempts cannot create fresh input")
     payload = bridge.payload(attempt)
     if bridge.plan.to_dict()["schema_version"] == 2:
-        key = "engineering/admitted-inputs/" + attempt + ".json"
-        if bridge.store.exists(key):
-            admission = json.loads(bridge.store.read_bytes(key))
-            if not isinstance(admission, dict):
-                raise ValueError("Original joint admitted input must be a metadata object")
-            expected_payload = dict(payload, deployment_manifest=admission.get("payload", {}).get("deployment_manifest"))
-            text = "TASK_INPUT_JSON = " + repr(canonical_json(expected_payload).decode()) + "\n"
-            expected_deployment = {"source_manifest_hash": payload["identity"]["source_manifest_hash"],
-                "deployment_hash": payload["identity"]["deployment_hash"], "input_hash": hashlib.sha256(text.encode()).hexdigest()}
-            expected_path = "audit/task_inputs/" + attempt + ".py"
-            path = ROOT / expected_path
-            if (not isinstance(admission, dict) or set(admission) != {"payload", "deployment", "input_path", "cloud_input_path"}
-                    or admission["payload"] != expected_payload or admission["deployment"] != expected_deployment
-                    or admission["input_path"] != expected_path or admission["cloud_input_path"] != "_engineering_task_input.py"
-                    or content_hash(expected_payload["deployment_manifest"]) != payload["identity"]["deployment_hash"]
-                    or (path.exists() and path.read_bytes() != text.encode())):
-                raise ValueError("Original joint admitted input differs from its immutable attempt")
-            return admission
-        if bridge._record(attempt)["status"] not in {"started", "pending", "ambiguous"}:
-            raise ValueError("Finalized joint attempts cannot create fresh input")
         joint_preflight(bridge)
     manifest = read_json(ROOT / "audit" / "deployment.json")["source_files"]
     if content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]:
@@ -122,6 +164,8 @@ def prepare(bridge, attempt):
     payload["deployment_manifest"] = manifest
     text = "TASK_INPUT_JSON = " + repr(canonical_json(payload).decode()) + "\n"
     path = ROOT / "audit" / "task_inputs" / (attempt + ".py")
+    if path.exists() and path.read_bytes() != text.encode("utf-8"):
+        raise ValueError("Previously prepared engineering input bytes cannot change")
     write_changed(path, text)
     deployment = {"source_manifest_hash": payload["identity"]["source_manifest_hash"],
         "deployment_hash": payload["identity"]["deployment_hash"],
@@ -171,7 +215,18 @@ def main():
             parser.error("--projects-file requires actual list_projects metadata")
         print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == "preview")))
         return
-    bridge = current_bridge()
+    if args.command == "status":
+        registry = open_registry()
+        if args.attempt:
+            bridge_for_attempt(args.attempt, registry=registry)
+        print(json.dumps(registry.snapshot(), ensure_ascii=True))
+        return
+    if args.command in {"prepare", "research-result", "backtest-submission", "backtest-result"}:
+        if not args.attempt:
+            parser.error("--attempt is required for an existing charged task")
+        bridge = bridge_for_attempt(args.attempt)
+    else:
+        bridge = current_bridge()
     if args.command in {"register", "claim"}:
         joint_preflight(bridge)
     if args.command == "register":
@@ -185,13 +240,11 @@ def main():
         if not args.attempt:
             parser.error("--attempt required")
         result = prepare(bridge, args.attempt)
-    elif args.command == "status":
-        result = bridge.registry.snapshot()
     else:
         if not args.attempt or not args.tool_file:
             parser.error("--attempt and --tool-file with actual tool metadata required")
         from qresearch.engineering_receipts import research_observation, backtest_submission, backtest_observation
-        admitted = json.loads(bridge.store.read_bytes("engineering/admitted-inputs/" + args.attempt + ".json"))
+        admitted = admitted_input(bridge, args.attempt)
         payload, deployment = admitted["payload"], admitted["deployment"]
         native = read_json(args.tool_file)
         if args.command == "research-result":

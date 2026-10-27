@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "purpose": "WR16_WR17_developer_repair_not_independent_or_financial_acceptance",
+  "failed_review_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "original_independent_report": "audit/reviews/20261027-8f7236e-windows/formal_report.json",
+  "independent_original_files": 208,
+  "independent_original_bytes": 2289253,
+  "independent_archive_manifest_raw_sha256": "e3d89278369b0561dcf61a6f4777ac509e7d3d6ca8294524dc4a20bed0186752",
+  "prior_originals_byte_equal": true,
+  "candidate_source_manifest_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8",
+  "candidate_source_files": 120,
+  "implementation_hash": "8383170c3902c9940924d06e3733a159fe227603395e23a0a84245d6e729764d",
+  "parser_and_calculation_library_unchanged_this_repair": true,
+  "changed_runtime_files": [
+    "cloud/qresearch/registry.py",
+    "tools/stage2.py"
+  ],
+  "WR16": {
+    "fix_scope": "Only complete schema2 joint plans; v1 and Collection legacy Registry operation semantics retained",
+    "guards": "Fixed operation before reuse; retry limit and verified same-parent Research completion under LOCK before charge/write",
+    "dependency": "Matched report/identity and stored completion reference; generic completed status insufficient",
+    "original_full_MRE_before_exit": 1,
+    "original_full_MRE_after_exit": 0,
+    "baseline_methods": 6,
+    "baseline_passed_methods": 2,
+    "baseline_failed_methods": 4,
+    "baseline_failure_records": 10,
+    "final_methods": 8,
+    "final_all_passed": true,
+    "added_after_baseline_methods": 2,
+    "additional_coverage": "Malformed completed dependencies and temporary Filesystem store positive Research-to-LEAN locking",
+    "original_quick_admission_methods": 7,
+    "original_quick_admission_all_passed": true,
+    "compatibility_suites_developer_replayed": 5,
+    "counts_overlap": true
+  },
+  "WR17": {
+    "fix_scope": "All v1/v2 freeze routes and Engineering original-attempt recovery",
+    "guards": "Same-project unresolved check under LOCK before plan/listing/pointer writes",
+    "recovery": "Explicit attempt reconstructs immutable charged configuration; original admitted input binding/bytes verified",
+    "missing_local_input": "Return original checked metadata only; do not recreate or authorize dispatch",
+    "baseline_and_after": {
+      "kind": "developer_WR17_synthetic_recovery_regression",
+      "test_input_identical": true,
+      "results": {
+        "baseline": {
+          "methods": 11,
+          "passed_methods": 2,
+          "failed_methods": 4,
+          "error_methods": 5,
+          "failure_records": 9,
+          "error_records": 10,
+          "subcases_in_final_test": 24,
+          "test_raw_sha256": "06d79a0be77841bbc9d90ff7766c4c524d8e1bd15805d431f63b1f2be509a791"
+        },
+        "repair": {
+          "methods": 11,
+          "passed_methods": 11,
+          "failed_methods": 0,
+          "error_methods": 0,
+          "failure_records": 0,
+          "error_records": 0,
+          "subcases_in_final_test": 24,
+          "test_raw_sha256": "06d79a0be77841bbc9d90ff7766c4c524d8e1bd15805d431f63b1f2be509a791"
+        }
+      },
+      "original_MRE": {
+        "before_exit": 1,
+        "after_exit": 0,
+        "script_unchanged": true,
+        "script_sha256": "c2771ab9fdf7b90f971b988491ab95d1d1eb35da69da058c2cba9d45e1aead8c",
+        "after": {
+          "v1_freeze_returncode": 1,
+          "pointer_changed": false,
+          "prepare_original_attempt_returncode": 0,
+          "ledger_unchanged": true
+        }
+      },
+      "actual_cloud_or_model_calls": 0
+    },
+    "counts_overlap": true
+  },
+  "full_repository_verification": {
+    "command": "python -B tools/stages.py verify",
+    "methods": 442,
+    "passed": true,
+    "output": "----------------------------------------------------------------------\nRan 442 tests in 31.577s\n\nOK\n",
+    "source_hash": "00edbe8aa5926b01f782f0dbf5eea3c20de31b35ae7bdaa6add73274849990b8"
+  },
+  "environment": {
+    "platform": "nativeWindows",
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "BLAS_threads": 1
+  },
+  "second_build_config_changed": false,
+  "preview": {
+    "configuration_registered": false,
+    "execution_started": false,
+    "plan_hash": "5e367d3ba38252a629141a1f947dae63607944840ab418376bf60f65ca3294c3",
+    "execution_source_hash": "800fcd251c4eb6c232a23420191fe749ff5c06abf86e9baba40e47f1c2bbaf7d",
+    "not_dispatch_authorization": true
+  },
+  "developer_originals": {
+    "files": 65,
+    "bytes": 230642,
+    "manifest": "original_outputs_manifest.json",
+    "manifest_raw_sha256": "71c90abe043ad281da2c953932ed3e9231aaebc9263dfc2d64f51b8c481c091f"
+  },
+  "protected_configuration_usage_ledger_old_task_inputs_pointer_and_exposure_unchanged": true,
+  "old_backtest": {
+    "id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "last_archived_status": "pending",
+    "current_platform_status": null,
+    "completion_or_failure_confirmed": false,
+    "read_or_polled": false,
+    "logs_read": false,
+    "source_or_input_changed": false
+  },
+  "budget_used": {
+    "configurations": 6,
+    "research": 9,
+    "lean": 1
+  },
+  "budget_added": {
+    "configurations": 0,
+    "research": 0,
+    "lean": 0,
+    "model_API": 0
+  },
+  "new_cloud_project_operations": 0,
+  "deployed": false,
+  "extra_purchase": 0,
+  "financial_evidence": false,
+  "known_open_findings_pending_independent_retest": [
+    "WR-16",
+    "WR-17"
+  ],
+  "WR15": "Metadata correction independently passed in 8f7236e original review scope",
+  "stage2": "software_failed_on_reviewed8f_candidate; new_repair_pending_independent_retest",
+  "whole_system": "not_accepted",
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "independence_2026": null,
+  "documentation": "docs/review/wr16-wr17.md",
+  "limitations": [
+    "No new cloud/runtime/native terminal evidence",
+    "Limited explicit v2 Registry policy scope, not arbitrary legacy task business validation",
+    "Real historical US200/financial versions/publication/vendor receipt/ingestion not certified",
+    "Test and compatibility coverage overlaps"
+  ]
+}

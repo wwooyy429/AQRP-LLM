@@ -1,0 +1,27 @@
+test_annotated_json_recursion_keeps_width_and_side_load_checks (__main__.IndependentFractionBoundaries) ... ok
+test_calendar_known_answers_and_long_fraction_without_conversion (__main__.IndependentFractionBoundaries) ... ok
+test_fixed_primary_schema_and_reviewer_helper_identity (__main__.IndependentFractionBoundaries) ... ERROR
+test_invalid_calendar_and_time_offset_grammar_still_rejected (__main__.IndependentFractionBoundaries) ... ok
+test_new_old_rejects_invalid_side_loads_clocks_without_ledger_mutation (__main__.IndependentFractionBoundaries) ... ok
+test_new_old_worker_reports_complete_all_microsecond_widths (__main__.IndependentFractionBoundaries) ... ok
+test_old_lean_three_stage_clock_hints_remain_compatible (__main__.IndependentFractionBoundaries) ... ok
+test_rejection_then_corrected_same_attempt_no_refetch_or_recharge (__main__.IndependentFractionBoundaries) ... ok
+test_wr13_unknown_annotations_priority_and_text_types_unchanged (__main__.IndependentFractionBoundaries) ... ok
+test_zero_to_six_digits_point_comma_offset_case_and_unchanged_hint (__main__.IndependentFractionBoundaries) ... ok
+
+======================================================================
+ERROR: test_fixed_primary_schema_and_reviewer_helper_identity (__main__.IndependentFractionBoundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-8f7236e-20261027\fraction_replay\independent_fraction_boundaries.py", line 56, in test_fixed_primary_schema_and_reviewer_helper_identity
+    'reviewer_helper_sha':hashlib.sha256((OUT/'independent_fractional_harness.py').read_bytes()).hexdigest()=='d6f469e02b6e8129af4ecdaf679e7d877dee5959edc13f3f68a991777a19cf25',
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1126, in read_bytes
+    with self.open(mode='rb') as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\fraction_replay\\corrected_results\\independent_fractional_harness.py'
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.351s
+
+FAILED (errors=1)

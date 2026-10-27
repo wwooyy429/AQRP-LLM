@@ -1,0 +1,143 @@
+{
+  "reviewer": "joint_worker_agent independent joint-v2 review",
+  "commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "date": "2026-10-27",
+  "verdict": "本代理实际worker/collector/cache/receipt/Bridge完成链在所测合成范围通过；未新增确认缺陷。不覆盖独立Registry准入/CLI问题或阶段2整体验收。",
+  "findings": [],
+  "first_run": {
+    "methods": 9,
+    "passed_methods": 9,
+    "subcases": 81,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "first_failure": null,
+    "actual_component_invocations": {
+      "research_worker_invocations": 11,
+      "receiver_initialize_invocations": 6,
+      "receiver_finish_invocations": 5,
+      "receiver_slices": 15,
+      "probe_helper_replays": 3
+    }
+  },
+  "captured_repeat": {
+    "methods": 9,
+    "subcases": 81,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "same_inputs": true,
+    "additional_unique_cases": 0,
+    "actual_component_invocations": {
+      "research_worker_invocations": 11,
+      "receiver_initialize_invocations": 6,
+      "receiver_finish_invocations": 5,
+      "receiver_slices": 15,
+      "probe_helper_replays": 3
+    },
+    "stdout_raw": "captured_run/stdout.txt",
+    "stderr_raw": "captured_run/stderr.txt",
+    "stdout_bytes": 3202,
+    "stderr_bytes": 0
+  },
+  "both_runs_actual_component_invocations": {
+    "research_worker_invocations": 22,
+    "receiver_initialize_invocations": 12,
+    "receiver_finish_invocations": 10,
+    "receiver_slices": 30,
+    "probe_helper_replays": 6
+  },
+  "invocation_interpretation": "Research count includes failing invocations and explicit local synthetic intent-reentry tests; only a fake SDK is used. Three successful native modes use independent Registry clones of one worker output, so they are not three new Research executions. No actual platform calls occurred.",
+  "method_subcases": {
+    "test_actual_joint_worker_known_counts_hashes_and_half_open_requests": 47,
+    "test_collection_receipt_replay_zero_fetch_and_corruption_fail_closed": 3,
+    "test_empty_child_observation_is_failed_without_coverage_approval": 1,
+    "test_invalid_native_child_leaves_intent_and_blocks_source_refetch": 4,
+    "test_joint_summary_tampering_and_certification_side_loads_rejected": 14,
+    "test_native_carriers_hidden_output_annotations_and_wrong_project": 5,
+    "test_native_research_and_actual_receiver_full_chain": 3,
+    "test_research_resolution_and_lean_probe_side_loads_bound": 3,
+    "test_trusted_adapter_worker_error_is_ambiguous_and_not_free_retried": 1
+  },
+  "counts_overlap_do_not_add": true,
+  "known_answer_results": {
+    "parent_market_history_calls": 1,
+    "joint_universe_native_calls": 40,
+    "joint_window_count": 40,
+    "joint_record_count": 80,
+    "joint_missing_values": {
+      "dollar_volume": 40,
+      "has_fundamental_data": 0,
+      "time": 0,
+      "end_time": 0
+    },
+    "retained_snapshot_rows_with_HasFundamentalData_false": 40,
+    "native_request_contract": "For each original daily [A,B), arguments are A-1us/B-1us, native inventory filters (start,end]; includes Jan1 and excludes Feb10.",
+    "child_cache_only_provider_calls": 0,
+    "child_first_and_replay_refs_equal": true,
+    "receipt_and_report_raw_hashes_verified": true,
+    "receipt_identity_and_child_plan_hash_verified": true,
+    "successful_receiver_data_event_count": 6,
+    "successful_receiver_dividend_event_count": 1,
+    "receiver_observation_window": "Invented three weekdays 2018-01-03 through 2018-01-05; parent raw cache still fetches full synthetic 2018."
+  },
+  "coverage": [
+    "Actual run_research_task uses independent FakeQB for raw OHLCV and actual QuantConnectSnapshotSource/HistoricalSnapshotCollector for all 40 child windows, then native-shaped Research parsing→pending→Registry completed.",
+    "Research→LEAN uses the completed parent resolution. Actual initialize_receiver/receive_slice/finish_receiver run against a shared fake Object Store, then native create/read/log chunks→Bridge/Registry completed in direct/content/equivalent-dual modes.",
+    "Parent/child/attempt summary references, exact plan hash, count/boolean, missing totals, cache fetch, row arrays, financial/US200/availability/export flags and missing completed summary mutations reject before Registry writes.",
+    "Wrong native project, conflicting carriers, hidden display rows, and annotation rows reject. No synthetic row sentinel enters Registry.",
+    "Child helper replay returns the same summary/reference with zero fetch. Receipt identity corruption and payload corruption reject without refetch.",
+    "All-empty child completes its 40 empty cache windows but yields a failed Research report and blocks LEAN.",
+    "Native child raises/out-of-window/duplicate/mixed-universe responses retain intents; explicit same-attempt local worker reentry does not call native source again. Failure messages do not reveal the row sentinel.",
+    "Actual trusted synthetic adapter callback sees Research debit before executing worker; worker failure yields ambiguous, repeat submit returns should_execute=false without another callback.",
+    "Receiver permanent-SID mismatch rejects; a LEAN report carrying Research-only probe summary rejects; a changed resolution reference with recomputed bundle/report hashes fails exact Research binding."
+  ],
+  "source_locations": {
+    "joint_worker": "cloud/qresearch/engineering_data.py:248-282,357-363",
+    "summary_shape_and_parent_attempt_binding": "cloud/qresearch/engineering_tasks.py:157-206",
+    "native_report_joint_validation": "cloud/qresearch/engineering_receipts.py:264-268",
+    "receiver": "cloud/qresearch/engineering_data.py:366-472",
+    "Research_to_LEAN_resolution": "cloud/qresearch/engineering_tasks.py:419-423,585"
+  },
+  "source_hashes_before_after_equal": true,
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_data.py": "f29bed3bbcfe66428c25404f18cc3638711af88eb4a93791fd5538d6fe4aa70f",
+    "cloud/qresearch/engineering_tasks.py": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32",
+    "cloud/qresearch/engineering_receipts.py": "06abbcef0212c5a4cbfc7b3ac15d84b1f89c260311316a17105ebce4dcefbfa9",
+    "cloud/qresearch/historical_source.py": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+    "cloud/qresearch/collection.py": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+    "cloud/qresearch/registry.py": "e9a78469a01f371ced3005aa58a5c5f752931a6e319e0d30cafe716ea902b7eb",
+    "cloud/qresearch/quantconnect.py": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319"
+  },
+  "reviewer_helper": {
+    "path": "independent_market_helper.py",
+    "byte_identical_to_previous_independent_helper": true,
+    "raw_sha256": "d6f469e02b6e8129af4ecdaf679e7d877dee5959edc13f3f68a991777a19cf25",
+    "developer_fixtures_imported": false
+  },
+  "commands": "command_log.json",
+  "raw_capture_record": "captured_execution.json",
+  "regression_inputs": "first_run_summary.json:inputs",
+  "reviewer_measurement_corrections": [],
+  "scope_limits": [
+    "FakeSDK/ObjectStore, invented weekdays, constant OHLCV, fabricated universe records and one synthetic dividend are engineering fixtures only.",
+    "Repeated local failure/intent probes are not permission to rerun a real precharged Research attempt. No real SDK, Research, LEAN, models or market endpoint was called.",
+    "References/hashes prove these observed synthetic bytes and shape/binding checks, not upstream provenance or signed platform execution.",
+    "No true deployment/input readback, real native success/full failure, old pending LEAN terminal, US200/financial/company-action coverage, or economic evidence is established.",
+    "Other agents independently review Registry admission and CLI lifecycle; this positive worker-chain result does not override their findings."
+  ],
+  "actions": {
+    "network": 0,
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deployment": 0,
+    "authoritative_budget_changes": 0,
+    "candidate_source_edits": 0,
+    "actual_final_market_data_opened": 0
+  }
+}

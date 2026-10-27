@@ -1,0 +1,17 @@
+8f7236e独立审核：阶段2联合候选软件失败（WR-16、WR-17均P2）；阶段2整体待验收。
+旧LEAN39cafa1e9b11f91b27e396b66d033a6d的当前终态无法确认。已查证据只有pending归档；未主动读取/轮询状态、结果或日志，不能据此声称仍在运行。
+固定SHA：8f7236ecbafcb514f07a6af4150a5afdbc1fd474
+独立本地423通过；16组旧回归248方法/2307子例通过；Collection恢复12/36通过；注解最终10/803通过。
+注解前两次各10方法/799子例，9通过/1审核器证据文件缺失错误，原始输出保留；仅补齐schema和helper原件，没有改断言或生产代码。
+联合worker9方法/81子例通过，另一次为原字节输出捕获的同例重放，不增加独有用例。每次实际纯PythonResearch worker11、receiver初始化6、finish5、slice15、probe重放3；均非SDK/真实市场。
+准入首7方法3通过/4产品负例失败；两项MRE由主代理原脚本及简短内嵌版各复验一次，均预期exit1。细分记录见JSON。
+证据63/63检查、两build/两preview、合法/陈旧preflight边界均通过；1563源文件原字节及1387旧证据保持，未登记真实配置或扣费。
+云端25份实现及1份输入与旧75原字节完全相同；新候选29份部署身份77a676...尚未部署。GitHub本SHA双版本job元数据成功，未取得各job测试数。
+权威12事件重放配置6/12、Research9/20、LEAN1/16；各工程停止已用1/2。新真实执行/模型/部署为0。2024–25旧暴露保留，2026独立性未知。
+P2 WR-16：Registry.begin_attempt仅对Collection校验固定operation/重试，对joint v2漏检；Bridge拒绝的前置LEAN、max0重试经直接Registry仍被预扣，max0重试还能产可用payload。总预算/工程总cap仍有效，不夸大为真实超支。
+P2 WR-17：同项目pending时v2 freeze拒绝，v1 freeze仍能改current指针；原attempt随后的实际CLI prepare拒绝。journal未变，可恢复但普通结算路径受阻。
+修复任务：在共享LOCK/扣费前统一joint固定operation、Research依赖、max_retry及所有v1/v2 freeze在途保护；旧attempt按冻结身份解析，保留幂等、失败不退款与合法完整链。
+完整全系统矩阵、环境/依赖、命令、范围、两个问题细节、预算及缺口在同目录formal_report.json；原生终态/真实候选运行/原生失败/完整历史US200/财务vintage及实际可用性认证仍缺。阶段3–7未验收。
+运行最小：python -B minimal_boundaries.py source registry 或 freeze，当前均应exit1；仅内存或新临时复制写入，不进行任何QC或模型调用。
+完整脚本：admission_agent/minimal_joint_registry.py 与 admission_agent/minimal_pending_freeze.py；joint_worker_agent/independent_joint_worker.py --source source --out <新目录> 为独立成功全链。
+金融证据financial_evidence=false，data_certification=false；正式研究、GPT自动调用、最终测试、交易全部关闭。未修改/批准/合并开发成果。

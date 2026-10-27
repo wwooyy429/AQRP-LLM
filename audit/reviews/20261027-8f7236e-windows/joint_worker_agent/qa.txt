@@ -1,0 +1,16 @@
+只读交付QA（2026-10-27，固定8f7236ecbafcb514f07a6af4150a5afdbc1fd474）
+
+已读formal_report.json、formal_report.txt、minimal_boundaries.py，并对照首跑/捕获记录、inline/root确认执行记录及相关证据路径。未新跑测试，未修改报告、候选源码、权威预算或配置。
+
+确认：
+1. 联合worker首9方法/81子例全过，另1次仅为原字节stdout/stderr捕获的同例重放，不累计独有案例。每次Research worker invocations=11、receiver initialize=6、finish=5、slice=15、probe replay=3；两次合计22/12/10/30/6。invocations包含失败与本地intent重入，不是成功任务数，也不是实际SDK/Research/LEAN执行次数。
+2. 正确成功链与失败/缓存/损坏/认证旁载荷检查的正向结论仅属于纯Python假SDK范围，未覆盖共享Registry准入或v1 freeze缺陷；总体软件失败/阶段2待验收表述准确。
+3. 旧LEAN当前平台终态为null、未发现交付终态，且未读取status/results/logs；pending只是归档事实。25份旧实现+1输入的只读原字节核对，与实际终态/候选部署运行明确区分，表述准确。
+4. minimal_boundaries.py的registry/freeze模式均为有意失败反例，root实际exit1记录存在，报告未冒称成功测试。脚本只用内存或新临时副本，不调用QC/模型。
+5. --out拼写正确：独立joint helper实际参数为--source与--out；捕获记录中--out指向joint_worker_agent/captured_run。fraction replay报告命令与root_confirmation_complete/execution_records.json参数一致，亦为--out。
+6. formal JSON列出的7个command_records及joint原字节stdout/stderr路径均存在。
+
+修正建议（交付路径措辞，非产品/审核结论错误）：
+formal_report.txt第16行“admission_agent/minimal_joint_registry.py 与 minimal_pending_freeze.py”应将第二项也写为“admission_agent/minimal_pending_freeze.py”。根目录没有minimal_pending_freeze.py，实际文件在admission_agent。formal_report.json中的相应完整路径已正确。
+
+除此之外，未发现本代理负责范围内的实质错误。可选在worker次数描述后补“含失败和intent重入”以防读者误当成功次数；现有JSON字段invocations及合成范围限定已准确。

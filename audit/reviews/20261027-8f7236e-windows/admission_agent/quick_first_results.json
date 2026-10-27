@@ -1,0 +1,328 @@
+{
+  "source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "methods": 7,
+  "passed_methods": 3,
+  "failed_methods": 4,
+  "error_methods": 0,
+  "skipped": 0,
+  "subcases": 0,
+  "failures": [
+    {
+      "method": "__main__.JointProbes.test_direct_registry_lean_requires_parent_research_before_debit",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py\", line 60, in test_direct_registry_lean_requires_parent_research_before_debit\n    self.assertIsNotNone(error,'LEAN was granted/charged before any completed parent Research')\nAssertionError: unexpectedly None : LEAN was granted/charged before any completed parent Research\n"
+    },
+    {
+      "method": "__main__.JointProbes.test_direct_registry_respects_joint_max_retry_zero",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py\", line 69, in test_direct_registry_respects_joint_max_retry_zero\n    self.assertIsNotNone(error,'A max_retries=0 joint plan obtained an additional fixed-operation execution')\nAssertionError: unexpectedly None : A max_retries=0 joint plan obtained an additional fixed-operation execution\n"
+    },
+    {
+      "method": "__main__.JointProbes.test_direct_registry_wrong_operation_must_not_charge_joint_task",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py\", line 52, in test_direct_registry_wrong_operation_must_not_charge_joint_task\n    self.assertIsNotNone(error,'A v2 operation outside the fixed parent operation was admitted and charged')\nAssertionError: unexpectedly None : A v2 operation outside the fixed parent operation was admitted and charged\n"
+    },
+    {
+      "method": "__main__.JointProbes.test_legacy_freeze_must_not_replace_pending_project_pointer",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py\", line 101, in test_legacy_freeze_must_not_replace_pending_project_pointer\n    self.assertNotEqual(legacy.returncode,0,'Legacy freeze bypassed pending protection and replaced the current pointer')\nAssertionError: 0 == 0 : Legacy freeze bypassed pending protection and replaced the current pointer\n"
+    }
+  ],
+  "errors": [],
+  "observations": {
+    "premature_lean": {
+      "attempt": {
+        "attempt_id": "e0e074cd537f4e45b67660773724f262",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "lean",
+        "operation_key": "engineering-plan:31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589:lean",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/lean/53813ec99bbbcca9744acd55bf1fb798ae4a8bc0bf64d6eb1094cab139666bd3.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        }
+      },
+      "error": null
+    },
+    "zero_retry": {
+      "attempt": {
+        "attempt_id": "fd4009cd1c814c2c8069cf3cb6cd226e",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "research",
+        "operation_key": "engineering-plan:31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589:research",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/research/b06b547cbaa7bdd11eb1320f77ae9b83a12adf31eb752f2e529720f6aa5a79c2.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": null,
+      "bridge_payload_usable": {
+        "plan": {
+          "collection_probe": {
+            "collection_plan": {
+              "calendar_days_per_request": 1,
+              "data_version": "independent-child-v1",
+              "end_exclusive": "2018-02-10T00:00:00-05:00",
+              "fields": [
+                "dollar_volume",
+                "end_time",
+                "has_fundamental_data",
+                "time"
+              ],
+              "max_batch_records": 1000,
+              "max_records_per_window": 50000,
+              "plan_id": "independent-child",
+              "schema_version": 1,
+              "scope": "engineering",
+              "source": "quantconnect_fundamental_universe",
+              "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "start": "2018-01-01T00:00:00-05:00",
+              "timezone": "America/New_York"
+            },
+            "field_catalog": {
+              "dollar_volume": {
+                "kind": "number",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "USD"
+              },
+              "end_time": {
+                "kind": "text",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "clock"
+              },
+              "has_fundamental_data": {
+                "kind": "boolean",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "flag"
+              },
+              "time": {
+                "kind": "text",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "clock"
+              }
+            }
+          },
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "economic_factor": null,
+          "economic_model": null,
+          "financial_metrics_enabled": false,
+          "max_retries": {
+            "lean": 0,
+            "research": 0
+          },
+          "observation_window": {
+            "end_exclusive": "2018-02-01T00:00:00-05:00",
+            "start": "2018-01-03T00:00:00-05:00"
+          },
+          "orders_enabled": false,
+          "plan_id": "independent-joint",
+          "project_id": 931001,
+          "report_namespace": "independent/joint",
+          "request_mode": "symbol_resolution",
+          "request_template": {
+            "data_version": "independent-parent-v1",
+            "dataset": "US Equities",
+            "end": "2019-01-01T00:00:00-05:00",
+            "fields": [
+              "close",
+              "volume"
+            ],
+            "normalization": "raw",
+            "start": "2018-01-01T00:00:00-05:00",
+            "timezone": "America/New_York",
+            "universe_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "required_checks": {
+            "lean": [
+              "no_orders"
+            ],
+            "research": [
+              "raw_data_received",
+              "collection_windows_completed",
+              "collection_cache_only_replay",
+              "collection_nonempty"
+            ]
+          },
+          "schema_version": 2,
+          "scope": "engineering",
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "symbol_resolution": {
+            "as_of": "2019-01-01T00:00:00-05:00",
+            "method": "QuantBook.add_equity/as-of fixed fixture",
+            "tickers": [
+              "AAPL",
+              "MSFT"
+            ]
+          }
+        },
+        "identity": {
+          "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+          "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+          "attempt_id": "fd4009cd1c814c2c8069cf3cb6cd226e",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+        },
+        "report_key": "independent/joint/reports/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/research/fd4009cd1c814c2c8069cf3cb6cd226e.json",
+        "external_identity_kind": "logical_research_execution_receipt"
+      }
+    },
+    "wrong_operation": {
+      "attempt": {
+        "attempt_id": "4554bce73bea435190ac8b455902bb4b",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "research",
+        "operation_key": "independent-arbitrary-operation",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/research/cbcf2c62368ea814ecb9f47a8b3cac8c6c950175793e1d2d13a0479ec772cd40.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": null
+    },
+    "legacy_freeze": {
+      "joint_returncode": 1,
+      "legacy_returncode": 0,
+      "pointer_changed": true,
+      "before": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489.json",
+        "plan_hash": "f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/900fde744ff211527d114ff8453b5bf86d4f7aad7bc0af291c6387d1678f6428.json",
+          "sha256": "900fde744ff211527d114ff8453b5bf86d4f7aad7bc0af291c6387d1678f6428"
+        },
+        "configuration_registered": true,
+        "execution_started": true,
+        "status_source": "Projection from authoritative Registry; read lifecycle there"
+      },
+      "after": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2.json",
+        "plan_hash": "fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json",
+          "sha256": "498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6"
+        },
+        "configuration_registered": false,
+        "execution_started": false
+      },
+      "ledger_bytes_changed": false
+    }
+  },
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py"
+  ],
+  "script_sha256": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7",
+  "actual_external_calls": 0,
+  "author_fixture_imports": false,
+  "exit_code": 1
+}

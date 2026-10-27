@@ -1,0 +1,8 @@
+最终报告独立QA（只读核对，无新增测试或生产修改）
+
+需要修正1处精确源码引用：
+WR-16的第二个位置目前为cloud/qresearch/registry.py:478–479，这两行只是docstring结尾和_validate_identity调用，不能精确指示仅Collection执行operation校验。建议改为487–488（_collection_plan及_collection_operation）；502–508和EngineeringTaskBridge.claim:394–409的其余引用准确。请同步findings.json及formal_report.json内相同位置。
+
+其余指定项准确：117审核/执行/部署/实现及活跃配置hash与独立证据一致；63/63元数据检查、0单元方法；12事件6/9/1且新增真实扣费0；两build/两preview及preflight只读边界表述准确。10/803前两次各9pass1error保留并明确为schema/helper夹具缺失；第三次仅补证据后通过，不吞产品失败。四次exit1原/内嵌MRE没有算成通过方法或四缺陷。WR16保留全局/工程cap有效限制，WR17明确v1指针覆盖和可恢复范围；阶段2软件失败/整体验收待定、金融证据false，未扩大。
+
+机器字段交叉核对：{"hashes_match_evidence": true, "63_checks_unit0": true, "budget_matches": true, "build_preview_counts": true, "findings_consistent": true, "financial_scope": true}

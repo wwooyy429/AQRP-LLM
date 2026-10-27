@@ -1,0 +1,118 @@
+{
+  "fixed_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "actually_executed": true,
+  "execution_kind": "Two local builds, two actual CLI previews and valid/stale joint_preflight metadata probes on an independent Git copy",
+  "unit_test_methods": 0,
+  "new_QC_market_model_calls": 0,
+  "independent_copy": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+  "commands": [
+    {
+      "label": "build_1",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/research.py",
+        "build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+      "exit_code": 0,
+      "file_count_after": 1563,
+      "changed_paths": [],
+      "stdout_file": "build_1.stdout.txt",
+      "stdout_raw_sha256": "67d3ab30aa36f0daf99649142fa76c64f88984e01137f123d9f0d910d66465d9",
+      "stderr_file": "build_1.stderr.txt",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "build_2",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/research.py",
+        "build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+      "exit_code": 0,
+      "file_count_after": 1563,
+      "changed_paths": [],
+      "stdout_file": "build_2.stdout.txt",
+      "stdout_raw_sha256": "67d3ab30aa36f0daf99649142fa76c64f88984e01137f123d9f0d910d66465d9",
+      "stderr_file": "build_2.stderr.txt",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "preview_1",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\evidence_agent\\offline_preview_runner.py",
+        "preview",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+      "exit_code": 0,
+      "file_count_after": 1563,
+      "changed_paths": [],
+      "stdout_file": "preview_1.stdout.txt",
+      "stdout_raw_sha256": "bd620a28c2dadef264fdb3151434bcb529d1a8a5956dc8da5fb8d749907a852d",
+      "stderr_file": "preview_1.stderr.txt",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "preview_2",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\evidence_agent\\offline_preview_runner.py",
+        "preview",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+      "exit_code": 0,
+      "file_count_after": 1563,
+      "changed_paths": [],
+      "stdout_file": "preview_2.stdout.txt",
+      "stdout_raw_sha256": "bd620a28c2dadef264fdb3151434bcb529d1a8a5956dc8da5fb8d749907a852d",
+      "stderr_file": "preview_2.stderr.txt",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "joint_preflight",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\evidence_agent\\offline_preview_runner.py",
+        "preflight",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\runs\\evidence_build_source",
+      "exit_code": 0,
+      "file_count_after": 1563,
+      "changed_paths": [],
+      "stdout_file": "joint_preflight.stdout.txt",
+      "stdout_raw_sha256": "ad3217b4d015ce68fd15c90fe080a3d2595c10ba65dd89a15fc0962c48e74ff0",
+      "stderr_file": "joint_preflight.stderr.txt",
+      "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "both_builds_exit_zero": true,
+  "both_previews_exit_zero": true,
+  "previews_equal_each_other_and_archived_preview": true,
+  "all1563_copy_file_bytes_unchanged_after_every_command": true,
+  "candidate_source_unchanged": true,
+  "preview_plan_hash": "a04fb70f1ad48db1cb1fca09653e3bb3bd6c531c72089400710d907e3ea10b52",
+  "preview_execution_identity": "9f9b2d696dec59d765c8720f4d98be9a3b703aeea2d732ae7404a477bbc4f808",
+  "preview_deployment_hash": "77a6767c8fbd7e7adadafc499b921a77e4133d8061e0a3ed25fd71a0dabb9358",
+  "preview_registration_admission_dispatch_flags_false": true,
+  "joint_preflight": {
+    "valid_joint_preflight_passed": true,
+    "stale_deployment_rejected": true,
+    "Registry_open_attempts": 0,
+    "provider_socket_attempts": 0,
+    "registration_or_admission_performed": false,
+    "unit_test_methods": 0
+  },
+  "budget_and_original_pending_attempt_unchanged": true,
+  "boundary": "Preview/preflight only validate metadata. They do not allocate a slot, authorize new execution, certify a delivered terminal or certify full historical/financial data.",
+  "financial_evidence": false
+}

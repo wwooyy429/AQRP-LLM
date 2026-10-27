@@ -1,0 +1,938 @@
+{
+  "reviewed_source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "verdict_in_scope": "failed: WR16 and WR17 reproduced",
+  "unique_unit_suite": {
+    "file": "quick_joint_probes.py",
+    "methods": 7,
+    "passed_methods": 3,
+    "failed_methods": 4,
+    "error_methods": 0,
+    "skipped": 0,
+    "subcases": 0
+  },
+  "first_failure_records_preserved": true,
+  "first_output": "quick_first_output.txt",
+  "first_results": "quick_first_results.json",
+  "original_script_sha256": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7",
+  "findings": [
+    {
+      "id": "WR-16",
+      "priority": "P2",
+      "title": "Joint v2 frozen operation, Research prerequisite and retry bounds are not enforced at direct Registry admission",
+      "primary_file": "cloud/qresearch/registry.py",
+      "lines": [
+        487,
+        488,
+        502,
+        506,
+        507,
+        508
+      ],
+      "bridge_control_file": "cloud/qresearch/engineering_tasks.py",
+      "bridge_control_lines": [
+        388,
+        391,
+        407,
+        408,
+        409
+      ],
+      "contract_evidence": [
+        "Joint plan max_retries is frozen per stage. EngineeringTaskBridge rejects LEAN before a completed parent Research and rejects retry when max_retries=0.",
+        "Registry is documented as the authoritative locked admission point for direct callers; existing CollectionTask operation and retry guards run there.",
+        "Joint schema2 is validated/classified during registration, but begin_attempt only obtains _collection_plan and therefore omits the joint policy before its attempt_started debit."
+      ],
+      "actual": [
+        "A direct research call with an arbitrary operation returns should_execute=True and increments durable Research usage.",
+        "A direct fixed-operation LEAN call before any Research returns should_execute=True and increments LEAN usage. Bridge claim refuses before charging.",
+        "After one failed Research, a joint plan with max_retries=0 receives a second should_execute=True fixed-operation Research via direct Registry; its Bridge payload is usable. Bridge retry refuses with identical frozen plan."
+      ],
+      "severity_reason": "A documented public admission route can debit scarce nonrefundable slots for work outside the frozen parent protocol. Fixed-operation retry can produce a usable payload. These are policy/ordering failures before dispatch; no real remote job was submitted.",
+      "bounds": "The existing shared engineering2/2/2, global12/20/16 and allocation caps remain enforced. Wrong-operation and early-LEAN payload construction subsequently refuses, after the debit. The max0 example independently uses an empty synthetic engineering domain; the real preserved1/2 baseline would hit the aggregate cap on another retry. Do not claim actual/global budget overspending.",
+      "minimal_reproduction": "python -B minimal_joint_registry.py <source-dir> (exit1; three observations, plus Bridge controls)",
+      "regression_tasks": [
+        "Under Registry.LOCK validate joint fixed engineering-plan operation and stage before any new charge.",
+        "Require the same parent Research completed state before joint LEAN; preserve free idempotent completed/unresolved logical reuse.",
+        "Enforce the frozen per-stage max_retries for direct Registry as well as Bridge, across normal/reserve and reopen/replay.",
+        "Mixed v1/collection/v2 races with one remaining domain slot still allow at most one new claimant; all global and allocation caps continue applying."
+      ]
+    },
+    {
+      "id": "WR-17",
+      "priority": "P2",
+      "title": "Inherited v1 freeze can overwrite the settlement pointer while the project has pending old work",
+      "primary_file": "tools/stage2.py",
+      "lines": [
+        67,
+        70,
+        71,
+        74,
+        75,
+        76,
+        77,
+        78,
+        82,
+        83,
+        95,
+        96
+      ],
+      "downstream_file": "cloud/qresearch/engineering_tasks.py",
+      "downstream_lines": [
+        371,
+        377,
+        412,
+        413
+      ],
+      "contract_evidence": "The new v2 freeze explicitly says an unresolved project input must not have its old settlement pointer replaced. The schema1 else branch writes the identical pointer without the project guard.",
+      "actual": "On an isolated complete source/old-ledger copy, original current_bridge._record accepts bfd00f2611fd4496b9498d4597618a8e. Joint freeze refuses and preserves pointer. Legacy freeze succeeds, changes engineering_current.json, and actual CLI prepare --attempt for that same old identity refuses Attempt does not belong to this exact registered task plan.",
+      "severity_reason": "A normal supported CLI entry evades the new pending-project freeze protection and breaks the standard current-pointer settlement/preparation context for the in-flight old task. The ledger and original configuration remain available; this is recoverable context loss, not permanent data loss or global deadlock.",
+      "bounds": "This is an inherited schema1 entry inconsistent with new v2 protection. It does not invalidate historical WR12, which covered CollectionTask recovery by attempt. The reproduction only changes a new temporary source/ledger copy, keeps event bytes unchanged and makes no QC call.",
+      "minimal_reproduction": "python -B minimal_pending_freeze.py <source-dir> <fresh-output-dir> (exit1; logs/result.json preserve before/control/after)",
+      "regression_tasks": [
+        "Apply pending-project protection to every freeze route that can replace the shared engineering_current pointer, including v1; decide harmless exact-pointer reuse separately.",
+        "Verify v1/v2 started/pending/ambiguous all block replacement and preserve pointer bytes, journal and usage.",
+        "Resolve old attempt settlement from its persisted original context, or otherwise retain an explicit recovery path independent of mutable current pointer.",
+        "After trusted terminal reconciliation, permitted new freeze/register/claim works normally; no refunds, re-submission or clearing historical evidence."
+      ]
+    }
+  ],
+  "unit_suite_count_does_not_add_reproductions": "Seven unique methods total (3 passing controls and4 failed methods); two standalone MREs are replays of the same defects, not extra unit methods. No extra race/fault suite was run just to increase counts.",
+  "mre_results": {
+    "WR16": {
+      "exit_code": 1,
+      "stdout": "mre_registry.stdout",
+      "stderr": "mre_registry.stderr"
+    },
+    "WR17": {
+      "exit_code": 1,
+      "stdout": "mre_freeze.stdout",
+      "stderr": "mre_freeze.stderr",
+      "detailed_result": "mre_freeze/result.json"
+    }
+  },
+  "public_Bridge_preflight_boundary_observation": {
+    "preflight_refusal": {
+      "type": "ValueError",
+      "message": "Joint engineering source and deployment must be frozen before new charging"
+    },
+    "before": {
+      "configurations": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      },
+      "research": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      },
+      "lean": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      }
+    },
+    "after": {
+      "configurations": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "research": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "lean": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      }
+    },
+    "result": {
+      "attempt_id": "c6a774c2a850459981bb29d8f82e8f72",
+      "config_id": "f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e",
+      "stage": "research",
+      "operation_key": "engineering-plan:78d9836a52bcb0fc55a077d3c3f856aa727c234ec275627a4b33add22a3a42f4:research",
+      "status": "failed",
+      "should_execute": false,
+      "allocation": "normal",
+      "result_key": "results/f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e/research/ab2f6bb9ebc8253b2c63aff9fdc91fbb9edb93739c1d19cc92556404df0a1316.json",
+      "external_id": null
+    },
+    "synthetic_adapter_calls": [
+      {
+        "identity": {
+          "plan_hash": "78d9836a52bcb0fc55a077d3c3f856aa727c234ec275627a4b33add22a3a42f4",
+          "config_id": "f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e",
+          "attempt_id": "c6a774c2a850459981bb29d8f82e8f72",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "542767b071163ccc937d456b26043b9950402f759184e81376ee6ff50d9feb90"
+        },
+        "usage_before_callback": {
+          "configurations": {
+            "total": 1,
+            "normal": 1,
+            "reserve": 0
+          },
+          "research": {
+            "total": 1,
+            "normal": 1,
+            "reserve": 0
+          },
+          "lean": {
+            "total": 0,
+            "normal": 0,
+            "reserve": 0
+          }
+        }
+      }
+    ],
+    "actual_remote_calls": 0,
+    "scope": "The public Bridge does not itself invoke tools.stage2.joint_preflight. Trusted caller/adapter boundary remains; this is not a successful wrong-deployment worker execution."
+  },
+  "preflight_interpretation": "Public EngineeringTaskBridge.register/submit do not invoke tools.stage2.joint_preflight. A separately executed CLI preflight rejects the synthetic stale source/deployment, while Bridge charges and invokes one deliberately stopping synthetic adapter. This is recorded as a trusted-caller/I-O boundary observation, not a successful wrong-deployment worker run or a separate unqualified third defect.",
+  "accurate_source_function_ranges": {
+    "cloud/qresearch/registry.py:RegistryError": [
+      26,
+      27
+    ],
+    "cloud/qresearch/registry.py:BudgetExceeded": [
+      30,
+      31
+    ],
+    "cloud/qresearch/registry.py:CorruptRegistry": [
+      34,
+      35
+    ],
+    "cloud/qresearch/registry.py:Attempt": [
+      39,
+      48
+    ],
+    "cloud/qresearch/registry.py:_counter": [
+      64,
+      67
+    ],
+    "cloud/qresearch/registry.py:_normalize_limits": [
+      70,
+      86
+    ],
+    "cloud/qresearch/registry.py:_normalize_usage": [
+      89,
+      105
+    ],
+    "cloud/qresearch/registry.py:Registry": [
+      108,
+      600
+    ],
+    "cloud/qresearch/registry.py:__init__": [
+      126,
+      142
+    ],
+    "cloud/qresearch/registry.py:_validate_usage": [
+      144,
+      148
+    ],
+    "cloud/qresearch/registry.py:_charge": [
+      150,
+      157
+    ],
+    "cloud/qresearch/registry.py:_append": [
+      159,
+      161
+    ],
+    "cloud/qresearch/registry.py:_operation_id": [
+      164,
+      167
+    ],
+    "cloud/qresearch/registry.py:result_key": [
+      170,
+      172
+    ],
+    "cloud/qresearch/registry.py:_validate_identity": [
+      175,
+      179
+    ],
+    "cloud/qresearch/registry.py:_replay": [
+      181,
+      258
+    ],
+    "cloud/qresearch/registry.py:_attempt": [
+      261,
+      266
+    ],
+    "cloud/qresearch/registry.py:register_config": [
+      268,
+      283
+    ],
+    "cloud/qresearch/registry.py:_is_engineering_package": [
+      286,
+      310
+    ],
+    "cloud/qresearch/registry.py:_collection_candidate": [
+      313,
+      317
+    ],
+    "cloud/qresearch/registry.py:_collection_plan": [
+      320,
+      335
+    ],
+    "cloud/qresearch/registry.py:_enforce_engineering_project": [
+      337,
+      353
+    ],
+    "cloud/qresearch/registry.py:_collection_operation": [
+      356,
+      359
+    ],
+    "cloud/qresearch/registry.py:_engineering_config_ids": [
+      361,
+      364
+    ],
+    "cloud/qresearch/registry.py:_enforce_engineering_limit": [
+      366,
+      381
+    ],
+    "cloud/qresearch/registry.py:check_engineering_admission": [
+      383,
+      407
+    ],
+    "cloud/qresearch/registry.py:_verify_import": [
+      409,
+      435
+    ],
+    "cloud/qresearch/registry.py:import_existing_config": [
+      437,
+      468
+    ],
+    "cloud/qresearch/registry.py:begin_attempt": [
+      470,
+      514
+    ],
+    "cloud/qresearch/registry.py:_attempt_id": [
+      517,
+      518
+    ],
+    "cloud/qresearch/registry.py:_transition": [
+      520,
+      539
+    ],
+    "cloud/qresearch/registry.py:pending": [
+      541,
+      545
+    ],
+    "cloud/qresearch/registry.py:ambiguous": [
+      547,
+      551
+    ],
+    "cloud/qresearch/registry.py:fail": [
+      553,
+      556
+    ],
+    "cloud/qresearch/registry.py:complete": [
+      558,
+      583
+    ],
+    "cloud/qresearch/registry.py:read_result": [
+      585,
+      592
+    ],
+    "cloud/qresearch/registry.py:snapshot": [
+      594,
+      600
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskError": [
+      19,
+      20
+    ],
+    "cloud/qresearch/engineering_tasks.py:_hash": [
+      23,
+      26
+    ],
+    "cloud/qresearch/engineering_tasks.py:_mapping": [
+      29,
+      32
+    ],
+    "cloud/qresearch/engineering_tasks.py:_string": [
+      35,
+      38
+    ],
+    "cloud/qresearch/engineering_tasks.py:_time": [
+      41,
+      45
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_raw_metadata": [
+      67,
+      97
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_reference": [
+      100,
+      105
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_identity": [
+      108,
+      120
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_evidence": [
+      123,
+      154
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_collection_probe": [
+      157,
+      179
+    ],
+    "cloud/qresearch/engineering_tasks.py:validate_joint_report": [
+      182,
+      206
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskPlan": [
+      210,
+      338
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskBridge": [
+      341,
+      662
+    ],
+    "cloud/qresearch/engineering_tasks.py:__init__": [
+      353,
+      359
+    ],
+    "cloud/qresearch/engineering_tasks.py:from_dict": [
+      224,
+      320
+    ],
+    "cloud/qresearch/engineering_tasks.py:to_dict": [
+      322,
+      323
+    ],
+    "cloud/qresearch/engineering_tasks.py:hash": [
+      326,
+      327
+    ],
+    "cloud/qresearch/engineering_tasks.py:request_hash": [
+      332,
+      338
+    ],
+    "cloud/qresearch/engineering_tasks.py:register": [
+      361,
+      362
+    ],
+    "cloud/qresearch/engineering_tasks.py:_operation": [
+      364,
+      367
+    ],
+    "cloud/qresearch/engineering_tasks.py:_records": [
+      369,
+      370
+    ],
+    "cloud/qresearch/engineering_tasks.py:_record": [
+      372,
+      378
+    ],
+    "cloud/qresearch/engineering_tasks.py:_attempt": [
+      381,
+      383
+    ],
+    "cloud/qresearch/engineering_tasks.py:_research_result": [
+      385,
+      389
+    ],
+    "cloud/qresearch/engineering_tasks.py:claim": [
+      391,
+      410
+    ],
+    "cloud/qresearch/engineering_tasks.py:payload": [
+      412,
+      424
+    ],
+    "cloud/qresearch/engineering_tasks.py:_save": [
+      426,
+      431
+    ],
+    "cloud/qresearch/engineering_tasks.py:_submission_key": [
+      433,
+      434
+    ],
+    "cloud/qresearch/engineering_tasks.py:_deployment": [
+      436,
+      444
+    ],
+    "cloud/qresearch/engineering_tasks.py:_submission_metadata": [
+      446,
+      462
+    ],
+    "cloud/qresearch/engineering_tasks.py:_report_metadata": [
+      464,
+      484
+    ],
+    "cloud/qresearch/engineering_tasks.py:_completion_metadata": [
+      486,
+      502
+    ],
+    "cloud/qresearch/engineering_tasks.py:record_submission": [
+      504,
+      536
+    ],
+    "cloud/qresearch/engineering_tasks.py:submit": [
+      538,
+      555
+    ],
+    "cloud/qresearch/engineering_tasks.py:_resolution": [
+      557,
+      585
+    ],
+    "cloud/qresearch/engineering_tasks.py:_cloud_report": [
+      587,
+      615
+    ],
+    "cloud/qresearch/engineering_tasks.py:consume_completion": [
+      617,
+      658
+    ],
+    "cloud/qresearch/engineering_tasks.py:read_result": [
+      660,
+      662
+    ],
+    "tools/stage2.py:_write": [
+      22,
+      23
+    ],
+    "tools/stage2.py:freeze": [
+      26,
+      79
+    ],
+    "tools/stage2.py:current_bridge": [
+      82,
+      92
+    ],
+    "tools/stage2.py:prepare": [
+      95,
+      132
+    ],
+    "tools/stage2.py:joint_preflight": [
+      135,
+      144
+    ],
+    "tools/stage2.py:_limits": [
+      147,
+      153
+    ],
+    "tools/stage2.py:main": [
+      156,
+      210
+    ]
+  },
+  "observations": {
+    "premature_lean": {
+      "attempt": {
+        "attempt_id": "e0e074cd537f4e45b67660773724f262",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "lean",
+        "operation_key": "engineering-plan:31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589:lean",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/lean/53813ec99bbbcca9744acd55bf1fb798ae4a8bc0bf64d6eb1094cab139666bd3.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        }
+      },
+      "error": null
+    },
+    "zero_retry": {
+      "attempt": {
+        "attempt_id": "fd4009cd1c814c2c8069cf3cb6cd226e",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "research",
+        "operation_key": "engineering-plan:31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589:research",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/research/b06b547cbaa7bdd11eb1320f77ae9b83a12adf31eb752f2e529720f6aa5a79c2.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": null,
+      "bridge_payload_usable": {
+        "plan": {
+          "collection_probe": {
+            "collection_plan": {
+              "calendar_days_per_request": 1,
+              "data_version": "independent-child-v1",
+              "end_exclusive": "2018-02-10T00:00:00-05:00",
+              "fields": [
+                "dollar_volume",
+                "end_time",
+                "has_fundamental_data",
+                "time"
+              ],
+              "max_batch_records": 1000,
+              "max_records_per_window": 50000,
+              "plan_id": "independent-child",
+              "schema_version": 1,
+              "scope": "engineering",
+              "source": "quantconnect_fundamental_universe",
+              "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "start": "2018-01-01T00:00:00-05:00",
+              "timezone": "America/New_York"
+            },
+            "field_catalog": {
+              "dollar_volume": {
+                "kind": "number",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "USD"
+              },
+              "end_time": {
+                "kind": "text",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "clock"
+              },
+              "has_fundamental_data": {
+                "kind": "boolean",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "flag"
+              },
+              "time": {
+                "kind": "text",
+                "period_accessor": null,
+                "role": "independent_observation",
+                "unit": "clock"
+              }
+            }
+          },
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "economic_factor": null,
+          "economic_model": null,
+          "financial_metrics_enabled": false,
+          "max_retries": {
+            "lean": 0,
+            "research": 0
+          },
+          "observation_window": {
+            "end_exclusive": "2018-02-01T00:00:00-05:00",
+            "start": "2018-01-03T00:00:00-05:00"
+          },
+          "orders_enabled": false,
+          "plan_id": "independent-joint",
+          "project_id": 931001,
+          "report_namespace": "independent/joint",
+          "request_mode": "symbol_resolution",
+          "request_template": {
+            "data_version": "independent-parent-v1",
+            "dataset": "US Equities",
+            "end": "2019-01-01T00:00:00-05:00",
+            "fields": [
+              "close",
+              "volume"
+            ],
+            "normalization": "raw",
+            "start": "2018-01-01T00:00:00-05:00",
+            "timezone": "America/New_York",
+            "universe_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          },
+          "required_checks": {
+            "lean": [
+              "no_orders"
+            ],
+            "research": [
+              "raw_data_received",
+              "collection_windows_completed",
+              "collection_cache_only_replay",
+              "collection_nonempty"
+            ]
+          },
+          "schema_version": 2,
+          "scope": "engineering",
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "symbol_resolution": {
+            "as_of": "2019-01-01T00:00:00-05:00",
+            "method": "QuantBook.add_equity/as-of fixed fixture",
+            "tickers": [
+              "AAPL",
+              "MSFT"
+            ]
+          }
+        },
+        "identity": {
+          "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+          "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+          "attempt_id": "fd4009cd1c814c2c8069cf3cb6cd226e",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+        },
+        "report_key": "independent/joint/reports/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/research/fd4009cd1c814c2c8069cf3cb6cd226e.json",
+        "external_identity_kind": "logical_research_execution_receipt"
+      }
+    },
+    "wrong_operation": {
+      "attempt": {
+        "attempt_id": "4554bce73bea435190ac8b455902bb4b",
+        "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+        "stage": "research",
+        "operation_key": "independent-arbitrary-operation",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1/research/cbcf2c62368ea814ecb9f47a8b3cac8c6c950175793e1d2d13a0479ec772cd40.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": null
+    },
+    "legacy_freeze": {
+      "joint_returncode": 1,
+      "legacy_returncode": 0,
+      "pointer_changed": true,
+      "before": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489.json",
+        "plan_hash": "f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/900fde744ff211527d114ff8453b5bf86d4f7aad7bc0af291c6387d1678f6428.json",
+          "sha256": "900fde744ff211527d114ff8453b5bf86d4f7aad7bc0af291c6387d1678f6428"
+        },
+        "configuration_registered": true,
+        "execution_started": true,
+        "status_source": "Projection from authoritative Registry; read lifecycle there"
+      },
+      "after": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2.json",
+        "plan_hash": "fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json",
+          "sha256": "498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6"
+        },
+        "configuration_registered": false,
+        "execution_started": false
+      },
+      "ledger_bytes_changed": false
+    }
+  },
+  "freeze_impact": {
+    "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\source",
+    "case": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source",
+    "original_pending_attempt": "bfd00f2611fd4496b9498d4597618a8e",
+    "original_context_accepts_attempt": true,
+    "joint_freeze_refused": true,
+    "legacy_freeze_returncode": 0,
+    "pointer_changed": true,
+    "prepare_old_attempt_returncode": 1,
+    "prepare_error": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 187, in main\n    result = prepare(bridge, args.attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 96, in prepare\n    payload = bridge.payload(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\cloud\\qresearch\\engineering_tasks.py\", line 413, in payload\n    record = self._record(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\cloud\\qresearch\\engineering_tasks.py\", line 377, in _record\n    raise EngineeringTaskError(\"Attempt does not belong to this exact registered task plan\")\nqresearch.engineering_tasks.EngineeringTaskError: Attempt does not belong to this exact registered task plan\n",
+    "ledger_unchanged": true,
+    "commands": [
+      {
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\minimal_pending_freeze.py",
+          "--inspect",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source",
+          "bfd00f2611fd4496b9498d4597618a8e"
+        ],
+        "returncode": 0,
+        "stdout": "{\"allocation\": \"normal\", \"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"kind\": \"pending\", \"operation_key\": \"engineering-plan:f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489:lean\", \"reason\": null, \"recorded_at\": \"2026-10-26T04:31:21.333068+00:00\", \"result_key\": \"results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/lean/710c72c60d209eef90b8f5872bbb82201ee0636fc1056be737845eb5d98de88c.json\", \"retry_of\": null, \"stage\": \"lean\", \"status\": \"pending\", \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"details\": {\"deployment\": {\"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"input_hash\": \"95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0\", \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\"}, \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"identity\": {\"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"data_request_hash\": \"db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85\", \"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"plan_hash\": \"f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489\", \"project_id\": 38436695, \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\", \"stage\": \"lean\"}, \"identity_kind\": \"quantconnect_backtest_id\", \"receipt_ref\": {\"key\": \"engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/submission/56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f.json\", \"sha256\": \"56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f\"}}}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py",
+          "freeze",
+          "--plan-file",
+          "config/engineering_joint_pilot.json",
+          "--projects-file",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\synthetic-projects.json"
+        ],
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 172, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 71, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+      },
+      {
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py",
+          "freeze",
+          "--plan-file",
+          "config/engineering.json",
+          "--projects-file",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\synthetic-projects.json"
+        ],
+        "returncode": 0,
+        "stdout": "{\"schema_version\": 1, \"plan_key\": \"engineering/frozen-plans/fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2.json\", \"plan_hash\": \"fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2\", \"project_listing_ref\": {\"key\": \"engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json\", \"sha256\": \"498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6\"}, \"configuration_registered\": false, \"execution_started\": false}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py",
+          "prepare",
+          "--attempt",
+          "bfd00f2611fd4496b9498d4597618a8e"
+        ],
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 187, in main\n    result = prepare(bridge, args.attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\tools\\stage2.py\", line 96, in prepare\n    payload = bridge.payload(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\cloud\\qresearch\\engineering_tasks.py\", line 413, in payload\n    record = self._record(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze\\source\\cloud\\qresearch\\engineering_tasks.py\", line 377, in _record\n    raise EngineeringTaskError(\"Attempt does not belong to this exact registered task plan\")\nqresearch.engineering_tasks.EngineeringTaskError: Attempt does not belong to this exact registered task plan\n"
+      }
+    ],
+    "actual_QC_calls": 0
+  },
+  "commands": [
+    [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\quick_joint_probes.py"
+    ],
+    [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\minimal_joint_registry.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\source"
+    ],
+    [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\minimal_pending_freeze.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\source",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\mre_freeze"
+    ],
+    [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\api_preflight_boundary.py"
+    ]
+  ],
+  "actual_platform_Research_LEAN_market_model_calls": 0,
+  "author_test_fixtures_imported": false,
+  "coverage_limits": [
+    "No claim that new v2 Windows multi-process/fault matrix was exhaustively executed. Existing atomic lock/cap code was statically traced; parent owns broader historical/repository replays.",
+    "First failures are expectation failures, not imports, malformed test fixtures or reviewer exceptions: error_methods=0 and all positive controls pass.",
+    "Stage2 live-pilot documents are read as a declared candidate, not execution authorization for this reviewer. All stores and project-listing shapes here are synthetic or copied metadata.",
+    "Original production/source/config/budget files were not modified; only new admission_agent files and independent copies were written.",
+    "No financial validity, historical data certification or overall stage2 acceptance follows from this audit."
+  ],
+  "artifact_sha256": {
+    "api_preflight_boundary.json": "d0863ef5a24a6bc80a0cfa5dabf4feba9f3da5b7d7b89a5b84b469c97a22e9e7",
+    "api_preflight_boundary.py": "70a55ac1eea7e63e667a5bf534876cc52c3901b53d87c24e92ea46f70f2df074",
+    "build_report.py": "393afdd0d211cf8a4cb73745d58d165f6f8f02cfffadda40db5624e013cd43b2",
+    "minimal_joint_registry.py": "cf82888c10bb15dba38d45191a5a2b948512bac1b4f7454a1154c0800bf25074",
+    "minimal_pending_freeze.py": "c2771ab9fdf7b90f971b988491ab95d1d1eb35da69da058c2cba9d45e1aead8c",
+    "mre_freeze.stderr": "a82db6acf26ca4e4c045c87d359e4b77ca072ffc3d4e0cb35a7db3b85890d2f9",
+    "mre_freeze.stdout": "c9f07e0738e950ab6c9d1e0c2f5be555e0f205301aa84435882896d25fec0f97",
+    "mre_registry.stderr": "d46b7ba821c14a65ac66c3696667513740f9ec25600b5fa4c8837f41a643a6f8",
+    "mre_registry.stdout": "4c77355ac4b5c972502cb7317453ef07fbfb8f643258b0ee8bb4650ec4969ff4",
+    "quick_command_log.json": "8b8df92c27e98ce40b160393a59f4d727afc26c8d46fd28f30363a6e31a9fa89",
+    "quick_first_output.txt": "a24b279696041ba54e6f11216ac80dc3b584305eba7df28edee3ce41b9306e18",
+    "quick_first_results.json": "0ceacd21a2bda2824114acf31fdae9e7474564b875ab3e700ba85cc87dcf965d",
+    "quick_joint_probes.py": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7"
+  }
+}

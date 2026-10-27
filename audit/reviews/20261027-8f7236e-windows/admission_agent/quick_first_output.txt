@@ -1,0 +1,44 @@
+test_bridge_lean_guard_is_positive_control (__main__.JointProbes) ... ok
+test_bridge_retry_guard_is_positive_control (__main__.JointProbes) ... ok
+test_direct_registry_lean_requires_parent_research_before_debit (__main__.JointProbes) ... FAIL
+test_direct_registry_respects_joint_max_retry_zero (__main__.JointProbes) ... FAIL
+test_direct_registry_wrong_operation_must_not_charge_joint_task (__main__.JointProbes) ... FAIL
+test_legacy_freeze_must_not_replace_pending_project_pointer (__main__.JointProbes) ... FAIL
+test_valid_parent_claim_and_reuse_are_single_charged_control (__main__.JointProbes) ... ok
+
+======================================================================
+FAIL: test_direct_registry_lean_requires_parent_research_before_debit (__main__.JointProbes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-8f7236e-20261027\admission_agent\quick_joint_probes.py", line 60, in test_direct_registry_lean_requires_parent_research_before_debit
+    self.assertIsNotNone(error,'LEAN was granted/charged before any completed parent Research')
+AssertionError: unexpectedly None : LEAN was granted/charged before any completed parent Research
+
+======================================================================
+FAIL: test_direct_registry_respects_joint_max_retry_zero (__main__.JointProbes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-8f7236e-20261027\admission_agent\quick_joint_probes.py", line 69, in test_direct_registry_respects_joint_max_retry_zero
+    self.assertIsNotNone(error,'A max_retries=0 joint plan obtained an additional fixed-operation execution')
+AssertionError: unexpectedly None : A max_retries=0 joint plan obtained an additional fixed-operation execution
+
+======================================================================
+FAIL: test_direct_registry_wrong_operation_must_not_charge_joint_task (__main__.JointProbes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-8f7236e-20261027\admission_agent\quick_joint_probes.py", line 52, in test_direct_registry_wrong_operation_must_not_charge_joint_task
+    self.assertIsNotNone(error,'A v2 operation outside the fixed parent operation was admitted and charged')
+AssertionError: unexpectedly None : A v2 operation outside the fixed parent operation was admitted and charged
+
+======================================================================
+FAIL: test_legacy_freeze_must_not_replace_pending_project_pointer (__main__.JointProbes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-8f7236e-20261027\admission_agent\quick_joint_probes.py", line 101, in test_legacy_freeze_must_not_replace_pending_project_pointer
+    self.assertNotEqual(legacy.returncode,0,'Legacy freeze bypassed pending protection and replaced the current pointer')
+AssertionError: 0 == 0 : Legacy freeze bypassed pending protection and replaced the current pointer
+
+----------------------------------------------------------------------
+Ran 7 tests in 5.314s
+
+FAILED (failures=4)
