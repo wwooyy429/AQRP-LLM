@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "plan_id": "stage2-joint-empty-response-round002-v2",
+  "scope": "engineering",
+  "project_id": null,
+  "source_manifest_hash": null,
+  "deployment_hash": null,
+  "request_mode": "symbol_resolution",
+  "request_template": {
+    "dataset": "US Equities",
+    "fields": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "start": "2018-01-01T00:00:00-05:00",
+    "end": "2019-01-01T00:00:00-05:00",
+    "data_version": "qc-engineering-2018-raw-snapshot-v1",
+    "universe_hash": null,
+    "normalization": "raw",
+    "timezone": "America/New_York"
+  },
+  "symbol_resolution": {
+    "tickers": [
+      "AAPL",
+      "MSFT"
+    ],
+    "as_of": "2019-01-01T00:00:00-05:00",
+    "method": "QuantBook.add_equity/as-of fixed fixture"
+  },
+  "observation_window": {
+    "start": "2018-01-03T00:00:00-05:00",
+    "end_exclusive": "2019-01-01T00:00:00-05:00"
+  },
+  "required_checks": {
+    "research": [
+      "source_snapshot_matches",
+      "raw_data_received",
+      "second_prefetch_no_history",
+      "same_partition_ids",
+      "cache_only_consumer",
+      "read_only_write_rejected",
+      "final_request_rejected",
+      "coverage_observed_complete",
+      "development_only",
+      "symbol_registry_resolved",
+      "collection_windows_completed",
+      "collection_cache_only_replay",
+      "collection_nonempty"
+    ],
+    "lean": [
+      "source_snapshot_matches",
+      "raw_data_received",
+      "complete_expected_bars",
+      "no_orders",
+      "development_only",
+      "symbol_registry_resolved",
+      "corporate_action_received"
+    ]
+  },
+  "max_retries": {
+    "research": 0,
+    "lean": 0
+  },
+  "report_namespace": "engineering/joint-round002-v2",
+  "orders_enabled": false,
+  "financial_metrics_enabled": false,
+  "economic_factor": null,
+  "economic_model": null,
+  "collection_probe": {
+    "collection_plan": {
+      "schema_version": 1,
+      "plan_id": "stage2-liquidity-clock-empty-response-2018-round002-v2",
+      "scope": "engineering",
+      "source": "quantconnect_fundamental_universe",
+      "data_version": "qc-liquidity-clock-observation-2018-empty-sentinel-v3",
+      "start": "2018-01-01T00:00:00-05:00",
+      "end_exclusive": "2018-02-10T00:00:00-05:00",
+      "timezone": "America/New_York",
+      "fields": [
+        "dollar_volume",
+        "has_fundamental_data",
+        "time",
+        "end_time"
+      ],
+      "calendar_days_per_request": 1,
+      "max_batch_records": 1000,
+      "max_records_per_window": 50000,
+      "source_manifest_hash": null
+    },
+    "field_catalog": null
+  }
+}

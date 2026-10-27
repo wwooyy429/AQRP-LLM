@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "round_id": "stage2-cloud-round-002",
+  "parent_failed_attempt": "4de020ffad5a4e82a26c5374f7715685",
+  "original_tool_observation": "audit/tool_observations/4de020ffad5a4e82a26c5374f7715685-research.json",
+  "observed_failure_diagnostic": {
+    "exception_kind": "source_contract",
+    "failure_code": "source_contract",
+    "index_kind": "other",
+    "index_levels": 1,
+    "index_names": "other",
+    "native_calls": 1,
+    "projection_kind": "not_observed",
+    "projection_position": null,
+    "response_kind": "dataframe",
+    "response_rows": 0,
+    "rows_emitted": 0,
+    "schema_version": 1,
+    "snapshot_kind": "not_observed",
+    "snapshots_seen": 0,
+    "stage": "response_contract"
+  },
+  "interpretation": "Strict Series-only adapter rejected an observed zero-row DataFrame; absence cause and complete frame axes were not emitted.",
+  "repair": "Accept exactly the native zero-row, zero-column plain unnamed-index DataFrame sentinel as an observed empty response. Preserve all nonempty and Series contracts.",
+  "remaining_round_slots_before_debit": {
+    "configurations": 1,
+    "research": 1,
+    "lean": 1
+  },
+  "new_full_configuration_required": true,
+  "old_failure_and_unfinished_intents_preserved": true,
+  "empty_response_is_not_coverage_certification": true,
+  "on_next_failure": "Settle native terminal, stop this round; no third Research, no LEAN without verified same-parent Research.",
+  "final_test_enabled": false,
+  "independent_acceptance": false
+}

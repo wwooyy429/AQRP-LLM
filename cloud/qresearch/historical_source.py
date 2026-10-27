@@ -210,6 +210,17 @@ class QuantConnectSnapshotSource:
             diagnostic["index_kind"] = "multiindex" if isinstance(response.index, pd.MultiIndex) else "other"
             diagnostic["index_levels"] = min(response.index.nlevels, 1000000000)
             diagnostic["index_names"] = "expected" if list(response.index.names) == ["symbol", "time"] else "other"
+        # An observed zero-row, zero-column ordinary frame has no constituent
+        # payload to project. Normalize only this narrow SDK empty sentinel.
+        # The collector records an empty window; this does not prove that an
+        # exchange session was absent, that data were complete, or PIT coverage.
+        if (type(response) is pd.DataFrame and response.shape == (0, 0)
+                and type(response.index) in (pd.Index, pd.RangeIndex)
+                and response.index.nlevels == 1 and response.index.name is None
+                and type(response.columns) in (pd.Index, pd.RangeIndex)
+                and response.columns.nlevels == 1 and response.columns.name is None):
+            diagnostic["stage"] = "completed"
+            return
         if (not isinstance(response, pd.Series) or not isinstance(response.index, pd.MultiIndex)
                 or response.index.nlevels != 2 or list(response.index.names) != ["symbol", "time"]):
             raise HistoricalSourceError("Expected documented symbol/time universe-history Series")

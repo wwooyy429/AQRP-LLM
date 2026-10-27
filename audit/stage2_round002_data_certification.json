@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "kind": "stage2_round002_metadata_only_data_certification",
+  "status": "insufficient_evidence",
+  "round_id": "stage2-cloud-round-002",
+  "reproduction": {
+    "program": "audit/review_packages/stage2_round002/certify_metadata.py",
+    "program_sha256": "8533727ac0969a494a26a7914e1efd51fc28e2de5d2a792c200b51934b92da56",
+    "command": [
+      "python",
+      "-B",
+      "audit/review_packages/stage2_round002/certify_metadata.py",
+      "--research-observation",
+      "audit/tool_observations/4de020ffad5a4e82a26c5374f7715685-research.json"
+    ],
+    "provider_calls_performed": 0,
+    "Research_executions_performed": 0,
+    "LEAN_submissions_performed": 0
+  },
+  "input_refs": [
+    {
+      "path": "config/source_catalog.json",
+      "sha256": "209dd8cc968d5c8f87bdd7124c198eb61048dd8dbac9d48f205555302cd6479e"
+    },
+    {
+      "path": "audit/stage2_completion_data_capabilities.json",
+      "sha256": "9bf4b2cb42ea24cc87ccb2fe2f8a06bc17792babfcaeb82b976d1adef1f03d71"
+    },
+    {
+      "path": "config/research.json",
+      "sha256": "a200a8bf889f9559e56b34bfc4b237138048b01bed5b20ab0687d0572c3449df"
+    },
+    {
+      "path": "cloud/qresearch/collection.py",
+      "sha256": "8f90ba28171d9da9e5883fc0f162a9f3488834a40d4834765d6fb809a14b0758"
+    }
+  ],
+  "round_observations": [
+    {
+      "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+      "identity": {
+        "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+        "config_id": "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+        "data_request_hash": "5bb65c0ffc5ebb6ebdfecc6d5f2edb93e46202884afd9c480b865ff613648f5b",
+        "deployment_hash": "3e779f1e17bffb05bc190f59e7aced79ee8be3b9067cd2242cdf3181b4b0db10",
+        "plan_hash": "3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda",
+        "project_id": 38436695,
+        "source_manifest_hash": "1a22794cbaec17cd96ed81b71bb59179710050d18378ac8646a0e68484262dd5",
+        "stage": "research"
+      },
+      "native_packet": {
+        "path": "audit/tool_observations/4de020ffad5a4e82a26c5374f7715685-research.json",
+        "sha256": "a6c1960e774300186ab496655d6a381e8450d507f486d890a89992708201822f"
+      },
+      "admitted_input": {
+        "path": "audit/runtime/engineering/admitted-inputs/4de020ffad5a4e82a26c5374f7715685.json",
+        "sha256": "0eed14c0833124717e43f626115fb27b2959be2ce77e0f696701e3b2723181dc"
+      },
+      "native_transport_isError": false,
+      "direct_error_representations": 2,
+      "deduplicated_native_error_count": 1,
+      "native_execution_status": "runtime_error",
+      "native_errors": [
+        {
+          "native_error_sha256": "5f50f4ee7dcf3e08845ff3cd6f95bbd29f8390ad36d7ddb2fa175d1cdc9bfcc5",
+          "error_kind": "CollectionError",
+          "fixed_iteration_failure_message": true,
+          "diagnostic": {
+            "exception_kind": "source_contract",
+            "failure_code": "source_contract",
+            "index_kind": "other",
+            "index_levels": 1,
+            "index_names": "other",
+            "native_calls": 1,
+            "projection_kind": "not_observed",
+            "projection_position": null,
+            "response_kind": "dataframe",
+            "response_rows": 0,
+            "rows_emitted": 0,
+            "schema_version": 1,
+            "snapshot_kind": "not_observed",
+            "snapshots_seen": 0,
+            "stage": "response_contract"
+          },
+          "diagnostic_whitelist_validated": true,
+          "cause_classification": "empty_dataframe_rejected_by_response_contract",
+          "supplier_or_platform_underlying_cause": null
+        }
+      ],
+      "frozen_first_window": {
+        "start": "2018-01-01T00:00:00-05:00",
+        "end_exclusive": "2018-01-02T00:00:00-05:00",
+        "basis": "frozen_collection_plan_not_an_endpoint_field_in_the_native_diagnostic"
+      },
+      "diagnostic_counter_scope": "single_failing_source_fetch_only; not entire Research execution",
+      "entire_Research_totals": {
+        "history_API_calls": null,
+        "received_rows": null,
+        "completed_collection_windows": null,
+        "cache_only_replay_source_calls": null,
+        "order_count": null,
+        "financial_statistics": null
+      },
+      "probe_catalog": {
+        "field_count": 4,
+        "fields": [
+          "dollar_volume",
+          "end_time",
+          "has_fundamental_data",
+          "time"
+        ],
+        "financial_value_field_count": 0
+      },
+      "declared_fixed_price_scope": {
+        "symbols": [
+          "AAPL",
+          "MSFT"
+        ],
+        "start": "2018-01-01T00:00:00-05:00",
+        "end_exclusive": "2019-01-01T00:00:00-05:00",
+        "normalization": "raw",
+        "complete_native_success_report_obtained": false
+      },
+      "financial_evidence": false
+    }
+  ],
+  "original_failure_preserved": {
+    "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+    "native_packet": {
+      "path": "audit/tool_observations/f5d05f5b964b4a1d924e4b70cd207386-research.json",
+      "sha256": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3"
+    },
+    "direct_error_representations": 2,
+    "deduplicated_native_error_count": 1,
+    "diagnostic_available": false,
+    "underlying_cause": null,
+    "same_cause_as_round002_established": false,
+    "entire_Research_totals": {
+      "history_API_calls": null,
+      "received_rows": null,
+      "completed_collection_windows": null,
+      "cache_only_replay_source_calls": null,
+      "order_count": null,
+      "financial_statistics": null
+    }
+  },
+  "field_capabilities": {
+    "source_catalog_field_count": 15,
+    "source_catalog_financial_value_field_count": 0,
+    "four_probe_fields_are_metadata_or_liquidity_only": true
+  },
+  "coverage_assessment": {
+    "historical_US200_2010_2023": {
+      "certified": false,
+      "missing": [
+        "authoritative historical all-market inventory",
+        "complete permanent-SID listing and classification histories",
+        "20 actual expected sessions for each formation",
+        "complete frozen US200 membership and raw price/action coverage",
+        "authenticated historical availability and revision evidence"
+      ]
+    },
+    "two_symbol_2018_engineering": {
+      "certified": false,
+      "scope": "AAPL/MSFT 2018 engineering only",
+      "complete_joint_native_success_established_by_this_report": false,
+      "missing": [
+        "completed same-version Research and LEAN receiver reports",
+        "independent exact-version acceptance"
+      ],
+      "not_full_historical_US200_evidence": true
+    },
+    "financial_vintages": {
+      "certified": false,
+      "missing": [
+        "declared financial numerical value fields",
+        "as-reported values and supplier revisions",
+        "actual public timestamps or documented date-only release gates",
+        "actual vendor delivery and historical ingestion receipts"
+      ]
+    }
+  },
+  "gap_codes": [
+    "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+    "authenticated_vendor_revision_receipt_not_supported",
+    "authoritative_all_market_inventory_receipt_not_supported",
+    "authoritative_security_master_and_action_coverage_receipt_not_supported",
+    "financial_value_catalog_not_available"
+  ],
+  "clock_boundary": {
+    "universe_selection_time": "modeled clock, not vendor receipt",
+    "native_Time_EndTime": "source observations, not delivery or ingestion proof",
+    "exchange_calendar": "expected sessions, not historical availability proof",
+    "current_collection_time": "not historical vendor delivery or ingestion"
+  },
+  "external_risk": {
+    "Morningstar_migration": {
+      "classification": "external compatibility/reproducibility risk only; not diagnosed cause of either attempt",
+      "official_documentation_dates_consistent": false,
+      "migration_effective_date_for_this_project": null,
+      "sources": [
+        "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/morningstar/us-fundamental-data",
+        "https://www.quantconnect.com/docs/v2/writing-algorithms/universes/equity/morningstar-migration"
+      ]
+    }
+  },
+  "final_evaluation": {
+    "execution_enabled": false,
+    "independent_executor_configured": false,
+    "reserved_start": "2024-01-01",
+    "reserved_end": "2026-10-23",
+    "previously_exposed_start": "2024-01-01",
+    "previously_exposed_end": "2025-12-31",
+    "whole_window_is_untouched_independent_holdout": false,
+    "year2026_independence_certified": false
+  },
+  "full_historical_US200_certified": false,
+  "actual_availability_certified": false,
+  "financial_vintage_certified": false,
+  "research_certified": false,
+  "stage2_acceptance_issued": false,
+  "row_values_exported": false,
+  "financial_evidence": false,
+  "IC_or_returns_computed": false
+}

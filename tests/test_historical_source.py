@@ -138,7 +138,7 @@ class HistoricalSourceTests(unittest.TestCase):
 
     def test_malformed_response_and_outside_or_duplicate_snapshots_rejected(self):
         duplicate = pd.concat([response([native()]), response([native("B")])])
-        bad = [pd.DataFrame(), pd.Series([[]]), response([native()], "2018-01-04"),
+        bad = [pd.DataFrame(columns=["unknown"]), pd.Series([[]]), response([native()], "2018-01-04"),
                response([native()], "2018-01-02"), duplicate, response("not-list"),
                response([native(), native()]), response([NS(symbol="TICKER")])]
         for data in bad:
