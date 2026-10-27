@@ -1,0 +1,126 @@
+[
+  {
+    "label": "candidate_git_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.618,
+    "stdout": "candidate_git_archive.stdout",
+    "stdout_raw_sha256": "e96aa3ee06eba9f4281b4a616bda5a8e4882f9185002ac2aa692759d4748d8d2",
+    "stderr": "candidate_git_archive.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "baseline_git_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "deb85d9f27441b275ab8b108f0232ecd2707a1e8"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.576,
+    "stdout": "baseline_git_archive.stdout",
+    "stdout_raw_sha256": "6b4dc4e2bdbb7da364fc8894381ad93f7b393b8f7bc2634a37606d2a294fb011",
+    "stderr": "baseline_git_archive.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "executed_git_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.529,
+    "stdout": "executed_git_archive.stdout",
+    "stdout_raw_sha256": "bcfa3c175cdf919b7b25c697c9699d51858ce88c410a39ba3a0af1e84e46d009",
+    "stderr": "executed_git_archive.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "baseline_to_candidate_full_patch",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--no-ext-diff",
+      "--binary",
+      "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.364,
+    "stdout": "baseline_to_candidate_full_patch.stdout",
+    "stdout_raw_sha256": "54bca739e7b69eeea44f73bcfe39dec838c84c83b9431954754e6c8350632769",
+    "stderr": "baseline_to_candidate_full_patch.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "baseline_to_candidate_name_status",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--name-status",
+      "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.289,
+    "stdout": "baseline_to_candidate_name_status.stdout",
+    "stdout_raw_sha256": "4f7fc6cbfbdf2a3f92bacc0fbe6e7322653c231f9f68ccdb25b4ecd3e6fe74e5",
+    "stderr": "baseline_to_candidate_name_status.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "old13_registry_blob",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "show",
+      "66ff72ffaaff8c91c008898e6527c91131176c2a:audit/runtime/registry/events.jsonl"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.457,
+    "stdout": "old13_registry_blob.stdout",
+    "stdout_raw_sha256": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5",
+    "stderr": "old13_registry_blob.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "original_baseline66_git_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "66ff72ffaaff8c91c008898e6527c91131176c2a"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent",
+    "exit_code": 0,
+    "elapsed_seconds": 0.518,
+    "stdout": "original_baseline66_git_archive.stdout",
+    "stdout_raw_sha256": "866fddb9169377c97f5d83515329d0c98b2943fd718a5f7026de4d9979b752ad",
+    "stderr": "original_baseline66_git_archive.stderr",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,26 @@
+ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.CompletionBoundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_scripts\compat_scripts\completion_boundaries.py", line 57, in setUpClass
+    assert h.okay(h.invoke(case,['research-result','--attempt',context['attempt'],'--tool-file',envelopes['result']],
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_scripts\compat_scripts\independent_recovery_support.py", line 47, in okay
+    if result.returncode:raise AssertionError(result.stderr.decode('utf-8',errors='replace'))
+AssertionError: Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_original\compat_boundaries\cases\loader-v1\source\tools\stage2.py", line 424, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_original\compat_boundaries\cases\loader-v1\source\tools\stage2.py", line 407, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_original\compat_boundaries\cases\loader-v1\source\tools\stage2.py", line 318, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\dispatch_agent\legacy_original\compat_boundaries\cases\loader-v1\source\tools\stage2.py", line 251, in _read_research_dispatch
+    raise EngineeringTaskError("New Research entries require their original dispatch binding before settlement")
+qresearch.engineering_tasks.EngineeringTaskError: New Research entries require their original dispatch binding before settlement
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 7.440s
+
+FAILED (errors=1)

@@ -103,6 +103,10 @@ class WR21ResearchDispatchTests(unittest.TestCase):
         for version in (1, 2):
             with self.subTest(version=version), SyntheticFixture(version) as fixture:
                 # Only this isolated fixture models a pre-entry-protocol task.
+                # Historical admissions had four fields, not today's atomic
+                # inline protocol identity. Removing a sidecar alone is not old.
+                fixture.admission.pop("research_entry_protocol")
+                fixture.store._data["engineering/admitted-inputs/" + fixture.attempt + ".json"] = canonical_json(fixture.admission)
                 del fixture.store._data["engineering/research-entry-protocol/" + fixture.attempt + ".json"]
                 self.assertFalse(fixture.store.exists("engineering/research-dispatch/" + fixture.attempt + ".json"))
                 before = fixture.registry.snapshot()

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "WR-23",
+    "priority": "P1",
+    "blocking": true,
+    "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "title": "首次entry协议写失败后，新准入在恢复时被误当旧协议并结算成功",
+    "locations": [
+      {
+        "file": "tools/stage2.py",
+        "line": 193
+      },
+      {
+        "file": "tools/stage2.py",
+        "line": 206
+      },
+      {
+        "file": "tools/stage2.py",
+        "line": 176
+      },
+      {
+        "file": "tools/stage2.py",
+        "line": 317
+      }
+    ],
+    "trigger": "首次生产prepare已落盘admitted-input，紧接着research-entry-protocol的真实write_once调用被注入同步写异常；没有删除任何已存在marker。恢复CLI prepare返回原admission但entry和dispatch均无。",
+    "expected": "该新准入必须保留其新协议身份，未完整发布的准备状态或缺dispatch不能作为旧成功协议结算；失败关闭且不准入同父LEAN。",
+    "actual": "原prepare异常后，恢复prepare返回admission；未经dispatch的合法形状合成成功回执经实际CLI返回0/completed，同父LEAN claim返回started/should_execute=true。根独立原字节脚本重放亦复现；仅隔离合成账本变化，真实17事件及7/10/1未改。",
+    "cause": "prepare按admission在先、entry marker在后的顺序发布；旧准入恢复直接返回既有admission且不补marker；settle以entry文件是否存在决定require_dispatch，缺失被自动等同历史协议。准入原件未包含足以区分此写故障状态与真正旧任务的协议身份。",
+    "scope_and_severity": "P1新旧任务身份及崩溃恢复完整性问题，是继承旧发布顺序的残余缺陷；不是宣称ea新引入。WR21显式entry存在而dispatch缺失的原反例已修复，但此自然写故障路径使新协议整体仍不通过。没有实际新LEAN提交、真实预算上限突破或金融泄漏。",
+    "positive_controls": [
+      "原WR21未改MRE在deb退出1、ea退出0，合法已绑定成功与明确旧无marker兼容均保留。",
+      "正常首次entry发布、绑定后成功和真实f5d原生失败恢复属独立专项覆盖，不因本缺陷否认其局部通过。"
+    ],
+    "reproduction": "python -B dispatch_agent/minimal_prepare_entry_crash.py --source source --out <fresh-output-dir>，同目录需independent_recovery_support.py；当前exit1。根wr23_confirmation保存独立重复。",
+    "minimal_fix": "把新协议身份与准入成功状态绑定于同一不可变记录或可靠发布顺序；写失败后的恢复不得仅以marker缺失推断legacy。只有明确历史协议的旧任务可走旧成功路径。缺完整协议/dispatch保持未决，不得盲补标记或直接关闭全部成功路径。",
+    "regression_tasks": [
+      "逐一注入local input、admission、entry协议发布边界的写异常，恢复后都不能把新任务降为legacy。",
+      "entry写失败后，恢复prepare及成功/失败结算不得写成功结果或解锁LEAN。",
+      "合法新绑定成功、真正旧准入兼容和f5d失败15→17→17均保持。",
+      "并发首次prepare/dispatch只获一次执行许可；未知派发不得自动重跑，费用不退款。"
+    ],
+    "root_confirmation": {
+      "exit_code": 1,
+      "actual_CLI_processes": 6,
+      "synthetic_finish_calls": 1,
+      "actual_worker_or_provider_calls": 0,
+      "authoritative_budget_writes": 0
+    }
+  },
+  {
+    "id": "WR-22",
+    "priority": "P2",
+    "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "title": "老SID近期更新映射后，全量流动性缺失被误当作不足期IPO并由第201名补位",
+    "locations": [
+      {
+        "file": "cloud/qresearch/data_certification.py",
+        "line": 383,
+        "end_line": 398
+      }
+    ],
+    "trigger": "原创201-SID合成输入中，SID000保留2017-12-01至2018-01-25的listed=true老security-master区间，同一SID自Jan25起更新ticker映射（同ticker新区间也复现）。删除该SID全部21条liquidity行，并在两形成时点以SID001至SID200补位。旧区间及新映射均在形成前已知，SID没有发生IPO。",
+    "expected": "完整历史security-master仍证明这是老eligible SID；全量流动性历史缺失必须使观测审计不足，不能由rank201补位掩盖，也不能因为最近mapping/classification区间的起始时间重置上市历史。合法年轻IPO仍应正确排除。",
+    "actual": "返回observations_passed，全部12项checks=true，known_eligible_candidate_expected_cells由8040降为8000，missing_candidate_session_cells=0，observed_member_cells=400；原202条master记录中老listed区间仍存在。",
+    "cause": "active只保留形成时点新区间，expected_candidates再要求新区间effective_from不晚于trailing首日，或者SID存在于known_old_listings。后者又来自liquidity本身；当全部liquidity缺失时该SID同时失去老上市身份和完整性检查资格。保留的旧listed master区间没有用于连续上市资格判断，ranker因而可用201名替补并获得全部checks通过。",
+    "positive_controls": [
+      "相同完整老区间及新映射，liquidity齐全：observations_passed，expected cells8040。",
+      "相同SID和映射，仅缺最早1session：insufficient_evidence，missing candidate cells1，且声明成员与真实重排一致。",
+      "老SID全部liquidity缺失但未更新mapping：insufficient_evidence。",
+      "真实Jan25年轻IPO移除上市前行，只有5/6期：合法排除，原200老SID observations_passed。",
+      "原WR20 IPO修复：byte-identical旧13方法/43场景在candidate13方法全通过；同日盘中/收盘相等/close后一微秒额外边界亦通过。"
+    ],
+    "scope_and_severity": "P2数据观测合规完整性缺陷，阻断当前data-certification模块软件验收。它不同于已修复的WR20上市前行补足IPO20期问题；相关expected_candidates逻辑原已存在，不能称为本轮IPO过滤修复新引入的回归。所有vendor/full-US200/actual-availability/financial-vintage/research/export/financial标志仍false，无实际市场调用、预算变化、生产因子选择或供应商真实性认证。",
+    "reproduction": "固定旧venv的python -B cert_agent/minimal_wr22.py --output NEW_DIRECTORY/result.json。依赖相邻byte-identical原创cert_fixture.py及本候选生产模块；三合法控制先通过，当前缺陷exit1。first_mapping_history_probe.py及原9方法/23场景首跑保留。",
+    "minimal_fix": "用可在形成时点获知的完整security-master历史确定同一永久SID的连续上市资格，不能把ticker/mapping/classification区间更新当作IPO；候选完整性检查须独立于该SID是否仍有liquidity行。缺全历史的老eligible仍须记缺口并拒绝观测通过，同时保留IPO20期过滤、未知历史拒绝、原refs/count/raw证据和私有重算。",
+    "regression_tasks": [
+      "完整旧listed区间+新ticker，老SID全部liquidity缺失：不足且rank201不能掩盖。",
+      "同ticker新区间也不能重置连续上市历史。",
+      "同SID缺1session、全部缺失、齐全分别得到不足/不足/通过。",
+      "真实年轻IPO仍排除；19/20期、盘中、close相等及close+1微秒边界保持。",
+      "旧13/43、summary私有重核、原refs/raw/count保留及全部认证false保持。"
+    ]
+  },
+  {
+    "id": "WR-24",
+    "priority": "P3",
+    "blocking": false,
+    "title": "当前readiness残留旧轮新增配置与源码变更范围",
+    "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "file": "audit/stage2_current_readiness.json",
+    "line": 242,
+    "additional_locations": [
+      {
+        "file": "audit/stage2_current_readiness.json",
+        "line": 124,
+        "end_line": 134
+      },
+      {
+        "file": "audit/stage2_current_readiness.json",
+        "line": 264
+      }
+    ],
+    "trigger": "将audit/stage2_current_readiness.json作为本轮ea6053e WR-20/WR-21离线修复的当前状态读取。",
+    "expected": "当前轮次的新增配置/Research消耗、源码变更列表和平台读取说明应与固定deb85d9..ea6053e差异、17事件原账本及当前零新增字段一致；旧轮事实须显式绑定旧SHA并放入historical范围。",
+    "actual": "第242行仍宣称One new engineering configuration and one Research precharge；第124–134行当前源码列表误列4个本轮未改文件并漏2个本轮测试文件；第264行read_or_polled_this_turn_scope仍沿用上一轮read_project/旧终态列表读取说明。",
+    "impact": "当前机器可读元数据将历史动作标为当前轮次，造成变更范围与证据来源歧义。实际原账本、预算、当前哈希、未上云/未验收标志均正确；未发现因此新增真实执行或预算消耗。",
+    "severity_rationale": "P3说明与可维护性问题；不影响WR-20/WR-21修复代码的动态行为判定，不构成新的预算或平台失控，不单独阻断软件验收。",
+    "minimal_fix": "保留旧描述原文并移入带baseline/actual-cloud SHA的historical对象；将当前source_configuration_budget_changed_scope和read_or_polled_this_turn_scope改为本轮零新增/零平台读取说明，按实际固定差异更新source_changed_this_round。不要修改原17事件或退还历史预算。",
+    "regression_test": "加入只读元数据一致性检查：当前0新增字段不能同时配未标historical的新增配置/Research描述，current source列表应等于明确基线到交付SHA的实现/测试/工具变更集合；历史记录保持原文与SHA。",
+    "minimal_reproduction": {
+      "script": "archive_agent/minimal_wr24_metadata.py",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent\\minimal_wr24_metadata.py"
+      ],
+      "exit_code": 1,
+      "execution_record": "archive_agent/wr24_first_execution.json",
+      "stdout": "archive_agent/wr24_first.stdout",
+      "stderr": "archive_agent/wr24_first.stderr",
+      "expected_metadata_assertions": {
+        "current_new_config_and_Research_scope": false,
+        "current_source_changed_this_round_matches_pinned_diff": false
+      }
+    }
+  }
+]

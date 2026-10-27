@@ -1,0 +1,100 @@
+{
+  "kind": "metadata_archival_verification_only_not_software_retest",
+  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "review_formal_json_raw_sha256": "f6425bf417dfefa99d4612eead8847407d27d8d58cd247929962f9d2be727aa2",
+  "review_formal_txt_raw_sha256": "f18b4f528596918d38670ce85ba0417edabe35414da5e7aaa44d8138aa69b4b8",
+  "original_zip_sha256": "3eb0d548f2667c83c24e62f88495ae02fa2c8942440ce0c4aa665bb06b054753",
+  "original_package_files": 14166,
+  "original_manifest_registered_files": 14165,
+  "manifest_excludes_itself": true,
+  "original_package_manifest_and_ZIP_verified": true,
+  "archived_original_count": 325,
+  "archived_original_raw_bytes": 1833366,
+  "archived_original_raw_hashes_match": true,
+  "selective_archive_not_complete_original_package": true,
+  "omitted_original_count": 13841,
+  "archive_selection_ref": {
+    "path": "audit/reviews/20261027-ea6053e-windows/developer_archive_selection.json",
+    "raw_sha256": "9e9157f7394d6353d22eda10cad68fc551c62ca1f08d453ea5d108e6adee290b"
+  },
+  "git_source_snapshots_verified": {
+    "candidate": {
+      "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "raw_git_blobs_verified": 4541,
+      "all_equal_original_manifest": true
+    },
+    "failed_baseline_deb": {
+      "commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "raw_git_blobs_verified": 4270,
+      "all_equal_original_manifest": true
+    },
+    "actual_cloud7fc": {
+      "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+      "raw_git_blobs_verified": 4204,
+      "all_equal_original_manifest": true
+    }
+  },
+  "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+  "execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
+  "software_acceptance": {
+    "original_fix_scope": "修复后通过",
+    "overall_status": "失败",
+    "blocking": [
+      "WR23",
+      "WR22"
+    ],
+    "nonblocking": [
+      "WR24"
+    ],
+    "full_phase2_accepted": false
+  },
+  "original_WR20_WR21_trigger_scope": "independently_passed_after_fix_on_ea6053e_only",
+  "new_open_findings": [
+    {
+      "id": "WR-23",
+      "priority": "P1",
+      "blocking": true
+    },
+    {
+      "id": "WR-22",
+      "priority": "P2",
+      "blocking": true
+    },
+    {
+      "id": "WR-24",
+      "priority": "P3",
+      "blocking": false
+    }
+  ],
+  "remaining_acceptance_gates": {
+    "G1": "Actual Research failed; no new qualifying Research/collection/cache/LEAN success chain",
+    "G2": "Old failed worker bytes/source difference remain unproven",
+    "G3": "WR21 original trigger passed; new prepare/admission crash identity WR23 blocks full entry protocol",
+    "G4": "WR20 original IPO trigger passed; WR22 missing history audit blocks module; full data provenance remains insufficient"
+  },
+  "stage2_whole_accepted": false,
+  "real_registry_event_count": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "engineering_round_usage": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 1
+  },
+  "engineering_round_stopped": true,
+  "archival_QC_calls": 0,
+  "archival_Research_executions": 0,
+  "archival_LEAN_submissions": 0,
+  "archival_model_calls": 0,
+  "archival_deployments": 0,
+  "archival_software_test_executions": 0,
+  "review_original_tests_not_reexecuted_by_this_archival_check": true,
+  "production_or_config_files_changed_by_archival_agent": false,
+  "archive_helper_attempts_ref": "audit/reviews/20261027-ea6053e-windows/developer_archive_attempts.json",
+  "report_counts_are_overlapping": true,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

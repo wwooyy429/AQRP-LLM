@@ -1,0 +1,55 @@
+{
+  "kind": "developer_offline_repair_verification",
+  "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "runs": [
+    {
+      "label": "build",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/research.py",
+        "build"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668",
+      "exit_code": 0,
+      "elapsed_seconds": 0.422,
+      "stdout": "final_build.stdout",
+      "stderr": "final_build.stderr"
+    },
+    {
+      "label": "verify",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/stages.py",
+        "verify"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668",
+      "exit_code": 0,
+      "elapsed_seconds": 148.109,
+      "stdout": "final_verify.stdout",
+      "stderr": "final_verify.stderr"
+    }
+  ],
+  "local_tests_passed": true,
+  "test_methods": 652,
+  "test_seconds": 146.361,
+  "source_manifest_hash": "3a3a4a956d49ca37b80a9cb21603def02aa22a393862625a7b1eadb050894aa1",
+  "protected_file_count": 38,
+  "all_protected_bytes_unchanged": true,
+  "real_journal_events": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "new_market_configuration_registrations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_model_calls": 0,
+  "new_deployments": 0,
+  "engineering_stop_retained": true,
+  "final_test_enabled": false,
+  "independent_acceptance": false,
+  "financial_evidence": false
+}

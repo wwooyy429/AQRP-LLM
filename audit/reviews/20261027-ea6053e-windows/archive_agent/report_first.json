@@ -1,0 +1,495 @@
+{
+  "review_id": "ea6053e-20261027-archive-evidence",
+  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "evidence_level": "审查者离线重算源码/预算/归档原字节；旧平台材料仅离线重解析，本轮无QC访问",
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe"
+  },
+  "raw_git_files": 4541,
+  "review_source_count": 140,
+  "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+  "execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
+  "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+  "implementation_hash": "712ffda1823796f08ac4db281fc97e1a7e6798f938c22701ab4b0f524e1324bb",
+  "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "full_git_patch": {
+    "path": "baseline_to_candidate_full_patch.stdout",
+    "raw_sha256": "54bca739e7b69eeea44f73bcfe39dec838c84c83b9431954754e6c8350632769",
+    "bytes": 3779103
+  },
+  "budget_replay": {
+    "events": 17,
+    "journal_raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1",
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 1,
+        "total": 7
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 4,
+        "total": 10
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "engineering_usage": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0
+    },
+    "engineering_stop_caps": 2,
+    "engineering_stopped": true
+  },
+  "developer_package_manifest_entries": 43,
+  "prior_archived_files_unchanged": 4047,
+  "protected_runtime_input_observation_files": 38,
+  "archive": {
+    "original_ZIP_bytes": 33811222,
+    "original_ZIP_raw_sha256": "19d2614008caf209c18b79e16220826de0394ee9a86f585f32ccce5a9bfd6b49",
+    "original_manifest_registered_files": 12474,
+    "original_directory_files": 12475,
+    "selected_originals": 216,
+    "selected_raw_bytes": 3361243,
+    "omitted_originals": 12259,
+    "original_git_manifests": {
+      "candidate": {
+        "commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+        "count": 4270,
+        "match": true
+      },
+      "baseline66": {
+        "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+        "count": 3178,
+        "match": true
+      },
+      "actual_cloud7fc": {
+        "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+        "count": 4204,
+        "match": true
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "raw4541_files_equal_pinned_Git",
+      "passed": true,
+      "detail": {
+        "git_count": 4541,
+        "disk_count": 4541
+      }
+    },
+    {
+      "name": "full_review_source_manifest",
+      "passed": true,
+      "detail": {
+        "files": 140,
+        "hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13"
+      }
+    },
+    {
+      "name": "normalized_keepEOF_implementation_and_deployment",
+      "passed": true,
+      "detail": {
+        "implementation_hash": "712ffda1823796f08ac4db281fc97e1a7e6798f938c22701ab4b0f524e1324bb",
+        "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+        "deployment_files": 31
+      }
+    },
+    {
+      "name": "configuration_generated_from_authority_and_unchanged",
+      "passed": true,
+      "detail": {
+        "configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94"
+      }
+    },
+    {
+      "name": "active_config_all_raw_files_unchanged",
+      "passed": true
+    },
+    {
+      "name": "developer_identity_claims",
+      "passed": true
+    },
+    {
+      "name": "developer630_test_claim_log_bound",
+      "passed": true
+    },
+    {
+      "name": "all_prior_archived_evidence_raw_preserved",
+      "passed": true,
+      "detail": {
+        "files": 4047
+      }
+    },
+    {
+      "name": "runtime_inputs_observations_budget_originals_preserved",
+      "passed": true,
+      "detail": {
+        "files": 38
+      }
+    },
+    {
+      "name": "developer_package_raw_manifest",
+      "passed": true,
+      "detail": {
+        "entries": 43,
+        "bad": [],
+        "kind": "developer_raw_outputs_not_independent_review"
+      }
+    },
+    {
+      "name": "developer_package_unmanifested_are_described_meta",
+      "passed": true,
+      "detail": [
+        "audit/review_packages/wr20_wr21/.gitattributes",
+        "audit/review_packages/wr20_wr21/README.md",
+        "audit/review_packages/wr20_wr21/developer_outputs_manifest.json",
+        "audit/review_packages/wr20_wr21/developer_verification.json"
+      ]
+    },
+    {
+      "name": "17event_bytes_equal_deb85d9",
+      "passed": true,
+      "detail": {
+        "raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1",
+        "events": 17
+      }
+    },
+    {
+      "name": "old13_raw_prefix_preserved",
+      "passed": true,
+      "detail": {
+        "old13_raw_sha256": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5"
+      }
+    },
+    {
+      "name": "journal_hash_chain_1",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_2",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_3",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_4",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_5",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_6",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_7",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_8",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_9",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_10",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_11",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_12",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_13",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_14",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_15",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_16",
+      "passed": true
+    },
+    {
+      "name": "journal_hash_chain_17",
+      "passed": true
+    },
+    {
+      "name": "independent_event_budget_replay_7_10_1",
+      "passed": true,
+      "detail": {
+        "usage": {
+          "configurations": {
+            "normal": 6,
+            "reserve": 1,
+            "total": 7
+          },
+          "lean": {
+            "normal": 1,
+            "reserve": 0,
+            "total": 1
+          },
+          "research": {
+            "normal": 6,
+            "reserve": 4,
+            "total": 10
+          }
+        },
+        "limits": {
+          "configurations": {
+            "normal": 8,
+            "reserve": 4,
+            "total": 12
+          },
+          "lean": {
+            "normal": 8,
+            "reserve": 8,
+            "total": 16
+          },
+          "research": {
+            "normal": 12,
+            "reserve": 8,
+            "total": 20
+          }
+        }
+      }
+    },
+    {
+      "name": "budget_projection_matches_replay",
+      "passed": true
+    },
+    {
+      "name": "engineering_round_2_2_1_stopped",
+      "passed": false,
+      "detail": {
+        "usage": {
+          "configurations": 0,
+          "research": 0,
+          "lean": 0
+        },
+        "caps": 2,
+        "stopped_for_config_and_research": true
+      }
+    },
+    {
+      "name": "original_f5d_native_packet_raw14ae",
+      "passed": true,
+      "detail": {
+        "path": "audit/tool_observations/f5d05f5b964b4a1d924e4b70cd207386-research.json",
+        "hash": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3"
+      }
+    },
+    {
+      "name": "failed_attempts_remain_failed_no_result",
+      "passed": true
+    },
+    {
+      "name": "complete_original_manifest12474_and_directory12475",
+      "passed": true
+    },
+    {
+      "name": "complete_original_directory_hashes",
+      "passed": true,
+      "detail": {
+        "verified": 12474,
+        "bad": []
+      }
+    },
+    {
+      "name": "complete_original_ZIP_identity",
+      "passed": true,
+      "detail": {
+        "bytes": 33811222,
+        "raw_sha256": "19d2614008caf209c18b79e16220826de0394ee9a86f585f32ccce5a9bfd6b49"
+      }
+    },
+    {
+      "name": "complete_original_ZIP_inventory",
+      "passed": true
+    },
+    {
+      "name": "complete_original_ZIP_all_bytes",
+      "passed": true,
+      "detail": {
+        "verified": 12475,
+        "bad": []
+      }
+    },
+    {
+      "name": "complete_original_git_manifest_candidate",
+      "passed": true,
+      "detail": {
+        "commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+        "count": 4270,
+        "match": true
+      }
+    },
+    {
+      "name": "complete_original_git_manifest_baseline66",
+      "passed": true,
+      "detail": {
+        "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+        "count": 3178,
+        "match": true
+      }
+    },
+    {
+      "name": "complete_original_git_manifest_actual_cloud7fc",
+      "passed": true,
+      "detail": {
+        "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+        "count": 4204,
+        "match": true
+      }
+    },
+    {
+      "name": "selective_archive216_raw_originals",
+      "passed": true,
+      "detail": {
+        "entries": 216,
+        "bytes": 3361243,
+        "bad": []
+      }
+    },
+    {
+      "name": "selective_archive_correct_omission_count",
+      "passed": true
+    },
+    {
+      "name": "selective_archive_selection_rule_exact",
+      "passed": true,
+      "detail": {
+        "groups": {
+          "complete_original_inventory_retained_in_original_hash_verified_package": {
+            "files": 2,
+            "bytes": 3918084
+          },
+          "redundant_full_patch_retained_in_original_hash_verified_package": {
+            "files": 2,
+            "bytes": 45744408
+          },
+          "historical_replay_or_individual_native_command_output_retained_in_original_hash_verified_package": {
+            "files": 603,
+            "bytes": 1814104
+          },
+          "fixed_Git_source_snapshot_reconstructible_from_verified_commit": {
+            "files": 11652,
+            "bytes": 98580520
+          }
+        }
+      }
+    },
+    {
+      "name": "selective_external_inventory_artifact_manifest.json",
+      "passed": true
+    },
+    {
+      "name": "selective_external_inventory_source_git_manifest.json",
+      "passed": true
+    },
+    {
+      "name": "selective_no_undeclared_files",
+      "passed": true,
+      "detail": {
+        "extra": [
+          ".gitattributes",
+          "DEVELOPER_ARCHIVE_README.md",
+          "developer_archive.py",
+          "developer_archive_selection.json",
+          "user_pasted_report.txt"
+        ]
+      }
+    },
+    {
+      "name": "pasted_report_raw_hash",
+      "passed": true
+    },
+    {
+      "name": "archive_check_summary_matches_independent_bytes",
+      "passed": true
+    },
+    {
+      "name": "archive_retains_failed_previous_verdict",
+      "passed": true
+    },
+    {
+      "name": "real_market_model_final_live_switches_disabled",
+      "passed": true
+    },
+    {
+      "name": "prior_independent_readback_scoped_to_old_executed_SHA",
+      "passed": true,
+      "detail": {
+        "old_readback_QC_calls": {
+          "list_projects": 1,
+          "read_open_project": 1,
+          "read_file": 32,
+          "jupyter_read_cell_source_only": 1
+        },
+        "old_current_controller_matches": 29
+      }
+    },
+    {
+      "name": "source_original_bytes_unchanged_after_offline_verification",
+      "passed": true
+    }
+  ],
+  "static_byte_metadata_checks": 55,
+  "checks_passed": 54,
+  "independent_product_test_methods": 0,
+  "current_QC_read_calls": 0,
+  "current_real_Research_executions": 0,
+  "current_LEAN_submissions": 0,
+  "current_model_calls": 0,
+  "current_deployments": 0,
+  "current_registry_writes": 0,
+  "financial_evidence": false,
+  "conclusion": "存在失败项，需逐项判断",
+  "limitations": [
+    "不验证本轮修复代码动态行为；root及其他审查者承担合成测试。",
+    "本轮没有独立访问QC；旧版独立只读源码读回是历史证据。",
+    "完整US200/财务/真实可用时钟和金融有效性未认证。"
+  ]
+}

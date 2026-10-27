@@ -1,0 +1,30 @@
+{
+  "id": "WR-22",
+  "priority": "P2",
+  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "title": "老SID近期更新映射后，全量流动性缺失被误当作不足期IPO并由第201名补位",
+  "locations": [
+    {"file": "cloud/qresearch/data_certification.py", "line": 383, "end_line": 398}
+  ],
+  "trigger": "原创201-SID合成输入中，SID000保留2017-12-01至2018-01-25的listed=true老security-master区间，同一SID自Jan25起更新ticker映射（同ticker新区间也复现）。删除该SID全部21条liquidity行，并在两形成时点以SID001至SID200补位。旧区间及新映射均在形成前已知，SID没有发生IPO。",
+  "expected": "完整历史security-master仍证明这是老eligible SID；全量流动性历史缺失必须使观测审计不足，不能由rank201补位掩盖，也不能因为最近mapping/classification区间的起始时间重置上市历史。合法年轻IPO仍应正确排除。",
+  "actual": "返回observations_passed，全部12项checks=true，known_eligible_candidate_expected_cells由8040降为8000，missing_candidate_session_cells=0，observed_member_cells=400；原202条master记录中老listed区间仍存在。",
+  "cause": "active只保留形成时点新区间，expected_candidates再要求新区间effective_from不晚于trailing首日，或者SID存在于known_old_listings。后者又来自liquidity本身；当全部liquidity缺失时该SID同时失去老上市身份和完整性检查资格。保留的旧listed master区间没有用于连续上市资格判断，ranker因而可用201名替补并获得全部checks通过。",
+  "positive_controls": [
+    "相同完整老区间及新映射，liquidity齐全：observations_passed，expected cells8040。",
+    "相同SID和映射，仅缺最早1session：insufficient_evidence，missing candidate cells1，且声明成员与真实重排一致。",
+    "老SID全部liquidity缺失但未更新mapping：insufficient_evidence。",
+    "真实Jan25年轻IPO移除上市前行，只有5/6期：合法排除，原200老SID observations_passed。",
+    "原WR20 IPO修复：byte-identical旧13方法/43场景在candidate13方法全通过；同日盘中/收盘相等/close后一微秒额外边界亦通过。"
+  ],
+  "scope_and_severity": "P2数据观测合规完整性缺陷，阻断当前data-certification模块软件验收。它不同于已修复的WR20上市前行补足IPO20期问题；相关expected_candidates逻辑原已存在，不能称为本轮IPO过滤修复新引入的回归。所有vendor/full-US200/actual-availability/financial-vintage/research/export/financial标志仍false，无实际市场调用、预算变化、生产因子选择或供应商真实性认证。",
+  "reproduction": "固定旧venv的python -B cert_agent/minimal_wr22.py --output NEW_DIRECTORY/result.json。依赖相邻byte-identical原创cert_fixture.py及本候选生产模块；三合法控制先通过，当前缺陷exit1。first_mapping_history_probe.py及原9方法/23场景首跑保留。",
+  "minimal_fix": "用可在形成时点获知的完整security-master历史确定同一永久SID的连续上市资格，不能把ticker/mapping/classification区间更新当作IPO；候选完整性检查须独立于该SID是否仍有liquidity行。缺全历史的老eligible仍须记缺口并拒绝观测通过，同时保留IPO20期过滤、未知历史拒绝、原refs/count/raw证据和私有重算。",
+  "regression_tasks": [
+    "完整旧listed区间+新ticker，老SID全部liquidity缺失：不足且rank201不能掩盖。",
+    "同ticker新区间也不能重置连续上市历史。",
+    "同SID缺1session、全部缺失、齐全分别得到不足/不足/通过。",
+    "真实年轻IPO仍排除；19/20期、盘中、close相等及close+1微秒边界保持。",
+    "旧13/43、summary私有重核、原refs/raw/count保留及全部认证false保持。"
+  ]
+}

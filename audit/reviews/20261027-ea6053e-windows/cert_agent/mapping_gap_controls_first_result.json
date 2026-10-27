@@ -1,0 +1,49 @@
+{
+  "fixed_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "synthetic_memory_only": true,
+  "scenarios": [
+    {
+      "variant": "mapping_complete",
+      "expected_status": "observations_passed",
+      "actual_status": "observations_passed",
+      "expectation_met": true,
+      "known_candidate_expected_cells": 8040,
+      "missing_candidate_session_cells": 0,
+      "membership_matches": true,
+      "certification_flags_false": true
+    },
+    {
+      "variant": "same_old_SID_one_session_missing",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "insufficient_evidence",
+      "expectation_met": true,
+      "known_candidate_expected_cells": 8040,
+      "missing_candidate_session_cells": 1,
+      "membership_matches": true,
+      "certification_flags_false": true
+    },
+    {
+      "variant": "same_old_SID_all_sessions_missing",
+      "expected_status": "insufficient_evidence",
+      "actual_status": "observations_passed",
+      "expectation_met": false,
+      "known_candidate_expected_cells": 8000,
+      "missing_candidate_session_cells": 0,
+      "membership_matches": true,
+      "certification_flags_false": true
+    },
+    {
+      "variant": "genuine_young_IPO_without_prelisting_rows",
+      "expected_status": "observations_passed",
+      "actual_status": "observations_passed",
+      "expectation_met": true,
+      "known_candidate_expected_cells": 8000,
+      "missing_candidate_session_cells": 0,
+      "membership_matches": true,
+      "certification_flags_false": true
+    }
+  ],
+  "unit_methods": 0,
+  "new_market_QC_model_or_authoritative_budget_calls": 0,
+  "source_raw_sha256": "586f4858de04155da02eda5f9cc5021d1d62b5d9faed3b9c318de73acba824b9"
+}

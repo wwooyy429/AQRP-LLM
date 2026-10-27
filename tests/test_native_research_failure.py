@@ -363,6 +363,10 @@ class NativeResearchFailureTests(unittest.TestCase):
 
     def test_legacy_started_input_cannot_backfill_dispatch_or_new_entry_protocol(self):
         with SyntheticFixture(1) as fixture:
+            # Explicitly model the original four-field admission format; a new
+            # admission with only its external sidecar missing is not legacy.
+            fixture.admission.pop("research_entry_protocol")
+            fixture.store._data["engineering/admitted-inputs/" + fixture.attempt + ".json"] = canonical_json(fixture.admission)
             key = "engineering/research-entry-protocol/" + fixture.attempt + ".json"
             del fixture.store._data[key]
             before = fixture.registry.snapshot(); saved = dict(fixture.store._data)

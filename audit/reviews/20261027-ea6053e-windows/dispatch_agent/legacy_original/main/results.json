@@ -1,0 +1,37 @@
+{
+  "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "methods": 0,
+  "subcases": 0,
+  "failure_records": 0,
+  "error_records": 1,
+  "skipped": 0,
+  "first_failure": {
+    "method": "setUpClass (__main__.NativeBoundaries)",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_scripts\\native_boundaries.py\", line 55, in setUpClass\n    assert h.okay(h.invoke(case,['research-result','--attempt',context['attempt'],'--tool-file',research['result']],\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_scripts\\independent_recovery_support.py\", line 47, in okay\n    if result.returncode:raise AssertionError(result.stderr.decode('utf-8',errors='replace'))\nAssertionError: Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_original\\main\\cases\\native-base-v1\\source\\tools\\stage2.py\", line 424, in <module>\r\n    main()\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_original\\main\\cases\\native-base-v1\\source\\tools\\stage2.py\", line 407, in main\r\n    result = vars(settle_research_result(bridge, args.attempt, native))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_original\\main\\cases\\native-base-v1\\source\\tools\\stage2.py\", line 318, in settle_research_result\r\n    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\legacy_original\\main\\cases\\native-base-v1\\source\\tools\\stage2.py\", line 251, in _read_research_dispatch\r\n    raise EngineeringTaskError(\"New Research entries require their original dispatch binding before settlement\")\r\nqresearch.engineering_tasks.EngineeringTaskError: New Research entries require their original dispatch binding before settlement\r\n\n"
+  },
+  "success": false,
+  "inputs": [],
+  "stats": {
+    "actual_CLI_processes": 5,
+    "direct_freeze_processes": 0,
+    "synthetic_metadata_finish_calls": 1,
+    "actual_worker_executions": 0
+  },
+  "source_hashes_before": {
+    "tools/stage2.py": "725e280dbc3de51bcbed8fac2ed8599976db862fb2e5dac3384081596b15bc36",
+    "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+    "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c",
+    "config/budget.json": "29d38d4542f4ad60678b3541e483b107d9b0edf501464f53036c124029936df5",
+    "audit/runtime/registry/events.jsonl": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1"
+  },
+  "source_hashes_after": {
+    "tools/stage2.py": "725e280dbc3de51bcbed8fac2ed8599976db862fb2e5dac3384081596b15bc36",
+    "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+    "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c",
+    "config/budget.json": "29d38d4542f4ad60678b3541e483b107d9b0edf501464f53036c124029936df5",
+    "audit/runtime/registry/events.jsonl": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1"
+  },
+  "source_and_authority_unchanged": true,
+  "actual_worker_executions": 0,
+  "scope": "Actual copied production CLI and Filesystem Registry; all native envelopes/diagnostics are self-authored synthetic. No real SDK/Research/LEAN/market execution or authoritative ledger settlement."
+}

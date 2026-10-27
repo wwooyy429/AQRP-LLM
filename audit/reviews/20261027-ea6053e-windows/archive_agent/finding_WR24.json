@@ -1,0 +1,119 @@
+{
+  "id": "WR-24",
+  "priority": "P3",
+  "blocking": false,
+  "status": "open",
+  "title": "当前readiness残留旧轮新增配置与源码变更范围",
+  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "evidence_level": "静态源码/归档元数据检查及审查者实际执行的只读一致性MRE，不是产品动态单元测试",
+  "file": "audit/stage2_current_readiness.json",
+  "line": 242,
+  "additional_locations": [
+    {
+      "file": "audit/stage2_current_readiness.json",
+      "line": 124,
+      "end_line": 134
+    },
+    {
+      "file": "audit/stage2_current_readiness.json",
+      "line": 264
+    }
+  ],
+  "trigger": "将audit/stage2_current_readiness.json作为本轮ea6053e WR-20/WR-21离线修复的当前状态读取。",
+  "expected": "当前轮次的新增配置/Research消耗、源码变更列表和平台读取说明应与固定deb85d9..ea6053e差异、17事件原账本及当前零新增字段一致；旧轮事实须显式绑定旧SHA并放入historical范围。",
+  "actual": "第242行仍宣称One new engineering configuration and one Research precharge；第124–134行当前源码列表误列4个本轮未改文件并漏2个本轮测试文件；第264行read_or_polled_this_turn_scope仍沿用上一轮read_project/旧终态列表读取说明。",
+  "confirmed_current_fields": {
+    "source_configuration_budget_changed_line84": false,
+    "authoritative_budget_changed_line92": false,
+    "current_candidate_change_scope_line237": "offline_WR20_WR21_only_no_new_real_dispatch",
+    "new_configuration_count_line261": 0,
+    "new_Research_execution_count_line262": 0
+  },
+  "unchanged_baseline_claims": {
+    "source_configuration_budget_changed_scope": {
+      "baseline_value": "One new engineering configuration and one Research precharge, reserve allocation; no economic factor/model/trading design or budget limits changed.",
+      "current_value": "One new engineering configuration and one Research precharge, reserve allocation; no economic factor/model/trading design or budget limits changed.",
+      "identical": true
+    },
+    "source_changed_this_round": {
+      "baseline_value": [
+        "cloud/qresearch/engineering_data.py",
+        "cloud/qresearch/engineering_receipts.py",
+        "cloud/qresearch/worker_identity.py",
+        "cloud/qresearch/data_certification.py",
+        "tools/stage2.py",
+        "tools/data_certification.py",
+        "tests/test_native_research_failure.py",
+        "tests/test_worker_identity.py",
+        "tests/test_data_certification.py",
+        "cloud/research_config.py"
+      ],
+      "current_value": [
+        "cloud/qresearch/engineering_data.py",
+        "cloud/qresearch/engineering_receipts.py",
+        "cloud/qresearch/worker_identity.py",
+        "cloud/qresearch/data_certification.py",
+        "tools/stage2.py",
+        "tools/data_certification.py",
+        "tests/test_native_research_failure.py",
+        "tests/test_worker_identity.py",
+        "tests/test_data_certification.py",
+        "cloud/research_config.py"
+      ],
+      "identical": true
+    },
+    "read_or_polled_this_turn_scope": {
+      "baseline_value": "No repeated read_backtest/status polling in repair; read_project and old completed-task list used for source diagnosis only.",
+      "current_value": "No repeated read_backtest/status polling in repair; read_project and old completed-task list used for source diagnosis only.",
+      "identical": true
+    }
+  },
+  "actual_pinned_diff_mismatches": {
+    "declared_unchanged_files": [
+      "cloud/qresearch/engineering_data.py",
+      "cloud/qresearch/worker_identity.py",
+      "tests/test_worker_identity.py",
+      "tools/data_certification.py"
+    ],
+    "missing_changed_files": [
+      "tests/test_wr17_engineering_recovery.py",
+      "tests/test_wr21_research_dispatch.py"
+    ]
+  },
+  "budget_evidence": {
+    "journal_equal_baseline": true,
+    "events": 17,
+    "journal_raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1",
+    "configurations": 7,
+    "research": 10,
+    "lean": 1,
+    "engineering_usage": {
+      "configurations": 2,
+      "research": 2,
+      "lean": 1
+    },
+    "engineering_stopped": true
+  },
+  "minimal_reproduction": {
+    "script": "archive_agent/minimal_wr24_metadata.py",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent\\minimal_wr24_metadata.py"
+    ],
+    "exit_code": 1,
+    "execution_record": "archive_agent/wr24_first_execution.json",
+    "stdout": "archive_agent/wr24_first.stdout",
+    "stderr": "archive_agent/wr24_first.stderr",
+    "expected_metadata_assertions": {
+      "current_new_config_and_Research_scope": false,
+      "current_source_changed_this_round_matches_pinned_diff": false
+    }
+  },
+  "impact": "当前机器可读元数据将历史动作标为当前轮次，造成变更范围与证据来源歧义。实际原账本、预算、当前哈希、未上云/未验收标志均正确；未发现因此新增真实执行或预算消耗。",
+  "severity_rationale": "P3说明与可维护性问题；不影响WR-20/WR-21修复代码的动态行为判定，不构成新的预算或平台失控，不单独阻断软件验收。",
+  "minimal_fix": "保留旧描述原文并移入带baseline/actual-cloud SHA的historical对象；将当前source_configuration_budget_changed_scope和read_or_polled_this_turn_scope改为本轮零新增/零平台读取说明，按实际固定差异更新source_changed_this_round。不要修改原17事件或退还历史预算。",
+  "regression_test": "加入只读元数据一致性检查：当前0新增字段不能同时配未标historical的新增配置/Research描述，current source列表应等于明确基线到交付SHA的实现/测试/工具变更集合；历史记录保持原文与SHA。",
+  "financial_evidence": false
+}

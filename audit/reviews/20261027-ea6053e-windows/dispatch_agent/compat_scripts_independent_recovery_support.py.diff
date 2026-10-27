@@ -1,0 +1,16 @@
+--- original/compat_scripts/independent_recovery_support.py
++++ legal-fixture/compat_scripts/independent_recovery_support.py
+@@ -86,6 +86,13 @@
+     okay(invoke(case,['register'],label+'-register'))
+     attempt=okay(invoke(case,['claim','--stage','research'],label+'-claim'))['attempt_id']
+     admission=okay(invoke(case,['prepare','--attempt',attempt],label+'-prepare'))
++    from qresearch.engineering_receipts import research_cell_source
++    fixed_source=research_cell_source(admission['payload'],admission['deployment'])
++    fixed_read={'tool_name':'mcp__quantconnect__jupyter_read_cell',
++        'arguments':{'projectId':admission['payload']['identity']['project_id'],'index':4},
++        'result':{'cellType':'code','source':fixed_source.splitlines(keepends=True)}}
++    fixed_path=case.parent/'independent-fixed-cell.json';dump(fixed_path,fixed_read)
++    okay(invoke(case,['research-dispatch','--attempt',attempt,'--tool-file',fixed_path],label+'-fixed-dispatch'))
+     return {'case':case,'listing':listing,'attempt':attempt,'admission':admission,'pointer':pointer,'version':version}
+ def admission_key(attempt):return 'engineering/admitted-inputs/'+attempt+'.json'
+ def synthetic_report(context,admission,stage):

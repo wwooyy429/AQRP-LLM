@@ -298,6 +298,131 @@ class DataCertificationTests(unittest.TestCase):
         self.change_table('security_master', masters)
         self.assertEqual(self.audit()['status'], 'observations_passed')
 
+    def mapping_history(self, *, rename=True, boundary='2018-01-25', old_available=None,
+                        old_finish=None, old_listed=True):
+        rows = deepcopy(self.table_rows['security_master'])
+        old = rows[0]
+        old['effective_to'] = ts(old_finish or boundary).isoformat()
+        old['listed'] = old_listed
+        if old_available:
+            old['available_at'] = ts(old_available).isoformat()
+        new = deepcopy(self.table_rows['security_master'][0])
+        new.update(effective_from=ts(boundary).isoformat(), available_at=ts(boundary).isoformat())
+        if rename:
+            new['ticker'] = 'RENAMED-SYNTHETIC-SID0'
+        rows.append(new)
+        return rows
+
+    def test_old_master_history_proves_missing_candidate_without_liquidity_clock(self):
+        self.change_table('security_master', self.mapping_history())
+        self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['observed_member_cells'], 400)
+        self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8040)
+        self.assertEqual(result['counts']['missing_candidate_session_cells'], 40)
+        self.assertEqual(result['counts']['incomplete_candidate_histories'], 2)
+        self.assertFalse(result['checks']['all_known_eligible_candidate_histories_complete'])
+
+    def test_same_ticker_version_boundary_does_not_hide_whole_missing_history(self):
+        self.change_table('security_master', self.mapping_history(rename=False))
+        self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8040)
+        self.assertEqual(result['counts']['missing_candidate_session_cells'], 40)
+
+    def test_mapping_complete_and_single_session_missing_have_separate_known_answers(self):
+        self.change_table('security_master', self.mapping_history())
+        complete = self.audit()
+        self.assertEqual(complete['status'], 'observations_passed')
+        self.assertEqual(complete['counts']['known_eligible_candidate_expected_cells'], 8040)
+        self.change_source('liquidity', [row for row in self.liquid if not
+            (row['sid'] == SID[0] and row['session'] == self.calendar.sessions[0].isoformat())])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['missing_candidate_session_cells'], 1)
+        self.assertEqual(result['counts']['incomplete_candidate_histories'], 1)
+
+    def test_gap_overlap_and_unknown_state_cannot_create_continuous_master_history(self):
+        for mode in ('gap', 'overlap', 'unknown', 'unlisted'):
+            with self.subTest(mode=mode):
+                self.setUp()
+                rows = self.mapping_history(old_finish={'gap':'2018-01-24',
+                    'overlap':'2018-01-26'}.get(mode),
+                    old_listed=None if mode == 'unknown' else mode != 'unlisted')
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'insufficient_evidence')
+                self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+                self.assertFalse(result['checks']['historical_classification_and_mapping_consistent'])
+
+    def test_late_known_old_master_cannot_be_used_as_prior_listing_proof(self):
+        self.change_table('security_master', self.mapping_history(old_available='2018-01-31 10:00'))
+        self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8020)
+        self.assertEqual(result['counts']['missing_candidate_session_cells'], 20)
+        self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_unknown_historical_master_state_is_not_overridden_by_liquidity_clock(self):
+        self.change_table('security_master', self.mapping_history(old_listed=None))
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_recent_mapping_without_old_master_or_listing_clock_is_unknown_not_ipo(self):
+        rows = self.mapping_history()
+        rows = [row for row in rows if row['sid'] != SID[0] or row['effective_to'] is None]
+        self.change_table('security_master', rows)
+        self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_unknown_current_eligibility_without_liquidity_is_not_an_exclusion(self):
+        for field in ('listed', 'instrument_type'):
+            with self.subTest(field=field):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1][field] = None
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'insufficient_evidence')
+                self.assertFalse(result['checks']['historical_classification_and_mapping_consistent'])
+                self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_explicit_unlisted_or_excluded_type_without_liquidity_remains_excluded(self):
+        for field, value in (('listed', False), ('instrument_type', 'etf')):
+            with self.subTest(field=field):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1][field] = value
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'observations_passed')
+                self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8000)
+                self.assertEqual(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_old_candidate_history_audit_preserves_private_originals_and_no_certification(self):
+        self.change_table('security_master', self.mapping_history())
+        rows = [row for row in self.liquid if row['sid'] != SID[0]]
+        self.change_source('liquidity', rows)
+        before, refs = dict(self.store._data), deepcopy(self.refs)
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['liquidity_record_count'], len(rows))
+        self.assertEqual(result['evidence_refs']['liquidity'], refs['liquidity_refs'])
+        self.assertTrue(all(self.store.read_bytes(key) == value for key, value in before.items()))
+        for name in ('vendor_provenance_authenticated','full_historical_US200_certified',
+                     'actual_availability_certified','financial_vintage_certified','research_certified',
+                     'row_values_exported','financial_evidence'):
+            self.assertIs(result[name], False)
+
     def test_modeled_end_time_never_promoted_to_actual_receipt(self):
         rows = deepcopy(self.liquid)
         for row in rows:

@@ -307,6 +307,83 @@ def _rows(plan, tables):
     return members, prices, masters, actions
 
 
+def _continuous_listed_master(rows, start, formation):
+    """Known half-open SID intervals cover a continuous listed period.
+
+    A ticker/classification version boundary is not a new listing. Gaps,
+    overlapping versions and unknown listed/classification evidence cannot be
+    joined into an older period. Callers already filter knowledge by formation.
+    """
+    intervals = sorted((row for row in rows if row["effective_to"] is None
+        or row["effective_to"] > start), key=lambda row: row["effective_from"])
+    cursor = start
+    for index, row in enumerate(intervals):
+        if (row["effective_from"] > cursor or index and row["effective_from"] != cursor
+                or row["listed"] is not True or row["instrument_type"] is None or row["exchange"] is None):
+            return False
+        finish = row["effective_to"]
+        if finish is None:
+            return index == len(intervals) - 1
+        cursor = finish
+    return cursor > formation
+
+
+def _historical_candidate_evidence(masters, active, liquid, formation, first_session):
+    """Candidate history obligations do not depend on surviving price rows.
+
+    Full then-known master intervals independently prove a mature SID. The
+    previous explicit source listing-clock path remains a compatibility input;
+    it cannot erase master-proven maturity when all liquidity rows disappear.
+    A recent interval without either a listing clock or complete historical
+    intervals is unknown, rather than affirmative evidence of a young IPO.
+    """
+    histories, current, listing_clocks = {}, {}, {}
+    for row in masters:
+        if row["effective_from"] <= formation and row["available_at"] <= formation:
+            histories.setdefault(row["sid"], []).append(row)
+    for row in active:
+        current.setdefault(row["sid"], []).append(row)
+    for row in liquid:
+        if (row["listing_effective_at"] is not None and row["listing_available_at"] is not None
+                and row["vendor_available_at"] is not None
+                and _clock(row["listing_available_at"]) <= formation
+                and _clock(row["vendor_available_at"]) <= formation
+                and _clock(row["listing_effective_at"]) <= formation):
+            stamp = _clock(row["listing_effective_at"])
+            listing_clocks[row["sid"]] = min(stamp, listing_clocks.get(row["sid"], stamp))
+    expected, unknown = set(), set()
+    for sid, versions in current.items():
+        # Missing liquidity must not turn unknown current eligibility into an
+        # affirmative exclusion. Known unlisted or excluded types remain out.
+        if any(row["listed"] is None or row["listed"] is True and row["instrument_type"] is None
+                for row in versions):
+            unknown.add(sid)
+        if not any(row["listed"] is True and row["instrument_type"] in INCLUDED for row in versions):
+            continue
+        history = histories[sid]
+        clock = listing_clocks.get(sid)
+        if clock is not None and clock <= first_session:
+            expected.add(sid)
+        if len(versions) != 1:
+            unknown.add(sid)
+            continue
+        relevant = [row for row in history if row["effective_to"] is None
+                    or row["effective_to"] > first_session]
+        if any(row["listed"] is None or row["instrument_type"] is None or row["exchange"] is None
+                or clock is not None and clock <= first_session and row["listed"] is False
+                for row in relevant):
+            unknown.add(sid)
+        known_listed = [row for row in history if row["listed"] is True]
+        start = min(row["effective_from"] for row in known_listed)
+        if not _continuous_listed_master(history, max(start, first_session), formation):
+            unknown.add(sid)
+        elif start <= first_session:
+            expected.add(sid)
+        elif clock is None:
+            unknown.add(sid)
+    return expected, unknown
+
+
 def audit_data_certification(store, plan, *, calendar, ingestor=None, liquidity_refs=(), financial_refs=(),
         membership_refs=(), price_refs=(), security_master_refs=(), corporate_action_refs=(), synthetic=False):
     """Compute bounded observed conformance and permanent certification gaps.
@@ -382,13 +459,9 @@ def audit_data_certification(store, plan, *, calendar, ingestor=None, liquidity_
             rank_input = verified.liquidity_rows_asof(refs["liquidity"], formation, trailing)
             active = [row for row in masters if row["effective_from"] <= formation and row["available_at"] <= formation
                       and (row["effective_to"] is None or formation < row["effective_to"])]
-            known_old_listings = {row["sid"] for row in liquid if row["listing_effective_at"] is not None
-                and _clock(row["listing_effective_at"]) <= trailing[0]
-                and row["listing_available_at"] is not None and _clock(row["listing_available_at"]) <= formation
-                and row["vendor_available_at"] is not None and _clock(row["vendor_available_at"]) <= formation}
-            expected_candidates = {row["sid"] for row in active if row["listed"] is True
-                and row["instrument_type"] in INCLUDED
-                and (row["effective_from"] <= trailing[0] or row["sid"] in known_old_listings)}
+            expected_candidates, unknown_history = _historical_candidate_evidence(
+                masters, active, liquid, formation, trailing[0])
+            counts["inconsistent_classification_cells"] += len(unknown_history)
             counts["known_eligible_candidate_expected_cells"] += 20 * len(expected_candidates)
             observed_sessions = {sid: set(group.session) for sid, group in rank_input.groupby("sid")}
             for sid in expected_candidates:

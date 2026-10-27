@@ -1,0 +1,16 @@
+{
+  "id":"WR-23","priority":"P1","blocking":true,
+  "reviewed_source_commit":"ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "title":"首次entry协议写失败后，新准入在恢复时被误当旧协议并结算成功",
+  "locations":[{"file":"tools/stage2.py","line":193},{"file":"tools/stage2.py","line":206},{"file":"tools/stage2.py","line":176},{"file":"tools/stage2.py","line":317}],
+  "trigger":"首次生产prepare已落盘admitted-input，紧接着research-entry-protocol的真实write_once调用被注入同步写异常；没有删除任何已存在marker。恢复CLI prepare返回原admission但entry和dispatch均无。",
+  "expected":"该新准入必须保留其新协议身份，未完整发布的准备状态或缺dispatch不能作为旧成功协议结算；失败关闭且不准入同父LEAN。",
+  "actual":"原prepare异常后，恢复prepare返回admission；未经dispatch的合法形状合成成功回执经实际CLI返回0/completed，同父LEAN claim返回started/should_execute=true。根独立原字节脚本重放亦复现；仅隔离合成账本变化，真实17事件及7/10/1未改。",
+  "cause":"prepare按admission在先、entry marker在后的顺序发布；旧准入恢复直接返回既有admission且不补marker；settle以entry文件是否存在决定require_dispatch，缺失被自动等同历史协议。准入原件未包含足以区分此写故障状态与真正旧任务的协议身份。",
+  "scope_and_severity":"P1新旧任务身份及崩溃恢复完整性问题，是继承旧发布顺序的残余缺陷；不是宣称ea新引入。WR21显式entry存在而dispatch缺失的原反例已修复，但此自然写故障路径使新协议整体仍不通过。没有实际新LEAN提交、真实预算上限突破或金融泄漏。",
+  "positive_controls":["原WR21未改MRE在deb退出1、ea退出0，合法已绑定成功与明确旧无marker兼容均保留。","正常首次entry发布、绑定后成功和真实f5d原生失败恢复属独立专项覆盖，不因本缺陷否认其局部通过。"],
+  "reproduction":"python -B dispatch_agent/minimal_prepare_entry_crash.py --source source --out <fresh-output-dir>，同目录需independent_recovery_support.py；当前exit1。根wr23_confirmation保存独立重复。",
+  "minimal_fix":"把新协议身份与准入成功状态绑定于同一不可变记录或可靠发布顺序；写失败后的恢复不得仅以marker缺失推断legacy。只有明确历史协议的旧任务可走旧成功路径。缺完整协议/dispatch保持未决，不得盲补标记或直接关闭全部成功路径。",
+  "regression_tasks":["逐一注入local input、admission、entry协议发布边界的写异常，恢复后都不能把新任务降为legacy。","entry写失败后，恢复prepare及成功/失败结算不得写成功结果或解锁LEAN。","合法新绑定成功、真正旧准入兼容和f5d失败15→17→17均保持。","并发首次prepare/dispatch只获一次执行许可；未知派发不得自动重跑，费用不退款。"],
+  "root_confirmation":{"exit_code":1,"actual_CLI_processes":6,"synthetic_finish_calls":1,"actual_worker_or_provider_calls":0,"authoritative_budget_writes":0}
+}

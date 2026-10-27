@@ -1,0 +1,49 @@
+test_actual_read_cell_must_equal_exact_canonical_source_before_binding (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_boolean_alias_in_saved_dispatch_does_not_equal_integer_cell_index (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_canonical_cell_locates_package_root_when_notebook_CWD_differs (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_canonical_cell_reads_original_input_once_and_emits_existing_success_marker (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_changed_raw_input_is_rejected_before_any_cloud_worker_call (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_cli_changed_failure_cannot_overwrite_original_terminal (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_cli_dispatch_is_one_time_no_budget_change_and_failure_is_idempotent (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_cli_recovery_uses_original_binding_and_input_after_current_context_removed (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_cli_without_dispatch_network_failure_and_changed_cell_do_not_write (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_concurrent_dispatch_has_only_one_execute_permission (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_dispatch_cannot_backfill_an_accepted_or_ambiguous_execution (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_error_shape_types_unknown_keys_and_bounds_are_closed (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_exact_synthetic_error_grammar_emits_only_bound_hashes_and_counts (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_failure_settlement_recovers_after_original_evidence_write_fault (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_legacy_started_input_cannot_backfill_dispatch_or_new_entry_protocol (test_native_research_failure.NativeResearchFailureTests) ... ERROR
+test_mcp_mirror_hidden_output_and_flag_type_reject_without_leaking (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_missing_dispatch_and_wrong_attempt_input_index_or_protocol_reject (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_missing_original_entry_protocol_cannot_recover_a_bound_failure (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_prepare_protocol_write_fault_stays_blocked_and_never_backfills (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_registered_error_shapes_and_semantic_carriers (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_success_caught_exception_marker_stderr_rows_and_network_are_not_native_failure (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_success_without_dispatch_remains_compatible_but_failure_needs_original_binding (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_tool_project_index_internal_index_and_stage_are_exact (test_native_research_failure.NativeResearchFailureTests) ... ok
+test_unavailable_or_ambiguous_package_root_rejects_before_reading_input (test_native_research_failure.NativeResearchFailureTests) ... ok
+
+======================================================================
+ERROR: test_legacy_started_input_cannot_backfill_dispatch_or_new_entry_protocol (test_native_research_failure.NativeResearchFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_native_research_failure.py", line 376, in test_legacy_started_input_cannot_backfill_dispatch_or_new_entry_protocol
+    self.assertEqual(fixture.settle_research()["status"], "completed")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr17_engineering_recovery.py", line 113, in settle_research
+    return self.command("research-result", attempt=self.attempt, tool=self.research_observation())
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr17_engineering_recovery.py", line 101, in command
+    cli.main()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tools\stage2.py", line 425, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tools\stage2.py", line 336, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tools\stage2.py", line 268, in _read_research_dispatch
+    _read_research_entry_protocol(bridge, payload, deployment)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tools\stage2.py", line 285, in _read_research_entry_protocol
+    raise EngineeringTaskError("Original Research entry protocol is required; legacy inputs cannot be backfilled")
+qresearch.engineering_tasks.EngineeringTaskError: Original Research entry protocol is required; legacy inputs cannot be backfilled
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.788s
+
+FAILED (errors=1)

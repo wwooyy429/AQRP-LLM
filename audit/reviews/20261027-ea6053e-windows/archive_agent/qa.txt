@@ -1,0 +1,34 @@
+只读正式报告QA（不运行新增产品测试，不修改root报告）
+
+已核对formal_report.json/.txt、findings.json、test_execution_summary.json、environment.json、ci.json、ci_jobs.json，以及archive_agent已有来源报告。
+
+通过：
+1. 固定审核SHA ea6053e3e9ef4be17db246daf18a4cf9b2e5be58，失败基线deb85d9f27441b275ab8b108f0232ecd2707a1e8，实际旧执行7fc5ef2e9d2379d29f48d05a1f3cc760000884d6分离准确。
+2. raw4541、review140、local-deploy31、developer raw43、prior archived4047、protected38与独立来源报告完全一致。source e82ee1…、execution faf825…、deployment912942…、implementation712ffd…、econ272e…一致。
+3. 55/55主静态检查与44/44补充静态检查明确unit_methods=0；报告没有把99静态核对计作99产品单元测试。首轮审查器schema错误54/55得到披露，未当产品失败。
+4. 17事件字节=deb，旧13前缀；journal hash 0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1；配置7/12(normal6 reserve1)、Research10/20(normal6 reserve4)、LEAN1/16；工程2/2/1、caps2/2/2、停止保持。未声称新真实扣费或退款。
+5. 本轮QC0、真实Research/LEAN/模型/部署/交易0，旧32源码及cell源码只离线重解析；28同3异明确是当前31候选对前轮归档7fc31源码的历史比较，未声称本轮平台读回、故障worker源码认证或完整inventory认证。
+6. 原WR20/21反例通过明确不等于模块整体通过。WR23/P1和WR22/P2阻断；WR24/P3明确非阻断。阶段2整体未通过。阶段0/1只继承已测工程/离线范围，阶段3/6未验收，4/5/7未实现/未验收；未给出金融通过结论，financial_evidence=false。
+7. WR24内容与子审查finding_WR24.json一致，准确定位readiness242、124–134和264；当前0新增与旧one new/config+Research描述不一致，原件和真实预算没有变化。最小只读MRE exit1及修复方向准确。
+8. 环境与environment.json完全一致：原生Windows26300，Python3.10.11及numpy1.26.4/pandas2.3.3/dateutil3.0.0/pytz2026.5/six1.17.0/tzdata2026.5。CI run40504444358，Python3.10 job122190039456、3.11 job122190038731均success；独立CI测试计数null，未冒称独立重跑CI。
+9. 正式JSON中的中文stage/status字符真实完好。早先终端显示乱码为该次stdout编码显示，不是文件U+FFFD损坏。
+
+报告完整性建议（不是新软件finding，也不改变结论）：
+formal_report.json/.txt尚未直接列旧deb“选择性归档216原件”与“完整原包”的边界，目前只在reproduction.records引用archive_agent来源报告。建议封包前正式JSON补archive_boundary，文本补一句：本次Git选择归档216份原件、3361243字节，省略12259份；外部完整旧ZIP33811222字节，SHA256 19d2614008caf209c18b79e16220826de0394ee9a86f585f32ccce5a9bfd6b49，12474个清单登记文件+清单自身=12475文件。4047是更早已存在归档文件保留数量，与这216选择原件不是同一计数。现稿没有把选择性目录称为完整包，因此不是事实错误；补入可使正式报告自包含。
+
+QA过程补记：一次只读探索Get-Content检查了尚未生成的root README.txt，得到文件不存在、该组合命令exit1；未运行产品、不影响以上结论，不计测试或产品失败。
+
+本QA只读root文件，并仅写archive_agent/qa.txt及本生成脚本。无新产品测试、市场/网络/模型或真实账本动作。
+
+本次QA读取的原报告SHA256（若root随后补充归档边界，应以新hash另记）：
+{
+  "formal_report.json": "345a75358d4e0f1f7b7ffb6385d8fee858ad5b4dd169e821aa9f5e6e6a0a8c86",
+  "formal_report.txt": "4b84acb1c888bfd541e8ead7cea61af5c4fc866ac011edcfa7a76d6b318ae2c5",
+  "findings.json": "ae7dfb8219d204f5ee922b45a1cacc75bda9b9f648b5ff7a4ae96e0f6da4d6e0",
+  "test_execution_summary.json": "b08ff62e9d54c191772c208e6f98cd8cb7de4a6b1135e21cab395f74143ba11a",
+  "environment.json": "a504699cddeeba752d0a27a49a57751b0d5a0e14f49fc1bd9d8dd642a8ceddd6",
+  "ci.json": "91a7d8c88fc1a51bed9e98b5043a5a77ff10ee83a5cffa7a2e2a6410e3cfe621",
+  "ci_jobs.json": "3e0f2e3eade1880d5d8b2e43a72e3f6f0875f98a24a4616265da2a7f0d428ce4"
+}
+
+附加只读比对：environment_equal=True；source_counts_equal=True；CI_jobs_match=True

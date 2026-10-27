@@ -145,8 +145,9 @@ def admitted_input(bridge, attempt):
     encoded = bridge.store.read_bytes("engineering/admitted-inputs/" + record["attempt_id"] + ".json")
     admission = json.loads(encoded)
     expected_path = "audit/task_inputs/" + record["attempt_id"] + ".py"
+    legacy_keys = {"payload", "deployment", "input_path", "cloud_input_path"}
     if (canonical_json(admission) != encoded or not isinstance(admission, dict)
-            or set(admission) != {"payload", "deployment", "input_path", "cloud_input_path"}
+            or set(admission) not in (legacy_keys, legacy_keys | {"research_entry_protocol"})
             or admission["input_path"] != expected_path or admission["cloud_input_path"] != "_engineering_task_input.py"):
         raise ValueError("Original engineering input shape or destination changed")
     payload = admission["payload"]
@@ -165,6 +166,11 @@ def admitted_input(bridge, attempt):
         "deployment_hash": payload["identity"]["deployment_hash"], "input_hash": hashlib.sha256(text.encode("utf-8")).hexdigest()}
     if admission["deployment"] != deployment:
         raise ValueError("Original engineering input hash or deployment changed")
+    if "research_entry_protocol" in admission:
+        from qresearch.engineering_receipts import research_entry_protocol
+        if (record["stage"] != "research" or canonical_json(admission["research_entry_protocol"])
+                != canonical_json(research_entry_protocol(payload, deployment))):
+            raise ValueError("Original Research admission protocol identity changed")
     path = ROOT / expected_path
     if path.exists() and path.read_bytes() != text.encode("utf-8"):
         raise ValueError("Local engineering input bytes differ from the admitted payload")
@@ -172,6 +178,14 @@ def admitted_input(bridge, attempt):
 
 
 def prepare(bridge, attempt):
+    # Serialize only this input publication, separately from Registry's lock.
+    # Snapshot/payload validation below must remain free to take that lock.
+    record = bridge._record(attempt)
+    with bridge.store.locked("engineering/prepare/" + record["attempt_id"]):
+        return _prepare_input(bridge, record["attempt_id"])
+
+
+def _prepare_input(bridge, attempt):
     record = bridge._record(attempt)
     if bridge.store.exists("engineering/admitted-inputs/" + record["attempt_id"] + ".json"):
         return admitted_input(bridge, record["attempt_id"])
@@ -190,6 +204,11 @@ def prepare(bridge, attempt):
         "input_hash": hashlib.sha256(text.encode()).hexdigest()}
     admission = {"payload": payload, "deployment": deployment,
         "input_path": path.relative_to(ROOT).as_posix(), "cloud_input_path": "_engineering_task_input.py"}
+    if record["stage"] == "research":
+        from qresearch.engineering_receipts import research_entry_protocol
+        # Protocol identity is published atomically with the admission itself.
+        # A later sidecar write fault must never turn a new task into legacy.
+        admission["research_entry_protocol"] = research_entry_protocol(payload, deployment)
     bridge.store.write_once("engineering/admitted-inputs/" + attempt + ".json", canonical_json(admission))
     if record["stage"] == "lean":
         # A new dispatch can rely on the accepted-pointer-before-original
@@ -202,9 +221,8 @@ def prepare(bridge, attempt):
         # It pins that this new admission requires the fixed no-catch Research
         # entry before a dispatch binding can be written. Started alone does
         # not establish that a legacy cell was never sent to the platform.
-        from qresearch.engineering_receipts import research_entry_protocol
         bridge.store.write_once("engineering/research-entry-protocol/" + attempt + ".json",
-                                canonical_json(research_entry_protocol(payload, deployment)))
+                                canonical_json(admission["research_entry_protocol"]))
     return admission
 
 
@@ -311,10 +329,10 @@ def settle_research_result(bridge, attempt, tool_envelope):
     admission = admitted_input(bridge, attempt)
     payload, deployment = admission["payload"], admission["deployment"]
     entry_key = "engineering/research-entry-protocol/" + payload["identity"]["attempt_id"] + ".json"
-    # Presence of the immutable first-admission marker selects the new protocol
-    # for BOTH success and failure. A missing dispatch cannot fall back to the
-    # explicitly retained pre-marker success grammar, including terminal replay.
-    require_dispatch = bridge.store.exists(entry_key)
+    # New admissions pin their protocol in the same immutable record; a fault
+    # publishing its sidecar cannot silently downgrade them to legacy. Older
+    # admissions with a pinned sidecar (including original f5d) retain that gate.
+    require_dispatch = "research_entry_protocol" in admission or bridge.store.exists(entry_key)
     binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
     observed = research_observation(payload, deployment, tool_envelope,
         dispatch_binding=binding, dispatch_required=require_dispatch)
