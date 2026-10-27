@@ -100,10 +100,10 @@
     "read_only_plan_preview"
   ],
   "unimplemented_collection_scope": [
-    "actual_new_cloud_dispatch_and_successful_runtime_validation",
-    "Research_native_failed_cell_parser_and_end_to_end_failure_receipt",
-    "verified_complete_financial_value_catalog",
-    "actual_vendor_receipt_and_vintage_certification"
+    "qualifying_actual_cloud_Research_and_LEAN_success",
+    "proven_old_LEAN_worker_source_difference",
+    "verified_complete_financial_value_catalog_and_vendor_receipt_protocol",
+    "full_historical_US200_and_financial_data_certification"
   ],
   "known_open_findings": [],
   "developer_fixes_pending_independent_verification": [],
@@ -292,27 +292,24 @@
   "remaining_acceptance_gates": [
     {
       "id": "G1",
-      "priority": "P1验收缺口",
-      "status": "待验收",
-      "requirement": "证明新版固定源码在真实Research、联合历史采集/缓存复用及LEAN成功运行；保留原生提交、终态与原attempt绑定。旧初始化失败不满足成功运行要求。"
+      "status": "actual7fc_Research_failed_new_controller_candidate_not_cloud_executed",
+      "requirement": "A qualifying Research, collection/cache replay and dependent LEAN success are still required",
+      "actual_evidence": "audit/stage2_completion_reconciliation.json"
     },
     {
       "id": "G2",
-      "priority": "P1验收缺口",
-      "status": "证据不足",
-      "requirement": "取得失败worker具体源码/哈希或受控诊断证据，解释冻结不一致。当前返回25份引用一致、官方自动导入说明及合成插入均不能证明本次根因或已修复。"
+      "status": "old_LEAN_worker_source_difference_insufficient",
+      "requirement": "Controlled source/format/hash diagnostics implemented; no actual mismatch observation from this Research failure and no proof of old worker bytes"
     },
     {
       "id": "G3",
-      "priority": "P1未实现范围",
-      "status": "未验收",
-      "requirement": "实现并独立验证Research原生异常回执解析及失败恢复，补真实失败cell原件；正常cell内固定检查失败不能替代。"
+      "status": "implemented_with_actual_failed_cell_and_recovery_pending_independent_review",
+      "requirement": "Independent fixed-version review of source binding, native two-carrier error parsing and original-attempt failure recovery"
     },
     {
       "id": "G4",
-      "priority": "P1数据认证缺口",
-      "status": "证据不足",
-      "requirement": "补全历史当时US200、永久SID/映射/公司行动、原始价格、供应商DollarVolume、财务公开/版本/实际送达及摄入证据；两股工程样例和模型化end_time不足。"
+      "status": "software_evidence_audit_implemented_authenticated_full_data_insufficient",
+      "requirement": "Historical US200, financial vintage, actual vendor availability/ingestion and security-master/action receipts remain unsupported"
     }
   ],
   "latest_independent_platform_observation": {
@@ -377,5 +374,39 @@
   "market_calls_scope": "History API call counts were not emitted by the failed cell; exactly one new Research tool call is observed.",
   "native_research_failure_reconciliation": "audit/stage2_completion_reconciliation.json",
   "current_cloud_reference_comparison": "audit/stage2_completion_final_source_comparison.json",
-  "controller_repair_cloud_executed": false
+  "controller_repair_cloud_executed": false,
+  "historical_remaining_gates_from66_review": [
+    {
+      "id": "G1",
+      "priority": "P1验收缺口",
+      "status": "待验收",
+      "requirement": "证明新版固定源码在真实Research、联合历史采集/缓存复用及LEAN成功运行；保留原生提交、终态与原attempt绑定。旧初始化失败不满足成功运行要求。"
+    },
+    {
+      "id": "G2",
+      "priority": "P1验收缺口",
+      "status": "证据不足",
+      "requirement": "取得失败worker具体源码/哈希或受控诊断证据，解释冻结不一致。当前返回25份引用一致、官方自动导入说明及合成插入均不能证明本次根因或已修复。"
+    },
+    {
+      "id": "G3",
+      "priority": "P1未实现范围",
+      "status": "未验收",
+      "requirement": "实现并独立验证Research原生异常回执解析及失败恢复，补真实失败cell原件；正常cell内固定检查失败不能替代。"
+    },
+    {
+      "id": "G4",
+      "priority": "P1数据认证缺口",
+      "status": "证据不足",
+      "requirement": "补全历史当时US200、永久SID/映射/公司行动、原始价格、供应商DollarVolume、财务公开/版本/实际送达及摄入证据；两股工程样例和模型化end_time不足。"
+    }
+  ],
+  "historical_unimplemented_collection_scope_before_consolidated_round": [
+    "actual_new_cloud_dispatch_and_successful_runtime_validation",
+    "Research_native_failed_cell_parser_and_end_to_end_failure_receipt",
+    "verified_complete_financial_value_catalog",
+    "actual_vendor_receipt_and_vintage_certification"
+  ],
+  "postnative_developer_peer_methods": 8,
+  "actual_native_failure_adapter_evidence_available": true
 }
