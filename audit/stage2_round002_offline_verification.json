@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "developer_pre_dispatch_synthetic_verification",
+  "runs": [
+    {
+      "command": "python -B tools/research.py build",
+      "exit_code": 0,
+      "seconds": 0.406,
+      "stdout": "build.stdout",
+      "stderr": "build.stderr"
+    },
+    {
+      "command": "python -B tools/stages.py verify",
+      "exit_code": 0,
+      "seconds": 185.484,
+      "stdout": "verify.stdout",
+      "stderr": "verify.stderr"
+    }
+  ],
+  "source_hash": "1dedcac5b877a4edf015d7a6ef31d116066641a46986aab446613cdb45eee81f",
+  "test_output": "----------------------------------------------------------------------\nRan 697 tests in 183.222s\n\nOK\n",
+  "runtime_original17_unchanged": true,
+  "independent_acceptance": false,
+  "real_Research_executions_in_this_check": 0,
+  "real_LEAN_submissions_in_this_check": 0,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

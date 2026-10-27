@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "round_id": "stage2-cloud-round-002",
+  "status": "preregistered_not_dispatched",
+  "baseline_commit": "65b8025b8618021eddd50520fe87c764b60af377",
+  "accepted_offline_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "authorization_source": "explicit latest human user instruction; allocation chosen by operator within unchanged reserve",
+  "round_limits": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 1
+  },
+  "allocation": "reserve",
+  "global_limits": {
+    "configurations": {
+      "total": 12,
+      "normal": 8,
+      "reserve": 4
+    },
+    "research": {
+      "total": 20,
+      "normal": 12,
+      "reserve": 8
+    },
+    "lean": {
+      "total": 16,
+      "normal": 8,
+      "reserve": 8
+    }
+  },
+  "usage_before": {
+    "configurations": {
+      "total": 7,
+      "normal": 6,
+      "reserve": 1
+    },
+    "research": {
+      "total": 10,
+      "normal": 6,
+      "reserve": 4
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "extra_spend_usd": 0,
+  "final_test_enabled": false,
+  "source_changes": [
+    "safe bounded source diagnostics",
+    "explicit immutable engineering-round quota reservation"
+  ],
+  "scope": {
+    "fixed_symbols": [
+      "AAPL",
+      "MSFT"
+    ],
+    "prices": "2018-01-01 through 2019-01-01 exclusive; America/New_York; raw",
+    "historical_universe_probe": "2018-01-01 through 2018-02-10 exclusive; 40 daily windows",
+    "probe_fields": [
+      "dollar_volume",
+      "has_fundamental_data",
+      "time",
+      "end_time"
+    ],
+    "orders_enabled": false,
+    "economic_factor_tested": false
+  },
+  "cache_version_reason": "Explicit new diagnostic collection configuration preserves the old unfinished intent. Version is an engineering cache namespace, not verified vendor data vintage.",
+  "existing_price_cache_policy": "Unchanged price request reuses its content-addressed source snapshot; never per-factor downloads.",
+  "sequence": [
+    "offline build and synthetic verification",
+    "freeze full package and append explicit grant",
+    "charge configuration and Research before dispatch",
+    "deploy and exact file readback",
+    "one pinned Research cell and native receipt settlement",
+    "on a verified same-parent Research success charge and submit at most one LEAN task",
+    "if an observed failure is repairable, bind a separately frozen second configuration before one last Research execution",
+    "certification records actual evidence or insufficiency; close round only after known terminal tasks"
+  ],
+  "stop_conditions": [
+    "round or global cap reached",
+    "unknown submission blocks retries pending reconciliation",
+    "PIT/final-date/privacy violation",
+    "no safe repair within remaining allocation",
+    "bounded joint engineering result and certification conclusion obtained"
+  ],
+  "success_definition": "Required fixed Research checks and a terminal LEAN receiver report; compilation/submission alone are insufficient.",
+  "certification_limits": [
+    "2-stock 2018 price fixture is not full historical US200",
+    "4-field collection probe contains no financial statement values",
+    "EndTime/current capture do not prove historical vendor delivery time or financial vintages",
+    "2024-2025 previously exposed; final-test window remains closed"
+  ],
+  "independent_acceptance": false,
+  "financial_evidence": false
+}

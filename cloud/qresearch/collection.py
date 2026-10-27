@@ -35,6 +35,60 @@ class CollectionIntegrityError(CollectionError):
     """A reference, completed manifest or payload is inconsistent."""
 
 
+_SOURCE_DIAGNOSTIC_ENUMS = {
+    "stage": {"request_validation", "notebook_timezone", "notebook_frontier", "sdk_import",
+              "universe_setup", "history_request", "response_contract", "response_identity",
+              "response_iteration", "snapshot_identity", "snapshot_clock", "snapshot_container",
+              "snapshot_iteration", "row_identity", "field_projection", "completed"},
+    "failure_code": {"unexpected_exception", "source_contract", "native_property_failed"},
+    "exception_kind": {"source_contract", "type_error", "value_error", "runtime_error",
+                       "attribute_error", "key_error", "index_error", "overflow_error",
+                       "memory_error", "import_error", "other"},
+    "response_kind": {"not_observed", "series", "dataframe", "other"},
+    "index_kind": {"not_observed", "multiindex", "other"},
+    "index_names": {"not_observed", "expected", "other"},
+    "snapshot_kind": {"not_observed", "list", "tuple", "other"},
+    "projection_kind": {"not_observed", "number", "boolean", "date", "text"},
+}
+_SOURCE_DIAGNOSTIC_COUNTS = {"native_calls", "response_rows", "index_levels", "snapshots_seen", "rows_emitted", "projection_position"}
+
+
+def _safe_source_diagnostic(raw):
+    """Only fixed structural tokens and bounded counts can leave QC Cloud.
+
+    Never stringify an exception, a native type name, an index name, an object,
+    a field path or a row. Revalidate even an owned exception's mutable payload.
+    """
+    if (type(raw) is not dict or any(type(key) is not str for key in raw)
+            or set(raw) != {"schema_version", *_SOURCE_DIAGNOSTIC_ENUMS, *_SOURCE_DIAGNOSTIC_COUNTS}):
+        return None
+    if type(raw["schema_version"]) is not int or raw["schema_version"] != 1:
+        return None
+    for key, allowed in _SOURCE_DIAGNOSTIC_ENUMS.items():
+        if type(raw[key]) is not str or raw[key] not in allowed:
+            return None
+    for key in _SOURCE_DIAGNOSTIC_COUNTS:
+        if raw[key] is not None and (type(raw[key]) is not int or not 0 <= raw[key] <= 1000000000):
+            return None
+    return dict(raw)
+
+
+class SourceDiagnosticError(CollectionError):
+    """An owned adapter failure may attach closed, value-free diagnostics."""
+
+    def __init__(self, message, *, diagnostic=None):
+        super().__init__(message)
+        self.diagnostic = _safe_source_diagnostic(diagnostic)
+
+
+def _source_failure_message(prefix, error):
+    try:
+        diagnostic = _safe_source_diagnostic(error.diagnostic) if isinstance(error, SourceDiagnosticError) else None
+    except Exception:
+        diagnostic = None
+    return prefix if diagnostic is None else prefix + "; diagnostic=" + canonical_json(diagnostic).decode("utf-8")
+
+
 _HASH = re.compile(r"[0-9a-f]{64}")
 _PATH = re.compile(r"[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)*")
 _FIELDS = {"schema_version", "plan_id", "scope", "source", "data_version", "start",
@@ -306,15 +360,17 @@ class HistoricalSnapshotCollector:
         """Do not let provider exception messages disclose licensed row values."""
         try:
             source_rows = iter(self.source.fetch(start, end, self.plan.field_catalog))
-        except Exception:
-            raise CollectionError("Historical source fetch failed; unfinished intent retained") from None
+        except Exception as error:
+            raise CollectionError(_source_failure_message(
+                "Historical source fetch failed; unfinished intent retained", error)) from None
         while True:
             try:
                 row = next(source_rows)
             except StopIteration:
                 return
-            except Exception:
-                raise CollectionError("Historical source iteration failed; unfinished intent retained") from None
+            except Exception as error:
+                raise CollectionError(_source_failure_message(
+                    "Historical source iteration failed; unfinished intent retained", error)) from None
             yield row
 
     def _collect_window(self, start, end):

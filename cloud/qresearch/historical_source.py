@@ -14,11 +14,11 @@ import numpy as np
 import pandas as pd
 
 from .artifacts import canonical_json, content_hash
-from .collection import CollectionError, _catalog
+from .collection import SourceDiagnosticError, _catalog
 from .contracts import DEVELOPMENT_END, NY, aware
 
 
-class HistoricalSourceError(CollectionError):
+class HistoricalSourceError(SourceDiagnosticError):
     """A native history response cannot satisfy the declared projection."""
 
 
@@ -150,6 +150,29 @@ class QuantConnectSnapshotSource:
         return [item.symbol for item in fundamentals]
 
     def fetch(self, start, end, selected_field_catalog):
+        # Diagnostics are closed metadata, never a native exception message or
+        # observation. Reset per fetch, including cache-independent counters.
+        diagnostic = dict(schema_version=1, stage="request_validation", failure_code="unexpected_exception",
+            exception_kind="other", response_kind="not_observed", index_kind="not_observed",
+            index_names="not_observed", snapshot_kind="not_observed", projection_kind="not_observed",
+            native_calls=0, response_rows=None, index_levels=None, snapshots_seen=0, rows_emitted=0,
+            projection_position=None)
+        try:
+            yield from self._fetch(start, end, selected_field_catalog, diagnostic)
+        except Exception as error:
+            kinds = {TypeError: "type_error", ValueError: "value_error", RuntimeError: "runtime_error",
+                AttributeError: "attribute_error", KeyError: "key_error", IndexError: "index_error",
+                OverflowError: "overflow_error", MemoryError: "memory_error", ImportError: "import_error",
+                ModuleNotFoundError: "import_error", HistoricalSourceError: "source_contract"}
+            diagnostic["exception_kind"] = kinds.get(type(error), "other")
+            if type(error) is HistoricalSourceError:
+                diagnostic["failure_code"] = ("native_property_failed"
+                    if (len(error.args) == 1 and type(error.args[0]) is str
+                        and error.args[0] == "Native source property access failed") else "source_contract")
+            raise HistoricalSourceError("Historical source failed; unfinished intent retained",
+                diagnostic=diagnostic) from None
+
+    def _fetch(self, start, end, selected_field_catalog, diagnostic):
         start, end = _clock(start), _clock(end)
         if (start != start.normalize() or end != end.normalize()
                 or not start < end <= DEVELOPMENT_END
@@ -161,29 +184,42 @@ class QuantConnectSnapshotSource:
             raise HistoricalSourceError("Projection must match the frozen trusted catalog")
         # QC exposes a naive Time in the notebook's configured zone. That clock
         # interpretation is explicit here and is not vendor delivery evidence.
+        diagnostic["stage"] = "notebook_timezone"
         self.qb.set_time_zone("America/New_York")
+        diagnostic["stage"] = "notebook_frontier"
         frontier = _clock(self.qb.time, native=True)
         if not end <= frontier <= DEVELOPMENT_END:
             raise HistoricalSourceError("Notebook frontier cannot precede the request or enter final dates")
         if self.universe is None:
             if self.api is None:
+                diagnostic["stage"] = "sdk_import"
                 import AlgorithmImports as api
                 self.api = api
+            diagnostic["stage"] = "universe_setup"
             self.qb.universe_settings.resolution = self.api.Resolution.DAILY
             self.universe = self.qb.add_universe(self._all_symbols)
+        diagnostic["stage"] = "history_request"
         self.history_call_count += 1
-        try:
-            response = self.qb.universe_history(self.universe,
-                _history_endpoint(start), _history_endpoint(end), flatten=False)
-        except Exception:
-            raise HistoricalSourceError("Native universe history request failed; reconcile before retry") from None
+        diagnostic["native_calls"] = 1
+        response = self.qb.universe_history(self.universe,
+            _history_endpoint(start), _history_endpoint(end), flatten=False)
+        diagnostic["stage"] = "response_contract"
+        diagnostic["response_kind"] = "series" if isinstance(response, pd.Series) else "dataframe" if isinstance(response, pd.DataFrame) else "other"
+        if isinstance(response, (pd.Series, pd.DataFrame)):
+            diagnostic["response_rows"] = min(len(response), 1000000000)
+            diagnostic["index_kind"] = "multiindex" if isinstance(response.index, pd.MultiIndex) else "other"
+            diagnostic["index_levels"] = min(response.index.nlevels, 1000000000)
+            diagnostic["index_names"] = "expected" if list(response.index.names) == ["symbol", "time"] else "other"
         if (not isinstance(response, pd.Series) or not isinstance(response.index, pd.MultiIndex)
                 or response.index.nlevels != 2 or list(response.index.names) != ["symbol", "time"]):
             raise HistoricalSourceError("Expected documented symbol/time universe-history Series")
         seen_snapshots = set()
+        diagnostic["stage"] = "response_identity"
         expected_universe = _attribute(self.universe, "symbol")
         expected_key = _universe_identity(expected_universe) if expected_universe is not None else None
+        diagnostic["stage"] = "response_iteration"
         for (native_universe, native_time), objects in response.items():
+            diagnostic["stage"] = "snapshot_identity"
             universe_key = _universe_identity(native_universe)
             expected_mismatch = (expected_key is not None and
                 (universe_key != expected_key if universe_key[0] == expected_key[0]
@@ -192,23 +228,37 @@ class QuantConnectSnapshotSource:
                     or (self._response_universe is not None and universe_key != self._response_universe)):
                 raise HistoricalSourceError("Native response mixes or replaces the requested universe")
             self._response_universe = universe_key
+            diagnostic["stage"] = "snapshot_clock"
             stamp = _clock(native_time, native=True)
             if not start <= stamp < end or stamp in seen_snapshots:
                 raise HistoricalSourceError("Duplicate or out-of-window native universe snapshot")
             seen_snapshots.add(stamp)
+            diagnostic["snapshots_seen"] += 1
+            diagnostic["stage"] = "snapshot_container"
+            diagnostic["snapshot_kind"] = "list" if isinstance(objects, list) else "tuple" if isinstance(objects, tuple) else "other"
             if not isinstance(objects, (list, tuple)) or len(objects) > self.limit:
                 raise HistoricalSourceError("Native snapshot is not a bounded list of fundamentals")
             seen_sids = set()
+            diagnostic["stage"] = "snapshot_iteration"
             for item in objects:
+                diagnostic["stage"] = "row_identity"
                 symbol = _attribute(item, "symbol")
                 native_sid = _attribute(symbol, "id") if symbol is not None else None
                 sid = str(native_sid) if native_sid is not None else ""
                 if not sid or sid.strip() != sid or len(sid) > 256 or sid in seen_sids:
                     raise HistoricalSourceError("Unique native permanent SIDs are required")
                 seen_sids.add(sid)
-                yield {"sid": sid, "snapshot_at": stamp.isoformat(), "values": {
-                    path: _scalar(_attribute(item, path), definition["kind"])
-                    for path, definition in selected.items()}}
+                diagnostic["stage"] = "field_projection"
+                values = {}
+                for position, (path, definition) in enumerate(selected.items(), 1):
+                    diagnostic["projection_position"] = position
+                    diagnostic["projection_kind"] = definition["kind"]
+                    values[path] = _scalar(_attribute(item, path), definition["kind"])
+                diagnostic["rows_emitted"] += 1
+                yield {"sid": sid, "snapshot_at": stamp.isoformat(), "values": values}
+                diagnostic["stage"] = "snapshot_iteration"
+            diagnostic["stage"] = "response_iteration"
+        diagnostic["stage"] = "completed"
 
     def provenance(self):
         return {"source": "quantconnect_fundamental_universe", "history_api_calls": self.history_call_count,

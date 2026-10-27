@@ -21,6 +21,7 @@ from typing import Any, Mapping
 from uuid import uuid4
 
 from .artifacts import ArtifactConflict, canonical_json, content_hash, decode_events
+from .engineering_rounds import RESOURCES, validate_grant, validate_round_id
 
 
 class RegistryError(RuntimeError):
@@ -187,12 +188,31 @@ class Registry:
                 first.get("limits") != self.limits or first.get("initial_usage") != self.initial_usage):
             raise CorruptRegistry("Registry baseline differs from its persisted initialization")
         state = {"usage": {key: dict(value) for key, value in self.initial_usage.items()},
-                 "configs": {}, "attempts": {}, "operations": {}, "imports": {}}
+                 "configs": {}, "attempts": {}, "operations": {}, "imports": {},
+                 "engineering_rounds": {}, "engineering_round_configs": {}}
         try:
             for envelope in records[1:]:
                 event = envelope["event"]
                 kind = event["kind"]
-                if kind in {"config_registered", "config_imported"}:
+                if kind == "engineering_round_authorized":
+                    self._replay_round_authorized(state, event)
+                elif kind == "engineering_round_configuration_bound":
+                    if set(event) != {"kind", "round_id", "configuration_ref", "recorded_at"}:
+                        raise CorruptRegistry("Unexpected round binding event fields")
+                    round_record = state["engineering_rounds"][event["round_id"]]
+                    package = self._read_round_reference(event["configuration_ref"], "configurations")
+                    identity = content_hash(package)
+                    self._validate_round_binding(state, round_record, package)
+                    round_record["config_ids"].append(identity)
+                    state["engineering_round_configs"][identity] = event["round_id"]
+                elif kind == "engineering_round_closed":
+                    if set(event) != {"kind", "round_id", "reason", "recorded_at"}:
+                        raise CorruptRegistry("Unexpected round closing event fields")
+                    round_record = state["engineering_rounds"][event["round_id"]]
+                    self._validate_round_close(state, round_record, event["reason"])
+                    round_record["status"] = "closed"
+                    round_record["close_reason"] = event["reason"]
+                elif kind in {"config_registered", "config_imported"}:
                     identity = event["config_id"]
                     self._validate_identity(identity)
                     if identity in state["configs"]:
@@ -201,7 +221,7 @@ class Registry:
                     if sha256(data).hexdigest() != identity or canonical_json(json.loads(data)) != data:
                         raise CorruptRegistry("Configuration artifact identity mismatch")
                     if kind == "config_registered":
-                        self._charge(state["usage"], "configurations", event["allocation"])
+                        self._charge_reserved(state, "configurations", event["allocation"], identity)
                     else:
                         self._verify_import(json.loads(data), event["source_reference"], event["allocation"])
                         source_id = event["source_reference"]["configuration_id"]
@@ -229,7 +249,7 @@ class Registry:
                     if any(item["config_id"] == identity and item["stage"] == stage and
                            item["status"] in _OPEN_STATES for item in state["attempts"].values()):
                         raise CorruptRegistry("Attempt overlaps unresolved work for the same config and stage")
-                    self._charge(state["usage"], stage, event["allocation"])
+                    self._charge_reserved(state, stage, event["allocation"], identity)
                     record = dict(event, status="started", external_id=None)
                     if record["result_key"] != self.result_key(identity, stage, operation):
                         raise CorruptRegistry("Unexpected result destination")
@@ -253,7 +273,7 @@ class Registry:
                     record["status"] = kind
                 else:
                     raise CorruptRegistry("Unknown registry event: " + str(kind))
-        except (KeyError, FileNotFoundError, ValueError, TypeError, BudgetExceeded) as exc:
+        except (KeyError, FileNotFoundError, ValueError, TypeError, RegistryError) as exc:
             raise CorruptRegistry("Registry replay failed: " + str(exc)) from exc
         return state
 
@@ -264,6 +284,202 @@ class Registry:
                        status=record["status"], should_execute=should_execute,
                        allocation=record["allocation"], result_key=record["result_key"],
                        external_id=record.get("external_id"))
+
+    def _read_round_reference(self, reference: dict, namespace: str) -> dict:
+        if (not isinstance(reference, dict) or set(reference) != {"key", "sha256"}
+                or not isinstance(reference["sha256"], str)
+                or re.fullmatch("[0-9a-f]{64}", reference["sha256"]) is None
+                or reference["key"] != "engineering/rounds/" + namespace + "/" + reference["sha256"] + ".json"):
+            raise ValueError("Invalid engineering round content reference")
+        data = self.store.read_bytes(reference["key"])
+        document = json.loads(data)
+        if canonical_json(document) != data or sha256(data).hexdigest() != reference["sha256"]:
+            raise ValueError("Engineering round reference bytes changed")
+        return document
+
+    @staticmethod
+    def _round_reference(document: dict, namespace: str) -> dict:
+        digest = content_hash(document)
+        return {"key": "engineering/rounds/" + namespace + "/" + digest + ".json", "sha256": digest}
+
+    @staticmethod
+    def _round_usage(state: dict, record: dict) -> dict:
+        selected = set(record["config_ids"])
+        return {"configurations": sum(identity in state["configs"] for identity in selected),
+                **{stage: sum(item["config_id"] in selected and item["stage"] == stage
+                              for item in state["attempts"].values()) for stage in ("research", "lean")}}
+
+    def _reservations(self, state: dict, kind: str) -> dict:
+        reserved = {"normal": 0, "reserve": 0, "total": 0}
+        for record in state["engineering_rounds"].values():
+            if record["status"] == "open":
+                unused = record["grant"]["limits"][kind] - self._round_usage(state, record)[kind]
+                if unused < 0:
+                    raise CorruptRegistry("Engineering round exceeded its immutable limit")
+                reserved[record["grant"]["allocation"]] += unused
+                reserved["total"] += unused
+        return reserved
+
+    def _charge_reserved(self, state: dict, kind: str, allocation: str, identity: str) -> None:
+        """Charge once, preserving unused grants against every other entry point."""
+        if not state["engineering_rounds"]:
+            self._charge(state["usage"], kind, allocation)
+            return
+        if allocation not in {"normal", "reserve"}:
+            raise ValueError("Allocation must be normal or reserve")
+        own_id = state["engineering_round_configs"].get(identity)
+        own = state["engineering_rounds"].get(own_id)
+        if own is not None:
+            if own["status"] != "open" or allocation != own["grant"]["allocation"]:
+                raise BudgetExceeded("Engineering round is closed or uses another allocation")
+            if self._round_usage(state, own)[kind] >= own["grant"]["limits"][kind]:
+                raise BudgetExceeded("Authorized engineering round limit reached for " + kind)
+        reserved = self._reservations(state, kind)
+        if own is not None:
+            reserved[allocation] -= 1
+            reserved["total"] -= 1
+        for part in ("normal", "reserve", "total"):
+            proposed = state["usage"][kind][part] + (part in {allocation, "total"})
+            if proposed + reserved[part] > self.limits[kind][part]:
+                raise BudgetExceeded("Remaining " + kind + " " + part + " capacity is reserved")
+        self._charge(state["usage"], kind, allocation)
+
+    def _validate_round_binding(self, state: dict, record: dict, package: dict) -> None:
+        if record["status"] != "open":
+            raise RegistryError("Closed engineering round cannot bind a configuration")
+        if not self._is_engineering_package(package):
+            raise ValueError("Engineering round requires a complete engineering package")
+        # Additional rounds admit only the strict frozen collection/joint schemas;
+        # a generic marker or a mutable plan name is not an authorization route.
+        if self._collection_plan(package) is None and self._joint_engineering_plan(package) is None:
+            raise ValueError("Additional rounds require a frozen collection or joint task")
+        if package["plan"]["project_id"] != record["grant"]["project_id"]:
+            raise RegistryError("Configuration project differs from the authorized round")
+        identity = content_hash(package)
+        if identity in state["configs"] or identity in state["engineering_round_configs"]:
+            raise RegistryError("Round binding requires a new, uncharged configuration identity")
+        if len(record["config_ids"]) >= record["grant"]["limits"]["configurations"]:
+            raise BudgetExceeded("All authorized configuration binding slots are used")
+        self._enforce_engineering_project(state, package)
+
+    def _validate_round_authorization(self, state: dict, grant: dict, authorization: dict,
+                                      packages: list[dict]) -> dict:
+        validate_grant(grant, authorization, self.limits)
+        round_id = grant["round_id"]
+        if round_id in state["engineering_rounds"]:
+            raise RegistryError("Engineering round identity is already immutable")
+        if any(item["status"] == "open" and item["grant"]["project_id"] == grant["project_id"]
+               for item in state["engineering_rounds"].values()):
+            raise RegistryError("Close the existing project round before another authorization")
+        if not isinstance(packages, list) or not 1 <= len(packages) <= grant["limits"]["configurations"]:
+            raise ValueError("Authorization requires one or more bounded full configurations")
+        record = {"grant": grant, "status": "open", "config_ids": [], "initial_config_ids": []}
+        # Validate the whole transaction before publishing any immutable artifact.
+        candidate = dict(state, engineering_round_configs=dict(state["engineering_round_configs"]))
+        for package in packages:
+            self._validate_round_binding(candidate, record, package)
+            identity = content_hash(package)
+            record["config_ids"].append(identity)
+            candidate["engineering_round_configs"][identity] = round_id
+        record["initial_config_ids"] = list(record["config_ids"])
+        for kind in RESOURCES:
+            reserved = self._reservations(state, kind)
+            for part in (grant["allocation"], "total"):
+                if state["usage"][kind][part] + reserved[part] + grant["limits"][kind] > self.limits[kind][part]:
+                    raise BudgetExceeded("Engineering grant exceeds remaining " + kind + " " + part + " capacity")
+        return record
+
+    def _replay_round_authorized(self, state: dict, event: dict) -> None:
+        if set(event) != {"kind", "grant_ref", "configuration_refs", "recorded_at"}:
+            raise CorruptRegistry("Unexpected engineering authorization event fields")
+        grant = self._read_round_reference(event["grant_ref"], "authorizations")
+        authorization = self._read_round_reference(grant["authorization_ref"], "user-authorizations")
+        if not isinstance(event["configuration_refs"], list):
+            raise ValueError("Round configuration references must be a list")
+        packages = [self._read_round_reference(item, "configurations") for item in event["configuration_refs"]]
+        record = self._validate_round_authorization(state, grant, authorization, packages)
+        state["engineering_rounds"][grant["round_id"]] = record
+        for identity in record["config_ids"]:
+            state["engineering_round_configs"][identity] = grant["round_id"]
+
+    def authorize_engineering_round(self, grant: dict, full_configs: list[dict],
+                                    authorization_document: dict) -> dict:
+        """Trusted operator only: reserve existing quota without an execution debit.
+
+        The human authorization must be checked by the operator. A caller able
+        to write this ledger is trusted; hashes do not prove human provenance.
+        The LLM proposal interface never calls this method.
+        """
+        # Freeze caller-owned objects before acquiring the transaction lock.
+        grant, packages, authorization = json.loads(canonical_json([grant, full_configs, authorization_document]))
+        validate_grant(grant, authorization, self.limits)
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            old = state["engineering_rounds"].get(grant["round_id"])
+            if old is not None:
+                if old["grant"] != grant or old["initial_config_ids"] != [content_hash(item) for item in packages]:
+                    raise RegistryError("Engineering round identity cannot be overwritten")
+                return self._round_snapshot(state, old)
+            record = self._validate_round_authorization(state, grant, authorization, packages)
+            grant_ref = self._round_reference(grant, "authorizations")
+            references = [self._round_reference(item, "configurations") for item in packages]
+            self.store.write_once(grant["authorization_ref"]["key"], canonical_json(authorization))
+            self.store.write_once(grant_ref["key"], canonical_json(grant))
+            for reference, package in zip(references, packages):
+                self.store.write_once(reference["key"], canonical_json(package))
+            self._append({"kind": "engineering_round_authorized", "grant_ref": grant_ref,
+                          "configuration_refs": references})
+            return self._round_snapshot(state, record)
+
+    def bind_engineering_configuration(self, round_id: str, full_config: dict) -> str:
+        """Explicitly bind a new repair hash; never expand the original grant."""
+        validate_round_id(round_id)
+        package = json.loads(canonical_json(full_config))
+        identity = content_hash(package)
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            if round_id not in state["engineering_rounds"]:
+                raise RegistryError("Unknown engineering round")
+            record = state["engineering_rounds"][round_id]
+            if state["engineering_round_configs"].get(identity) == round_id:
+                return identity
+            self._validate_round_binding(state, record, package)
+            reference = self._round_reference(package, "configurations")
+            self.store.write_once(reference["key"], canonical_json(package))
+            self._append({"kind": "engineering_round_configuration_bound", "round_id": round_id,
+                          "configuration_ref": reference})
+            return identity
+
+    @staticmethod
+    def _validate_round_close(state: dict, record: dict, reason: str) -> None:
+        if record["status"] != "open" or not isinstance(reason, str) or not reason.strip() or len(reason) > 4000:
+            raise RegistryError("Closing a round requires its open state and a bounded reason")
+        if any(item["config_id"] in record["config_ids"] and item["status"] in _OPEN_STATES
+               for item in state["attempts"].values()):
+            raise RegistryError("Unresolved round tasks require reconciliation before close")
+
+    def close_engineering_round(self, round_id: str, reason: str) -> dict:
+        validate_round_id(round_id)
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            if round_id not in state["engineering_rounds"]:
+                raise RegistryError("Unknown engineering round")
+            record = state["engineering_rounds"][round_id]
+            if record["status"] == "closed" and record["close_reason"] == reason:
+                return self._round_snapshot(state, record)
+            self._validate_round_close(state, record, reason)
+            self._append({"kind": "engineering_round_closed", "round_id": round_id, "reason": reason})
+            record.update(status="closed", close_reason=reason)
+            return self._round_snapshot(state, record)
+
+    def _round_snapshot(self, state: dict, record: dict) -> dict:
+        return json.loads(canonical_json({**record, "usage": self._round_usage(state, record)}))
+
+    def engineering_rounds_snapshot(self) -> dict:
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            return {identity: self._round_snapshot(state, record)
+                    for identity, record in state["engineering_rounds"].items()}
 
     def register_config(self, full_config: dict, allocation: str = "normal") -> str:
         encoded = canonical_json(full_config)
@@ -277,7 +493,7 @@ class Registry:
                     or (self._is_engineering_package(package) and package["plan"].get("schema_version") == 2)):
                 self._enforce_engineering_project(state, package)
             self._enforce_engineering_limit(state, "configurations", package)
-            self._charge(state["usage"], "configurations", allocation)
+            self._charge_reserved(state, "configurations", allocation, identity)
             self.store.write_once("configurations/" + identity + ".json", encoded)
             self._append({"kind": "config_registered", "config_id": identity, "allocation": allocation})
         return identity
@@ -452,7 +668,16 @@ class Registry:
         """
         if not self._is_engineering_package(package):
             return
-        selected = self._engineering_config_ids(state)
+        identity = content_hash(package)
+        own_id = state["engineering_round_configs"].get(identity)
+        if own_id is not None:
+            record = state["engineering_rounds"][own_id]
+            if record["status"] != "open" or self._round_usage(state, record)[kind] >= record["grant"]["limits"][kind]:
+                raise BudgetExceeded("Authorized engineering round limit reached for " + kind)
+            return
+        # The original round retains its exact stop. Explicit subsequent grants
+        # neither increase this cap nor turn old charged identities into new work.
+        selected = self._engineering_config_ids(state) - set(state["engineering_round_configs"])
         count = (len(selected) if kind == "configurations" else
                  sum(record["config_id"] in selected and record["stage"] == kind
                      for record in state["attempts"].values()))
@@ -589,7 +814,7 @@ class Registry:
                 if len(previous) >= 1 + collection.to_dict()["max_retries"]:
                     raise RegistryError("Preregistered collection retry bound reached")
             self._enforce_engineering_limit(state, stage, package)
-            self._charge(state["usage"], stage, allocation)
+            self._charge_reserved(state, stage, allocation, config_id)
             record = {"kind": "attempt_started", "attempt_id": uuid4().hex,
                       "config_id": config_id, "stage": stage, "operation_key": operation_key,
                       "allocation": allocation, "retry_of": retry_of, "reason": reason,
