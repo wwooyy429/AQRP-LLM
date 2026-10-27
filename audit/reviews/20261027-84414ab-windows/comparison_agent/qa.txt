@@ -1,0 +1,12 @@
+只读QA结论：JSON及主要范围准确；TXT第3行有一处计数等式表述应修正，不是生产缺陷或新WR。
+
+需修正：formal_report.txt第3行写“当前16同哈希+9不同+4参考外=13”。字面等式错误，16不应计入差异13。建议改成“归档ae候选29中16同哈希，9不同+4参考外=13”。formal_report.json的same_hash=16、different_hash=9、not_in_reference=4、total_different_or_outside=13均正确。
+
+其余本代理范围未发现实质错误：
+1. ae29对旧已知25：16same、9diff、4outside，9+4=13；具体路径与两引用raw SHA（5b0a0a...22bdb、1f946c...bad46）均与本代理原始独立结果一致。
+2. 原声明12及整个81 readiness原Git字节保留；dc49仍8+4=12，旧归档不改。4outside没有被当作当前云端缺失或全集认证。
+3. 原MRE SHA 4e65b60ae1621b8fd158b945d147118b733d27913600031663f824564ce48c6d，旧81退出1、新844退出0；7变体预期拒绝与辅助工具只核对引用比较的局部职责准确，未扩大为通用readiness或远程来源认证。
+4. 本轮37元数据检查不是软件方法；0 software unit/subcase/suite/build，未重跑453。无QC或旧终态/状态/结果/日志读取；current_platform_status/completed/failed均null。
+5. 软件通过身份仍绑定81fbe52；844仅元数据更正通过，不新增平台/真实运行或阶段2整体验收。
+
+本次只读formal_report.json/.txt并写本qa.txt，未重跑测试、未修改报告或生产。

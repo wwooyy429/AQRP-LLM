@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "阶段2新增历史快照与时点数据接口、受预算约束的 Research/LEAN 任务桥、原任务恢复、回执验证和采集任务协议。最近的运行代码修复使 Bridge 与共享 Registry 复用同一原提交和完成合同，阻止原提交缺失、完成 input_hash 错配或原始回执为空的 Research 结果被当成 LEAN 依赖。\n\nGPT Work 已在固定源码 `81fbe5294055423e88ee5aeae48ca6223e7971da` 确认 WR-18 在本轮离线范围修复后通过，未发现新增阻断性软件缺陷。当前已知阻断性 WR 为0；阶段2整体仍待验收。\n\n本轮提交 `84414ab49c39e25cb50ece1c1debeefa3993c874` 仅归档审核资料并更正 WR-19/P3 元数据，cloud/config/tools/tests 和运行账本未改。新的归档提交不冒充运行代码的新独立验收，软件通过身份仍固定在81f。\n\n[本轮复核入口](https://github.com/wwooyy429/AQRP-LLM/blob/84414ab49c39e25cb50ece1c1debeefa3993c874/docs/review/wr19.md) · [81f原独立报告](https://github.com/wwooyy429/AQRP-LLM/blob/84414ab49c39e25cb50ece1c1debeefa3993c874/audit/reviews/20261027-81fbe52-windows/formal_report.json) · [开发更正证据](https://github.com/wwooyy429/AQRP-LLM/blob/84414ab49c39e25cb50ece1c1debeefa3993c874/audit/review_packages/wr19/developer_verification.json) · [当前阶段门禁](https://github.com/wwooyy429/AQRP-LLM/blob/84414ab49c39e25cb50ece1c1debeefa3993c874/audit/stage2_current_readiness.json)\n\nWR-19 更正：\n- 当前摘要引用的比较候选仍是 ae2b898，按原 Git 清单29份与旧已知参考25份重算：16份同名同哈希、9份同名不同哈希、4份不在已知参考中，差异合计由12改为13。\n- 补齐具体路径、原始文件哈希和比较范围。这里的4份只表示归档参考中未记录，不能解释成当前云端缺文件或完整文件清单认证。\n- 原错误声明和81f状态文件原字节保留。更早dc49对应8+4=12，历史文件及结论未改。\n- 当前测试执行摘要直接引用81f正式报告的 suite 条目；旧摘要按原记录和来源保留，旧失败计数不再混入81f本轮摘要。\n- 原始报告、初始输入矛盾与CRLF测量错误及修正均归档，不覆盖失败记录。\n\n验证：\n- 未修改的原WR-19最小复现：更正前退出1，更正后退出0；新增只读复算程序同时核对来源身份、原始哈希、路径和计数。\n- 远端522份变更与预期及本地逐字节一致；实际发布的Git导出上，原最小复现与只读复算均退出0，当前suite摘要与原报告完全一致，工作区干净。\n- 规定离线入口 `python -B tools/stages.py verify`：453项通过；构建未改变配置。独立81f报告另记录仓库453、历史16组248/2307子例、WR18及新增完成边界18/43子例等通过，重复套件不累加独有方法。\n- 新独立审核归档487份原件、3855281字节；目录/ZIP4754项及Git候选2374/基线1843原字节验证通过。归档清单rawSHA256：`88c0edef223b1330c82873094d31b2c210284b2b4d733b1d3217ca180858b642`。\n- 当前123份源码清单：`3d6a236f3d492114a1178da5fe9d9e0b09788580344e2be9fd6df2eb65716a94`，变化仅文档及归档属性；81f独立审核的122份清单仍为`1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f`。\n\n仍缺的阶段2证据：旧LEAN原生终态及原任务结算、新版真实部署与输入读回、实际成功和失败回执、完整历史US200、财务原报及修订版本、实际公开/供应商送达/历史摄入与公司行动认证。旧回测 `39cafa1e9b11f91b27e396b66d033a6d` 仅有归档pending，当前完成或失败均未知。本轮未查询/轮询旧回测、读取旧日志、修改云端源码/输入或重新提交任务。\n\n预算保持配置6/12、Research9/20、LEAN1/16及12事件链，本轮新增实际配置登记/Research/LEAN/模型调用/部署/购买/交易均0。正式研究、自动GPT、最终测试与交易继续关闭；2024–2025数据暴露和2026独立性未知保留。阶段3–7及完整系统未验收，financial_evidence=false。保持草稿，不合并。\n\n发布后CI：[Actions 40452157673](https://github.com/wwooyy429/AQRP-LLM/actions/runs/40452157673) completed/success；Python3.10和3.11均通过。CI为离线合成检查，不替代独立审核或真实数据认证。",
+    "title": "阶段2：WR-18离线复验通过，WR-19归档计数更正",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "add74cabbb528074334a4d32bf8c04b760564f14",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-27T04:54:06Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 20,
+    "changed_files": 2831,
+    "additions": 360161,
+    "deletions": 152,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "阶段2：WR-18离线复验通过，WR-19归档计数更正"
+  },
+  "isError": false
+}

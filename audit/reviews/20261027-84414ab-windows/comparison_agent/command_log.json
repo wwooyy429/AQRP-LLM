@@ -1,0 +1,162 @@
+[
+  {
+    "label": "original_MRE_candidate",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\original_minimal_wr19.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout": "commands\\original_MRE_candidate.stdout",
+    "stderr": "commands\\original_MRE_candidate.stderr",
+    "stdout_sha256": "75e05865f84bd8d82f5f1c352c547b529a6b21ac919a89d5df71b5f6ac876679",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "original_MRE_baseline_negative",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\original_minimal_wr19.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\original_MRE_baseline_negative.stdout",
+    "stderr": "commands\\original_MRE_baseline_negative.stderr",
+    "stdout_sha256": "c9e52f1b7f0b9aa3dd6a7e58b20863ad4bba4a16cae521ed6b8c313a5ec65c4f",
+    "stderr_sha256": "1ae2be0ec2763e35a9038a39345bd7f4ba496c548886e41d84cd069612fe1757"
+  },
+  {
+    "label": "developer_verifier_candidate",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout": "commands\\developer_verifier_candidate.stdout",
+    "stderr": "commands\\developer_verifier_candidate.stderr",
+    "stdout_sha256": "e62e10bd2ca5c530c2e8abb7e7f3b2c1056beff783425d4046889b1c3168e8f3",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "negative_scope_escape",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\scope_escape\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_scope_escape.stdout",
+    "stderr": "commands\\negative_scope_escape.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "283365ace2240743d0a26c71f9fe9dcc57d087c9a562d824a192ba72db76a0d8"
+  },
+  {
+    "label": "negative_candidate_commit",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\candidate_commit\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_candidate_commit.stdout",
+    "stderr": "commands\\negative_candidate_commit.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "7e95e5bfd5066b620d1a17e86580369e7c7ad956b6eb1fbc96942ab78804b252"
+  },
+  {
+    "label": "negative_reference_hash",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\reference_hash\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_reference_hash.stdout",
+    "stderr": "commands\\negative_reference_hash.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "f55015fa60b78c30287de21201d41d424080919b5124d63e332ca47c6862da76"
+  },
+  {
+    "label": "negative_count_12",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\count_12\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_count_12.stdout",
+    "stderr": "commands\\negative_count_12.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "43a99f0ed526b8d0d4f4c809fca611cf42c1f05510a7d1b828c32ff252b87f12"
+  },
+  {
+    "label": "negative_tampered_raw",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\tampered_raw\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_tampered_raw.stdout",
+    "stderr": "commands\\negative_tampered_raw.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "f55015fa60b78c30287de21201d41d424080919b5124d63e332ca47c6862da76"
+  },
+  {
+    "label": "negative_wrong_path_list",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\wrong_path_list\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_wrong_path_list.stdout",
+    "stderr": "commands\\negative_wrong_path_list.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "43a99f0ed526b8d0d4f4c809fca611cf42c1f05510a7d1b828c32ff252b87f12"
+  },
+  {
+    "label": "negative_duplicate_known_reference",
+    "argv": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source\\audit\\review_packages\\wr19\\verify_archived_comparison.py",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent\\cases\\duplicate_known_reference\\source"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\comparison_agent",
+    "exit_code": 1,
+    "expected_exit": 1,
+    "stdout": "commands\\negative_duplicate_known_reference.stdout",
+    "stderr": "commands\\negative_duplicate_known_reference.stderr",
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e5ae912fb7e2f928a5e6db3d3d3ea21c4813c914d62823513d1a2ae37926e066"
+  }
+]

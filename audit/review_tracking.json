@@ -1,5 +1,5 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
   "reviewed_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
@@ -8,8 +8,8 @@
     0,
     1
   ],
-  "acceptance_scope": "WR18及已测离线软件通过；WR19/P3非阻断历史摘要更正；阶段2整体待验收",
-  "software_acceptance": "passed_retested_WR18_and_offline_regressions; nonblocking_WR19_open; full_stage2_pending",
+  "acceptance_scope": "WR01-18保留既有离线范围；WR19元数据更正独立核对通过；阶段2整体待定",
+  "software_acceptance": "retained_81fbe52_scope; no_new_software_test_or_approval_at84414ab",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -33,8 +33,8 @@
     {
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
-      "implementation": "已有离线快照接口7bf通过；新增采集预算与任务协议候选待独立复验",
-      "evidence": "81f独立453仓库及历史回归通过；WR18原MRE和合同/恢复边界通过；WR19仅P3摘要",
+      "implementation": "离线快照及采集任务协议保留81f已测范围；真实平台运行及数据认证未通过",
+      "evidence": "WR18离线软件通过身份81f；WR19元数据更正独立核对通过身份844；本轮未重跑软件套件",
       "blocking_findings": [],
       "status": "pending_acceptance",
       "scope": "已测离线软件通过，真实运行及数据认证未通过",
@@ -44,9 +44,7 @@
         "existing_LEAN_delivered_terminal",
         "historical_data_certification"
       ],
-      "nonblocking_findings": [
-        "WR-19"
-      ]
+      "nonblocking_findings": []
     },
     {
       "stage": 3,
@@ -91,9 +89,7 @@
       "status": "not_accepted"
     }
   ],
-  "known_open_findings": [
-    "WR-19"
-  ],
+  "known_open_findings": [],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
@@ -110,9 +106,9 @@
     "WR-16": "independently_verified_resolved_in_retested_scope_on_ae2b898",
     "WR-17": "independently_verified_resolved_in_retested_scope_on_ae2b898",
     "WR-18": "independently_verified_resolved_in_retested_offline_scope_on81fbe52",
-    "WR-19": "nonblocking_comparison_metadata_corrected_pending_check"
+    "WR-19": "independently_verified_metadata_correction_on84414ab"
   },
-  "latest_independent_report": "audit/reviews/20261027-81fbe52-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/wr19/developer_verification.json",
   "current_handoff": "docs/review/wr19.md",
   "historical_accepted_version": {
@@ -1356,6 +1352,63 @@
         }
       ],
       "latest_independent_report": "audit/reviews/20261027-81fbe52-windows/formal_report.json"
+    },
+    {
+      "reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+      "source_manifest_hash": "3d6a236f3d492114a1178da5fe9d9e0b09788580344e2be9fd6df2eb65716a94",
+      "software_acceptance": "retained_81fbe52_scope; no_new_software_test_or_approval_at84414ab",
+      "metadata_acceptance": "WR19_passed_at84414ab",
+      "stage_results": [
+        {
+          "stage": 0,
+          "modules": "规范、StudySpec/AuditEvidence、身份及预算",
+          "acceptance": "保留既有离线范围",
+          "evidence": "115保护文件原字节保持，未重跑软件"
+        },
+        {
+          "stage": 1,
+          "modules": "受限因子、执行标签、模型协议及数值",
+          "acceptance": "保留既有离线范围",
+          "evidence": "计算及测试代码与81相同，原软件结论保持"
+        },
+        {
+          "stage": 2,
+          "modules": "QC桥、缓存、快照、联合任务及恢复",
+          "acceptance": "保留81已测离线通过；整体验收待定",
+          "evidence": "WR19元数据更正通过；缺真实运行/终态/认证"
+        },
+        {
+          "stage": 3,
+          "modules": "固定模型、六轮滚动及Research报告",
+          "acceptance": "未验收",
+          "evidence": "部分实现，无新增金融/平台证据"
+        },
+        {
+          "stage": 4,
+          "modules": "LEAN交易、成本/成交/风险及一致性",
+          "acceptance": "未验收",
+          "evidence": "部分实现，无新增真实交易验收"
+        },
+        {
+          "stage": 5,
+          "modules": "GPT提案、持久调度及修复",
+          "acceptance": "未验收",
+          "evidence": "模型与调用额度未配置，自动调用关闭"
+        },
+        {
+          "stage": 6,
+          "modules": "受限搜索、相似度及消融",
+          "acceptance": "未验收",
+          "evidence": "未开展正式市场搜索"
+        },
+        {
+          "stage": 7,
+          "modules": "冻结、独立最终执行器及监控",
+          "acceptance": "未验收",
+          "evidence": "最终测试关闭"
+        }
+      ],
+      "latest_independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json"
     }
   ],
   "repair_acceptance": {
@@ -1496,12 +1549,14 @@
       "scope": "本轮修复后通过，旧ae原MRE负对照及失败记录保留"
     },
     "WR-19": {
-      "status": "developer_corrected_pending_check",
+      "status": "passed_metadata_correction_in_independently_tested_scope",
       "priority": "P3",
       "blocking": false,
       "reviewed_failure_source": "81fbe5294055423e88ee5aeae48ca6223e7971da",
-      "scope": "Archived source comparison count only, no runtime or current-cloud defect",
-      "developer_evidence": "audit/review_packages/wr19/developer_verification.json"
+      "scope": "归档29候选路径与25已知参考的比较；4不在参考不证明实际云端缺4，不认证当前平台或全集。",
+      "developer_evidence": "audit/review_packages/wr19/developer_verification.json",
+      "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+      "independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json"
     }
   },
   "whole_system_acceptance": "not_accepted",
@@ -1553,7 +1608,7 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "metadata_only_WR19_correction; unchanged_software_acceptance_bound_to81fbe52",
+  "new_candidate_acceptance": "acceptance_record_only; no_new_runtime_software_acceptance",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -1661,20 +1716,20 @@
     "scope": "Exact suite counts copied from the fixed 81f independent report; prior ae2 counts retain their own source identity."
   },
   "current_candidate": {
-    "parent_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
-    "source_manifest_hash": "3d6a236f3d492114a1178da5fe9d9e0b09788580344e2be9fd6df2eb65716a94",
+    "parent_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+    "source_manifest_hash": "17a984dbba4210d98c0147bcaba924189c3b9508e3b601587a1957ddf4511af4",
     "independently_accepted": false,
     "cloud_deployed": false,
-    "developer_repository_tests": 453,
     "registry_or_WR12_CLI_changed_this_repair": false,
     "metadata_and_documentation_only": true,
     "runtime_engine_and_test_sources_unchanged": true,
-    "kind": "WR19_metadata_correction",
+    "kind": "WR19_independent_acceptance_archival_record",
     "registry_changed": false,
     "Engineering_CLI_changed": false,
     "Collection_WR12_CLI_changed": false,
     "Engineering_completion_contract_changed": false,
-    "software_acceptance_bound_to": "81fbe5294055423e88ee5aeae48ca6223e7971da"
+    "software_acceptance_bound_to": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+    "developer_repository_tests": 453
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -1683,9 +1738,7 @@
     "status": "passed_in_tested_scope"
   },
   "known_open_blocking_findings": [],
-  "known_open_nonblocking_findings": [
-    "WR-19"
-  ],
+  "known_open_nonblocking_findings": [],
   "historical_independent_review_execution_scope_ae2b898": {
     "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
     "repository_methods": 442,
@@ -1721,5 +1774,42 @@
     "as_recorded_path": "audit/review_tracking.json#independent_review_execution_scope",
     "counts_recertified": false,
     "scope": "Prior summary preserved as recorded, including legacy counts; only the current report-derived suites above represent the 81f review execution."
+  },
+  "metadata_acceptance": "WR19_passed_at84414ab",
+  "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+  "software_acceptance_bound_to_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "latest_software_independent_report": "audit/reviews/20261027-81fbe52-windows/formal_report.json",
+  "latest_metadata_review_execution_scope": {
+    "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+    "report_path": "audit/reviews/20261027-84414ab-windows/formal_report.json",
+    "software_acceptance_bound_to_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+    "software_unit_methods": 0,
+    "software_suite_runs": 0,
+    "builds": 0,
+    "metadata_check_groups": [
+      {
+        "name": "identity_and_runtime_scope",
+        "checks": 148,
+        "passed": 148,
+        "failed": 0
+      },
+      {
+        "name": "comparison_and_negative_variants",
+        "checks": 37,
+        "passed": 37,
+        "failed": 0
+      },
+      {
+        "name": "archive_provenance_budget",
+        "checks": 591,
+        "passed": 591,
+        "failed": 0
+      }
+    ],
+    "group_counting": "分组存在重复核对，不声称三组相加是独有检查。元数据检查/子进程不算软件测试方法。",
+    "protected_unique_files": 115,
+    "all_raw_equal_baseline": true,
+    "real_SDK_executed": false,
+    "market_or_model_calls": 0
   }
 }
