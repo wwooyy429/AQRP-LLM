@@ -1,0 +1,6 @@
+Report generation second attempt: exit1; no formal report had been written.
+Traceback (most recent call last):
+  File "build_formal_report.py", line 14, in <module>
+    d=read(path);assert d['methods']==m and d['subcases']==n and d.get('failed_methods',d.get('failure_records'))==d.get('error_methods',d.get('error_records'))==0
+AssertionError
+deployment_preflight CLI summary uses failures/errors=0, a third result schema. The second reader had selected None for this already-passing result. Corrected generator recognizes all actual count schemas and still requires zero failures/errors. Test output, expected counts, scripts and production unchanged. Second script retained separately.

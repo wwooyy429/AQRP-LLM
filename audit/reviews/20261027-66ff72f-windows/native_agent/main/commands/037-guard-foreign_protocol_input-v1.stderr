@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-foreign_protocol_input-v1\source\cloud\qresearch\engineering_tasks.py", line 636, in record_rejection
+    raise EngineeringTaskError("Native rejection requires the exact pre-dispatch submission protocol")
+qresearch.engineering_tasks.EngineeringTaskError: Native rejection requires the exact pre-dispatch submission protocol
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-foreign_protocol_input-v1\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-foreign_protocol_input-v1\source\tools\stage2.py", line 287, in main
+    result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-foreign_protocol_input-v1\source\cloud\qresearch\engineering_tasks.py", line 658, in record_rejection
+    raise EngineeringTaskError("A rejection requires canonical original admitted-input evidence") from exc
+qresearch.engineering_tasks.EngineeringTaskError: A rejection requires canonical original admitted-input evidence

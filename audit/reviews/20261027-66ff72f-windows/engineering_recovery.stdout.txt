@@ -1,0 +1,107 @@
+test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) ... test_missing_tampered_foreign_admission_and_input_rejected_no_write (__main__.RecoveryTests) ... ok
+test_original_attempt_research_and_lean_settlement_after_drift (__main__.RecoveryTests) ... ok
+test_two_process_mixed_freeze_cannot_change_pointer (__main__.RecoveryTests) ... ok
+test_unknown_attempt_rejected_without_pointer_dependency_or_write (__main__.RecoveryTests) ... ok
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='started', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='started', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='pending', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='pending', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='ambiguous', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=1, state='ambiguous', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='started', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='started', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='pending', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='pending', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='ambiguous', target_version=1, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+======================================================================
+FAIL: test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) (original_version=2, state='ambiguous', target_version=2, entry='function-process')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\recovery_agent\independent_recovery.py", line 166, in test_freeze_all_versions_states_entrypoints_no_write
+    self.assertNotEqual(r.returncode,0);self.assertIn(b'Unresolved engineering work',r.stderr)
+AssertionError: b'Unresolved engineering work' not found in b"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\python.exe: can't open file 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-66ff72f-20261027\\\\recovery_agent\\\\results\\\\direct_freeze_entry.py': [Errno 2] No such file or directory\r\n"
+
+----------------------------------------------------------------------
+Ran 5 tests in 152.604s
+
+FAILED (failures=12)
+
+{"commit": "ae2b8985f3799c246e90341370f86d80483f63ed", "argv": ["C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\recovery_agent\\independent_recovery.py", "--source", "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source", "--out", "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\recovery_agent\\results"], "methods": 5, "subcases": 46, "failure_records": 12, "error_records": 0, "skipped": 0, "success": false, "stats": {"actual_CLI_processes": 72, "direct_freeze_processes": 12, "synthetic_metadata_finish_calls": 4, "actual_worker_executions": 0}, "source_hashes_before": {"tools/stage2.py": "a59c9ecdf615b3cc59c0d47058c7555763d63d4bb2ee8f2ccd885220db7716d3", "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967", "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c", "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0", "audit/runtime/registry/events.jsonl": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5"}, "source_hashes_after": {"tools/stage2.py": "a59c9ecdf615b3cc59c0d47058c7555763d63d4bb2ee8f2ccd885220db7716d3", "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967", "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c", "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0", "audit/runtime/registry/events.jsonl": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5"}, "source_and_authority_unchanged": true, "script_sha256": "bc1e5946407c4b3eb73188bef835901f754d5456ddb67b44b0023232aa450857", "scope": "Actual isolated production CLI subprocesses and Filesystem Registry; fabricated bounded metadata reports via actual _finish, not SDK/workers/platform evidence", "actions": {"real_SDK": 0, "QC": 0, "Research": 0, "LEAN": 0, "models": 0, "market": 0, "real_budget_changes": 0, "production_source_edits": 0}}

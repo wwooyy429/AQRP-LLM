@@ -1,0 +1,32 @@
+[
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py",
+      "freeze",
+      "--plan-file",
+      "config/engineering_joint_pilot.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\synthetic-projects.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 299, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 246, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 93, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py",
+      "freeze",
+      "--plan-file",
+      "config/engineering.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\synthetic-projects.json"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 299, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 246, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\tools\\stage2.py\", line 93, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_workspace\\admission_agent\\quick_cases\\7e3bc802\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+  }
+]

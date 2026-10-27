@@ -1,0 +1,11 @@
+--- unchanged-e513-independent_admission.py
++++ historical-ledger-fixture-adapted.py
+@@ -309,7 +309,7 @@
+             self.assertEqual(r.snapshot()['usage'],before)
+ 
+     def test_original_ledger_copy_preserves_inflight_guard_and_shared_remaining_slot(self):
+-        store=MemoryArtifactStore();runtime=SOURCE/'audit/runtime'
++        store=MemoryArtifactStore();runtime=Path(os.environ['AQRP_REVIEW_HISTORICAL_RUNTIME'])
+         for p in runtime.rglob('*'):
+             if p.is_file():store.write_once(p.relative_to(runtime).as_posix(),p.read_bytes())
+         doc=json.loads(store.read_bytes('registry/baseline.json'));r=Registry(store,doc);initial=r.snapshot();oldids=[]

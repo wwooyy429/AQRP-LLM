@@ -1,0 +1,127 @@
+{
+  "kind": "metadata_archival_verification_only",
+  "reviewed_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "review_formal_json_raw_sha256": "d1f2f6fef6cdf7f5b1c99f660ff9c94f53eadb59c46b3c310b11888c92f2db58",
+  "review_formal_txt_raw_sha256": "86f8c4cbbcffb4226fba7e7049fdc79e5ca207004144026620c00ec7accf58cb",
+  "original_zip_sha256": "3d5107c778a107d4ef9980018ecdd4a3c5d82eeddfdb82795a2a03ecb71f2219",
+  "original_package_files": 9362,
+  "original_manifest_registered_files": 9361,
+  "manifest_excludes_itself": true,
+  "original_package_manifest_and_ZIP_verified": true,
+  "archived_original_count": 883,
+  "archived_original_raw_bytes": 5230203,
+  "archived_original_raw_hashes_match": true,
+  "archive_selection_ref": {
+    "path": "audit/reviews/20261027-66ff72f-windows/developer_archive_selection.json",
+    "raw_sha256": "355d036159ace6ff29080f25d1417b94340306f93f3f3befd74cdd6bc35b3144"
+  },
+  "git_source_snapshots_verified": {
+    "candidate": {
+      "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+      "git_blob_hashes_verified": 3178,
+      "all_equal_original_review_manifest": true
+    },
+    "baseline_84414ab": {
+      "commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+      "git_blob_hashes_verified": 2890,
+      "all_equal_original_review_manifest": true
+    },
+    "software_81fbe52": {
+      "commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "git_blob_hashes_verified": 2374,
+      "all_equal_original_review_manifest": true
+    }
+  },
+  "old_unique_files_protected": 3175,
+  "all_protected_raw_bytes_unchanged": true,
+  "source_manifest_hash": "be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e",
+  "execution_source_manifest_hash": "1b8339b34322f2a1a26176fe7cf339fe7f796b23696148154e11ca4ea82ab13e",
+  "source_and_execution_identity_unchanged": true,
+  "software_acceptance_scope": {
+    "status": "通过（本轮明确覆盖的离线范围）",
+    "scope": [
+      "v1/v2本地物理源码预检和扣费前拒绝",
+      "单次读取/EOF保留/安全诊断",
+      "只读源码引用预检",
+      "原生运行失败及受限编译拒绝/原attempt绑定",
+      "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
+    ],
+    "full_phase2": false,
+    "root_cause_repaired": false,
+    "v1_controller_source_recheck": false,
+    "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
+  },
+  "stage2_whole_accepted": false,
+  "remaining_acceptance_gates": [
+    {
+      "id": "G1",
+      "priority": "P1验收缺口",
+      "status": "待验收",
+      "requirement": "证明新版固定源码在真实Research、联合历史采集/缓存复用及LEAN成功运行；保留原生提交、终态与原attempt绑定。旧初始化失败不满足成功运行要求。"
+    },
+    {
+      "id": "G2",
+      "priority": "P1验收缺口",
+      "status": "证据不足",
+      "requirement": "取得失败worker具体源码/哈希或受控诊断证据，解释冻结不一致。当前返回25份引用一致、官方自动导入说明及合成插入均不能证明本次根因或已修复。"
+    },
+    {
+      "id": "G3",
+      "priority": "P1未实现范围",
+      "status": "未验收",
+      "requirement": "实现并独立验证Research原生异常回执解析及失败恢复，补真实失败cell原件；正常cell内固定检查失败不能替代。"
+    },
+    {
+      "id": "G4",
+      "priority": "P1数据认证缺口",
+      "status": "证据不足",
+      "requirement": "补全历史当时US200、永久SID/映射/公司行动、原始价格、供应商DollarVolume、财务公开/版本/实际送达及摄入证据；两股工程样例和模型化end_time不足。"
+    }
+  ],
+  "old_terminal_status": "failed",
+  "unobserved_native_fields_retained_null": [
+    "completed_field",
+    "progress",
+    "orders",
+    "financial_statistics"
+  ],
+  "real_registry_event_count": 13,
+  "global_usage": {
+    "configurations": 6,
+    "research": 9,
+    "lean": 1
+  },
+  "archival_QC_calls": 0,
+  "archival_Research_executions": 0,
+  "archival_LEAN_submissions": 0,
+  "archival_model_calls": 0,
+  "archival_deployments": 0,
+  "archival_test_suite_executions": 0,
+  "report_counts_are_overlapping": true,
+  "historical_WR_reports_and_findings_unchanged": true,
+  "old_review_history_retained_as_prefix": true,
+  "production_or_config_files_changed": false,
+  "archival_helper_attempts": [
+    {
+      "attempt": 1,
+      "status": "failed_before_copy",
+      "cause": "selection_reader_expected_sha256_but_actual_key_is_raw_sha256",
+      "product_defect": false,
+      "real_budget_mutations": 0
+    },
+    {
+      "attempt": 2,
+      "status": "completed",
+      "correction": "read_actual_raw_sha256_field_without_changing_original_selection_or_assertions"
+    }
+  ],
+  "final_test_enabled": false,
+  "financial_evidence": false,
+  "developer_metadata_peer": {
+    "path": "audit/reviews/20261027-66ff72f-windows/developer_metadata_peer.json",
+    "raw_sha256": "623bc7f98532f572b2835328d6a40b50a8b5e7b920025aa9479dfee39419180f",
+    "checks": 24,
+    "all_passed": true,
+    "software_test_execution": false
+  }
+}

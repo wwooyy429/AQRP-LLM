@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\tools\stage2.py", line 292, in main
+    observed = backtest_observation(payload, deployment, record["external_id"], native, read_json(args.logs_file))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\cloud\qresearch\engineering_receipts.py", line 507, in backtest_observation
+    return backtest_runtime_failure(payload, deployment, external_id, tool_envelope)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\cloud\qresearch\engineering_receipts.py", line 486, in backtest_runtime_failure
+    native, raw = _tool(tool_envelope, "mcp__quantconnect__read_backtest", payload,
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\cloud\qresearch\engineering_receipts.py", line 196, in _tool
+    _fail("An explicit matching native backtest identity is required")
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\runtime-cli-v1\source\cloud\qresearch\engineering_receipts.py", line 40, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: An explicit matching native backtest identity is required

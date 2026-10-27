@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\evidence_agent\verify_evidence.py", line 76, in <module>
+    check('observation_bound_to_original_attempt_input_source_deployment_submission',observed['platform']['deployment']==admitted['deployment']==submission['deployment'] and observed['platform']['identity']==dict(admitted['identity'],external_id=EXTERNAL) and sha(files[admitted['input_path']])==admitted['deployment']['input_hash'] and submission['external_id']==EXTERNAL)
+KeyError: 'identity'

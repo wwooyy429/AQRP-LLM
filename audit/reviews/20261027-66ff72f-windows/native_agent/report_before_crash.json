@@ -1,0 +1,233 @@
+{
+  "reviewer": "native_agent independent synthetic native failure/rejection review",
+  "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "verdict": "本代理覆盖的新运行失败封装、受限编译拒绝/协议/CLI、旧合同及成功失败恢复兼容在本次独立合成范围通过；未确认新增缺陷。不得解释为真实SDK或完整阶段2验收。",
+  "findings": [],
+  "new_first_run": {
+    "methods": 6,
+    "subcases": 62,
+    "passed_methods": 6,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0,
+    "seconds": 118.294,
+    "stats": {
+      "actual_CLI_processes": 58,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 4,
+      "actual_worker_executions": 0
+    },
+    "method_subcases": {
+      "test_01_runtime_parser_exact_context_and_all_carriers": 20,
+      "test_02_compile_parser_bound_diagnostics_and_ineligible_errors": 20,
+      "test_03_compile_cli_started_ambiguous_and_exact_idempotence": 4,
+      "test_04_compile_cli_protocol_and_acceptance_guards_no_write": 14,
+      "test_05_runtime_cli_old_input_failure_no_refund_and_no_raw_text": 2,
+      "test_06_successful_lean_and_parent_resolution_remain_compatible": 2
+    }
+  },
+  "new_coverage": [
+    "v1/v2 plans are independently constructed via reviewer helper; production freeze/register/claim/prepare/parent Research result/LEAN admission run in actual copied CLI subprocesses and Filesystem Registry. No developer test fixture import.",
+    "Runtime adapter: matching read_backtest project/backtest parameters, exact isError=true/success=false/terminal phrase plus diagnostics; equivalent dual carrier and content-only forms accepted. No invented completed/progress/order fields. Transport, absent error flag, absent/bad diagnostics, wrong IDs/project, contradictory carriers and hidden row payloads reject.",
+    "Compile parser: frozen manifest file and separately hashed task input diagnostics eligible; generic string errors, unknown source path and invalid line are parsed as ineligible. Present backtestId, transport/isError, success=true, carrier conflict and unknown row output reject. Parser eligibility is distinct from settled failure.",
+    "Actual backtest-rejection CLI: v1/v2 started and ambiguous tasks settle failed exactly once without new usage or fabricated external ID. Identical refusal repeats idempotently with unchanged files; a changed diagnostic is rejected with unchanged files; acceptance after failed rejection is refused.",
+    "Actual CLI guards: pending/external identity without summary and accepted summary without original/journal cannot be overwritten; missing or foreign attempt/input-bound protocol, missing original admission and tampered local input refuse without file/usage changes.",
+    "Existing admission prepare does not backfill a removed protocol marker. New protocol raw bytes equal the independently constructed canonical schema/identity/deployment known answer.",
+    "Actual backtest-result CLI on already accepted old-style no-protocol input: transport and wrong native ID refuse without writes; valid synthetic runtime error settles failed once, keeps external ID and usage, and repeats idempotently after current pointer/catalog/deployment deletion, source drift and local input loss.",
+    "Successful synthetic LEAN still completes under old no-protocol input and drift, retains exact parent Research resolution and financial_evidence=false. This requires matching accepted submission and original completion contract.",
+    "Synthetic sensitive diagnostic and warning strings are inspected transiently and do not occur anywhere in fixture Registry storage. Only bounded hashes/counts remain. This is not an arbitrary encoded-string non-leakage proof."
+  ],
+  "compatibility_replay": {
+    "original_files": [
+      {
+        "name": "independent_recovery_support.py",
+        "old_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489",
+        "new_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489"
+      },
+      {
+        "name": "completion_boundaries.py",
+        "old_sha256": "29b3b514fc7adb5781c790d3d95f57879611dea4a6f05e3ecb0e084c19c85ce0",
+        "new_sha256": "29b3b514fc7adb5781c790d3d95f57879611dea4a6f05e3ecb0e084c19c85ce0"
+      },
+      {
+        "name": "failure_settlement.py",
+        "old_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46",
+        "new_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46"
+      }
+    ],
+    "byte_identical": true,
+    "prior_outputs_untouched": true,
+    "boundaries": {
+      "methods": 3,
+      "subcases": 28,
+      "passed_methods": 3,
+      "failure_records": 0,
+      "error_records": 0,
+      "skipped": 0,
+      "first_failure": null,
+      "exit_code": 0,
+      "stats": {
+        "actual_CLI_processes": 16,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      }
+    },
+    "failure_probes": {
+      "programs": 1,
+      "subcases": 4,
+      "passed": 4,
+      "failed": 0,
+      "exit_code": 0,
+      "stats": {
+        "actual_CLI_processes": 28,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 6,
+        "actual_worker_executions": 0
+      },
+      "records": [
+        {
+          "version": 1,
+          "kind": "Research synthetic fixed-check failed report",
+          "status": "failed",
+          "usage_unchanged": true,
+          "real_native_failure_claimed": false
+        },
+        {
+          "version": 1,
+          "kind": "LEAN synthetic delivered Runtime Error envelope",
+          "status": "failed",
+          "usage_unchanged": true,
+          "error_text_not_persisted": true,
+          "real_native_failure_claimed": false
+        },
+        {
+          "version": 2,
+          "kind": "Research synthetic fixed-check failed report",
+          "status": "failed",
+          "usage_unchanged": true,
+          "real_native_failure_claimed": false
+        },
+        {
+          "version": 2,
+          "kind": "LEAN synthetic delivered Runtime Error envelope",
+          "status": "failed",
+          "usage_unchanged": true,
+          "error_text_not_persisted": true,
+          "real_native_failure_claimed": false
+        }
+      ]
+    },
+    "metadata_caveat": "Original byte-identical scripts retain hardcoded prior commit literals (81f / ae). Actual recorded --source is the fixed66ff source and source hashes bind this run. Those old literal fields are not runtime identity claims.",
+    "contract_scope": "WR18 live loader/conflicting input/empty raw/hidden rows, original status absent/completed, completed idempotence, v1/v2 success and failure compatibility only.",
+    "failure_scope": "The Research fixed-check-failed report is inside a synthetic successful cell; old LEAN Runtime Error backtest-object envelope is also fabricated. No real failed Research execution is claimed."
+  },
+  "counting": {
+    "new_unit_methods": 6,
+    "new_unit_subcases": 62,
+    "compat_unit_methods": 3,
+    "compat_unit_subcases": 28,
+    "unit_methods": 9,
+    "unit_subcases": 90,
+    "manual_probe_programs": 1,
+    "manual_probe_subcases": 4,
+    "MRE_programs": 0,
+    "actual_CLI_processes": 102,
+    "direct_freeze_processes": 0,
+    "synthetic_metadata_finish_calls": 14,
+    "actual_worker_executions": 0,
+    "limits": "Unit methods/subcases, parameterized manual probes, CLI processes and metadata writer calls are separate. Checks overlap and are not independent economic observations."
+  },
+  "CLI_command_breakdown": {
+    "main": {
+      "freeze": 2,
+      "register": 2,
+      "claim": 4,
+      "prepare": 6,
+      "research-result": 2,
+      "backtest-submission": 6,
+      "backtest-rejection": 26,
+      "backtest-result": 10
+    },
+    "compat_boundaries": {
+      "freeze": 2,
+      "register": 2,
+      "claim": 4,
+      "prepare": 4,
+      "research-result": 2,
+      "backtest-submission": 2
+    },
+    "compat_failure": {
+      "freeze": 4,
+      "register": 4,
+      "claim": 6,
+      "prepare": 6,
+      "research-result": 4,
+      "backtest-submission": 2,
+      "backtest-result": 2
+    }
+  },
+  "source_locations": {
+    "runtime_native_adapter": "cloud/qresearch/engineering_receipts.py:476-500",
+    "runtime_routing": "cloud/qresearch/engineering_receipts.py:503-507",
+    "compile_rejection_parser": "cloud/qresearch/engineering_receipts.py:371-437",
+    "fixed_protocol": "cloud/qresearch/engineering_tasks.py:24-28",
+    "accepted_publication_order": "cloud/qresearch/engineering_tasks.py:556-603",
+    "rejection_validation_and_transition": "cloud/qresearch/engineering_tasks.py:604-679",
+    "prepare_protocol_no_backfill": "tools/stage2.py:174-200",
+    "CLI_rejection_result_routing": "tools/stage2.py:276-293",
+    "Registry_lock_owned_transition": "cloud/qresearch/registry.py:606-629"
+  },
+  "evidence": {
+    "new_script": "native_boundaries.py",
+    "new_results": "main/results.json",
+    "new_first_stdout": "main/first.stdout",
+    "new_first_stderr": "main/first.stderr",
+    "new_unittest": "main/unittest.txt",
+    "new_commands": "main/command_log.json",
+    "compat_boundary_results": "compat_boundaries/result.json",
+    "compat_failure_results": "compat_failure/failure_settlement_result.json",
+    "compat_raw_commands": "compat_boundaries/command_log.json and compat_failure/failure_command_log.json",
+    "compat_original_script_hashes": "compat_script_hashes.json",
+    "all_native_inputs_and_stores": "main/cases/ and compatibility cases/",
+    "capture_execution_records": [
+      "main/execution.json",
+      "compat_boundaries/execution.json",
+      "compat_failure/execution.json"
+    ]
+  },
+  "source_and_authority_hashes_before_after_equal": true,
+  "source_and_authority_hashes": {
+    "tools/stage2.py": "a59c9ecdf615b3cc59c0d47058c7555763d63d4bb2ee8f2ccd885220db7716d3",
+    "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+    "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c",
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "audit/runtime/registry/events.jsonl": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5"
+  },
+  "reviewed_receipts_static_raw_sha256": "11863a4d6995ada9cd32afdb02bb66057ec1c82e9de70c0fd2111b1a844e04b1",
+  "first_runs_preserved": true,
+  "reviewer_measurement_corrections": [],
+  "authoritative_ledger_scope": "Existing13-event source ledger was only read/hashed, never re-settled or reset. Fresh temporary fixture ledgers preserve aggregate baseline usage, not all prior engineering domain history.",
+  "actions": {
+    "actual_SDK": 0,
+    "QC": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "network": 0,
+    "deployment": 0,
+    "actual_worker_executions": 0,
+    "production_source_edits": 0,
+    "authoritative_budget_changes": 0,
+    "authoritative_ledger_settlements": 0
+  },
+  "remaining_unverified": [
+    "The other evidence agent reviews archived real old terminal provenance; this agent does not independently authenticate the remote source or make a new platform read.",
+    "Actual native compile-rejection receipt is not obtained by these synthetic tests.",
+    "Dedicated actual Research native execution exception and full failed-cell parser remain unverified.",
+    "New live deployment/input readback, successful bounded Research/LEAN execution, complete data/financial certification and full stage2 acceptance remain separate."
+  ]
+}

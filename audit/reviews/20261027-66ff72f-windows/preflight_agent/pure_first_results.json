@@ -1,0 +1,40 @@
+{
+  "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "methods": 7,
+  "passed_methods": 6,
+  "failed_methods": 0,
+  "error_methods": 1,
+  "subcases": 42,
+  "skips": 0,
+  "failures": [],
+  "errors": [
+    {
+      "method": "__main__.PurePreflight.test_all_manifest_paths_validated_before_first_read",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\independent_preflight.py\", line 49, in test_all_manifest_paths_validated_before_first_read\n    verify_deployment(manifest,content_hash(manifest),source_root=RUN)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\cloud\\qresearch\\artifacts.py\", line 72, in content_hash\n    return sha256(canonical_json(value)).hexdigest()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\cloud\\qresearch\\artifacts.py\", line 67, in canonical_json\n    separators=(\",\", \":\")).encode(\"utf-8\")\nUnicodeEncodeError: 'utf-8' codec can't encode character '\\ud800' in position 79: surrogates not allowed\n"
+    }
+  ],
+  "observations": {
+    "mismatch": {
+      "schema_version": 1,
+      "failure_kind": "source_hash_mismatch",
+      "path": "app.py",
+      "expected_sha256": "1ea7a9b77da8c725742658e48d686d50bdaaf7f8b0289b1061adec3d249e5071",
+      "observed_sha256": "6485b059becfc9a1e0a457fe126326e43302c75a3d8ecfb93c6f8af8978b5b1a"
+    },
+    "unreadable": {
+      "schema_version": 1,
+      "failure_kind": "source_unreadable",
+      "path": "app.py",
+      "expected_sha256": "1ea7a9b77da8c725742658e48d686d50bdaaf7f8b0289b1061adec3d249e5071"
+    },
+    "decode": {
+      "schema_version": 1,
+      "failure_kind": "source_decode_error",
+      "path": "app.py",
+      "expected_sha256": "1ea7a9b77da8c725742658e48d686d50bdaaf7f8b0289b1061adec3d249e5071"
+    }
+  },
+  "actual_QC_market_model_worker_calls": 0,
+  "script_sha256": "b085acebb479165626d45f88b511eed2725c401257a9cec81621770e522059d9",
+  "exit_code": 1
+}

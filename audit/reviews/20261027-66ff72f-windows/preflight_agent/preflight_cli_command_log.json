@@ -1,0 +1,94 @@
+[
+  {
+    "mode": "valid",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\tools\\deployment_preflight.py",
+      "--project-tool-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\valid\\tool.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\valid\\listing.json",
+      "--manifest-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\valid\\manifest.json",
+      "--deployment-hash",
+      "4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154",
+      "--project-id",
+      "931707",
+      "--input-sha256",
+      "f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"kind\": \"returned_source_reference_preflight\", \"project_id\": 931707, \"expected_manifest_hash\": \"4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154\", \"observed_source_reference_hash\": \"4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154\", \"expected_implementation_count\": 2, \"observed_implementation_count\": 2, \"missing_from_returned_reference\": [], \"unexpected_in_returned_reference\": [], \"different_paths\": [], \"files\": [{\"path\": \"app.py\", \"expected_sha256\": \"f3b2a1d750ada8561b4be7b392bde102e31b8a1bf8540d845029ad7ce492e906\", \"observed_sha256\": \"f3b2a1d750ada8561b4be7b392bde102e31b8a1bf8540d845029ad7ce492e906\"}, {\"path\": \"lib/\\u6a21\\u5757.py\", \"expected_sha256\": \"ee97939ae3aa04768c0143735d142e9dd390d62a47d81faf5a7beaf9fd56047a\", \"observed_sha256\": \"ee97939ae3aa04768c0143735d142e9dd390d62a47d81faf5a7beaf9fd56047a\"}], \"ignored_non_python_file_count\": 1, \"input_expected\": true, \"input_observed_sha256\": \"f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8\", \"input_binding_verified\": true, \"source_reference_matches\": true, \"preflight_passed\": true, \"ready_to_dispatch\": false, \"budget_admission_performed\": false, \"worker_source_verified\": false, \"full_cloud_inventory_certified\": false, \"financial_evidence\": false}\n",
+    "stderr": ""
+  },
+  {
+    "mode": "source_mismatch",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\tools\\deployment_preflight.py",
+      "--project-tool-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\source_mismatch\\tool.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\source_mismatch\\listing.json",
+      "--manifest-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\source_mismatch\\manifest.json",
+      "--deployment-hash",
+      "4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154",
+      "--project-id",
+      "931707",
+      "--input-sha256",
+      "f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8"
+    ],
+    "exit_code": 1,
+    "stdout": "{\"schema_version\": 1, \"kind\": \"returned_source_reference_preflight\", \"project_id\": 931707, \"expected_manifest_hash\": \"4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154\", \"observed_source_reference_hash\": \"76e1cf87251088bd2d8aba33255e2b81074d13c3f3b790b42065dcef8d3686a9\", \"expected_implementation_count\": 2, \"observed_implementation_count\": 2, \"missing_from_returned_reference\": [], \"unexpected_in_returned_reference\": [], \"different_paths\": [\"app.py\"], \"files\": [{\"path\": \"app.py\", \"expected_sha256\": \"f3b2a1d750ada8561b4be7b392bde102e31b8a1bf8540d845029ad7ce492e906\", \"observed_sha256\": \"074b6757404b7471f309b21fb4afee465426cc34b3874bb5f1fed5721bf3f192\"}, {\"path\": \"lib/\\u6a21\\u5757.py\", \"expected_sha256\": \"ee97939ae3aa04768c0143735d142e9dd390d62a47d81faf5a7beaf9fd56047a\", \"observed_sha256\": \"ee97939ae3aa04768c0143735d142e9dd390d62a47d81faf5a7beaf9fd56047a\"}], \"ignored_non_python_file_count\": 1, \"input_expected\": true, \"input_observed_sha256\": \"f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8\", \"input_binding_verified\": true, \"source_reference_matches\": false, \"preflight_passed\": false, \"ready_to_dispatch\": false, \"budget_admission_performed\": false, \"worker_source_verified\": false, \"full_cloud_inventory_certified\": false, \"financial_evidence\": false}\n",
+    "stderr": ""
+  },
+  {
+    "mode": "invalid_arguments",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\tools\\deployment_preflight.py",
+      "--project-tool-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\invalid_arguments\\tool.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\invalid_arguments\\listing.json",
+      "--manifest-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\invalid_arguments\\manifest.json",
+      "--deployment-hash",
+      "4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154",
+      "--project-id",
+      "931707",
+      "--input-sha256",
+      "f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"preflight_passed\": false, \"ready_to_dispatch\": false, \"error\": \"Invalid deployment preflight input metadata\"}\n",
+    "stderr": ""
+  },
+  {
+    "mode": "mirror_conflict",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source\\tools\\deployment_preflight.py",
+      "--project-tool-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\mirror_conflict\\tool.json",
+      "--projects-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\mirror_conflict\\listing.json",
+      "--manifest-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_cases\\mirror_conflict\\manifest.json",
+      "--deployment-hash",
+      "4cdcf2800417e634a30c9d3e608f3494f3c12c522f93b544c3750c1c8fe92154",
+      "--project-id",
+      "931707",
+      "--input-sha256",
+      "f93a4e08f1da3b328c197a9eda5c7abe8bf3aec764a44a1128a3cbf0c6b8faf8"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"preflight_passed\": false, \"ready_to_dispatch\": false, \"error\": \"Invalid deployment preflight input metadata\"}\n",
+    "stderr": ""
+  }
+]

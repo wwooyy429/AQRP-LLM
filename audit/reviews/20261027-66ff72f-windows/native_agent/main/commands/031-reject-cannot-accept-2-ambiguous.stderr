@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-ambiguous-v2\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-ambiguous-v2\source\tools\stage2.py", line 285, in main
+    result = vars(bridge.record_submission(args.attempt, backtest_submission(payload, deployment, native)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-ambiguous-v2\source\cloud\qresearch\engineering_tasks.py", line 586, in record_submission
+    raise EngineeringTaskError("A rejected or failed attempt cannot acquire an accepted submission")
+qresearch.engineering_tasks.EngineeringTaskError: A rejected or failed attempt cannot acquire an accepted submission
