@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "round_id": "stage2-repair-round-003",
+  "baseline_commit": "2069ef583526b8f2e7c7dfd1dda3c9fb175f6a98",
+  "user_request": "请开始修复阶段二的所有问题",
+  "status": "preregistered_before_any_dispatch",
+  "round_limits": {
+    "configurations": 1,
+    "research": 2,
+    "lean": 2
+  },
+  "allocation": "reserve",
+  "global_limits_unchanged": true,
+  "global_usage_before": {
+    "configurations": {
+      "total": 9,
+      "normal": 6,
+      "reserve": 3
+    },
+    "research": {
+      "total": 12,
+      "normal": 6,
+      "reserve": 6
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "extra_spend_usd": 0,
+  "final_test_enabled": false,
+  "primary_repair": "RC003: include complete prior NY source-calendar day; retain exclusive logical end and crop only after native identity/time/duplicate validation.",
+  "logical_scope": "fixed40 daily windows 2018-01-01..2018-02-10 exclusive, four liquidity/coverage/clock fields; fixed two-stock2018 raw cache fixture",
+  "native_scope": "one SDK call per logical window; native start at prior NY midnight and native end at logical end-1us. Source-file I/O count is not inferred from the SDK-call counter.",
+  "price_cache_policy": "Reuse unchanged content-addressed 2018 source snapshot; no automatic price re-download for code-only fixes.",
+  "collection_cache_policy": "Explicit v4 namespace; retain all previous failed intents, empty windows and task receipts.",
+  "acceptance": [
+    "all fixed Research checks including nonempty observed collection and zero-fetch cache replay",
+    "only then precharge and submit same-plan no-order LEAN receiver",
+    "a terminal native LEAN report with all receiver checks, not compile/submission success",
+    "data coverage/availability remains a separate evidence gate; no automatic approval"
+  ],
+  "retry_policy": "At most one same-config retry per stage only after definite terminal/reconciliation and a documented nonsemantic retry reason; no automatic re-fetch across an unfinished collection intent, no source edit under a frozen config.",
+  "stop_conditions": [
+    "round/global/allocation cap reached",
+    "unknown task blocks new project dispatch",
+    "any final-date/PIT/privacy violation",
+    "required semantic repair cannot fit remaining configuration quota",
+    "successful bounded engineering chain plus explicit certification-gap conclusion"
+  ],
+  "remaining_review_and_data_gates": [
+    "fixed-version independent review",
+    "old failed worker source difference not retroactively proven",
+    "full historical US200 and financial data evidence, including real publication/vintage/delivery/ingestion"
+  ],
+  "financial_evidence": false,
+  "economic_factor_tested": false
+}

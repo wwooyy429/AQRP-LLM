@@ -53,7 +53,8 @@ class JointQuantBook(ToyQuantBook):
 
     def universe_history(self, universe, start, end, flatten=False):
         self.universe_calls += 1
-        days = pd.date_range(pd.Timestamp(start).ceil("D"), pd.Timestamp(end).floor("D"), freq="D")
+        candidates = pd.date_range(pd.Timestamp(start).normalize(), pd.Timestamp(end).normalize(), freq="D")
+        days = [day for day in candidates if pd.Timestamp(start) < day <= pd.Timestamp(end)]
         index = pd.MultiIndex.from_tuples([(universe.symbol, day) for day in days], names=["symbol", "time"])
         values = [[NS(symbol=ToySymbol(ticker), dollar_volume=123., has_fundamental_data=ticker == "AAPL",
                       time=day.to_pydatetime(), end_time=day.to_pydatetime()) for ticker in ("AAPL", "MSFT")] for day in days]

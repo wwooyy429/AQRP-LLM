@@ -64,7 +64,7 @@ class WR10HistoryIntervalTests(unittest.TestCase):
                 qb = ContractQB(native, end.tz_localize(None).to_pydatetime())
                 rows = list(self.source(qb).fetch(start, end, CATALOG))
                 self.assertEqual([row["snapshot_at"] for row in rows], [x.isoformat() for x in all_days[1:-1]])
-                self.assertEqual(qb.calls, [(datetime(2018, 1, 3) - timedelta(microseconds=1),
+                self.assertEqual(qb.calls, [(datetime(2018, 1, 2),
                     end.tz_localize(None).to_pydatetime() - timedelta(microseconds=1))])
 
     def test_contiguous_collector_windows_have_no_gap_duplicate_or_refetch(self):
@@ -91,9 +91,9 @@ class WR10HistoryIntervalTests(unittest.TestCase):
                     qb = ContractQB([x.tz_localize(None).to_pydatetime() for x in stamps], end.tz_localize(None).to_pydatetime())
                     rows = list(self.source(qb).fetch(start, end, CATALOG))
                     self.assertEqual([x["snapshot_at"] for x in rows], [x.isoformat() for x in stamps[1:-1]])
-                    for actual, frozen in zip(qb.calls[0], (start, end)):
-                        expected = (frozen.tz_convert("UTC") - pd.Timedelta(microseconds=1)).tz_convert("America/New_York")
-                        self.assertEqual(actual, expected.tz_localize(None).to_pydatetime())
+                    self.assertEqual(qb.calls[0][0], (start - pd.DateOffset(days=1)).tz_localize(None).to_pydatetime())
+                    expected_end = (end.tz_convert("UTC") - pd.Timedelta(microseconds=1)).tz_convert("America/New_York")
+                    self.assertEqual(qb.calls[0][1], expected_end.tz_localize(None).to_pydatetime())
 
     def test_empty_window_completes_without_claiming_coverage(self):
         start, end = ny("2018-01-03"), ny("2018-01-04")

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "developer_repair_regression_only",
+  "runs": [
+    {
+      "command": "python -B tools/research.py build",
+      "exit_code": 0,
+      "seconds": 0.719
+    },
+    {
+      "command": "python -B tools/stages.py verify",
+      "exit_code": 0,
+      "seconds": 190.578
+    }
+  ],
+  "source_hash": "8b05fda6887cd9832253bb45ec3002d53f8b16c30993767aa196fc403f25d06b",
+  "test_output": "----------------------------------------------------------------------\nRan 714 tests in 188.364s\n\nOK\n",
+  "existing_runtime_bytes_unchanged": true,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

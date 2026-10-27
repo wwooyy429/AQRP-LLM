@@ -94,7 +94,7 @@ class HistoricalSourceTests(unittest.TestCase):
         self.assertEqual(rows[0]["values"]["financial_statements.file_date.value"], "2017-12-31")
         self.assertEqual(rows[0]["snapshot_at"], "2018-01-03T00:00:00-05:00")
         self.assertEqual(len(qb.calls), 1)
-        self.assertEqual(qb.calls[0][1:], (datetime(2018, 1, 3) - timedelta(microseconds=1),
+        self.assertEqual(qb.calls[0][1:], (datetime(2018, 1, 2),
                                         datetime(2018, 1, 4) - timedelta(microseconds=1), False))
         self.assertEqual(qb.selectors[0]([a, b]), [a.symbol, b.symbol])
         self.assertFalse(source.provenance()["actual_availability_certified"])
@@ -230,7 +230,7 @@ class HistoricalSourceTests(unittest.TestCase):
         qb.time = datetime(2018, 3, 12)
         row = list(self.source(qb).fetch(ts("2018-03-11"), ts("2018-03-12"), CATALOG))[0]
         self.assertEqual(row["snapshot_at"], "2018-03-11T00:00:00-05:00")
-        self.assertEqual(qb.calls[0][1:3], (datetime(2018, 3, 11) - timedelta(microseconds=1),
+        self.assertEqual(qb.calls[0][1:3], (datetime(2018, 3, 10),
                                          datetime(2018, 3, 12) - timedelta(microseconds=1)))
 
     def test_collection_ingestion_chain_reuses_and_unknown_timing_cannot_rank(self):

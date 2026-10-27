@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "project_id": 38436695,
+  "source": "actual QuantConnect MCP read-only responses; not historical market-row observations",
+  "datasets": [
+    {
+      "tool_name": "mcp__quantconnect__get_dataset_details",
+      "success": true,
+      "name": "US Fundamental Data",
+      "url": "https://www.quantconnect.com/datasets/morning-star-us-fundamentals",
+      "startDate": "January 1998",
+      "reach": "8,000 US Equities",
+      "returned_fields": [
+        "name",
+        "description",
+        "startDate",
+        "reach",
+        "url",
+        "examples"
+      ]
+    },
+    {
+      "tool_name": "mcp__quantconnect__get_dataset_details",
+      "success": true,
+      "name": "US SEC Filings",
+      "url": "https://www.quantconnect.com/datasets/us-security-exchange-commission-filings",
+      "startDate": "January 1998",
+      "reach": "15,000 US Equities",
+      "returned_fields": [
+        "name",
+        "description",
+        "startDate",
+        "reach",
+        "url",
+        "examples"
+      ]
+    }
+  ],
+  "available_dataset_names": [
+    "US Equity Security Master",
+    "US Futures Security Master",
+    "US Equity Coarse Universe",
+    "US Fundamental Data",
+    "US SEC Filings"
+  ],
+  "docs_read": {
+    "tool_name": "mcp__quantconnect__read_docs_page",
+    "url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/morningstar/us-fundamental-data",
+    "isError": false,
+    "truncated": false,
+    "character_count": 22166
+  },
+  "historical_actual_vendor_receipt_rows_returned": false,
+  "historical_actual_ingestion_rows_returned": false,
+  "market_rows_returned_by_these_lookup_calls": false,
+  "research_calls": 0,
+  "final_test_enabled": false
+}

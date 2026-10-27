@@ -118,13 +118,26 @@ def _universe_identity(symbol):
 
 
 def _history_endpoint(value):
-    """Map a half-open DAILY boundary to LEAN's right-closed EndTime grid.
+    """Map the exclusive logical end to LEAN's inclusive EndTime limit.
 
     The verified daily Fundamental path and Python datetime use microseconds;
     this is not a promise about arbitrary custom 100ns .NET tick histories.
     Subtract on the absolute timeline, then express in the notebook's NY zone.
     """
     return (value.tz_convert("UTC") - pd.Timedelta(microseconds=1)).tz_convert(NY).tz_localize(None).to_pydatetime()
+
+
+def _history_start(value):
+    """Include the whole prior NY source date, not its closed final microsecond.
+
+    Fundamental source-date d carries a modeled EndTime on d+1. LEAN first
+    enumerates source files using the remaining exchange-hours interval, so
+    shifting the left boundary back only one microsecond can skip the required
+    file entirely. A calendar offset preserves local midnight through DST.
+    Logical-window cropping below keeps this wider retrieval from changing
+    feature clocks or filling missing observations.
+    """
+    return (value.tz_convert(NY) - pd.DateOffset(days=1)).tz_localize(None).to_pydatetime()
 
 
 class QuantConnectSnapshotSource:
@@ -182,6 +195,8 @@ class QuantConnectSnapshotSource:
         trusted = json.loads(self._catalog_bytes)
         if any(path not in trusted or trusted[path] != definition for path, definition in selected.items()):
             raise HistoricalSourceError("Projection must match the frozen trusted catalog")
+        native_start, native_end = _history_start(start), _history_endpoint(end)
+        native_start_clock, native_end_clock = _clock(native_start, native=True), _clock(native_end, native=True)
         # QC exposes a naive Time in the notebook's configured zone. That clock
         # interpretation is explicit here and is not vendor delivery evidence.
         diagnostic["stage"] = "notebook_timezone"
@@ -202,7 +217,7 @@ class QuantConnectSnapshotSource:
         self.history_call_count += 1
         diagnostic["native_calls"] = 1
         response = self.qb.universe_history(self.universe,
-            _history_endpoint(start), _history_endpoint(end), flatten=False)
+            native_start, native_end, flatten=False)
         diagnostic["stage"] = "response_contract"
         diagnostic["response_kind"] = "series" if isinstance(response, pd.Series) else "dataframe" if isinstance(response, pd.DataFrame) else "other"
         if isinstance(response, (pd.Series, pd.DataFrame)):
@@ -241,10 +256,16 @@ class QuantConnectSnapshotSource:
             self._response_universe = universe_key
             diagnostic["stage"] = "snapshot_clock"
             stamp = _clock(native_time, native=True)
-            if not start <= stamp < end or stamp in seen_snapshots:
-                raise HistoricalSourceError("Duplicate or out-of-window native universe snapshot")
+            if (not native_start_clock < stamp <= native_end_clock
+                    or stamp >= DEVELOPMENT_END or stamp > frontier or stamp in seen_snapshots):
+                raise HistoricalSourceError("Duplicate or outside-request native universe snapshot")
             seen_snapshots.add(stamp)
             diagnostic["snapshots_seen"] += 1
+            # Validate identity, native request clock and duplicate snapshots
+            # before cropping; never inspect SID/field values outside the
+            # declared logical interval. A missing day stays missing.
+            if not start <= stamp < end:
+                continue
             diagnostic["stage"] = "snapshot_container"
             diagnostic["snapshot_kind"] = "list" if isinstance(objects, list) else "tuple" if isinstance(objects, tuple) else "other"
             if not isinstance(objects, (list, tuple)) or len(objects) > self.limit:
