@@ -1,0 +1,70 @@
+{
+  "fixed_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "methods": 9,
+  "passed_methods": 7,
+  "failed_methods": 2,
+  "error_methods": 0,
+  "failure_records": 5,
+  "error_records": 0,
+  "scenario_checks": 29,
+  "scenario_checks_not_unittest_subcase_count": true,
+  "scenarios": [
+    "IPO_mapping_2018-01-04T12:00:00-05:00",
+    "IPO_mapping_2018-01-04T16:00:00-05:00",
+    "IPO_mapping_2018-01-04T16:00:00.000001-05:00",
+    "WR25_UNMAPPED_VENDOR_CODE",
+    "WR25_unknown",
+    "WR25_common_stok",
+    "WR26_future_current",
+    "WR26_missing_current",
+    "continuous_(2, False, False)",
+    "continuous_(2, False, True)",
+    "continuous_(2, True, False)",
+    "continuous_(2, True, True)",
+    "continuous_(3, True, False)",
+    "continuous_(3, True, True)",
+    "history_refs_raw_and_summary",
+    "history_private_master_tamper",
+    "young_IPO_some_post_IPO_history",
+    "young_IPO_no_history",
+    "young_IPO_unknown_listing",
+    "interval_adjacent",
+    "interval_gap",
+    "interval_overlap",
+    "old_available_2018-02-01T09:00:00-05:00",
+    "old_available_2018-02-01T09:00:00.000001-05:00",
+    "old_available_2018-02-02T09:00:00.000001-05:00",
+    "current_state_(None, True)",
+    "current_state_('common_stock', None)",
+    "current_state_('etf', True)",
+    "current_state_('common_stock', False)"
+  ],
+  "failures": [
+    {
+      "method": "__main__.History.test_WR25_unknown_text_classifications_must_not_be_known_exclusions (code='UNMAPPED_VENDOR_CODE')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions\n    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n : A string outside the registered taxonomy is unknown, not ETF/other known exclusion\n"
+    },
+    {
+      "method": "__main__.History.test_WR25_unknown_text_classifications_must_not_be_known_exclusions (code='unknown')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions\n    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n : A string outside the registered taxonomy is unknown, not ETF/other known exclusion\n"
+    },
+    {
+      "method": "__main__.History.test_WR25_unknown_text_classifications_must_not_be_known_exclusions (code='common_stok')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions\n    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n : A string outside the registered taxonomy is unknown, not ETF/other known exclusion\n"
+    },
+    {
+      "method": "__main__.History.test_WR26_no_then_known_current_is_not_affirmative_exclusion (mode='future_current')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 47, in test_WR26_no_then_known_current_is_not_affirmative_exclusion\n    _,r=audit(self,raw,'insufficient_evidence');self.assertGreater(r['counts']['inconsistent_classification_cells'],0)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 22, in audit\n    f=make(raw=raw);r=run(f);test.assertEqual(r['status'],expected);false(test,r);return f,r\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n\n"
+    },
+    {
+      "method": "__main__.History.test_WR26_no_then_known_current_is_not_affirmative_exclusion (mode='missing_current')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 47, in test_WR26_no_then_known_current_is_not_affirmative_exclusion\n    _,r=audit(self,raw,'insufficient_evidence');self.assertGreater(r['counts']['inconsistent_classification_cells'],0)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\cert_agent\\baseline_original\\independent_history_boundaries.py\", line 22, in audit\n    f=make(raw=raw);r=run(f);test.assertEqual(r['status'],expected);false(test,r);return f,r\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n\n"
+    }
+  ],
+  "errors": [],
+  "seconds": 70.2471252999967,
+  "source_unchanged": true,
+  "network_attempts": 0,
+  "actual_QC_market_model_or_authoritative_budget_calls": 0,
+  "independent_original_fixture": true
+}

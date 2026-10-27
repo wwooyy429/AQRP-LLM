@@ -1,0 +1,125 @@
+{
+  "source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "positive_bound_result": "completed",
+  "legacy_without_marker_result": "completed",
+  "legacy_fixture": "Entry marker removed only from isolated synthetic fixture to model pre-protocol admission; no authority mutation.",
+  "new_entry_protocol_exists": true,
+  "dispatch_exists_before_and_after": false,
+  "unbound_cell_index": 999,
+  "unbound_CLI_exit_code": 1,
+  "unbound_CLI_stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr21_explicit_legacy\\cli_cases\\747a8324\\2-new-no-dispatch-f3e355\\tools\\stage2.py\", line 442, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr21_explicit_legacy\\cli_cases\\747a8324\\2-new-no-dispatch-f3e355\\tools\\stage2.py\", line 425, in main\n    result = vars(settle_research_result(bridge, args.attempt, native))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr21_explicit_legacy\\cli_cases\\747a8324\\2-new-no-dispatch-f3e355\\tools\\stage2.py\", line 336, in settle_research_result\n    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr21_explicit_legacy\\cli_cases\\747a8324\\2-new-no-dispatch-f3e355\\tools\\stage2.py\", line 269, in _read_research_dispatch\n    raise EngineeringTaskError(\"New Research entries require their original dispatch binding before settlement\")\nqresearch.engineering_tasks.EngineeringTaskError: New Research entries require their original dispatch binding before settlement\n",
+  "unbound_result": null,
+  "before": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "research": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "lean": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "ffc6fced57b2411d8761fa2e69de1879",
+        "config_id": "3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df",
+        "kind": "attempt_started",
+        "operation_key": "engineering-plan:a960eaf3bd4a5fdf085d887b0eceaed46212f0cd2f11aeff260b503d4e25e806:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T15:13:31.079338+00:00",
+        "result_key": "results/3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df/research/aab5b6a218db5d37a6c503564a02cd1fac626dc2742648ee78c2eb6f04f635bb.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "started",
+        "external_id": null
+      }
+    ]
+  },
+  "after": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "research": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      },
+      "lean": {
+        "total": 0,
+        "normal": 0,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "ffc6fced57b2411d8761fa2e69de1879",
+        "config_id": "3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df",
+        "kind": "attempt_started",
+        "operation_key": "engineering-plan:a960eaf3bd4a5fdf085d887b0eceaed46212f0cd2f11aeff260b503d4e25e806:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T15:13:31.079338+00:00",
+        "result_key": "results/3bf59efb5078266c042e53bef4a155122f64b16888f1bca4af09558fcfde36df/research/aab5b6a218db5d37a6c503564a02cd1fac626dc2742648ee78c2eb6f04f635bb.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "started",
+        "external_id": null
+      }
+    ]
+  },
+  "actual_entry_CLI_processes": 17,
+  "actual_worker_QC_market_calls": 0,
+  "script_sha256": "d2ce7101c995d8c410f58752a7c16f1aa06c830fd24083bc4cfafc26d8942fad"
+}\n

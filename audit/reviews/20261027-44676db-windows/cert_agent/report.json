@@ -1,0 +1,292 @@
+{
+  "fixed_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "scope": "Independent WR25/26 original7-case and prior13/43+9/23+9/29 replays, independent public-API qualification/time/coverage known answers and read-only stage0–7 matrix. Original independent fixture, no developer test fixtures.",
+  "verdict": {
+    "WR25_WR26_original_trigger_scope": "pass_fix_independently_verified",
+    "new_qualification_boundaries": "pass_tested_software_scope",
+    "data_observation_software": "pass_in_this_tested_scope_no_new_finding",
+    "stage2_overall": "not_accepted_real_success_and_provenance_gates_unmet",
+    "vendor_full_history_actual_availability_financial_vintage": "not_certified",
+    "financial_evidence": false,
+    "WR27_and_broad_regression": "separate_root_review_not_reexecuted_here"
+  },
+  "actually_executed": {
+    "original_combined_MRE": {
+      "original_bytes_unchanged": true,
+      "baseline_ccad_exit": 1,
+      "baseline_failed_scenarios": [
+        "unmapped",
+        "future",
+        "missing"
+      ],
+      "candidate_exit": 0,
+      "scenarios_per_version": 7,
+      "candidate_all_expectations_met": true
+    },
+    "original_history_negative_control": {
+      "methods": 9,
+      "passed_methods": 7,
+      "failed_methods": 2,
+      "errors": 0,
+      "scenario_checks": 29,
+      "failure_records": 5,
+      "exit_code": 1
+    },
+    "candidate_original_WR20": {
+      "methods": 13,
+      "passed_methods": 13,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 43,
+      "metadata_CLI_processes": 4,
+      "exit_code": 0
+    },
+    "candidate_previous_combinations": {
+      "methods": 9,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 23,
+      "exit_code": 0
+    },
+    "candidate_previous_history": {
+      "methods": 9,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 29,
+      "exit_code": 0
+    },
+    "candidate_new_qualification": {
+      "methods": 9,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 47,
+      "failure_records": 0,
+      "exit_code": 0
+    },
+    "new_QC_market_model_or_authoritative_budget_calls": 0,
+    "network_attempts": 0,
+    "source_unchanged_all_candidate_suites": true
+  },
+  "counting_limit": "All13/43,9/23,9/29,9/47 suites are separately executed and overlapping. 43/23/29/47 are hand-named scenario checks, not unittest subcase counts or extra methods. The two7-case MREs and old9/29 negative control overlap other scenarios and are not added into a unique total. Byte-identity checks and matrix references are static metadata, zero software methods.",
+  "original_bytes_and_binding": {
+    "copy_manifest": [
+      {
+        "version": "baseline",
+        "file": "cert_fixture.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "minimal_wr25_wr26.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\minimal_wr25_wr26.py",
+        "raw_sha256": "b31690726e1e34a763cc7f3de779d08bd85f70ff716f550bff6846b62b56c1cf",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "independent_certification.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\candidate_original\\independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "independent_fix_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\candidate_original\\independent_fix_boundaries.py",
+        "raw_sha256": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "independent_history_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\independent_history_boundaries.py",
+        "raw_sha256": "d2eec626aec10d53671ef6ba729cea3e701f7df81d64873b1ffe72070bf381bb",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "cert_fixture.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "minimal_wr25_wr26.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\minimal_wr25_wr26.py",
+        "raw_sha256": "b31690726e1e34a763cc7f3de779d08bd85f70ff716f550bff6846b62b56c1cf",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "independent_certification.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\candidate_original\\independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "independent_fix_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\candidate_original\\independent_fix_boundaries.py",
+        "raw_sha256": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "independent_history_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\cert_agent\\independent_history_boundaries.py",
+        "raw_sha256": "d2eec626aec10d53671ef6ba729cea3e701f7df81d64873b1ffe72070bf381bb",
+        "byte_identical": true
+      }
+    ],
+    "test_assertion_edits": 0,
+    "binding": "Original root minimal_wr25_wr26.py uses --source and loads the historical independently authored fixture archived inside the fixed Git source. Other unedited suites use the byte-identical cert_fixture with explicit ROOT/SOURCE binding through launch_original.py. All results are isolated by version/output path.",
+    "historical_literal_warning": "Unchanged original embedded fixed_commit strings and static target labels are historical. Current binding comes from execution metadata, explicit source path and measured module raw hashes; no literal was relabelled."
+  },
+  "passed_new_boundary_groups": [
+    "Public API covers3 included security types,7 explicitly excluded registered types and3 unknown values. Included old SID with all liquidity absent is incomplete, recognized exclusions remain allowed, unknown never means exclusion.",
+    "Finite historical ETF/unlisted intervals expire: no current coverage before/beyond end is unknown; end exactly at final formation differs from one microsecond after.",
+    "Current data at formation equality vs one microsecond later vs after final formation is separated for included and excluded categories; future values are not backfilled.",
+    "Future-only master records never previously known, with no then-known liquidity, do not create past inventory obligations even when their future classification is unknown.",
+    "Empty master evidence and conflicting current versions remain insufficient; duplicate exact identity is rejected.",
+    "Included/unknown/excluded current state crossed with complete/single-missing/whole-missing liquidity yields the independently declared statuses; included gaps are0/1/40.",
+    "IPO continuous mapping history preserves19/20 session eligibility, intraday/equal completed close/one-microsecond-later distinctions.",
+    "Observed zero dollar volume is real complete history; missing rows below ranking cutoff still cause a candidate gap and cannot be hidden by rank201.",
+    "Original raw records,refs,counts retained; summary recomputes private original inputs, rejects private-master tamper and keeps all7 certification flagsfalse."
+  ],
+  "findings": [],
+  "source_files_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "4944b95b339060a60533226184e7838632c7de2a40dfed42795d778d8a05ff2b",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/universe.py": "e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1"
+  },
+  "system_matrix": {
+    "path": "system_matrix.json",
+    "raw_sha256": "36ce3945da9f0f644ded6dd53eca83a5fa952fd11447883a94b1b0d1dc32604c",
+    "stages": 8,
+    "exact_source_references": 91,
+    "matrix_adds_unit_methods": 0,
+    "platform_calls": 0,
+    "protected_configuration_charter_exposure_bytes_equal_ccad": {
+      "config/development.json": true,
+      "config/research.json": true,
+      "config/data.json": true,
+      "config/source_catalog.json": true,
+      "config/workflow.json": true,
+      "config/quantconnect.json": true,
+      "config/budget.json": true,
+      "audit/data_exposure.json": true,
+      "docs/research_charter.md": true
+    },
+    "implementation_configuration_execution_evidence_separate": true,
+    "actual_prior_cloud": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "current_local": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+    "all_declared_execution_gates_closed": true,
+    "active_factor_model_trading_null": true,
+    "GPT_model_calls_spend_null": true,
+    "stage3_stratified_returns": "not_implemented",
+    "budget_events": 17,
+    "budget_used": {
+      "configurations": 7,
+      "Research": 10,
+      "LEAN": 1
+    },
+    "engineering_used": {
+      "configurations": 2,
+      "Research": 2,
+      "LEAN": 1
+    },
+    "2024_2025_exposed": true,
+    "2026_independence": "unknown_pending_independent_review"
+  },
+  "first_results_preserved": {
+    "baseline_original_failures_not_rewritten": true,
+    "all_candidate_first_runs_pass_no_fixture_or_runner_error": true,
+    "all_raw_stdout_stderr_captured": true,
+    "commands_hashes_and_exit_codes": "individual *_execution.json plus original_replay_index.json",
+    "source_and_assertions_not_edited": true,
+    "sidecar_is_exact_file_raw_hash": true
+  },
+  "unverified": [
+    "No real QC/network/source/cell/output read, Research/LEAN/model/trade call or real budget write by this agent.",
+    "No complete vendor/all-market inventory/PIT revisions/actual delivery authentication. Observation conformance is not production approval.",
+    "No new actual successful cloud Research/cache/LEAN chain; underlying prior CollectionError cause and old failed-worker source difference remain unproved.",
+    "No full portfolio/accounting/cost/risk engine, actual GPT closed loop, registered economic search/ablation, independent final executor or financial-validity acceptance.",
+    "Root owns broader regression, WR27 and full identity/archive/ledger checks; this agent neither reruns nor claims them as its own executed work."
+  ],
+  "evidence_raw_sha256": {
+    "build_system_matrix.py": "240a8e131dd78480b551ad2187f66447e90840e6633cf2651f4c3457f3b7b6ce",
+    "capture_qualification.py": "4781bcb41db515272dad303d43f257fa0990b601efbab9c5f4083381b4b23849",
+    "cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "independent_qualification_boundaries.py": "1b1746afce1c763103aaee50212701d2f9449cbe9d13bcc9fd17e8cb01204138",
+    "launch_original.py": "48e81978ff7263cb646ba8cdf227540d43e258cba1d925a880fb6bf550c0031a",
+    "original_replay_index.json": "39bbc78d10b79a990c3e4f9a090777441301bd5696ec3dad24c5a4a83babb0d4",
+    "qualification_execution.json": "8c2476b5f90130b00bbdb20c9c5d34558d09430be929303c54c3f57d37d5ca07",
+    "qualification_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "qualification_first.stdout": "53b3ab057959c46ae42f053ff37d201fb12da095080ac9b083050762e50ed8de",
+    "qualification_first_results.json": "883cb4ef911c4ffc6cc839f7ef8a41f2eee0695ae0cbe986e5dfca4dfec3874d",
+    "qualification_first_unittest.txt": "9dd0b80766fd25feb21cff4736a04f1a41f45de856486cb1ad85564c0849f6e9",
+    "replay_originals.py": "7192399a3ff8ec5b38159a4ee84b70c497cf6579e4dd0c351bf55e61660770f4",
+    "system_matrix.json": "36ce3945da9f0f644ded6dd53eca83a5fa952fd11447883a94b1b0d1dc32604c",
+    "system_matrix.raw.sha256": "907d98c07da1f89871b977f969087d11a04b6eadeadea88024c2747228936879",
+    "system_matrix.txt": "fbda945700a1ec24213b7088d4385ca8f3f2a0f28bb968b056c37f79eb877a09",
+    "write_report.py": "86b286842b2f29fa45a9e1502ea476856cd308b523d034c4131fc23e3fec7edc",
+    "baseline_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "baseline_original/combined_execution.json": "4a03ab309501de1ce652635de99ef963bd25b1380d39f75e0439d3ae5fdff00d",
+    "baseline_original/combined_first.stderr": "2a95ff8d6d74445caabdd4bb2291585a996ead971592b7ceb906512a4f43e031",
+    "baseline_original/combined_first.stdout": "145e5f08babb06c4dccdd72a214ee3867a8008d8eb2bb5103d04cbc7cfe8a111",
+    "baseline_original/combined_first_result.json": "8db7c69fbf06c613d95183a9d55d991b8dee4f704fba9fdefc4027e0851e204d",
+    "baseline_original/history9_suite_execution.json": "33b430547ef4a8563bcecda8cb658b69cc4a12df617ef02ba778e514bbff1444",
+    "baseline_original/history9_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/history9_suite_first.stdout": "5a4b35374b53955cc38d8a0c46f5def752c08d65edb44f91a76083599e0f4e51",
+    "baseline_original/history_first_results.json": "110a3da2b6bde737dc5b0146d73180a6de15e6d290e294d59c75f84f338b4e01",
+    "baseline_original/history_first_unittest.txt": "b458b1cca9dff01c461067f130c890932b010bcdff120f7c47acbc42adedb7e9",
+    "baseline_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "baseline_original/independent_fix_boundaries.py": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+    "baseline_original/independent_history_boundaries.py": "d2eec626aec10d53671ef6ba729cea3e701f7df81d64873b1ffe72070bf381bb",
+    "baseline_original/minimal_wr25_wr26.py": "b31690726e1e34a763cc7f3de779d08bd85f70ff716f550bff6846b62b56c1cf",
+    "candidate_original/boundaries_first_results.json": "f22e0d5a4ae4bdca66cc1d81980eb23ff176f7e2cba1c4a492a99449ca3db0c6",
+    "candidate_original/boundaries_first_unittest.txt": "1c2a066c7effbe44348b133407c137af8f37dab1182e07ff1b3882fa3e865e17",
+    "candidate_original/capabilities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/capabilities.stdout": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+    "candidate_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "candidate_original/cli_command_log.json": "5dc5aff4e60a18544990bbfd18a3add2f390a3f258b1420b2e93624474b99ff1",
+    "candidate_original/combined_execution.json": "ff35cabaf8a5f9fe37c5c3e8d4bab69aefc4e476c405e1e44dfeea8ef1db8348",
+    "candidate_original/combined_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/combined_first.stdout": "78aa59d7222a76118f8af1279a65aa7ba4c3deff9f3d2930268249df6d8b3e58",
+    "candidate_original/combined_first_result.json": "f109e0994febd1df00cd1b006a6ee33eb00eef73b3c0b5326688108dd4df08c4",
+    "candidate_original/duplicate_JSON_key.json": "e10db6111fd2ac612d9ffa4f6cf102e2d26e1a59e25ff456a63e59ca174b4192",
+    "candidate_original/duplicate_JSON_key.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/duplicate_JSON_key.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/first_results.json": "1a6908c5a01963db921e05f74922bd6b27bc350b0ece87d1209560de6b8931fd",
+    "candidate_original/first_unittest.txt": "4170e5503144b494e6544c143470927298f26c2fa7b6aeeb34bf089271048d23",
+    "candidate_original/history9_suite_execution.json": "494e3c25b82b46b940721fbb285b586bab9b64df0011cf76f85697c7f1b1ddb8",
+    "candidate_original/history9_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/history9_suite_first.stdout": "6c907676abec0a0bc9c4156a6003f03b274b0dc73812062c69e6d9899c28ae02",
+    "candidate_original/history_first_results.json": "de0daea5b79f4ae286da8787c458e8a977886edcaa1314b842ab7e679cda6c63",
+    "candidate_original/history_first_unittest.txt": "70141f4ed311cd36c00f3b3028adbbec4ecd9901fd74d48e9d82425a9f5736f0",
+    "candidate_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "candidate_original/independent_fix_boundaries.py": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+    "candidate_original/independent_history_boundaries.py": "d2eec626aec10d53671ef6ba729cea3e701f7df81d64873b1ffe72070bf381bb",
+    "candidate_original/minimal_wr25_wr26.py": "b31690726e1e34a763cc7f3de779d08bd85f70ff716f550bff6846b62b56c1cf",
+    "candidate_original/previous9_suite_execution.json": "90bb1b58e305a39d8cab0a1f14476b99351a47a927a5a3a7fd63a417cd46d2d6",
+    "candidate_original/previous9_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/previous9_suite_first.stdout": "cf21413fedfaa22c06705d16264e7638c46b3f45aab1b0d657ac8a5ec722ee31",
+    "candidate_original/unknown_override.json": "ca20337200df1d9d7c244e13ca605cf6051c43a241fd72db1ec42f2f71f6a745",
+    "candidate_original/unknown_override.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/unknown_override.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/valid_plan.json": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+    "candidate_original/valid_plan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/valid_plan.stdout": "7239b8bcc492d1550e3b8c8f788bb0cab5b8b23c1b18016b7e064bff8ac78a6f",
+    "candidate_original/WR20_suite_execution.json": "8b95d1fd6facce94daa6255df06c136ba190529c75070c61713f3b69f8513de8",
+    "candidate_original/WR20_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/WR20_suite_first.stdout": "ae42534a00a9e727a58c7a09d4581260f96af1af96ae74a8a1057b2fd2c8363f"
+  }
+}

@@ -1,15 +1,15 @@
 {
   "schema_version": 5,
   "kind": "consolidated_stage2_round_stopped_after_real_Research_failure",
-  "accepted_offline_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-  "accepted_source_manifest_hash": "be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e",
+  "accepted_offline_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "accepted_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
   "independent_offline_accepted_stages": [
     0,
     1
   ],
-  "stage2_status": "original_WR22_WR23_WR24_passed_new_WR25_WR26_WR27_repairs_pending_review_stage2_not_accepted",
+  "stage2_status": "tested_offline_software_passed_whole_stage_pending_real_runtime_and_data",
   "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
   "deployment_comparison_scope": "Historical d0 detail table retained; active archived ae2-vs-known25 comparison corrected to9 differing+4 outside reference=13. Earlier dc49 count12 remains historical. No current platform inventory certification.",
   "deployment_file_count": 25,
   "deployment_differences": [
@@ -86,72 +86,39 @@
   "model_API_calls": 0,
   "new_independent_review_dispatched": false,
   "financial_evidence": false,
-  "source_changed": true,
+  "source_changed": false,
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/review/wr25-wr27.md",
+  "candidate_development_document": "audit/reviews/20261027-44676db-windows/formal_report.json",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
-  "candidate_additions": [
-    "WR25_closed_classification_semantics",
-    "WR26_current_qualification_coverage",
-    "WR27_same_root_manifest_binding"
-  ],
+  "candidate_additions": [],
   "unimplemented_collection_scope": [
     "qualifying_actual_cloud_Research_and_LEAN_success",
     "proven_old_LEAN_worker_source_difference",
     "verified_complete_financial_value_catalog_and_vendor_receipt_protocol",
     "full_historical_US200_and_financial_data_certification"
   ],
-  "known_open_findings": [
-    {
-      "id": "WR-25",
-      "priority": "P2",
-      "blocking": true,
-      "status": "developer_fixed_pending_independent_review"
-    },
-    {
-      "id": "WR-26",
-      "priority": "P2",
-      "blocking": true,
-      "status": "developer_fixed_pending_independent_review"
-    },
-    {
-      "id": "WR-27",
-      "priority": "P3",
-      "blocking": false,
-      "status": "developer_corrected_pending_independent_review"
-    }
-  ],
-  "developer_fixes_pending_independent_verification": [
-    "WR-25",
-    "WR-26",
-    "WR-27"
-  ],
-  "source_changed_this_round": [
-    "cloud/qresearch/data_certification.py",
-    "cloud/research_config.py",
-    "tests/test_data_certification.py",
-    "tests/test_review_metadata.py",
-    "tools/review_metadata.py",
-    "tools/stages.py"
-  ],
+  "known_open_findings": [],
+  "developer_fixes_pending_independent_verification": [],
+  "source_changed_this_round": [],
   "accepted_offline_scope": {
-    "status": "通过（本轮明确覆盖的离线范围）",
+    "status": "passed_in_independently_tested_offline_scope",
+    "commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
     "scope": [
-      "v1/v2本地物理源码预检和扣费前拒绝",
-      "单次读取/EOF保留/安全诊断",
-      "只读源码引用预检",
-      "原生运行失败及受限编译拒绝/原attempt绑定",
-      "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
+      "WR25_closed_classification_and_known_exclusion",
+      "WR26_then_known_SID_current_coverage",
+      "WR27_same_root_manifest",
+      "affected_prior_calculation_ingestion_budget_admission_recovery_regressions"
     ],
     "full_phase2": false,
-    "root_cause_repaired": false,
-    "v1_controller_source_recheck": false,
-    "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
+    "vendor_data_certified": false,
+    "cloud_runtime_passed": false,
+    "financial_evidence": false
   },
-  "new_candidate_acceptance_scope": "WR25/26/27 development candidate requires independent fixed-commit review; prior WR22/23/24 scope passed only on ccad61d.",
+  "new_candidate_acceptance_scope": "Software approval is bound to44676db; this archival metadata commit is not independently reviewed",
   "documentation_and_archival_metadata_changed": true,
   "platform_comparison_from_independent_review": {
     "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -196,13 +163,8 @@
   },
   "candidate_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
   "collection_remote_protocol_and_registry_admission": "passed_in_retested_offline_scope_on81fbe52; platform_and_data_not_accepted",
-  "known_open_blocking_findings": [
-    "WR-25",
-    "WR-26"
-  ],
-  "known_open_nonblocking_findings": [
-    "WR-27"
-  ],
+  "known_open_blocking_findings": [],
+  "known_open_nonblocking_findings": [],
   "live_preflight_record": "audit/stage2_live_preflight.json",
   "joint_preview": "audit/stage2_joint_preview.json",
   "last_archived_lean_status": "Runtime Error",
@@ -234,25 +196,21 @@
     "independently_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json"
   },
-  "latest_software_independent_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
-  "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-  "metadata_acceptance": "WR19_passed_at84414ab",
-  "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+  "latest_software_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
+  "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "metadata_acceptance": "WR27_default_absolute_relative_target_scope_passed_on44676db",
+  "metadata_reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
   "candidate_execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
   "latest_read_only_preflight": "audit/stage2_deployment_root_cause.json",
-  "current_candidate_change_scope": "offline_WR25_WR26_eligibility_and_WR27_root_manifest_repair",
-  "developer_features_pending_independent_verification": [
-    "WR25_closed_classification_semantics",
-    "WR26_current_qualification_coverage",
-    "WR27_same_root_manifest_binding"
-  ],
+  "current_candidate_change_scope": "README_and_audit_metadata_only_no_source_config_or_runtime_changes",
+  "developer_features_pending_independent_verification": [],
   "source_configuration_budget_changed_scope": "Offline software and metadata repair only; zero new market configuration registrations, Research executions or LEAN submissions; budget and journal unchanged.",
   "reconciled_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
   "prior_archived_lean_status": "pending",
   "original_attempt_registry_status": "failed",
   "completed_result_read_count": 0,
   "backtest_poll_count": 0,
-  "terminal_read_scope": "No terminal result or platform read in this repair; prior reads are in the pinned historical activity object.",
+  "terminal_read_scope": "No new platform/terminal read; old failure records are retained as archived evidence.",
   "terminal_reconciliation": "audit/stage2_terminal_reconciliation.json",
   "old_LEAN_native_failure_receipt_observed": true,
   "old_LEAN_failure_settlement_verified": true,
@@ -260,11 +218,7 @@
   "original_worker_failure_repaired": false,
   "root_cause_proven": false,
   "developer_repository_tests": 668,
-  "developer_extra_boundary_probe_methods": {
-    "G3": 8,
-    "G4_peer1": 14,
-    "G4_peer2": 9
-  },
+  "developer_extra_boundary_probe_methods": {},
   "new_configuration_count": 0,
   "new_Research_execution_count": 0,
   "new_LEAN_submission_count": 0,
@@ -283,64 +237,52 @@
     ]
   },
   "independently_verified_features": {
-    "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+    "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
     "features": [
-      "native_compile_rejection_and_atomic_settlement",
-      "native_runtime_failure_adapter",
-      "strict_local_deployment_preflight",
-      "bounded_single_read_file_diagnostics",
-      "read_project_reference_preflight"
+      "WR25_closed_classification_and_known_exclusion",
+      "WR26_then_known_SID_current_coverage",
+      "WR27_same_root_manifest",
+      "affected_prior_calculation_ingestion_budget_admission_recovery_regressions"
     ],
-    "scope": {
-      "status": "通过（本轮明确覆盖的离线范围）",
-      "scope": [
-        "v1/v2本地物理源码预检和扣费前拒绝",
-        "单次读取/EOF保留/安全诊断",
-        "只读源码引用预检",
-        "原生运行失败及受限编译拒绝/原attempt绑定",
-        "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
-      ],
-      "full_phase2": false,
-      "root_cause_repaired": false,
-      "v1_controller_source_recheck": false,
-      "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
-    },
-    "report": "audit/reviews/20261027-66ff72f-windows/formal_report.json"
+    "scope": "tested_offline_software_only"
   },
   "remaining_acceptance_gates": [
     {
       "id": "G1",
-      "status": "actual_Research_failed_no_qualifying_LEAN_success",
-      "requirement": "Real successful Research, collection/cache and dependent LEAN chain remains missing"
+      "status": "actual_Research_failed_no_new_successful_joint_chain",
+      "requirement": "New qualifying Research, collection/cache and dependent LEAN success remain missing"
     },
     {
       "id": "G2",
       "status": "old_worker_source_difference_insufficient",
-      "requirement": "Old failed worker source bytes and mismatch remain unproven"
+      "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
     },
     {
       "id": "G3",
-      "status": "native_failure_and_admission_tested_scope_passed_on_ccad61d",
-      "requirement": "Retain independently tested offline scope only; actual new cloud execution is still missing in G1"
+      "status": "passed_in_independently_tested_offline_scope_on44676db",
+      "requirement": "Native error, admission identity and recovery acceptance is limited to the tested offline scope; real execution stays in G1"
     },
     {
       "id": "G4",
-      "status": "WR22_original_scope_passed_WR25_WR26_repairs_pending_full_data_insufficient",
-      "requirement": "Independent closed-classification/current-coverage retest and authenticated US200/financial timing evidence"
+      "status": "observed_input_audit_software_passed_real_data_certification_insufficient",
+      "requirement": "Authenticated historical US200, financial vintages and actual delivery/ingestion evidence remain missing",
+      "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "real_data_certified": false
     }
   ],
   "latest_independent_platform_observation": {
-    "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
     "QC_calls": 0,
-    "scope": "offline review of archived observations only, not a new platform read"
+    "scope": "offline reparse of archived native evidence, not a new platform read"
   },
-  "latest_independent_platform_observation_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
+  "latest_independent_platform_observation_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
   "latest_independent_cloud_comparison": {
-    "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
     "actual_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
     "same": 28,
     "different": 3,
-    "scope": "ccad versus archived7fc reference only",
+    "scope": "accepted446 versus archived7fc reference only",
     "current_platform_read": false
   },
   "independent_review_execution_scope": {
@@ -362,7 +304,7 @@
   "latest_Research_registry_status": "failed",
   "latest_Research_attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
   "source_iteration_underlying_cause_known": false,
-  "market_calls_scope": "No market-data provider calls in this offline repair; prior failed-cell call counts remain unknown in their historical report.",
+  "market_calls_scope": "No market/provider calls in metadata archival; prior failed Research call counts remain unknown in their original report.",
   "native_research_failure_reconciliation": "audit/stage2_completion_reconciliation.json",
   "current_cloud_reference_comparison": "audit/wr25_wr27_source_reference_comparison.json",
   "controller_repair_cloud_executed": false,
@@ -398,9 +340,9 @@
     "verified_complete_financial_value_catalog",
     "actual_vendor_receipt_and_vintage_certification"
   ],
-  "postnative_developer_peer_methods": 8,
+  "postnative_developer_peer_methods": 0,
   "actual_native_failure_adapter_evidence_available": true,
-  "latest_independent_reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "latest_independent_reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
   "historical_activity_descriptions": [
     {
       "recorded_at_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
@@ -486,11 +428,42 @@
           "scope": "offline review of archived observations only, not a new platform read"
         }
       }
+    },
+    {
+      "recorded_at_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+      "scope": "Prior software repair activity, not this metadata-only archival turn",
+      "prior_current_fields": {
+        "candidate_additions": [
+          "WR25_closed_classification_semantics",
+          "WR26_current_qualification_coverage",
+          "WR27_same_root_manifest_binding"
+        ],
+        "candidate_development_document": "docs/review/wr25-wr27.md",
+        "current_candidate_change_scope": "offline_WR25_WR26_eligibility_and_WR27_root_manifest_repair",
+        "current_metadata_correction_status": "WR24_default_scope_passed_on_ccad61d_WR27_crossroot_fix_pending_review",
+        "developer_extra_boundary_probe_methods": {
+          "G3": 8,
+          "G4_peer1": 14,
+          "G4_peer2": 9
+        },
+        "new_candidate_acceptance_scope": "WR25/26/27 development candidate requires independent fixed-commit review; prior WR22/23/24 scope passed only on ccad61d.",
+        "read_or_polled_this_turn_scope": "No QuantConnect reads, polling, writes or deployments in this repair; no market-data or model calls.",
+        "source_changed_this_round": [
+          "cloud/qresearch/data_certification.py",
+          "cloud/research_config.py",
+          "tests/test_data_certification.py",
+          "tests/test_review_metadata.py",
+          "tools/review_metadata.py",
+          "tools/stages.py"
+        ],
+        "source_configuration_budget_changed_scope": "Offline software and metadata repair only; zero new market configuration registrations, Research executions or LEAN submissions; budget and journal unchanged."
+      }
     }
   ],
   "current_activity": {
     "kind": "offline_repair",
-    "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "baseline_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
     "source_roots": [
       "cloud",
       "tests",
@@ -501,5 +474,74 @@
     "quantconnect_writes": 0,
     "new_deployments": 0
   },
-  "current_metadata_correction_status": "WR24_default_scope_passed_on_ccad61d_WR27_crossroot_fix_pending_review"
+  "current_metadata_correction_status": "WR27_independently_passed_tested_scope_on44676db",
+  "historical_offline_acceptance_records": [
+    {
+      "recorded_at_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "scope": "Prior acceptance metadata preserved before reconciling the new independent report",
+      "prior_fields": {
+        "accepted_offline_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+        "accepted_source_manifest_hash": "be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e",
+        "accepted_offline_scope": {
+          "status": "通过（本轮明确覆盖的离线范围）",
+          "scope": [
+            "v1/v2本地物理源码预检和扣费前拒绝",
+            "单次读取/EOF保留/安全诊断",
+            "只读源码引用预检",
+            "原生运行失败及受限编译拒绝/原attempt绑定",
+            "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
+          ],
+          "full_phase2": false,
+          "root_cause_repaired": false,
+          "v1_controller_source_recheck": false,
+          "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
+        },
+        "independently_verified_features": {
+          "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+          "features": [
+            "native_compile_rejection_and_atomic_settlement",
+            "native_runtime_failure_adapter",
+            "strict_local_deployment_preflight",
+            "bounded_single_read_file_diagnostics",
+            "read_project_reference_preflight"
+          ],
+          "scope": {
+            "status": "通过（本轮明确覆盖的离线范围）",
+            "scope": [
+              "v1/v2本地物理源码预检和扣费前拒绝",
+              "单次读取/EOF保留/安全诊断",
+              "只读源码引用预检",
+              "原生运行失败及受限编译拒绝/原attempt绑定",
+              "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
+            ],
+            "full_phase2": false,
+            "root_cause_repaired": false,
+            "v1_controller_source_recheck": false,
+            "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
+          },
+          "report": "audit/reviews/20261027-66ff72f-windows/formal_report.json"
+        },
+        "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+        "metadata_acceptance": "WR19_passed_at84414ab",
+        "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874"
+      }
+    }
+  ],
+  "accepted_software_version": {
+    "commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+    "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+    "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
+    "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
+    "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
+    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
+    "scope": "independently_tested_offline_software_only",
+    "observed_input_audit_software_passed": true,
+    "full_phase2_accepted": false,
+    "financial_evidence": false,
+    "metadata_archival_commit_approval_extended": false
+  },
+  "runtime_source_matches_reviewed_version": true,
+  "current_archival_commit_independently_reviewed": false,
+  "metadata_archival_only": true,
+  "current_activity_schema_note": "Fixed offline_repair metadata grammar retained; this activity is archival only, no software repair or execution"
 }
