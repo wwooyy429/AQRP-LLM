@@ -158,12 +158,17 @@ class QuantConnectSnapshotSource:
     frontier and passes only frozen catalog fields. SDK import is lazy so all
     local tests remain synthetic. This is not a trading-universe selector.
     """
-    def __init__(self, quantbook, field_catalog, *, api=None, max_records_per_snapshot=20000):
+    def __init__(self, quantbook, field_catalog, *, api=None, max_records_per_snapshot=20000,
+                 observation_policy="unique_sid"):
         if type(max_records_per_snapshot) is not int or not 1 <= max_records_per_snapshot <= 100000:
             raise HistoricalSourceError("A bounded snapshot size is required")
+        if (type(observation_policy) is not str
+                or observation_policy not in {"unique_sid", "retain_source_occurrences"}):
+            raise HistoricalSourceError("A closed native observation policy is required")
         self.qb, self.api = quantbook, api
         self._catalog_bytes = canonical_json(_catalog(field_catalog))
         self.limit = max_records_per_snapshot
+        self.observation_policy = observation_policy
         self.universe = None
         self._response_universe = None
         self.history_call_count = 0
@@ -282,7 +287,7 @@ class QuantConnectSnapshotSource:
                 raise HistoricalSourceError("Native snapshot is not a bounded list of fundamentals")
             seen_sids = set()
             diagnostic["stage"] = "snapshot_iteration"
-            for item in objects:
+            for source_record_index, item in enumerate(objects):
                 diagnostic["stage"] = "row_identity"
                 symbol = _attribute(item, "symbol")
                 native_sid = _attribute(symbol, "id") if symbol is not None else None
@@ -295,7 +300,7 @@ class QuantConnectSnapshotSource:
                     raise HistoricalSourceError("Empty native permanent SID")
                 if not sid or sid.strip() != sid or len(sid) > 256:
                     raise HistoricalSourceError("Noncanonical native permanent SID")
-                if sid in seen_sids:
+                if self.observation_policy == "unique_sid" and sid in seen_sids:
                     raise HistoricalSourceError("Duplicate native permanent SID")
                 seen_sids.add(sid)
                 diagnostic["stage"] = "field_projection"
@@ -305,16 +310,24 @@ class QuantConnectSnapshotSource:
                     diagnostic["projection_kind"] = definition["kind"]
                     values[path] = _scalar(_attribute(item, path), definition["kind"])
                 diagnostic["rows_emitted"] += 1
-                yield {"sid": sid, "snapshot_at": stamp.isoformat(), "values": values}
+                row = {"sid": sid, "snapshot_at": stamp.isoformat(), "values": values}
+                if self.observation_policy == "retain_source_occurrences":
+                    # Explicit v2 collection only: preserve native order and
+                    # every projected occurrence for cloud-side quarantine.
+                    row["source_record_index"] = source_record_index
+                yield row
                 diagnostic["stage"] = "snapshot_iteration"
             diagnostic["stage"] = "response_iteration"
         diagnostic["stage"] = "completed"
 
     def provenance(self):
-        return {"source": "quantconnect_fundamental_universe", "history_api_calls": self.history_call_count,
+        result = {"source": "quantconnect_fundamental_universe", "history_api_calls": self.history_call_count,
                 "snapshot_clock": "modeled_universe_selection_time_in_America_New_York",
                 "vendor_revision_certified": False, "actual_availability_certified": False,
                 "full_historical_US200_certified": False, "financial_field_coverage_certified": False}
+        if self.observation_policy == "retain_source_occurrences":
+            result["observation_policy"] = self.observation_policy
+        return result
 
 
 def observed_liquidity_record(snapshot, *, session_close):

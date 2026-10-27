@@ -391,19 +391,24 @@ def _run_collection_probe(qb, store, plan, payload, *, api):
                 or any(first[name] != value for name, value in observed.items() if name not in {"provider_calls", "reused_windows"})):
             raise ValueError("Saved joint collection receipt differs from verified cache")
     else:
-        source = QuantConnectSnapshotSource(qb, child.field_catalog, api=api)
+        options = ({"observation_policy": child.to_dict()["observation_policy"]}
+                   if child.to_dict()["schema_version"] == 2 else {})
+        source = QuantConnectSnapshotSource(qb, child.field_catalog, api=api, **options)
         first = HistoricalSnapshotCollector(store, source, child).collect()
         second = reader.collect()
         receipt = {"identity": payload["identity"], "collection_plan_hash": child.hash,
                    "first": first, "cache_only_replay": second}
     reference = _save(store, key, receipt)
-    summary = {"schema_version": 1, "plan_hash": child.hash, "receipt_ref": reference,
+    summary = {"schema_version": child.to_dict()["schema_version"], "plan_hash": child.hash, "receipt_ref": reference,
         "window_count": first["window_count"], "record_count": first["record_count"],
         "source_fetch_calls": first["provider_calls"], "reused_windows": first["reused_windows"],
         "empty_windows": first["empty_windows"], "cache_only_source_fetch_calls": second["provider_calls"],
         "missing_values": first["missing_values"], "full_historical_US200_certified": False,
         "actual_availability_certified": False, "research_certified": False,
         "row_values_exported": False, "financial_vintage_certified": False}
+    if summary["schema_version"] == 2:
+        summary.update({name: first[name] for name in ("observation_policy", "duplicate_projection_records",
+                                                     "conflicting_projection_records")})
     _safe_collection_probe(summary)
     return summary
 

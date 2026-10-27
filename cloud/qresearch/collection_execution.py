@@ -74,7 +74,10 @@ def run_collection_task(payload, *, quantbook=None, field_catalog, api=None, sto
         if source is None:
             if quantbook is None:
                 raise EngineeringTaskError("A Research source is required")
-            source = QuantConnectSnapshotSource(quantbook, plan.collection_plan.field_catalog, api=api)
+            raw_collection = plan.collection_plan.to_dict()
+            options = ({"observation_policy": raw_collection["observation_policy"]}
+                       if raw_collection["schema_version"] == 2 else {})
+            source = QuantConnectSnapshotSource(quantbook, plan.collection_plan.field_catalog, api=api, **options)
         first = HistoricalSnapshotCollector(store, source, plan.collection_plan, synthetic=synthetic).collect()
         second = reader.collect()
         receipt = {"identity": payload["identity"], "first": first, "cache_only_replay": second}
@@ -92,6 +95,9 @@ def run_collection_task(payload, *, quantbook=None, field_catalog, api=None, sto
               "statistics": counts, **flags, "evidence": {"collection_plan_hash": plan.request_hash,
               "collection_receipt_ref": {"key": collection_key, "sha256": content_hash(receipt)},
               "missing_values": first["missing_values"]}}
+    if plan.collection_plan.to_dict()["schema_version"] == 2:
+        counts.update({name: first[name] for name in ("duplicate_projection_records", "conflicting_projection_records")})
+        report["evidence"]["observation_policy"] = first["observation_policy"]
     validate_report(report, plan, payload["identity"])
     store.write_once(payload["report_key"], canonical_json(report))
     return {"cloud_report": report, "report_ref": {"key": payload["report_key"], "sha256": content_hash(report)}}

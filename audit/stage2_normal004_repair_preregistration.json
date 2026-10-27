@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "round_id": "stage2-normal-repair-round-004",
+  "allocation": "normal",
+  "first_source_commit": "42b45c830aac691fe0763bfc6363997947625bc1",
+  "diagnostic_attempt": "b9f952c1de3a44f9b06e5c552f7d1af3",
+  "diagnostic_terminal": "failed",
+  "observed_failure_code": "native_sid_duplicate",
+  "diagnostic_rows_emitted": 5124,
+  "diagnostic_count_scope": "only the failing source fetch; not a completed-window or full-run count",
+  "second_configuration_status": "preregistered_before_freeze_and_dispatch",
+  "usage_before": {
+    "configurations": {
+      "total": 11,
+      "normal": 7,
+      "reserve": 4
+    },
+    "research": {
+      "total": 14,
+      "normal": 7,
+      "reserve": 7
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "remaining_round_maxima": {
+    "configurations": 1,
+    "research": 3,
+    "lean": 2
+  },
+  "repair": "Collection v2 retains every native selected-field observation with per-snapshot continuous source_record_index; no deduplication or winner selection.",
+  "ambiguity_counts": "duplicate_projection_records counts later SID/snapshot occurrences; conflicting_projection_records compares selected values with first projection only, not full native equality.",
+  "quarantine": "Engineering observation storage only; all research/US200/availability/financial-vintage certification flags remain false; unique observation conversion rejects occurrence rows.",
+  "new_collection_namespace": "explicit data_version v6 and historical-snapshots/v2; all v1 failed intents and partial objects retained",
+  "unchanged_scope": "2018 AAPL/MSFT raw cache; forty calendar daily snapshot windows, four fields, one SDK request per uncached logical window, no orders/financial metrics",
+  "success": "Completed metadata Research report with all fixed engineering checks, zero-fetch cache replay and explicit ambiguity counts; then precharge same-plan LEAN and wait for actual native completed result.",
+  "failure": "No automatic same-input rerun. Known terminal nonsemantic retry only within grant and unfinished-intent guards; semantic edits require a new configuration and are blocked when global cap is exhausted.",
+  "separate_gates": [
+    "fixed-version independent review",
+    "complete historical US200 and financial value integration",
+    "supplier/publication/vintage/actual delivery and ingestion receipts"
+  ],
+  "final_test_enabled": false,
+  "financial_evidence": false,
+  "extra_spend_usd": 0,
+  "global_limits_unchanged": true
+}

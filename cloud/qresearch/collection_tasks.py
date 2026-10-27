@@ -92,18 +92,26 @@ def validate_report(report, plan, identity):
     if (not isinstance(checks, dict) or set(checks) != CHECKS or any(type(v) is not bool for v in checks.values())
             or report["status"] != ("completed" if all(checks.values()) else "failed")):
         raise EngineeringTaskError("Only fixed program checks may decide collection status")
-    if (not isinstance(counts, dict) or set(counts) != COUNTS
+    collection = plan.collection_plan
+    occurrences = collection.to_dict()["schema_version"] == 2
+    expected_counts = COUNTS | ({"duplicate_projection_records", "conflicting_projection_records"} if occurrences else set())
+    if (not isinstance(counts, dict) or set(counts) != expected_counts
             or any(type(v) is not int or v < 0 for v in counts.values())):
         raise EngineeringTaskError("Collection exports fixed nonnegative integer counts only")
-    collection = plan.collection_plan
     windows = len(collection.windows())
     if (counts["window_count"] != windows or counts["source_fetch_calls"] + counts["reused_windows"] != windows
             or counts["empty_windows"] > windows or counts["cache_only_source_fetch_calls"] != 0
             or counts["record_count"] > windows * collection.to_dict()["max_records_per_window"]):
         raise EngineeringTaskError("Collection counts violate the frozen windows or no-refetch contract")
-    if (not isinstance(evidence, dict) or set(evidence) != {"collection_receipt_ref", "collection_plan_hash", "missing_values"}
+    if occurrences and not (0 <= counts["conflicting_projection_records"] <= counts["duplicate_projection_records"]
+            <= counts["record_count"] - (windows - counts["empty_windows"])):
+        raise EngineeringTaskError("Occurrence ambiguity counts disagree with collected records")
+    expected_evidence = {"collection_receipt_ref", "collection_plan_hash", "missing_values"} | ({"observation_policy"} if occurrences else set())
+    if (not isinstance(evidence, dict) or set(evidence) != expected_evidence
             or evidence["collection_plan_hash"] != collection.hash):
         raise EngineeringTaskError("Only source-bound collection references and field gap counts may leave cloud")
+    if occurrences and evidence["observation_policy"] != "retain_source_occurrences":
+        raise EngineeringTaskError("Occurrence evidence requires the frozen observation policy")
     _safe_reference(evidence["collection_receipt_ref"])
     expected_key = plan.to_dict()["report_namespace"] + "/receipts/" + identity["attempt_id"] + ".json"
     if evidence["collection_receipt_ref"]["key"] != expected_key:

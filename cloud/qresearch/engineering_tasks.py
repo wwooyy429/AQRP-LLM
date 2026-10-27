@@ -166,8 +166,15 @@ def _safe_collection_probe(raw):
     required = {"schema_version", "plan_hash", "receipt_ref", "window_count", "record_count",
                 "source_fetch_calls", "reused_windows", "empty_windows", "cache_only_source_fetch_calls",
                 "missing_values"} | _PROBE_FLAGS
-    if not isinstance(raw, dict) or set(raw) != required or type(raw["schema_version"]) is not int or raw["schema_version"] != 1:
+    version = raw.get("schema_version") if isinstance(raw, dict) else None
+    occurrence_counts = {"duplicate_projection_records", "conflicting_projection_records"}
+    if type(version) is int and version == 2:
+        required |= occurrence_counts | {"observation_policy"}
+    if not isinstance(raw, dict) or set(raw) != required or type(version) is not int or version not in {1, 2}:
         raise EngineeringTaskError("Only the fixed joint collection observation summary is permitted")
+    if version == 2 and (raw["observation_policy"] != "retain_source_occurrences"
+            or any(type(raw[name]) is not int or not 0 <= raw[name] <= 2000000 for name in occurrence_counts)):
+        raise EngineeringTaskError("Occurrence collection requires its fixed policy and bounded counts")
     _hash(raw["plan_hash"], "collection probe plan hash")
     _safe_reference(raw["receipt_ref"])
     if any(raw[name] is not False for name in _PROBE_FLAGS):
@@ -184,6 +191,9 @@ def _safe_collection_probe(raw):
             or raw["empty_windows"] > raw["window_count"] or raw["cache_only_source_fetch_calls"] != 0
             or not raw["window_count"] - raw["empty_windows"] <= raw["record_count"] <= (raw["window_count"] - raw["empty_windows"]) * 50000):
         raise EngineeringTaskError("Collection observation does not prove complete cache-only replay")
+    if version == 2 and not (0 <= raw["conflicting_projection_records"] <= raw["duplicate_projection_records"]
+            <= raw["record_count"] - (raw["window_count"] - raw["empty_windows"])):
+        raise EngineeringTaskError("Occurrence ambiguity counts disagree with the observed record count")
 
 
 def validate_joint_report(report, document):
@@ -203,7 +213,8 @@ def validate_joint_report(report, document):
     probe = document["collection_probe"]
     plan = HistoricalCollectionPlan.from_dict(probe["collection_plan"], field_catalog=probe["field_catalog"])
     expected_key = document["report_namespace"] + "/collection-probes/" + content_hash(document) + "/" + report["identity"]["attempt_id"] + ".json"
-    if summary["plan_hash"] != plan.hash or summary["receipt_ref"]["key"] != expected_key:
+    if (summary["plan_hash"] != plan.hash or summary["receipt_ref"]["key"] != expected_key
+            or summary["schema_version"] != plan.to_dict()["schema_version"]):
         raise EngineeringTaskError("Collection observation differs from this parent's frozen probe")
     checks = report["checks"]
     if (not JOINT_PROBE_CHECKS <= set(checks)
