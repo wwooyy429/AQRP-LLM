@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "固定ae2b898独立审核确认WR-16/17原复验范围修复后通过，但新增WR-18/P2：共享Registry仍可把完成input_hash与原提交不符、完成raw_receipt为空、没有提交记录的Research结果作为LEAN依赖；正常Bridge拒绝这些路径。此候选让Bridge结算与v2 Registry准入复用同一原提交读取及完成合同，在新扣费/写入前拒绝不一致证据。\n\n修复候选 `81fbe5294055423e88ee5aeae48ca6223e7971da`，122份源码清单 `1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f`。\n[WR-18复验入口](https://github.com/wwooyy429/AQRP-LLM/blob/81fbe5294055423e88ee5aeae48ca6223e7971da/docs/review/wr18.md) · [开发验证](https://github.com/wwooyy429/AQRP-LLM/blob/81fbe5294055423e88ee5aeae48ca6223e7971da/audit/review_packages/wr18/developer_verification.json) · [原独立报告](https://github.com/wwooyy429/AQRP-LLM/blob/81fbe5294055423e88ee5aeae48ca6223e7971da/audit/reviews/20261027-ae2b898-windows/formal_report.json)。\n\n完成合同：\n- 读取固定attempt的规范化submission摘要，再按精确namespace/hash读取完整原提交。摘要仅含5项绑定元数据，accepted和raw_receipt必须从其receipt_ref原文核对。\n- 原提交须accepted=True、raw_receipt非空，identity/kind/external_id/完整deployment与摘要一致；完成观察与原提交比较整个deployment，包含input_hash，且raw_receipt非空。\n- 成功依赖还需匹配终态、合格report及ref、结果和账本外部ID。Registry显式要求status=completed且passed is True，不把失败分类或任意返回对象的truthiness当成通过。\n- Bridge与Registry调用同一loader及合同；Research检查不调用snapshot/payload/read_result，不重入RegistryLOCK。错误观察在保存完成证据、追加事件或新扣费前拒绝。\n- 合法failed/runtime_error/compile_error仍能结算并保留证据，不退款且不作为Research依赖。同步提交status为completed或缺席仍兼容。WR16的v2操作/重试约束、WR17原attempt恢复和v1通用Registry业务operation语义保留。\n- 原始回执的来源仍依赖可信调度器和实际工具观察；此处校验内容完整性及身份，不宣称提供远程签名或数据认证。\n\n验证：\n- 同一最终新增测试文件11方法/23子例：修复前3过/8失败方法、18条断言失败、0异常；修复后全部通过。初始10方法/16失败记录也保留，未覆盖。\n- 完整原三分支MRE `admission_agent/minimal_checked_dependency.py` 从exit1变为exit0；匹配控制保持通过，3类坏依赖全部拒绝。原9方法共享套件由6过/3失败变为9/9，4子例通过。\n- 原短 `minimal_wr18.py` 修复后仍exit1，因为它没有捕获新增安全拒绝RegistryError；原字节和输出保留，不能把短脚本退出码误报为修复后exit0或新的非法准入。\n- 6组Engineering/Collection/WR16/WR17兼容回归通过；新增覆盖缺失或篡改的提交摘要/引用/原文、acceptedFalse/空原始回执、完整部署与身份、账本externalID错配、合法失败及临时Filesystem正向锁链。覆盖重叠不累计独有方法。\n- 原生Windows、Python3.10.11、固定NumPy1.26.4/pandas2.3.3执行规定入口 `python -B tools/stages.py verify`，453项通过；二次构建无变化。\n- 新独立报告463份原件逐字节归档，21个原脚本/schema引用；3902目录/ZIP、1843候选/1563基线Git原字节校验通过。251项混合清单引用含224命令输出，不能称为251原生回执。清单rawSHA256 `b00b1adda18a836c4336082e66ba9fdb1cd61d8144158b0c4ab482cf567c6494`。\n- 开发原始记录62份/409989字节，清单rawSHA256 `ca20dc1a06f5752bee3c0359cfe14fa926ae773c62ec689dbf7510299a692376`；初始失败、同输入重放、短脚本安全拒绝及6组兼容原始输出均保留。远端542份变更与预期逐字节一致，工作区干净。\n\nWR-01～17仅保留各自原固定版本/实际范围结论。WR-18为开发侧已修复待新固定SHA独立复验；阶段2和完整系统仍未验收。\n\n本轮未访问QC项目、查询/轮询回测、读取旧日志、改云端源码/输入、重交任务或调用模型。旧回测 `39cafa1e9b11f91b27e396b66d033a6d` 只有归档pending，当前完成/失败均未知。累计配置6/12、Research9/20、LEAN1/16和12事件不变，本轮实际配置登记/Research/LEAN/模型/部署/购买/交易均0。WR17 CLI、配置、旧输入/指针及原账本未改；更新的联合预览只是只读元数据。\n\n云端已知25份实现和1输入匹配旧75，但文件列表漏列8份可读文件，完整文件全集未认证；本候选未部署或运行。真实原生终态、完整历史US200、财务原报/修订版本及实际公开/供应商送达/历史摄入、未观察公司行动仍缺证据。正式研究、自动GPT、最终测试和交易关闭，2024–2025暴露及2026独立性未知保留，financial_evidence=false。保持草稿，不合并。\n\n发布后CI：[Actions run 40443818298](https://github.com/wwooyy429/AQRP-LLM/actions/runs/40443818298) completed/success；Python3.10、3.11任务均通过。最终源码清单与实际测试一致，工作区干净，权威12事件及6/9/1累计用量重放不变。CI不替代GPT Work独立复验。",
+    "title": "阶段2：修复WR-18 Research完成依赖一致性，待独立复验",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "dbd3fdc7a568b23d6ae943d7895d8ab97acddefe",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-27T03:25:01Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 19,
+    "changed_files": 2315,
+    "additions": 297620,
+    "deletions": 154,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "阶段2：修复WR-18 Research完成依赖一致性，待独立复验"
+  },
+  "isError": false
+}

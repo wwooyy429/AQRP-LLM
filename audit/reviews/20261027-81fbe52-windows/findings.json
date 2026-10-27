@@ -1,0 +1,20 @@
+[
+  {
+    "id": "WR-19",
+    "priority": "P3",
+    "blocking": false,
+    "reviewed_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+    "title": "历史平台比较摘要将ae候选与旧计数12错误绑定",
+    "location": {
+      "file": "audit/stage2_current_readiness.json",
+      "line": 124
+    },
+    "trigger": "按platform_comparison_from_independent_review.candidate_commit=ae2b898读取其归档25份旧已知实现参考和29份候选部署清单重算差异。",
+    "expected": "该被引用比较应为9条不同路径+4条不在旧参考中的路径=13；或者明确该12属于更早dc49比较，不将其标为ae候选。",
+    "actual": "nested候选标为ae，但candidate_different_or_missing_paths仍为12。独立raw/LF计算均13；主代理自包含归档MRE再次得到13并exit1。",
+    "scope_and_severity": "非阻断元数据准确性P3，不影响生产逻辑、账本或WR18修复。这里只比较所引用的已知25文件参考与ae29清单，不证明当前云端缺4文件，也不认证云端全集。顶层明确标注dc49的历史12本身不作为错误。",
+    "reproduction": "python -B minimal_wr19.py source（当前exit1，declared12/computed13）；不调用QC或读取市场数据。",
+    "minimal_fix": "保留原声明和历史表，校正nested计数及其候选/运行参考绑定，并写明已知文件比较范围；不将原有历史12覆盖为当前平台结论。",
+    "regression_tests": "用归档候选/参考清单自动重算并核对候选SHA、路径集合及差异计数；明确区分未出现在参考清单与实际云端缺失。"
+  }
+]

@@ -1,0 +1,126 @@
+{
+  "fixed_candidate": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "check_count": 634,
+  "passed_checks": 627,
+  "failed_checks": 7,
+  "unit_test_methods_executed": 0,
+  "source": {
+    "files": 2374,
+    "raw_bytes_equal_Git": true,
+    "review_files": 122,
+    "review_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f",
+    "execution_hash": "461934d9a5d2e4e74dd7e1add47aba4170275f78f59383aa9c6dcf02a816b972",
+    "identity_deltas": [
+      {
+        "path": ".gitattributes",
+        "kind": "modified",
+        "old_normalized_sha256": "cb999b56d5452fcc360adc40c72853eafc4e8442b4b13a5911ad954568ded42e",
+        "new_normalized_sha256": "2184fb9e48f654d5781a51bfba2b36c5811ddd6348fd7f581ff30a8df01d6b18"
+      },
+      {
+        "path": "cloud/qresearch/engineering_tasks.py",
+        "kind": "modified",
+        "old_normalized_sha256": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32",
+        "new_normalized_sha256": "c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e"
+      },
+      {
+        "path": "cloud/qresearch/registry.py",
+        "kind": "modified",
+        "old_normalized_sha256": "0eff8ba966022d75663dd16c233b361f2b48427078ed02db1001c03cc07843c7",
+        "new_normalized_sha256": "3d6a77c93ba88822ec5cb4b8393c85d977b4f33e1e8a0945cf4e4c282927bd92"
+      },
+      {
+        "path": "cloud/research_config.py",
+        "kind": "modified",
+        "old_normalized_sha256": "b786c0488c056ec6b8b8dc3c92036024e08c2646c4853b180adb9b9e99f7ae34",
+        "new_normalized_sha256": "bfbdaf26d9ba5c99581f5693ba2a321dbbcd68ede6e74717cf4506c81117e7d5"
+      },
+      {
+        "path": "docs/review/wr16-wr17.md",
+        "kind": "modified",
+        "old_normalized_sha256": "79f8804ae6c6075846bcef7e975aa8ee889f769f124e75a18d60f588b8643800",
+        "new_normalized_sha256": "c35a9bca4b6cc3fec09e9a851b7316ed2803ae6accf4b2f3c0b94569bfad983f"
+      },
+      {
+        "path": "docs/review/wr18.md",
+        "kind": "added",
+        "old_normalized_sha256": null,
+        "new_normalized_sha256": "52f4cbe89ab1d1a138eae2e432d93a34690c2acbbea0cdf392381773af229ae4"
+      },
+      {
+        "path": "tests/test_wr18_completion_dependency.py",
+        "kind": "added",
+        "old_normalized_sha256": null,
+        "new_normalized_sha256": "6312dc437c58cb9bfc5fb644a8644a6c5f6e16656faca12e9bafb4c107838d13"
+      }
+    ]
+  },
+  "deployment": {
+    "Python_files": 29,
+    "local_deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+    "implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+    "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+    "not_cloud_deployment_certification": true
+  },
+  "budget": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_attempt": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    }
+  },
+  "discrepancies": [
+    {
+      "id": "metadata_cloud_difference_count",
+      "severity": "nonblocking_metadata",
+      "file": "audit/stage2_current_readiness.json",
+      "field": "platform_comparison_from_independent_review.candidate_different_or_missing_paths",
+      "declared": 12,
+      "actual": 13,
+      "basis": "Archived ae comparison:9 existing implementations differ plus4 new implementation paths missing old cloud; no new QC read."
+    }
+  ]
+}
+FAILED {'check': 'raw_compatibility_test_engineering_tasks.py', 'passed': False, 'detail': None}
+FAILED {'check': 'raw_compatibility_test_engineering_receipts.py', 'passed': False, 'detail': None}
+FAILED {'check': 'raw_compatibility_test_collection_tasks.py', 'passed': False, 'detail': None}
+FAILED {'check': 'raw_compatibility_test_collection_task_cli.py', 'passed': False, 'detail': None}
+FAILED {'check': 'raw_compatibility_test_wr16_registry_admission.py', 'passed': False, 'detail': None}
+FAILED {'check': 'raw_compatibility_test_wr17_engineering_recovery.py', 'passed': False, 'detail': None}
+FAILED {'check': 'readiness_ae_cloud_different_or_missing_count_matches_saved_comparison', 'passed': False, 'detail': {'declared': 12, 'computed': 13, 'ae_existing_different': ['qresearch/engineering_data.py', 'qresearch/engineering_receipts.py', 'qresearch/engineering_tasks.py', 'qresearch/evaluation.py', 'qresearch/point_in_time.py', 'qresearch/runtime.py', 'qresearch/contracts.py', 'qresearch/registry.py', 'research_config.py'], 'current_and_ae_new_files_missing_old_cloud': ['qresearch/collection.py', 'qresearch/collection_execution.py', 'qresearch/collection_tasks.py', 'qresearch/historical_source.py']}}

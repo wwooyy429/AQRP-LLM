@@ -1,0 +1,261 @@
+{
+  "fixed_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+  "command_argv": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source\\audit\\reviews\\20261026-e513c66-windows\\portable_replay\\receipt_agent\\independent_receipts.py",
+    "--source",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+    "--out",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\runs\\e513_receipts"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "numpy": "1.26.4",
+  "pandas": "2.3.3",
+  "source_raw_sha256": {
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/engineering_receipts.py": "06abbcef0212c5a4cbfc7b3ac15d84b1f89c260311316a17105ebce4dcefbfa9",
+    "cloud/qresearch/engineering_tasks.py": "c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e",
+    "cloud/qresearch/engineering_data.py": "f29bed3bbcfe66428c25404f18cc3638711af88eb4a93791fd5538d6fe4aa70f",
+    "cloud/qresearch/collection.py": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+    "tools/collection_task_cli.py": "402134f8063246d385d956eee9da72b9e6b9fec1aa78037f9911afc371d915c8"
+  },
+  "script_sha256": "85083e3a39670fcb79e5a2f7c8e589b0b50d8408656fd111b674ad32c55ca180",
+  "methods": 14,
+  "subcases": 54,
+  "failure_records": 0,
+  "error_records": 0,
+  "skipped": 0,
+  "success": true,
+  "first_failure": null,
+  "inputs": [
+    {
+      "method": "test_complete_worker_native_parser_registry_chain",
+      "native_mode": "structured"
+    },
+    {
+      "method": "test_complete_worker_native_parser_registry_chain",
+      "native_mode": "content"
+    },
+    {
+      "method": "test_complete_worker_native_parser_registry_chain",
+      "native_mode": "direct"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "attempt_id"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "plan_hash"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "config_id"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "project_id"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "source_manifest_hash"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "deployment_hash"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "data_request_hash"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "identity_key": "stage"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "payload_key": "report_key"
+    },
+    {
+      "method": "test_context_rejects_cross_identity_and_report_paths",
+      "payload_key": "external_identity_kind"
+    },
+    {
+      "method": "test_corrupt_cache_or_receipt_never_refetches",
+      "corruption": "receipt_identity"
+    },
+    {
+      "method": "test_corrupt_cache_or_receipt_never_refetches",
+      "corruption": "window_bytes"
+    },
+    {
+      "method": "test_corrupt_cache_or_receipt_never_refetches",
+      "corruption": "payload_bytes"
+    },
+    {
+      "method": "test_corrupt_cache_or_receipt_never_refetches",
+      "corruption": "missing_payload"
+    },
+    {
+      "method": "test_cross_attempt_report_replay_rejected",
+      "cross_attempt": true
+    },
+    {
+      "method": "test_deployment_and_input_bindings_reject_changes",
+      "deployment_key": "source_manifest_hash"
+    },
+    {
+      "method": "test_deployment_and_input_bindings_reject_changes",
+      "deployment_key": "deployment_hash"
+    },
+    {
+      "method": "test_deployment_and_input_bindings_reject_changes",
+      "deployment_key": "input_hash_completion_mismatch"
+    },
+    {
+      "method": "test_deployment_source_bytes_checked_before_source_fetch",
+      "source_file": "changed"
+    },
+    {
+      "method": "test_inert_input_loader_never_executes_additional_code",
+      "input_kind": "valid"
+    },
+    {
+      "method": "test_inert_input_loader_never_executes_additional_code",
+      "input_kind": "extra_statement"
+    },
+    {
+      "method": "test_inert_input_loader_never_executes_additional_code",
+      "input_kind": "call_expression"
+    },
+    {
+      "method": "test_inert_input_loader_never_executes_additional_code",
+      "input_kind": "wrong_name"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "wrong_project"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "wrong_tool"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "isError_true"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "pending_status"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "error_output"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "display_row"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "extra_stdout"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "duplicate_marker"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "stderr"
+    },
+    {
+      "method": "test_native_errors_extra_stdout_and_displays_rejected",
+      "native_mutation": "free_completed"
+    },
+    {
+      "method": "test_native_parallel_content_row_leak_must_be_rejected",
+      "parallel_content": "text_row"
+    },
+    {
+      "method": "test_native_parallel_content_row_leak_must_be_rejected",
+      "parallel_content": "display_row"
+    },
+    {
+      "method": "test_reentry_is_cache_only_and_same_report",
+      "reentry": "complete_receipt_saved"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "market_flag"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "economic_flag"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "final_flag"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "coverage_flag"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "availability_flag"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "row_array"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "evidence_rows"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "statistics_row"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "bad_receipt_path"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "count_bool"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "missing_exceeds"
+    },
+    {
+      "method": "test_report_metadata_whitelist_and_false_limitations",
+      "report_mutation": "checks_false_but_completed"
+    },
+    {
+      "method": "test_source_failure_suppresses_rows_and_blocks_same_attempt_retry",
+      "source_failure": "raises_value_bearing_exception"
+    },
+    {
+      "method": "test_unknown_adapter_and_late_success_reconciliation",
+      "submission": "unknown_then_delivered_success"
+    },
+    {
+      "method": "test_valid_shape_failed_marker_marks_registry_failed",
+      "failure": "synthetically_modified_fixed_check_not_actual_worker_exception"
+    }
+  ],
+  "actions": {
+    "market": 0,
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "model": 0,
+    "deployment": 0,
+    "real_budget_change": 0,
+    "candidate_source_edits": 0
+  },
+  "limits": "synthetic public worker/native-shape/Registry chain only; actual run and actual execution-failure receipt unavailable"
+}

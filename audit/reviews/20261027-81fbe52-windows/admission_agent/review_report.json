@@ -1,0 +1,320 @@
+{
+  "source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "baseline_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+  "scope": "WR18 shared original-submission/completion validator; authoritative Registry checked Research dependency; offline compatibility",
+  "conclusion": "WR18 passes the original counterexamples and independently tested new boundaries at this fixed SHA; no new product defect found in this child scope.",
+  "not_full_acceptance": "No statement of real QC source/runtime, final data, financial validity, autonomous system or full stage2 acceptance.",
+  "suites": [
+    {
+      "name": "unchanged original standalone WR18 MRE",
+      "unit_methods": 0,
+      "scenario_cases": 4,
+      "scenario_description": "3 malformed dependencies refused +1 genuinely checked Research permits LEAN",
+      "exit_code": 0,
+      "original_bytes_equal": true
+    },
+    {
+      "name": "unchanged original WR16/WR18 boundaries",
+      "methods": 9,
+      "subcases": 4,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "skips": 0
+    },
+    {
+      "name": "new WR18 independent contract boundaries, corrected input",
+      "methods": 9,
+      "subcases": 39,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "skips": 0
+    }
+  ],
+  "unique_test_counts": {
+    "methods": 18,
+    "passed_methods": 18,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "skips": 0,
+    "subcases": 43,
+    "counting": "Methods and subcases are separate; original MRE scenarios and repeated corrected suite do not add unique methods. Parent453/historical regressions excluded from child totals."
+  },
+  "first_new_run_retained": {
+    "methods": 9,
+    "passed_methods": 8,
+    "failed_methods": 0,
+    "error_methods": 1,
+    "subcases": 39,
+    "exit_code": 1,
+    "classification": "Auditor fixture incompatibility: false collection_nonempty check conflicted with unchanged nonempty bounded probe. Product safely refused; not a product failure.",
+    "correction": {
+      "reason": "Auditor fixture correction: collection_nonempty=false contradicted unchanged all-nonempty probe. Test generic required raw_data_received=false instead, preserving intended unsuccessful completed report and every assertion. No production change.",
+      "original_script_sha256": "cba93ef9e9e415b7dbc5c91106bbbdba7d85f1d12d4b4c0f86dbcf68e3f24cab",
+      "corrected_script_sha256": "f8d694880db2999991617b835ff45c6ab02730d84abfdba03996fbbff6ddb1d2",
+      "semantic_diff": "false_check mutates checks.raw_data_received instead of checks.collection_nonempty; output renamed to preserve first results",
+      "original_preserved": true,
+      "first_error_is_product_defect": false
+    },
+    "first_script": "independent_wr18_contract.py",
+    "corrected_script": "independent_wr18_contract_corrected.py",
+    "first_outputs": [
+      "new_contract_first_results.json",
+      "new_contract_first_execution.json",
+      "new_contract_first.stdout",
+      "new_contract_first.stderr"
+    ],
+    "assertions_changed": false,
+    "production_changed": false
+  },
+  "new_group_coverage": [
+    {
+      "method": "test_submission_summary_faults_match_both_paths",
+      "subcases": 7,
+      "cases": [
+        "missing",
+        "extra field",
+        "wrong identity",
+        "wrong identity kind",
+        "wrong external id",
+        "wrong deployment/input hash",
+        "noncanonical bytes"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "method": "test_original_submission_reference_and_body_faults_match_both_paths",
+      "subcases": 9,
+      "cases": [
+        "missing original",
+        "hash mismatch",
+        "noncanonical original",
+        "foreign attempt reference path",
+        "rejected accepted=false",
+        "empty original raw",
+        "wrong original identity",
+        "wrong original deployment",
+        "illegal nested rows carrier"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "method": "test_completion_faults_match_both_paths_without_persisting_rejected_observation",
+      "subcases": 10,
+      "cases": [
+        "input hash conflict",
+        "empty completion raw",
+        "illegal nested rows carrier",
+        "unknown platform field",
+        "wrong external id",
+        "wrong stage",
+        "nonterminal",
+        "pending status",
+        "report reference path",
+        "report reference digest"
+      ],
+      "outcome": "PASS"
+    },
+    {
+      "method": "test_submission_status_absent_and_completed_are_still_pending_until_terminal",
+      "subcases": 3,
+      "cases": [
+        "status absent",
+        "status completed",
+        "status submitted"
+      ],
+      "outcome": "PASS: accepted submissions remain pending; actual matched completion permits LEAN; repeat no debit"
+    },
+    {
+      "method": "test_failed_native_terminals_settle_but_cannot_unlock_lean",
+      "subcases": 3,
+      "cases": [
+        "failed",
+        "runtime_error",
+        "compile_error"
+      ],
+      "outcome": "PASS: Bridge settles failure without refund; direct generic completed journal result from same failure cannot unlock LEAN"
+    },
+    {
+      "method": "test_completed_platform_with_failed_cloud_checks_is_not_dependency",
+      "subcases": 3,
+      "cases": [
+        "raw_data_received=false",
+        "record_count=0",
+        "cloud report status failed"
+      ],
+      "outcome": "PASS: Bridge settles failure; generic completed cache cannot unlock LEAN"
+    },
+    {
+      "method": "test_stored_completion_reference_and_journal_external_id_still_bind",
+      "subcases": 4,
+      "cases": [
+        "wrong completion path",
+        "missing completion",
+        "wrong completion digest",
+        "wrong journal external id"
+      ],
+      "outcome": "PASS: no new charge or event"
+    },
+    {
+      "method": "test_max1_second_retry_refused_by_registered_bound_before_global_cap",
+      "subcases": 0,
+      "outcome": "PASS: first explicit retry allowed; next rejected by Registry retry-bound message rather than BudgetExceeded"
+    },
+    {
+      "method": "test_filesystem_reopen_qualified_dependency_and_reuse_without_lock_reentry",
+      "subcases": 0,
+      "outcome": "PASS: checked completion -> reopen Filesystem Registry -> LEAN -> reopen -> idempotent reuse"
+    }
+  ],
+  "negative_path_consistency": "All26 summary/original/completion malformed cases are rejected by Bridge and authoritative Registry. Bridge rejection creates no artifacts/events; Registry dependency rejection after deliberately publishing synthetic evidence and a generic result changes no artifacts/events/usage. Summary/original faults reject before invoking completion reader.",
+  "fault_injection_boundary": "Only isolated in-memory artifact bytes were intentionally changed to exercise corruption checks. Public Registry.complete and ArtifactStore.write_once publish synthetic controlled result/evidence. No authority ledger, production source, prior journal bytes or developer directories modified. No claim of resistance to arbitrary file writers or remote-signature authentication.",
+  "actual_runtime_counts": {
+    "original_suite_independent_Windows_child_processes": 2,
+    "last_slot_permits": 1,
+    "last_slot_BudgetExceeded": 1,
+    "last_slot_research_total": 2,
+    "new_suite_filesystem_reopen_test_methods": 1,
+    "original_suite_filesystem_lock_positive_methods": 1,
+    "original_suite_explicit_nonreentrant_store_methods": 1,
+    "actual_joint_worker_invocations": 0,
+    "QC_calls": 0,
+    "actual_market_fetches": 0,
+    "actual_Research_LEAN_executions": 0,
+    "actual_model_calls": 0
+  },
+  "source_evidence": [
+    {
+      "file": "cloud/qresearch/engineering_tasks.py",
+      "start": 436,
+      "end": 479,
+      "meaning": "Shared original summary+canonical referenced accepted submission loader; checks exact fields, identity/kind/external, complete deployment, attempt-bound ref, hash/canonical bytes and nonempty safe original raw receipt."
+    },
+    {
+      "file": "cloud/qresearch/engineering_tasks.py",
+      "start": 662,
+      "end": 690,
+      "meaning": "Shared write-free completion contract: whole deployment match/input hash, same external identity, terminal nonempty safe raw; failed status explicitly returns false; successful report/ref validated."
+    },
+    {
+      "file": "cloud/qresearch/engineering_tasks.py",
+      "start": 692,
+      "end": 715,
+      "meaning": "Bridge uses both shared helpers before saving completion evidence and lifecycle event; actual failures remain failures."
+    },
+    {
+      "file": "cloud/qresearch/registry.py",
+      "start": 375,
+      "end": 428,
+      "meaning": "Authority lock-held Research dependency validates canonical evidence and same result/journal identity, invokes both shared helpers at419/420 and requires status completed and passed true."
+    },
+    {
+      "file": "cloud/qresearch/registry.py",
+      "start": 584,
+      "end": 592,
+      "meaning": "Shared joint admission precedes project/domain/global charge. Original operation/retry protections preserved."
+    }
+  ],
+  "static_no_reentry": "For Research, _recorded_submission/_completion_contract and report validators use direct immutable store reads and no public Registry/snapshot/read_result/payload call. Original nonreentrant-store and real Filesystem positives plus new reopened Filesystem positive validate this path.",
+  "fixture_origin": "No developer tests imported. Replayed original reviewer helpers are byte identical; new cases reuse only our own independent plan/report helper. Standalone original MRE imports no helper.",
+  "legacy_literals": "Original unmodified scripts retain embedded reviewed_source_commit=ae2b898 literal in their own JSON. Actual current execution source is independently recorded as81fbe52 in original_replay_execution_records.json; never present that literal as reviewed runtime identity.",
+  "commands_and_raw_records": [
+    {
+      "actual_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "actual_source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\admission_agent\\minimal_checked_dependency.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027",
+      "exit_code": 0,
+      "seconds": 1.110000000000582,
+      "stdout_file": "minimal_checked_dependency_original_first.stdout",
+      "stderr_file": "minimal_checked_dependency_original_first.stderr",
+      "original_bytes_equal": true,
+      "sha256": "c23bc1c5dbfa4aa78528ea9276eea8f7732ab5871f498d5669ffdecb0a18dfcd",
+      "legacy_embedded_commit_literal": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "literal_is_not_actual_source_identity": true
+    },
+    {
+      "actual_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "actual_source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\admission_agent\\independent_wr16_boundaries.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027",
+      "exit_code": 0,
+      "seconds": 2.5,
+      "stdout_file": "independent_wr16_boundaries_original_first.stdout",
+      "stderr_file": "independent_wr16_boundaries_original_first.stderr",
+      "original_bytes_equal": true,
+      "sha256": "e20ee355f0e35ee4a655e59c7d7cad554f2e58a6e7ee4b9111da11b4f4cb5bc2",
+      "legacy_embedded_commit_literal": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "literal_is_not_actual_source_identity": true
+    },
+    {
+      "actual_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\admission_agent\\independent_wr18_contract.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027",
+      "exit_code": 1,
+      "seconds": 1.3909999999959837,
+      "script_sha256": "cba93ef9e9e415b7dbc5c91106bbbdba7d85f1d12d4b4c0f86dbcf68e3f24cab",
+      "stdout": "new_contract_first.stdout",
+      "stderr": "new_contract_first.stderr"
+    },
+    {
+      "actual_source_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\admission_agent\\independent_wr18_contract_corrected.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027",
+      "exit_code": 0,
+      "seconds": 1.6409999999959837,
+      "script_sha256": "f8d694880db2999991617b835ff45c6ab02730d84abfdba03996fbbff6ddb1d2",
+      "stdout": "new_contract_corrected.stdout",
+      "stderr": "new_contract_corrected.stderr"
+    }
+  ],
+  "artifacts_sha256": {
+    "auditor_fixture_correction.json": "55350b25d126a9a8c0b9722be4edcac7e85dc793c7015e51964933db7106c6d5",
+    "independent_wr16_boundaries.py": "e20ee355f0e35ee4a655e59c7d7cad554f2e58a6e7ee4b9111da11b4f4cb5bc2",
+    "independent_wr16_boundaries_original_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "independent_wr16_boundaries_original_first.stdout": "53ecd25a96ee2e5bf6bb9b7d2510c7bc5a8b5fe778c37229301861baeeccecc2",
+    "independent_wr18_contract.py": "cba93ef9e9e415b7dbc5c91106bbbdba7d85f1d12d4b4c0f86dbcf68e3f24cab",
+    "independent_wr18_contract_corrected.py": "f8d694880db2999991617b835ff45c6ab02730d84abfdba03996fbbff6ddb1d2",
+    "minimal_checked_dependency.py": "c23bc1c5dbfa4aa78528ea9276eea8f7732ab5871f498d5669ffdecb0a18dfcd",
+    "minimal_checked_dependency_first.json": "6db75c208059a4efaf0d2ac87530e24841903d8939e3d8dea6693134c72824e0",
+    "minimal_checked_dependency_original_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "minimal_checked_dependency_original_first.stdout": "6db75c208059a4efaf0d2ac87530e24841903d8939e3d8dea6693134c72824e0",
+    "new_contract_corrected.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "new_contract_corrected.stdout": "108f1e34978f3f1e0ac7ae083b64885a76344bd4382b4bac64eec0453f696bc6",
+    "new_contract_corrected_execution.json": "8b48e0b6d6b629551e67627ef01a13ca7f5879b80ba5b2371c7948e9c1c68bab",
+    "new_contract_corrected_results.json": "08870b3de40698bd12b77d15e2d017ad0eb2e54e286125b99f3fc63070439ad8",
+    "new_contract_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "new_contract_first.stdout": "6153681c1e70723a8bf1ee8b920c5cfbcdfad15115506c224e5c51997756292c",
+    "new_contract_first_execution.json": "a7ef0641e621997e2d43fb5879aa5a934120fe5fb7b76c55f24c389b7cb55170",
+    "new_contract_first_results.json": "e42cfe9c72fd786de9e09ce470b05803556bd93d6541ab784fc3feccae81d925",
+    "new_first.stdout": "777bcf0572123e913b5c4d286cdc158f46f4c2a1528934056a855e4e5b5515b7",
+    "new_first_results.json": "f440e7c39a8723067b7aca505c0c7623c07670b3eabca47cc46d24139654ab0b",
+    "original_replay_execution_records.json": "89414032c9db8562237f1746cd7a086564a1dff83c33c38c324d0d279d66b0bf",
+    "quick_joint_probes.py": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7"
+  },
+  "production_sha256": {
+    "cloud/qresearch/registry.py": "3d6a77c93ba88822ec5cb4b8393c85d977b4f33e1e8a0945cf4e4c282927bd92",
+    "cloud/qresearch/engineering_tasks.py": "c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e"
+  },
+  "source_and_budget_mutations": 0,
+  "next_step": "Parent can combine independent child scope with history/evidence/453 results; retain the original first auditor error and correction, rather than reporting a clean first run."
+}

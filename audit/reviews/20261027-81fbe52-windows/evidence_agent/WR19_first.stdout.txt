@@ -1,0 +1,35 @@
+{
+  "fixed_candidate_source": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "field_candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "old25_reference_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "source_file": "audit/stage2_current_readiness.json",
+  "source_line": 124,
+  "original_line": "    \"candidate_different_or_missing_paths\": 12,",
+  "declared": 12,
+  "raw_different_count": 9,
+  "LF_different_count": 9,
+  "different_paths": [
+    "qresearch/contracts.py",
+    "qresearch/engineering_data.py",
+    "qresearch/engineering_receipts.py",
+    "qresearch/engineering_tasks.py",
+    "qresearch/evaluation.py",
+    "qresearch/point_in_time.py",
+    "qresearch/registry.py",
+    "qresearch/runtime.py",
+    "research_config.py"
+  ],
+  "absent_from_old25_reference_count": 4,
+  "absent_from_old25_reference_paths": [
+    "qresearch/collection.py",
+    "qresearch/collection_execution.py",
+    "qresearch/collection_tasks.py",
+    "qresearch/historical_source.py"
+  ],
+  "computed_raw_total": 13,
+  "computed_LF_total": 13,
+  "ae29_deployment_hash": "b7ecc6c8b53a61d9330d52365024bacb25e723ba9ff0b0df217921cec7e1cab3",
+  "ae_manifest_identity_verified": true,
+  "historical_top_level_scope_unchanged": "Historical d0 table retained; dc49 reviewer observed old75 cloud, 12 differing paths; developer made no new QC read",
+  "limitation": "Only historical old25 known-file reference vs fixed ae29 deployment. Does not certify full old/current cloud inventory or actual absence. No new platform read, software suite or budget mutation."
+}
