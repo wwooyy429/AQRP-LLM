@@ -156,7 +156,23 @@ def one_observation(path, enums, counts):
         })
     start = datetime.fromisoformat(probe["collection_plan"]["start"])
     first_end = start + timedelta(days=probe["collection_plan"]["calendar_days_per_request"])
-    return {
+    verified_report = None
+    if not errors:
+        # A completed cell is not an engineering pass. Validate its marker,
+        # exact admitted input and dispatch with the shared closed parser.
+        import sys
+        sys.path[:0] = [str(ROOT / "tools"), str(ROOT / "cloud")]
+        from stage2 import bridge_for_attempt, admitted_input, _read_research_dispatch
+        from qresearch.engineering_receipts import research_observation
+        bridge = bridge_for_attempt(attempt)
+        frozen = admitted_input(bridge, attempt)
+        dispatch = _read_research_dispatch(bridge, frozen["payload"], frozen["deployment"], require_dispatch=True)
+        verified = research_observation(frozen["payload"], frozen["deployment"], packet,
+            dispatch_binding=dispatch, dispatch_required=True)
+        verified_report = verified["completion"].get("cloud_report")
+        if verified_report is None:
+            raise ValueError("Completed-shaped observation has no verified engineering report")
+    result = {
         "attempt_id": attempt, "identity": identity,
         "native_packet": packet_ref, "admitted_input": admitted_ref,
         "native_transport_isError": transport_error,
@@ -178,6 +194,29 @@ def one_observation(path, enums, counts):
             "complete_native_success_report_obtained": False},
         "financial_evidence": False,
     }
+    if verified_report is not None:
+        collection = verified_report["evidence"]["collection_probe"]
+        statistics = verified_report["statistics"]
+        result["native_execution_status"] = "completed"
+        result["verified_engineering_report"] = {
+            "status": verified_report["status"], "terminal": verified_report["terminal"],
+            "checks": verified_report["checks"], "statistics": statistics,
+            "collection_probe": collection,
+            "runtime_environment": verified_report["evidence"]["runtime_environment"],
+        }
+        result["entire_Research_totals"].update({
+            "completed_collection_windows": collection["window_count"],
+            "cache_only_replay_source_calls": collection["cache_only_source_fetch_calls"],
+            "collection_source_fetch_calls": collection["source_fetch_calls"],
+            "empty_collection_windows": collection["empty_windows"],
+            "universe_projected_records": collection["record_count"],
+            "price_cached_field_records": statistics["record_count"],
+            "price_prefetch_history_calls_first": statistics["history_calls_first"],
+            "price_prefetch_history_calls_second": statistics["history_calls_second"],
+        })
+        result["declared_fixed_price_scope"]["native_engineering_report_obtained"] = True
+        result["declared_fixed_price_scope"]["complete_native_success_report_obtained"] = verified_report["status"] == "completed"
+    return result
 
 
 def main():

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "kind": "final_developer_metadata_preflight",
+  "commands": [
+    {
+      "command": "python -B audit/review_packages/stage2_round002/verify_integrity.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python -B audit/review_packages/stage2_round002/summarize_round.py",
+      "exit_code": 0
+    }
+  ],
+  "all_archived_raw_package_hashes_match": true,
+  "line_endings_normalized_without_source_identity_change": [],
+  "source_difference_since_703_test_run": [
+    "config/budget.json"
+  ],
+  "only_authorized_usage_projection_changed": true,
+  "current_normalized_source_hash": "c315f866fedc1541f42df6be7ec228893cf8aa0203349cdc883f5bae2ad70382",
+  "execution_source_hash": "ff9743bfde419dbc7a62c72d302893f750d60db3f75a6cb56bf3fad347d8a9d2",
+  "global_usage": {
+    "configurations": 9,
+    "research": 12,
+    "lean": 1
+  },
+  "journal_events": 28,
+  "cloud_runtime_implementation_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

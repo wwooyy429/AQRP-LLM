@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "scope": "operator_and_development_workflow_only",
+  "new_Research_or_LEAN_debits_from_these_issues": 0,
+  "issues": [
+    {
+      "kind": "slow_local_baseline_helper",
+      "result": "Stopped an own helper enumerating thousands of tracked files through separate Git processes; replaced it with one Git tree read.",
+      "market_calls": 0
+    },
+    {
+      "kind": "wrong_optional_read_file_argument",
+      "result": "Initial source checks passed unsupported name instead of filePath; returned main.py was rejected as evidence for other paths. Correct full readbacks passed for all32 files.",
+      "excluded_readbacks": 32,
+      "market_calls": 0
+    },
+    {
+      "kind": "development_boundary_fixture_error",
+      "result": "Auxiliary test fixture reused a different project identity, then was corrected. Seven final auxiliary boundaries passed; not a product finding or independent acceptance."
+    },
+    {
+      "kind": "legacy_empty_frame_rejection_fixture",
+      "result": "After the narrow sentinel compatibility change, the old reject-all-empty-frame fixture conflicted with the new contract. It now rejects an empty frame with unknown columns; new sentinel cases test the accepted boundary."
+    },
+    {
+      "kind": "local_default_text_encoding",
+      "result": "One metadata inspection used the Windows default decoder and failed; explicit UTF-8 reads retained thereafter. No runtime or budget mutation."
+    },
+    {
+      "kind": "new_text_line_endings",
+      "result": "New text initially used Windows line endings. New configuration source files were normalized to LF before repair freeze; canonical policy and runtime source checks unchanged. Raw evidence logs in this package use -text."
+    }
+  ],
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

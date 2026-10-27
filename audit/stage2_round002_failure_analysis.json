@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "purpose": "engineering_failure_analysis_only",
+  "round_id": "stage2-cloud-round-002",
+  "status": "round_closed_root_cause_unresolved",
+  "analysis_date": "2026-10-28",
+  "new_market_data_calls": 0,
+  "new_research_executions": 0,
+  "new_lean_submissions": 0,
+  "production_source_changed_by_this_analysis": false,
+  "final_test_enabled": false,
+  "economic_or_financial_evidence": false,
+  "evidence": {
+    "first_native_observation": "audit/tool_observations/4de020ffad5a4e82a26c5374f7715685-research.json",
+    "second_native_observation": "audit/tool_observations/d45af7fcfdc849c888694aaa6dd7c0ae-research.json",
+    "second_verified_completion": "audit/runtime/engineering/evidence/d45af7fcfdc849c888694aaa6dd7c0ae/completion/934d7881648c04b1137e4d33f12b5f5fb8dcf1b7a0076eff78e06e0c94c4eba5.json",
+    "second_admitted_input": "audit/runtime/engineering/admitted-inputs/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+    "source_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+    "source_manifest_hash": "ff9743bfde419dbc7a62c72d302893f750d60db3f75a6cb56bf3fad347d8a9d2",
+    "plan_hash": "480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e",
+    "config_id": "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7",
+    "deployment_hash": "8a76cdc7ce3c1fcb75bae5077d21750b2c328d606aa5c2bb9b34550099daca90"
+  },
+  "verified_facts": [
+    {
+      "id": "F01",
+      "statement": "首个本轮Research在2018-01-01至01-02美东窗口因响应合同失败；安全诊断记录0行DataFrame、单层Index、native_calls=1。该包未记录列数或具体Index类型，不能据此证明其完整空哨兵结构。",
+      "attempt_id": "4de020ffad5a4e82a26c5374f7715685"
+    },
+    {
+      "id": "F02",
+      "statement": "窄空响应兼容后的第二个Research正常交付终态工程报告，但固定检查collection_nonempty=false，因此任务以failed结算；这次不是原生异常。其余12项预登记Research检查为true。",
+      "attempt_id": "d45af7fcfdc849c888694aaa6dd7c0ae",
+      "cloud_report_status": "failed",
+      "platform_status": "completed",
+      "terminal": true
+    },
+    {
+      "id": "F03",
+      "statement": "历史宇宙探针覆盖40个逐日请求窗口，全部完成并各产生零投影记录；不等于40天均为节假日，也不等于历史股票池或财务数据完整。",
+      "start": "2018-01-01T00:00:00-05:00",
+      "end_exclusive": "2018-02-10T00:00:00-05:00",
+      "window_count": 40,
+      "source_fetch_calls": 40,
+      "empty_windows": 40,
+      "record_count": 0,
+      "cache_only_source_fetch_calls": 0,
+      "source_fetch_counter_scope": "collector窗口首次取数计数；并非已认证的底层供应商I/O次数或账单次数",
+      "per_window_native_response_kinds_recorded": false
+    },
+    {
+      "id": "F04",
+      "statement": "独立的AAPL/MSFT行情工程样例读取既有缓存，报告2510个字段记录及250个形成时点；两次prefetch history计数均为0。这证明该样例缓存复用，不能证明本轮真实取得新的行情、全美US200或财务观察。",
+      "ohlcv_field_records": 2510,
+      "expected_formation_count": 250,
+      "history_calls_first": 0,
+      "history_calls_second": 0
+    },
+    {
+      "id": "F05",
+      "statement": "报告记录的实际运行环境如下；未取得该云端二进制对应的完整上游Git提交。",
+      "runtime_environment": {
+        "lean": "2.5.0.0.18207",
+        "python": "3.11.14",
+        "pandas": "2.3.3",
+        "numpy": "1.26.4"
+      }
+    },
+    {
+      "id": "F06",
+      "statement": "所有US200、真实可用时间、财务版本和研究认证位保持false；零记录时missing_values各字段为0是计数的空和，不是无缺失认证。未测试经济因子，未开放或访问最终测试。",
+      "probe_fields": ["dollar_volume", "end_time", "has_fundamental_data", "time"],
+      "financial_properties_projected_in_this_round": false
+    },
+    {
+      "id": "F07",
+      "statement": "本轮2个配置和2次Research额度已使用，未提交LEAN；本轮关闭。总预算配置12、Research20、LEAN16未增加，累计使用配置9、Research12、LEAN1。此前失败、旧未完成意图、空响应缓存与既有2024-2025暴露事实均保留。",
+      "round_usage": {"configurations": 2, "research": 2, "lean": 0},
+      "global_limits": {"configurations": 12, "research": 20, "lean": 16},
+      "global_usage": {"configurations": 9, "research": 12, "lean": 1}
+    }
+  ],
+  "static_call_construction": {
+    "source": "cloud/qresearch/historical_source.py",
+    "caller": "cloud/qresearch/engineering_data.py:_run_collection_probe",
+    "notebook_frontier": "2019-01-01T00:00:00-05:00",
+    "timezone": "America/New_York",
+    "universe_creation": "qb.add_universe(self._all_symbols)",
+    "selector_semantics": "返回全部输入Fundamental的Symbol；不按当今成员、has_fundamental_data或财务值筛选",
+    "history_call": "qb.universe_history(universe, adjusted_start, adjusted_end, flatten=False)",
+    "endpoint_transform": "两个半开边界均在绝对时间上减1微秒后转换为美东无时区datetime",
+    "empty_compatibility": "只额外接受精确DataFrame类型、shape=(0,0)、行列均为无名称单层pd.Index或pd.RangeIndex；其余仍须严格symbol/time MultiIndex Series",
+    "upstream_contract_comparison": "官方Research示例使用add_universe回调及universe_history(universe,start,end)；本地调用形态有文档依据，但微秒端点、40个独立日窗和实际云端Universe/请求对象并未被原生报告逐项证明。"
+  },
+  "primary_sources": [
+    {
+      "id": "P01",
+      "url": "https://www.quantconnect.com/docs/v2/research-environment/universes",
+      "supports": "官方Research调用示例及非flatten返回的Series合同。",
+      "scope_limit": "文档合同不证明本账号、本次请求、2018数据或当前加载二进制实际交付。"
+    },
+    {
+      "id": "P02",
+      "url": "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Research/QuantBook.cs#L765",
+      "supports": "固定上游版本的Universe对象分支经过RunUniverseSelection，再转换为pandas结果。",
+      "scope_limit": "上游提交22404ea不是已认证的云端18207二进制源码映射。"
+    },
+    {
+      "id": "P03",
+      "url": "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Algorithm/QCAlgorithm.History.cs#L1194",
+      "supports": "请求构造依赖Symbol、数据类型和匹配subscription配置；应观测实际配置和构造后请求计数以区分空响应位置。",
+      "scope_limit": "没有本次运行的匹配配置、请求计数或供应商接收证据。"
+    },
+    {
+      "id": "P04",
+      "url": "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Algorithm/QCAlgorithm.Python.cs#L308",
+      "supports": "固定上游Python AddUniverse重载可把回调包装为Fundamental宇宙；不能仅凭未加类型注解断言调用了旧coarse宇宙。",
+      "scope_limit": "本次报告没有实际CLR宇宙类型白名单匹配结果。"
+    },
+    {
+      "id": "P05",
+      "url": "https://github.com/QuantConnect/Lean/blob/22404ea28b8d3f3c9eb74d6ed9f0444426f8e417/Common/Data/HistoryRequestFactory.cs",
+      "supports": "日期范围请求使用算法时区转换为UTC；端点转换应通过预登记对照验证，不凭空响应自动改日期。",
+      "scope_limit": "未观测云端实际请求的UTC起止和内部日期/读取器规则。"
+    }
+  ],
+  "candidate_causes_not_confirmed": [
+    {
+      "id": "H01",
+      "candidate": "实际Universe类型、configuration或subscription匹配导致构造的有效请求为空或目标错误",
+      "reason_to_test": "当前报告缺少实际宇宙/配置类型匹配布尔值和构造后请求计数。",
+      "counterevidence_or_limit": "源码调用形态与官方示例一致，未证明存在重载错误。",
+      "discriminator": "固定白名单记录宇宙及数据类型匹配、日频/时区、匹配subscription及HistoryRequest计数；不打印原生对象。"
+    },
+    {
+      "id": "H02",
+      "candidate": "微秒端点或逐日分片与该运行版本的数据时间/读取边界不一致",
+      "reason_to_test": "当前适配器调整两个端点，官方基础示例使用整点日期；尚无同窗对照。",
+      "counterevidence_or_limit": "已有合成端点审计通过；40空窗本身不能证明端点错位。",
+      "discriminator": "同一预定短窗、相同前沿和字段，比较整点官方调用与当前端点变换；不得临时扩展到最终窗口。"
+    },
+    {
+      "id": "H03",
+      "candidate": "账户/组织数据权限、历史文件可达性、供应商服务或云端数据配置没有交付该宇宙历史",
+      "reason_to_test": "40窗口均无观察，且尚无原生未过滤历史正例。",
+      "counterevidence_or_limit": "既有AAPL/MSFT行情缓存与当前Fundamental数据权限无等价关系；没有原生权限拒绝或文件缺失证据。",
+      "discriminator": "在正确宇宙和非空请求已确认后读取相同短窗的原生未过滤历史；全部仍空则停止并保留不足证据。"
+    },
+    {
+      "id": "H04",
+      "candidate": "宇宙选择或pandas转换阶段在该二进制版本中丢失数据",
+      "reason_to_test": "当前只有转换后的零投影记录总计，没有选择前后集合计数。",
+      "counterevidence_or_limit": "回调没有金融过滤，且没有证明选择前存在数据；不能断言SDK缺陷。",
+      "discriminator": "比较未过滤history集合计数、选择回调输入/输出计数与universe_history返回结构；全部仅输出有界数量和闭集类型。"
+    }
+  ],
+  "excluded_conclusions": [
+    "没有证据表明40空窗均为节假日或合法无数据日。",
+    "没有证据表明空响应由Morningstar旧财务属性触发；本轮仅投影流动性、覆盖标志和原生时钟，零记录之前未进入逐字段投影。",
+    "没有证明历史US200、财务版本或实际送达时间认证。",
+    "没有发现或验证具有扣费后增量价值的因子。",
+    "没有通过平台完成状态或缓存复用绕过collection_nonempty固定失败检查。"
+  ],
+  "proposed_next_round_discrimination_not_authorized_or_executed": {
+    "status": "proposal_only_requires_new_explicit_round_admission",
+    "preconditions": [
+      "保留已关闭本轮、原始回执、旧意图和空缓存；不删除、覆盖或免费重取。",
+      "在总预算不变下另行登记一轮额度；冻结诊断方案、源码及新语义配置并预扣配置与Research。",
+      "最终测试、正式因子研究及交易继续关闭。",
+      "先通过离线边界测试，再部署并逐文件核对冻结源码。"
+    ],
+    "suggested_maximum": {"configurations": 1, "research_executions": 1, "lean_submissions": 0, "explicit_history_api_invocations_inside_research": 3},
+    "fixed_window_proposal": {"start": "2018-01-08T00:00:00-05:00", "end_exclusive": "2018-01-15T00:00:00-05:00", "timezone": "America/New_York", "max_calendar_days": 7},
+    "fixed_controls": [
+      "每个分支使用独立、相同美东前沿的QuantBook，固定全输入Symbol回调，避免不同分支共享选择状态。",
+      "分支A：官方整点日期universe_history，flatten=False。",
+      "分支B：同窗未过滤的原生history(universe,...,flatten=False)，在云端计数，不读取或打印字段值。",
+      "分支C：当前适配器微秒边界调用；固定四个观察字段，不添加财务性质或成员过滤。"
+    ],
+    "permitted_diagnostics": [
+      "实际CLR类型是否匹配预登记Fundamental宇宙及数据类的布尔值，不导出任意类型名称。",
+      "日频、美东时区、前沿和请求边界符合冻结方案的布尔值。",
+      "匹配subscription和构造后HistoryRequest的有界计数，以及可区分的固定阶段。",
+      "原始集合、回调调用、回调输入/输出、快照、投影记录的有界计数。",
+      "闭集响应类型、形状、Index合同和安全异常类别；不输出行、SID、字段值、对象repr或原生异常内容。"
+    ],
+    "diagnostic_feasibility_limit": "先核对该固定SDK实际支持的只读接口；无法安全取得的内部请求/集合计数明确记录unknown，不捏造计数、不依赖临时反射改写引擎、不增加历史调用。若无法在冻结程序内区分候选原因，则保留证据不足。",
+    "preregistered_interpretation": [
+      "原生整点调用非空而微秒适配为空：支持边界/调用差异候选；先离线修复后另行冻结，不能现场调参重跑。",
+      "未过滤history非空但universe_history为空：进一步定位选择或转换边界，仍不宣称经济因子证据。",
+      "正确类型及非空请求均已确认但三个分支仍空：停止，记录数据交付证据不足；不得增大日期范围或自动切源。",
+      "任一身份、预算、最终日期、隐私或数据完整性断言失败：立即停止且不返还配额。"
+    ]
+  }
+}

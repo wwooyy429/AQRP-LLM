@@ -1,108 +1,13 @@
 {
-  "schema_version": 5,
-  "kind": "consolidated_stage2_round_stopped_after_real_Research_failure",
+  "schema_version": 6,
+  "kind": "bounded_live_engineering_round_closed",
+  "previous_readiness": {
+    "commit": "65b8025b8618021eddd50520fe87c764b60af377",
+    "path": "audit/stage2_current_readiness.json",
+    "sha256": "7a70ee831519fb3ac0913d3cb3d54396132e26b015e4b729638fc23d0ce50729"
+  },
   "accepted_offline_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
   "accepted_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
-  "independent_offline_accepted_stages": [
-    0,
-    1
-  ],
-  "stage2_status": "tested_offline_software_passed_whole_stage_pending_real_runtime_and_data",
-  "historical_readiness_record_preserved": "audit/stage2_readiness.json",
-  "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "deployment_comparison_scope": "Historical d0 detail table retained; active archived ae2-vs-known25 comparison corrected to9 differing+4 outside reference=13. Earlier dc49 count12 remains historical. No current platform inventory certification.",
-  "deployment_file_count": 25,
-  "deployment_differences": [
-    {
-      "path": "qresearch/contracts.py",
-      "accepted_candidate_sha256": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
-      "archived_cloud_sha256": "83e4d28ca9df9508af8ac7080b9506ef9fc01e03293f40093ac73dfe212aa9c0"
-    },
-    {
-      "path": "qresearch/engineering_tasks.py",
-      "accepted_candidate_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
-      "archived_cloud_sha256": "96d5ca4c72e35edf11e19da72cee84b9611d834b2f3a06b89c66a1e4e35d75cf"
-    },
-    {
-      "path": "qresearch/evaluation.py",
-      "accepted_candidate_sha256": "4225343241686feceaafc70353983125d06eb7b8ad90a7bdbbd231789e591ba4",
-      "archived_cloud_sha256": "dee48d3b57417f91125f7820b0b4e0615dc71ea55afa85c6980fb3c25f7b96a7"
-    },
-    {
-      "path": "qresearch/point_in_time.py",
-      "accepted_candidate_sha256": "e9a4ece0970df03f65e6f46b2e645716db67831f656af027ea2c2dcc748ba1e6",
-      "archived_cloud_sha256": "db16e080ae6a3aefc66acd182ac5a2cb253a5024de9735dedffef29019be3501"
-    },
-    {
-      "path": "qresearch/registry.py",
-      "accepted_candidate_sha256": "5d312a5ab192fbe0cef5150f32a8ab5f90bf1b654dc97a15ba7c8bf5924866b7",
-      "archived_cloud_sha256": "37eea2754dc1fce3578581228ba2bbf232b2fde1f5bb78aeb2a9adffc0d372ac"
-    },
-    {
-      "path": "qresearch/runtime.py",
-      "accepted_candidate_sha256": "488592714f509fd0451bf14241929316def76f251bbb6877b0d49b7e0a631303",
-      "archived_cloud_sha256": "88149bf342d040bdf0448d91cf17788936bb3c377e62033b9742c4a063854384"
-    },
-    {
-      "path": "research_config.py",
-      "accepted_candidate_sha256": "175c660a651c7a6cc57edcabf3083ed8ace9ff11df38b6e900eeb50c07d5ba2c",
-      "archived_cloud_sha256": "563b63a6b87cfd68a837c3e071d8bfff2bce7b8f535138b56136068dfce8faaa"
-    }
-  ],
-  "pending_backtest_id": null,
-  "terminal_received": true,
-  "read_or_polled_this_turn": false,
-  "pending_source_or_task_input_changed": false,
-  "engineering_stop_caps": {
-    "configurations": 2,
-    "research": 2,
-    "lean": 2
-  },
-  "engineering_observed_used": {
-    "configurations": 2,
-    "research": 2,
-    "lean": 1
-  },
-  "engineering_nominal_remaining": {
-    "configurations": 0,
-    "research": 0,
-    "lean": 1
-  },
-  "remaining_is_not_permission_to_bypass_pending": true,
-  "global_usage": {
-    "configurations": 7,
-    "research": 10,
-    "lean": 1
-  },
-  "blockers": [
-    "G1_actual_joint_Research_failed_no_qualifying_LEAN_success",
-    "G2_old_failed_LEAN_worker_specific_difference_unproven",
-    "G3_new_adapter_actual_failure_replay_pending_fixed_commit_independent_review",
-    "G4_historical_US200_financial_vintage_actual_receipts_insufficient",
-    "engineering_configuration_and_Research_stop_caps_reached"
-  ],
-  "source_configuration_budget_changed": false,
-  "market_calls": 0,
-  "model_API_calls": 0,
-  "new_independent_review_dispatched": false,
-  "financial_evidence": false,
-  "source_changed": false,
-  "source_catalog_and_inactive_template_added": false,
-  "active_research_configuration_changed": false,
-  "authoritative_budget_changed": false,
-  "candidate_development_document": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "new_candidate_independently_accepted": false,
-  "candidate_cloud_deployed": false,
-  "candidate_additions": [],
-  "unimplemented_collection_scope": [
-    "qualifying_actual_cloud_Research_and_LEAN_success",
-    "proven_old_LEAN_worker_source_difference",
-    "verified_complete_financial_value_catalog_and_vendor_receipt_protocol",
-    "full_historical_US200_and_financial_data_certification"
-  ],
-  "known_open_findings": [],
-  "developer_fixes_pending_independent_verification": [],
-  "source_changed_this_round": [],
   "accepted_offline_scope": {
     "status": "passed_in_independently_tested_offline_scope",
     "commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
@@ -118,430 +23,88 @@
     "cloud_runtime_passed": false,
     "financial_evidence": false
   },
-  "new_candidate_acceptance_scope": "Software approval is bound to44676db; this archival metadata commit is not independently reviewed",
-  "documentation_and_archival_metadata_changed": true,
-  "platform_comparison_from_independent_review": {
-    "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
-    "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
-    "old75_matching_files": 25,
-    "candidate_different_or_missing_paths": 13,
-    "this_archival_turn_new_QC_read": false,
-    "old75_task_inputs_matching": 1,
-    "listed_python_files": 18,
-    "readable_unlisted_files": 8,
-    "cloud_inventory_certified": false,
-    "candidate_known_reference_different_paths": 9,
-    "candidate_paths_not_in_reference": 4,
-    "candidate_manifest_files": 29,
-    "known_reference_files": 25,
-    "differing_known_reference_paths": [
-      "qresearch/contracts.py",
-      "qresearch/engineering_data.py",
-      "qresearch/engineering_receipts.py",
-      "qresearch/engineering_tasks.py",
-      "qresearch/evaluation.py",
-      "qresearch/point_in_time.py",
-      "qresearch/registry.py",
-      "qresearch/runtime.py",
-      "research_config.py"
-    ],
-    "paths_not_in_known_reference": [
-      "qresearch/collection.py",
-      "qresearch/collection_execution.py",
-      "qresearch/collection_tasks.py",
-      "qresearch/historical_source.py"
-    ],
-    "comparison_scope": "Archived ae2 candidate hashes versus archived25 known old75 implementation files; not current platform inventory or current missing-file evidence",
-    "candidate_manifest_ref": {
-      "path": "audit/reviews/20261027-ae2b898-windows/source_git_manifest.json",
-      "raw_sha256": "5b0a0a698b005d8ba1bdf378935cefa82809786b83650e340d6fb44f4fe22bdb"
-    },
-    "archived_platform_comparison_ref": {
-      "path": "audit/reviews/20261027-ae2b898-windows/cloud_comparison.json",
-      "raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46"
-    }
-  },
-  "candidate_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
-  "collection_remote_protocol_and_registry_admission": "passed_in_retested_offline_scope_on81fbe52; platform_and_data_not_accepted",
-  "known_open_blocking_findings": [],
-  "known_open_nonblocking_findings": [],
-  "live_preflight_record": "audit/stage2_live_preflight.json",
-  "joint_preview": "audit/stage2_joint_preview.json",
-  "last_archived_lean_status": "Runtime Error",
-  "current_platform_lean_status": "Runtime Error",
-  "cloud_inventory_certified": false,
-  "WR19_comparison_correction": {
-    "date": "2026-10-27",
-    "priority": "P3",
-    "blocking": false,
-    "reviewed_claim_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
-    "original_claim": {
-      "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
-      "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
-      "old75_matching_files": 25,
-      "candidate_different_or_missing_paths": 12,
-      "this_archival_turn_new_QC_read": false,
-      "old75_task_inputs_matching": 1,
-      "listed_python_files": 18,
-      "readable_unlisted_files": 8,
-      "cloud_inventory_certified": false
-    },
-    "corrected_count": 13,
-    "reason": "Candidate identity changed toae2 but earlier count12 was retained",
-    "original_Git_record": "audit/review_packages/wr19/original_readiness_Git_81fbe52.json",
-    "historical_dc49_count12_unchanged": true,
-    "no_current_platform_access": true,
-    "outside_reference_does_not_mean_current_cloud_missing": true,
-    "independent_status": "passed_metadata_correction",
-    "independently_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
-    "independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json"
-  },
-  "latest_software_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "metadata_acceptance": "WR27_default_absolute_relative_target_scope_passed_on44676db",
-  "metadata_reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "candidate_execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
-  "latest_read_only_preflight": "audit/stage2_deployment_root_cause.json",
-  "current_candidate_change_scope": "README_and_audit_metadata_only_no_source_config_or_runtime_changes",
-  "developer_features_pending_independent_verification": [],
-  "source_configuration_budget_changed_scope": "Offline software and metadata repair only; zero new market configuration registrations, Research executions or LEAN submissions; budget and journal unchanged.",
-  "reconciled_backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
-  "prior_archived_lean_status": "pending",
-  "original_attempt_registry_status": "failed",
-  "completed_result_read_count": 0,
-  "backtest_poll_count": 0,
-  "terminal_read_scope": "No new platform/terminal read; old failure records are retained as archived evidence.",
-  "terminal_reconciliation": "audit/stage2_terminal_reconciliation.json",
-  "old_LEAN_native_failure_receipt_observed": true,
-  "old_LEAN_failure_settlement_verified": true,
-  "worker_source_bytes_or_hashes_observed": false,
-  "original_worker_failure_repaired": false,
-  "root_cause_proven": false,
-  "developer_repository_tests": 668,
-  "developer_extra_boundary_probe_methods": {},
-  "new_configuration_count": 0,
-  "new_Research_execution_count": 0,
-  "new_LEAN_submission_count": 0,
-  "read_or_polled_this_turn_scope": "No QuantConnect reads, polling, writes or deployments in this repair; no market-data or model calls.",
-  "original_task_and_budget_preserved": true,
-  "historical_acceptance_before_66ff72f_review": {
-    "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
-    "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
-    "latest_independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json",
-    "developer_features_pending_independent_verification": [
-      "native_compile_rejection_and_atomic_settlement",
-      "native_runtime_failure_adapter",
-      "strict_local_deployment_preflight",
-      "bounded_single_read_file_diagnostics",
-      "read_project_reference_preflight"
-    ]
-  },
-  "independently_verified_features": {
-    "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-    "features": [
-      "WR25_closed_classification_and_known_exclusion",
-      "WR26_then_known_SID_current_coverage",
-      "WR27_same_root_manifest",
-      "affected_prior_calculation_ingestion_budget_admission_recovery_regressions"
-    ],
-    "scope": "tested_offline_software_only"
-  },
-  "remaining_acceptance_gates": [
-    {
-      "id": "G1",
-      "status": "actual_Research_failed_no_new_successful_joint_chain",
-      "requirement": "New qualifying Research, collection/cache and dependent LEAN success remain missing"
-    },
-    {
-      "id": "G2",
-      "status": "old_worker_source_difference_insufficient",
-      "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
-    },
-    {
-      "id": "G3",
-      "status": "passed_in_independently_tested_offline_scope_on44676db",
-      "requirement": "Native error, admission identity and recovery acceptance is limited to the tested offline scope; real execution stays in G1"
-    },
-    {
-      "id": "G4",
-      "status": "observed_input_audit_software_passed_real_data_certification_insufficient",
-      "requirement": "Authenticated historical US200, financial vintages and actual delivery/ingestion evidence remain missing",
-      "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-      "real_data_certified": false
-    }
+  "independent_offline_accepted_stages": [
+    0,
+    1
   ],
-  "latest_independent_platform_observation": {
-    "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "QC_calls": 0,
-    "scope": "offline reparse of archived native evidence, not a new platform read"
-  },
-  "latest_independent_platform_observation_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "latest_independent_cloud_comparison": {
-    "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "actual_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-    "same": 28,
-    "different": 3,
-    "scope": "accepted446 versus archived7fc reference only",
-    "current_platform_read": false
-  },
-  "independent_review_execution_scope": {
-    "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-    "repository_methods": 530,
-    "new_methods": 18,
-    "new_subcases": 132,
-    "historical_suite_methods": 248,
-    "historical_suite_subcases": 2307,
-    "test_counts_are_unique": false,
-    "report": "audit/reviews/20261027-66ff72f-windows/formal_report.json"
-  },
-  "archival_turn_QC_calls": 0,
-  "archival_turn_Research_executions": 0,
-  "archival_turn_LEAN_submissions": 0,
-  "last_deployed_software_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-  "current_round_stop_reached": true,
-  "current_registry_event_count": 17,
-  "latest_Research_registry_status": "failed",
-  "latest_Research_attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
-  "source_iteration_underlying_cause_known": false,
-  "market_calls_scope": "No market/provider calls in metadata archival; prior failed Research call counts remain unknown in their original report.",
-  "native_research_failure_reconciliation": "audit/stage2_completion_reconciliation.json",
-  "current_cloud_reference_comparison": "audit/wr25_wr27_source_reference_comparison.json",
-  "controller_repair_cloud_executed": false,
-  "historical_remaining_gates_from66_review": [
-    {
-      "id": "G1",
-      "priority": "P1验收缺口",
-      "status": "待验收",
-      "requirement": "证明新版固定源码在真实Research、联合历史采集/缓存复用及LEAN成功运行；保留原生提交、终态与原attempt绑定。旧初始化失败不满足成功运行要求。"
-    },
-    {
-      "id": "G2",
-      "priority": "P1验收缺口",
-      "status": "证据不足",
-      "requirement": "取得失败worker具体源码/哈希或受控诊断证据，解释冻结不一致。当前返回25份引用一致、官方自动导入说明及合成插入均不能证明本次根因或已修复。"
-    },
-    {
-      "id": "G3",
-      "priority": "P1未实现范围",
-      "status": "未验收",
-      "requirement": "实现并独立验证Research原生异常回执解析及失败恢复，补真实失败cell原件；正常cell内固定检查失败不能替代。"
-    },
-    {
-      "id": "G4",
-      "priority": "P1数据认证缺口",
-      "status": "证据不足",
-      "requirement": "补全历史当时US200、永久SID/映射/公司行动、原始价格、供应商DollarVolume、财务公开/版本/实际送达及摄入证据；两股工程样例和模型化end_time不足。"
-    }
-  ],
-  "historical_unimplemented_collection_scope_before_consolidated_round": [
-    "actual_new_cloud_dispatch_and_successful_runtime_validation",
-    "Research_native_failed_cell_parser_and_end_to_end_failure_receipt",
-    "verified_complete_financial_value_catalog",
-    "actual_vendor_receipt_and_vintage_certification"
-  ],
-  "postnative_developer_peer_methods": 0,
-  "actual_native_failure_adapter_evidence_available": true,
-  "latest_independent_reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "historical_activity_descriptions": [
-    {
-      "recorded_at_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
-      "baseline_source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
-      "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-      "scope": "Prior current-field descriptions copied verbatim from pinned baseline; not this repair activity",
-      "prior_current_fields": {
-        "source_changed_this_round": [
-          "cloud/qresearch/engineering_data.py",
-          "cloud/qresearch/engineering_receipts.py",
-          "cloud/qresearch/worker_identity.py",
-          "cloud/qresearch/data_certification.py",
-          "tools/stage2.py",
-          "tools/data_certification.py",
-          "tests/test_native_research_failure.py",
-          "tests/test_worker_identity.py",
-          "tests/test_data_certification.py",
-          "cloud/research_config.py"
-        ],
-        "source_configuration_budget_changed_scope": "One new engineering configuration and one Research precharge, reserve allocation; no economic factor/model/trading design or budget limits changed.",
-        "read_or_polled_this_turn_scope": "No repeated read_backtest/status polling in repair; read_project and old completed-task list used for source diagnosis only.",
-        "completed_result_read_count": 1,
-        "terminal_read_scope": "One actual result read after native UI terminal confirmation; no polling or resubmission",
-        "consolidated_run_preparation": {
-          "configuration_registered": true,
-          "Research_dispatched": true,
-          "LEAN_submitted": false,
-          "last_engineering_slots_each": 1,
-          "allocation_preregistered": "reserve",
-          "no_extra_purchases": true,
-          "actual_Research_failed_cell_available": true,
-          "full_data_certification": false,
-          "Research_registry_status": "failed",
-          "engineering_stop_reached": true
-        },
-        "market_calls_scope": "History API call counts were not emitted by the failed cell; exactly one new Research tool call is observed.",
-        "candidate_additions": [
-          "bounded_joint_Research_collection_and_LEAN_plan",
-          "parent_bound_observation_receipt",
-          "v2_freeze_and_registration_pending_project_guard",
-          "read_only_plan_preview"
-        ],
-        "new_candidate_acceptance_scope": "New G2/G3/G4 software pending unified fixed-commit review; accepted66 historical scope remains",
-        "latest_independent_platform_observation": {
-          "list_projects": 1,
-          "read_open_project": 1,
-          "read_file": 32,
-          "jupyter_read_cell_source_only": 1
-        }
-      }
-    },
-    {
-      "recorded_at_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
-      "baseline_source_manifest_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
-      "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-      "scope": "Prior current-field descriptions copied verbatim from pinned baseline; not this repair activity",
-      "prior_current_fields": {
-        "source_changed_this_round": [
-          "cloud/qresearch/data_certification.py",
-          "cloud/research_config.py",
-          "tests/test_data_certification.py",
-          "tests/test_native_research_failure.py",
-          "tests/test_review_metadata.py",
-          "tests/test_wr21_research_dispatch.py",
-          "tests/test_wr23_prepare_protocol.py",
-          "tools/review_metadata.py",
-          "tools/stage2.py"
-        ],
-        "source_configuration_budget_changed_scope": "Offline software and metadata repair only; zero new market configuration registrations, Research executions or LEAN submissions; budget and journal unchanged.",
-        "read_or_polled_this_turn_scope": "No QuantConnect reads, polling, writes or deployments in this repair; no market-data or model calls.",
-        "completed_result_read_count": 0,
-        "terminal_read_scope": "No terminal result or platform read in this repair; prior reads are in the pinned historical activity object.",
-        "market_calls_scope": "No market-data provider calls in this offline repair; prior failed-cell call counts remain unknown in their historical report.",
-        "candidate_additions": [
-          "WR23_admission_bound_entry_identity",
-          "WR22_independent_continuous_master_history",
-          "WR24_pinned_current_metadata_check"
-        ],
-        "new_candidate_acceptance_scope": "WR22/23/24 development candidate requires independent fixed-commit review; prior WR20/21 original triggers passed only on ea6053e.",
-        "latest_independent_platform_observation": {
-          "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
-          "QC_calls": 0,
-          "scope": "offline review of archived observations only, not a new platform read"
-        }
-      }
-    },
-    {
-      "recorded_at_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-      "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-      "scope": "Prior software repair activity, not this metadata-only archival turn",
-      "prior_current_fields": {
-        "candidate_additions": [
-          "WR25_closed_classification_semantics",
-          "WR26_current_qualification_coverage",
-          "WR27_same_root_manifest_binding"
-        ],
-        "candidate_development_document": "docs/review/wr25-wr27.md",
-        "current_candidate_change_scope": "offline_WR25_WR26_eligibility_and_WR27_root_manifest_repair",
-        "current_metadata_correction_status": "WR24_default_scope_passed_on_ccad61d_WR27_crossroot_fix_pending_review",
-        "developer_extra_boundary_probe_methods": {
-          "G3": 8,
-          "G4_peer1": 14,
-          "G4_peer2": 9
-        },
-        "new_candidate_acceptance_scope": "WR25/26/27 development candidate requires independent fixed-commit review; prior WR22/23/24 scope passed only on ccad61d.",
-        "read_or_polled_this_turn_scope": "No QuantConnect reads, polling, writes or deployments in this repair; no market-data or model calls.",
-        "source_changed_this_round": [
-          "cloud/qresearch/data_certification.py",
-          "cloud/research_config.py",
-          "tests/test_data_certification.py",
-          "tests/test_review_metadata.py",
-          "tools/review_metadata.py",
-          "tools/stages.py"
-        ],
-        "source_configuration_budget_changed_scope": "Offline software and metadata repair only; zero new market configuration registrations, Research executions or LEAN submissions; budget and journal unchanged."
-      }
-    }
-  ],
+  "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
+  "stage2_status": "pending_real_joint_success_new_software_review_and_data_certification",
+  "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "offline_repair",
-    "baseline_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "source_roots": [
-      "cloud",
-      "tests",
-      "tools"
-    ],
-    "source_suffix": ".py",
-    "quantconnect_reads": 0,
-    "quantconnect_writes": 0,
-    "new_deployments": 0
+    "kind": "bounded_live_engineering_round",
+    "baseline_commit": "65b8025b8618021eddd50520fe87c764b60af377",
+    "round_id": "stage2-cloud-round-002",
+    "quantconnect_reads": 104,
+    "quantconnect_writes": 38,
+    "explicit_compile_calls": 2,
+    "new_Research_executions": 2,
+    "new_LEAN_submissions": 0,
+    "new_deployments": 2
   },
-  "current_metadata_correction_status": "WR27_independently_passed_tested_scope_on44676db",
-  "historical_offline_acceptance_records": [
-    {
-      "recorded_at_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-      "scope": "Prior acceptance metadata preserved before reconciling the new independent report",
-      "prior_fields": {
-        "accepted_offline_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-        "accepted_source_manifest_hash": "be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e",
-        "accepted_offline_scope": {
-          "status": "通过（本轮明确覆盖的离线范围）",
-          "scope": [
-            "v1/v2本地物理源码预检和扣费前拒绝",
-            "单次读取/EOF保留/安全诊断",
-            "只读源码引用预检",
-            "原生运行失败及受限编译拒绝/原attempt绑定",
-            "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
-          ],
-          "full_phase2": false,
-          "root_cause_repaired": false,
-          "v1_controller_source_recheck": false,
-          "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
-        },
-        "independently_verified_features": {
-          "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-          "features": [
-            "native_compile_rejection_and_atomic_settlement",
-            "native_runtime_failure_adapter",
-            "strict_local_deployment_preflight",
-            "bounded_single_read_file_diagnostics",
-            "read_project_reference_preflight"
-          ],
-          "scope": {
-            "status": "通过（本轮明确覆盖的离线范围）",
-            "scope": [
-              "v1/v2本地物理源码预检和扣费前拒绝",
-              "单次读取/EOF保留/安全诊断",
-              "只读源码引用预检",
-              "原生运行失败及受限编译拒绝/原attempt绑定",
-              "接受/拒绝共享锁、幂等、写失败恢复及旧准入兼容"
-            ],
-            "full_phase2": false,
-            "root_cause_repaired": false,
-            "v1_controller_source_recheck": false,
-            "v1_scope": "冻结物理部署严格校验；不冒称具有v2稳定控制器/目录身份保证"
-          },
-          "report": "audit/reviews/20261027-66ff72f-windows/formal_report.json"
-        },
-        "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-        "metadata_acceptance": "WR19_passed_at84414ab",
-        "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874"
-      }
-    }
+  "current_activity_checker": "audit/review_packages/stage2_round002/verify_integrity.py; old tools/review_metadata.py contract checks historical offline_repair metadata and cannot approve this live-round schema.",
+  "candidate_runtime_source_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+  "candidate_cloud_deployed": true,
+  "managed_cloud_files_verified": 32,
+  "cloud_runtime_source_identity_verified_in_Research": true,
+  "cloud_runtime_joint_gate_passed": false,
+  "current_Research_attempt": "d45af7fcfdc849c888694aaa6dd7c0ae",
+  "current_Research_platform_status": "completed",
+  "current_Research_engineering_status": "failed",
+  "current_Research_ledger_status": "failed",
+  "pending_backtest_id": null,
+  "new_LEAN_submissions": 0,
+  "new_LEAN_success": false,
+  "old_failed_LEAN_ref": {
+    "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+    "backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "status": "archived_Runtime_Error",
+    "worker_specific_cause_proven": false,
+    "repolled_this_round": false
+  },
+  "engineering_round_status": "closed",
+  "engineering_stop_caps": {
+    "configurations": 2,
+    "lean": 1,
+    "research": 2
+  },
+  "engineering_observed_used": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 0
+  },
+  "unused_LEAN_reservation_released": true,
+  "legacy_stop_caps_preserved": true,
+  "current_round_stop_reached": true,
+  "global_usage": {
+    "configurations": 9,
+    "research": 12,
+    "lean": 1
+  },
+  "global_limits_unchanged": true,
+  "known_open_software_findings_from_independent_reports": [],
+  "new_candidate_review_status": "pending_exact_commit_independent_review",
+  "blockers": [
+    "nonempty real historical-universe source, with source/config/entitlement evidence",
+    "qualifying same-parent Research followed by a completed verified LEAN receiver",
+    "new round-control and empty-response code independently reviewed on an exact commit",
+    "old failed worker-specific source mismatch explanation remains unproven",
+    "complete historical US200, permanent-SID/classification/corporate-action evidence",
+    "financial values, publication/vintage and actual historical delivery/ingestion evidence"
   ],
-  "accepted_software_version": {
-    "commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
-    "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
-    "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
-    "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
-    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-    "scope": "independently_tested_offline_software_only",
-    "observed_input_audit_software_passed": true,
-    "full_phase2_accepted": false,
-    "financial_evidence": false,
-    "metadata_archival_commit_approval_extended": false
-  },
-  "runtime_source_matches_reviewed_version": true,
-  "current_archival_commit_independently_reviewed": false,
-  "metadata_archival_only": true,
-  "current_activity_schema_note": "Fixed offline_repair metadata grammar retained; this activity is archival only, no software repair or execution"
+  "certification_status": "insufficient_evidence",
+  "reports": [
+    "audit/stage2_round002_report.json",
+    "audit/stage2_round002_data_certification.json",
+    "audit/stage2_round002_failure_analysis.json",
+    "audit/stage2_round002_integrity.json",
+    "audit/stage2_round002_source_comparison.json"
+  ],
+  "market_research_enabled": false,
+  "llm_runtime_enabled": false,
+  "final_test_enabled": false,
+  "live_trading_enabled": false,
+  "financial_evidence": false,
+  "extra_spend_usd": 0,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified"
 }

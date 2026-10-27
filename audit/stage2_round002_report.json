@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "kind": "closed_bounded_stage2_engineering_round",
+  "round_id": "stage2-cloud-round-002",
+  "scope": "engineering_only",
+  "status": "stopped_at_preregistered_configuration_and_Research_cap",
+  "stage2_acceptance": "pending_real_joint_success_independent_review_and_data_certification",
+  "global_limits": {
+    "configurations": {
+      "total": 12,
+      "normal": 8,
+      "reserve": 4
+    },
+    "research": {
+      "total": 20,
+      "normal": 12,
+      "reserve": 8
+    },
+    "lean": {
+      "total": 16,
+      "normal": 8,
+      "reserve": 8
+    }
+  },
+  "global_usage": {
+    "configurations": {
+      "total": 9,
+      "normal": 6,
+      "reserve": 3
+    },
+    "research": {
+      "total": 12,
+      "normal": 6,
+      "reserve": 6
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "round": {
+    "close_reason": "Prerecorded two-configuration/two-Research engineering cap reached; terminal reports settled, collection_nonempty false, no eligible LEAN parent. Release unused reservation only; no debit refunds.",
+    "config_ids": [
+      "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+      "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7"
+    ],
+    "grant": {
+      "allocation": "reserve",
+      "authorization_ref": {
+        "key": "engineering/rounds/user-authorizations/7269929ed60e5aab4663749bd4e5ff65a0a330bd0c400f160d66ae29a6bdc2e6.json",
+        "sha256": "7269929ed60e5aab4663749bd4e5ff65a0a330bd0c400f160d66ae29a6bdc2e6"
+      },
+      "extra_spend_usd": 0,
+      "final_test_enabled": false,
+      "limits": {
+        "configurations": 2,
+        "lean": 1,
+        "research": 2
+      },
+      "project_id": 38436695,
+      "round_id": "stage2-cloud-round-002",
+      "schema_version": 1
+    },
+    "initial_config_ids": [
+      "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5"
+    ],
+    "status": "closed",
+    "usage": {
+      "configurations": 2,
+      "lean": 0,
+      "research": 2
+    }
+  },
+  "turn_start_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "new_charges": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 0
+  },
+  "failed_debits_refunded": false,
+  "unused_LEAN_reservation_released": true,
+  "LEAN_not_submitted_reason": "No same-parent Research satisfied all frozen checks.",
+  "attempts": [
+    {
+      "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+      "source_commit": "0d54bf94b72c5038913f63a2f40f2a3b17da0c3e",
+      "identity": {
+        "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+        "config_id": "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+        "data_request_hash": "5bb65c0ffc5ebb6ebdfecc6d5f2edb93e46202884afd9c480b865ff613648f5b",
+        "deployment_hash": "3e779f1e17bffb05bc190f59e7aced79ee8be3b9067cd2242cdf3181b4b0db10",
+        "plan_hash": "3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda",
+        "project_id": 38436695,
+        "source_manifest_hash": "1a22794cbaec17cd96ed81b71bb59179710050d18378ac8646a0e68484262dd5",
+        "stage": "research"
+      },
+      "frozen_input_sha256": "1771cddeadc15ae5fa208fe90d51dd74c29cbbfec76c071acf0683029f445f42",
+      "dispatch_binding_sha256": "84c82a6928403458a9d0745e300cb9b27799c66370a11e894960d03a9c6e64fe",
+      "tool_observation": {
+        "path": "audit/tool_observations/4de020ffad5a4e82a26c5374f7715685-research.json",
+        "sha256": "a6c1960e774300186ab496655d6a381e8450d507f486d890a89992708201822f"
+      },
+      "receipt_native_status": "runtime_error",
+      "ledger_terminal_status": "failed",
+      "engineering_status": null,
+      "checks": null,
+      "statistics": null,
+      "evidence": null,
+      "cloud_report_ref": null,
+      "financial_evidence": false
+    },
+    {
+      "attempt_id": "d45af7fcfdc849c888694aaa6dd7c0ae",
+      "source_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+      "identity": {
+        "attempt_id": "d45af7fcfdc849c888694aaa6dd7c0ae",
+        "config_id": "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7",
+        "data_request_hash": "0d23af9bf1a5e8d3b119f57ee524c1c370b82f09ad163fdb4e92a90a9f9205ec",
+        "deployment_hash": "8a76cdc7ce3c1fcb75bae5077d21750b2c328d606aa5c2bb9b34550099daca90",
+        "plan_hash": "480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e",
+        "project_id": 38436695,
+        "source_manifest_hash": "ff9743bfde419dbc7a62c72d302893f750d60db3f75a6cb56bf3fad347d8a9d2",
+        "stage": "research"
+      },
+      "frozen_input_sha256": "911820493129f1b2650abe1facdd203325b0c82b57ecc63619f19bed2ea77f0c",
+      "dispatch_binding_sha256": "52530e8cd381b9db4d40b6b472a04dc935564956ceadc88892b0d512bc4134e7",
+      "tool_observation": {
+        "path": "audit/tool_observations/d45af7fcfdc849c888694aaa6dd7c0ae-research.json",
+        "sha256": "04a8f858240552766ae0425043fd1ef50321916df84461cc68d59f2a85269d2e"
+      },
+      "receipt_native_status": "completed",
+      "ledger_terminal_status": "failed",
+      "engineering_status": "failed",
+      "checks": {
+        "cache_only_consumer": true,
+        "collection_cache_only_replay": true,
+        "collection_nonempty": false,
+        "collection_windows_completed": true,
+        "coverage_observed_complete": true,
+        "development_only": true,
+        "final_request_rejected": true,
+        "raw_data_received": true,
+        "read_only_write_rejected": true,
+        "same_partition_ids": true,
+        "second_prefetch_no_history": true,
+        "source_snapshot_matches": true,
+        "symbol_registry_resolved": true
+      },
+      "statistics": {
+        "expected_formation_count": 250,
+        "history_calls_first": 0,
+        "history_calls_second": 0,
+        "record_count": 2510
+      },
+      "evidence": {
+        "cache_payload_refs": [
+          {
+            "key": "feature-cache/v1/objects/dfc5948f015866e02c3c970485df713e7a77cb85d93b97960ea54df50b921a0f.json",
+            "sha256": "dfc5948f015866e02c3c970485df713e7a77cb85d93b97960ea54df50b921a0f"
+          },
+          {
+            "key": "feature-cache/v1/objects/9a05a284d1d4530b2c4e63f159db4c7f1fa23ac0317ae64fe5bf8f05b3864c67.json",
+            "sha256": "9a05a284d1d4530b2c4e63f159db4c7f1fa23ac0317ae64fe5bf8f05b3864c67"
+          },
+          {
+            "key": "feature-cache/v1/objects/138d7854b26696c2f5fe9066cfc5cfd4e447c604081ea12198a9c99612f67281.json",
+            "sha256": "138d7854b26696c2f5fe9066cfc5cfd4e447c604081ea12198a9c99612f67281"
+          },
+          {
+            "key": "feature-cache/v1/objects/40dea494610b75098113b24ef42d3f62f21feeba80af263f2d86140da170f35a.json",
+            "sha256": "40dea494610b75098113b24ef42d3f62f21feeba80af263f2d86140da170f35a"
+          },
+          {
+            "key": "feature-cache/v1/objects/d8a8fb58eeae01d69700796fada2fc0a057379460520ab129e50af949d353dfc.json",
+            "sha256": "d8a8fb58eeae01d69700796fada2fc0a057379460520ab129e50af949d353dfc"
+          }
+        ],
+        "collection_probe": {
+          "actual_availability_certified": false,
+          "cache_only_source_fetch_calls": 0,
+          "empty_windows": 40,
+          "financial_vintage_certified": false,
+          "full_historical_US200_certified": false,
+          "missing_values": {
+            "dollar_volume": 0,
+            "end_time": 0,
+            "has_fundamental_data": 0,
+            "time": 0
+          },
+          "plan_hash": "5d84946465bf67f27d254e1b78d01b8a8de7271e72af6e0907f4d50945e50e9e",
+          "receipt_ref": {
+            "key": "engineering/joint-round002-v2/collection-probes/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+            "sha256": "a0719ee93a4da472d93a00fc530b23a76130067e48ba4f74dab5b1a2e1ee1cd6"
+          },
+          "record_count": 0,
+          "research_certified": false,
+          "reused_windows": 0,
+          "row_values_exported": false,
+          "schema_version": 1,
+          "source_fetch_calls": 40,
+          "window_count": 40
+        },
+        "coverage_certification_gaps": [
+          "actual_historical_vendor_receipt_and_ingestion_evidence_not_supported",
+          "historical_all_market_universe_and_classification_receipts_not_supported",
+          "financial_publication_and_vintage_receipts_not_supported",
+          "authoritative_vendor_source_revision_receipt_not_supported"
+        ],
+        "coverage_report_ref": {
+          "key": "audit-evidence/289ee47943ebccf508e35588c8050caddd9bfb41ca55091e3f489c48a2aedc39.json",
+          "sha256": "289ee47943ebccf508e35588c8050caddd9bfb41ca55091e3f489c48a2aedc39"
+        },
+        "lean_engine_version": "2.5.0.0.18207",
+        "runtime_environment": {
+          "lean": "2.5.0.0.18207",
+          "numpy": "1.26.4",
+          "pandas": "2.3.3",
+          "python": "3.11.14"
+        },
+        "vendor_revision_known": false
+      },
+      "cloud_report_ref": {
+        "key": "engineering/joint-round002-v2/reports/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/research/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+        "sha256": "277526846b2d90cb467e03064be8712f74e7870ca10b262f7a3a4dcb73732f65"
+      },
+      "financial_evidence": false
+    }
+  ],
+  "observed_outcome": {
+    "first": "Native CollectionError at response_contract for an observed zero-row DataFrame.",
+    "repair": "Narrow empty sentinel handling reached a complete native report; engineering checks still failed.",
+    "second": "All 40 collection windows empty; no historical-universe rows; empty source cause remains unknown.",
+    "price_cache": "Both prefetch counters were zero in the second run; fixed two-symbol raw cache/calendar checks passed."
+  },
+  "remaining_gates": [
+    "nonempty real historical-universe source, with source/config/entitlement evidence",
+    "qualifying same-parent Research followed by a completed verified LEAN receiver",
+    "new round-control and empty-response code independently reviewed on an exact commit",
+    "old failed worker-specific source mismatch explanation remains unproven",
+    "complete historical US200, permanent-SID/classification/corporate-action evidence",
+    "financial values, publication/vintage and actual historical delivery/ingestion evidence"
+  ],
+  "source_review": {
+    "last_independently_accepted_software_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+    "new_runtime_implementation_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
+    "new_independent_acceptance": false,
+    "developer_repair_test_methods": 703,
+    "developer_test_source_manifest_hash": "7e6f6afee9cd169018525bdd00ba1ea647753175ab3d124c7f7dcf7e30f09d37"
+  },
+  "financial_evidence": false,
+  "IC": null,
+  "returns": null,
+  "costs": null,
+  "risk_metrics": null,
+  "market_research_enabled": false,
+  "llm_runtime_enabled": false,
+  "final_test_enabled": false,
+  "live_trading_enabled": false,
+  "extra_spend_usd": 0,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified",
+  "reproduction": {
+    "program": "audit/review_packages/stage2_round002/summarize_round.py",
+    "program_sha256": "daa12d0cb1eefd40b1bd6f618e95cb11c967d851bf63bd903a2b63fadc378aab",
+    "market_provider_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0
+  }
+}
