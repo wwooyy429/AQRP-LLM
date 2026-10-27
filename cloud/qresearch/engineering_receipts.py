@@ -367,6 +367,74 @@ def backtest_submission(payload, deployment, tool_envelope):
         "external_id": external, "accepted": True, "status": "submitted", "deployment": deployment, "raw_receipt": raw}
 
 
+def backtest_rejection(payload, deployment, tool_envelope):
+    """Parse a native error candidate; only bound compile diagnostics settle.
+
+    A generic error string may describe a lost response after creation. Typed
+    success=False alone cannot establish that no worker exists. The fixed
+    dispatcher may settle only the tool's file/line/column compile-error form;
+    all other well-shaped errors remain ineligible candidates. This operational
+    tool trust boundary is not a remote signature or actual-platform acceptance.
+    Error text, file names and supplied backtest names are never persisted.
+    """
+    payload, deployment = _context(payload, deployment, "lean")
+    native, observed = _tool(tool_envelope, "mcp__quantconnect__create_backtest", payload)
+    if (not isinstance(native, dict) or set(native) - {"success", "errors", "warnings"}
+            or native.get("success") is not False):
+        _fail("An explicit native rejection without a backtest identity is required")
+    arguments = tool_envelope["arguments"]
+    if "backtestName" in arguments and (not isinstance(arguments["backtestName"], str)
+            or not arguments["backtestName"].strip() or len(arguments["backtestName"]) > 256
+            or any(character in arguments["backtestName"] for character in "\r\n")):
+        _fail("Native backtest name is not bounded submission metadata")
+
+    def messages(values):
+        return (isinstance(values, list) and bool(values)
+                and all(isinstance(value, str) and bool(value.strip()) for value in values))
+
+    errors = native.get("errors")
+    if messages(errors):
+        error_format, error_count, file_count, eligible = "list", len(errors), 0, False
+    elif (isinstance(errors, dict) and bool(errors)
+            and all(isinstance(name, str) and bool(name.strip()) and messages(values)
+                    for name, values in errors.items())):
+        error_format, error_count, file_count = "file_map", sum(map(len, errors.values())), len(errors)
+        manifest = payload.get("deployment_manifest")
+        known = set(manifest) if isinstance(manifest, dict) else set()
+        # The generated input is pinned separately by deployment.input_hash.
+        known.add("_engineering_task_input.py")
+        eligible = isinstance(manifest, dict) and bool(manifest) and content_hash(manifest) == deployment["deployment_hash"]
+        for name, digest in (manifest.items() if isinstance(manifest, dict) else ()):
+            try:
+                validate_key(name)
+            except (TypeError, ValueError):
+                eligible = False
+            if not isinstance(name, str) or not name.endswith(".py") or not _hash(digest):
+                eligible = False
+        for name, values in errors.items():
+            try:
+                validate_key(name)
+            except (TypeError, ValueError):
+                eligible = False
+            if name not in known or not name.endswith(".py") or any(
+                    re.fullmatch(r"[1-9][0-9]*:[1-9][0-9]* [^\r\n]+", value) is None
+                    or not value.partition(" ")[2].strip() for value in values):
+                eligible = False
+    else:
+        _fail("Native rejection errors must be a nonempty string list or file map")
+    warnings = native.get("warnings", {})
+    if (not isinstance(warnings, dict)
+            or any(not isinstance(name, str) or not name.strip() or not messages(values)
+                   for name, values in warnings.items())):
+        _fail("Native warning metadata is not the documented file map")
+    raw = {"tool_name": observed["tool_name"], "response_sha256": observed["response_sha256"],
+        "arguments_sha256": content_hash(arguments), "success": False, "rejected": True,
+        "error_format": error_format, "error_count": error_count, "error_file_count": file_count,
+        "warning_count": sum(map(len, warnings.values())), "settlement_eligible": eligible}
+    return {"identity": payload["identity"], "identity_kind": payload["external_identity_kind"],
+        "accepted": False, "status": "rejected", "deployment": deployment, "raw_receipt": raw}
+
+
 def _logs(payload, external_id, envelopes):
     if not isinstance(envelopes, (list, tuple)) or not envelopes:
         _fail("Delivered successful backtests need their actual engineering log observations")

@@ -1,0 +1,11 @@
+fatal: path 'audit/task_inputs/bfd00f2611fd4496b9498d4597618a8e.py' exists on disk, but not in '75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4'
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\phase2-preflight\compare_initial.py", line 21, in <module>
+    expected=blob(old,'audit/task_inputs/bfd00f2611fd4496b9498d4597618a8e.py') if name=='_engineering_task_input.py' else blob(old,'cloud/'+name)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\phase2-preflight\compare_initial.py", line 10, in blob
+    def blob(commit,path):return subprocess.check_output(['git','show',commit+':'+path],cwd=root)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'show', '75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4:audit/task_inputs/bfd00f2611fd4496b9498d4597618a8e.py']' returned non-zero exit status 128.

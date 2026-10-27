@@ -6,6 +6,7 @@ results and the cloud report. Their provenance is an operational trust boundary,
 not a cryptographic signature. LLM output is never a completion source.
 """
 from dataclasses import dataclass
+from hashlib import sha256
 import json
 import math
 import re
@@ -18,6 +19,12 @@ from .workflow import SubmissionRejected
 
 class EngineeringTaskError(ValueError):
     """An engineering plan, receipt, or transition is not admissible."""
+
+
+def submission_protocol(payload, deployment):
+    """Pin the pre-dispatch accepted-publication ordering for new LEAN jobs."""
+    return {"schema_version": 1, "protocol": "accepted_identity_before_original_receipt_v1",
+            "identity": payload["identity"], "deployment": deployment}
 
 
 def _hash(value, name):
@@ -555,30 +562,121 @@ class EngineeringTaskBridge:
         record, receipt = self._record(attempt), json.loads(canonical_json(observed_receipt))
         payload = self.payload(record["attempt_id"])
         self._submission_metadata(_mapping(receipt, "submission receipt"))
-        reference = self._save(record["attempt_id"], "submission", receipt)
         if receipt.get("identity") != payload["identity"] or receipt.get("identity_kind") != payload["external_identity_kind"]:
             raise EngineeringTaskError("Submission receipt belongs to another source, plan, project or attempt")
         raw = _mapping(receipt.get("raw_receipt"), "actual raw platform receipt")
         if not raw:
             raise EngineeringTaskError("An actual submission observation is required")
         deployment = self._deployment(receipt.get("deployment"))
+        if record["stage"] == "lean" and receipt.get("accepted") is False:
+            return self.record_rejection(attempt, receipt)
         if receipt.get("accepted") is not True:
-            return self.registry.fail(record["attempt_id"], {"reason": "Observed platform rejection", "receipt_ref": reference})
+            with self.store.locked(self.registry.LOCK):
+                reference = self._save(record["attempt_id"], "submission", receipt)
+                return self.registry._transition_locked(record["attempt_id"], "failed",
+                    error={"reason": "Observed platform rejection", "receipt_ref": reference}, reconciliation=None)
         external_id = _string(receipt.get("external_id"), "observed external identity")
         if record["stage"] == "research" and external_id != "qc-research:" + str(payload["identity"]["project_id"]) + ":" + record["attempt_id"]:
             raise EngineeringTaskError("Research must be labelled as its logical execution receipt, not a fabricated platform job ID")
         if record["stage"] == "lean" and (raw.get("success") is not True or raw.get("backtestId") != external_id):
             raise EngineeringTaskError("A compile receipt is not a backtest submission; retain the actual returned backtestId")
-        saved = {"external_id": external_id, "identity": payload["identity"], "deployment": deployment,
-                 "receipt_ref": reference, "identity_kind": payload["external_identity_kind"]}
-        self.store.write_once(self._submission_key(record["attempt_id"]), canonical_json(saved))
-        if record["status"] == "completed":
-            return self._attempt(record)
-        if record["status"] == "ambiguous":
-            # Preserve ambiguity while retaining an observed ID for subsequent
-            # terminal reconciliation. An acknowledgement cannot make it pending.
-            return self._attempt(record)
-        return self.registry.pending(record["attempt_id"], external_id=external_id, details=saved)
+        with self.store.locked(self.registry.LOCK):
+            current = self.registry._replay()["attempts"][record["attempt_id"]]
+            if current["status"] == "failed":
+                raise EngineeringTaskError("A rejected or failed attempt cannot acquire an accepted submission")
+            # Publish the canonical accepted identity before its full evidence.
+            # A crash then leaves an accepted pointer that blocks rejection;
+            # replaying this same receipt repairs the missing original/journal.
+            digest = content_hash(receipt)
+            reference = {"key": "engineering/evidence/" + record["attempt_id"] + "/submission/" + digest + ".json",
+                         "sha256": digest}
+            saved = {"external_id": external_id, "identity": payload["identity"], "deployment": deployment,
+                      "receipt_ref": reference, "identity_kind": payload["external_identity_kind"]}
+            self.store.write_once(self._submission_key(record["attempt_id"]), canonical_json(saved))
+            self._save(record["attempt_id"], "submission", receipt)
+            if current["status"] == "completed":
+                return self._attempt(current)
+            if current["status"] == "ambiguous":
+                # Preserve ambiguity; an acknowledgement cannot make it pending.
+                return self._attempt(current)
+            return self.registry._transition_locked(record["attempt_id"], "pending", external_id=external_id, details=saved)
+
+    def record_rejection(self, attempt, observed_receipt):
+        """Settle only a definite native compile rejection before acceptance.
+
+        Trusted fixed parsers supply metadata, never a free LLM failure flag.
+        The same Registry transaction serializes accepted-pointer publication,
+        rejection evidence and transition. No nested Registry reader is called
+        while that lock is owned. Counters and retry policy remain unchanged.
+        """
+        record = self._record(attempt)
+        payload = self.payload(record["attempt_id"])
+        receipt = json.loads(canonical_json(observed_receipt))
+        self._submission_metadata(_mapping(receipt, "native rejection receipt"))
+        if (record["stage"] != "lean" or set(receipt) !=
+                {"identity", "identity_kind", "accepted", "status", "deployment", "raw_receipt"}
+                or receipt["identity"] != payload["identity"]
+                or receipt["identity_kind"] != "quantconnect_backtest_id"
+                or receipt["accepted"] is not False or receipt["status"] != "rejected"):
+            raise EngineeringTaskError("A native rejection must identify this exact unaccepted LEAN attempt")
+        raw = receipt["raw_receipt"]
+        keys = {"tool_name", "response_sha256", "arguments_sha256", "success", "rejected", "error_format",
+                "error_count", "error_file_count", "warning_count", "settlement_eligible"}
+        if (set(raw) != keys or raw["tool_name"] != "mcp__quantconnect__create_backtest"
+                or raw["success"] is not False or raw["rejected"] is not True
+                or raw["settlement_eligible"] is not True or raw["error_format"] != "file_map"
+                or any(type(raw[name]) is not int for name in ("error_count", "error_file_count", "warning_count"))
+                or not 1 <= raw["error_file_count"] <= raw["error_count"] or raw["warning_count"] < 0):
+            raise EngineeringTaskError("Unclassified native errors cannot settle an uncertain submission")
+        _hash(raw["response_sha256"], "native rejection response")
+        _hash(raw["arguments_sha256"], "native rejection arguments")
+        try:
+            protocol = self.store.read_bytes("engineering/submission-protocol/" + record["attempt_id"] + ".json")
+            if protocol != canonical_json(submission_protocol(payload, receipt["deployment"])):
+                raise EngineeringTaskError("Native rejection requires the exact pre-dispatch submission protocol")
+            encoded = self.store.read_bytes("engineering/admitted-inputs/" + record["attempt_id"] + ".json")
+            admission = json.loads(encoded)
+            admitted_payload = admission["payload"]
+            manifest = admitted_payload["deployment_manifest"]
+            text = "TASK_INPUT_JSON = " + repr(canonical_json(admitted_payload).decode("utf-8")) + "\n"
+            if (canonical_json(admission) != encoded
+                    or set(admission) != {"payload", "deployment", "input_path", "cloud_input_path"}
+                    or admission["input_path"] != "audit/task_inputs/" + record["attempt_id"] + ".py"
+                    or admission["cloud_input_path"] != "_engineering_task_input.py"
+                    or admitted_payload != dict(payload, deployment_manifest=manifest)
+                    or not isinstance(manifest, dict) or not manifest
+                    or content_hash(manifest) != payload["identity"]["deployment_hash"]
+                    or admission["deployment"] != receipt["deployment"]
+                    or sha256(text.encode("utf-8")).hexdigest() != receipt["deployment"]["input_hash"]):
+                raise EngineeringTaskError("Native rejection differs from the original admitted input")
+            for name, digest in manifest.items():
+                validate_key(name)
+                if not name.endswith(".py"):
+                    raise EngineeringTaskError("Admitted rejection source is not Python")
+                _hash(digest, "original admitted source")
+        except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
+            raise EngineeringTaskError("A rejection requires canonical original admitted-input evidence") from exc
+        digest = content_hash(receipt)
+        reference = {"key": "engineering/evidence/" + record["attempt_id"] + "/rejection/" + digest + ".json", "sha256": digest}
+        error = {"reason": "Observed native compile rejection", "receipt_ref": reference}
+        with self.store.locked(self.registry.LOCK):
+            current = self.registry._replay()["attempts"][record["attempt_id"]]
+            if (current["config_id"] != self.config_id or current["stage"] != "lean"
+                    or current["operation_key"] != self._operation("lean")
+                    or current.get("external_id") is not None or self.store.exists(self._submission_key(record["attempt_id"]))):
+                raise EngineeringTaskError("Accepted submission identities cannot be overwritten by a rejection")
+            if current["status"] == "failed":
+                try:
+                    same_original = self.store.read_bytes(reference["key"]) == canonical_json(receipt)
+                except FileNotFoundError:
+                    same_original = False
+                if (current.get("error") != error or current.get("reconciliation") != digest or not same_original):
+                    raise EngineeringTaskError("Only the identical recorded rejection may be read idempotently")
+                return self._attempt(current)
+            if current["status"] not in {"started", "ambiguous"}:
+                raise EngineeringTaskError("Only an unresolved unaccepted submission can settle a rejection")
+            self._save(record["attempt_id"], "rejection", receipt)
+            return self.registry._transition_locked(record["attempt_id"], "failed", error=error, reconciliation=digest)
 
     def submit(self, stage, *, allocation="normal", retry_of=None, reason=None):
         callback = getattr(self.adapter, "submit_research" if stage == "research" else "submit_backtest", None)

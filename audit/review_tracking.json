@@ -8,7 +8,7 @@
     0,
     1
   ],
-  "acceptance_scope": "WR01-18保留既有离线范围；WR19元数据更正独立核对通过；阶段2整体待定",
+  "acceptance_scope": "保留既有固定范围；新增原生编译拒绝及原子结算候选待独立审核；阶段2整体待定",
   "software_acceptance": "retained_81fbe52_scope; no_new_software_test_or_approval_at84414ab",
   "financial_evidence": false,
   "stage_acceptance": [
@@ -33,8 +33,8 @@
     {
       "stage": 2,
       "modules": "QC数据、缓存、任务桥",
-      "implementation": "离线快照及采集任务协议保留81f已测范围；真实平台运行及数据认证未通过",
-      "evidence": "WR18离线软件通过身份81f；WR19元数据更正独立核对通过身份844；本轮未重跑软件套件",
+      "implementation": "原有81f离线范围保留；新增原生编译拒绝与原子结算候选待审核",
+      "evidence": "WR19元数据844独立通过；新候选478仓库及12开发侧边界通过，不是新增独立验收",
       "blocking_findings": [],
       "status": "pending_acceptance",
       "scope": "已测离线软件通过，真实运行及数据认证未通过",
@@ -109,8 +109,8 @@
     "WR-19": "independently_verified_metadata_correction_on84414ab"
   },
   "latest_independent_report": "audit/reviews/20261027-84414ab-windows/formal_report.json",
-  "developer_fix_evidence": "audit/review_packages/wr19/developer_verification.json",
-  "current_handoff": "docs/review/wr19.md",
+  "developer_fix_evidence": "audit/review_packages/native_rejection/developer_verification.json",
+  "current_handoff": "docs/stage2-next.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -1608,7 +1608,7 @@
     "真实组合成本风险账本、搜索增量、GPT闭环",
     "2026独立性及独立最终/前向金融测试"
   ],
-  "new_candidate_acceptance": "acceptance_record_only; no_new_runtime_software_acceptance",
+  "new_candidate_acceptance": "pending_fixed_commit_independent_review_of_native_compile_rejection_and_atomic_settlement",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -1716,20 +1716,25 @@
     "scope": "Exact suite counts copied from the fixed 81f independent report; prior ae2 counts retain their own source identity."
   },
   "current_candidate": {
-    "parent_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
-    "source_manifest_hash": "17a984dbba4210d98c0147bcaba924189c3b9508e3b601587a1957ddf4511af4",
+    "parent_commit": "268f420e9d066e7e7859566a65c0ce65523bec82",
+    "source_manifest_hash": "073ef722fd41768ba87013ad40c45efa6320891167ba63b4dcdacb2b6218bfcd",
     "independently_accepted": false,
     "cloud_deployed": false,
-    "registry_or_WR12_CLI_changed_this_repair": false,
-    "metadata_and_documentation_only": true,
-    "runtime_engine_and_test_sources_unchanged": true,
-    "kind": "WR19_independent_acceptance_archival_record",
-    "registry_changed": false,
-    "Engineering_CLI_changed": false,
+    "registry_or_WR12_CLI_changed_this_repair": true,
+    "metadata_and_documentation_only": false,
+    "runtime_engine_and_test_sources_unchanged": false,
+    "kind": "native_compile_rejection_development_candidate",
+    "registry_changed": true,
+    "Engineering_CLI_changed": true,
     "Collection_WR12_CLI_changed": false,
     "Engineering_completion_contract_changed": false,
     "software_acceptance_bound_to": "81fbe5294055423e88ee5aeae48ca6223e7971da",
-    "developer_repository_tests": 453
+    "developer_repository_tests": 478,
+    "execution_source_manifest_hash": "49ed388611c1a2a41bf3c905746c4140e171942638a1fd2990d93bc44031fc07",
+    "implementation_hash": "752e83fd917f5680ffc647f70b1c88b5f36204d07e11c9e59a73099a2b544413",
+    "deployment_hash": "d2496d0f2524bda1ba4875df599d2496ad44e8a360536190cafe9243227392fb",
+    "new_failure_feature_independently_accepted": false,
+    "prior_success_and_completion_scope_retained": true
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",

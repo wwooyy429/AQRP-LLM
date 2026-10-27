@@ -1,6 +1,6 @@
 {
   "schema_version": 5,
-  "kind": "offline_software_retained_and_WR19_metadata_independently_passed",
+  "kind": "native_compile_rejection_candidate_pending_review_and_platform_evidence",
   "accepted_offline_source_commit": "7bf716f45fd6183951a492f0201012af717070f0",
   "accepted_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
   "independent_offline_accepted_stages": [
@@ -76,6 +76,7 @@
   },
   "blockers": [
     "existing_LEAN_delivered_terminal_and_reconciled_result",
+    "new_native_rejection_software_fixed_commit_independent_review",
     "new_implementation_cloud_deployment_and_completed_runtime_evidence",
     "historical_US200_financial_PIT_and_corporate_action_certification"
   ],
@@ -84,11 +85,11 @@
   "model_API_calls": 0,
   "new_independent_review_dispatched": false,
   "financial_evidence": false,
-  "source_changed": false,
+  "source_changed": true,
   "source_catalog_and_inactive_template_added": false,
   "active_research_configuration_changed": false,
   "authoritative_budget_changed": false,
-  "candidate_development_document": "docs/review/wr19.md",
+  "candidate_development_document": "docs/stage2-next.md",
   "new_candidate_independently_accepted": false,
   "candidate_cloud_deployed": false,
   "candidate_additions": [
@@ -105,9 +106,16 @@
   ],
   "known_open_findings": [],
   "developer_fixes_pending_independent_verification": [],
-  "source_changed_this_round": [],
+  "source_changed_this_round": [
+    "cloud/qresearch/engineering_receipts.py",
+    "cloud/qresearch/engineering_tasks.py",
+    "cloud/qresearch/registry.py",
+    "cloud/research_config.py",
+    "tools/stage2.py",
+    "tests/test_native_backtest_rejection.py"
+  ],
   "accepted_offline_scope": "WR01-18及本轮实际覆盖的离线准入/计算/采集/回执/恢复；非阶段2整体",
-  "new_candidate_acceptance_scope": "acceptance_record_only; software_acceptance_bound_to81fbe52",
+  "new_candidate_acceptance_scope": "new_native_compile_rejection_and_atomic_settlement_pending_fixed_commit_independent_review",
   "documentation_and_archival_metadata_changed": true,
   "platform_comparison_from_independent_review": {
     "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -150,7 +158,7 @@
       "raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46"
     }
   },
-  "candidate_source_manifest_hash": "17a984dbba4210d98c0147bcaba924189c3b9508e3b601587a1957ddf4511af4",
+  "candidate_source_manifest_hash": "073ef722fd41768ba87013ad40c45efa6320891167ba63b4dcdacb2b6218bfcd",
   "collection_remote_protocol_and_registry_admission": "passed_in_retested_offline_scope_on81fbe52; platform_and_data_not_accepted",
   "known_open_blocking_findings": [],
   "known_open_nonblocking_findings": [],
@@ -188,5 +196,16 @@
   "latest_software_independent_report": "audit/reviews/20261027-81fbe52-windows/formal_report.json",
   "software_acceptance_bound_to_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
   "metadata_acceptance": "WR19_passed_at84414ab",
-  "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874"
+  "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+  "candidate_execution_source_manifest_hash": "49ed388611c1a2a41bf3c905746c4140e171942638a1fd2990d93bc44031fc07",
+  "latest_read_only_preflight": "audit/stage2_next_preflight.json",
+  "current_candidate_change_scope": {
+    "implementation_changed": true,
+    "active_research_configuration_changed": false,
+    "budget_usage_changed": false
+  },
+  "developer_features_pending_independent_verification": [
+    "native_compile_rejection_and_atomic_settlement"
+  ],
+  "source_configuration_budget_changed_scope": "No registered formal research configuration or budget admission changed; implementation changes are declared separately."
 }

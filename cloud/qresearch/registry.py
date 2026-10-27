@@ -602,25 +602,29 @@ class Registry:
         return attempt.attempt_id if isinstance(attempt, Attempt) else attempt
 
     def _transition(self, attempt: Attempt | str, kind: str, **fields: Any) -> Attempt:
-        attempt_id = self._attempt_id(attempt)
         with self.store.locked(self.LOCK):
-            state = self._replay()
-            if attempt_id not in state["attempts"]:
-                raise RegistryError("Unknown attempt_id")
-            record = state["attempts"][attempt_id]
-            if record["status"] not in _OPEN_STATES:
-                if record["status"] == kind:
-                    return self._attempt(record)
-                raise RegistryError("Attempt already finalized as " + record["status"])
-            if kind == "failed" and record["status"] == "ambiguous" and not fields.get("reconciliation"):
-                raise RegistryError("An ambiguous submission requires an explicit reconciliation receipt")
-            if kind == "pending" and record["status"] == "ambiguous":
-                raise RegistryError("Ambiguous submission must be resolved by an observed final result or reconciliation")
-            event = dict(fields, kind=kind, attempt_id=attempt_id)
-            self._append(event)
-            record.update(event)
-            record["status"] = kind
-            return self._attempt(record)
+            return self._transition_locked(attempt, kind, **fields)
+
+    def _transition_locked(self, attempt: Attempt | str, kind: str, **fields: Any) -> Attempt:
+        """Existing transition body; caller must already own the Registry LOCK."""
+        attempt_id = self._attempt_id(attempt)
+        state = self._replay()
+        if attempt_id not in state["attempts"]:
+            raise RegistryError("Unknown attempt_id")
+        record = state["attempts"][attempt_id]
+        if record["status"] not in _OPEN_STATES:
+            if record["status"] == kind:
+                return self._attempt(record)
+            raise RegistryError("Attempt already finalized as " + record["status"])
+        if kind == "failed" and record["status"] == "ambiguous" and not fields.get("reconciliation"):
+            raise RegistryError("An ambiguous submission requires an explicit reconciliation receipt")
+        if kind == "pending" and record["status"] == "ambiguous":
+            raise RegistryError("Ambiguous submission must be resolved by an observed final result or reconciliation")
+        event = dict(fields, kind=kind, attempt_id=attempt_id)
+        self._append(event)
+        record.update(event)
+        record["status"] = kind
+        return self._attempt(record)
 
     def pending(self, attempt: Attempt | str, *, external_id: str, details: dict | None = None) -> Attempt:
         """Record an accepted asynchronous job, not a completed computation."""

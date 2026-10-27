@@ -14,7 +14,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import canonical_json, content_hash, validate_key
-from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge
+from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, submission_protocol
 from qresearch.registry import BudgetExceeded
 from research import read_json, write_changed, open_registry, export_usage
 from stages import source_manifest
@@ -173,6 +173,12 @@ def prepare(bridge, attempt):
     admission = {"payload": payload, "deployment": deployment,
         "input_path": path.relative_to(ROOT).as_posix(), "cloud_input_path": "_engineering_task_input.py"}
     bridge.store.write_once("engineering/admitted-inputs/" + attempt + ".json", canonical_json(admission))
+    if record["stage"] == "lean":
+        # A new dispatch can rely on the accepted-pointer-before-original
+        # publication protocol only when it was pinned before returning input.
+        # Existing admission recovery above deliberately never backfills this.
+        bridge.store.write_once("engineering/submission-protocol/" + attempt + ".json",
+                                canonical_json(submission_protocol(payload, deployment)))
     return admission
 
 
@@ -199,7 +205,7 @@ def _limits(bridge, kind):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("preview", "freeze", "register", "claim", "prepare", "research-result", "backtest-submission", "backtest-result", "status"))
+    parser.add_argument("command", choices=("preview", "freeze", "register", "claim", "prepare", "research-result", "backtest-submission", "backtest-rejection", "backtest-result", "status"))
     parser.add_argument("--plan-file", type=Path)
     parser.add_argument("--projects-file", type=Path)
     parser.add_argument("--tool-file", type=Path)
@@ -221,7 +227,7 @@ def main():
             bridge_for_attempt(args.attempt, registry=registry)
         print(json.dumps(registry.snapshot(), ensure_ascii=True))
         return
-    if args.command in {"prepare", "research-result", "backtest-submission", "backtest-result"}:
+    if args.command in {"prepare", "research-result", "backtest-submission", "backtest-rejection", "backtest-result"}:
         if not args.attempt:
             parser.error("--attempt is required for an existing charged task")
         bridge = bridge_for_attempt(args.attempt)
@@ -243,7 +249,7 @@ def main():
     else:
         if not args.attempt or not args.tool_file:
             parser.error("--attempt and --tool-file with actual tool metadata required")
-        from qresearch.engineering_receipts import research_observation, backtest_submission, backtest_observation
+        from qresearch.engineering_receipts import research_observation, backtest_submission, backtest_rejection, backtest_observation
         admitted = admitted_input(bridge, args.attempt)
         payload, deployment = admitted["payload"], admitted["deployment"]
         native = read_json(args.tool_file)
@@ -253,6 +259,8 @@ def main():
             result = vars(bridge.consume_completion(args.attempt, completion_source=lambda _: observed["completion"]))
         elif args.command == "backtest-submission":
             result = vars(bridge.record_submission(args.attempt, backtest_submission(payload, deployment, native)))
+        elif args.command == "backtest-rejection":
+            result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
         else:
             if not args.logs_file:
                 parser.error("--logs-file with actual completed-job log observations required")
