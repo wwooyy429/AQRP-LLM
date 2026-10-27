@@ -1,0 +1,49 @@
+{
+  "kind": "developer_relative_root_actual_CLI_probe",
+  "cases": [
+    {
+      "case": "relative_target_correct",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_source\\tools\\review_metadata.py",
+        "--root",
+        "..\\alternate_root"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_mre\\caller",
+      "exit_code": 0,
+      "expected_exit": 0
+    },
+    {
+      "case": "relative_target_foreign_hash",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_source\\tools\\review_metadata.py",
+        "--root",
+        "..\\alternate_root"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_mre\\caller",
+      "exit_code": 1,
+      "expected_exit": 1
+    },
+    {
+      "case": "default_tool_from_foreign_cwd",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_source\\tools\\review_metadata.py"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_mre\\caller",
+      "exit_code": 0,
+      "expected_exit": 0
+    }
+  ],
+  "actual_CLI_processes": 3,
+  "actual_repository_index_unchanged": true,
+  "isolated_target_metadata_restored": true,
+  "new_QC_or_market_calls": 0,
+  "new_authoritative_budget_writes": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false
+}

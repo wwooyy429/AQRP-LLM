@@ -1,0 +1,11 @@
+固定ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6；基线ea6053e。
+原WR22修复触发范围通过，原WR20范围保持；当前数据观测模块仍因WR25/26两个P2不通过。阶段2整体、正式数据认证和金融有效性未验收。
+原WR22 MRE/fixture逐字节不变：ea退出1，ccad退出0；原WR20套件13/13通过43场景，上轮套件9/9通过23场景。
+新增历史边界9方法：7通过、2失败、0errors，29命名场景；5失败记录=WR25三个未知枚举字符串+WR26未来/缺current两个case。场景不是unittest子例，复验及MRE重复不相加为独有总数。
+WR25正常公开store/audit路径可达；None不足、明确etf排除通过、unknown但liquid齐全不足；unknown+liquid全缺误过。旧ea同原probe亦误过，属于本轮修补未覆盖的既有路径。
+WR26四正控通过：及时current完整可过、及时current全缺不足、明确unlisted可排除、未来current但liquid齐全不足；未来/缺current且liquid全缺均误过。旧mapping区间终结不等于明确退市，不能用未来值补回过去。
+连续两/三段、ticker/同ticker、半开相邻/gap/overlap一微秒、历史可知时点相等/之后、IPO19/20期和raw/ref/count/私有summary重算已验证；全部7正式认证标志仍false。
+0–7矩阵87份精确源码引用，0新增软件方法/0平台调用，rawSHA 3d5e9429ad43e37a70440b67690f9aece930dd73d21c87c1b5296429c4e656c8。本轮matrix及sidecar均用write_bytes，raw值一致。
+配置/章程/暴露9文件与ea原字节一致；active factor/model/trading及GPT model/call/spend null；正式研究、自动GPT、交易、最终测试关闭。17事件7/10/1、工程2/2/1停止门保持，真实执行和账本写入均0。
+实际云端仍7fc，本地新实现未执行；2024–25暴露、2026独立性未知；financial_evidence=false。
+首次所有测试/反例原输出和命令保留。两个初始只读路径发现错误另列，不计为软件错误；未改生产或原断言。

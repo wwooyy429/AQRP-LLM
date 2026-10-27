@@ -1,0 +1,67 @@
+只读正式报告交叉QA：无错报或需要阻止封包的报告问题。
+
+已核对本轮正式JSON、可读文本和完整findings，与子审查的源码/预算/归档及WR24/27原始记录交叉一致；没有运行新产品测试或MRE，没有修改root文件。
+
+来源：ccad固定SHA、ea失败基线、7fc旧实际云端分离正确；4977原字节、144review、31deployment、9变化及全部5种hash一致。654开发最终与旧652分开，主来源验证65/65只是静态检查。
+
+计数：actually_executed.static_source_archive=65/65、unit0；metadata=11项9pass2fail、12negative_scenarios、unit0，两失败明确同属WR27。未称该专项全绿，未叠成独有unit数量。
+
+WR27：三项findings编号25/26/27和P2/P2/P3、blocking true/true/false准确；WR27完整项与子审查逐字段相同，限于显式--root跨目录引用工具树hash，默认同目录源码hash独立正确。原WR24当前/历史及默认入口修复通过，与新增WR27非阻断、观测模块WR25/26阻断和阶段2整体未通过一致。
+
+预算与平台：真实17事件原字节/旧13前缀、7/12、10/20、1/16及normal/reserve、工程2/2/1停止/无新增扣费退款正确。本轮QC0，GitHub/CI独立只读另列；旧28同3异明确不是本轮inventory。native原14ae packet/6a537response、1失败2载体/9traceback条目43物理行及底层未知均吻合；金融指标null和financial_evidence=false准确。
+
+归档：旧ZIP60923854 bytes/3eb0d548…、14165登记项；选择325份1833366 bytes、省略13841份，合计14166完整文件=登记项+清单自身。4315是ea基线Git原有历史归档保存量，94为新开发输出manifest项；三个计数未混用，未冒称选取目录为完整原包。当前可读文本完整内嵌JSON与formal_report.json完全相同。
+
+阶段0/1仅已有已测范围；阶段2失败，3–7仍未验收/未实现完整运行，真实成功链/旧worker/数据认证缺口未被软件测试覆盖。
+
+封包尚未在本次QA中检查；待root输出封包脚本/结果后，可另核对选择边界和可移植最小脚本。WR27最小脚本接受source/git-repository/output参数并自建fresh目标树；纯已生成alternate_root可不选入，保留脚本/原结果/命令/stdout/stderr。
+
+静态逐字段QA结果（不计新产品测试）：
+{
+  "all_five_identity_hashes_match": true,
+  "fixed_source_baseline_cloud_separated": true,
+  "source_counts4977_144_31_9": true,
+  "static65_pass_not_unit": true,
+  "metadata11_9_2_WR27_and12notunit": true,
+  "finding_ids_priorities_blocking": true,
+  "WR27_full_finding_equals_original_child": true,
+  "embedded_machine_JSON_exactly_equals_formal_JSON": true,
+  "overall_failure_original_fixes_passed_scoped": true,
+  "budget_original_journal_hash": true,
+  "budget7_10_1_engineering2_2_1_stopped": true,
+  "archive_selection_and_complete_ZIP": true,
+  "financial_false_metrics_unknown": true
+}
+
+本次读取文件SHA256：
+{
+  "formal_report.json": "675420a899fe5cbaead20a829196fce039a6feb60d14d2b4b1cdeeb3d453a7d5",
+  "formal_report.txt": "b2d621a20195d634cc2ea11a88439ee04da98f0a77d0b4e48ee39e62007cb3cf",
+  "findings.json": "ab51577c3f0f0e7b59a9d73166bf8393451deca388f0471588902ebff40628a5",
+  "archive_agent/report.json": "02e9cdadde6fd3bb44e030d7299a186baefd3eee8f8bfeab995366e48e9538b1",
+  "archive_agent/wr24_report.json": "f7f5277db9dfe64962b9b94ad0361b9afcebb78a93ed45fe2ca4c47988780671",
+  "archive_agent/finding_WR27.json": "569b951b5e1e4b095dcd04c2605632454aad65fa1e062fddb00a55dbf67b0aa8",
+  "archive_agent/execution_summary.json": "74a03b7b66e7c7596fbd2088d19d2c9f84fc532f4b78ec09d2b3e1f3ce9a38dd"
+}
+
+
+阶段3说明补充后的QA追加（原哈希在上文保留，作为before）：
+只读检查build_formal_report.py第22行及重新生成报告；恢复两个stage3字段即可重建原JSON的精确SHA256，恢复对应人读矩阵行及内嵌JSON即可重建原TXT的精确SHA256，证明其余内容未变。阶段3仍未验收，现明确分层收益未实现；既有来源/预算/平台/65与11-9-2计数/WR27/归档QA保持。没有运行新产品测试。
+{
+  "change_scope": "仅正式stage3 implementation增加分层收益未实现，gaps增加同一缺口；源码/发现/计数/预算/平台/结论不变。",
+  "before_report_hashes": {
+    "formal_report.json": "675420a899fe5cbaead20a829196fce039a6feb60d14d2b4b1cdeeb3d453a7d5",
+    "formal_report.txt": "b2d621a20195d634cc2ea11a88439ee04da98f0a77d0b4e48ee39e62007cb3cf"
+  },
+  "after_report_hashes": {
+    "formal_report.json": "acb5c52c4e704cca9143ccdb902f96d30b49472d5fcda532efa3e4bf5fe8dcd0",
+    "formal_report.txt": "7c09f93e1d0d93ce89e76610f87eb8cf1e245be57461a8b5d2750ab44835ddf4"
+  },
+  "reverting_exactly_two_stage3_fields_reconstructs_before_JSON_hash": true,
+  "reverting_human_stage3_line_and_embedded_JSON_reconstructs_before_TXT_hash": true,
+  "other_prior_QA_file_hashes_unchanged": true,
+  "current_embedded_JSON_matches_current_formal_JSON": true,
+  "stage3_status_remains_not_accepted": true,
+  "new_product_tests_run": 0,
+  "root_files_modified_by_QA": 0
+}

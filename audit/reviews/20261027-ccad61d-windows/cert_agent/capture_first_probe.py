@@ -1,0 +1,5 @@
+from pathlib import Path
+import hashlib,json,os,subprocess,time
+O=Path(__file__).parent;cmd=[r'C:\Users\11638\.codex\tmp\aqrp-review-20261026\venv\Scripts\python.exe','-B',str(O/'first_unmapped_classification_probe.py')];t=time.perf_counter();r=subprocess.run(cmd,cwd=O,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',PYTHONIOENCODING='utf-8',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1'),capture_output=True)
+for n,b in [('first_unmapped_classification.stdout',r.stdout),('first_unmapped_classification.stderr',r.stderr)]:(O/n).write_bytes(b)
+(O/'first_unmapped_classification_execution.json').write_bytes((json.dumps({'command':cmd,'cwd':str(O),'exit_code':r.returncode,'seconds':time.perf_counter()-t,'stdout_raw_sha256':hashlib.sha256(r.stdout).hexdigest(),'stderr_raw_sha256':hashlib.sha256(r.stderr).hexdigest(),'script_raw_sha256':hashlib.sha256((O/'first_unmapped_classification_probe.py').read_bytes()).hexdigest(),'actually_executed':True,'real_market_QC_model_or_budget_calls':0},ensure_ascii=False,indent=2)+'\n').encode());print(r.stdout.decode());raise SystemExit(r.returncode)

@@ -1,0 +1,22 @@
+{
+  "finding": "WR-27",
+  "priority": "P3",
+  "blocking": false,
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "scope": "Only explicit --root pointing at a distinct valid synthetic source tree; default path remains correct.",
+  "default_legal_control_exit": 0,
+  "default_source_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
+  "alternate_actual_source_hash": "19dc830d43a9234845992a2a05d2f2435f2c7a55b639e667cb043a22a97b3713",
+  "foreign_hash_expected_exit": "nonzero",
+  "foreign_hash_actual_exit": 0,
+  "foreign_hash_stdout": "{\"status\": \"metadata_consistent\", \"baseline_commit\": \"ea6053e3e9ef4be17db246daf18a4cf9b2e5be58\", \"changed_source_files\": 10, \"budget_and_journal_raw_unchanged\": true, \"external_activity_authenticated\": false, \"independent_acceptance\": false, \"financial_evidence\": false}\r\n",
+  "own_hash_expected_exit": 0,
+  "own_hash_actual_exit": 1,
+  "own_hash_stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 84, in check_repository\r\n    raise ValueError(\"Current metadata does not identify the actual local source manifest\")\r\nValueError: Current metadata does not identify the actual local source manifest\r\n",
+  "source_original_raw_unchanged": true,
+  "actual_repository_index_unchanged": true,
+  "independent_product_unit_methods": 0,
+  "QC_Research_LEAN_model_deployment_authoritative_budget_calls": 0,
+  "financial_evidence": false
+}

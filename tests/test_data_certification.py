@@ -408,6 +408,101 @@ class DataCertificationTests(unittest.TestCase):
                 self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8000)
                 self.assertEqual(result['counts']['inconsistent_classification_cells'], 0)
 
+    def test_unmapped_current_types_with_missing_liquidity_remain_unknown(self):
+        for kind in ('UNMAPPED_VENDOR_CODE', 'unknown', 'Common_Stock'):
+            with self.subTest(kind=kind):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1]['instrument_type'] = kind
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'insufficient_evidence')
+                self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+                self.assertFalse(result['checks']['historical_classification_and_mapping_consistent'])
+
+    def test_expired_mapping_or_exclusion_without_current_coverage_is_unknown(self):
+        for kind, listed in (('common_stock', True), ('etf', True), ('common_stock', False)):
+            with self.subTest(kind=kind, listed=listed):
+                self.setUp()
+                rows = self.mapping_history()
+                rows = rows[:-1]
+                rows[0].update(instrument_type=kind, listed=listed)
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'insufficient_evidence')
+                self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_future_current_coverage_cannot_preemptively_exclude_historical_sid(self):
+        for kind, listed in (('common_stock', True), ('etf', True), ('common_stock', False)):
+            with self.subTest(kind=kind, listed=listed):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1].update(instrument_type=kind, listed=listed,
+                    available_at=ts('2018-02-01 09:00:00.000001').isoformat())
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'insufficient_evidence')
+                self.assertEqual(result['counts']['inconsistent_classification_cells'], 2)
+
+    def test_current_coverage_knowledge_equality_and_one_microsecond_delay(self):
+        for available, expected, unknown in (('2018-01-31 09:00', 'observations_passed', 0),
+                ('2018-01-31 09:00:00.000001', 'insufficient_evidence', 1)):
+            with self.subTest(available=available):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1].update(instrument_type='etf', available_at=ts(available).isoformat())
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], expected)
+                self.assertEqual(result['counts']['inconsistent_classification_cells'], unknown)
+
+    def test_explicit_current_exclusions_do_not_need_unrelated_unknown_fields(self):
+        for changes in ({'listed': False, 'instrument_type': 'UNMAPPED_VENDOR_CODE'},
+                {'listed': None, 'instrument_type': 'etf'},
+                {'listed': True, 'instrument_type': 'etf', 'exchange': None}):
+            with self.subTest(changes=changes):
+                self.setUp()
+                rows = self.mapping_history()
+                rows[-1].update(changes)
+                self.change_table('security_master', rows)
+                self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+                result = self.audit()
+                self.assertEqual(result['status'], 'observations_passed')
+                self.assertEqual(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_future_only_master_does_not_leak_a_sid_into_historical_obligations(self):
+        rows = self.mapping_history()
+        rows = [row for row in rows if row['sid'] != SID[0] or row['effective_to'] is None]
+        rows[-1]['available_at'] = ts('2018-02-01 09:00:00.000001').isoformat()
+        self.change_table('security_master', rows)
+        self.change_source('liquidity', [row for row in self.liquid if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'observations_passed')
+        self.assertEqual(result['counts']['known_eligible_candidate_expected_cells'], 8000)
+        self.assertEqual(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_known_liquidity_sid_without_any_master_coverage_is_unknown_even_below_cutoff(self):
+        self.change_table('security_master', [row for row in self.table_rows['security_master'] if row['sid'] != SID[0]])
+        result = self.audit()
+        self.assertEqual(result['status'], 'insufficient_evidence')
+        self.assertEqual(result['counts']['observed_member_cells'], 400)
+        self.assertGreater(result['counts']['inconsistent_classification_cells'], 0)
+
+    def test_closed_classification_semantics_never_infer_excluded_from_unknown(self):
+        from qresearch.data_certification import _classification_kind, _master_qualification
+        included = {'common_stock', 'adr', 'reit_common'}
+        excluded = {'etf', 'etn', 'closed_end_fund', 'preferred_stock', 'unit', 'warrant', 'otc'}
+        for kind in included | excluded | {None, 'unknown', 'UNMAPPED_VENDOR_CODE', 'Common_Stock'}:
+            with self.subTest(kind=kind):
+                expected = 'included' if kind in included else 'excluded' if kind in excluded else 'unknown'
+                self.assertEqual(_classification_kind(kind), expected)
+                self.assertEqual(_master_qualification({'instrument_type': kind, 'listed': True, 'exchange': 'NYSE'}), expected)
+                self.assertEqual(_master_qualification({'instrument_type': kind, 'listed': False, 'exchange': None}), 'excluded')
+
     def test_old_candidate_history_audit_preserves_private_originals_and_no_certification(self):
         self.change_table('security_master', self.mapping_history())
         rows = [row for row in self.liquid if row['sid'] != SID[0]]

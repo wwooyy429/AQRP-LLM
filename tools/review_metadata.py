@@ -80,7 +80,7 @@ def check_repository(root):
         budget_unchanged=(root / "config/budget.json").read_bytes() == git("show", baseline + ":config/budget.json"),
         journal_unchanged=(root / "audit/runtime/registry/events.jsonl").read_bytes() == git("show", baseline + ":audit/runtime/registry/events.jsonl"))
     from stages import source_manifest
-    if document.get("candidate_source_manifest_hash") != source_manifest()["source_hash"]:
+    if document.get("candidate_source_manifest_hash") != source_manifest(root=root)["source_hash"]:
         raise ValueError("Current metadata does not identify the actual local source manifest")
     return result
 

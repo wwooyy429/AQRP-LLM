@@ -1,0 +1,4 @@
+Read-only setup observations, before product probes:
+1. The first inventory/read requested runtime.diff, which this new audit root did not yet contain. PowerShell reported Cannot find path. Actual fixed implementation was then read directly from source/cloud/qresearch/data_certification.py and source/tests/test_data_certification.py, together with the new README. No product function/test ran in that read.
+2. A read-only inventory of cert_agent before its creation returned no directory. The output directory was then created in the authorized audit root. No source, old checkout or real registry was changed.
+These are reviewer path-discovery errors, separate from the zero errors in executed original/new software suites. Original product assertions and first outputs were not edited or overwritten.

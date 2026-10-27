@@ -1,0 +1,53 @@
+{
+  "command": [
+    "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+    "-B",
+    "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\minimal_wr27_root_manifest.fixed_scope.py",
+    "--source",
+    "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_source",
+    "--git-repository",
+    "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668",
+    "--output",
+    "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_mre"
+  ],
+  "exit_code": 0,
+  "base_snapshot": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "original_script_raw_sha256": "915a642e63991ebe0971bdbb120721605ff334c9309c204dc60b73eb18d97d23",
+  "original_script_unchanged": true,
+  "adaptations": [
+    "Current-product files overlaid on a fresh raw ccad snapshot; no real ledger or configuration changes",
+    "Source metadata hash and changed-path set recomputed for the isolated overlaid tree",
+    "Original B..C fixed diff changed in separate script to B..working-tree under the original private Git index/work-tree environment; all assertions unchanged",
+    "Original C remains a historical base-snapshot label; actual product file hashes recorded below"
+  ],
+  "actual_product_raw_sha256": {
+    "tools/stages.py": "5d7060bcecd4aa2bc2b7037dd602498c82b8d15cef6e2ebb6f8c7d5cf578fd37",
+    "tools/review_metadata.py": "d3869616fe5ec28bb8c8b243a753672fc0ce7af63dc4fdf3b8047d9ec19c34c4",
+    "tests/test_review_metadata.py": "f7ab75b8d4c3dfd86b9c2ae01cec9d2e2bef198ba73eaa2dc95ddf0ee0032d24"
+  },
+  "observed": {
+    "finding": "WR-27",
+    "priority": "P3",
+    "blocking": false,
+    "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "scope": "Only explicit --root pointing at a distinct valid synthetic source tree; default path remains correct.",
+    "default_legal_control_exit": 0,
+    "default_source_hash": "a7e998f929277f1f3b714633347a1b50deb82d2d0aa5d1661c4991b24a8e9b8d",
+    "alternate_actual_source_hash": "e1cfd854d208b3e1100c0ab7148a8ed00e4e14ee169f2a528e560b0c6b1f6cd2",
+    "foreign_hash_expected_exit": "nonzero",
+    "foreign_hash_actual_exit": 1,
+    "foreign_hash_stdout": "",
+    "own_hash_expected_exit": 0,
+    "own_hash_actual_exit": 0,
+    "own_hash_stderr": "",
+    "source_original_raw_unchanged": true,
+    "actual_repository_index_unchanged": true,
+    "independent_product_unit_methods": 0,
+    "QC_Research_LEAN_model_deployment_authoritative_budget_calls": 0,
+    "financial_evidence": false
+  },
+  "new_platform_calls": 0,
+  "real_ledger_or_budget_writes": 0,
+  "independent_acceptance": false
+}

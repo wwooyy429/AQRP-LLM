@@ -1,0 +1,80 @@
+[
+  {
+    "name": "baseline_merge_base",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "merge-base",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 41,
+    "stdout_sha256": "1172f72eb713e062c171c6df92571c9cab1d1a55b1e4de0313917d1ec41cb6e4",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "PR_base_merge_base",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "merge-base",
+      "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 41,
+    "stdout_sha256": "d962c812e1e88a7e7a09922ec06602abc53194edb4f665de75e0b92c1ffbfc3a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "PR_complete_name_status",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--name-status",
+      "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 404777,
+    "stdout_sha256": "e5f71ff9a617779715a09d21eb66dfac5a2e81396b224619c1444add4f8c3c63",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "current_complete_name_status",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--name-status",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 34995,
+    "stdout_sha256": "74ffb8c6cb4f58f64153852b5fed1069e9161cb1cd27e2f8021c745e27c7f23e",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "PR_complete_patch",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--binary",
+      "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 43138409,
+    "stdout_sha256": "2070d769c60e2f6b3c543942658890a1a96d82ec248ee8a9e9a3214b0e0d4850",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "label": "own_index_setup",
+    "command": [
+      "git",
+      "read-tree",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first",
+    "exit_code": 0,
+    "seconds": 0.21,
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "default_legal_control",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first",
+    "exit_code": 0,
+    "seconds": 1.669,
+    "stdout_raw_sha256": "d5036591977b1173a7a737cbc1581539d95bb2b298e626cd17301d68aaf5b8b8",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "foreign_hash_false_accept",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py",
+      "--root",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first\\alternate_root"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first",
+    "exit_code": 0,
+    "seconds": 2.285,
+    "stdout_raw_sha256": "eae404d265d8b5056af1eab2e6f1eb174d22f323db0b5eaf9992f48e55bc7acd",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "own_hash_false_reject",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py",
+      "--root",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first\\alternate_root"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\wr27_first",
+    "exit_code": 1,
+    "seconds": 1.394,
+    "stdout_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_raw_sha256": "c5ef6aa8619c0ccc6262bc413bd786824b2134980f981ef575d50b66934db673"
+  }
+]

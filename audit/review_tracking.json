@@ -2,14 +2,14 @@
   "schema_version": 17,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
-  "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "source_manifest_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
   "accepted_stages": [
     0,
     1
   ],
   "acceptance_scope": "66ff72f本轮新增及回归的已测离线软件通过；阶段2整体及数据/金融认证未通过",
-  "software_acceptance": "WR20_WR21_original_triggers_passed_on_ea6053e_module_failed_WR23_WR22_new_repairs_pending_review",
+  "software_acceptance": "WR22_WR23_WR24_original_scope_passed_on_ccad61d_data_audit_failed_WR25_WR26_new_repairs_pending_review",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -39,21 +39,21 @@
     {
       "stage": 2,
       "modules": "QC、采集缓存、任务桥、原生回执、冻结预检",
-      "implementation": "原WR20/21有限范围通过；新WR22/23/24修补未独立验收",
-      "evidence": "audit/reviews/20261027-ea6053e-windows/formal_report.json",
+      "implementation": "原WR22/23/24有限范围通过；新WR25/26/27修补未独立验收",
+      "evidence": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
       "blockers": [
-        "WR-23/P1待复验",
-        "WR-22/P2待复验",
+        "WR-25/P2待复验",
+        "WR-26/P2待复验",
         "真实成功联合链",
         "旧worker差异",
         "完整数据认证"
       ],
-      "status": "original_WR20_WR21_passed_module_failed_WR23_WR22_current_repairs_pending_review",
-      "independent_report_status": "原触发场景通过；模块软件失败，三项开发修补待复审",
-      "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "status": "original_WR22_WR23_WR24_passed_data_audit_failed_WR25_WR26_new_repairs_pending_review",
+      "independent_report_status": "原WR22/23/24范围通过；观测审计失败，新修补待复审",
+      "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
       "blocking_findings": [
-        "WR-23",
-        "WR-22"
+        "WR-25",
+        "WR-26"
       ],
       "acceptance_gates": [
         {
@@ -68,13 +68,13 @@
         },
         {
           "id": "G3",
-          "status": "WR21_original_trigger_passed_WR23_new_admission_repair_pending_review",
-          "requirement": "Independent exact-version retest of atomic admission identity and write-fault recovery"
+          "status": "native_failure_and_admission_tested_scope_passed_on_ccad61d",
+          "requirement": "Retain independently tested offline scope only; actual new cloud execution is still missing in G1"
         },
         {
           "id": "G4",
-          "status": "WR20_original_trigger_passed_WR22_history_repair_pending_review_full_data_insufficient",
-          "requirement": "Independent master-history completeness retest and authenticated US200/financial timing evidence"
+          "status": "WR22_original_scope_passed_WR25_WR26_repairs_pending_full_data_insufficient",
+          "requirement": "Independent closed-classification/current-coverage retest and authenticated US200/financial timing evidence"
         }
       ]
     },
@@ -167,19 +167,19 @@
   ],
   "known_open_findings": [
     {
-      "id": "WR-23",
-      "priority": "P1",
-      "blocking": true,
-      "status": "developer_fixed_pending_independent_review"
-    },
-    {
-      "id": "WR-22",
+      "id": "WR-25",
       "priority": "P2",
       "blocking": true,
       "status": "developer_fixed_pending_independent_review"
     },
     {
-      "id": "WR-24",
+      "id": "WR-26",
+      "priority": "P2",
+      "blocking": true,
+      "status": "developer_fixed_pending_independent_review"
+    },
+    {
+      "id": "WR-27",
       "priority": "P3",
       "blocking": false,
       "status": "developer_corrected_pending_independent_review"
@@ -204,13 +204,16 @@
     "WR-19": "independently_verified_metadata_correction_on84414ab",
     "WR-21": "independently_verified_original_trigger_scope_on_ea6053e_not_whole_module",
     "WR-20": "independently_verified_original_trigger_scope_on_ea6053e_not_whole_module",
-    "WR-23": "developer_fixed_pending_independent_review",
-    "WR-22": "developer_fixed_pending_independent_review",
-    "WR-24": "developer_corrected_pending_independent_review"
+    "WR-23": "independently_verified_original_repair_scope_on_ccad61d_not_whole_module",
+    "WR-22": "independently_verified_original_repair_scope_on_ccad61d_not_whole_module",
+    "WR-24": "independently_verified_original_repair_scope_on_ccad61d_not_whole_module",
+    "WR-25": "developer_fixed_pending_independent_review",
+    "WR-26": "developer_fixed_pending_independent_review",
+    "WR-27": "developer_corrected_pending_independent_review"
   },
-  "latest_independent_report": "audit/reviews/20261027-ea6053e-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/native_runtime_failure/developer_verification.json",
-  "current_handoff": "audit/review_packages/wr22_wr24/README.md",
+  "current_handoff": "audit/review_packages/wr25_wr27/README.md",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -1636,6 +1639,17 @@
       ],
       "stage2_accepted": false,
       "financial_evidence": false
+    },
+    {
+      "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+      "report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
+      "original_WR22_WR23_WR24_scope": "passed_after_fix",
+      "module_software": "failed_WR25_WR26",
+      "nonblocking": [
+        "WR-27"
+      ],
+      "stage2_accepted": false,
+      "financial_evidence": false
     }
   ],
   "repair_acceptance": {
@@ -1834,16 +1848,16 @@
     "真实因子/模型/组合、成本后增量、独立最终评估和前向运行",
     "2026最终区间独立性；2024–2025既往暴露已知"
   ],
-  "new_candidate_acceptance": "WR22_WR23_WR24_developer_repairs_pending_independent_review_stage2_not_accepted",
+  "new_candidate_acceptance": "WR25_WR26_WR27_developer_repairs_pending_independent_review_stage2_not_accepted",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
     "status": "retained_original_accepted_scope_by_7bf_review"
   },
   "independent_review_execution_scope": {
-    "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
     "scope": "offline_synthetic_and_archived_metadata",
-    "report": "audit/reviews/20261027-ea6053e-windows/formal_report.json",
+    "report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
     "QC_calls": 0,
     "Research": 0,
     "LEAN": 0,
@@ -1851,26 +1865,27 @@
     "deployments": 0
   },
   "current_candidate": {
-    "parent_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
-    "kind": "offline_WR22_WR23_repairs_WR24_metadata_correction",
-    "source_manifest_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
-    "execution_source_manifest_hash": "f54d4ffa640d9a6024134f2c152c0bcc69633c9ba65a1a445b691a9ecdea8aed",
-    "implementation_hash": "343c7d07d042e8061b0f42c65e9efa01b057a72480f0c7df618bb17b172c510f",
-    "deployment_hash": "ab19444baa67b1d099975a85065cf636e15d9562a30f351d224ab300de3d6d20",
+    "parent_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "kind": "offline_WR25_WR26_eligibility_and_WR27_root_manifest_repair",
+    "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+    "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
+    "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
+    "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
     "independently_accepted": false,
     "cloud_deployed": false,
     "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
     "prior_software_approval_not_extended": true,
     "registry_source_changed": false,
     "authoritative_registry_or_budget_changed": false,
-    "Engineering_CLI_changed": true,
+    "Engineering_CLI_changed": false,
+    "manifest_and_metadata_programs_changed": true,
     "Collection_WR12_CLI_changed": false,
-    "developer_repository_tests": 654,
+    "developer_repository_tests": 668,
     "developer_test_counts_overlap": true,
     "developer_replays_are_not_independent_acceptance": true,
     "worker_old_root_cause_proven": false,
     "financial_data_certified": false,
-    "review_package": "audit/review_packages/wr22_wr24/README.md",
+    "review_package": "audit/review_packages/wr25_wr27/README.md",
     "new_configuration_registrations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
@@ -1883,11 +1898,11 @@
     "status": "passed_in_tested_scope"
   },
   "known_open_blocking_findings": [
-    "WR-23",
-    "WR-22"
+    "WR-25",
+    "WR-26"
   ],
   "known_open_nonblocking_findings": [
-    "WR-24"
+    "WR-27"
   ],
   "historical_independent_review_execution_scope_ae2b898": {
     "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -1928,7 +1943,7 @@
   "metadata_acceptance": "WR19_passed_at84414ab",
   "metadata_reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
   "software_acceptance_bound_to_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
-  "latest_software_independent_report": "audit/reviews/20261027-ea6053e-windows/formal_report.json",
+  "latest_software_independent_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
   "latest_metadata_review_execution_scope": {
     "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "report_path": "audit/reviews/20261027-84414ab-windows/formal_report.json",
@@ -2202,13 +2217,13 @@
     },
     {
       "id": "G3",
-      "status": "WR21_original_trigger_passed_WR23_new_admission_repair_pending_review",
-      "requirement": "Independent exact-version retest of atomic admission identity and write-fault recovery"
+      "status": "native_failure_and_admission_tested_scope_passed_on_ccad61d",
+      "requirement": "Retain independently tested offline scope only; actual new cloud execution is still missing in G1"
     },
     {
       "id": "G4",
-      "status": "WR20_original_trigger_passed_WR22_history_repair_pending_review_full_data_insufficient",
-      "requirement": "Independent master-history completeness retest and authenticated US200/financial timing evidence"
+      "status": "WR22_original_scope_passed_WR25_WR26_repairs_pending_full_data_insufficient",
+      "requirement": "Independent closed-classification/current-coverage retest and authenticated US200/financial timing evidence"
     }
   ],
   "current_round_stop_reached": true,

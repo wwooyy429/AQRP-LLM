@@ -16,7 +16,8 @@ import pandas as pd
 
 from .artifacts import canonical_json, content_hash
 from .contracts import DEVELOPMENT_END, aware
-from .ingestion import HistoricalBatchIngestor, IngestionError, resolve_historical_sid
+from .ingestion import (HistoricalBatchIngestor, IngestionError, resolve_historical_sid,
+                        _CLASSIFICATIONS as _SOURCE_CLASSIFICATIONS)
 from .quantconnect import ExchangeCalendar
 from .universe import INCLUDED, select_liquid_universe
 
@@ -307,6 +308,23 @@ def _rows(plan, tables):
     return members, prices, masters, actions
 
 
+def _classification_kind(value):
+    """Only registered source types establish inclusion or exclusion."""
+    if value in INCLUDED:
+        return "included"
+    return "excluded" if value in _SOURCE_CLASSIFICATIONS else "unknown"
+
+
+def _master_qualification(row):
+    """A known exclusion is different from missing classification evidence."""
+    kind = _classification_kind(row["instrument_type"])
+    if row["listed"] is False or kind == "excluded":
+        return "excluded"
+    if row["listed"] is True and kind == "included" and row["exchange"] is not None:
+        return "included"
+    return "unknown"
+
+
 def _continuous_listed_master(rows, start, formation):
     """Known half-open SID intervals cover a continuous listed period.
 
@@ -319,7 +337,8 @@ def _continuous_listed_master(rows, start, formation):
     cursor = start
     for index, row in enumerate(intervals):
         if (row["effective_from"] > cursor or index and row["effective_from"] != cursor
-                or row["listed"] is not True or row["instrument_type"] is None or row["exchange"] is None):
+                or row["listed"] is not True or _classification_kind(row["instrument_type"]) == "unknown"
+                or row["exchange"] is None):
             return False
         finish = row["effective_to"]
         if finish is None:
@@ -336,6 +355,8 @@ def _historical_candidate_evidence(masters, active, liquid, formation, first_ses
     it cannot erase master-proven maturity when all liquidity rows disappear.
     A recent interval without either a listing clock or complete historical
     intervals is unknown, rather than affirmative evidence of a young IPO.
+    Every then-known SID also needs current coverage: an expired mapping or
+    finite excluded interval does not declare that the security stayed out.
     """
     histories, current, listing_clocks = {}, {}, {}
     for row in masters:
@@ -345,31 +366,34 @@ def _historical_candidate_evidence(masters, active, liquid, formation, first_ses
         current.setdefault(row["sid"], []).append(row)
     for row in liquid:
         if (row["listing_effective_at"] is not None and row["listing_available_at"] is not None
-                and row["vendor_available_at"] is not None
+                and row["vendor_available_at"] is not None and row["historical_ingested_at"] is not None
                 and _clock(row["listing_available_at"]) <= formation
                 and _clock(row["vendor_available_at"]) <= formation
+                and _clock(row["historical_ingested_at"]) <= formation
                 and _clock(row["listing_effective_at"]) <= formation):
             stamp = _clock(row["listing_effective_at"])
             listing_clocks[row["sid"]] = min(stamp, listing_clocks.get(row["sid"], stamp))
     expected, unknown = set(), set()
-    for sid, versions in current.items():
-        # Missing liquidity must not turn unknown current eligibility into an
-        # affirmative exclusion. Known unlisted or excluded types remain out.
-        if any(row["listed"] is None or row["listed"] is True and row["instrument_type"] is None
-                for row in versions):
+    # Future-only master rows do not create historical inventory knowledge.
+    # Current rows are a subset of the then-known histories above.
+    for sid in sorted(set(histories) | set(listing_clocks)):
+        versions = current.get(sid, ())
+        if len(versions) != 1:
             unknown.add(sid)
-        if not any(row["listed"] is True and row["instrument_type"] in INCLUDED for row in versions):
+            continue
+        qualification = _master_qualification(versions[0])
+        if qualification == "excluded":
+            continue
+        if qualification == "unknown":
+            unknown.add(sid)
             continue
         history = histories[sid]
         clock = listing_clocks.get(sid)
         if clock is not None and clock <= first_session:
             expected.add(sid)
-        if len(versions) != 1:
-            unknown.add(sid)
-            continue
         relevant = [row for row in history if row["effective_to"] is None
                     or row["effective_to"] > first_session]
-        if any(row["listed"] is None or row["instrument_type"] is None or row["exchange"] is None
+        if any(row["listed"] is None or _classification_kind(row["instrument_type"]) == "unknown" or row["exchange"] is None
                 or clock is not None and clock <= first_session and row["listed"] is False
                 for row in relevant):
             unknown.add(sid)

@@ -1,0 +1,372 @@
+{
+  "fixed_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "scope": "Independent WR22 repair replay, unchanged prior independent suites, new known-answer historical master/time/classification combinations, read-only full-stage controls. No author fixture imported.",
+  "verdict": {
+    "WR22_original_trigger_scope": "pass_repair_verified",
+    "WR20_original_scope": "pass_preserved",
+    "prior9_combinations": "pass",
+    "current_data_observation_module": "fail_WR25_P2_and_WR26_P2",
+    "stage2_overall": "not_accepted",
+    "vendor_full_history_actual_availability": "not_certified",
+    "financial_evidence": false,
+    "WR23_WR24": "separate_root_review_not_decided_by_this_agent"
+  },
+  "actually_executed": {
+    "original_WR22_minimal": {
+      "baseline_ea_exit": 1,
+      "candidate_ccad_exit": 0,
+      "original_script_and_fixture_byte_identical": true
+    },
+    "original_WR20_candidate_suite": {
+      "methods": 13,
+      "passed_methods": 13,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 43,
+      "failure_records": 0,
+      "metadata_CLI_processes": 4,
+      "exit_code": 0
+    },
+    "prior9_candidate_suite": {
+      "methods": 9,
+      "passed_methods": 9,
+      "failed_methods": 0,
+      "errors": 0,
+      "scenario_checks": 23,
+      "failure_records": 0,
+      "exit_code": 0
+    },
+    "new_history_suite": {
+      "methods": 9,
+      "passed_methods": 7,
+      "failed_methods": 2,
+      "errors": 0,
+      "scenario_checks": 29,
+      "failure_records": 5,
+      "exit_code": 1
+    },
+    "new_MRE_scripts": {
+      "WR25_first_probe_exit": 1,
+      "WR25_minimal_exit": 1,
+      "WR25_same_probe_on_ea_exit": 1,
+      "WR26_first_probe_exit": 1,
+      "WR26_minimal_exit": 1
+    },
+    "new_QC_market_model_or_authoritative_budget_calls": 0,
+    "source_unchanged_in_all3_executed_suites": true,
+    "network_attempts": 0
+  },
+  "counting_limit": "13 original methods, previous9 methods and new9 methods are separately executed overlapping suites. 43/23/29 are hand-named scenarios, NOT unittest subcase counts or extra methods. Five new failure records belong to2 methods: three taxonomy values for WR25 and two current-knowledge states for WR26. MREs/controls repeat scenarios and add no unique method total.",
+  "original_identity_and_binding": {
+    "copy_manifest": [
+      {
+        "version": "baseline",
+        "name": "cert_fixture.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "name": "minimal_wr22.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\minimal_wr22.py",
+        "raw_sha256": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "name": "independent_certification.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\cert_agent\\independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "name": "independent_fix_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\independent_fix_boundaries.py",
+        "raw_sha256": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "name": "cert_fixture.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "name": "minimal_wr22.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\minimal_wr22.py",
+        "raw_sha256": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "name": "independent_certification.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\cert_agent\\independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "name": "independent_fix_boundaries.py",
+        "origin": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\independent_fix_boundaries.py",
+        "raw_sha256": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+        "byte_identical": true
+      }
+    ],
+    "assertions_and_original_bytes_unchanged": true,
+    "binding": "launch_original.py explicitly overrides only original cert_fixture.ROOT/SOURCE before runpy; subprocesses bind fixed ea or ccad. Scripts are unedited, outputs separately stored.",
+    "historical_literal_warning": "Original fixed_commit strings and minimal labels are historical script literals; actual current version is the outer execution record, source binding and measured module raw hashes. The same-probe ea negative control retains its original embedded candidate label and discloses that external binding."
+  },
+  "passed_boundary_groups": [
+    "Original complete old listed master + new ticker/same ticker + wholly missing liquidity now yields8040 expected cells and40 gaps instead of rank201 masking.",
+    "Two- and three-segment continuous histories with complete/missing liquidity independently prove age.",
+    "Half-open exact adjacency accepted; one-microsecond gap and overlap remain insufficient.",
+    "Historical old interval known exactly at formation vs one microsecond later vs after last formation is separated; future old evidence is not backfilled.",
+    "None current type/listed remains unknown; explicit etf/unlisted exclusions retain valid behavior.",
+    "Genuine young IPO with known clock and partial post-listing history excluded; no history/no listing evidence remains unknown rather than auto-approved.",
+    "Young IPO with mapping boundary preserves19/20 periods, intraday/equal close/one-microsecond-after-close.",
+    "Original refs/count/raw retained; summary recomputes private original master and rejects tampering.",
+    "All7 vendor/full-history/availability/vintage/research/export/financial flags remain false."
+  ],
+  "findings": [
+    {
+      "id": "WR-25",
+      "priority": "P2",
+      "blocking": true,
+      "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+      "title": "主表未映射分类字符串在流动性全缺时被当作明确排除，错误观测通过",
+      "locations": [
+        {
+          "file": "cloud/qresearch/data_certification.py",
+          "line": 287,
+          "end_line": 288
+        },
+        {
+          "file": "cloud/qresearch/data_certification.py",
+          "line": 355,
+          "end_line": 362
+        }
+      ],
+      "trigger": "同一老SID保留完整旧listed主表段和新mapping，current instrument_type是UNMAPPED_VENDOR_CODE，既不在上游注册分类枚举中也非明确ETF等排除类型。该SID全部liquidity缺失，并由第201名补位。输入走正常DataCertificationPlan/ingest/store_certification_table/audit_data_certification路径，无私有store篡改或绕过hash验证。",
+      "expected": "枚举外的未映射分类必须拒绝或保留unknown，不能当作已知不合格证券排除；观测完整性不能通过。None同样未知，明确etf可合法排除。",
+      "actual": "observations_passed，全部12checks=true，inconsistent_classification_cells=0、known_eligible_candidate_expected_cells=8000、missing_candidate_session_cells=0。相同代码在liquidity齐全时因主表/排名类型不一致而不足，None+全缺不足，明确etf+全缺可通过。",
+      "cause": "security-master的_rows只对非None instrument_type做非空文本检查；_historical_candidate_evidence只把None识别为unknown，再把所有不在INCLUDED的文本直接continue为排除。相对地，ingestion.py:36–37及211–212明确拒绝非_CLASSIFICATIONS的liquidity分类。完整性审计的主表入口没有使用相同的封闭枚举或unknown语义。",
+      "scope_and_severity": "P2观测审计完整性缺陷，阻断当前数据观测模块整体验收。旧ea同字节首probe亦返回observations_passed；属于本轮修补未覆盖的既有路径，不能称本轮引入的回归。所有vendor/full-history/actual-availability/vintage/research/export/financial标志仍false，没有实际供应商认证、因子选择、金融有效性或预算改变证据。",
+      "reproduction": "python -B cert_agent/minimal_wr25.py --output <fresh-result.json>；只依赖旁边原创cert_fixture.py，三正控先过，坏例当前exit1。根另有minimal_wr25.py --source source --output <fresh-result.json>及wr25_confirmation独立重复。首probe及baseline ea重放原件保留。",
+      "minimal_fix": "在主表入口与完整性判断中复用封闭的分类枚举：未知/未映射值拒绝或计unknown，只有明确listed=False或明确已知排除类型才可排除。不能仅因不属于INCLUDED就认定属于排除类型；保留合法ETF及None正控、原WR20/22和私有重算。",
+      "regression_tasks": [
+        "未知代码/unknown/拼写错误分类+全liquidity缺失：拒绝或不足。",
+        "同一未知分类但liquidity齐全、None+全缺均不足；明确etf或明确unlisted仍可排除。",
+        "正常store_certification_table及audit路径需验证，不只测试内部helper。",
+        "原WR20/22反例通过及历史区间/私有输入/正式false标志保持。"
+      ]
+    },
+    {
+      "id": "WR-26",
+      "priority": "P2",
+      "blocking": true,
+      "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+      "title": "老SID形成时点无可知current主表段且流动性全缺时被完整性循环跳过",
+      "locations": [
+        {
+          "file": "cloud/qresearch/data_certification.py",
+          "line": 340,
+          "end_line": 355
+        },
+        {
+          "file": "cloud/qresearch/data_certification.py",
+          "line": 460,
+          "end_line": 464
+        }
+      ],
+      "trigger": "已知老listed SID的旧ticker-mapping区间Jan25终结，但没有明确listed=False或退市证据。替代current段available_at为Feb2 09:00:00.000001，晚于两次形成时点；或替代段完全缺失。与此同时该SID全部liquidity缺失，由第201名补位。这里旧区间终结是映射证据终结，不能当作已知证券退市。",
+      "expected": "形成时点当前分类不可知必须计unknown/证据不足，不能因为没有active行就隐式排除。不得把未来可知的新段回填过去；明确且及时的listed=False区间仍可合法排除。",
+      "actual": "两种case都可能得到observations_passed、12checks=true、expected candidate cells8000、missing candidate cells0、inconsistent classification cells0。旧listed区间仍保留，却不进入当前候选义务或未知集合。",
+      "cause": "active先过滤then-effective且then-available行；_historical_candidate_evidence收集历史后，只遍历current.items()。已知历史SID若当前段不存在/未来才可知，就根本不进入unknown判断。流动性存在时排名后的missing master检查会暴露问题，但全缺时rank201补位隐藏了缺失分类。",
+      "positive_controls": [
+        "及时known current+完整liquidity可通过。",
+        "及时known current+全liquidity缺失因WR22修复正确不足。",
+        "明确及时listed=False current+全liquidity缺失可合法排除。",
+        "未来current但liquidity齐全因排名后missing master检查正确不足。"
+      ],
+      "scope_and_severity": "P2有界观测完整性缺陷，独立于WR25枚举值入口。它不是宣称已认证全市场库存或供应商来源；没有将未来值用于真实交易的证据。正式vendor/full-history/availability/vintage/research/export/financial标志仍false，真实平台/预算/最终测试不变。",
+      "reproduction": "python -B cert_agent/minimal_wr26.py --output <fresh-result.json>；依赖相邻原创cert_fixture.py，四正控先过，再测future-current及missing-current坏例，当前exit1。first_future_current_probe原件及future_current_execution.json保留。",
+      "minimal_fix": "以形成时点可知的历史SID及当前分类证据联合核对覆盖，不能只遍历已有current行。没有明确排除或退市证据的已知历史SID，当前段缺失或尚不可知时保留unknown并阻止观测通过；不读取未来值填回过去，不将映射effective_to当退市，不误伤明确unlisted或合法年轻IPO。",
+      "regression_tasks": [
+        "旧listed映射段结束、新current未来才可知+liquidity全缺：不足。",
+        "旧listed段结束、没有current+liquidity全缺：不足。",
+        "及时current完整/全缺、明确及时unlisted、未来current但liquidity齐全四控制保持。",
+        "原WR20/22及连续区间/gap/overlap/私有重核/false认证保持。"
+      ]
+    }
+  ],
+  "WR25_normal_reachability": {
+    "path": "DataCertificationPlan.from_dict -> HistoricalBatchIngestor.ingest -> store_certification_table(security_master) -> audit_data_certification -> _tables exact schema/hash -> _rows -> _historical_candidate_evidence",
+    "private_store_injection_for_bad_input": false,
+    "master_rows_schema_valid_and_hash_bound": true,
+    "registered_liquidity_classification_enum": "ingestion.py:36–37; _normalize rejects unmapped values at211–212",
+    "master_value_validation": "data_certification.py:287–288 accepts bounded nonempty identity, no enum check",
+    "ea_status_from_unchanged_first_probe": "observations_passed",
+    "introduced_by_current_patch": false,
+    "description": "Existing unhandled path not covered by current repair; no claim that ccad introduced it."
+  },
+  "WR25_minimal_controls": {
+    "None_with_missing_liquidity": "insufficient_evidence",
+    "known_etf_with_missing_liquidity": "observations_passed",
+    "unmapped_master_with_present_liquidity": "insufficient_evidence"
+  },
+  "WR26_minimal_controls": {
+    "known_current_complete": "observations_passed",
+    "known_current_all_liquidity_missing": "insufficient_evidence",
+    "explicit_current_unlisted": "observations_passed",
+    "late_current_but_liquidity_present": "insufficient_evidence"
+  },
+  "system_matrix": {
+    "path": "system_matrix.json",
+    "raw_sha256": "3d5e9429ad43e37a70440b67690f9aece930dd73d21c87c1b5296429c4e656c8",
+    "stages": 8,
+    "exact_source_references": 87,
+    "matrix_adds_software_methods": 0,
+    "platform_calls": 0,
+    "protected_configuration_exposure_and_charter_bytes_equal_ea": {
+      "config/development.json": true,
+      "config/research.json": true,
+      "config/data.json": true,
+      "config/source_catalog.json": true,
+      "config/workflow.json": true,
+      "config/quantconnect.json": true,
+      "config/budget.json": true,
+      "audit/data_exposure.json": true,
+      "docs/research_charter.md": true
+    },
+    "implementation_configuration_execution_evidence_separate": true,
+    "current_local": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "actual_prior_cloud": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "active_factor_model_trading_null": true,
+    "GPT_model_calls_spend_null": true,
+    "formal_research_GPT_trading_final_gates_closed": true,
+    "budget_events": 17,
+    "budget_used": {
+      "configurations": 7,
+      "Research": 10,
+      "LEAN": 1
+    },
+    "engineering_used": {
+      "configurations": 2,
+      "Research": 2,
+      "LEAN": 1
+    },
+    "2024_2025_exposed": true,
+    "2026_independence": "unknown_pending_independent_review"
+  },
+  "source_files_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "29a203cc8fbe64a2eb8b1926cf711a8f9376ed3184c311df890e82de833f4225",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/universe.py": "e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1"
+  },
+  "first_results_preserved": {
+    "original_baseline_failure_and_candidate_pass_stored_separately": true,
+    "original_new5_failure_records_not_rewritten": true,
+    "fixture_or_runner_software_errors": 0,
+    "read_only_setup_path_errors": "read_setup_notes.txt; missing runtime.diff and initial output-directory inventory, neither ran product code",
+    "raw_stdout_stderr": "subprocess capture_output bytes saved, hashes in individual *_execution.json; no PowerShell text redirect used for product probe output"
+  },
+  "unverified": [
+    "No QC/source/cell/output/network/market/model operation by this agent.",
+    "No real17-event ledger replay/write, no production edits or reconfiguration; root separately verifies budget/identity.",
+    "No new bounded cloud runtime success, actual source CollectionError cause, old worker-difference repair, vendor/US200/vintage/actual-delivery certification.",
+    "No general portfolio/accounting/cost/risk engine, bounded enabled GPT loop, actual search/ablation, independent final executor or financial validity acceptance.",
+    "Root broader suites, WR23/24 and full source identity checks are separate evidence, not rerun or counted by this agent."
+  ],
+  "evidence_raw_sha256": {
+    "build_system_matrix.py": "ffd3ada1d1aebfb8242ec3eef2e29cc0974f7a169b46a1331f67eb11dcb90edb",
+    "capture_expansion_probes.py": "d544e8e9cf46516faa7cb9772d23589478c4325924154f136b782d6170c3a6ab",
+    "capture_first_probe.py": "e11a909e8bc30ef9f176e38f4986647d348aa9309f1480ce62483f21917dbf3c",
+    "capture_history.py": "347d24d296bc1863c224a034417d045e7792abeb3c0733acb64f944970fab6a6",
+    "cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "finding_WR25.json": "f9eb8b8b813dd9dcf5d8570806ce9d0750dc324d9a934e58d4b71085834b8106",
+    "finding_WR26.json": "87e1c08294f69de5781ef381f10808c84dd6a46f73cf1c0b1b189291bacee0f9",
+    "first_future_current_probe.py": "f630359f6abf1043894d5844548733ba92f3c74ad38eefa39034cb78ea4a2ecd",
+    "first_future_current_result.json": "81085298f15354267be9ea30e86d0c82e6e1a69cda20bedce60850a11e95ca7b",
+    "first_unmapped_classification.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "first_unmapped_classification.stdout": "ef551540c3d369ba2c062abc714e46a9e1c9f17429c239769be27fdc8b0735b6",
+    "first_unmapped_classification_execution.json": "fda03a8bea4ebfa2030798a950712509b87d39d68be73823aee46271d680bc8b",
+    "first_unmapped_classification_probe.py": "0060c7c11a822a990855dc1184dba2c1e97a30c6ebd9e07a7735249ef6fab257",
+    "first_unmapped_classification_result.json": "921d615bb30b48417f0281e6131577e7aea1236decbe50278b80b97fad700d2e",
+    "future_current_execution.json": "8a9aa971a7304276f448d84e38ca7299dcee6deb9058aa5409d376d34345e36f",
+    "future_current_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "future_current_first.stdout": "d1364ca1683cd38f0fdde5e030ac9b00c4cbd159ab4e6e401e0989e49eecc06c",
+    "history_execution.json": "130de1bc3fc3b85d62abe7ded0b379bbbca3fda3056e4351e622484eca973eb9",
+    "history_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "history_first.stdout": "3ed324bf3da68f160af6d00ee65cdfda38519fceec4906f9c3afe7aa23b796a5",
+    "history_first_results.json": "ea2233cdf00bcf385c12779bae36911a3c032061c634ec7a4048684efa82ff70",
+    "history_first_unittest.txt": "873a1444671c261f07936af3659c8c39f9d40f14bb35861e4d6a8d7290e6dc5e",
+    "independent_history_boundaries.py": "d2eec626aec10d53671ef6ba729cea3e701f7df81d64873b1ffe72070bf381bb",
+    "launch_original.py": "48e81978ff7263cb646ba8cdf227540d43e258cba1d925a880fb6bf550c0031a",
+    "minimal_wr25.py": "5adbea0ef459584a2c8f30060eafd3b6e3cc01456943f307b89c501236c9368a",
+    "minimal_wr25_execution.json": "c31a58b16ecddd7683b38de520875087432c51213a3800a1e1de8d112e425329",
+    "minimal_wr25_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "minimal_wr25_first.stdout": "aade52d4f8cab280d71bf1937240b6ad59ac22e81ea74ddfe85fdc8340135a42",
+    "minimal_wr25_first_result.json": "724f3629df62b4e20153bc1dc16a19867c706d9bd2e2f44bffc4319463f44ab2",
+    "minimal_wr26.py": "866d0768495ecafd6b70a58ccb99ea9f0d51e435e4ad034b83b9f9852db5811a",
+    "minimal_wr26_execution.json": "5fde831e853eddded4acda40a48d0c3a92777ed4dfc725bd72edb0582bcc00c8",
+    "minimal_wr26_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "minimal_wr26_first.stdout": "4bb0dea1fed27e1e24ad2912ced53dde41a0680325eebc6eebcf923d52d5a6fe",
+    "minimal_wr26_first_result.json": "11a264dde3d7ca16a5253ce686d282a397c82af2979fbb6dc061ed93051399b3",
+    "original_replay_index.json": "3406064f894ff05ac607d0765f6b9de98ada187da014cceb92c2659620bda8a4",
+    "read_setup_notes.txt": "cb12655f11f50732d3aa339db194f1b4d0695d5dfcf01b6f384a13c0c659ee3f",
+    "replay_originals.py": "91253dc5f5c5f62a11d0569e061cea062c2b2bec711c0525ec44d148d4f26c4d",
+    "system_matrix.json": "3d5e9429ad43e37a70440b67690f9aece930dd73d21c87c1b5296429c4e656c8",
+    "system_matrix.raw.sha256": "82df04610e513845ef41cef39c880fbf9a8dbc570494b211a17a7e058332b8be",
+    "system_matrix.txt": "60d4fe6ef05d7aec07f0c118c5d05a95c51b8a95690fc110b70808ea99bd6d96",
+    "unmapped_old_ea_execution.json": "4ebf668999364cc0a10a1a3547852c0a4dcdf1faacb621668d5ef3044a87aefb",
+    "unmapped_old_ea_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "unmapped_old_ea_first.stdout": "65463e84d8ac22387393856e3864bbe041c427c992dadef340654926b2649430",
+    "write_report.py": "48534cd77e11c0d4861817a846db8762aa7ac4d7e12220a7a4c56ab3158be4ab",
+    "baseline_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "baseline_original/first_unmapped_classification_probe.py": "0060c7c11a822a990855dc1184dba2c1e97a30c6ebd9e07a7735249ef6fab257",
+    "baseline_original/first_unmapped_classification_result.json": "a78e918b33f77a9a69dd7d68d848d40879c0a024e186d8648663f8b465a68357",
+    "baseline_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "baseline_original/independent_fix_boundaries.py": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+    "baseline_original/minimal_wr22.py": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+    "baseline_original/minimal_wr22_execution.json": "2b96b9160c7c1b3b8aca20b69d8417e6c2041c7bec024ebdd0f25a0e27e9c780",
+    "baseline_original/minimal_wr22_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/minimal_wr22_first.stdout": "d710d087b316621c944eb01f59ad52b04088dfa925e6cf1cca9218663817c50d",
+    "baseline_original/minimal_wr22_first_result.json": "d710d087b316621c944eb01f59ad52b04088dfa925e6cf1cca9218663817c50d",
+    "candidate_original/boundaries_first_results.json": "1cf76830eb783fd00cf0c13132ebeea3db1ec0d98e4a1dcd33b773c0c6cb3543",
+    "candidate_original/boundaries_first_unittest.txt": "baa1058ef026c40b5a6ec5ee149a99084dfe11b5608eec2ad1e24257bb69cf27",
+    "candidate_original/capabilities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/capabilities.stdout": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+    "candidate_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "candidate_original/cli_command_log.json": "98d7d825085619ab1f0ce1d443cba3293e7d196dace305d5585bd8daf96e1586",
+    "candidate_original/duplicate_JSON_key.json": "f82167e251aaf3fdc1845ecbf9f4f5204f47841e924d49b2760916a38efe76da",
+    "candidate_original/duplicate_JSON_key.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/duplicate_JSON_key.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/first_results.json": "59bc41a09bd20cac754555ca6d16306a4c2602b4c0b48979c7b4bb37fe9c0e25",
+    "candidate_original/first_unittest.txt": "37192890643e2c677f0062891feb9ba10f4bda7d667264897f1e6e2d2913acea",
+    "candidate_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "candidate_original/independent_fix_boundaries.py": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+    "candidate_original/minimal_wr22.py": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+    "candidate_original/minimal_wr22_execution.json": "2e0951482be0c0524b3a32b76cb44b3ee0a92a0106eb8edea17dce8b47c4088d",
+    "candidate_original/minimal_wr22_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/minimal_wr22_first.stdout": "da84a613e836289353afbb42b94242a30057adddb763735b63857e2786b8fe34",
+    "candidate_original/minimal_wr22_first_result.json": "da84a613e836289353afbb42b94242a30057adddb763735b63857e2786b8fe34",
+    "candidate_original/prior9_suite_execution.json": "73b3750df0b4707eb09d7b21ebe4d67363c31b56d96a40d6aba84f7c70938945",
+    "candidate_original/prior9_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/prior9_suite_first.stdout": "69dc5445f0991c620403e8c1c23f2e1d522abea1a52db5c47c0b0500309b41b4",
+    "candidate_original/unknown_override.json": "9ee99fa81733f615bfa9c5a5822b0ff5e2078e7ca21d89aaa184e99b50af6c7d",
+    "candidate_original/unknown_override.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/unknown_override.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/valid_plan.json": "bc671707ee3f36ad0af66d30f510ba5832836e8f43e1857d54b6491061fc6570",
+    "candidate_original/valid_plan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/valid_plan.stdout": "838176eb4269cb9ebd145857e27c2975d0e7f46cd6ddf49baf3f8becdfa14948",
+    "candidate_original/WR20_suite_execution.json": "3d5b9101d338ea6e0878679cbfa6b4d09f04ac5786c7e97b236155e191406aee",
+    "candidate_original/WR20_suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/WR20_suite_first.stdout": "f22da8ec6dc5aa80718c8af3e919e1cccacdae29a7e73d279c568c3f8e723eb2"
+  }
+}

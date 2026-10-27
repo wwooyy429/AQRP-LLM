@@ -1,0 +1,93 @@
+{
+  "kind": "metadata_archival_verification_only_not_software_retest",
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "review_formal_json_raw_sha256": "acb5c52c4e704cca9143ccdb902f96d30b49472d5fcda532efa3e4bf5fe8dcd0",
+  "review_formal_txt_raw_sha256": "7c09f93e1d0d93ce89e76610f87eb8cf1e245be57461a8b5d2750ab44835ddf4",
+  "original_zip_sha256": "2ffc9089ad19a5675d18cafb5379262db7c99a431e518ae4f52cb2dd094b313c",
+  "original_package_files": 15120,
+  "original_manifest_registered_files": 15119,
+  "manifest_excludes_itself": true,
+  "original_package_manifest_and_ZIP_verified": true,
+  "archived_original_count": 381,
+  "archived_original_raw_bytes": 1581651,
+  "archived_original_raw_hashes_match": true,
+  "selective_archive_not_complete_original_package": true,
+  "omitted_original_count": 14739,
+  "archive_selection_ref": {
+    "path": "audit/reviews/20261027-ccad61d-windows/developer_archive_selection.json",
+    "raw_sha256": "d5807e5058e3f7e38dfdcb5986c420793d8a997aa3937ca30ccb89eba251b46d"
+  },
+  "git_source_snapshots_verified": {
+    "candidate": {
+      "commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+      "raw_git_blobs_verified": 4977,
+      "all_equal_original_manifest": true
+    },
+    "baseline_ea": {
+      "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "raw_git_blobs_verified": 4541,
+      "all_equal_original_manifest": true
+    },
+    "actual_cloud7fc": {
+      "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+      "raw_git_blobs_verified": 4204,
+      "all_equal_original_manifest": true
+    }
+  },
+  "source_manifest_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
+  "execution_source_manifest_hash": "f54d4ffa640d9a6024134f2c152c0bcc69633c9ba65a1a445b691a9ecdea8aed",
+  "software_acceptance": {
+    "original_fix_scope": "WR22/23/24修复后通过",
+    "overall_status": "失败",
+    "blocking": [
+      "WR25",
+      "WR26"
+    ],
+    "nonblocking": [
+      "WR27"
+    ],
+    "full_phase2_accepted": false
+  },
+  "original_WR22_WR23_WR24_trigger_scope": "independently_passed_after_fix_on_ccad61d_only",
+  "new_open_findings": [
+    {
+      "id": "WR-25",
+      "priority": "P2",
+      "blocking": true
+    },
+    {
+      "id": "WR-26",
+      "priority": "P2",
+      "blocking": true
+    },
+    {
+      "id": "WR-27",
+      "priority": "P3",
+      "blocking": false
+    }
+  ],
+  "stage2_whole_accepted": false,
+  "real_registry_event_count": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "engineering_round_usage": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 1
+  },
+  "engineering_round_stopped": true,
+  "archival_QC_calls": 0,
+  "archival_Research_executions": 0,
+  "archival_LEAN_submissions": 0,
+  "archival_model_calls": 0,
+  "archival_deployments": 0,
+  "archival_software_test_executions": 0,
+  "review_original_tests_not_reexecuted_by_this_archival_check": true,
+  "production_or_config_files_changed_by_archival_agent": false,
+  "report_counts_are_overlapping": true,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

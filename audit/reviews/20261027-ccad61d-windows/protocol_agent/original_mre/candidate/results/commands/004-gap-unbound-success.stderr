@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\original_mre\candidate\results\cases\prepare-entry-write-gap\source\tools\stage2.py", line 442, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\original_mre\candidate\results\cases\prepare-entry-write-gap\source\tools\stage2.py", line 425, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\original_mre\candidate\results\cases\prepare-entry-write-gap\source\tools\stage2.py", line 336, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\original_mre\candidate\results\cases\prepare-entry-write-gap\source\tools\stage2.py", line 268, in _read_research_dispatch
+    _read_research_entry_protocol(bridge, payload, deployment)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\original_mre\candidate\results\cases\prepare-entry-write-gap\source\tools\stage2.py", line 285, in _read_research_entry_protocol
+    raise EngineeringTaskError("Original Research entry protocol is required; legacy inputs cannot be backfilled")
+qresearch.engineering_tasks.EngineeringTaskError: Original Research entry protocol is required; legacy inputs cannot be backfilled
