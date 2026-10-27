@@ -27,6 +27,7 @@ class HistoricalSourceError(SourceDiagnosticError):
 _NATIVE_FAILURE_CODES = {
     "Native source property access failed": "native_property_failed",
     "Missing native permanent SID": "native_sid_missing",
+    "Empty native permanent SID": "native_sid_empty",
     "Noncanonical native permanent SID": "native_sid_noncanonical",
     "Duplicate native permanent SID": "native_sid_duplicate",
 }
@@ -288,6 +289,10 @@ class QuantConnectSnapshotSource:
                 if native_sid is None:
                     raise HistoricalSourceError("Missing native permanent SID")
                 sid = str(native_sid)
+                if sid == " 0":
+                    # LEAN's exact SecurityIdentifier.Empty string; never trim
+                    # or accept this SDK sentinel as a security identity.
+                    raise HistoricalSourceError("Empty native permanent SID")
                 if not sid or sid.strip() != sid or len(sid) > 256:
                     raise HistoricalSourceError("Noncanonical native permanent SID")
                 if sid in seen_sids:

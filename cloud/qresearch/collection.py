@@ -41,7 +41,7 @@ _SOURCE_DIAGNOSTIC_ENUMS = {
               "response_iteration", "snapshot_identity", "snapshot_clock", "snapshot_container",
               "snapshot_iteration", "row_identity", "field_projection", "completed"},
     "failure_code": {"unexpected_exception", "source_contract", "native_property_failed",
-                     "native_sid_missing", "native_sid_noncanonical", "native_sid_duplicate"},
+                     "native_sid_missing", "native_sid_empty", "native_sid_noncanonical", "native_sid_duplicate"},
     "exception_kind": {"source_contract", "type_error", "value_error", "runtime_error",
                        "attribute_error", "key_error", "index_error", "overflow_error",
                        "memory_error", "import_error", "other"},

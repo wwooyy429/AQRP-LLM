@@ -29,8 +29,8 @@ def validate_grant(grant, authorization, global_limits):
     validate_round_id(grant["round_id"])
     if type(grant["project_id"]) is not int or grant["project_id"] <= 0:
         raise ValueError("Engineering round requires a positive project identity")
-    if grant["allocation"] != "reserve":
-        raise ValueError("Additional engineering rounds use existing reserve only")
+    if grant["allocation"] not in ("normal", "reserve"):
+        raise ValueError("Engineering rounds use an existing normal or reserve allocation")
     limits = grant["limits"]
     if (not isinstance(limits, dict) or set(limits) != set(RESOURCES)
             or any(type(limits[key]) is not int or limits[key] < 0 for key in RESOURCES)
@@ -39,14 +39,29 @@ def validate_grant(grant, authorization, global_limits):
     if grant["final_test_enabled"] is not False or type(grant["extra_spend_usd"]) is not int or grant["extra_spend_usd"] != 0:
         raise ValueError("Engineering round cannot enable final testing or extra spend")
     auth_fields = (fields - {"authorization_ref"}) | {"authority_kind", "scope", "global_limits_hash", "request_text"}
+    scope = "stage2_engineering_round"
+    if grant["allocation"] == "normal":
+        # This is an explicit exception to the reserve-only default. The
+        # operator must check and transcribe the complete human exchange;
+        # matching hashes bind its bytes and do not authenticate its speaker.
+        scope = "stage2_normal_allocation_exception"
+        auth_fields |= {"normal_allocation_approval"}
     if not isinstance(authorization, dict) or set(authorization) != auth_fields:
         raise ValueError("Explicit user authorization metadata is required")
     if (authorization["authority_kind"] != "explicit_human_user_message"
-            or authorization["scope"] != "stage2_engineering_round"
+            or authorization["scope"] != scope
             or authorization["global_limits_hash"] != content_hash(global_limits)
             or not isinstance(authorization["request_text"], str)
             or not authorization["request_text"].strip() or len(authorization["request_text"]) > 8000):
         raise ValueError("Authorization does not bind this global budget and user instruction")
+    if grant["allocation"] == "normal":
+        approval = authorization["normal_allocation_approval"]
+        if (not isinstance(approval, dict) or set(approval) != {"question", "answer"}
+                or type(approval["question"]) is not str or not approval["question"].strip()
+                or len(approval["question"]) > 8000
+                or type(approval["answer"]) is not str or approval["answer"] != "允许"
+                or len(approval["answer"]) > 1000):
+            raise ValueError("Normal allocation requires the complete bounded question and explicit human reply")
     # Canonical bytes distinguish booleans from integer counters as well.
     for key in fields - {"authorization_ref"}:
         if canonical_json(authorization[key]) != canonical_json(grant[key]):

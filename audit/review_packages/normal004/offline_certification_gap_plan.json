@@ -1,0 +1,44 @@
+{
+  "kind": "offline_software_gap_plan_not_configuration_or_execution_authorization",
+  "budget_boundary": "Generic implementation and synthetic tests need no market execution debit. Activating a changed source/catalog/plan in a cloud task still needs a newly registered frozen configuration; no edits to an existing charged identity.",
+  "offline_implementable": [
+    {
+      "id": "certification_worker_and_task_bridge",
+      "current": "tools/data_certification.py only exposes capabilities/validate-plan; audit_data_certification and scope summary already exist",
+      "add": "Closed certification task schema, predebit admission, dispatch binding/native terminal receipt parser, immutable cloud references, idempotent replay and unknown-outcome reconciliation.",
+      "synthetic_acceptance": "Known-answer component refs; malformed/tampered/mismatched receipts rejected; budget debit before dispatch; unknown submission does not rerun."
+    },
+    {
+      "id": "financial_value_projection_bridge",
+      "current": "HistoricalBatchIngestor accepts financial_catalog and mapped records; active source catalog has no financial statement numeric values",
+      "add": "Generic frozen period-accessor projection and financial value-to-ingestion adapter with units, report period, publication precision, accession/form, source revision and availability evidence join. Keep missingness explicit and do not activate arbitrary real fields.",
+      "synthetic_acceptance": "Multiple report periods/vintages, restatements, date-only gates, missing vendor receipt and revision ambiguity stay distinguishable; no future access."
+    },
+    {
+      "id": "bounded_partition_planner",
+      "current": "Data certification tables and audited rows capped at250000; scope summarizer already exists",
+      "add": "Calendar-driven partitions with shared20-session warmup, bounded candidate/SID/component chunks, immutable completed component manifests, no scored-formation overlap, fixed denominator and retry/idempotency rules.",
+      "synthetic_acceptance": "Holiday/DST/year-edge/IPO/delisting boundary fixtures, incomplete candidate histories, missing and overlapping partitions, cap overflows all rejected rather than truncated."
+    },
+    {
+      "id": "evidence_adapter_and_provenance_verifier",
+      "current": "Missing actual delivery/ingestion and authoritative inventory/master/action receipts are explicit fixed gaps",
+      "add": "Typed receipt intake and exact observation/vintage join, source-origin/version/timezone/precision checks, immutable reference verification, fail-closed authenticity capability classification. Preserve old observed-only report flags and introduce reviewed provenance contract rather than flipping false flags.",
+      "synthetic_acceptance": "Receipt reused across SID/period/revision or capture time substituted for historical availability is rejected; unsupported receipt origin remains insufficient_evidence."
+    },
+    {
+      "id": "offline_completion_dossier",
+      "current": "Data certification plan and capability reports are metadata-only",
+      "add": "One fixed checker separates software tests, actual cloud tasks, coverage, provenance, and independent exact-version review; emits NOT_OBSERVED/INCOMPLETE/UNKNOWN denominators and keeps final-test gate off.",
+      "synthetic_acceptance": "Synthetic success cannot satisfy real-data, source entitlement, all-market completeness, or independent-review gates."
+    }
+  ],
+  "cannot_complete_offline": [
+    "Actual same-plan Research and LEAN cloud terminal success",
+    "Observed historical inventory and candidate counts for2010-2023 plus required warmup",
+    "Real raw price/corporate-action and financial value/vintage coverage",
+    "Authenticated historical vendor delivery/ingestion and authoritative inventory/master/action receipt evidence",
+    "Independent GPT Work review of exact submitted code version"
+  ],
+  "advice": "Finish generic offline middleware before freezing the last available repair package; catalogue or trading/research semantic changes remain new configurations. Avoid spending Research quota merely to rediscover missing provenance."
+}
