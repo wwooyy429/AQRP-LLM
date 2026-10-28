@@ -76,5 +76,5 @@ assert {r['hidden_context_type'] for r in results[1:]}=={'OSError','ArtifactConf
 report={'kind':'synthetic_nonidentifiable_collection_failure_MRE','source_commit':'0f6d8c0606d1e3253632b167cab73dd04d03658a',
     'cases':results,'real_market_data_used':False,'cloud_calls':0,'research_executions':0,'LEAN_submissions':0,
     'conclusion':'Normal four-field native-scalar conversion/batching passes; at least two distinct hidden exception types at three storage steps yield identical observed generic error. This does not prove which occurred in actual round005.'}
-(OUT/'collection_probe_mre_result.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+(OUT/'collection_probe_mre_result.json').write_bytes((json.dumps(report,indent=2)+'\n').encode('utf-8'))
 print(json.dumps(report))
