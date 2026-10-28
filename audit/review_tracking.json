@@ -1,5 +1,5 @@
 {
-  "schema_version": 18,
+  "schema_version": 19,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
   "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
@@ -52,27 +52,28 @@
       "implementation": "bounded observation/admission/parser components independently retested; phase2 incomplete",
       "evidence": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
       "blockers": [
-        "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+        "Original same-plan LEAN is natively failed; 7 success checks and actual orders remain absent. A newly admitted semantic configuration and successful bounded cloud chain are required; no old task may be reinterpreted.",
         "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them.",
         "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence."
       ],
-      "status": "local_software_scope_passed_whole_stage_not_accepted",
+      "status": "new_source_policy_candidate_pending_review_whole_stage_not_accepted",
       "independent_report_status": "已测局部软件通过；阶段2整体未验收",
       "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
       "blocking_findings": [],
       "acceptance_gates": [
         {
           "id": "G1",
-          "status": "archived_Research_13_supported_LEAN_7_terminal_missing",
-          "requirement": "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+          "status": "original_LEAN_native_failure_settled_success_report_absent",
+          "requirement": "Original same-plan LEAN is natively failed; 7 success checks and actual orders remain absent. A newly admitted semantic configuration and successful bounded cloud chain are required; no old task may be reinterpreted.",
           "Research_required_checks": 13,
           "LEAN_required_checks": 7,
           "LEAN_actual_checks": null,
-          "LEAN_actual_orders": null
+          "LEAN_actual_orders": null,
+          "actual_LEAN_terminal": "Runtime Error"
         },
         {
           "id": "G2",
-          "status": "old_worker_source_difference_and_current_inventory_unverified",
+          "status": "first_failed_worker_EOF_difference_reproduced_other_worker_and_old_task_provenance_unproven",
           "requirement": "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them."
         },
         {
@@ -89,8 +90,17 @@
           "charged_certification_native_dispatch_bridge": "not_implemented",
           "financial_numeric_catalog_count": 0,
           "real_data_certified": false
+        },
+        {
+          "id": "G5",
+          "status": "offline_candidate_pending_independent_review_and_cloud_rerun",
+          "requirement": "Explicit v2 original/canonical source policy requires fixed-commit GPT Work review, valid new configuration capacity and actual admitted runtime evidence.",
+          "candidate_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+          "developer_synthetic_test_count": 825,
+          "cloud_rerun": false
         }
-      ]
+      ],
+      "candidate_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6"
     },
     {
       "stage": 3,
@@ -2441,7 +2451,7 @@
     "no_further_execution_authorized_by_review": true
   },
   "new_configuration_capacity_remaining": 0,
-  "historical_fields_note": "Older nested repair/numerical acceptance entries retain their own fixed commits; latest scoped review is4520, actual runtime source662ccd, Phase2 overall not accepted.",
+  "historical_fields_note": "Older nested acceptance entries retain their own fixed commits and scope. Latest accepted scoped review is4520; last actual cloud runtime source is662ccd; new candidate4a42c18 is pending independent review. Phase2 overall is not accepted.",
   "developer_gate_verification": {
     "report": "audit/stage2_gate_verification_20261028.json",
     "actual_native_LEAN_status": "Runtime Error",
@@ -2450,5 +2460,21 @@
     "new_independent_software_review": false,
     "stage2_accepted": false,
     "product_source_changed": false
+  },
+  "latest_pending_candidate": {
+    "fixed_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+    "review_handoff": "audit/review_packages/deployment-eof-v2/GPT_WORK_REVIEW.txt",
+    "report": "audit/stage2_deployment_source_fix.json",
+    "status": "awaiting_GPT_Work_independent_review",
+    "full_repository_synthetic_tests_passed": 825,
+    "auxiliary_developer_boundary_tests_passed": 35,
+    "cloud_deployed": false,
+    "new_QC_calls": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_configuration_debits": 0,
+    "final_test_enabled": false,
+    "financial_evidence": false
   }
 }
