@@ -10,9 +10,15 @@
 
 累计配置12/12、Research15/20、LEAN2/16；本轮用量2配置、2Research、1LEAN，在授权2/4/2内。原总预算、8正常＋4预留配置结构及额外费用0保持不变；配置余额已用满，不能再登记新语义配置或静默重置额度。
 
-完整US200、财务数值接入、历史版本与公开/实际送达/摄入凭证、认证执行桥和固定版本独立审核仍未完成。QuantConnect MCP目录与文档不是逐条历史回执。正式因子研究、自动生成API、交易及最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。
+固定资料提交4520fd1已获独立复审：已测试局部软件范围通过，未确认新增产品缺陷，阶段2整体仍未验收。完整US200、财务数值接入、SID经济身份歧义、历史版本与公开/实际送达/摄入凭证仍未认证；认证计算内核已有实现，但计费认证派发桥仍缺失。QuantConnect MCP目录与文档不是逐条历史回执。正式因子研究、自动生成API、交易及最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。
 
-详见[本轮证据报告](audit/stage2_normal004_report.json)、[可复验核对程序](audit/review_packages/normal004/verify_round_evidence.py)、[观测保留协议](docs/collection_observations.md)和[当前阶段状态](audit/stage2_current_readiness.json)。独立批准仍仅绑定既有44676db及原已测范围；本轮开发测试和云端工程成功不构成GPT Work批准或因子金融有效性证据。
+详见[本轮证据报告](audit/stage2_normal004_report.json)、[可复验核对程序](audit/review_packages/normal004/verify_round_evidence.py)、[观测保留协议](docs/collection_observations.md)和[当前阶段状态](audit/stage2_current_readiness.json)。新增局部独审绑定4520fd1及实际已测范围，既有44676db的阶段0/1有限结论保留；LEAN仍缺原生终态及7项实际检查，不能将局部软件通过扩张为阶段2通过或因子金融有效性证据。
+
+## 最新独立复审归档（固定4520fd1）
+
+[原始正式报告](audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.txt)与[机器报告](audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json)原样保留。独立审核者实际重跑765项仓库测试、8＋10项辅助测试，以及数据13方法/109命名场景、预算7/32和运行回执10/57；存在重叠，不相加为独立测试总数。运行套件首次两条失败及审查器/预期修正也已保留，没有为取得通过修改产品代码。
+
+本轮归档只核验封存包、固定Git源码及证据哈希，没有新增QC/Research/LEAN/模型调用或预算使用。Research的13项检查只获归档元数据级复验支持；原生错误依赖可信派发上下文，哈希不独立证明远端来源。[紧凑归档与自检说明](audit/reviews/20261028-4520fd1-recheck/ARCHIVE_README.txt)保留完整原包哈希及存储去重边界，未复制另一套5976份源码。
 
 ## 历史查因快照：RC003（修复执行前）
 

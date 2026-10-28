@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "independent_review_archival_addendum",
+  "review": {
+    "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+    "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+    "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+    "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+    "tested_data_and_budget_scope": "passed",
+    "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+    "archived_Research_engineering": "supported_at_metadata_level",
+    "phase2_overall": "not_accepted",
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "reviewer_QC_calls": 0,
+    "reviewer_Research_executions": 0,
+    "reviewer_LEAN_submissions": 0,
+    "no_new_product_findings": true,
+    "counts_are_overlapping_not_additive": true,
+    "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+    "no_further_execution_authorized_by_review": true
+  },
+  "reviewer_tests": [
+    {
+      "name": "repository_verify",
+      "methods": 765,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "repository_suite_independently_rerun",
+      "actually_executed": true,
+      "evidence": "repository_verification.json"
+    },
+    {
+      "name": "normal_gate_auxiliary",
+      "methods": 8,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "developer_auxiliary_independently_rerun",
+      "actually_executed": true,
+      "evidence": "test_independent_normal_gate.py.stderr"
+    },
+    {
+      "name": "occurrence_auxiliary",
+      "methods": 10,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "developer_auxiliary_independently_rerun",
+      "actually_executed": true,
+      "evidence": "test_independent_occurrences.py.stderr"
+    },
+    {
+      "name": "adversarial_occurrence",
+      "methods": 10,
+      "named_scenarios": 105,
+      "result": "passed_first_run",
+      "kind": "new_independent_synthetic",
+      "actually_executed": true,
+      "evidence": "data_recheck/first/results.json"
+    },
+    {
+      "name": "additional_closed_contracts",
+      "methods": 3,
+      "named_scenarios": 4,
+      "result": "passed_first_run",
+      "kind": "new_independent_synthetic",
+      "actually_executed": true,
+      "evidence": "data_recheck/additional_first/results.json"
+    },
+    {
+      "name": "full_capacity_settlement",
+      "methods": 7,
+      "named_scenarios": 32,
+      "result": "passed_first_run",
+      "kind": "new_independent_synthetic",
+      "actually_executed": true,
+      "evidence": "budget_recheck/first_results.json"
+    },
+    {
+      "name": "native_parser_bridge",
+      "methods": 10,
+      "named_scenarios": 57,
+      "result": "passed_after_disclosed_reviewer_helper_and_scope_corrections",
+      "kind": "new_independent_synthetic",
+      "actually_executed": true,
+      "evidence": "runtime_recheck/corrected/first_results.json"
+    }
+  ],
+  "counting": "Methods, named scenarios, CLI/process/thread calls, parser calls and static checks overlap; never sum as unique tests. Historical results are separately identified, not new executions. Named scenarios are not measured unittest subTest counts.",
+  "original_package_sha256": "3b2ab178256fff1ac49a049fb5a4659584cba57e1e2159368cfe5d0fd919189d",
+  "actual_import_verification": "Complete original manifest, ZIP members/CRC and5976 Git source blobs verified; compact copied files verified separately.",
+  "current_turn_product_test_executions": 0,
+  "current_turn_QC_calls": 0,
+  "current_turn_budget_debits": 0,
+  "authoritative_budget_and_runtime_unchanged": true,
+  "global_usage": {
+    "configurations": 12,
+    "research": 15,
+    "lean": 2
+  },
+  "LEAN_status": "pending_frozen_record_no_native_terminal_obtained",
+  "LEAN_required_checks": 7,
+  "LEAN_actual_checks": null,
+  "LEAN_actual_orders": null,
+  "certification_computation_kernel": "implemented",
+  "charged_certification_native_dispatch_bridge": "not_implemented",
+  "financial_numeric_catalog_count": 0,
+  "no_new_WRs": true,
+  "Phase2_accepted": false,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

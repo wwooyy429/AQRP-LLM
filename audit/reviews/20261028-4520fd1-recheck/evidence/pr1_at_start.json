@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/1",
+    "number": 1,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "现有框架缺少完整的研究规范绑定和可恢复执行流程。本PR加入StudySpec、受限共享计算、实际成交标签、固定模型、六轮滚动集成及持久化程序调度器；代码、配置、合成测试、成功与失败审核全部进入Git。\n\nGPT Work对固定源码提交 ddca623a879d7f051540b6a15a3fe29bc7b96441 实际独立复验：阶段0和阶段1均修复后通过。源码清单为 cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf。报告归档提交 6a1edbf07fa8fc6cf774084094f4beacc28ff60b 只更新README和审计元数据，未修改已验收源码。\n\n验证：\n- 本地Windows：138项仓库合成测试通过。\n- GitHub Actions：Python3.10和3.11各运行138项并通过，源码哈希一致。运行：https://github.com/wwooyy429/AQRP-LLM/actions/runs/40243674065。\n- GPT Work独立Linux环境：138项仓库测试、原32项独立测试、2个原始复现、第二轮新增16项、第三轮新增14项全部通过。执行内容含重叠复现，不表示202个独有测试。\n- 修复WR-01整数标签回绕、WR-02审计与实际因子解绑、WR-03高精度数量窄化后合并；另覆盖严格等量、数值边界和Windows锁等待。Work未认证原生Windows内核行为。\n\n[第三轮独立报告](https://github.com/wwooyy429/AQRP-LLM/blob/6a1edbf07fa8fc6cf774084094f4beacc28ff60b/audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json)。前两轮失败报告和最小复现均保留在audit/reviews及tests，不覆盖原结论。\n\n阶段2–7仍未验收，云端仍为较早工程版本；这不是市场绩效或最终金融测试证据。没有新增市场执行，预算保持配置5/12、Research8/20、LEAN0/16，2024–2025既往数据暴露继续保留。GPT提供方已指定，具体模型和调用额度尚未配置；自动API调用、真实QC调度、最终样本与交易仍关闭。下一阶段的数据覆盖与任务桥缺口记录在audit/stage2_readiness.json。",
+    "title": "建立分阶段因子研究框架与离线验收基础",
+    "base": "main",
+    "base_sha": "1557ea74669e6dc9b921d1a2c7f681530627a7e5",
+    "head": "feat/staged-research-workflow",
+    "head_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "70a8ce347e61904ee812baa81d3cb5487f5ba5d0",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-25T22:30:15Z",
+    "updated_at": "2026-10-25T23:21:40Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 6,
+    "changed_files": 75,
+    "additions": 9914,
+    "deletions": 6,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/1",
+    "display_title": "建立分阶段因子研究框架与离线验收基础"
+  },
+  "isError": false
+}

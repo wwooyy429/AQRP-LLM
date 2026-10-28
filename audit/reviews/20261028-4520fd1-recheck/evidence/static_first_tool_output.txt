@@ -1,0 +1,8 @@
+Tool-output transcript of the first real recompute_static.py execution; not a fabricated rerun.
+Command: C:\Users\11638\.codex\tmp\aqrp-review-20261026\venv\Scripts\python.exe -B C:\Users\11638\.codex\tmp\aqrp-review-4520fd1-20261028-recheck\recompute_static.py
+Exit code: 1
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4520fd1-20261028-recheck\recompute_static.py", line 9, in <module>
+    raw={n:h(b)for n,b in files.items()};assert raw==json.loads((R/'source_git_manifest.json').read_bytes())['files']
+AssertionError
+Cause independently reported by budget agent: a reviewer exploratory import without -B added8 __pycache__ .pyc files to the exported scratch tree. Original5976 Git bytes unchanged; exact extra cache files retained outside source and source restored before corrected rerun. This is a reviewer isolation error, not a product defect.

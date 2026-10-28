@@ -1,15 +1,15 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+  "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
   "accepted_stages": [
     0,
     1
   ],
-  "acceptance_scope": "fixed44676db_tested_offline_software_only_stage2_whole_pending",
-  "software_acceptance": "passed_in_independently_tested_offline_scope_on44676db",
+  "acceptance_scope": "4520_tested_local_software_scope_only_prior_stage0_stage1_scope_retained_Phase2_not_accepted",
+  "software_acceptance": "tested_data_budget_and_parser_scope_passed_under_documented_contract_on4520",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -22,7 +22,12 @@
       "independent_report_status": "已测离线范围通过",
       "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
       "blocking_findings": [],
-      "acceptance_gates": []
+      "acceptance_gates": [],
+      "latest_relevant_recheck": {
+        "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+        "verdict": "prior_scoped_acceptance_retained_and_relevant_rechecks_passed",
+        "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json"
+      }
     },
     {
       "stage": 1,
@@ -34,43 +39,55 @@
       "independent_report_status": "已测离线范围通过",
       "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
       "blocking_findings": [],
-      "acceptance_gates": []
+      "acceptance_gates": [],
+      "latest_relevant_recheck": {
+        "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+        "verdict": "prior_scoped_acceptance_retained",
+        "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json"
+      }
     },
     {
       "stage": 2,
       "modules": "QC、采集缓存、任务桥、原生回执、冻结预检",
-      "implementation": "观测审计、准入及恢复的本轮已测离线软件范围通过",
-      "evidence": "audit/reviews/20261027-44676db-windows/formal_report.json",
+      "implementation": "bounded observation/admission/parser components independently retested; phase2 incomplete",
+      "evidence": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
       "blockers": [
-        "新版真实成功联合链",
-        "旧worker具体差异及来源迭代原因",
-        "历史US200及财务真实版本/送达认证"
+        "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+        "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them.",
+        "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence."
       ],
-      "status": "offline_software_scope_passed_whole_stage_pending_runtime_and_data",
-      "independent_report_status": "已测离线软件范围通过，阶段整体待验收",
-      "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "status": "local_software_scope_passed_whole_stage_not_accepted",
+      "independent_report_status": "已测局部软件通过；阶段2整体未验收",
+      "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
       "blocking_findings": [],
       "acceptance_gates": [
         {
           "id": "G1",
-          "status": "actual_Research_failed_no_new_successful_joint_chain",
-          "requirement": "New qualifying Research, collection/cache and dependent LEAN success remain missing"
+          "status": "archived_Research_13_supported_LEAN_7_terminal_missing",
+          "requirement": "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+          "Research_required_checks": 13,
+          "LEAN_required_checks": 7,
+          "LEAN_actual_checks": null,
+          "LEAN_actual_orders": null
         },
         {
           "id": "G2",
-          "status": "old_worker_source_difference_insufficient",
-          "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
+          "status": "old_worker_source_difference_and_current_inventory_unverified",
+          "requirement": "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them."
         },
         {
           "id": "G3",
-          "status": "passed_in_independently_tested_offline_scope_on44676db",
-          "requirement": "Native error, admission identity and recovery acceptance is limited to the tested offline scope; real execution stays in G1"
+          "status": "local_software_scope_passed_on4520_after_disclosed_reviewer_corrections",
+          "requirement": "Limited data/budget/parser software scope; actual native origin still relies on the trusted dispatcher.",
+          "software_acceptance_bound_to_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8"
         },
         {
           "id": "G4",
-          "status": "observed_input_audit_software_passed_real_data_certification_insufficient",
-          "requirement": "Authenticated historical US200, financial vintages and actual delivery/ingestion evidence remain missing",
-          "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+          "status": "kernel_implemented_dispatch_financial_catalog_and_actual_historical_certification_incomplete",
+          "requirement": "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence.",
+          "certification_computation_kernel": "implemented",
+          "charged_certification_native_dispatch_bridge": "not_implemented",
+          "financial_numeric_catalog_count": 0,
           "real_data_certified": false
         }
       ]
@@ -189,9 +206,9 @@
     "WR-26": "independently_verified_resolved_in_tested_offline_scope_on44676db",
     "WR-27": "independently_verified_resolved_in_tested_offline_scope_on44676db"
   },
-  "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
   "developer_fix_evidence": "audit/review_packages/native_runtime_failure/developer_verification.json",
-  "current_handoff": "audit/reviews/20261027-44676db-windows/formal_report.json",
+  "current_handoff": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -335,9 +352,9 @@
   "final_evaluation_enabled": false,
   "prior_2024_2025_exposure_preserved": true,
   "research_budget_usage": {
-    "configurations": 7,
-    "research": 10,
-    "lean": 1
+    "configurations": 12,
+    "research": 15,
+    "lean": 2
   },
   "new_market_or_model_calls": 0,
   "new_independent_review_dispatched": false,
@@ -1636,6 +1653,15 @@
       "whole_stage2_accepted": false,
       "real_cloud_execution_added": false,
       "financial_evidence": false
+    },
+    {
+      "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+      "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+      "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+      "verdict": "tested_local_software_scope_passed_no_new_product_findings_phase2_not_accepted",
+      "whole_stage2_accepted": false,
+      "real_cloud_execution_added": false,
+      "financial_evidence": false
     }
   ],
   "repair_acceptance": {
@@ -1832,53 +1858,126 @@
     }
   ],
   "unverified": [
-    "新版真实SDK/云端成功和实际Research原生异常链",
-    "失败worker具体文件/源码差异与根因修复",
-    "完整历史US200、财务版本及供应商实际送达认证",
-    "OS断电/kill持久性和未覆盖的任意封装语法",
-    "非本机平台的独立运行；CI只核对状态",
-    "真实因子/模型/组合、成本后增量、独立最终评估和前向运行",
-    "2026最终区间独立性；2024–2025既往暴露已知"
+    "NewLEAN delivered terminal, native logs,7 actual engineering checks and0 actual orders; no polling or substitute new run.",
+    "Original native compile packet, complete project inventory and exact old failed worker source.",
+    "Full historicalUS200, source ambiguity, real exchange sessions, corporate actions, financial values/periods/units/vintages, publication and actual supplier delivery/ingestion.",
+    "External original human grant2/4/2 message; latest direct human statement supports already executed2/2/1 only. Audit grants no further execution.",
+    "Native packet provenance beyond trusted dispatcher; self-consistent fabricated corpus cannot be certified by hashes alone.",
+    "OS kill/power-loss durability, stages3-7, financial effectiveness and an untouched final holdout."
   ],
-  "new_candidate_acceptance": "metadata_archival_only_runtime_identical_to_accepted44676db_stage2_whole_pending",
+  "new_candidate_acceptance": "metadata_archival_of4520_scoped_review_product_sources_unchanged",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
     "status": "retained_original_accepted_scope_by_7bf_review"
   },
   "independent_review_execution_scope": {
-    "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "scope": "offline_synthetic_execution_source_checks_and_archived_native_evidence_reparse",
-    "report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-    "QC_calls": 0,
-    "Research": 0,
-    "LEAN": 0,
-    "models": 0,
-    "deployments": 0
+    "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "tests": [
+      {
+        "name": "repository_verify",
+        "methods": 765,
+        "named_scenarios": null,
+        "result": "passed",
+        "kind": "repository_suite_independently_rerun",
+        "actually_executed": true,
+        "evidence": "repository_verification.json"
+      },
+      {
+        "name": "normal_gate_auxiliary",
+        "methods": 8,
+        "named_scenarios": null,
+        "result": "passed",
+        "kind": "developer_auxiliary_independently_rerun",
+        "actually_executed": true,
+        "evidence": "test_independent_normal_gate.py.stderr"
+      },
+      {
+        "name": "occurrence_auxiliary",
+        "methods": 10,
+        "named_scenarios": null,
+        "result": "passed",
+        "kind": "developer_auxiliary_independently_rerun",
+        "actually_executed": true,
+        "evidence": "test_independent_occurrences.py.stderr"
+      },
+      {
+        "name": "adversarial_occurrence",
+        "methods": 10,
+        "named_scenarios": 105,
+        "result": "passed_first_run",
+        "kind": "new_independent_synthetic",
+        "actually_executed": true,
+        "evidence": "data_recheck/first/results.json"
+      },
+      {
+        "name": "additional_closed_contracts",
+        "methods": 3,
+        "named_scenarios": 4,
+        "result": "passed_first_run",
+        "kind": "new_independent_synthetic",
+        "actually_executed": true,
+        "evidence": "data_recheck/additional_first/results.json"
+      },
+      {
+        "name": "full_capacity_settlement",
+        "methods": 7,
+        "named_scenarios": 32,
+        "result": "passed_first_run",
+        "kind": "new_independent_synthetic",
+        "actually_executed": true,
+        "evidence": "budget_recheck/first_results.json"
+      },
+      {
+        "name": "native_parser_bridge",
+        "methods": 10,
+        "named_scenarios": 57,
+        "result": "passed_after_disclosed_reviewer_helper_and_scope_corrections",
+        "kind": "new_independent_synthetic",
+        "actually_executed": true,
+        "evidence": "runtime_recheck/corrected/first_results.json"
+      }
+    ],
+    "counting": "Methods, named scenarios, CLI/process/thread calls, parser calls and static checks overlap; never sum as unique tests. Historical results are separately identified, not new executions. Named scenarios are not measured unittest subTest counts.",
+    "first_results_and_corrections": {
+      "runtime_first": {
+        "methods": 10,
+        "passed_methods": 8,
+        "failure_records": 2,
+        "error_records": 0,
+        "evidence": "runtime_recheck/first/first_results.json"
+      },
+      "runtime_helper": "Mutable native mirror references fixed by deepcopy; original outputs retained.",
+      "runtime_scope": "Original nbformat-error rejection oracle demanded attempt/source authentication absent from native error fields. Corrected test discloses trusted-dispatcher boundary; original oracle is NOT claimed to pass. Original completed/failed terminal replacement rejections tested separately.",
+      "scratch_source": "Reviewer inspection omitted-B, creating8 pyc files in exported scratch source. Original5976 Git files unchanged; caches preserved as raw.bin outside source; exact5976 source restored and guarded. Root initial raw-file-set assertion exit1 retained.",
+      "static_reference_scope": "Root initially compared88 stage-row reference entries to105 full-matrix unique references. Corrected checker verifies full top-level105 including controls; intermediate exit1/script/output retained.",
+      "prior_report_metadata": "Prior sealed report said newLEAN13 checks in unverified wording. Corrected: Research13, LEAN7. Prior sealed package unchanged. Earlier derived-summary SHA-label correction also remains preserved.",
+      "product_edits": false
+    },
+    "product_edits": false,
+    "financial_evidence": false,
+    "live_QC_recheck": false
   },
   "current_candidate": {
-    "parent_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "kind": "metadata_archival_of_independent_offline_acceptance",
-    "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
-    "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
-    "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
-    "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
+    "parent_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "kind": "compact_metadata_archival_of_independent_partial_review",
+    "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+    "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+    "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
     "independently_accepted": false,
     "current_archival_commit_independently_reviewed": false,
-    "runtime_source_matches_reviewed_version": true,
-    "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-    "new_runtime_features": false,
+    "software_acceptance_bound_to_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
     "metadata_and_documentation_only": true,
     "runtime_engine_and_test_sources_unchanged": true,
     "registry_or_budget_changed": false,
     "cloud_deployed": false,
-    "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
-    "repository_tests_in_independent_report": 668,
+    "actual_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "new_configuration_registrations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
-    "local_software_tests_reexecuted_this_archival_turn": 0,
-    "configured_CI_runs_not_in_this_local_count": true
+    "local_software_tests_reexecuted_this_archival_turn": 0
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -1925,9 +2024,9 @@
     "scope": "Prior summary preserved as recorded, including legacy counts; only the current report-derived suites above represent the 81f review execution."
   },
   "metadata_acceptance": "WR27_tested_crossroot_and_default_scope_passed_on44676db",
-  "metadata_reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-  "latest_software_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
+  "metadata_reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "software_acceptance_bound_to_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "latest_software_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
   "latest_metadata_review_execution_scope": {
     "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "report_path": "audit/reviews/20261027-84414ab-windows/formal_report.json",
@@ -2191,28 +2290,35 @@
   "remaining_stage2_acceptance_gates": [
     {
       "id": "G1",
-      "status": "actual_Research_failed_no_new_successful_joint_chain",
-      "requirement": "New qualifying Research, collection/cache and dependent LEAN success remain missing"
+      "status": "archived_Research_13_supported_LEAN_7_terminal_missing",
+      "requirement": "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+      "Research_required_checks": 13,
+      "LEAN_required_checks": 7,
+      "LEAN_actual_checks": null,
+      "LEAN_actual_orders": null
     },
     {
       "id": "G2",
-      "status": "old_worker_source_difference_insufficient",
-      "requirement": "Old failed worker source bytes and actual mismatch remain unproven"
+      "status": "old_worker_source_difference_and_current_inventory_unverified",
+      "requirement": "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them."
     },
     {
       "id": "G3",
-      "status": "passed_in_independently_tested_offline_scope_on44676db",
-      "requirement": "Native error, admission identity and recovery acceptance is limited to the tested offline scope; real execution stays in G1"
+      "status": "local_software_scope_passed_on4520_after_disclosed_reviewer_corrections",
+      "requirement": "Limited data/budget/parser software scope; actual native origin still relies on the trusted dispatcher.",
+      "software_acceptance_bound_to_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8"
     },
     {
       "id": "G4",
-      "status": "observed_input_audit_software_passed_real_data_certification_insufficient",
-      "requirement": "Authenticated historical US200, financial vintages and actual delivery/ingestion evidence remain missing",
-      "software_acceptance_bound_to_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "status": "kernel_implemented_dispatch_financial_catalog_and_actual_historical_certification_incomplete",
+      "requirement": "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence.",
+      "certification_computation_kernel": "implemented",
+      "charged_certification_native_dispatch_bridge": "not_implemented",
+      "financial_numeric_catalog_count": 0,
       "real_data_certified": false
     }
   ],
-  "current_round_stop_reached": true,
+  "current_round_stop_reached": false,
   "historical_remaining_stage2_gates_from66_review": [
     {
       "id": "G1",
@@ -2254,36 +2360,85 @@
   },
   "current_archival_metadata_independently_reviewed": false,
   "current_engineering_round": {
-    "round_id": "stage2-cloud-round-002",
-    "status": "closed",
-    "report": "audit/stage2_round002_report.json",
-    "runtime_source_commit": "0656cb758c412ecedb5fa3af180407b720677d6e",
-    "independent_acceptance": false,
-    "global_usage": {
-      "configurations": 9,
-      "research": 12,
-      "lean": 1
+    "round_id": "stage2-normal-repair-round-004",
+    "status": "open_pending_native_LEAN_terminal",
+    "report": "audit/stage2_normal004_report.json",
+    "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "independent_software_review": {
+      "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+      "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+      "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+      "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+      "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+      "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+      "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+      "tested_data_and_budget_scope": "passed",
+      "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+      "archived_Research_engineering": "supported_at_metadata_level",
+      "phase2_overall": "not_accepted",
+      "financial_evidence": false,
+      "final_test_enabled": false,
+      "reviewer_QC_calls": 0,
+      "reviewer_Research_executions": 0,
+      "reviewer_LEAN_submissions": 0,
+      "no_new_product_findings": true,
+      "counts_are_overlapping_not_additive": true,
+      "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+      "no_further_execution_authorized_by_review": true
     },
     "stage2_accepted": false,
-    "final_test_enabled": false
+    "final_test_enabled": false,
+    "global_usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    }
   },
   "root_cause_followup": {
     "finding_id": "RC003",
-    "report": "audit/rootcause003_report.json",
-    "status": "sufficient_code_defect_identified_and_reproduced_offline_repair_not_applied",
-    "new_independent_software_acceptance": false,
+    "historical_report": "audit/rootcause003_report.json",
+    "latest_runtime_report": "audit/stage2_normal004_report.json",
+    "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "status": "implemented_and_bounded_Research_metadata_supported_no_full_data_certification",
+    "independent_bounded_software_scope_passed": true,
+    "financial_evidence": false,
     "final_test_enabled": false
   },
   "phase2_repair_followup": {
-    "report": "audit/phase2_repair_progress.json",
-    "status": "partial_repair_new_SID_diagnostic_ready_cloud_permission_pending",
-    "last_cloud_source_commit": "d2b23f379602fb4ec16f66a2aed36b10b9486023",
+    "report": "audit/stage2_normal004_review_followup.json",
+    "status": "partial_software_review_passed_lean_data_stage_gates_pending",
+    "last_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "global_usage": {
-      "configurations": 10,
-      "research": 13,
-      "lean": 1
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
     },
-    "new_independent_software_acceptance": false,
+    "new_independent_software_acceptance": true,
+    "full_phase2_accepted": false,
     "final_test_enabled": false
-  }
+  },
+  "latest_scoped_software_acceptance": {
+    "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+    "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+    "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+    "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+    "tested_data_and_budget_scope": "passed",
+    "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+    "archived_Research_engineering": "supported_at_metadata_level",
+    "phase2_overall": "not_accepted",
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "reviewer_QC_calls": 0,
+    "reviewer_Research_executions": 0,
+    "reviewer_LEAN_submissions": 0,
+    "no_new_product_findings": true,
+    "counts_are_overlapping_not_additive": true,
+    "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+    "no_further_execution_authorized_by_review": true
+  },
+  "new_configuration_capacity_remaining": 0,
+  "historical_fields_note": "Older nested repair/numerical acceptance entries retain their own fixed commits; latest scoped review is4520, actual runtime source662ccd, Phase2 overall not accepted."
 }

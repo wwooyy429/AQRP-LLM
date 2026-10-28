@@ -1,0 +1,77 @@
+[
+  {
+    "label": "repository_verify",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/stages.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source",
+    "exit_code": 0,
+    "seconds": 341.5470000000005,
+    "stdout_sha256": "ee72d407ff5aff0f305da76ceaa1c2971ad06f33863e0c3f1625a466b31f62e6",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment_override": {}
+  },
+  {
+    "label": "test_independent_normal_gate.py",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/normal004/test_independent_normal_gate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source",
+    "exit_code": 0,
+    "seconds": 1.5779999999995198,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "b139ef1f4fc5f8ae923f85719723bb5a36444d1f41da275a8d98dbf55c325fcb",
+    "environment_override": {}
+  },
+  {
+    "label": "test_independent_occurrences.py",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/normal004/test_independent_occurrences.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source",
+    "exit_code": 0,
+    "seconds": 1.344000000000051,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2af84c77260e8a6e0eded73252c55b2cf1d61b224e708737890f47e1bbfeb129",
+    "environment_override": {}
+  },
+  {
+    "label": "developer_round_checker",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/normal004/verify_round_evidence.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source",
+    "exit_code": 0,
+    "seconds": 16.015000000000327,
+    "stdout_sha256": "ed5c4fac7e093f47e8c8953c0e78aafdb1a3c6c864bc1c29306231a8fa9de15f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment_override": {
+      "GIT_DIR": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo\\.git",
+      "GIT_WORK_TREE": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source"
+    }
+  },
+  {
+    "label": "build",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/research.py",
+      "build"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\verification_source",
+    "exit_code": 0,
+    "seconds": 0.375,
+    "stdout_sha256": "b4586a6a394342b2a1538df77fc77be27b012d03288681656c794aae7ecdee46",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment_override": {}
+  }
+]

@@ -1,6 +1,6 @@
 {
-  "schema_version": 7,
-  "kind": "phase2_normal_round_research_completed_lean_pending",
+  "schema_version": 8,
+  "kind": "phase2_independent_scoped_review_passed_whole_stage_not_accepted",
   "previous_readiness": {
     "commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "path": "audit/stage2_current_readiness.json",
@@ -27,17 +27,18 @@
     0,
     1
   ],
-  "latest_independent_report": "audit/reviews/20261027-44676db-windows/formal_report.json",
-  "stage2_status": "pending_native_LEAN_terminal_and_historical_data_certification",
+  "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+  "stage2_status": "local_software_scope_passed_LEAN_terminal_and_data_certification_missing",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "explicit_normal_allocation_engineering_exception",
-    "round_id": "stage2-normal-repair-round-004",
-    "baseline_commit": "eaf6b70aca485a292b4575fc99df312dc9560510",
-    "new_Research_executions": 2,
-    "new_LEAN_submissions": 1,
-    "new_deployments": 2,
-    "managed_source_readbacks": 64
+    "kind": "independent_review_archival_only",
+    "baseline_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+    "QC_calls": 0,
+    "new_configuration_registrations": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_deployments": 0
   },
   "current_activity_checker": "audit/review_packages/normal004/verify_round_evidence.py",
   "candidate_runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
@@ -50,7 +51,7 @@
   "current_Research_engineering_status": "completed_all_13_checks",
   "current_Research_ledger_status": "completed",
   "pending_backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
-  "new_LEAN_submissions": 1,
+  "new_LEAN_submissions": 0,
   "new_LEAN_success": false,
   "old_failed_LEAN_ref": {
     "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
@@ -80,14 +81,11 @@
   },
   "global_limits_unchanged": true,
   "known_open_software_findings_from_independent_reports": [],
-  "new_candidate_review_status": "pending_exact_commit_independent_review",
+  "new_candidate_review_status": "4520_local_software_scope_passed_overall_Phase2_not_accepted",
   "blockers": [
-    "fixed-version GPT Work independent software review",
-    "financial numeric catalog/period/vintage ingestion and certification execution bridge",
-    "historical all-market constituents/classification and full US200 certification",
-    "actual historical publication/vendor revision/delivery/ingestion receipts",
-    "resolve duplicate observation semantics before any economic-panel conversion",
-    "same-plan LEAN native terminal engineering success still absent"
+    "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+    "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them.",
+    "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence."
   ],
   "certification_status": "insufficient_evidence",
   "reports": [
@@ -100,7 +98,8 @@
     "audit/phase2_repair_integrity.json",
     "audit/phase2_repair_sid_offline_verification.json",
     "audit/phase2_repair_data_evidence_requirements.json",
-    "audit/stage2_normal004_report.json"
+    "audit/stage2_normal004_report.json",
+    "audit/stage2_normal004_review_followup.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -110,7 +109,7 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "Two charged Research runs: strict duplicate diagnostic failed, explicit occurrence-retention protocol2 completed; one prepaid same-plan LEAN submission. No duplicate was removed or silently selected.",
+  "current_activity_scope": "This turn imports an independently supplied review only. No QC reads/writes, executions, source changes, task settlement or further execution authorization.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
@@ -134,5 +133,43 @@
   "normal_budget_permission_pending": false,
   "current_LEAN_attempt": "37dc855045e14ca49c88fd9d75f40cf7",
   "current_LEAN_ledger_status": "pending",
-  "latest_backtest_id": "3e68866a46ca88ff16481c31b3c2c822"
+  "latest_backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+  "latest_scoped_software_acceptance": {
+    "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+    "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+    "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+    "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+    "tested_data_and_budget_scope": "passed",
+    "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+    "archived_Research_engineering": "supported_at_metadata_level",
+    "phase2_overall": "not_accepted",
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "reviewer_QC_calls": 0,
+    "reviewer_Research_executions": 0,
+    "reviewer_LEAN_submissions": 0,
+    "no_new_product_findings": true,
+    "counts_are_overlapping_not_additive": true,
+    "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+    "no_further_execution_authorized_by_review": true
+  },
+  "new_candidate_scoped_software_review_passed": true,
+  "certification_computation_kernel": "implemented",
+  "charged_certification_native_dispatch_bridge": "not_implemented",
+  "financial_numeric_catalog_count": 0,
+  "native_compile_packet_archived": false,
+  "runtime_receipt_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+  "previous_engineering_activity": {
+    "kind": "explicit_normal_allocation_engineering_exception",
+    "round_id": "stage2-normal-repair-round-004",
+    "baseline_commit": "eaf6b70aca485a292b4575fc99df312dc9560510",
+    "new_Research_executions": 2,
+    "new_LEAN_submissions": 1,
+    "new_deployments": 2,
+    "managed_source_readbacks": 64
+  },
+  "latest_runtime_round_LEAN_submissions": 1
 }
