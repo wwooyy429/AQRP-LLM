@@ -1,5 +1,5 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
   "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
@@ -128,7 +128,17 @@
         "whole_phase2_accepted": false,
         "new_cloud_success_verified": false,
         "financial_evidence": false
-      }
+      },
+      "current_runtime_update": {
+        "source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+        "round_id": "stage2-source-policy-v2-rerun-005",
+        "developer_synthetic_tests": 844,
+        "actual_Research_failed": true,
+        "actual_LEAN_submissions": 0,
+        "new_independent_review": false,
+        "report": "audit/stage2_round005_report.json"
+      },
+      "historical_candidate_field_scope": "candidate_source_commit and finite acceptance gates retain the prior independent review; current runtime is separately recorded in current_runtime_update."
     },
     {
       "stage": 3,
@@ -247,7 +257,7 @@
   },
   "latest_independent_report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
   "developer_fix_evidence": "audit/wr28_correction.json",
-  "current_handoff": "audit/wr28_independent_closure.txt",
+  "current_handoff": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -391,11 +401,19 @@
   "final_evaluation_enabled": false,
   "prior_2024_2025_exposure_preserved": true,
   "research_budget_usage": {
-    "configurations": 12,
-    "research": 15,
+    "configurations": 13,
+    "research": 16,
     "lean": 2
   },
-  "new_market_or_model_calls": 0,
+  "new_market_or_model_calls": {
+    "scope": "Approved round005 only, not historical cumulative usage or a total connector-call count",
+    "actual_Research_executions": 1,
+    "actual_LEAN_submissions": 0,
+    "LLM_API_calls": 0,
+    "data_provider_fetch_calls": "no completed aggregate report; unknown, not asserted zero",
+    "declared_source_post_upload_reads": 35,
+    "changed_declared_source_writes": 10
+  },
   "new_independent_review_dispatched": false,
   "review_history": [
     {
@@ -1922,7 +1940,7 @@
     "Native packet provenance beyond trusted dispatcher; self-consistent fabricated corpus cannot be certified by hashes alone.",
     "OS kill/power-loss durability, stages3-7, financial effectiveness and an untouched final holdout."
   ],
-  "new_candidate_acceptance": "WR28_audit_delivery_independently_closed_only_whole_Phase2_not_accepted",
+  "new_candidate_acceptance": "runtime0f6_budget_revision_and_current_round005_delivery_pending_independent_review",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -2017,38 +2035,28 @@
     "live_QC_recheck": false
   },
   "current_candidate": {
-    "kind": "WR28_audit_only_delivery_correction",
-    "unchanged_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-    "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
-    "independently_accepted": true,
-    "metadata_and_audit_code_only": true,
-    "registry_or_budget_changed": false,
-    "cloud_deployed": false,
-    "actual_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
-    "new_configuration_registrations": 0,
-    "new_Research_executions": 0,
+    "kind": "approved_append_only_budget_revision_and_round005_execution",
+    "production_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "actual_cloud_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
+    "execution_source_manifest_hash": "f7b508bcf77ac036cee03b8d6278863c807f6e4c910176045460c27f834a02d0",
+    "independently_accepted": false,
+    "metadata_and_audit_code_only": false,
+    "registry_or_budget_changed": true,
+    "cloud_deployed": true,
+    "new_configuration_registrations": 1,
+    "new_Research_executions": 1,
     "new_LEAN_submissions": 0,
-    "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-    "developer_clean_Git_replay_passed": true,
-    "developer_full_synthetic_test_count": 825,
-    "acceptance_scope": "Raw Git protection declarations and reproducible audit delivery only",
-    "accepted_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "developer_full_synthetic_test_count": 844,
     "whole_phase2_accepted": false,
     "new_cloud_success_verified": false,
     "current_archival_commit_independently_reviewed": false,
-    "independent_review": {
-      "review_id": "AQRP-20261028-2F5591E-WR28-24",
-      "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
-      "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
-      "status": "fixed_verified_closed",
-      "scope": "Raw Git protection declarations and reproducible audit delivery only",
-      "whole_phase2_accepted": false,
-      "new_cloud_success_verified": false,
-      "financial_evidence": false
-    }
+    "acceptance_scope": "pending independent exact-version software and delivery review; actual Research failed",
+    "report": "audit/stage2_round005_report.json",
+    "review_handoff": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt",
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "pending": true
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -2431,40 +2439,35 @@
   },
   "current_archival_metadata_independently_reviewed": false,
   "current_engineering_round": {
-    "round_id": "stage2-normal-repair-round-004",
-    "status": "closed_original_LEAN_failed",
-    "report": "audit/stage2_normal004_report.json",
-    "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
-    "independent_software_review": {
-      "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
-      "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
-      "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
-      "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
-      "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
-      "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
-      "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
-      "tested_data_and_budget_scope": "passed",
-      "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
-      "archived_Research_engineering": "supported_at_metadata_level",
-      "phase2_overall": "not_accepted",
-      "financial_evidence": false,
-      "final_test_enabled": false,
-      "reviewer_QC_calls": 0,
-      "reviewer_Research_executions": 0,
-      "reviewer_LEAN_submissions": 0,
-      "no_new_product_findings": true,
-      "counts_are_overlapping_not_additive": true,
-      "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
-      "no_further_execution_authorized_by_review": true
+    "round_id": "stage2-source-policy-v2-rerun-005",
+    "status": "closed_native_Research_failure",
+    "report": "audit/stage2_round005_report.json",
+    "source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
+    "limits": {
+      "configurations": 1,
+      "research": 1,
+      "lean": 1
     },
-    "stage2_accepted": false,
+    "registered": true,
+    "Research_executed": true,
+    "LEAN_submitted": false,
+    "extra_spend_USD": 0,
     "final_test_enabled": false,
+    "stage2_accepted": false,
+    "runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "actual_usage": {
+      "configurations": 1,
+      "lean": 0,
+      "research": 1
+    },
     "global_usage": {
-      "configurations": 12,
-      "research": 15,
+      "configurations": 13,
+      "research": 16,
       "lean": 2
     },
-    "latest_gate_verification": "audit/stage2_gate_verification_20261028.json"
+    "research_attempt_id": "020326aa00434b639e5a73a405168a97",
+    "automatic_retries": 0,
+    "independently_accepted": false
   },
   "root_cause_followup": {
     "finding_id": "RC003",
@@ -2477,17 +2480,18 @@
     "final_test_enabled": false
   },
   "phase2_repair_followup": {
-    "report": "audit/stage2_normal004_review_followup.json",
-    "status": "partial_software_review_passed_lean_data_stage_gates_pending",
-    "last_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "report": "audit/stage2_round005_report.json",
+    "status": "round005_native_Research_failed_LEAN_not_submitted_data_gates_incomplete",
+    "last_cloud_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
     "global_usage": {
-      "configurations": 12,
-      "research": 15,
+      "configurations": 13,
+      "research": 16,
       "lean": 2
     },
-    "new_independent_software_acceptance": true,
+    "new_independent_software_acceptance": false,
     "full_phase2_accepted": false,
-    "final_test_enabled": false
+    "final_test_enabled": false,
+    "previous_independent_finite_scopes_preserved": true
   },
   "latest_scoped_software_acceptance": {
     "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
@@ -2511,44 +2515,41 @@
     "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
     "no_further_execution_authorized_by_review": true
   },
-  "new_configuration_capacity_remaining": 1,
-  "historical_fields_note": "Historical findings/reports retain exact source versions.4a42c18 EOF tested functions passed, but its original delivery failedWR28. RawGit delivery at2f5591e is independently fixed/closed. This current metadata archive has no separate independent approval. Production remains4a, actual cloud runtime662ccd remains failed, andPhase2 is not accepted.",
+  "new_configuration_capacity_remaining": 0,
+  "historical_fields_note": "All historical reviews retain their exact source and finite scope: prior EOF functions4a, WR28 delivery2f, old cloud662ccd/failed LEAN. Current engineering runtime0f6 is deployed, one Research failed natively and no new LEAN was submitted. Budget code/current delivery pending independent review; Phase2 not accepted.",
   "developer_gate_verification": {
-    "report": "audit/stage2_gate_verification_20261028.json",
-    "actual_native_LEAN_status": "Runtime Error",
+    "report": "audit/stage2_round005_report.json",
+    "actual_Research_status": "runtime_error",
     "ledger_status": "failed",
-    "original_terminal_settled": true,
+    "new_LEAN_status": "not_submitted",
+    "round_closed": true,
     "new_independent_software_review": false,
     "stage2_accepted": false,
-    "product_source_changed": false
+    "product_source_changed": true
   },
   "latest_pending_candidate": {
-    "kind": "WR28_audit_only_fix",
-    "status": "WR28_independently_closed_no_pending_WR28_recheck",
-    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-    "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
-    "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-    "cloud_deployed": false,
-    "final_test_enabled": false,
-    "financial_evidence": false,
-    "review_handoff": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
-    "clean_Git_verification_passed": true,
-    "repository_synthetic_tests_passed": 825,
-    "pending": false,
-    "independent_review": {
-      "review_id": "AQRP-20261028-2F5591E-WR28-24",
-      "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
-      "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
-      "status": "fixed_verified_closed",
-      "scope": "Raw Git protection declarations and reproducible audit delivery only",
-      "whole_phase2_accepted": false,
-      "new_cloud_success_verified": false,
-      "financial_evidence": false
-    },
+    "kind": "approved_append_only_budget_revision_and_round005_execution",
+    "production_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "actual_cloud_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
+    "execution_source_manifest_hash": "f7b508bcf77ac036cee03b8d6278863c807f6e4c910176045460c27f834a02d0",
+    "independently_accepted": false,
+    "metadata_and_audit_code_only": false,
+    "registry_or_budget_changed": true,
+    "cloud_deployed": true,
+    "new_configuration_registrations": 1,
+    "new_Research_executions": 1,
+    "new_LEAN_submissions": 0,
+    "developer_full_synthetic_test_count": 844,
     "whole_phase2_accepted": false,
-    "historical_review_request": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt"
+    "new_cloud_success_verified": false,
+    "current_archival_commit_independently_reviewed": false,
+    "acceptance_scope": "pending independent exact-version software and delivery review; actual Research failed",
+    "report": "audit/stage2_round005_report.json",
+    "review_handoff": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt",
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "pending": true
   },
   "latest_independent_functional_review": {
     "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
@@ -2558,7 +2559,7 @@
     "whole_candidate_accepted": false,
     "phase2_accepted": false
   },
-  "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "production_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
   "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
   "latest_WR28_independent_closure": {
     "review_id": "AQRP-20261028-2F5591E-WR28-24",
@@ -2576,14 +2577,14 @@
     "report": "audit/stage2_round005_report.json",
     "developer_repository_tests_passed": 844,
     "new_independent_review": false,
-    "actual_Research_executions": 0,
+    "actual_Research_executions": 1,
     "actual_LEAN_submissions": 0,
     "cloud_execution_waiting_budget_decision": false,
-    "cloud_execution_status": "approved_pre_dispatch"
+    "cloud_execution_status": "actual_Research_failed_round_closed"
   },
   "current_engineering_round005": {
     "round_id": "stage2-source-policy-v2-rerun-005",
-    "status": "approved_budget_revised_pre_dispatch",
+    "status": "closed_native_Research_failure",
     "report": "audit/stage2_round005_report.json",
     "source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
     "limits": {
@@ -2591,11 +2592,161 @@
       "research": 1,
       "lean": 1
     },
-    "registered": false,
-    "Research_executed": false,
+    "registered": true,
+    "Research_executed": true,
     "LEAN_submitted": false,
     "extra_spend_USD": 0,
     "final_test_enabled": false,
-    "stage2_accepted": false
-  }
+    "stage2_accepted": false,
+    "runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+    "actual_usage": {
+      "configurations": 1,
+      "lean": 0,
+      "research": 1
+    },
+    "global_usage": {
+      "configurations": 13,
+      "research": 16,
+      "lean": 2
+    },
+    "research_attempt_id": "020326aa00434b639e5a73a405168a97",
+    "automatic_retries": 0,
+    "independently_accepted": false
+  },
+  "prior_round005_metadata_snapshot": {
+    "scope": "Exact prior current-field metadata retained from WR28/round004; not current round005 status.",
+    "fields": {
+      "current_candidate": {
+        "kind": "WR28_audit_only_delivery_correction",
+        "unchanged_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+        "independently_accepted": true,
+        "metadata_and_audit_code_only": true,
+        "registry_or_budget_changed": false,
+        "cloud_deployed": false,
+        "actual_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+        "new_configuration_registrations": 0,
+        "new_Research_executions": 0,
+        "new_LEAN_submissions": 0,
+        "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "developer_clean_Git_replay_passed": true,
+        "developer_full_synthetic_test_count": 825,
+        "acceptance_scope": "Raw Git protection declarations and reproducible audit delivery only",
+        "accepted_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "whole_phase2_accepted": false,
+        "new_cloud_success_verified": false,
+        "current_archival_commit_independently_reviewed": false,
+        "independent_review": {
+          "review_id": "AQRP-20261028-2F5591E-WR28-24",
+          "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+          "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+          "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+          "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+          "status": "fixed_verified_closed",
+          "scope": "Raw Git protection declarations and reproducible audit delivery only",
+          "whole_phase2_accepted": false,
+          "new_cloud_success_verified": false,
+          "financial_evidence": false
+        }
+      },
+      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "current_engineering_round": {
+        "round_id": "stage2-normal-repair-round-004",
+        "status": "closed_original_LEAN_failed",
+        "report": "audit/stage2_normal004_report.json",
+        "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+        "independent_software_review": {
+          "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+          "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+          "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+          "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+          "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+          "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+          "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+          "tested_data_and_budget_scope": "passed",
+          "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+          "archived_Research_engineering": "supported_at_metadata_level",
+          "phase2_overall": "not_accepted",
+          "financial_evidence": false,
+          "final_test_enabled": false,
+          "reviewer_QC_calls": 0,
+          "reviewer_Research_executions": 0,
+          "reviewer_LEAN_submissions": 0,
+          "no_new_product_findings": true,
+          "counts_are_overlapping_not_additive": true,
+          "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
+          "no_further_execution_authorized_by_review": true
+        },
+        "stage2_accepted": false,
+        "final_test_enabled": false,
+        "global_usage": {
+          "configurations": 12,
+          "research": 15,
+          "lean": 2
+        },
+        "latest_gate_verification": "audit/stage2_gate_verification_20261028.json"
+      },
+      "research_budget_usage": {
+        "configurations": 12,
+        "research": 15,
+        "lean": 2
+      },
+      "historical_fields_note": "Historical findings/reports retain exact source versions.4a42c18 EOF tested functions passed, but its original delivery failedWR28. RawGit delivery at2f5591e is independently fixed/closed. This current metadata archive has no separate independent approval. Production remains4a, actual cloud runtime662ccd remains failed, andPhase2 is not accepted.",
+      "new_candidate_acceptance": "WR28_audit_delivery_independently_closed_only_whole_Phase2_not_accepted",
+      "latest_pending_candidate": {
+        "kind": "WR28_audit_only_fix",
+        "status": "WR28_independently_closed_no_pending_WR28_recheck",
+        "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+        "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "cloud_deployed": false,
+        "final_test_enabled": false,
+        "financial_evidence": false,
+        "review_handoff": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+        "clean_Git_verification_passed": true,
+        "repository_synthetic_tests_passed": 825,
+        "pending": false,
+        "independent_review": {
+          "review_id": "AQRP-20261028-2F5591E-WR28-24",
+          "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+          "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+          "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+          "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+          "status": "fixed_verified_closed",
+          "scope": "Raw Git protection declarations and reproducible audit delivery only",
+          "whole_phase2_accepted": false,
+          "new_cloud_success_verified": false,
+          "financial_evidence": false
+        },
+        "whole_phase2_accepted": false,
+        "historical_review_request": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt"
+      },
+      "phase2_repair_followup": {
+        "report": "audit/stage2_normal004_review_followup.json",
+        "status": "partial_software_review_passed_lean_data_stage_gates_pending",
+        "last_cloud_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+        "global_usage": {
+          "configurations": 12,
+          "research": 15,
+          "lean": 2
+        },
+        "new_independent_software_acceptance": true,
+        "full_phase2_accepted": false,
+        "final_test_enabled": false
+      },
+      "new_market_or_model_calls": 0,
+      "developer_gate_verification": {
+        "report": "audit/stage2_gate_verification_20261028.json",
+        "actual_native_LEAN_status": "Runtime Error",
+        "ledger_status": "failed",
+        "original_terminal_settled": true,
+        "new_independent_software_review": false,
+        "stage2_accepted": false,
+        "product_source_changed": false
+      }
+    }
+  },
+  "latest_independently_reviewed_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "current_verification_instruction": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt"
 }
