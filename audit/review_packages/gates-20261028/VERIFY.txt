@@ -1,0 +1,45 @@
+阶段2门槛核验包，2026-10-28
+
+本包是开发方验证，不代替GPT Work独立审核。结果是：原LEAN已确认失败；
+计算内核仅合成范围通过；财务数值目录/计费认证派发尚缺；真实历史认证证据不足。
+固定产品源码未改，原始46事件保留，原已付费任务结算及关闭轮次后48事件，费用不变。
+
+主要入口：
+- audit/stage2_gate_verification_20261028.json / .txt
+- round_evidence_after_terminal.json：固定共享程序对真实原始错误包的只读重放结果。
+- lean/delivered_failure_result.json：原回执绑定、Memory重放与六个有限字节候选。
+- lean/lf_guard_check.json：共享校验程序原文件通过、仅追加LF后严格拒绝的已知答案。
+- cloud_sources_result.json：32个声明的项目源码当前读回一致；不声明完整项目库存或其余worker文件已认证。
+- certification/gate_report.json / execution.json：48和12方法的真实合成测试及目录/CLI负面探针。
+- full_offline_verification.json：本次官方离线整仓复验结果。
+
+可直接从仓库根目录执行的离线入口：
+python -B tools/stages.py verify
+python -B tools/data_certification.py capabilities
+python -B audit/review_packages/normal004/verify_round_evidence.py --lean-packet 37dc855045e14ca49c88fd9d75f40cf7=audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-result.json --lean-logs 37dc855045e14ca49c88fd9d75f40cf7=audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-logs.json
+python -B audit/review_packages/gates-20261028/verify_gate_evidence.py
+
+这些命令不应访问市场数据供应商、发起回测或修改真实账本。
+stages.py会更新开发侧合成测试报告，不会生成新的独立验收结论。
+
+lean/及certification/中的辅助driver原样保存了执行时脚本及日志。
+它们的绝对路径、fixed-fixture或cloud-source-native.json等临时依赖属于当时私有执行上下文；
+不是在本归档目录直接运行的入口。复现时应使用上面公共入口，或在独立临时目录中按日志重建固定d23c源码环境。
+没有把完整fixed-fixture源码树或ZIP再次提交Git。32份原生源码读回只保留私有原件和公开哈希；
+工程故障首文件的实际project read_file packet另存current_project_engineering_smoke_native.json。
+
+私有测试在原任务结算前运行，故lean/result.json保留46事件pending快照；
+随后真实终态验证与实际结算见delivered_failure_result.json及round_evidence_after_terminal.json。
+各套件、命名场景和765项整仓验证重叠，不相加为独立总数。
+
+Runtime Error只证明初始化失败，不能据此填写7项运行检查通过或原生订单数0。
+文件尾LF候选的SHA和格式匹配只覆盖第一个被拒绝的engineering_smoke.py；
+没有证明哪一步追加换行、其余31个worker文件或旧39cafa的根因。
+原生错误的任务身份仍由可信派发上下文提供；哈希不是远端签名。
+
+MCP返回的数据目录起始日期/覆盖数量及文档说明，是元数据，不是本轮完整历史行认证。
+FileDate、EndTime、近似日投递时刻或今日取数时刻，不能替代逐观察的历史实际送达/摄入凭证。
+财务数值目录0只指本项目已声明目录，并非宣称QuantConnect不存在财务数据。
+
+已核对旧的独立局部批准仍绑定4520及原有限范围；本次没有签发新的独立批准。
+原轮已因配置12/12耗尽停止，没有自动重投或修改冻结配置。最终测试继续关闭。

@@ -2290,8 +2290,8 @@
   "remaining_stage2_acceptance_gates": [
     {
       "id": "G1",
-      "status": "archived_Research_13_supported_LEAN_7_terminal_missing",
-      "requirement": "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
+      "status": "original_native_LEAN_runtime_error_no_successful_chain",
+      "requirement": "Resolve frozen/worker source parity under a new authorized configuration and obtain actual7-check success; no implicit retry.",
       "Research_required_checks": 13,
       "LEAN_required_checks": 7,
       "LEAN_actual_checks": null,
@@ -2318,7 +2318,7 @@
       "real_data_certified": false
     }
   ],
-  "current_round_stop_reached": false,
+  "current_round_stop_reached": true,
   "historical_remaining_stage2_gates_from66_review": [
     {
       "id": "G1",
@@ -2361,7 +2361,7 @@
   "current_archival_metadata_independently_reviewed": false,
   "current_engineering_round": {
     "round_id": "stage2-normal-repair-round-004",
-    "status": "open_pending_native_LEAN_terminal",
+    "status": "closed_original_LEAN_failed",
     "report": "audit/stage2_normal004_report.json",
     "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "independent_software_review": {
@@ -2392,7 +2392,8 @@
       "configurations": 12,
       "research": 15,
       "lean": 2
-    }
+    },
+    "latest_gate_verification": "audit/stage2_gate_verification_20261028.json"
   },
   "root_cause_followup": {
     "finding_id": "RC003",
@@ -2440,5 +2441,14 @@
     "no_further_execution_authorized_by_review": true
   },
   "new_configuration_capacity_remaining": 0,
-  "historical_fields_note": "Older nested repair/numerical acceptance entries retain their own fixed commits; latest scoped review is4520, actual runtime source662ccd, Phase2 overall not accepted."
+  "historical_fields_note": "Older nested repair/numerical acceptance entries retain their own fixed commits; latest scoped review is4520, actual runtime source662ccd, Phase2 overall not accepted.",
+  "developer_gate_verification": {
+    "report": "audit/stage2_gate_verification_20261028.json",
+    "actual_native_LEAN_status": "Runtime Error",
+    "ledger_status": "failed",
+    "original_terminal_settled": true,
+    "new_independent_software_review": false,
+    "stage2_accepted": false,
+    "product_source_changed": false
+  }
 }

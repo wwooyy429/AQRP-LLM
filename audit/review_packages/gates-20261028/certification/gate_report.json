@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "development_readonly_certification_gate_verification",
+  "source_commit": "d23c0ab93ceba71529eb813e349c8dfdcbb5ea88",
+  "checks": {
+    "financial_numeric_catalog": {
+      "status": "not_satisfied",
+      "production_observed_fields": 15,
+      "production_reported_financial_numeric_fields": 0,
+      "factor_fields_enabled": false,
+      "evidence": [
+        "config/source_catalog.json:5",
+        "cloud/qresearch/data_certification.py:724"
+      ],
+      "note": "market_cap and filing metadata are observations, not declared as_reported_financial_value fields"
+    },
+    "certification_computation_kernel": {
+      "status": "implemented_and_synthetic_rechecks_passed",
+      "suite_test_counts": {
+        "certification": 48,
+        "ingestion": 12
+      },
+      "scope": "bounded observed conformance only; not authenticated real data certification",
+      "evidence": [
+        "cloud/qresearch/data_certification.py:411",
+        "cloud/qresearch/data_certification.py:584",
+        "cloud/qresearch/data_certification.py:689",
+        "cloud/qresearch/data_certification.py:574"
+      ]
+    },
+    "charged_native_certification_dispatch": {
+      "status": "not_implemented_in_supported_entry_points",
+      "CLI_choices": [
+        "capabilities",
+        "validate-plan"
+      ],
+      "dispatch_attempt_expected_exit_code": 2,
+      "ready_to_dispatch": false,
+      "budget_admission_performed": false,
+      "evidence": [
+        "tools/data_certification.py:16",
+        "tools/data_certification.py:30",
+        "cloud/qresearch/data_certification.py:737"
+      ]
+    },
+    "full_historical_US200_vintages_and_availability": {
+      "status": "insufficient_actual_source_evidence",
+      "required_components": [
+        "exchange_calendar",
+        "historical_inventory_and_security_master",
+        "liquidity_20_session_US200",
+        "frozen_membership",
+        "raw_prices",
+        "corporate_actions",
+        "financial_vintages_and_publication",
+        "actual_delivery_and_ingestion"
+      ],
+      "current_adapter_gap_codes": [
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "financial_value_catalog_not_available"
+      ],
+      "source_provenance_authenticated": false,
+      "real_cloud_row_counts_verified_here": false,
+      "evidence": [
+        "cloud/qresearch/data_certification.py:40",
+        "cloud/qresearch/data_certification.py:369",
+        "cloud/qresearch/data_certification.py:471",
+        "cloud/qresearch/data_certification.py:574"
+      ]
+    }
+  },
+  "extra_boundary_probes": {
+    "complete_other_inputs_but_zero_financial_catalog": {
+      "probe": "empty_financial_catalog_with_other_components_present",
+      "status": "insufficient_evidence",
+      "synthetic": true,
+      "member_cells": 400,
+      "price_cells": 400,
+      "failed_checks": [
+        "all_required_input_components_present",
+        "financial_fields_declared",
+        "financial_scope_coverage_complete",
+        "declared_actual_timing_complete"
+      ],
+      "certification_flags_remain_false": true,
+      "market_calls": 0,
+      "licensed_rows_exported": false
+    },
+    "empty_plan_structure_validation": {
+      "plan_valid": true,
+      "plan_hash": "cec6e690ea8ab17dd28751d3aedb4e4e088662b7f9371e065c24d40627412f82",
+      "scope_start": "2018-01-31T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-02T00:00:00-05:00",
+      "warmup_start": "2018-01-01T00:00:00-05:00",
+      "financial_field_count": 0,
+      "ready_to_dispatch": false,
+      "budget_admission_performed": false,
+      "research_certified": false,
+      "financial_evidence": false
+    },
+    "dispatch_CLI_missing_is_expected_known_gap_not_new_WR": true
+  },
+  "execution_log": "execution.json",
+  "counting": "Existing 48 and12 method suites plus overlapping targeted probes are reported separately; not an independent review or financial certification.",
+  "tracked_files_unchanged": 6107,
+  "product_source_changes": false,
+  "QC_calls": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "model_calls": 0,
+  "budget_changed": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "independent_acceptance": false
+}

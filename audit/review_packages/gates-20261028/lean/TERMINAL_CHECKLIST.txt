@@ -1,0 +1,89 @@
+Original LEAN gate: read-only preparation, not an executed cloud settlement
+
+Frozen archive source: d23c0ab93ceba71529eb813e349c8dfdcbb5ea88.
+Runtime implementation: 662ccd876b67ca0949f921a53c4c33df37cfbbf1.
+Attempt: 37dc855045e14ca49c88fd9d75f40cf7.
+Native backtest: 3e68866a46ca88ff16481c31b3c2c822.
+Project: 38436695 (must independently list projects before actual project I/O).
+The current local artifact has46 events and a pending accepted submission.
+It is not a delivered terminal or proof of seven actual checks/zero orders.
+
+1. Wait for actual platform terminal delivery. Do not replace this attempt,
+   poll a newly submitted job, free-form fill a completed status, or reuse a
+   synthetic terminal from these tests as real evidence. A missing or transport
+   error is not a runtime-error terminal.
+
+2. Only once delivered, the trusted dispatcher may capture one native result
+   from mcp__quantconnect__read_backtest with explicit projectId38436695 and
+   backtestId3e68866a46ca88ff16481c31b3c2c822. Persist the actual tool observation
+   envelope with exactly tool_name, arguments, result; no invented identity.
+   Acceptance alone or compilation success cannot satisfy this gate.
+
+3. Success requires the native backtest object to match project/backtest,
+   completed=true, status='Completed.', progress=1, and no initialize/error/
+   stacktrace. Progress must be finite and not boolean. For actual zero orders,
+   obtain the native Total Orders count or equivalent actual zero-order evidence;
+   the parser only checks this statistic when present and does not invent it.
+
+4. On successful native completion, retrieve bound engineering log pages with:
+   tool_name: mcp__quantconnect__search_backtest_logs
+   arguments:
+     projectId:38436695
+     backtestId:'3e68866a46ca88ff16481c31b3c2c822'
+     query:'AQRP_ENGINEERING 37dc855045e14ca49c88fd9d75f40cf7'
+     page:1 (then every actual page through totalPages, at most128)
+   The exact query is mandatory; generic AQRP_ENGINEERING_JSON is not the LEAN
+   protocol. Each line must contain one attempt-bound AQRP_ENGINEERING marker,
+   with zero-based unique chunks, a consistent declared count<=128, and complete
+   indices/pages. Non-final chunks have500 base64 characters. There must be no
+   unknown/foreign output or incomplete report. Preserve actual envelopes as a
+   JSON list for --logs-file; never substitute a hand-written report object.
+
+5. Reconstructed report identity must equal the original admitted payload:
+   stage=lean; attempt/config/plan/project/source_manifest/deployment/request
+   identities all exact. Original deployment input_hash must bind the original
+   admission/submission; LEAN resolution must match verified Research resolution.
+   Its immutable report_key and content hash must match the reconstructed report.
+   All engineering/residency/coverage/final/economic limitations remain false.
+
+6. The seven exact required checks must be actual boolean true:
+   source_snapshot_matches
+   raw_data_received
+   complete_expected_bars
+   no_orders
+   development_only
+   symbol_registry_resolved
+   corporate_action_received
+   Counts must be nonnegative native integers, including data_event_count>=1,
+   orders_submitted=0, runtime_error_count=0 and dividend_event_count>=1.
+   Report status must be completed and terminal=true. These are a bounded2018
+   two-symbol engineering receiver, not an economic backtest or full US200.
+
+7. A native Runtime Error or initialize failure may settle only failed.
+   The tool-error form must have isError=true and success=false, exact first
+   error 'The backtest ended with a runtime error.' plus nonempty diagnostics.
+   Generic timeout/network errors do not qualify. No successful report/zero
+   orders/seven-check answers are manufactured for failure. The parser redacts
+   diagnostics into bounded metadata; market rows must remain in QC Cloud.
+
+8. After actual observations exist, trusted dispatcher CLI (NOT run here):
+   python -B tools/stage2.py backtest-result --attempt 37dc855045e14ca49c88fd9d75f40cf7 --tool-file <actual-native-result-envelope.json> --logs-file <actual-log-envelope-list.json>
+   This settles the
+   already-paid original task; it must not add configuration/Research/LEAN quota.
+   A failure branch needs no success log report; an empty log-envelope list
+   indicates none supplied, not fabricated log data.
+
+9. Then read-only reverify exact retained evidence with the existing program:
+   python -B audit/review_packages/normal004/verify_round_evidence.py --lean-packet 37dc855045e14ca49c88fd9d75f40cf7=<actual-native-result-envelope.json> --lean-logs 37dc855045e14ca49c88fd9d75f40cf7=<actual-log-envelope-list.json>
+   The program verifies archived original
+   identity/source/input and ledger state; actual terminal logs supply checks.
+
+10. Local helper/receipt tests are synthetic. Passing them proves only their
+    offline contract coverage. Full Phase2 still requires its separate data,
+    financial catalog/dispatch, SID semantics and provenance gates, plus the
+    exact independently reviewed scope. Final testing remains closed.
+
+Source references:
+engineering_receipts.py:178 _tool,585 submission,666 log chunks,703 runtime error,
+730 native completion; engineering_tasks.py:733 _cloud_report,773 contract,801
+consume_completion; tools/stage2.py:431 original attempt settlement CLI.

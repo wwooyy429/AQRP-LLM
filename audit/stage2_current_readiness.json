@@ -1,6 +1,6 @@
 {
-  "schema_version": 8,
-  "kind": "phase2_independent_scoped_review_passed_whole_stage_not_accepted",
+  "schema_version": 9,
+  "kind": "stage2_gates_verified_native_LEAN_failed_certification_incomplete",
   "previous_readiness": {
     "commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
     "path": "audit/stage2_current_readiness.json",
@@ -28,17 +28,17 @@
     1
   ],
   "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
-  "stage2_status": "local_software_scope_passed_LEAN_terminal_and_data_certification_missing",
+  "stage2_status": "not_accepted_native_LEAN_failed_and_data_gates_incomplete",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "independent_review_archival_only",
-    "baseline_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
-    "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
-    "QC_calls": 0,
+    "kind": "gate_verification_and_original_terminal_settlement",
+    "baseline_commit": "d23c0ab93ceba71529eb813e349c8dfdcbb5ea88",
+    "QC_metadata_calls": 40,
     "new_configuration_registrations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
-    "new_deployments": 0
+    "native_terminal_settlements": 1,
+    "round_closures": 1
   },
   "current_activity_checker": "audit/review_packages/normal004/verify_round_evidence.py",
   "candidate_runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
@@ -50,7 +50,7 @@
   "current_Research_platform_status": "completed",
   "current_Research_engineering_status": "completed_all_13_checks",
   "current_Research_ledger_status": "completed",
-  "pending_backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+  "pending_backtest_id": null,
   "new_LEAN_submissions": 0,
   "new_LEAN_success": false,
   "old_failed_LEAN_ref": {
@@ -60,7 +60,7 @@
     "worker_specific_cause_proven": false,
     "repolled_this_round": false
   },
-  "engineering_round_status": "open",
+  "engineering_round_status": "closed",
   "engineering_stop_caps": {
     "configurations": 2,
     "lean": 2,
@@ -71,9 +71,9 @@
     "lean": 1,
     "research": 2
   },
-  "unused_LEAN_reservation_released": false,
+  "unused_LEAN_reservation_released": true,
   "legacy_stop_caps_preserved": true,
-  "current_round_stop_reached": false,
+  "current_round_stop_reached": true,
   "global_usage": {
     "configurations": 12,
     "research": 15,
@@ -81,11 +81,12 @@
   },
   "global_limits_unchanged": true,
   "known_open_software_findings_from_independent_reports": [],
-  "new_candidate_review_status": "4520_local_software_scope_passed_overall_Phase2_not_accepted",
+  "new_candidate_review_status": "prior4520_local_scope_retained_new_runtime_evidence_not_independently_reviewed",
   "blockers": [
-    "Original same-plan LEAN terminal, native logs, 7 fixed checks and actual zero orders; no replacement submission.",
-    "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them.",
-    "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence."
+    "Successful same-plan minimal LEAN engineering run absent; original attempt failed frozen-source hash check.",
+    "Production financial numeric catalogue and charged certification native dispatch are missing.",
+    "Full historical US200, SID economic ambiguity, financial vintage/publication and actual historical delivery/ingestion evidence remain insufficient.",
+    "Specific packaging step, other worker files, original historical compile packet and old failed worker provenance remain unproven."
   ],
   "certification_status": "insufficient_evidence",
   "reports": [
@@ -99,7 +100,8 @@
     "audit/phase2_repair_sid_offline_verification.json",
     "audit/phase2_repair_data_evidence_requirements.json",
     "audit/stage2_normal004_report.json",
-    "audit/stage2_normal004_review_followup.json"
+    "audit/stage2_normal004_review_followup.json",
+    "audit/stage2_gate_verification_20261028.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -109,7 +111,7 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "This turn imports an independently supplied review only. No QC reads/writes, executions, source changes, task settlement or further execution authorization.",
+  "current_activity_scope": "Read historical platform terminal once, validate original native failure and logs, settle original paid task, close stopped round, inspect current declared sources/catalog/docs and run offline checks. No source/config changes or new market execution.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
@@ -127,12 +129,18 @@
       "id": "SID-OBSERVATION-AMBIGUITY",
       "status": "preserved_for_engineering_not_resolved_for_economic_use",
       "scope": "27 duplicate projections observed; 0 conflicting projections among selected four fields does not prove full-record equality"
+    },
+    {
+      "id": "LEAN-WORKER-SOURCE-PARITY",
+      "status": "native_terminal_failure_exact_one_LF_candidate_reproduced",
+      "scope": "engineering_smoke.py first rejected declared worker source only",
+      "report": "audit/stage2_gate_verification_20261028.json"
     }
   ],
   "latest_local_SID_diagnostic_deployed": true,
   "normal_budget_permission_pending": false,
   "current_LEAN_attempt": "37dc855045e14ca49c88fd9d75f40cf7",
-  "current_LEAN_ledger_status": "pending",
+  "current_LEAN_ledger_status": "failed",
   "latest_backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
   "latest_scoped_software_acceptance": {
     "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
@@ -171,5 +179,7 @@
     "new_deployments": 2,
     "managed_source_readbacks": 64
   },
-  "latest_runtime_round_LEAN_submissions": 1
+  "latest_runtime_round_LEAN_submissions": 1,
+  "current_LEAN_platform_status": "Runtime Error",
+  "latest_gate_verification": "audit/stage2_gate_verification_20261028.json"
 }

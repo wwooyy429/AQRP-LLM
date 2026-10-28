@@ -1,0 +1,59 @@
+{
+  "kind": "synthetic_known_answer_actual_shared_guard",
+  "original_accepted": true,
+  "append_one_LF_rejected": true,
+  "reported_sha_and_full_source_format_exact_match": true,
+  "actual_diagnostic": {
+    "expected_sha256": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+    "failure_kind": "source_hash_mismatch",
+    "observed_sha256": "5b7111b3806c2f4a8f93b85ffb8a54fa63cebdefb126bcc449c6020b95d3c4e5",
+    "path": "engineering_smoke.py",
+    "schema_version": 2,
+    "worker_observation": {
+      "coverage_scope": "first_rejected_declared_source",
+      "kind": "controlled_worker_source_observation",
+      "old_worker_root_cause_proven": false,
+      "read_status": "read",
+      "root_context": {
+        "inspected_source_is_verifier": false,
+        "root_selection": "explicit",
+        "source_path_sha256": "5f362132b2feba72dfd1b7632757de22c92df7895edcb46d33b0a211939298a6",
+        "source_root_sha256": "70c42eb5795afcd497542e27f88ce7a983347bd75f957804cebf8a4678ab5e53",
+        "verifier_path_sha256": "117375a7e594adbdbf4a5d996f41b4881bc1dd3f7a017ad96515207257841224",
+        "verifier_within_source_root": false
+      },
+      "schema_version": 1,
+      "source_format": {
+        "algorithm_from_import_count": 1,
+        "algorithm_import_count": 0,
+        "algorithm_star_import_count": 1,
+        "byte_count": 3562,
+        "crlf_count": 0,
+        "future_import_count": 0,
+        "lf_count": 60,
+        "normalized_trailing_lf_count": 2,
+        "raw_sha256": "5b7111b3806c2f4a8f93b85ffb8a54fa63cebdefb126bcc449c6020b95d3c4e5",
+        "standalone_cr_count": 0,
+        "syntax_status": "parsed",
+        "utf8_bom": false
+      },
+      "strict_identity_relaxed": false,
+      "unlisted_worker_paths_scanned": false
+    }
+  },
+  "only_one_declared_file": true,
+  "real_worker_raw_file_retrieved": false,
+  "first_helper_correction": {
+    "first_invocation_exit": 1,
+    "error_kind": "AttributeError",
+    "wrong_helper_field": "diagnostic",
+    "actual_owned_exception_field": "diagnostics",
+    "actual_guard_already_raised_expected_rejection_before_helper_error": true,
+    "original_tool_output_retained_in_chat": true,
+    "product_code_changed": false
+  },
+  "real_ledger_writes": 0,
+  "QC_calls": 0,
+  "strict_identity_relaxed": false,
+  "financial_evidence": false
+}
