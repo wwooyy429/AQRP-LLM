@@ -24,6 +24,8 @@ from .artifacts import ArtifactConflict, canonical_json, content_hash, decode_ev
 from .engineering_rounds import RESOURCES, validate_grant, validate_round_id
 from .budget_revisions import (validate_revision, validate_reference as validate_budget_reference,
                                revision_reference)
+from .budget_cycles import (INITIAL_CYCLE, validate_cycle, cycle_reference,
+                            validate_reference as validate_cycle_reference)
 
 
 class RegistryError(RuntimeError):
@@ -203,12 +205,23 @@ class Registry:
                  "configs": {}, "attempts": {}, "operations": {}, "imports": {},
                  "engineering_rounds": {}, "engineering_round_configs": {},
                  "limits": {key: dict(value) for key, value in self._initial_limits.items()},
-                 "budget_revisions": {}}
+                 "budget_revisions": {}, "configuration_cycles": {}, "configuration_cycle_history": {},
+                 "configuration_origins": {},
+                 "configuration_cycle": {"cycle_id": INITIAL_CYCLE, "sequence": 0,
+                     "starting_lifetime_usage": {"normal": 0, "reserve": 0, "total": 0},
+                     "authorization_ref": None, "cycle_ref": None}}
         try:
             for envelope in records[1:]:
                 event = envelope["event"]
                 kind = event["kind"]
-                if kind == "budget_revision_authorized":
+                if kind == "configuration_cycle_authorized":
+                    if set(event) != {"kind", "cycle_ref", "recorded_at"}:
+                        raise CorruptRegistry("Unexpected configuration-cycle event fields")
+                    cycle = self._read_cycle_reference(event["cycle_ref"], "cycles")
+                    authorization = self._read_cycle_reference(cycle["authorization_ref"], "user-authorizations")
+                    self._validate_configuration_cycle(state, cycle, authorization)
+                    self._apply_configuration_cycle(state, cycle, event["cycle_ref"])
+                elif kind == "budget_revision_authorized":
                     if set(event) != {"kind", "revision_ref", "recorded_at"}:
                         raise CorruptRegistry("Unexpected budget revision event fields")
                     revision = self._read_budget_reference(event["revision_ref"], "revisions")
@@ -244,6 +257,8 @@ class Registry:
                     if sha256(data).hexdigest() != identity or canonical_json(json.loads(data)) != data:
                         raise CorruptRegistry("Configuration artifact identity mismatch")
                     if kind == "config_registered":
+                        if event.get("configuration_cycle_id", INITIAL_CYCLE) != state["configuration_cycle"]["cycle_id"]:
+                            raise CorruptRegistry("Configuration charge belongs to another allowance cycle")
                         self._charge_reserved(state, "configurations", event["allocation"], identity)
                     else:
                         self._verify_import(json.loads(data), event["source_reference"], event["allocation"])
@@ -255,6 +270,9 @@ class Registry:
                             raise CorruptRegistry("Imported configurations exceed the preserved allocation usage")
                         state["imports"][source_id] = event
                     state["configs"][identity] = event
+                    state["configuration_origins"][identity] = {
+                        "cycle_id": state["configuration_cycle"]["cycle_id"] if kind == "config_registered" else INITIAL_CYCLE,
+                        "historical_import": kind == "config_imported"}
                 elif kind == "attempt_started":
                     identity, stage, operation = event["config_id"], event["stage"], event["operation_key"]
                     self._validate_identity(identity, stage)
@@ -318,6 +336,8 @@ class Registry:
 
     def _validate_budget_revision(self, state: dict, revision: dict, authorization: dict) -> None:
         validate_revision(revision, authorization, state["limits"])
+        if state["configuration_cycle"]["sequence"]:
+            raise RegistryError("Reserve extensions after a configuration reset require a separate versioned policy")
         if revision["revision_id"] in state["budget_revisions"]:
             raise RegistryError("Budget revision identity is already immutable")
         if (any(item["status"] == "open" for item in state["engineering_rounds"].values())
@@ -363,6 +383,105 @@ class Registry:
             return {identity: self._budget_revision_snapshot(state, record)
                     for identity, record in state["budget_revisions"].items()}
 
+    @staticmethod
+    def _effective_usage(state: dict) -> dict:
+        """Only configuration enforcement uses the active cycle's offset."""
+        usage = {key: dict(value) for key, value in state["usage"].items()}
+        offset = state["configuration_cycle"]["starting_lifetime_usage"]
+        usage["configurations"] = {part: usage["configurations"][part] - offset[part]
+                                    for part in ("normal", "reserve", "total")}
+        if any(n < 0 for n in usage["configurations"].values()):
+            raise CorruptRegistry("Configuration-cycle offset exceeds lifetime usage")
+        return usage
+
+    def _charge_current(self, state: dict, kind: str, allocation: str) -> None:
+        checked = self._effective_usage(state)
+        self._charge(checked, kind, allocation, state["limits"])
+        # The checked temporary counters are admission only. Never overwrite
+        # cumulative usage or clear historical charges at a cycle boundary.
+        state["usage"][kind][allocation] += 1
+        state["usage"][kind]["total"] += 1
+
+    @staticmethod
+    def _configuration_cycle_state_hash(state: dict) -> str:
+        current = state["configuration_cycle"]
+        return content_hash({"limits": state["limits"], "lifetime_usage": state["usage"],
+            "current_cycle": {name: current[name] for name in
+                ("cycle_id", "sequence", "starting_lifetime_usage")}})
+
+    @classmethod
+    def _configuration_cycle_snapshot(cls, state: dict) -> dict:
+        current = state["configuration_cycle"]
+        usage = cls._effective_usage(state)["configurations"]
+        limits = state["limits"]["configurations"]
+        return json.loads(canonical_json({"schema_version": 1, **current,
+            "capacity": limits, "usage": usage,
+            "remaining": {part: limits[part] - usage[part] for part in limits},
+            "lifetime_usage": state["usage"]["configurations"],
+            "state_hash": cls._configuration_cycle_state_hash(state)}))
+
+    def _read_cycle_reference(self, reference: dict, namespace: str) -> dict:
+        validate_cycle_reference(reference, namespace)
+        raw = self.store.read_bytes(reference["key"])
+        document = json.loads(raw)
+        if canonical_json(document) != raw or sha256(raw).hexdigest() != reference["sha256"]:
+            raise ValueError("Configuration-cycle reference bytes changed")
+        return document
+
+    def _validate_configuration_cycle(self, state: dict, cycle: dict, authorization: dict) -> None:
+        validate_cycle(cycle, authorization,
+            previous_state_hash=self._configuration_cycle_state_hash(state),
+            capacity=state["limits"]["configurations"])
+        if cycle["cycle_id"] in state["configuration_cycles"]:
+            raise RegistryError("Configuration-cycle identity is already immutable")
+        if (any(item["status"] == "open" for item in state["engineering_rounds"].values())
+                or any(item["status"] in _OPEN_STATES for item in state["attempts"].values())):
+            raise RegistryError("Configuration reset requires no open round or unresolved attempt")
+
+    def _apply_configuration_cycle(self, state: dict, cycle: dict, reference: dict) -> None:
+        previous = self._configuration_cycle_snapshot(state)
+        state["configuration_cycle_history"][previous["cycle_id"]] = previous
+        state["configuration_cycles"][cycle["cycle_id"]] = {"cycle": cycle, "cycle_ref": reference}
+        state["configuration_cycle"] = {"cycle_id": cycle["cycle_id"],
+            "sequence": previous["sequence"] + 1,
+            "starting_lifetime_usage": dict(state["usage"]["configurations"]),
+            "authorization_ref": cycle["authorization_ref"], "cycle_ref": reference}
+
+    def authorize_configuration_cycle(self, cycle: dict, authorization: dict) -> dict:
+        """Trusted operator: renew configuration capacity, preserve all history.
+
+        A repeated identical reset is idempotent even after later activity. New
+        reset identities bind the precise prior replayed state and require all
+        rounds closed and all executions resolved. Research and LEAN never reset.
+        """
+        validate_cycle(cycle, authorization)
+        cycle, authorization = json.loads(canonical_json([cycle, authorization]))
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            previous = state["configuration_cycles"].get(cycle["cycle_id"])
+            if previous is not None:
+                original = self._read_cycle_reference(previous["cycle"]["authorization_ref"], "user-authorizations")
+                if previous["cycle"] != cycle or canonical_json(original) != canonical_json(authorization):
+                    raise RegistryError("Configuration-cycle identity cannot be overwritten")
+                return self._configuration_cycle_snapshot(state)
+            self._validate_configuration_cycle(state, cycle, authorization)
+            reference = cycle_reference(cycle)
+            self.store.write_once(cycle["authorization_ref"]["key"], canonical_json(authorization))
+            self.store.write_once(reference["key"], canonical_json(cycle))
+            self._append({"kind": "configuration_cycle_authorized", "cycle_ref": reference})
+            self._apply_configuration_cycle(state, cycle, reference)
+            return self._configuration_cycle_snapshot(state)
+
+    def configuration_cycle_snapshot(self) -> dict:
+        with self.store.locked(self.LOCK):
+            return self._configuration_cycle_snapshot(self._replay())
+
+    def configuration_cycles_snapshot(self) -> dict:
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            return json.loads(canonical_json({**state["configuration_cycle_history"],
+                state["configuration_cycle"]["cycle_id"]: self._configuration_cycle_snapshot(state)}))
+
     def _read_round_reference(self, reference: dict, namespace: str) -> dict:
         if (not isinstance(reference, dict) or set(reference) != {"key", "sha256"}
                 or not isinstance(reference["sha256"], str)
@@ -401,7 +520,7 @@ class Registry:
     def _charge_reserved(self, state: dict, kind: str, allocation: str, identity: str) -> None:
         """Charge once, preserving unused grants against every other entry point."""
         if not state["engineering_rounds"]:
-            self._charge(state["usage"], kind, allocation, state["limits"])
+            self._charge_current(state, kind, allocation)
             return
         if allocation not in {"normal", "reserve"}:
             raise ValueError("Allocation must be normal or reserve")
@@ -417,10 +536,10 @@ class Registry:
             reserved[allocation] -= 1
             reserved["total"] -= 1
         for part in ("normal", "reserve", "total"):
-            proposed = state["usage"][kind][part] + (part in {allocation, "total"})
+            proposed = self._effective_usage(state)[kind][part] + (part in {allocation, "total"})
             if proposed + reserved[part] > state["limits"][kind][part]:
                 raise BudgetExceeded("Remaining " + kind + " " + part + " capacity is reserved")
-        self._charge(state["usage"], kind, allocation, state["limits"])
+        self._charge_current(state, kind, allocation)
 
     def _validate_round_binding(self, state: dict, record: dict, package: dict) -> None:
         if record["status"] != "open":
@@ -442,7 +561,8 @@ class Registry:
 
     def _validate_round_authorization(self, state: dict, grant: dict, authorization: dict,
                                       packages: list[dict]) -> dict:
-        validate_grant(grant, authorization, state["limits"])
+        validate_grant(grant, authorization, state["limits"],
+            configuration_cycle_id=state["configuration_cycle"]["cycle_id"])
         round_id = grant["round_id"]
         if round_id in state["engineering_rounds"]:
             raise RegistryError("Engineering round identity is already immutable")
@@ -463,7 +583,7 @@ class Registry:
         for kind in RESOURCES:
             reserved = self._reservations(state, kind)
             for part in (grant["allocation"], "total"):
-                if state["usage"][kind][part] + reserved[part] + grant["limits"][kind] > state["limits"][kind][part]:
+                if self._effective_usage(state)[kind][part] + reserved[part] + grant["limits"][kind] > state["limits"][kind][part]:
                     raise BudgetExceeded("Engineering grant exceeds remaining " + kind + " " + part + " capacity")
         return record
 
@@ -578,7 +698,10 @@ class Registry:
             self._enforce_engineering_limit(state, "configurations", package)
             self._charge_reserved(state, "configurations", allocation, identity)
             self.store.write_once("configurations/" + identity + ".json", encoded)
-            self._append({"kind": "config_registered", "config_id": identity, "allocation": allocation})
+            event = {"kind": "config_registered", "config_id": identity, "allocation": allocation}
+            if state["configuration_cycle"]["sequence"]:
+                event["configuration_cycle_id"] = state["configuration_cycle"]["cycle_id"]
+            self._append(event)
         return identity
 
     @staticmethod
@@ -991,6 +1114,11 @@ class Registry:
         """Return persisted usage, identities and lifecycle metadata, with no data arrays."""
         with self.store.locked(self.LOCK):
             state = self._replay()
-            return {"limits": state["limits"], "usage": state["usage"],
-                    "config_ids": sorted(state["configs"]),
-                    "attempts": [dict(item) for item in state["attempts"].values()]}
+            result = {"limits": state["limits"], "usage": state["usage"],
+                      "config_ids": sorted(state["configs"]),
+                      "attempts": [dict(item) for item in state["attempts"].values()]}
+            # Preserve the exact legacy snapshot shape until an actual reset.
+            if state["configuration_cycle"]["sequence"]:
+                result["configuration_cycle"] = self._configuration_cycle_snapshot(state)
+                result["configuration_origins"] = json.loads(canonical_json(state["configuration_origins"]))
+            return result

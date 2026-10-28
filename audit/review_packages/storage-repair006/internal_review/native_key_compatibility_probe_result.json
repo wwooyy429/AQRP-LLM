@@ -1,0 +1,21 @@
+{
+  "kind": "independent_official_source_path_compatibility_probe",
+  "cases": [
+    {
+      "suffix": ".json.zlib",
+      "accepted_by_current_official_native_regex": false
+    },
+    {
+      "suffix": ".zlib",
+      "accepted_by_current_official_native_regex": true
+    },
+    {
+      "suffix": ".json",
+      "accepted_by_current_official_native_regex": true
+    }
+  ],
+  "source": "https://raw.githubusercontent.com/QuantConnect/Lean/master/Engine/Storage/LocalObjectStore.cs",
+  "future_exact_cloud_binary_authenticated": false,
+  "actual_cloud_calls": 0,
+  "finding": "Double-extension compressed key is rejected by current public native ObjectStore SaveBytes path gate."
+}

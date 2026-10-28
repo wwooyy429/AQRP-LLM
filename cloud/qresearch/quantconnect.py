@@ -15,6 +15,8 @@ from .artifacts import (ArtifactConflict, StoreBusy, canonical_json,
                         decode_events, validate_key)
 from .contracts import (DEVELOPMENT_END, NY, RECORD_COLUMNS, aware,
                         validate_records)
+from .storage_capacity import (StorageOperationError, StorageVerificationError,
+                               preflight_object_store)
 
 
 class ObjectStoreArtifactStore:
@@ -70,8 +72,24 @@ class ObjectStoreArtifactStore:
             lock.release()
 
     def _save(self, key, data):
-        if not self.object_store.save_bytes(self._key(key), bytes(data)):
-            raise IOError("QuantConnect Object Store write was rejected")
+        try:
+            saved = self.object_store.save_bytes(self._key(key), bytes(data))
+        except Exception:
+            raise StorageOperationError("save_exception") from None
+        if saved is not True:
+            raise StorageOperationError("save_rejected")
+
+    def preflight_capacity(self, required_bytes, required_files, *,
+                           reserve_bytes=0, reserve_files=0):
+        """Inspect complete store metadata before a caller's bounded write task.
+
+        It makes no explicit save/delete or market-payload read; the SDK's
+        get_file_path may flush its existing dirty cache internally. Read-only
+        cache consumers do not need to reserve a duplicate of completed data.
+        """
+        self._writable()
+        return preflight_object_store(self.object_store, required_bytes, required_files,
+                                      reserve_bytes=reserve_bytes, reserve_files=reserve_files)
 
     def write_once(self, key, data):
         self._writable()
@@ -82,8 +100,12 @@ class ObjectStoreArtifactStore:
                     raise ArtifactConflict("Immutable cloud artifact identity conflict")
                 return False
             self._save(key, data)
-            if self.read_bytes(key) != data:
-                raise ArtifactConflict("Cloud artifact verification failed")
+            try:
+                verified = self.read_bytes(key) == data
+            except Exception:
+                raise StorageVerificationError("verification_exception") from None
+            if not verified:
+                raise StorageVerificationError("verification_failed")
             return True
 
     def append_event(self, stream, event):

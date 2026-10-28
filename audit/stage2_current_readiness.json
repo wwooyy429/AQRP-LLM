@@ -31,17 +31,14 @@
   "stage2_status": "not_accepted_new_native_Research_failed_LEAN_not_submitted_data_gates_incomplete",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "approved_round005_actual_execution_closed",
-    "repository_synthetic_tests": 844,
-    "budget_revision_events_added": 1,
-    "original48_prefix_preserved": true,
-    "new_configuration_registrations": 1,
-    "new_Research_executions": 1,
-    "new_LEAN_submissions": 0,
-    "automatic_retries": 0
+    "kind": "storage_repair006_source_verified_pre_dispatch",
+    "report": "audit/stage2_storage_repair006_report.json",
+    "repository_synthetic_tests": 907,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0
   },
   "current_activity_checker": null,
-  "candidate_runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+  "candidate_runtime_source_commit": null,
   "candidate_cloud_deployed": true,
   "managed_cloud_files_verified": 35,
   "cloud_runtime_source_identity_verified_in_Research": false,
@@ -109,7 +106,8 @@
     "audit/wr28_independent_closure.json",
     "audit/cloud_v2_rerun_report.json",
     "audit/stage2_round005_report.json",
-    "audit/rootcause005_report.json"
+    "audit/rootcause005_report.json",
+    "audit/stage2_storage_repair006_report.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -119,7 +117,7 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "Approved reserve configuration registered. One precharged Research cell ran and failed with native CollectionError. Dependent LEAN not claimed or submitted. Round closed without retries/refunds.",
+  "current_activity_scope": "Authorized configuration new cycle applied; fixed storage repair passed907 synthetic tests, no new real execution yet.",
   "root_cause_investigation": {
     "finding_id": "RC005",
     "report": "audit/rootcause005_report.json",
@@ -275,9 +273,9 @@
   },
   "audit_manifest_trust_boundary": "The supplied manifest must be pinned externally to the reviewed immutableGit commit. Offline verify_export checks internal raw-byte consistency; changing both the manifest and corresponding protected file can form a self-consistent invented corpus. Independently rebuilding every record from fixedGit exposes it. This is not a remote signature or proof of native/supplier provenance.",
   "latest_requested_rerun": {
-    "report": "audit/stage2_round005_report.json",
+    "report": "audit/stage2_storage_repair006_report.json",
     "software_passed": true,
-    "new_cloud_execution": "actual_Research_failed_round_closed",
+    "new_cloud_execution": "pre_dispatch",
     "new_v2_cloud_success": false
   },
   "configuration_limit_revision_approval_pending": false,
@@ -325,7 +323,21 @@
     "cloud_revalidation_scope": "bounded_engineering_Research_only_not_full_US200_or_financial_certification"
   },
   "configuration_reset_authorization": {
-    "status": "recorded_not_applied",
-    "record": "audit/review_packages/rootcause005/configuration_reset_authorization.json"
+    "status": "applied_append_only",
+    "cycle_id": "configuration-cycle-20261029-002",
+    "current_configuration_usage": 0,
+    "capacity": 13,
+    "lifetime_configuration_usage": 13,
+    "record": "audit/review_packages/storage-repair006/configuration_cycle_application.json"
+  },
+  "previous_round005_current_activity": {
+    "kind": "approved_round005_actual_execution_closed",
+    "repository_synthetic_tests": 844,
+    "budget_revision_events_added": 1,
+    "original48_prefix_preserved": true,
+    "new_configuration_registrations": 1,
+    "new_Research_executions": 1,
+    "new_LEAN_submissions": 0,
+    "automatic_retries": 0
   }
 }

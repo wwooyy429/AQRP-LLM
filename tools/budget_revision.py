@@ -31,6 +31,10 @@ def project_budget(budget, snapshot):
     Unrelated declarations and constraints retain their values. No counter is
     inferred from a mutable projection and no usage is reset or refunded.
     """
+    if type(snapshot) is dict and "configuration_cycle" in snapshot:
+        from budget_cycle import project_cycle
+        return project_cycle(budget, limits=snapshot["limits"], usage=snapshot["usage"],
+                             configuration_cycle=snapshot["configuration_cycle"])
     if (type(budget) is not dict or type(snapshot) is not dict
             or any(type(budget.get(name)) is not dict for name in ("limits", "allocations", "usage"))
             or any(type(snapshot.get(name)) is not dict for name in ("limits", "usage"))):
@@ -87,13 +91,19 @@ def apply_revision(revision, authorization, *, registry=None):
     """
     registry = _open_existing_registry() if registry is None else registry
     path = ROOT / "config" / "budget.json"
+    def projection(state):
+        snapshot = {"limits": state["limits"], "usage": state["usage"]}
+        cycle = registry._configuration_cycle_snapshot(state)
+        if cycle["sequence"] > 0:
+            snapshot["configuration_cycle"] = cycle
+        return snapshot
     with registry.store.locked(registry.LOCK):
         state = registry._replay()
-        project_budget(read_json(path), {"limits": state["limits"], "usage": state["usage"]})
+        project_budget(read_json(path), projection(state))
     accepted = registry.authorize_budget_revision(revision, authorization)
     with registry.store.locked(registry.LOCK):
         state = registry._replay()
-        projected = project_budget(read_json(path), {"limits": state["limits"], "usage": state["usage"]})
+        projected = project_budget(read_json(path), projection(state))
         changed = write_changed(path, json.dumps(projected, ensure_ascii=False, indent=2) + "\n")
         limits, usage = json.loads(canonical_json(state["limits"])), json.loads(canonical_json(state["usage"]))
     return {"authorization": accepted, "budget_projection_changed": changed,

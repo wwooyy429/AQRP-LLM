@@ -18,14 +18,24 @@ def validate_round_id(value):
     return value
 
 
-def validate_grant(grant, authorization, global_limits):
+def validate_grant(grant, authorization, global_limits, *, configuration_cycle_id="initial"):
     """Validate exact immutable scope, not a claim of independent approval."""
     fields = {"schema_version", "round_id", "project_id", "allocation", "limits",
               "authorization_ref", "final_test_enabled", "extra_spend_usd"}
+    version = grant.get("schema_version") if isinstance(grant, dict) else None
+    if type(version) is int and version == 2:
+        fields |= {"configuration_cycle_id"}
     if not isinstance(grant, dict) or set(grant) != fields:
         raise ValueError("Engineering round grant has an unexpected schema")
-    if type(grant["schema_version"]) is not int or grant["schema_version"] != 1:
+    if type(grant["schema_version"]) is not int or grant["schema_version"] not in (1, 2):
         raise ValueError("Unsupported engineering round schema")
+    if (type(configuration_cycle_id) is not str
+            or (version == 1 and configuration_cycle_id != "initial")
+            or (version == 2 and (configuration_cycle_id == "initial"
+                or type(grant["configuration_cycle_id"]) is not str
+                or grant["configuration_cycle_id"] != configuration_cycle_id))):
+        raise ValueError("Engineering grant must bind the current configuration cycle")
+    validate_round_id(configuration_cycle_id)
     validate_round_id(grant["round_id"])
     if type(grant["project_id"]) is not int or grant["project_id"] <= 0:
         raise ValueError("Engineering round requires a positive project identity")
@@ -56,11 +66,17 @@ def validate_grant(grant, authorization, global_limits):
         raise ValueError("Authorization does not bind this global budget and user instruction")
     if grant["allocation"] == "normal":
         approval = authorization["normal_allocation_approval"]
-        if (not isinstance(approval, dict) or set(approval) != {"question", "answer"}
-                or type(approval["question"]) is not str or not approval["question"].strip()
-                or len(approval["question"]) > 8000
-                or type(approval["answer"]) is not str or approval["answer"] != "允许"
-                or len(approval["answer"]) > 1000):
+        # Version 2 may bind the exact direct human instruction instead of
+        # inventing a question/reply exchange that never occurred. Legacy v1
+        # keeps its original literal-reply contract and replay behavior.
+        direct = (version == 2 and type(approval) is dict and set(approval) == {"direct_request"}
+                  and type(approval["direct_request"]) is str
+                  and approval["direct_request"] == authorization["request_text"])
+        exchange = (isinstance(approval, dict) and set(approval) == {"question", "answer"}
+                    and type(approval["question"]) is str and bool(approval["question"].strip())
+                    and len(approval["question"]) <= 8000
+                    and type(approval["answer"]) is str and approval["answer"] == "允许")
+        if not (direct or exchange):
             raise ValueError("Normal allocation requires the complete bounded question and explicit human reply")
     # Canonical bytes distinguish booleans from integer counters as well.
     for key in fields - {"authorization_ref"}:

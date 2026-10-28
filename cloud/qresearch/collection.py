@@ -15,7 +15,7 @@ import re
 
 import pandas as pd
 
-from .artifacts import canonical_json, content_hash
+from .artifacts import ArtifactConflict, canonical_json, content_hash
 from .contracts import DEVELOPMENT_END, aware
 
 
@@ -33,6 +33,79 @@ class CollectionInterrupted(CollectionError):
 
 class CollectionIntegrityError(CollectionError):
     """A reference, completed manifest or payload is inconsistent."""
+
+
+_COLLECTION_DIAGNOSTIC_STAGES = {
+    "capacity_preflight", "intent_persist", "row_projection", "row_observation",
+    "batch_serialize", "batch_persist", "batch_verify", "manifest_serialize",
+    "manifest_persist", "manifest_verify", "completed_cache_verify", "cache_read",
+}
+_COLLECTION_FAILURE_CODES = {
+    "unexpected_exception", "artifact_conflict", "capacity_unavailable",
+    "byte_capacity_insufficient", "file_capacity_insufficient", "invalid_capacity_request",
+    "save_rejected", "save_exception", "verification_failed", "verification_exception",
+}
+_COLLECTION_EXCEPTION_KINDS = {
+    "io_error", "artifact_conflict", "type_error", "value_error", "runtime_error",
+    "attribute_error", "key_error", "index_error", "overflow_error", "memory_error", "other",
+}
+
+
+def safe_collection_diagnostic(raw):
+    """Revalidate closed tokens only; no native messages, types, keys or rows."""
+    if (type(raw) is not dict or any(type(key) is not str for key in raw)
+            or set(raw) != {"schema_version", "stage", "failure_code", "exception_kind"}
+            or type(raw["schema_version"]) is not int or raw["schema_version"] != 1):
+        return None
+    for name, allowed in (("stage", _COLLECTION_DIAGNOSTIC_STAGES),
+                          ("failure_code", _COLLECTION_FAILURE_CODES),
+                          ("exception_kind", _COLLECTION_EXCEPTION_KINDS)):
+        if type(raw[name]) is not str or raw[name] not in allowed:
+            return None
+    return dict(raw)
+
+
+class InternalCollectionDiagnosticError(CollectionError):
+    """Opt-in value-free internal failure; old collector messages are unchanged."""
+
+    def __init__(self, diagnostic):
+        self.diagnostic = safe_collection_diagnostic(diagnostic)
+        if self.diagnostic is None:
+            raise ValueError("Invalid closed collection diagnostic")
+        super().__init__("Historical collection operation failed; collection_diagnostic="
+                         + canonical_json(self.diagnostic).decode("utf-8"))
+
+
+def internal_collection_failure(stage, error):
+    """Classify owned persistence errors without stringifying any exception."""
+    kind = "other"
+    for cls, token in ((ArtifactConflict, "artifact_conflict"), (OSError, "io_error"),
+                       (TypeError, "type_error"), (ValueError, "value_error"),
+                       (AttributeError, "attribute_error"), (KeyError, "key_error"),
+                       (IndexError, "index_error"), (OverflowError, "overflow_error"),
+                       (MemoryError, "memory_error"), (RuntimeError, "runtime_error")):
+        if isinstance(error, cls):
+            kind = token
+            break
+    code = "artifact_conflict" if isinstance(error, ArtifactConflict) else "unexpected_exception"
+    # Only our owned classes may contribute their fixed vocabulary. SDK and
+    # source exceptions are never introspected or converted to text.
+    try:
+        from .storage_capacity import StorageCapacityError, StorageOperationError, StorageVerificationError
+        if type(error) in (StorageCapacityError, StorageOperationError, StorageVerificationError):
+            raw = error.safe_diagnostic()
+            if (type(raw) is dict and set(raw) == {"schema_version", "failure_code"}
+                    and type(raw["schema_version"]) is int and raw["schema_version"] == 1
+                    and type(raw["failure_code"]) is str and raw["failure_code"] in _COLLECTION_FAILURE_CODES):
+                code = raw["failure_code"]
+            if isinstance(error, StorageVerificationError):
+                stage = {"batch_persist": "batch_verify", "manifest_persist": "manifest_verify"}.get(stage, stage)
+    except Exception:
+        pass
+    diagnostic = {"schema_version": 1, "stage": stage, "failure_code": code, "exception_kind": kind}
+    if safe_collection_diagnostic(diagnostic) is None:
+        raise ValueError("Invalid closed collection diagnostic stage")
+    return InternalCollectionDiagnosticError(diagnostic)
 
 
 _SOURCE_DIAGNOSTIC_ENUMS = {
@@ -228,17 +301,29 @@ class HistoricalSnapshotCollector:
     A missing value is None, never an invented zero.
     source=None enables completed-cache reads but no fetching or new writes.
     """
-    def __init__(self, store, source, plan, *, synthetic=False):
-        if not isinstance(plan, HistoricalCollectionPlan) or type(synthetic) is not bool:
+    def __init__(self, store, source, plan, *, synthetic=False, internal_diagnostics=False, before_fetch=None):
+        if (not isinstance(plan, HistoricalCollectionPlan) or type(synthetic) is not bool
+                or type(internal_diagnostics) is not bool or (before_fetch is not None and not callable(before_fetch))):
             raise CollectionError("A frozen plan and explicit synthetic classification are required")
         if not synthetic and getattr(store, "residency", None) != "quantconnect_cloud":
             raise CollectionError("Real snapshots must remain inside QuantConnect cloud storage")
         if source is not None and not callable(getattr(source, "fetch", None)):
             raise CollectionError("The source must implement the bounded fetch contract")
         self.store, self.source, self.plan, self.synthetic = store, source, plan, synthetic
+        self.internal_diagnostics, self.before_fetch = internal_diagnostics, before_fetch
         self._schema_version = plan.to_dict()["schema_version"]
         self._occurrences = self._schema_version == 2
         self._root = _OCCURRENCE_ROOT if self._occurrences else _ROOT
+
+    def _internal_call(self, stage, operation, *args):
+        try:
+            return operation(*args)
+        except CollectionError:
+            raise
+        except Exception as error:
+            if self.internal_diagnostics:
+                raise internal_collection_failure(stage, error) from None
+            raise
 
     def _window(self, start, end):
         return {"start": start.isoformat(), "end_exclusive": end.isoformat()}
@@ -345,9 +430,10 @@ class HistoricalSnapshotCollector:
 
     def _write_batch(self, window, index, rows):
         payload = {"schema_version": self._schema_version, **self._identity(window), "batch_index": index, "records": rows}
-        digest = content_hash(payload)
+        digest = self._internal_call("batch_serialize", content_hash, payload)
         key = self._root + "objects/" + digest + ".json"
-        self.store.write_once(key, canonical_json(payload))
+        self._internal_call("batch_persist", self.store.write_once, key,
+                            self._internal_call("batch_serialize", canonical_json, payload))
         return {"key": key, "sha256": digest}
 
     def _document(self, reference, prefix):
@@ -448,19 +534,22 @@ class HistoricalSnapshotCollector:
         with self.store.locked(self._root + "window-locks/" + content_hash(self._identity(window))):
             if self.store.exists(key):
                 reference = {"key": key, "sha256": sha256(self.store.read_bytes(key)).hexdigest()}
-                return reference, self._load_window(reference)[0], False
+                return reference, self._internal_call("completed_cache_verify", self._load_window, reference)[0], False
             intent = self._root + "intents/" + content_hash(self._identity(window)) + ".json"
             if self.store.exists(intent):
                 raise CollectionInterrupted("Unfinished collection intent requires reconciliation or a new frozen source plan")
             if self.source is None:
                 raise CollectionMiss("Cache-only collection cannot call a source; prefetch the frozen plan first")
-            self.store.write_once(intent, canonical_json({"schema_version": self._schema_version, **self._identity(window)}))
+            if self.before_fetch is not None:
+                self._internal_call("capacity_preflight", self.before_fetch, self.plan, start, end)
+            self._internal_call("intent_persist", self.store.write_once, intent,
+                                canonical_json({"schema_version": self._schema_version, **self._identity(window)}))
             plan = self.plan.to_dict()
             refs, batch, state = [], [], self._projection_state()
             try:
                 for raw in self._source_rows(start, end):
-                    row = self._row(raw, start, end)
-                    self._observe(row, state)
+                    row = self._internal_call("row_projection", self._row, raw, start, end)
+                    self._internal_call("row_observation", self._observe, row, state)
                     batch.append(row)
                     if len(batch) == plan["max_batch_records"]:
                         refs.append(self._write_batch(window, len(refs), batch))
@@ -471,7 +560,8 @@ class HistoricalSnapshotCollector:
                     "plan_identity": self.plan.identity(), "batches": refs, **self._counts(state),
                     "missing_values": state["missing_values"], "provider_calls": 1,
                     **self._occurrence_metadata(state), **_FLAGS}
-                self.store.write_once(key, canonical_json(manifest))
+                encoded = self._internal_call("manifest_serialize", canonical_json, manifest)
+                self._internal_call("manifest_persist", self.store.write_once, key, encoded)
             except CollectionError:
                 raise
             except Exception:
@@ -479,7 +569,7 @@ class HistoricalSnapshotCollector:
                 # intent and fail, but never echo provider exception contents.
                 raise CollectionError("Historical source collection failed; unfinished intent retained") from None
             reference = {"key": key, "sha256": content_hash(manifest)}
-            return reference, self._load_window(reference)[0], True
+            return reference, self._internal_call("completed_cache_verify", self._load_window, reference)[0], True
 
     def collect(self):
         """Prepare all windows and return exportable counts, references and gaps."""

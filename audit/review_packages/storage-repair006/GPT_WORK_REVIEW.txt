@@ -1,0 +1,13 @@
+请固定PR#2当前完整40位HEAD后，独立审核本轮缓存、容量、安全错误日志和配置周期全部新增开发。执行源码以修复006报告和实际准入中的runtime_source_commit为准，后续纯执行材料不扩张旧独审。
+
+新增软件：registry/budget_cycles与engineering_rounds周期绑定、budget_cycle和预算投影CLI、collection_storage稳定身份及旧回执/全部旧行校验、collection显式安全诊断、storage_capacity与QC适配器的元数据空间预检、EngineeringPlan schema3 cache-only桥和压缩接收产物、coverage旧snapshot只读路径、执行源码身份排除可变周期投影。旧v1/v2默认行为和旧任务恢复须回归。
+
+独立边界测试至少涵盖：周期授权重放/冲突/过期/活动任务/旧grant跨周期；保留基线与55事件、配置累计和周期计数分离，Research/LEAN不重置；旧数据版本/字段/时点/投影语义变更不得复用；缺失/伪造receipt、批次/行篡改、bool/int不能混同、未完成intent不可重取；容量不可取得、变动、字节/文件数不足、SDK错误事件必须在取数与写之前拒绝；诊断只允许封闭枚举；schema3元数据和引用/请求/缓存原来源交叉绑定；zlib损坏/多流/非canonical/解压上限，SDK单扩展文件key；原始数据及行值不能出云端。
+
+本轮约束是1配置/1Research/1LEAN、含失败、0自动重试、0额外费用；只允许读取已完成的原始2018缓存及固定2018LEAN接收工程样例。最终测试、自动GPT、实盘和正式因子研究保持关闭。2024–2025暴露、2026独立性未认证、完整US200和财务版本/实际送达/摄入认证缺口必须保留。
+
+开发侧正式命令为python -B tools/stages.py verify，在一次性LF检出和完整源码overlay上执行。早期906项通过对应SDK key修正前源码；最终907项通过对应post_sdk_key_fix_validation中的source_manifest_hash。内部辅助MRE不是GPT Work独立通过。原始Windows stdout若含CRLF，以*.base64文件逐字节保存；先解码，再按result.json中的原始stdout SHA256验证，不能把Git行尾转换后的文本当原始回执。
+
+请在独立副本重跑测试并自行构造边界；只读本轮实际原生执行记录和预算事件，不调用QC/供应商/Research/LEAN/API，不修改权威预算或打开最终测试。清单及哈希要外部固定到Git提交，内部自洽不证明平台/供应商真实性。
+
+最终分别判定本轮软件、原生调度/回执、审计交付、实际小样例云端链、数据覆盖和金融证据。任何软件或云端局部成功均不足以宣布完整阶段2或经济因子有效性通过。

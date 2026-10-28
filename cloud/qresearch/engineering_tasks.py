@@ -134,11 +134,17 @@ def _safe_evidence(raw):
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
                "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
                "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe",
-               "deployment_verification"}
+               "deployment_verification", "storage_preflight", "collection_storage", "receiver_storage"}
     if not set(raw) <= allowed:
         raise EngineeringTaskError("Unknown engineering evidence cannot carry row-level data")
     for name, value in raw.items():
-        if name == "deployment_verification":
+        if name in {"storage_preflight", "collection_storage", "receiver_storage"}:
+            from .engineering_storage import (validate_capacity_observation,
+                validate_collection_evidence, validate_encoding_metadata)
+            {"storage_preflight": validate_capacity_observation,
+             "collection_storage": validate_collection_evidence,
+             "receiver_storage": validate_encoding_metadata}[name](value)
+        elif name == "deployment_verification":
             try:
                 validate_deployment_observation(value)
             except ValueError:
@@ -213,7 +219,35 @@ def validate_joint_report(report, document):
         except ValueError:
             raise EngineeringTaskError("Deployment evidence differs from the frozen plan") from None
     summary = report.get("evidence", {}).get("collection_probe")
-    applicable = document["schema_version"] == 2 and report["identity"]["stage"] == "research"
+    applicable = document["schema_version"] in {2, 3} and report["identity"]["stage"] == "research"
+    storage = report.get("evidence", {})
+    storage_keys = {"storage_preflight", "collection_storage", "receiver_storage"}
+    if document["schema_version"] != 3 and storage_keys & set(storage):
+        raise EngineeringTaskError("Storage evidence requires an explicit version3 plan")
+    if document["schema_version"] == 3 and report["status"] == "completed":
+        from .engineering_storage import validate_capacity_observation, validate_collection_evidence
+        capacity = storage.get("storage_preflight")
+        validate_capacity_observation(capacity)
+        if any(capacity[k] != v for k, v in document["storage_policy"]["capacity"][report["identity"]["stage"]].items()):
+            raise EngineeringTaskError("Capacity observation differs from the frozen reservation")
+        if report["identity"]["stage"] == "research":
+            reuse = storage.get("collection_storage")
+            validate_collection_evidence(reuse)
+            policy = document["storage_policy"]["collection_cache"]
+            if (reuse["mode"] != "verified_legacy" or reuse["origin_receipt_ref"] != policy["legacy"]["receipt_ref"]
+                    or reuse["storage_plan_hash"] != policy["legacy"]["plan_hash"]
+                    or reuse["verified_window_count"] != 40 or reuse["provider_calls"] != 0
+                    or "receiver_storage" in storage):
+                raise EngineeringTaskError("Cache reuse differs from its frozen legacy origin")
+        else:
+            if "receiver_storage" not in storage or "collection_storage" in storage:
+                raise EngineeringTaskError("Completed receiver requires its bounded encoding evidence")
+            encoded = storage["receiver_storage"]
+            reference = storage.get("received_bar_ref")
+            expected = (document["report_namespace"] + "/received/" + report["identity"]["attempt_id"]
+                        + "/" + encoded["stored_sha256"] + ".zlib")
+            if reference != {"key": expected, "sha256": encoded["stored_sha256"]}:
+                raise EngineeringTaskError("Receiver encoding differs from its actual payload reference")
     if not applicable:
         if summary is not None:
             raise EngineeringTaskError("Collection probe metadata belongs only to v2 Research")
@@ -230,6 +264,17 @@ def validate_joint_report(report, document):
     if (summary["plan_hash"] != plan.hash or summary["receipt_ref"]["key"] != expected_key
             or summary["schema_version"] != plan.to_dict()["schema_version"]):
         raise EngineeringTaskError("Collection observation differs from this parent's frozen probe")
+    if document["schema_version"] == 3:
+        from .collection_storage import data_identity
+        reuse = storage["collection_storage"]
+        policy = document["storage_policy"]["collection_cache"]
+        if (reuse["requested_plan_hash"] != plan.hash
+                or reuse["data_identity_hash"] != content_hash(data_identity(plan, policy["processing_contract_sha256"]))
+                or summary["source_fetch_calls"] != reuse["provider_calls"]
+                or summary["reused_windows"] != reuse["reused_windows"]
+                or report["statistics"]["history_calls_first"] != 0
+                or report["statistics"]["history_calls_second"] != 0):
+            raise EngineeringTaskError("Cache evidence differs from the frozen cache-only request")
     checks = report["checks"]
     if (not JOINT_PROBE_CHECKS <= set(checks)
             or checks["collection_windows_completed"] != (summary["window_count"] == 40)
@@ -262,8 +307,10 @@ class EngineeringTaskPlan:
         mode = value.get("request_mode")
         mode_keys = {"request_template", "symbol_resolution"} if mode == "symbol_resolution" else {"data_request"}
         version = value.get("schema_version")
-        extra = {"collection_probe"} if type(version) is int and version == 2 else set()
-        if set(value) != required | mode_keys | extra or type(version) is not int or version not in {1, 2}:
+        extra = {"collection_probe"} if type(version) is int and version in {2, 3} else set()
+        if type(version) is int and version == 3:
+            extra.add("storage_policy")
+        if set(value) != required | mode_keys | extra or type(version) is not int or version not in {1, 2, 3}:
             raise EngineeringTaskError("A complete versioned engineering plan is required; unknown overrides are prohibited")
         if value["scope"] != "engineering" or value["orders_enabled"] is not False or value["financial_metrics_enabled"] is not False:
             raise EngineeringTaskError("This bridge permits engineering without orders or financial metrics only")
@@ -276,7 +323,7 @@ class EngineeringTaskPlan:
             raise EngineeringTaskError("Use a project returned by the trusted list_projects call")
         for key in ("source_manifest_hash", "deployment_hash"):
             _hash(value[key], key)
-        if version == 2:
+        if version in {2, 3}:
             if mode != "symbol_resolution":
                 raise EngineeringTaskError("Joint pilot requires the fixed historical two-symbol resolver")
             from .collection import HistoricalCollectionPlan
@@ -297,6 +344,9 @@ class EngineeringTaskPlan:
                     or cp["max_records_per_window"] != 50000):
                 raise EngineeringTaskError("Joint collection probe must match the frozen 40-day development pilot")
             value["collection_probe"] = {"collection_plan": cp, "field_catalog": child.field_catalog}
+            if version == 3:
+                from .engineering_storage import validate_storage_policy
+                validate_storage_policy(value["storage_policy"], child)
         validate_key(value["report_namespace"])
         if mode == "symbol_resolution":
             template = _mapping(value["request_template"], "request_template")
@@ -345,7 +395,7 @@ class EngineeringTaskPlan:
             retries = value["max_retries"][stage]
             if type(retries) is not int or not 0 <= retries <= 2:
                 raise EngineeringTaskError("Retries must be preregistered and bounded from zero through two")
-        if version == 2 and not JOINT_PROBE_CHECKS <= set(value["required_checks"]["research"]):
+        if version in {2, 3} and not JOINT_PROBE_CHECKS <= set(value["required_checks"]["research"]):
             raise EngineeringTaskError("Joint Research must require the complete bounded collection observation")
         result = object.__new__(cls)
         object.__setattr__(result, "_encoded", canonical_json(value))
@@ -365,7 +415,7 @@ class EngineeringTaskPlan:
         value = self.to_dict()
         request = ({"request_template": value["request_template"], "symbol_resolution": value["symbol_resolution"]}
                    if value["request_mode"] == "symbol_resolution" else value["data_request"])
-        if value["schema_version"] == 2:
+        if value["schema_version"] in {2, 3}:
             request = {"market_request": request, "collection_probe": value["collection_probe"]}
         return content_hash(request)
 

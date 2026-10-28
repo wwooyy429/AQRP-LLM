@@ -301,11 +301,17 @@ def _safe_evidence(evidence):
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
         "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
         "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe",
-        "deployment_verification"}
+        "deployment_verification", "storage_preflight", "collection_storage", "receiver_storage"}
     if not isinstance(evidence, dict) or not set(evidence) <= allowed:
         raise ValueError("Unknown engineering evidence metadata")
     for name, value in evidence.items():
-        if name == "deployment_verification":
+        if name in {"storage_preflight", "collection_storage", "receiver_storage"}:
+            from .engineering_storage import (validate_capacity_observation,
+                validate_collection_evidence, validate_encoding_metadata)
+            {"storage_preflight": validate_capacity_observation,
+             "collection_storage": validate_collection_evidence,
+             "receiver_storage": validate_encoding_metadata}[name](value)
+        elif name == "deployment_verification":
             validate_deployment_observation(value)
         elif name == "collection_probe":
             _safe_collection_probe(value)
@@ -466,6 +472,39 @@ def _run_collection_probe(qb, store, plan, payload, *, api):
     return summary
 
 
+def _run_stored_collection_probe(store, plan, payload):
+    """Verify pinned historical objects in place; never refetch or copy rows."""
+    from .collection import HistoricalCollectionPlan
+    from .collection_storage import StableCollectionCache
+    document = plan.to_dict()
+    probe = document["collection_probe"]
+    child = HistoricalCollectionPlan.from_dict(probe["collection_plan"], field_catalog=probe["field_catalog"])
+    cache = StableCollectionCache(store, child, document["storage_policy"]["collection_cache"])
+    first, evidence = cache.collect()
+    second, replay_evidence = cache.collect()
+    if first != second or evidence != replay_evidence:
+        raise ValueError("Verified legacy replay changed during one engineering task") from None
+    key = document["report_namespace"] + "/collection-probes/" + plan.hash + "/" + payload["identity"]["attempt_id"] + ".json"
+    reference = _save(store, key, {"identity": payload["identity"], "collection_plan_hash": child.hash,
+        "first": first, "cache_only_replay": second})
+    summary = {"schema_version": child.to_dict()["schema_version"], "plan_hash": child.hash,
+        "receipt_ref": reference, "window_count": first["window_count"], "record_count": first["record_count"],
+        "source_fetch_calls": first["provider_calls"], "reused_windows": first["reused_windows"],
+        "empty_windows": first["empty_windows"], "cache_only_source_fetch_calls": second["provider_calls"],
+        "missing_values": first["missing_values"], "full_historical_US200_certified": False,
+        "actual_availability_certified": False, "research_certified": False, "row_values_exported": False,
+        "financial_vintage_certified": False,
+        **{k: first[k] for k in ("observation_policy", "duplicate_projection_records", "conflicting_projection_records")}}
+    _safe_collection_probe(summary)
+    return summary, evidence
+
+
+def _storage_preflight(store, document, stage):
+    if document["schema_version"] != 3:
+        return None
+    return store.preflight_capacity(**document["storage_policy"]["capacity"][stage])
+
+
 def run_research_task(payload, *, api=None, quantbook_factory=None):
     """Execute one admitted Research job, prefetch once, then read only cache."""
     if api is None:
@@ -484,12 +523,23 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
     securities = {ticker: qb.add_equity(ticker, api.Resolution.DAILY, fill_forward=False,
         data_normalization_mode=api.DataNormalizationMode.RAW) for ticker in document["symbol_resolution"]["tickers"]}
     store = _cloud_store(qb.object_store)
+    capacity_observation = _storage_preflight(store, document, "research")
     request, resolution = _resolution(store, plan, {name: security.symbol for name, security in securities.items()})
     provider = QuantConnectHistoryProvider(qb, {str(s.symbol.id): s.symbol for s in securities.values()}, request.data_version, api=api)
     cache = SharedDataCache(store, provider)
-    first = cache.prefetch(request)
+    if document["schema_version"] == 3:
+        # A repaired cache identity is not permission to request data again.
+        # Existing raw-price partitions must already be complete and verified.
+        records = cache.read(request, allow_fetch=False)
+        first = tuple(part.key for part in cache.partitions(request))
+    else:
+        first = cache.prefetch(request)
     first_calls = provider.fetch_call_count
-    second = cache.prefetch(request)
+    if document["schema_version"] == 3:
+        cache.read(request, allow_fetch=False)
+        second = tuple(part.key for part in cache.partitions(request))
+    else:
+        second = cache.prefetch(request)
     records = cache.read(request, allow_fetch=False)
     second_calls = provider.fetch_call_count - first_calls
     consumer = SharedDataCache(_cloud_store(qb.object_store, read_only=True))
@@ -524,7 +574,8 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
         decisions=tuple(schedule.formation_at), sids=request.sids,
         policies={field: "exact_session" for field in request.fields}, expected_events=expected,
         membership=membership, provenance=provider.provenance, subject_hash=plan.hash,
-        source_hash=identity["deployment_hash"], source_refs=source_refs)
+        source_hash=identity["deployment_hash"], source_refs=source_refs,
+        snapshot_cache_only=document["schema_version"] == 3)
     checks = {"source_snapshot_matches": True, "raw_data_received": not records.empty,
         "second_prefetch_no_history": second_calls == 0, "same_partition_ids": first == second,
         "cache_only_consumer": copied.equals(records) and cache_miss_rejected,
@@ -540,8 +591,14 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
                   "runtime_environment": _runtime_environment(api)}
     if deployment_observation is not None:
         evidence["deployment_verification"] = deployment_observation
-    if document["schema_version"] == 2:
-        summary = _run_collection_probe(qb, store, plan, payload, api=api)
+    if capacity_observation is not None:
+        evidence["storage_preflight"] = capacity_observation
+    if document["schema_version"] in {2, 3}:
+        if document["schema_version"] == 3:
+            summary, reuse_evidence = _run_stored_collection_probe(store, plan, payload)
+            evidence["collection_storage"] = reuse_evidence
+        else:
+            summary = _run_collection_probe(qb, store, plan, payload, api=api)
         evidence["collection_probe"] = summary
         checks.update(collection_windows_completed=summary["window_count"] == 40,
                       collection_cache_only_replay=summary["cache_only_source_fetch_calls"] == 0,
@@ -555,6 +612,7 @@ def initialize_receiver(algorithm, payload, *, api=None):
         import AlgorithmImports as api
     plan, document, identity, deployment_observation = _context(payload, "lean", with_observation=True)
     store = _cloud_store(algorithm.object_store)
+    capacity_observation = _storage_preflight(store, document, "lean")
     request, registry = _read_resolution(store, plan, payload["research_resolution"])
     window = document["observation_window"]
     start, end = aware(window["start"]), aware(window["end_exclusive"]) - pd.Timedelta(days=1)
@@ -571,7 +629,8 @@ def initialize_receiver(algorithm, payload, *, api=None):
     algorithm._engineering_state = {"payload": payload, "plan": plan, "request": request,
         "store": store, "securities": securities, "records": [], "bar_keys": [],
         "actions": [], "order_events": 0, "slices": 0, "engine_version": str(api.Globals.version),
-        "runtime_environment": _runtime_environment(api), "deployment_verification": deployment_observation}
+        "runtime_environment": _runtime_environment(api), "deployment_verification": deployment_observation,
+        "storage_preflight": capacity_observation}
 
 
 def receive_slice(algorithm, data):
@@ -634,7 +693,20 @@ def finish_receiver(algorithm):
     rows = {"schema_version": 1, "request_hash": request.key, "columns": list(RECORD_COLUMNS), "rows": state["records"]}
     actions = {"schema_version": 1, "availability_basis": "modeled_LEAN_event_delivery", "events": state["actions"]}
     namespace = document["report_namespace"] + "/received/" + payload["identity"]["attempt_id"]
-    raw_ref = _save(store, namespace + "/" + content_hash(rows) + ".json", rows)
+    encoding = None
+    if document["schema_version"] == 3:
+        from .engineering_storage import encode_compressed_json, decode_compressed_json
+        stored, encoding = encode_compressed_json(rows)
+        key = namespace + "/" + encoding["stored_sha256"] + ".zlib"
+        # Verify the exact encoded payload fits before a new immutable write.
+        store.preflight_capacity(required_bytes=len(stored), required_files=1,
+            reserve_bytes=document["storage_policy"]["capacity"]["lean"]["reserve_bytes"], reserve_files=1)
+        store.write_once(key, stored)
+        if decode_compressed_json(store.read_bytes(key), encoding) != rows:
+            raise ValueError("Compressed receiver readback differs") from None
+        raw_ref = {"key": key, "sha256": encoding["stored_sha256"]}
+    else:
+        raw_ref = _save(store, namespace + "/" + content_hash(rows) + ".json", rows)
     action_ref = _save(store, namespace + "/" + content_hash(actions) + ".json", actions)
     orders = len(list(algorithm.transactions.get_orders()))
     dividend_count = sum(item["kind"] == "dividends" for item in state["actions"])
@@ -654,4 +726,7 @@ def finish_receiver(algorithm):
                   "runtime_environment": state["runtime_environment"]}
     if state.get("deployment_verification") is not None:
         evidence["deployment_verification"] = state["deployment_verification"]
+    if state.get("storage_preflight") is not None:
+        evidence["storage_preflight"] = state["storage_preflight"]
+        evidence["receiver_storage"] = encoding
     return _finish(store, payload, checks, statistics, payload["research_resolution"], evidence=evidence)

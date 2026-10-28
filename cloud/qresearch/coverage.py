@@ -130,7 +130,7 @@ def _envelope(store, report):
 
 def _produce(store, *, request, records, decisions, sids, policies, expected_events,
              membership, provenance, subject_hash, source_hash, max_age, source_refs,
-             synthetic, scope):
+             synthetic, scope, snapshot_cache_only=False):
     _store_boundary(store, synthetic)
     _hash(subject_hash, "subject")
     _hash(source_hash, "source")
@@ -160,7 +160,13 @@ def _produce(store, *, request, records, decisions, sids, policies, expected_eve
     snapshot = {"schema_version": 1, "request_hash": request.key, "rows": actual_rows}
     snapshot_hash = content_hash(snapshot)
     snapshot_key = "coverage-inputs/v1/" + snapshot_hash + ".json"
-    store.write_once(snapshot_key, canonical_json(snapshot))
+    if type(snapshot_cache_only) is not bool:
+        raise CoverageIntegrityError("Snapshot cache policy must be explicit")
+    if snapshot_cache_only:
+        if not store.exists(snapshot_key) or store.read_bytes(snapshot_key) != canonical_json(snapshot):
+            raise CoverageIntegrityError("Required completed coverage snapshot is unavailable") from None
+    else:
+        store.write_once(snapshot_key, canonical_json(snapshot))
     snapshot_ref = {"key": snapshot_key, "sha256": snapshot_hash}
     provenance_hash = content_hash(provenance)
     provenance_key = "coverage-inputs/v1/provenance/" + provenance_hash + ".json"
@@ -232,7 +238,7 @@ def _produce(store, *, request, records, decisions, sids, policies, expected_eve
 
 def produce_engineering_coverage(store, *, request, records, decisions, sids, policies,
         expected_events, membership, provenance, subject_hash, source_hash, max_age=None,
-        source_refs=(), synthetic=False):
+        source_refs=(), synthetic=False, snapshot_cache_only=False):
     """Audit only a declared engineering fixture and return exportable metadata.
 
     source_refs point to exact immutable cache record-array payloads. Their
@@ -243,7 +249,7 @@ def produce_engineering_coverage(store, *, request, records, decisions, sids, po
     return _produce(store, request=request, records=records, decisions=decisions, sids=sids,
         policies=policies, expected_events=expected_events, membership=membership, provenance=provenance,
         subject_hash=subject_hash, source_hash=source_hash, max_age=max_age, source_refs=source_refs,
-        synthetic=synthetic, scope="engineering")
+        synthetic=synthetic, scope="engineering", snapshot_cache_only=snapshot_cache_only)
 
 
 def audit_registered_coverage(store, *, study, registered_configuration, source_hash,

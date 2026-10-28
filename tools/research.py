@@ -104,6 +104,9 @@ def export_usage(registry):
     for stage, fields in keys.items():
         for field, part in zip(fields, ("total", "normal", "reserve")):
             budget["usage"][field] = usage[stage][part]
+    cycle = registry.configuration_cycle_snapshot()
+    if cycle["sequence"] > 0:
+        budget["configuration_cycle"] = cycle
     write_changed(path, json.dumps(budget, ensure_ascii=False, indent=2) + "\n")
 
 

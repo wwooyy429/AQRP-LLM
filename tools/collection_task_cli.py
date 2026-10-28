@@ -45,6 +45,9 @@ def execution_source_manifest():
     files = dict(source_manifest()["source_files"])
     budget = read_json(ROOT / "config/budget.json")
     budget.pop("usage", None)
+    # This is a replayed allowance/usage projection, not calculation policy.
+    # Its immutable cycle identity is separately bound by the Registry grant.
+    budget.pop("configuration_cycle", None)
     files["config/budget.json"] = hashlib.sha256(canonical_json(budget)).hexdigest()
     return {"source_files": files, "source_hash": content_hash({"schema": "collection_execution_sources_v1", "source_files": files})}
 
