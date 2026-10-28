@@ -1,6 +1,6 @@
 {
-  "schema_version": 13,
-  "kind": "stage2_requested_software_rerun_passed_cloud_dispatch_pending_budget_clarification",
+  "schema_version": 14,
+  "kind": "stage2_round005_human_approved_budget_revised_software_passed_pre_dispatch",
   "previous_readiness": {
     "commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
     "path": "audit/stage2_current_readiness.json",
@@ -31,16 +31,13 @@
   "stage2_status": "not_accepted_native_LEAN_failed_and_data_gates_incomplete",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "software_rerun_and_cloud_execution_preparation",
-    "fixed_tested_commit": "87c458b73fbf6455e9a71da4b3970cba08965c36",
-    "production_source_changes": 0,
-    "repository_synthetic_tests": 825,
-    "audit_unit_tests": 11,
-    "QC_metadata_calls": 3,
+    "kind": "approved_round005_software_and_budget_preparation",
+    "repository_synthetic_tests": 844,
+    "budget_revision_events_added": 1,
+    "original48_prefix_preserved": true,
     "new_configuration_registrations": 0,
     "new_Research_executions": 0,
-    "new_LEAN_submissions": 0,
-    "new_budget_events": 0
+    "new_LEAN_submissions": 0
   },
   "current_activity_checker": "audit/review_packages/wr28/verify_wr28_end_to_end.py",
   "candidate_runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
@@ -81,11 +78,11 @@
     "research": 15,
     "lean": 2
   },
-  "global_limits_unchanged": true,
+  "global_limits_unchanged": false,
   "known_open_software_findings_from_independent_reports": [],
   "new_candidate_review_status": "WR28_audit_delivery_scope_independently_closed_actual_runtime_and_data_still_unaccepted",
   "blockers": [
-    "New v2 cloud validation still requires valid new configuration capacity, formal admission and successful actual runtime evidence; configuration budget12/12 and old roundclosed.",
+    "Round005 valid capacity is now approved13/20/16; new exact configuration still requires registration, charged Research, same-plan native LEAN terminal and independent review.",
     "Successful same-plan minimal LEAN engineering run absent; original attempt failed frozen-source hash check.",
     "Production financial numeric catalogue and charged certification native dispatch are missing.",
     "Full historical US200, SID economic ambiguity, financial vintage/publication and actual historical delivery/ingestion evidence remain insufficient.",
@@ -108,7 +105,8 @@
     "audit/stage2_deployment_source_fix.json",
     "audit/wr28_correction.json",
     "audit/wr28_independent_closure.json",
-    "audit/cloud_v2_rerun_report.json"
+    "audit/cloud_v2_rerun_report.json",
+    "audit/stage2_round005_report.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -118,7 +116,7 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "Actual requested developer software rerun on fixed87c in disposable LF checkouts, plus read-only project/source metadata and an unapproved bounded cloud plan preview. No live dispatch or budget amendment.",
+  "current_activity_scope": "User approved one new engineering configuration/Research/LEAN, no retries or fees. Append-only budget revision applied and current code passed844synthetic tests; actual dispatch not yet started.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
@@ -274,10 +272,16 @@
   },
   "audit_manifest_trust_boundary": "The supplied manifest must be pinned externally to the reviewed immutableGit commit. Offline verify_export checks internal raw-byte consistency; changing both the manifest and corresponding protected file can form a self-consistent invented corpus. Independently rebuilding every record from fixedGit exposes it. This is not a remote signature or proof of native/supplier provenance.",
   "latest_requested_rerun": {
-    "report": "audit/cloud_v2_rerun_report.json",
+    "report": "audit/stage2_round005_report.json",
     "software_passed": true,
-    "new_cloud_execution": "pending_explicit_budget_limit_decision",
+    "new_cloud_execution": "approved_pre_dispatch",
     "new_v2_cloud_success": false
   },
-  "configuration_limit_revision_approval_pending": true
+  "configuration_limit_revision_approval_pending": false,
+  "effective_global_limits": {
+    "configurations": 13,
+    "research": 20,
+    "lean": 16
+  },
+  "global_budget_change": "Explicit human approval raised only configuration reserve/total from12to13; R20/L16 unchanged via append-only event49."
 }

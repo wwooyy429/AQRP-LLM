@@ -22,6 +22,8 @@ from uuid import uuid4
 
 from .artifacts import ArtifactConflict, canonical_json, content_hash, decode_events
 from .engineering_rounds import RESOURCES, validate_grant, validate_round_id
+from .budget_revisions import (validate_revision, validate_reference as validate_budget_reference,
+                               revision_reference)
 
 
 class RegistryError(RuntimeError):
@@ -133,28 +135,38 @@ class Registry:
             usage = document.get("usage", {}) if usage is None else usage
             allocations = document.get("allocations") if allocations is None else allocations
             limits = document["limits"]
-        self.limits = _normalize_limits(limits, allocations)
+        self._initial_limits = _normalize_limits(limits, allocations)
         self.initial_usage = _normalize_usage(usage or {})
-        self._validate_usage(self.initial_usage)
+        self._validate_usage(self.initial_usage, self._initial_limits)
         with self.store.locked(self.LOCK):
             if not self.store.exists(self.JOURNAL):
                 self._append({"kind": "initialized", "schema_version": 1,
-                              "limits": self.limits, "initial_usage": self.initial_usage})
+                              "limits": self._initial_limits, "initial_usage": self.initial_usage})
             self._replay()
 
-    def _validate_usage(self, usage: dict) -> None:
+    @property
+    def limits(self) -> dict:
+        """Current replayed limits; constructor baseline stays immutable.
+
+        Internal transactions use their already-replayed state instead of this
+        accessor, so replay never mutates a cache or reacquires its own lock.
+        """
+        with self.store.locked(self.LOCK):
+            return json.loads(canonical_json(self._replay()["limits"]))
+
+    def _validate_usage(self, usage: dict, limits: dict) -> None:
         for stage, counts in usage.items():
             for allocation in ("normal", "reserve", "total"):
-                if counts[allocation] > self.limits[stage][allocation]:
+                if counts[allocation] > limits[stage][allocation]:
                     raise BudgetExceeded("{} {} budget exhausted".format(stage, allocation))
 
-    def _charge(self, usage: dict, stage: str, allocation: str) -> None:
+    def _charge(self, usage: dict, stage: str, allocation: str, limits: dict) -> None:
         if allocation not in {"normal", "reserve"}:
             raise ValueError("Allocation must be normal or reserve")
         proposed = {key: dict(value) for key, value in usage.items()}
         proposed[stage][allocation] += 1
         proposed[stage]["total"] += 1
-        self._validate_usage(proposed)
+        self._validate_usage(proposed, limits)
         usage[stage] = proposed[stage]
 
     def _append(self, event: dict) -> None:
@@ -185,16 +197,27 @@ class Registry:
             raise CorruptRegistry("Registry has no initialization record")
         first = records[0]["event"]
         if (first.get("kind") != "initialized" or first.get("schema_version") != 1 or
-                first.get("limits") != self.limits or first.get("initial_usage") != self.initial_usage):
+                first.get("limits") != self._initial_limits or first.get("initial_usage") != self.initial_usage):
             raise CorruptRegistry("Registry baseline differs from its persisted initialization")
         state = {"usage": {key: dict(value) for key, value in self.initial_usage.items()},
                  "configs": {}, "attempts": {}, "operations": {}, "imports": {},
-                 "engineering_rounds": {}, "engineering_round_configs": {}}
+                 "engineering_rounds": {}, "engineering_round_configs": {},
+                 "limits": {key: dict(value) for key, value in self._initial_limits.items()},
+                 "budget_revisions": {}}
         try:
             for envelope in records[1:]:
                 event = envelope["event"]
                 kind = event["kind"]
-                if kind == "engineering_round_authorized":
+                if kind == "budget_revision_authorized":
+                    if set(event) != {"kind", "revision_ref", "recorded_at"}:
+                        raise CorruptRegistry("Unexpected budget revision event fields")
+                    revision = self._read_budget_reference(event["revision_ref"], "revisions")
+                    authorization = self._read_budget_reference(revision["authorization_ref"], "user-authorizations")
+                    self._validate_budget_revision(state, revision, authorization)
+                    state["budget_revisions"][revision["revision_id"]] = {
+                        "revision": revision, "revision_ref": event["revision_ref"]}
+                    state["limits"] = json.loads(canonical_json(revision["new_limits"]))
+                elif kind == "engineering_round_authorized":
                     self._replay_round_authorized(state, event)
                 elif kind == "engineering_round_configuration_bound":
                     if set(event) != {"kind", "round_id", "configuration_ref", "recorded_at"}:
@@ -285,6 +308,61 @@ class Registry:
                        allocation=record["allocation"], result_key=record["result_key"],
                        external_id=record.get("external_id"))
 
+    def _read_budget_reference(self, reference: dict, namespace: str) -> dict:
+        validate_budget_reference(reference, namespace)
+        data = self.store.read_bytes(reference["key"])
+        document = json.loads(data)
+        if canonical_json(document) != data or sha256(data).hexdigest() != reference["sha256"]:
+            raise ValueError("Budget revision reference bytes changed")
+        return document
+
+    def _validate_budget_revision(self, state: dict, revision: dict, authorization: dict) -> None:
+        validate_revision(revision, authorization, state["limits"])
+        if revision["revision_id"] in state["budget_revisions"]:
+            raise RegistryError("Budget revision identity is already immutable")
+        if (any(item["status"] == "open" for item in state["engineering_rounds"].values())
+                or any(item["status"] in _OPEN_STATES for item in state["attempts"].values())):
+            raise RegistryError("Budget revision requires no open round or unresolved attempt")
+        self._validate_usage(state["usage"], revision["new_limits"])
+
+    @staticmethod
+    def _budget_revision_snapshot(state: dict, record: dict) -> dict:
+        revision = record["revision"]
+        return json.loads(canonical_json({"revision_id": revision["revision_id"],
+            "revision_hash": record["revision_ref"]["sha256"], "revision_ref": record["revision_ref"],
+            "revision": revision, "effective_limits": state["limits"]}))
+
+    def authorize_budget_revision(self, revision: dict, authorization: dict) -> dict:
+        """Append one human-authorized reserve slot without changing baseline.
+
+        Only a trusted operator that checked the actual human exchange may call
+        this API. An identical revision remains readable during later activity;
+        any new revision requires every round closed and attempt resolved.
+        """
+        validate_revision(revision, authorization)
+        revision, authorization = json.loads(canonical_json([revision, authorization]))
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            old = state["budget_revisions"].get(revision["revision_id"])
+            if old is not None:
+                if old["revision"] != revision:
+                    raise RegistryError("Budget revision identity cannot be overwritten")
+                return self._budget_revision_snapshot(state, old)
+            self._validate_budget_revision(state, revision, authorization)
+            reference = revision_reference(revision)
+            self.store.write_once(revision["authorization_ref"]["key"], canonical_json(authorization))
+            self.store.write_once(reference["key"], canonical_json(revision))
+            self._append({"kind": "budget_revision_authorized", "revision_ref": reference})
+            state["limits"] = json.loads(canonical_json(revision["new_limits"]))
+            record = {"revision": revision, "revision_ref": reference}
+            return self._budget_revision_snapshot(state, record)
+
+    def budget_revisions_snapshot(self) -> dict:
+        with self.store.locked(self.LOCK):
+            state = self._replay()
+            return {identity: self._budget_revision_snapshot(state, record)
+                    for identity, record in state["budget_revisions"].items()}
+
     def _read_round_reference(self, reference: dict, namespace: str) -> dict:
         if (not isinstance(reference, dict) or set(reference) != {"key", "sha256"}
                 or not isinstance(reference["sha256"], str)
@@ -323,7 +401,7 @@ class Registry:
     def _charge_reserved(self, state: dict, kind: str, allocation: str, identity: str) -> None:
         """Charge once, preserving unused grants against every other entry point."""
         if not state["engineering_rounds"]:
-            self._charge(state["usage"], kind, allocation)
+            self._charge(state["usage"], kind, allocation, state["limits"])
             return
         if allocation not in {"normal", "reserve"}:
             raise ValueError("Allocation must be normal or reserve")
@@ -340,9 +418,9 @@ class Registry:
             reserved["total"] -= 1
         for part in ("normal", "reserve", "total"):
             proposed = state["usage"][kind][part] + (part in {allocation, "total"})
-            if proposed + reserved[part] > self.limits[kind][part]:
+            if proposed + reserved[part] > state["limits"][kind][part]:
                 raise BudgetExceeded("Remaining " + kind + " " + part + " capacity is reserved")
-        self._charge(state["usage"], kind, allocation)
+        self._charge(state["usage"], kind, allocation, state["limits"])
 
     def _validate_round_binding(self, state: dict, record: dict, package: dict) -> None:
         if record["status"] != "open":
@@ -364,7 +442,7 @@ class Registry:
 
     def _validate_round_authorization(self, state: dict, grant: dict, authorization: dict,
                                       packages: list[dict]) -> dict:
-        validate_grant(grant, authorization, self.limits)
+        validate_grant(grant, authorization, state["limits"])
         round_id = grant["round_id"]
         if round_id in state["engineering_rounds"]:
             raise RegistryError("Engineering round identity is already immutable")
@@ -385,7 +463,7 @@ class Registry:
         for kind in RESOURCES:
             reserved = self._reservations(state, kind)
             for part in (grant["allocation"], "total"):
-                if state["usage"][kind][part] + reserved[part] + grant["limits"][kind] > self.limits[kind][part]:
+                if state["usage"][kind][part] + reserved[part] + grant["limits"][kind] > state["limits"][kind][part]:
                     raise BudgetExceeded("Engineering grant exceeds remaining " + kind + " " + part + " capacity")
         return record
 
@@ -412,12 +490,17 @@ class Registry:
         """
         # Freeze caller-owned objects before acquiring the transaction lock.
         grant, packages, authorization = json.loads(canonical_json([grant, full_configs, authorization_document]))
-        validate_grant(grant, authorization, self.limits)
+        if not isinstance(grant, dict):
+            raise ValueError("Engineering round grant must be an object")
+        validate_round_id(grant.get("round_id"))
         with self.store.locked(self.LOCK):
             state = self._replay()
             old = state["engineering_rounds"].get(grant["round_id"])
             if old is not None:
-                if old["grant"] != grant or old["initial_config_ids"] != [content_hash(item) for item in packages]:
+                original_authorization = self._read_round_reference(old["grant"]["authorization_ref"],
+                                                                     "user-authorizations")
+                if (old["grant"] != grant or old["initial_config_ids"] != [content_hash(item) for item in packages]
+                        or canonical_json(original_authorization) != canonical_json(authorization)):
                     raise RegistryError("Engineering round identity cannot be overwritten")
                 return self._round_snapshot(state, old)
             record = self._validate_round_authorization(state, grant, authorization, packages)
@@ -908,6 +991,6 @@ class Registry:
         """Return persisted usage, identities and lifecycle metadata, with no data arrays."""
         with self.store.locked(self.LOCK):
             state = self._replay()
-            return {"limits": self.limits, "usage": state["usage"],
+            return {"limits": state["limits"], "usage": state["usage"],
                     "config_ids": sorted(state["configs"]),
                     "attempts": [dict(item) for item in state["attempts"].values()]}

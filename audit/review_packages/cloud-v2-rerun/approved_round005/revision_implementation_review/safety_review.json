@@ -1,0 +1,48 @@
+{
+  "kind": "developer_auxiliary_budget_revision_safety_review",
+  "scope": "Read-only actual baseline capture plus independent tests in private Memory and filesystem copies",
+  "overall_tested_scope": "passed_after_disclosed_existing_round_duplicate_authorization_fix",
+  "actual_before": {"configurations_used":12,"research_used":15,"lean_used":2,"journal_events":48,"protected_original_files":15},
+  "approved_delta_under_test": {"configuration_normal":8,"configuration_reserve_before":4,"configuration_reserve_after":5,"configuration_total_before":12,"configuration_total_after":13,"research_total":20,"lean_total":16,"new_spend":0,"final_test_enabled":false},
+  "independent_methods":15,
+  "known_answer_coverage": [
+    "Historical actual48 journal retained as exact byte prefix; baseline and all prior metadata artifacts unchanged",
+    "Old round snapshots, grant hashes, attempts, config identities and usage replay under historical effective limits",
+    "Only configuration reserve and total increase by one; normal, Research, LEAN, usage and execution gates do not change",
+    "Same revision id and canonical documents retry without another event; changed duplicates and stale new identities reject",
+    "Closed schema, human transcription scope/approval, bool counters, extra spend and final-test changes reject without writes",
+    "Two Registry instances concurrently applying the same revision append exactly once",
+    "Effective limits getter returns a detached copy without writes; a store that rejects nested transaction locks detects no internal lock reentry",
+    "Started, pending or ambiguous attempts and open rounds block new revisions; identical old revision remains readable during subsequent activity",
+    "A new synthetic reserve round with1configuration/1Research/1LEAN reserves against new13 limits while old round snapshots remain unchanged",
+    "Private filesystem reopen retains immutable baseline and rejects substituting a projected13 baseline",
+    "A durable revision followed by projection failure remains49events; identical retry repairs projection without double increment/refund",
+    "Invalid cost/resource projection fails before authority append; a missing ledger is never bootstrapped"
+  ],
+  "development_finding": {
+    "id": "private_existing_round_duplicate_authorization",
+    "first_observation": "After preliminary validation moved under the transaction, a same old grant/config duplicate accepted a changed authorization document without a debit. First private MRE is retained.",
+    "repair": "Compare duplicate authorization canonical bytes to the immutable original authorization reference; do not validate old authorization against the new effective global limits.",
+    "fixed_recheck": "Exact old request remains idempotent before and after a budget revision; changed authorization now rejects; no extra event."
+  },
+  "source_scope_limit": "Core subsequently disclosed a small malformed-existing-round-id input guard addition. The15 tests exercise valid round identifiers and the budget revision paths; root should bind full regression verification to the final new code version rather than cite earlier87c software tests as validation of this new core.",
+  "authority_and_execution_limits": [
+    "This helper checks bounded transcribed human metadata; hashes do not independently authenticate the human author",
+    "Budget revision creates capacity only. A separate exact round005 grant, frozen new configuration, precharge and admitted task chain are still required",
+    "The real operator must enforce the approved round maximum1configuration/1Research/1LEAN, zero retries and zero extra fees",
+    "No old failed task, original grant or stop rule is reinterpreted",
+    "No Stage0/Stage2 acceptance, financial validation or final-test permission is granted by this developer-side review"
+  ],
+  "actual_side_effects": {"authority_append_calls":0,"config_projection_writes":0,"cloud_calls":0,"provider_calls":0,"old15_file_raw_guard_passed":true},
+  "public_evidence_suggestions": [
+    "independent_boundary_result.json",
+    "first_round_duplicate_probe.json",
+    "fixed_round_duplicate_probe.json",
+    "safety_review.json"
+  ],
+  "reproduction_script_note": "independent_revision_boundaries.py and probe_round_duplicate.py depend on the private historical_runtime_copy and captured actual_before fixtures. Do not copy private runtime trees into Git merely to make these helpers portable; publish an explicit historical-store input adapter or bind an immutable pre-revision checkout if public executable replay is desired.",
+  "gpt_work_independent_acceptance":false,
+  "stage0_or2_accepted":false,
+  "financial_evidence":false,
+  "final_test_enabled":false
+}
