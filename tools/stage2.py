@@ -59,7 +59,7 @@ def freeze(projects, *, plan_file=None, preview=False):
     raw["project_id"] = read_json(ROOT / "config" / "quantconnect.json")["active_project_id"]
     raw["source_manifest_hash"] = source_manifest()["source_hash"]
     probe_catalog = None
-    if raw.get("schema_version") in {2, 3}:
+    if raw.get("schema_version") in {2, 3, 4}:
         from stage2_collection import catalog
         from collection_task_cli import execution_source_manifest
         probe_catalog = catalog()
@@ -233,7 +233,7 @@ def _prepare_input(bridge, attempt):
 def joint_preflight(bridge):
     document = bridge.plan.to_dict()
     manifest = local_deployment_preflight(expected_hash=document["deployment_hash"])
-    if document["schema_version"] not in {2, 3}:
+    if document["schema_version"] not in {2, 3, 4}:
         # Legacy full manifests included mutable budget usage. Rechecking that
         # identity here would invalidate a v1 plan after its own first debit.
         # Its frozen physical implementation remains strictly checked above;

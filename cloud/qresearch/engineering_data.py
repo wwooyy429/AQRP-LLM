@@ -264,6 +264,8 @@ def _context(payload, stage, *, source_root=None, with_observation=False):
     _identity_shape(identity)
     plan = EngineeringTaskPlan.from_dict(payload["plan"], discovered_project_ids=(identity["project_id"],))
     document = plan.to_dict()
+    if document["schema_version"] == 3:
+        raise ValueError("Retired engineering protocol is readable history only; register the plain-reference protocol")
     if document["request_mode"] != "symbol_resolution":
         raise ValueError("This fixed producer requires its declared symbol resolver")
     expected = {"plan_hash": plan.hash, "project_id": document["project_id"],
@@ -500,7 +502,7 @@ def _run_stored_collection_probe(store, plan, payload):
 
 
 def _storage_preflight(store, document, stage):
-    if document["schema_version"] != 3:
+    if document["schema_version"] != 4:
         return None
     return store.preflight_capacity(**document["storage_policy"]["capacity"][stage])
 
@@ -527,7 +529,7 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
     request, resolution = _resolution(store, plan, {name: security.symbol for name, security in securities.items()})
     provider = QuantConnectHistoryProvider(qb, {str(s.symbol.id): s.symbol for s in securities.values()}, request.data_version, api=api)
     cache = SharedDataCache(store, provider)
-    if document["schema_version"] == 3:
+    if document["schema_version"] == 4:
         # A repaired cache identity is not permission to request data again.
         # Existing raw-price partitions must already be complete and verified.
         records = cache.read(request, allow_fetch=False)
@@ -535,7 +537,7 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
     else:
         first = cache.prefetch(request)
     first_calls = provider.fetch_call_count
-    if document["schema_version"] == 3:
+    if document["schema_version"] == 4:
         cache.read(request, allow_fetch=False)
         second = tuple(part.key for part in cache.partitions(request))
     else:
@@ -575,7 +577,7 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
         policies={field: "exact_session" for field in request.fields}, expected_events=expected,
         membership=membership, provenance=provider.provenance, subject_hash=plan.hash,
         source_hash=identity["deployment_hash"], source_refs=source_refs,
-        snapshot_cache_only=document["schema_version"] == 3)
+        snapshot_cache_only=document["schema_version"] == 4)
     checks = {"source_snapshot_matches": True, "raw_data_received": not records.empty,
         "second_prefetch_no_history": second_calls == 0, "same_partition_ids": first == second,
         "cache_only_consumer": copied.equals(records) and cache_miss_rejected,
@@ -593,8 +595,8 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
         evidence["deployment_verification"] = deployment_observation
     if capacity_observation is not None:
         evidence["storage_preflight"] = capacity_observation
-    if document["schema_version"] in {2, 3}:
-        if document["schema_version"] == 3:
+    if document["schema_version"] in {2, 3, 4}:
+        if document["schema_version"] == 4:
             summary, reuse_evidence = _run_stored_collection_probe(store, plan, payload)
             evidence["collection_storage"] = reuse_evidence
         else:
@@ -694,17 +696,23 @@ def finish_receiver(algorithm):
     actions = {"schema_version": 1, "availability_basis": "modeled_LEAN_event_delivery", "events": state["actions"]}
     namespace = document["report_namespace"] + "/received/" + payload["identity"]["attempt_id"]
     encoding = None
-    if document["schema_version"] == 3:
-        from .engineering_storage import encode_compressed_json, decode_compressed_json
-        stored, encoding = encode_compressed_json(rows)
-        key = namespace + "/" + encoding["stored_sha256"] + ".zlib"
-        # Verify the exact encoded payload fits before a new immutable write.
+    if document["schema_version"] == 4:
+        from .received_manifest import build_received_manifest
+        cache = SharedDataCache(store)
+        cached = cache.read(request, allow_fetch=False)
+        source_refs = []
+        for part in cache.partitions(request):
+            for field in part.fields:
+                unit = replace(part, fields=(field,))
+                manifest = json.loads(store.read_bytes("feature-cache/v1/manifests/" + unit.key + ".json"))
+                source_refs.append({"key": manifest["payload"], "sha256": manifest["sha256"]})
+        manifest, encoding = build_received_manifest(state["records"], cached, request, window, source_refs)
+        stored = canonical_json(manifest)
         store.preflight_capacity(required_bytes=len(stored), required_files=1,
             reserve_bytes=document["storage_policy"]["capacity"]["lean"]["reserve_bytes"], reserve_files=1)
-        store.write_once(key, stored)
-        if decode_compressed_json(store.read_bytes(key), encoding) != rows:
-            raise ValueError("Compressed receiver readback differs") from None
-        raw_ref = {"key": key, "sha256": encoding["stored_sha256"]}
+        raw_ref = _save(store, namespace + "/" + encoding["manifest_sha256"] + ".json", manifest)
+        if _load(store, raw_ref) != manifest:
+            raise ValueError("Receiver reference readback differs") from None
     else:
         raw_ref = _save(store, namespace + "/" + content_hash(rows) + ".json", rows)
     action_ref = _save(store, namespace + "/" + content_hash(actions) + ".json", actions)

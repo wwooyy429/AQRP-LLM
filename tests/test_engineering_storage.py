@@ -6,7 +6,6 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-import zlib
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,8 +13,7 @@ sys.path[:0] = [str(ROOT / "cloud"), str(ROOT / "tests"), str(ROOT / "tools")]
 from qresearch.artifacts import canonical_json, content_hash
 from qresearch.collection import HistoricalCollectionPlan
 from qresearch.collection_storage import processing_contract_sha256
-from qresearch.engineering_storage import (encode_compressed_json, decode_compressed_json,
-    validate_capacity_observation)
+from qresearch.engineering_storage import validate_capacity_observation
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, validate_joint_report
 from qresearch.storage_capacity import check_capacity, StorageCapacityError
 import qresearch.engineering_data as worker
@@ -31,7 +29,7 @@ def occurrence_raw():
 
 def repair_policy(legacy, identity, receipt_ref):
     processing = processing_contract_sha256()
-    return {"schema_version": 1, "price_cache_mode": "cache_only", "lean_record_encoding": "zlib_json_v1",
+    return {"schema_version": 1, "price_cache_mode": "cache_only", "lean_record_encoding": "cached_row_reference_v1",
         "capacity": {stage: {"required_bytes": 65536, "required_files": 8,
                              "reserve_bytes": 8192, "reserve_files": 2} for stage in ("research", "lean")},
         "collection_cache": {"schema_version": 1, "mode": "reuse_verified_legacy_only",
@@ -50,7 +48,7 @@ class StorageRepairWorkerTests(unittest.TestCase):
         raw = deepcopy(old_payload["plan"])
         old_probe = raw["collection_probe"]
         legacy = HistoricalCollectionPlan.from_dict(old_probe["collection_plan"], field_catalog=old_probe["field_catalog"])
-        raw.update(schema_version=3, plan_id="synthetic-storage-repair", report_namespace="engineering/synthetic-repair",
+        raw.update(schema_version=4, plan_id="synthetic-storage-repair", report_namespace="engineering/synthetic-repair",
                    source_manifest_hash="b" * 64)
         raw["collection_probe"]["collection_plan"].update(plan_id="another-label", source_manifest_hash="b" * 64)
         raw["storage_policy"] = repair_policy(legacy, old_payload["identity"],
@@ -108,23 +106,25 @@ class StorageRepairWorkerTests(unittest.TestCase):
                 raw = deepcopy(payload["plan"]); edit(raw["storage_policy"])
                 with self.assertRaises(ValueError): EngineeringTaskPlan.from_dict(raw, discovered_project_ids=(17,))
 
+    def test_retired_plan_is_parseable_but_cannot_enter_worker(self):
+        with tempfile.TemporaryDirectory() as directory:
+            _, _, _, payload, _, _ = self.fixture(directory)
+            retired = deepcopy(payload)
+            retired["plan"]["schema_version"] = 3
+            retired["plan"]["storage_policy"]["lean_record_encoding"] = "zlib_json_v1"
+            EngineeringTaskPlan.from_dict(retired["plan"], discovered_project_ids=(17,))
+            with patch.object(worker, "verify_deployment_observation", side_effect=AssertionError("Retired execution")):
+                with self.assertRaisesRegex(ValueError, "Retired engineering protocol"):
+                    worker._context(retired, "research")
 
-class CompressionBoundaryTests(unittest.TestCase):
-    def test_roundtrip_byte_identity_and_corruption_trailing_stream_rejected(self):
-        value = {"synthetic": [dict(field="example", number=i) for i in range(1000)]}
-        stored, metadata = encode_compressed_json(value)
-        self.assertEqual(decode_compressed_json(stored, metadata), value)
-        self.assertLess(metadata["stored_bytes"], metadata["uncompressed_bytes"])
-        for bad in (stored[:-1], stored + zlib.compress(b"{}"), stored[:5] + b"bad" + stored[8:]):
-            with self.assertRaises(ValueError): decode_compressed_json(bad, metadata)
-        altered = deepcopy(metadata); altered["uncompressed_bytes"] = 2**21
-        with self.assertRaises(ValueError): decode_compressed_json(stored, altered, max_raw_bytes=10)
 
-    def test_compressed_key_obeys_native_single_extension_contract(self):
-        # Public LEAN LocalObjectStore path contract; not a cloud-binary claim.
-        native = re.compile(r"^\.?[a-zA-Z0-9\\/_#\-\$= ]+\.?[a-zA-Z0-9]*$")
-        self.assertIsNotNone(native.fullmatch("engineering/received/" + "a" * 64 + ".zlib"))
-        self.assertIsNone(native.fullmatch("engineering/received/" + "a" * 64 + ".json.zlib"))
+class StorageMetadataBoundaryTests(unittest.TestCase):
+    def test_new_cloud_source_has_no_compression_import(self):
+        import ast
+        tree = ast.parse((ROOT / "cloud/qresearch/engineering_storage.py").read_text(encoding="utf-8-sig"))
+        names = {alias.name for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names}
+        self.assertNotIn("zlib", names)
+        self.assertNotIn("gzip", names)
 
     def test_capacity_observation_cannot_forge_arithmetic_or_boolean_counts(self):
         observation = check_capacity({"max_size_bytes": 100, "max_files": 10,

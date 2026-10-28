@@ -1,0 +1,712 @@
+{
+  "kind": "actual_round006_registered_fixed_source",
+  "runtime_source_commit": "e89fae78ea563b2b4079d8770c3d9ee248c40ac8",
+  "identity": {
+    "configuration_hash": "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf",
+    "plan_hash": "90bdfc4879959f9c57885ecc76cd6d80591fe86da0f6d16ae02cd50a04624466",
+    "source_manifest_hash": "c79312f5e91ed91b2234fc88e6c7ddebbdd4bce061525c5df280a8a31cc57599",
+    "deployment_hash": "8122cd99d954b93ead2b4b8b90373744b514d5bdf36d56a8faeee9081143b059"
+  },
+  "registry": {
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 5,
+        "total": 13
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 14,
+        "normal": 9,
+        "reserve": 5
+      },
+      "research": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 2,
+        "normal": 2,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+      "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+      "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d",
+      "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf",
+      "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7",
+      "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+      "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c",
+      "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+      "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+      "e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "33603d80ca064a32b71e164ce4a397be",
+        "config_id": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+        "kind": "failed",
+        "operation_key": "engineering-cloud-cache-v1",
+        "reason": null,
+        "recorded_at": "2026-10-25T21:18:21.508613+00:00",
+        "result_key": "results/272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94/research/b10d29a729b3e855696242f08ccfea8c2cab27093f4fa4e7f32d3dc16e94a42f.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": null,
+        "error": "Cloud engineering check failed: empty history and incomplete fixture; no economic metrics generated",
+        "reconciliation": null
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "3a09202e77234016b17a17204cf061a2",
+        "config_id": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+        "kind": "completed",
+        "operation_key": "engineering-cloud-cache-v1",
+        "reason": "Repair QuantBook history frontier; immutable corrected snapshot v2",
+        "recorded_at": "2026-10-25T21:20:07.307653+00:00",
+        "result_key": "results/272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94/research/b10d29a729b3e855696242f08ccfea8c2cab27093f4fa4e7f32d3dc16e94a42f.json",
+        "retry_of": "33603d80ca064a32b71e164ce4a397be",
+        "stage": "research",
+        "status": "completed",
+        "external_id": null,
+        "result_sha256": "7123da7db920edf620448712eec6600c4b729d5239f116b1daa4ef896f6350b7"
+      },
+      {
+        "allocation": "normal",
+        "attempt_id": "746bb41966c04fbcbe036148fa849f6e",
+        "config_id": "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+        "kind": "completed",
+        "operation_key": "engineering-plan:f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489:research",
+        "reason": null,
+        "recorded_at": "2026-10-26T04:29:08.961476+00:00",
+        "result_key": "results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/research/ef44f8f739cb3f03793689753b77ebaf3329b87374955347cc5500d7f5f03622.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "completed",
+        "external_id": "qc-research:38436695:746bb41966c04fbcbe036148fa849f6e",
+        "details": {
+          "deployment": {
+            "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+            "input_hash": "4f7a1cf60fd7df423024d28ef876bfc3f02dce22309a2bcfbc1c43b123406ac4",
+            "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06"
+          },
+          "external_id": "qc-research:38436695:746bb41966c04fbcbe036148fa849f6e",
+          "identity": {
+            "attempt_id": "746bb41966c04fbcbe036148fa849f6e",
+            "config_id": "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+            "data_request_hash": "db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85",
+            "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+            "plan_hash": "f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+            "project_id": 38436695,
+            "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/746bb41966c04fbcbe036148fa849f6e/submission/7bbf464b2539abb00fa448308e67573ddcc79c3a494567dac8dd15dbcb3e6e1f.json",
+            "sha256": "7bbf464b2539abb00fa448308e67573ddcc79c3a494567dac8dd15dbcb3e6e1f"
+          }
+        },
+        "result_sha256": "6757318090fd257f6879ef1f8d4a3869405cd121a326225fbb9eec7c27de7fe6"
+      },
+      {
+        "allocation": "normal",
+        "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+        "config_id": "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+        "kind": "failed",
+        "operation_key": "engineering-plan:f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489:lean",
+        "reason": null,
+        "recorded_at": "2026-10-27T06:14:33.471180+00:00",
+        "result_key": "results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/lean/710c72c60d209eef90b8f5872bbb82201ee0636fc1056be737845eb5d98de88c.json",
+        "retry_of": null,
+        "stage": "lean",
+        "status": "failed",
+        "external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+        "details": {
+          "deployment": {
+            "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+            "input_hash": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
+            "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06"
+          },
+          "external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+          "identity": {
+            "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+            "config_id": "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f",
+            "data_request_hash": "db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85",
+            "deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+            "plan_hash": "f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+            "project_id": 38436695,
+            "source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+            "stage": "lean"
+          },
+          "identity_kind": "quantconnect_backtest_id",
+          "receipt_ref": {
+            "key": "engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/submission/56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f.json",
+            "sha256": "56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/completion/ff5002cdf15423e9a7f45a0b5b5744d89c675506ef7331df49bdec9b4f5c3233.json",
+            "sha256": "ff5002cdf15423e9a7f45a0b5b5744d89c675506ef7331df49bdec9b4f5c3233"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "ff5002cdf15423e9a7f45a0b5b5744d89c675506ef7331df49bdec9b4f5c3233"
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+        "config_id": "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+        "kind": "failed",
+        "operation_key": "engineering-plan:4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T10:41:22.992065+00:00",
+        "result_key": "results/8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1/research/a8b0d99c59895724e3c8f0427cec3e2c1bd00df442b7bae3a2b77ea802748d96.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:f5d05f5b964b4a1d924e4b70cd207386",
+        "details": {
+          "deployment": {
+            "deployment_hash": "3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118",
+            "input_hash": "03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b",
+            "source_manifest_hash": "89bc58058beab1315d3fa82fee8c0f22d6272fd80152b1938987453acc78a8c6"
+          },
+          "external_id": "qc-research:38436695:f5d05f5b964b4a1d924e4b70cd207386",
+          "identity": {
+            "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+            "config_id": "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+            "data_request_hash": "36d0053dae0f3a302c42b67946ec1fe469ad76c482d0bcbf26afaeccc298cbc2",
+            "deployment_hash": "3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118",
+            "plan_hash": "4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7",
+            "project_id": 38436695,
+            "source_manifest_hash": "89bc58058beab1315d3fa82fee8c0f22d6272fd80152b1938987453acc78a8c6",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/f5d05f5b964b4a1d924e4b70cd207386/submission/e48727fe70769ab984a791319ce80cea00ec65b92725f52688f236e73d6467b8.json",
+            "sha256": "e48727fe70769ab984a791319ce80cea00ec65b92725f52688f236e73d6467b8"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/f5d05f5b964b4a1d924e4b70cd207386/completion/c70fae25c0fead1b613a7b0d8e100bfe6faef4c6fe10aa23be759118508f592e.json",
+            "sha256": "c70fae25c0fead1b613a7b0d8e100bfe6faef4c6fe10aa23be759118508f592e"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "c70fae25c0fead1b613a7b0d8e100bfe6faef4c6fe10aa23be759118508f592e"
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+        "config_id": "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+        "kind": "failed",
+        "operation_key": "engineering-plan:3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T16:13:22.179712+00:00",
+        "result_key": "results/d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5/research/c9d0d10c45ec305f6eddd39850522cd334da6e2e14583ad684e06c44196bf47f.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:4de020ffad5a4e82a26c5374f7715685",
+        "details": {
+          "deployment": {
+            "deployment_hash": "3e779f1e17bffb05bc190f59e7aced79ee8be3b9067cd2242cdf3181b4b0db10",
+            "input_hash": "1771cddeadc15ae5fa208fe90d51dd74c29cbbfec76c071acf0683029f445f42",
+            "source_manifest_hash": "1a22794cbaec17cd96ed81b71bb59179710050d18378ac8646a0e68484262dd5"
+          },
+          "external_id": "qc-research:38436695:4de020ffad5a4e82a26c5374f7715685",
+          "identity": {
+            "attempt_id": "4de020ffad5a4e82a26c5374f7715685",
+            "config_id": "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5",
+            "data_request_hash": "5bb65c0ffc5ebb6ebdfecc6d5f2edb93e46202884afd9c480b865ff613648f5b",
+            "deployment_hash": "3e779f1e17bffb05bc190f59e7aced79ee8be3b9067cd2242cdf3181b4b0db10",
+            "plan_hash": "3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda",
+            "project_id": 38436695,
+            "source_manifest_hash": "1a22794cbaec17cd96ed81b71bb59179710050d18378ac8646a0e68484262dd5",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/4de020ffad5a4e82a26c5374f7715685/submission/e1c9e046cfdf601042e788acf6a809ffbb4905c9081d17ce97c276ce917bbda0.json",
+            "sha256": "e1c9e046cfdf601042e788acf6a809ffbb4905c9081d17ce97c276ce917bbda0"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/4de020ffad5a4e82a26c5374f7715685/completion/c3cc8e41628148627a2b301dc68678a6fb3acb2cfab95561a51090121371912e.json",
+            "sha256": "c3cc8e41628148627a2b301dc68678a6fb3acb2cfab95561a51090121371912e"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "c3cc8e41628148627a2b301dc68678a6fb3acb2cfab95561a51090121371912e"
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "d45af7fcfdc849c888694aaa6dd7c0ae",
+        "config_id": "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7",
+        "kind": "failed",
+        "operation_key": "engineering-plan:480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T16:22:56.762019+00:00",
+        "result_key": "results/7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7/research/6132f3930814248fd121059992e25fdcb03c1898961e47ad63abb17a8cb5dbc0.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:d45af7fcfdc849c888694aaa6dd7c0ae",
+        "details": {
+          "deployment": {
+            "deployment_hash": "8a76cdc7ce3c1fcb75bae5077d21750b2c328d606aa5c2bb9b34550099daca90",
+            "input_hash": "911820493129f1b2650abe1facdd203325b0c82b57ecc63619f19bed2ea77f0c",
+            "source_manifest_hash": "ff9743bfde419dbc7a62c72d302893f750d60db3f75a6cb56bf3fad347d8a9d2"
+          },
+          "external_id": "qc-research:38436695:d45af7fcfdc849c888694aaa6dd7c0ae",
+          "identity": {
+            "attempt_id": "d45af7fcfdc849c888694aaa6dd7c0ae",
+            "config_id": "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7",
+            "data_request_hash": "0d23af9bf1a5e8d3b119f57ee524c1c370b82f09ad163fdb4e92a90a9f9205ec",
+            "deployment_hash": "8a76cdc7ce3c1fcb75bae5077d21750b2c328d606aa5c2bb9b34550099daca90",
+            "plan_hash": "480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e",
+            "project_id": 38436695,
+            "source_manifest_hash": "ff9743bfde419dbc7a62c72d302893f750d60db3f75a6cb56bf3fad347d8a9d2",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/d45af7fcfdc849c888694aaa6dd7c0ae/submission/6e312b817743c21c21d092faef8bff14c4baf8257309dd018ae36c034b4f9701.json",
+            "sha256": "6e312b817743c21c21d092faef8bff14c4baf8257309dd018ae36c034b4f9701"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/d45af7fcfdc849c888694aaa6dd7c0ae/completion/934d7881648c04b1137e4d33f12b5f5fb8dcf1b7a0076eff78e06e0c94c4eba5.json",
+            "sha256": "934d7881648c04b1137e4d33f12b5f5fb8dcf1b7a0076eff78e06e0c94c4eba5"
+          },
+          "reason": "Observed engineering checks failed"
+        },
+        "reconciliation": "934d7881648c04b1137e4d33f12b5f5fb8dcf1b7a0076eff78e06e0c94c4eba5"
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "e17fd1ac2d3e433e909aef149c7afeec",
+        "config_id": "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d",
+        "kind": "failed",
+        "operation_key": "engineering-plan:82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T17:58:07.142622+00:00",
+        "result_key": "results/495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d/research/ed6e1d1fd8f3999876f5f8adf7b2b4a081545c0f241737d46944f5cb531474d2.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:e17fd1ac2d3e433e909aef149c7afeec",
+        "details": {
+          "deployment": {
+            "deployment_hash": "2e99a744d3bf5b898221d340d9298a6c64660c37fc3317064a317756170e7bb1",
+            "input_hash": "dc2d4390430394b65b471de1c72f93e5ad0765ddf22fc4427608b9e8c7df7b24",
+            "source_manifest_hash": "3eb2a590fc93b48f92227d60513e6b961447019ec2001bdf8497d5063946dc18"
+          },
+          "external_id": "qc-research:38436695:e17fd1ac2d3e433e909aef149c7afeec",
+          "identity": {
+            "attempt_id": "e17fd1ac2d3e433e909aef149c7afeec",
+            "config_id": "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d",
+            "data_request_hash": "f26e4c1ed796a7ad5cc4d0743c133d96a3627940afb9dcd0ca989c880b118627",
+            "deployment_hash": "2e99a744d3bf5b898221d340d9298a6c64660c37fc3317064a317756170e7bb1",
+            "plan_hash": "82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016",
+            "project_id": 38436695,
+            "source_manifest_hash": "3eb2a590fc93b48f92227d60513e6b961447019ec2001bdf8497d5063946dc18",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/e17fd1ac2d3e433e909aef149c7afeec/submission/40d938b38e0303d9aa3bea2cbe2ac347365097590349929617c65123cff89d89.json",
+            "sha256": "40d938b38e0303d9aa3bea2cbe2ac347365097590349929617c65123cff89d89"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/e17fd1ac2d3e433e909aef149c7afeec/completion/90719506905eb30f633d0d0a311dc97efd3a5ca9f670d9ab48d6ffcbce93750e.json",
+            "sha256": "90719506905eb30f633d0d0a311dc97efd3a5ca9f670d9ab48d6ffcbce93750e"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "90719506905eb30f633d0d0a311dc97efd3a5ca9f670d9ab48d6ffcbce93750e"
+      },
+      {
+        "allocation": "normal",
+        "attempt_id": "b9f952c1de3a44f9b06e5c552f7d1af3",
+        "config_id": "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c",
+        "kind": "failed",
+        "operation_key": "engineering-plan:489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T19:32:05.613127+00:00",
+        "result_key": "results/9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c/research/9d546b45e0b84f715b82d62814be6c189181b42926b580eff732512d60b33f09.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:b9f952c1de3a44f9b06e5c552f7d1af3",
+        "details": {
+          "deployment": {
+            "deployment_hash": "4eb3851506b51ebd6048a3351e1765af6ff9c2eae9aa2f0c00493dda19b839ed",
+            "input_hash": "23049dad8bf580b477cb427fc3b06481dc0303cdd60c42b5b3fb56c5fc877349",
+            "source_manifest_hash": "7010dd41cb3c2c05bb62b90c5d1381d91cb500215d78d455fd5322493b311ba5"
+          },
+          "external_id": "qc-research:38436695:b9f952c1de3a44f9b06e5c552f7d1af3",
+          "identity": {
+            "attempt_id": "b9f952c1de3a44f9b06e5c552f7d1af3",
+            "config_id": "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c",
+            "data_request_hash": "dfbc128809bf730c65f8897515184f745490e268a51b416f32bb26b9fe25f067",
+            "deployment_hash": "4eb3851506b51ebd6048a3351e1765af6ff9c2eae9aa2f0c00493dda19b839ed",
+            "plan_hash": "489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e",
+            "project_id": 38436695,
+            "source_manifest_hash": "7010dd41cb3c2c05bb62b90c5d1381d91cb500215d78d455fd5322493b311ba5",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/b9f952c1de3a44f9b06e5c552f7d1af3/submission/c5ddd699cb4944566eaf123f82c6b28e51767930b9310c787118614a14c5aae5.json",
+            "sha256": "c5ddd699cb4944566eaf123f82c6b28e51767930b9310c787118614a14c5aae5"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/b9f952c1de3a44f9b06e5c552f7d1af3/completion/de5454369a38abe6b443140d25937ac2c6a94ba3f721c677548afe98e2f67642.json",
+            "sha256": "de5454369a38abe6b443140d25937ac2c6a94ba3f721c677548afe98e2f67642"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "de5454369a38abe6b443140d25937ac2c6a94ba3f721c677548afe98e2f67642"
+      },
+      {
+        "allocation": "normal",
+        "attempt_id": "2d1095df62dc4222bffd8000c0737d38",
+        "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+        "kind": "completed",
+        "operation_key": "engineering-plan:9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T19:45:11.435609+00:00",
+        "result_key": "results/4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c/research/5c1147be63a7431b193e1e1055105e2e7624e4cb53855c71791bc7aacae4406b.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "completed",
+        "external_id": "qc-research:38436695:2d1095df62dc4222bffd8000c0737d38",
+        "details": {
+          "deployment": {
+            "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+            "input_hash": "36b5197ca2fbf2cc50c40ee0e5e6004164950d2101a6564b8b02b73994a2ae9c",
+            "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820"
+          },
+          "external_id": "qc-research:38436695:2d1095df62dc4222bffd8000c0737d38",
+          "identity": {
+            "attempt_id": "2d1095df62dc4222bffd8000c0737d38",
+            "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+            "data_request_hash": "501f33c0e1b67599533bc3a822b137fb807971d6dfab445b52ce6df046189778",
+            "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+            "plan_hash": "9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+            "project_id": 38436695,
+            "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/2d1095df62dc4222bffd8000c0737d38/submission/34b1f3ed186d16af7c1f72c722983527baf5aa565a8f2e94a533841cfbe3b057.json",
+            "sha256": "34b1f3ed186d16af7c1f72c722983527baf5aa565a8f2e94a533841cfbe3b057"
+          }
+        },
+        "result_sha256": "8f40e9ffdc1d25a2b8d504ee64a633f9ff9099f4cd512dc3dde15b46d7188711"
+      },
+      {
+        "allocation": "normal",
+        "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+        "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+        "kind": "failed",
+        "operation_key": "engineering-plan:9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5:lean",
+        "reason": null,
+        "recorded_at": "2026-10-28T08:36:45.590294+00:00",
+        "result_key": "results/4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c/lean/63ea2ea233deaf1a8ff7a5e45d197158ae95277161791f6fd88f92669395a76f.json",
+        "retry_of": null,
+        "stage": "lean",
+        "status": "failed",
+        "external_id": "3e68866a46ca88ff16481c31b3c2c822",
+        "details": {
+          "deployment": {
+            "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+            "input_hash": "8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03",
+            "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820"
+          },
+          "external_id": "3e68866a46ca88ff16481c31b3c2c822",
+          "identity": {
+            "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+            "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+            "data_request_hash": "501f33c0e1b67599533bc3a822b137fb807971d6dfab445b52ce6df046189778",
+            "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+            "plan_hash": "9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+            "project_id": 38436695,
+            "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+            "stage": "lean"
+          },
+          "identity_kind": "quantconnect_backtest_id",
+          "receipt_ref": {
+            "key": "engineering/evidence/37dc855045e14ca49c88fd9d75f40cf7/submission/73796cf10db31d72f0c2dd25bd69351dcb0e726913c73596a06cc234a396fa60.json",
+            "sha256": "73796cf10db31d72f0c2dd25bd69351dcb0e726913c73596a06cc234a396fa60"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/37dc855045e14ca49c88fd9d75f40cf7/completion/0b929d380e39fc25801286ce6c9597b0940888e1177349e129759361e0509c27.json",
+            "sha256": "0b929d380e39fc25801286ce6c9597b0940888e1177349e129759361e0509c27"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "0b929d380e39fc25801286ce6c9597b0940888e1177349e129759361e0509c27"
+      },
+      {
+        "allocation": "reserve",
+        "attempt_id": "020326aa00434b639e5a73a405168a97",
+        "config_id": "e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655",
+        "kind": "failed",
+        "operation_key": "engineering-plan:7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8:research",
+        "reason": null,
+        "recorded_at": "2026-10-28T15:53:17.286153+00:00",
+        "result_key": "results/e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655/research/dd55564b77ba8dfef00cd75f9f4e9d3f2e72035c322e54270020412224865fee.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "failed",
+        "external_id": "qc-research:38436695:020326aa00434b639e5a73a405168a97",
+        "details": {
+          "deployment": {
+            "deployment_hash": "e0fad7cb25d69da8cd3741ed456d4016d72ed2602398fa9c01c46d0d527109cd",
+            "input_hash": "b727e7d28e16e85d078452170511df22c5b9805aaa0d0b4bb1865b79006f94dc",
+            "source_manifest_hash": "f7b508bcf77ac036cee03b8d6278863c807f6e4c910176045460c27f834a02d0"
+          },
+          "external_id": "qc-research:38436695:020326aa00434b639e5a73a405168a97",
+          "identity": {
+            "attempt_id": "020326aa00434b639e5a73a405168a97",
+            "config_id": "e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655",
+            "data_request_hash": "c2d57e9224861cddd3471317b15b0a7513afcb1ab9dbdcd1c9598c7f7ce2a1a0",
+            "deployment_hash": "e0fad7cb25d69da8cd3741ed456d4016d72ed2602398fa9c01c46d0d527109cd",
+            "plan_hash": "7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8",
+            "project_id": 38436695,
+            "source_manifest_hash": "f7b508bcf77ac036cee03b8d6278863c807f6e4c910176045460c27f834a02d0",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/020326aa00434b639e5a73a405168a97/submission/ace1e04b23a75af2ceee0992eb72bf91fea200257cb1c6495bbd76bcd71f8e63.json",
+            "sha256": "ace1e04b23a75af2ceee0992eb72bf91fea200257cb1c6495bbd76bcd71f8e63"
+          }
+        },
+        "error": {
+          "evidence_ref": {
+            "key": "engineering/evidence/020326aa00434b639e5a73a405168a97/completion/f6df65ea085ca440e626226c1e3d2ed79083f7bc814fc6f9fd17cf572e61a860.json",
+            "sha256": "f6df65ea085ca440e626226c1e3d2ed79083f7bc814fc6f9fd17cf572e61a860"
+          },
+          "platform_status": "runtime_error"
+        },
+        "reconciliation": "f6df65ea085ca440e626226c1e3d2ed79083f7bc814fc6f9fd17cf572e61a860"
+      }
+    ],
+    "configuration_cycle": {
+      "authorization_ref": {
+        "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+        "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+      },
+      "capacity": {
+        "normal": 8,
+        "reserve": 5,
+        "total": 13
+      },
+      "cycle_id": "configuration-cycle-20261029-002",
+      "cycle_ref": {
+        "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+        "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+      },
+      "lifetime_usage": {
+        "normal": 9,
+        "reserve": 5,
+        "total": 14
+      },
+      "remaining": {
+        "normal": 7,
+        "reserve": 5,
+        "total": 12
+      },
+      "schema_version": 1,
+      "sequence": 1,
+      "starting_lifetime_usage": {
+        "normal": 8,
+        "reserve": 5,
+        "total": 13
+      },
+      "state_hash": "e755cb66432578f21721f9c4eaf5f9301e3e0c412ae56ade2e0f10a51b322c23",
+      "usage": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      }
+    },
+    "configuration_origins": {
+      "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94": {
+        "cycle_id": "initial",
+        "historical_import": true
+      },
+      "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "495fdff845f2654ea045982cadaf40a6fb3bc52974e5d8eeedba23e8d070da3d": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf": {
+        "cycle_id": "configuration-cycle-20261029-002",
+        "historical_import": false
+      },
+      "7e2613dea0b41747a8562c5e4fff1852ca391867c518078a2dd8610120ee08f7": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "d080612c40090d33c262a9769eb46f008942119ee06a6f7c1252497ea73da0a5": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f": {
+        "cycle_id": "initial",
+        "historical_import": false
+      },
+      "e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655": {
+        "cycle_id": "initial",
+        "historical_import": false
+      }
+    }
+  },
+  "cycle": {
+    "authorization_ref": {
+      "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+      "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+    },
+    "capacity": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "cycle_id": "configuration-cycle-20261029-002",
+    "cycle_ref": {
+      "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+      "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+    },
+    "lifetime_usage": {
+      "normal": 9,
+      "reserve": 5,
+      "total": 14
+    },
+    "remaining": {
+      "normal": 7,
+      "reserve": 5,
+      "total": 12
+    },
+    "schema_version": 1,
+    "sequence": 1,
+    "starting_lifetime_usage": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "state_hash": "e755cb66432578f21721f9c4eaf5f9301e3e0c412ae56ade2e0f10a51b322c23",
+    "usage": {
+      "normal": 1,
+      "reserve": 0,
+      "total": 1
+    }
+  },
+  "steps": [
+    {
+      "step": "round_authorize",
+      "exit_code": 0,
+      "result": {
+        "config_ids": [
+          "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf"
+        ],
+        "grant": {
+          "allocation": "normal",
+          "authorization_ref": {
+            "key": "engineering/rounds/user-authorizations/3c3383f241777f437a30e370f00ef732fd68fe1cb1bbf4a121655b7e2b82fe1d.json",
+            "sha256": "3c3383f241777f437a30e370f00ef732fd68fe1cb1bbf4a121655b7e2b82fe1d"
+          },
+          "configuration_cycle_id": "configuration-cycle-20261029-002",
+          "extra_spend_usd": 0,
+          "final_test_enabled": false,
+          "limits": {
+            "configurations": 1,
+            "lean": 1,
+            "research": 1
+          },
+          "project_id": 38436695,
+          "round_id": "stage2-storage-repair-round-006",
+          "schema_version": 2
+        },
+        "initial_config_ids": [
+          "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf"
+        ],
+        "status": "open",
+        "usage": {
+          "configurations": 0,
+          "lean": 0,
+          "research": 0
+        }
+      }
+    },
+    {
+      "step": "plan_freeze",
+      "exit_code": 0,
+      "result": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/90bdfc4879959f9c57885ecc76cd6d80591fe86da0f6d16ae02cd50a04624466.json",
+        "plan_hash": "90bdfc4879959f9c57885ecc76cd6d80591fe86da0f6d16ae02cd50a04624466",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/d5e61bc1413bbe4224e4e148f2c3abfbdeef5f1c05e325ad6b6c51507eb64348.json",
+          "sha256": "d5e61bc1413bbe4224e4e148f2c3abfbdeef5f1c05e325ad6b6c51507eb64348"
+        },
+        "configuration_registered": false,
+        "execution_started": false
+      }
+    },
+    {
+      "step": "configuration_register",
+      "exit_code": 0,
+      "result": {
+        "config_id": "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf",
+        "plan_hash": "90bdfc4879959f9c57885ecc76cd6d80591fe86da0f6d16ae02cd50a04624466"
+      }
+    }
+  ],
+  "new_configuration_debits": 1,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "final_test_enabled": false
+}

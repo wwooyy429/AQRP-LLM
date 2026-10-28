@@ -1,4 +1,4 @@
-"""Exercise actual v2 grant/new-cycle admission of strict schema3 joint plans.
+"""Exercise actual v2 grant/new-cycle admission of strict schema4 joint plans.
 
 All stores, observations and histories here are synthetic; no real Registry or
 QuantConnect connection is opened. The tests cover the operator grant path that
@@ -13,7 +13,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "cloud"), str(ROOT / "tests")]
-from qresearch.artifacts import MemoryArtifactStore
+from qresearch.artifacts import MemoryArtifactStore, canonical_json, content_hash
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge
 from qresearch.registry import Registry, RegistryError
 from test_budget_cycles import documents, normal_round_documents
@@ -43,7 +43,7 @@ def storage_package(directory):
 
 
 class RegistryStorageAdmissionTests(unittest.TestCase):
-    def test_v3_full_new_cycle_grant_register_claim_path_is_concurrent_once_only(self):
+    def test_v4_full_new_cycle_grant_register_claim_path_is_concurrent_once_only(self):
         with tempfile.TemporaryDirectory() as directory:
             package = storage_package(directory)
         store, registry, baseline = context()
@@ -53,7 +53,7 @@ class RegistryStorageAdmissionTests(unittest.TestCase):
         self.assertEqual(registry.snapshot()["usage"], before_usage)
         plan = Registry._joint_engineering_plan(package)
         self.assertIsNotNone(plan)
-        self.assertEqual(plan.to_dict()["schema_version"], 3)
+        self.assertEqual(plan.to_dict()["schema_version"], 4)
         task = EngineeringTaskBridge(registry, plan)
         with ThreadPoolExecutor(max_workers=4) as pool:
             ids = list(pool.map(lambda _: task.register(allocation="normal"), range(8)))
@@ -84,7 +84,7 @@ class RegistryStorageAdmissionTests(unittest.TestCase):
                          {"configurations": 1, "research": 1, "lean": 0})
         self.assertEqual(Registry(store, baseline).snapshot(), registry.snapshot())
 
-    def test_v3_malformed_storage_policy_cannot_bind_or_register_before_any_charge(self):
+    def test_v4_malformed_storage_policy_cannot_bind_or_register_before_any_charge(self):
         with tempfile.TemporaryDirectory() as directory:
             original = storage_package(directory)
         for mutation in (lambda p: p["storage_policy"].update(price_cache_mode="fetch"),
@@ -102,6 +102,44 @@ class RegistryStorageAdmissionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 registry.register_config(package)
             self.assertEqual(store._data, before)
+
+    def test_legacy_schema3_closed_round_remains_parseable_and_replayable(self):
+        with tempfile.TemporaryDirectory() as directory:
+            legacy = storage_package(directory)
+        legacy["plan"]["schema_version"] = 3
+        legacy["plan"]["storage_policy"]["schema_version"] = 1
+        legacy["plan"]["storage_policy"]["lean_record_encoding"] = "zlib_json_v1"
+        legacy["plan"] = EngineeringTaskPlan.from_dict(legacy["plan"], discovered_project_ids=(17,)).to_dict()
+        store, registry, baseline = context()
+        grant, authority = normal_round_documents(registry, round_id="SYNTHETIC-historical-schema3")
+        identity = content_hash(legacy)
+        grant_ref = registry._round_reference(grant, "authorizations")
+        package_ref = registry._round_reference(legacy, "configurations")
+        # Reconstruct a previously closed metadata-only round. This deliberately
+        # exercises historical replay, not a fresh execution of retired v3.
+        store.write_once(grant["authorization_ref"]["key"], canonical_json(authority))
+        store.write_once(grant_ref["key"], canonical_json(grant))
+        store.write_once(package_ref["key"], canonical_json(legacy))
+        store.write_once("configurations/" + identity + ".json", canonical_json(legacy))
+        registry._append({"kind": "engineering_round_authorized", "grant_ref": grant_ref,
+                          "configuration_refs": [package_ref]})
+        registry._append({"kind": "config_registered", "config_id": identity, "allocation": "normal",
+                          "configuration_cycle_id": registry.configuration_cycle_snapshot()["cycle_id"]})
+        registry._append({"kind": "engineering_round_closed", "round_id": grant["round_id"],
+                          "reason": "SYNTHETIC native source admission rejected before execution"})
+        restarted = Registry(store, baseline)
+        current = restarted.snapshot()
+        self.assertEqual(current["usage"]["configurations"]["total"], 14)
+        self.assertEqual(current["usage"]["research"]["total"], 16)
+        self.assertEqual(current["usage"]["lean"]["total"], 2)
+        self.assertEqual(restarted.engineering_rounds_snapshot()[grant["round_id"]]["status"], "closed")
+        self.assertEqual(Registry._joint_engineering_plan(legacy).to_dict()["schema_version"], 3)
+        before = dict(store._data)
+        self.assertEqual(restarted.register_config(legacy, allocation="normal"), identity)
+        with self.assertRaises(RegistryError):
+            restarted.begin_attempt(identity, "research", allocation="normal",
+                operation_key="engineering-plan:" + content_hash(legacy["plan"]) + ":research")
+        self.assertEqual(store._data, before)
 
 
 if __name__ == "__main__":

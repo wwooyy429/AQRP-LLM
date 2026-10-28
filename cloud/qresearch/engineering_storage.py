@@ -1,11 +1,8 @@
-"""Fixed engineering storage policy and bounded compressed cloud artifacts.
+"""Fixed storage policy and metadata validation, including retired v3 records.
 
-Only aggregate capacity metadata and hashes may leave the worker. Compression
-does not authorize deleting or exporting a historical observation.
+New jobs use readable cache-reference manifests. Legacy encoding metadata is
+parseable only to preserve immutable history; this module has no binary codec.
 """
-from hashlib import sha256
-import json
-import zlib
 
 from .artifacts import canonical_json, validate_key
 
@@ -23,11 +20,11 @@ def _hash(value):
     return type(value) is str and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
 
 
-def validate_storage_policy(raw, child):
+def validate_storage_policy(raw, child, *, plan_version=4):
     if (type(raw) is not dict or set(raw) != {"schema_version", "price_cache_mode", "capacity",
             "collection_cache", "lean_record_encoding"} or type(raw["schema_version"]) is not int
             or raw["schema_version"] != 1 or raw["price_cache_mode"] != "cache_only"
-            or raw["lean_record_encoding"] != "zlib_json_v1"):
+            or raw["lean_record_encoding"] != ({3: "zlib_json_v1", 4: "cached_row_reference_v1"}.get(plan_version))):
         raise ValueError("Invalid fixed engineering storage policy") from None
     capacity = raw["capacity"]
     if type(capacity) is not dict or set(capacity) != {"research", "lean"}:
@@ -88,38 +85,9 @@ def validate_collection_evidence(raw):
     return raw
 
 
-def encode_compressed_json(document, *, max_raw_bytes=2 * 1024 * 1024):
-    raw = canonical_json(document)
-    if len(raw) > max_raw_bytes:
-        raise ValueError("Engineering cloud artifact exceeds its bounded encoding") from None
-    stored = zlib.compress(raw, 9)
-    metadata = {"schema_version": 1, "encoding": "zlib_json_v1", "uncompressed_bytes": len(raw),
-                "stored_bytes": len(stored), "raw_sha256": sha256(raw).hexdigest(),
-                "stored_sha256": sha256(stored).hexdigest()}
-    return stored, metadata
-
-
-def decode_compressed_json(stored, metadata, *, max_raw_bytes=2 * 1024 * 1024):
-    validate_encoding_metadata(metadata)
-    if (metadata["uncompressed_bytes"] > max_raw_bytes or len(stored) != metadata["stored_bytes"]
-            or sha256(stored).hexdigest() != metadata["stored_sha256"]):
-        raise ValueError("Compressed cloud artifact identity differs") from None
-    try:
-        decoder = zlib.decompressobj()
-        raw = decoder.decompress(stored, max_raw_bytes + 1)
-        if len(raw) > max_raw_bytes or decoder.unconsumed_tail or not decoder.eof or decoder.unused_data:
-            raise ValueError
-        if len(raw) != metadata["uncompressed_bytes"] or sha256(raw).hexdigest() != metadata["raw_sha256"]:
-            raise ValueError
-        value = json.loads(raw)
-        if canonical_json(value) != raw:
-            raise ValueError
-    except (ValueError, TypeError, UnicodeError, zlib.error):
-        raise ValueError("Compressed cloud artifact verification failed") from None
-    return value
-
-
 def validate_encoding_metadata(raw):
+    if type(raw) is dict and raw.get("encoding") == "cached_row_reference_v1":
+        return validate_reference_metadata(raw)
     if (type(raw) is not dict or set(raw) != {"schema_version", "encoding", "uncompressed_bytes",
             "stored_bytes", "raw_sha256", "stored_sha256"} or type(raw["schema_version"]) is not int
             or raw["schema_version"] != 1 or raw["encoding"] != "zlib_json_v1"
@@ -127,4 +95,17 @@ def validate_encoding_metadata(raw):
                    for k in ("uncompressed_bytes", "stored_bytes"))
             or not _hash(raw["raw_sha256"]) or not _hash(raw["stored_sha256"])):
         raise ValueError("Invalid cloud compression metadata") from None
+    return raw
+
+
+def validate_reference_metadata(raw):
+    if (type(raw) is not dict or set(raw) != {"schema_version", "encoding", "record_count",
+            "rowset_sha256", "manifest_sha256", "cache_reference_count", "new_row_objects"}
+            or type(raw["schema_version"]) is not int or raw["schema_version"] != 1
+            or raw["encoding"] != "cached_row_reference_v1"
+            or type(raw["record_count"]) is not int or not 1 <= raw["record_count"] <= 100000
+            or type(raw["cache_reference_count"]) is not int or raw["cache_reference_count"] != 5
+            or not _hash(raw["rowset_sha256"]) or not _hash(raw["manifest_sha256"])
+            or raw["new_row_objects"] is not False):
+        raise ValueError("Invalid bounded receiver reference metadata") from None
     return raw
