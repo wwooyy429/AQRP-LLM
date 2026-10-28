@@ -81,7 +81,7 @@ class JointWorkerTests(unittest.TestCase):
     def run_worker(self, setup):
         root, local, reg, bridge, attempt, payload, api, qb = setup
         original = worker._context
-        with patch.object(worker, "_context", side_effect=lambda value, stage: original(value, stage, source_root=root)):
+        with patch.object(worker, "_context", side_effect=lambda value, stage, **kwargs: original(value, stage, source_root=root, **kwargs)):
             return worker.run_research_task(payload, api=api, quantbook_factory=lambda: qb)
 
     def test_actual_joint_worker_native_receipt_one_parent_debit_and_lean_dependency(self):

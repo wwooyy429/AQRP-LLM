@@ -12,6 +12,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import FilesystemArtifactStore, canonical_json
 from qresearch.registry import Registry
+from qresearch.deployment_sources import SOURCE_IDENTITY_POLICY, build_manifest
 
 
 def read_json(path):
@@ -39,6 +40,18 @@ def write_changed(path, data):
 def configuration():
     documents = {name: read_json(ROOT / "config" / (name + ".json"))
                  for name in ("research", "universe", "data", "workflow", "budget")}
+    # Historical source fixtures without this file retain their old identity.
+    # New policy selection is semantic configuration, never an execution grant.
+    policy_path = ROOT / "config" / "deployment.json"
+    if policy_path.exists():
+        policy = read_json(policy_path)
+        if (type(policy) is not dict
+                or set(policy) != {"schema_version", "manifest_schema_version", "source_identity_policy"}
+                or type(policy["schema_version"]) is not int or policy["schema_version"] != 1
+                or type(policy["manifest_schema_version"]) is not int or policy["manifest_schema_version"] != 2
+                or policy["source_identity_policy"] != SOURCE_IDENTITY_POLICY):
+            raise ValueError("Unsupported explicit deployment source policy") from None
+        documents["deployment"] = policy
     return {name: value for name, value in documents.items() if name != "budget"} | {
         "configuration_id": documents["research"]["configuration_id"],
         "budget_limits": documents["budget"]["limits"],
@@ -58,12 +71,18 @@ def build():
             + "SOURCE_SHA256 = " + repr(source_hash) + "\nIMPLEMENTATION_SHA256 = " + repr(implementation_hash) + "\nCONFIGURATION = "
             + pprint.pformat(config, sort_dicts=True, width=110) + "\n")
     changed = write_changed(ROOT / "cloud" / "research_config.py", text)
-    files = {str(path.relative_to(ROOT / "cloud")).replace("\\", "/"):
-             source_digest(path)
-             for path in sorted((ROOT / "cloud").rglob("*.py")) if "__pycache__" not in path.parts}
-    write_changed(ROOT / "audit" / "deployment.json", json.dumps({"configuration_hash": source_hash,
+    generated = {"_engineering_task_input.py", "_collection_task_input.py"} if "deployment" in config else set()
+    sources = {path.relative_to(ROOT / "cloud").as_posix(): path.read_bytes()
+               for path in sorted((ROOT / "cloud").rglob("*.py"))
+               if "__pycache__" not in path.parts and path.relative_to(ROOT / "cloud").as_posix() not in generated}
+    from qresearch.deployment_sources import source_sha256
+    files = {name: source_sha256(raw) for name, raw in sources.items()}
+    deployment = {"configuration_hash": source_hash,
                   "implementation_hash": implementation_hash, "source_hash_policy": "UTF-8 with normalized LF line endings",
-                  "source_files": files}, indent=2, sort_keys=True) + "\n")
+                  "source_files": files}
+    if "deployment" in config:
+        deployment["deployment_manifest"] = build_manifest(sources)
+    write_changed(ROOT / "audit" / "deployment.json", json.dumps(deployment, indent=2, sort_keys=True) + "\n")
     return {"config_changed": changed, "configuration_hash": source_hash, "source_files": len(files)}
 
 

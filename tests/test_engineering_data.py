@@ -137,7 +137,7 @@ class EngineeringDataTests(unittest.TestCase):
         payload = self.payload()
         payload["research_resolution"] = resolution
         original = reception._context
-        with patch.object(reception, "_context", side_effect=lambda data, stage: original(data, stage, source_root=self.root)):
+        with patch.object(reception, "_context", side_effect=lambda data, stage, **kwargs: original(data, stage, source_root=self.root, **kwargs)):
             reception.initialize_receiver(algorithm, payload, api=FAKE_API)
         return algorithm
 

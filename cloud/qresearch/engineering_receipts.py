@@ -17,6 +17,8 @@ import re
 from .artifacts import canonical_json, content_hash, validate_key
 from .engineering_data import _identity_shape, _safe_evidence
 from .engineering_tasks import EngineeringTaskPlan, validate_joint_report
+from .deployment_sources import parse_manifest
+from .deployment_observation import validate_observation_binding
 
 
 class ReceiptParseError(ValueError):
@@ -266,6 +268,9 @@ def _report(wrapper, payload):
     try:
         _safe_evidence(report.get("evidence", {}))
         validate_joint_report(report, payload["plan"])
+        if "deployment_manifest" in payload:
+            validate_observation_binding(report.get("evidence", {}), payload["deployment_manifest"],
+                                         payload["identity"]["deployment_hash"])
     except (ValueError, TypeError) as exc:
         raise ReceiptParseError("Unrecognized or row-level cloud evidence is prohibited") from exc
     _ref(reference)
@@ -628,17 +633,14 @@ def backtest_rejection(payload, deployment, tool_envelope):
                     for name, values in errors.items())):
         error_format, error_count, file_count = "file_map", sum(map(len, errors.values())), len(errors)
         manifest = payload.get("deployment_manifest")
-        known = set(manifest) if isinstance(manifest, dict) else set()
+        try:
+            _, records = parse_manifest(manifest)
+            eligible = content_hash(manifest) == deployment["deployment_hash"]
+        except ValueError:
+            records, eligible = {}, False
+        known = set(records)
         # The generated input is pinned separately by deployment.input_hash.
         known.add("_engineering_task_input.py")
-        eligible = isinstance(manifest, dict) and bool(manifest) and content_hash(manifest) == deployment["deployment_hash"]
-        for name, digest in (manifest.items() if isinstance(manifest, dict) else ()):
-            try:
-                validate_key(name)
-            except (TypeError, ValueError):
-                eligible = False
-            if not isinstance(name, str) or not name.endswith(".py") or not _hash(digest):
-                eligible = False
         for name, values in errors.items():
             try:
                 validate_key(name)

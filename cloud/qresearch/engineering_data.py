@@ -23,6 +23,9 @@ from .engineering_tasks import EngineeringTaskPlan, _safe_collection_probe, vali
 from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConnectHistoryProvider
 from .worker_identity import (controlled_source_observation, path_fingerprint,
     validate_source_observation, MAX_WORKER_DIAGNOSTIC_BYTES)
+from .deployment_sources import (SOURCE_IDENTITY_POLICY, SourceIdentityError,
+    parse_manifest, source_sha256, validate_record_against_source)
+from .deployment_observation import validate_deployment_observation, validate_observation_binding
 
 
 STORE_PREFIX = "aqrp/engineering/v2"
@@ -89,13 +92,7 @@ def source_bytes_sha256(raw: bytes):
     same observation that caused rejection. No imports, whitespace or source
     syntax are removed; this is equivalent to read_text(encoding='utf-8-sig').
     """
-    if type(raw) is not bytes:
-        raise ValueError("Deployment source must be bytes") from None
-    try:
-        text = raw.decode("utf-8-sig")
-    except UnicodeError:
-        raise ValueError("Deployment source must contain valid UTF-8") from None
-    return hashlib.sha256(text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")).hexdigest()
+    return source_sha256(raw)
 
 
 def _runtime_environment(api):
@@ -148,7 +145,8 @@ def _worker_observation(root, path, *, explicit_root, read_status, raw=None):
     return controlled_source_observation(root_context=context, read_status=read_status, raw=raw)
 
 
-def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagnostics=False):
+def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagnostics=False,
+                      require_source_bytes=False):
     """Verify implementation bytes separately from the generated job input.
 
     The input contains the plan and therefore is explicitly outside the code
@@ -157,17 +155,40 @@ def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagn
     bounded schema2 observations of the same bytes that caused rejection; these
     observations cannot establish the source of an earlier failed worker.
     """
-    if type(worker_diagnostics) is not bool:
+    return _verify_deployment(manifest, expected_hash, source_root=source_root,
+        worker_diagnostics=worker_diagnostics, require_source_bytes=require_source_bytes)[0]
+
+
+def verify_deployment_observation(manifest, expected_hash, *, source_root=None,
+                                  worker_diagnostics=False, require_source_bytes=False):
+    """One source read per file, with a v2 aggregate observation on success.
+
+    Legacy sources return no new report fields. This is a source-policy check,
+    not a remote signature, market-data certificate or raw-byte equality claim.
+    """
+    return _verify_deployment(manifest, expected_hash, source_root=source_root,
+        worker_diagnostics=worker_diagnostics, require_source_bytes=require_source_bytes)[1]
+
+
+def _verify_deployment(manifest, expected_hash, *, source_root, worker_diagnostics,
+                       require_source_bytes):
+    if type(worker_diagnostics) is not bool or type(require_source_bytes) is not bool:
         raise ValueError("Worker diagnostics selection must be boolean") from None
     if (not isinstance(manifest, dict) or not manifest or not isinstance(expected_hash, str)
             or re.fullmatch(r"[0-9a-f]{64}", expected_hash) is None):
         raise DeploymentVerificationError("invalid_manifest") from None
     # Validate the entire declared set before resolving or reading any source.
-    for name, expected in manifest.items():
-        if not _deployment_path_valid(name):
-            raise DeploymentVerificationError("invalid_path", path=name) from None
-        if not isinstance(expected, str) or re.fullmatch(r"[0-9a-f]{64}", expected) is None:
-            raise DeploymentVerificationError("invalid_manifest", path=name) from None
+    try:
+        version, records = parse_manifest(manifest)
+    except SourceIdentityError as error:
+        # Keep historical diagnostics, including the invalid path fingerprint.
+        if error.reason == "invalid_path":
+            candidates = manifest.get("files", manifest)
+            if isinstance(candidates, dict):
+                for name in candidates:
+                    if not _deployment_path_valid(name):
+                        raise DeploymentVerificationError("invalid_path", path=name) from None
+        raise DeploymentVerificationError("invalid_manifest") from None
     manifest_hash = content_hash(manifest)
     if manifest_hash != expected_hash:
         raise DeploymentVerificationError("manifest_hash_mismatch", expected_sha256=expected_hash,
@@ -177,7 +198,7 @@ def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagn
     except (OSError, RuntimeError, TypeError, ValueError):
         raise DeploymentVerificationError("source_unreadable") from None
     paths = []
-    for name, expected in sorted(manifest.items()):
+    for name, record in sorted(records.items()):
         try:
             path = root / name
             contained = path.resolve().is_relative_to(root)
@@ -185,9 +206,11 @@ def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagn
             raise DeploymentVerificationError("invalid_path", path=name) from None
         if not contained:
             raise DeploymentVerificationError("invalid_path", path=name) from None
-        paths.append((name, expected, path))
+        paths.append((name, record, path))
     observed = {}
-    for name, expected, path in paths:
+    normalized_count = 0
+    for name, record, path in paths:
+        expected = record["source_sha256"]
         def observation(status, raw=None):
             return (_worker_observation(root, path, explicit_root=bool(source_root),
                 read_status=status, raw=raw) if worker_diagnostics else None)
@@ -203,15 +226,38 @@ def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagn
         except ValueError:
             raise DeploymentVerificationError("source_decode_error", path=name, expected_sha256=expected,
                 worker_observation=observation("read", raw)) from None
-        if actual != expected:
+        if version == 2:
+            try:
+                observed[name] = validate_record_against_source(raw, record,
+                    require_source_bytes=require_source_bytes)
+            except SourceIdentityError:
+                # v2 canonical and pinned-source mismatches are static schema1.
+                # Do not label a canonical digest as a legacy strict digest.
+                raise DeploymentVerificationError("source_hash_mismatch", path=name,
+                    expected_sha256=expected, observed_sha256=actual) from None
+            normalized_count += actual != expected
+        elif actual != expected:
             raise DeploymentVerificationError("source_hash_mismatch", path=name,
                 expected_sha256=expected, observed_sha256=actual,
                 worker_observation=observation("read", raw)) from None
-        observed[name] = actual
-    return content_hash(observed)
+        else:
+            observed[name] = actual
+    if version == 1:
+        return content_hash(observed), None
+    reconstructed = {"schema_version": 2, "source_identity_policy": SOURCE_IDENTITY_POLICY,
+                     "files": observed}
+    verified_hash = content_hash(reconstructed)
+    summary = {"schema_version": 1, "source_identity_policy": SOURCE_IDENTITY_POLICY,
+        "deployment_hash": verified_hash,
+        "verification_mode": "project_original_source" if require_source_bytes else "worker_terminal_lf",
+        "declared_file_count": len(records), "verified_file_count": len(observed),
+        "eof_normalized_file_count": normalized_count,
+        "original_source_identity_match": normalized_count == 0, "canonical_sources_verified": True}
+    validate_deployment_observation(summary, deployment_hash=expected_hash)
+    return verified_hash, summary
 
 
-def _context(payload, stage, *, source_root=None):
+def _context(payload, stage, *, source_root=None, with_observation=False):
     if not isinstance(payload, dict) or payload.get("identity", {}).get("stage") != stage:
         raise ValueError("Wrong engineering execution stage")
     identity = payload["identity"]
@@ -232,8 +278,10 @@ def _context(payload, stage, *, source_root=None):
     report_key = document["report_namespace"] + "/reports/" + plan.hash + "/" + stage + "/" + identity["attempt_id"] + ".json"
     if payload.get("report_key") != report_key:
         raise ValueError("Engineering result destination differs from the admitted attempt")
-    verify_deployment(payload.get("deployment_manifest"), document["deployment_hash"],
+    observation = verify_deployment_observation(payload.get("deployment_manifest"), document["deployment_hash"],
                       source_root=source_root, worker_diagnostics=True)
+    if with_observation:
+        return plan, document, identity, observation
     return plan, document, identity
 
 
@@ -252,11 +300,14 @@ def _identity_shape(identity):
 def _safe_evidence(evidence):
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
         "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-        "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe"}
+        "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe",
+        "deployment_verification"}
     if not isinstance(evidence, dict) or not set(evidence) <= allowed:
         raise ValueError("Unknown engineering evidence metadata")
     for name, value in evidence.items():
-        if name == "collection_probe":
+        if name == "deployment_verification":
+            validate_deployment_observation(value)
+        elif name == "collection_probe":
             _safe_collection_probe(value)
         elif name.endswith("_ref") or name == "cache_payload_refs":
             refs = value if name == "cache_payload_refs" else [value]
@@ -340,6 +391,8 @@ def _finish(store, payload, checks, statistics, resolution, *, evidence=None):
     if not isinstance(statistics, dict) or not set(statistics) <= allowed or any(type(value) is not int or value < 0 for value in statistics.values()):
         raise ValueError("Only nonnegative engineering counts can leave cloud")
     _safe_evidence(evidence or {})
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+                                 payload["identity"]["deployment_hash"])
     resolution_keys = {"resolved_request_hash", "resolved_registry_hash", "resolution_artifact_hash", "tickers", "ticker_count", "permanent_sid_count", "method", "resolved_registry_ref", "resolved_request_ref"}
     if not isinstance(resolution, dict) or set(resolution) != resolution_keys:
         raise ValueError("Only fixed resolution metadata can leave cloud")
@@ -420,7 +473,7 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
     if quantbook_factory is None:
         from QuantConnect.Research import QuantBook
         quantbook_factory = QuantBook
-    plan, document, identity = _context(payload, "research")
+    plan, document, identity, deployment_observation = _context(payload, "research", with_observation=True)
     qb = quantbook_factory()
     qb.set_time_zone("America/New_York")
     frontier = aware(document["symbol_resolution"]["as_of"])
@@ -485,6 +538,8 @@ def run_research_task(payload, *, api=None, quantbook_factory=None):
                   "coverage_certification_gaps": coverage["research_certification_gaps"],
                   "lean_engine_version": str(api.Globals.version), "vendor_revision_known": False,
                   "runtime_environment": _runtime_environment(api)}
+    if deployment_observation is not None:
+        evidence["deployment_verification"] = deployment_observation
     if document["schema_version"] == 2:
         summary = _run_collection_probe(qb, store, plan, payload, api=api)
         evidence["collection_probe"] = summary
@@ -498,7 +553,7 @@ def initialize_receiver(algorithm, payload, *, api=None):
     """Initialize a dedicated no-order LEAN data receiver using Research refs."""
     if api is None:
         import AlgorithmImports as api
-    plan, document, identity = _context(payload, "lean")
+    plan, document, identity, deployment_observation = _context(payload, "lean", with_observation=True)
     store = _cloud_store(algorithm.object_store)
     request, registry = _read_resolution(store, plan, payload["research_resolution"])
     window = document["observation_window"]
@@ -516,7 +571,7 @@ def initialize_receiver(algorithm, payload, *, api=None):
     algorithm._engineering_state = {"payload": payload, "plan": plan, "request": request,
         "store": store, "securities": securities, "records": [], "bar_keys": [],
         "actions": [], "order_events": 0, "slices": 0, "engine_version": str(api.Globals.version),
-        "runtime_environment": _runtime_environment(api)}
+        "runtime_environment": _runtime_environment(api), "deployment_verification": deployment_observation}
 
 
 def receive_slice(algorithm, data):
@@ -593,8 +648,10 @@ def finish_receiver(algorithm):
         "split_event_count": sum(item["kind"] == "splits" for item in state["actions"]),
         "delisting_event_count": sum(item["kind"] == "delistings" for item in state["actions"]),
         "mapping_event_count": sum(item["kind"] == "symbol_changed_events" for item in state["actions"])}
-    return _finish(store, payload, checks, statistics, payload["research_resolution"],
-        evidence={"received_bar_ref": raw_ref, "corporate_action_ref": action_ref,
+    evidence = {"received_bar_ref": raw_ref, "corporate_action_ref": action_ref,
                   "unobserved_action_types_are_not_certified": True,
                   "lean_engine_version": state["engine_version"], "vendor_revision_known": False,
-                  "runtime_environment": state["runtime_environment"]})
+                  "runtime_environment": state["runtime_environment"]}
+    if state.get("deployment_verification") is not None:
+        evidence["deployment_verification"] = state["deployment_verification"]
+    return _finish(store, payload, checks, statistics, payload["research_resolution"], evidence=evidence)

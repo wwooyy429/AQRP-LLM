@@ -11,6 +11,7 @@ from .collection import HistoricalCollectionPlan
 from .engineering_tasks import (EngineeringTaskBridge, EngineeringTaskError,
                                 _hash, _safe_identity, _safe_reference)
 from .workflow import SubmissionRejected
+from .deployment_observation import validate_deployment_observation, validate_observation_binding
 
 
 CHECKS = {"all_windows_completed", "cache_only_replay_zero_fetch", "same_completed_refs",
@@ -107,6 +108,12 @@ def validate_report(report, plan, identity):
             <= counts["record_count"] - (windows - counts["empty_windows"])):
         raise EngineeringTaskError("Occurrence ambiguity counts disagree with collected records")
     expected_evidence = {"collection_receipt_ref", "collection_plan_hash", "missing_values"} | ({"observation_policy"} if occurrences else set())
+    if isinstance(evidence, dict) and "deployment_verification" in evidence:
+        try:
+            validate_deployment_observation(evidence["deployment_verification"], deployment_hash=identity["deployment_hash"])
+        except ValueError:
+            raise EngineeringTaskError("Invalid collection deployment evidence") from None
+        expected_evidence.add("deployment_verification")
     if (not isinstance(evidence, dict) or set(evidence) != expected_evidence
             or evidence["collection_plan_hash"] != collection.hash):
         raise EngineeringTaskError("Only source-bound collection references and field gap counts may leave cloud")
@@ -151,7 +158,18 @@ class CollectionTaskBridge(EngineeringTaskBridge):
         validate_report(report, self.plan, identity)
 
     def _cloud_report(self, report, payload):
-        return validate_report(report, self.plan, payload["identity"])
+        passed = validate_report(report, self.plan, payload["identity"])
+        key = "collection/admitted-inputs/" + payload["identity"]["attempt_id"] + ".json"
+        if self.store.exists(key):
+            try:
+                admission = json.loads(self.store.read_bytes(key))
+                validate_observation_binding(report["evidence"], admission["payload"]["deployment_manifest"],
+                                             payload["identity"]["deployment_hash"])
+            except (KeyError, TypeError, ValueError):
+                raise EngineeringTaskError("Collection deployment evidence differs from its original input") from None
+        elif "deployment_verification" in report["evidence"]:
+            raise EngineeringTaskError("Versioned collection evidence requires the original admitted input") from None
+        return passed
 
     def submit(self, stage="research", *, allocation="normal", retry_of=None, reason=None):
         self._operation(stage)

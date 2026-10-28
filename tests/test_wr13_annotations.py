@@ -232,7 +232,7 @@ class WR13ReceiptChainTests(unittest.TestCase):
             api = NS(Resolution=NS(DAILY="synthetic_daily"), DataNormalizationMode=NS(RAW="synthetic_raw"),
                      Globals=NS(version="synthetic_engine"))
             original = old_worker._context
-            with patch.object(old_worker, "_context", side_effect=lambda value, stage: original(value, stage, source_root=root)):
+            with patch.object(old_worker, "_context", side_effect=lambda value, stage, **kwargs: original(value, stage, source_root=root, **kwargs)):
                 wrapper = old_worker.run_research_task(payload, api=api, quantbook_factory=ToyQuantBook)
             marker = "AQRP_ENGINEERING_JSON " + base64.b64encode(canonical_json(wrapper)).decode("ascii")
         deployment = {"source_manifest_hash": "a" * 64, "deployment_hash": content_hash(manifest), "input_hash": "f" * 64}

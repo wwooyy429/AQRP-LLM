@@ -15,6 +15,8 @@ from .artifacts import canonical_json, content_hash, validate_key
 from .contracts import DataRequest, aware
 from .registry import Attempt
 from .workflow import SubmissionRejected
+from .deployment_sources import parse_manifest
+from .deployment_observation import validate_deployment_observation, validate_observation_binding
 
 
 class EngineeringTaskError(ValueError):
@@ -131,11 +133,17 @@ def _safe_evidence(raw):
     raw = _mapping(raw, "engineering evidence metadata")
     allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
                "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
-               "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe"}
+               "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe",
+               "deployment_verification"}
     if not set(raw) <= allowed:
         raise EngineeringTaskError("Unknown engineering evidence cannot carry row-level data")
     for name, value in raw.items():
-        if name == "collection_probe":
+        if name == "deployment_verification":
+            try:
+                validate_deployment_observation(value)
+            except ValueError:
+                raise EngineeringTaskError("Invalid deployment verification evidence") from None
+        elif name == "collection_probe":
             _safe_collection_probe(value)
         elif name.endswith("_ref"):
             _safe_reference(value)
@@ -198,6 +206,12 @@ def _safe_collection_probe(raw):
 
 def validate_joint_report(report, document):
     """Bind the optional summary to this exact parent; v1 stays unchanged."""
+    if "deployment_verification" in report.get("evidence", {}):
+        try:
+            validate_deployment_observation(report["evidence"]["deployment_verification"],
+                                           deployment_hash=document["deployment_hash"])
+        except ValueError:
+            raise EngineeringTaskError("Deployment evidence differs from the frozen plan") from None
     summary = report.get("evidence", {}).get("collection_probe")
     applicable = document["schema_version"] == 2 and report["identity"]["stage"] == "research"
     if not applicable:
@@ -660,11 +674,7 @@ class EngineeringTaskBridge:
                     or admission["deployment"] != receipt["deployment"]
                     or sha256(text.encode("utf-8")).hexdigest() != receipt["deployment"]["input_hash"]):
                 raise EngineeringTaskError("Native rejection differs from the original admitted input")
-            for name, digest in manifest.items():
-                validate_key(name)
-                if not name.endswith(".py"):
-                    raise EngineeringTaskError("Admitted rejection source is not Python")
-                _hash(digest, "original admitted source")
+            parse_manifest(manifest)
         except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
             raise EngineeringTaskError("A rejection requires canonical original admitted-input evidence") from exc
         digest = content_hash(receipt)
@@ -741,6 +751,16 @@ class EngineeringTaskBridge:
     def _cloud_report(self, report, payload):
         report = _mapping(report, "cloud engineering report")
         self._report_metadata(report)
+        admission_key = "engineering/admitted-inputs/" + payload["identity"]["attempt_id"] + ".json"
+        if self.store.exists(admission_key):
+            try:
+                admission = json.loads(self.store.read_bytes(admission_key))
+                validate_observation_binding(report.get("evidence", {}),
+                    admission["payload"]["deployment_manifest"], payload["identity"]["deployment_hash"])
+            except (KeyError, TypeError, ValueError):
+                raise EngineeringTaskError("Deployment evidence differs from the original admitted input") from None
+        elif "deployment_verification" in report.get("evidence", {}):
+            raise EngineeringTaskError("Versioned deployment evidence requires the original admitted input") from None
         if (type(report.get("schema_version")) is not int or report.get("schema_version") != 1 or report.get("identity") != payload["identity"]
                 or report.get("terminal") is not True or report.get("status") not in {"completed", "failed"}):
             raise EngineeringTaskError("Cloud report belongs to another execution or is not final")

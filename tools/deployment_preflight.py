@@ -17,6 +17,7 @@ sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
 from qresearch.artifacts import content_hash, validate_key
+from qresearch.deployment_sources import build_manifest, parse_manifest
 from qresearch.engineering_data import source_bytes_sha256
 from qresearch.engineering_receipts import _native, _json
 
@@ -47,17 +48,21 @@ def _path(value):
 def _manifest(value, expected_hash):
     if not isinstance(value, dict) or not value or not _digest(expected_hash):
         _fail("An explicit nonempty frozen manifest and its hash are required")
+    try:
+        version, records = parse_manifest(value)
+    except (ValueError, TypeError):
+        _fail("Frozen implementation manifest is invalid")
     aliases = set()
-    for name, digest in value.items():
+    for name, record in records.items():
         _path(name)
         if (not name.endswith(".py") or "__pycache__" in name.split("/")
-                or name == "_engineering_task_input.py" or not _digest(digest)
+                or name == "_engineering_task_input.py" or not _digest(record["source_sha256"])
                 or name.casefold() in aliases):
             _fail("Frozen implementation paths and hashes are invalid or ambiguous")
         aliases.add(name.casefold())
     if content_hash(value) != expected_hash:
         _fail("Frozen deployment manifest hash does not match")
-    return value
+    return version, records
 
 
 def _project_ids(observation):
@@ -99,7 +104,8 @@ def _project_ids(observation):
 
 def read_project_preflight(tool_envelope, projects_record, frozen_manifest, deployment_hash, *, project_id, input_sha256=None):
     """Compare only returned Python sources to the explicit frozen contract."""
-    manifest = _manifest(frozen_manifest, deployment_hash)
+    version, records = _manifest(frozen_manifest, deployment_hash)
+    manifest = {name: record["source_sha256"] for name, record in records.items()}
     if type(project_id) is not int or project_id < 1 or project_id not in _project_ids(projects_record):
         _fail("The expected project must come from the successful listing")
     if input_sha256 is not None and not _digest(input_sha256):
@@ -121,7 +127,8 @@ def read_project_preflight(tool_envelope, projects_record, frozen_manifest, depl
             or project["language"] != "Py" or not isinstance(project["name"], str)
             or not isinstance(project["files"], list)):
         _fail("Returned project identity or source shape is invalid")
-    sources, aliases, input_observed, ignored = {}, set(), None, 0
+    sources, source_bytes, aliases, input_observed, ignored = {}, {}, set(), None, 0
+    ignored_generated = 0
     for file in project["files"]:
         if (not isinstance(file, dict) or set(file) != {"filePath", "content"}
                 or not isinstance(file["content"], str)):
@@ -133,21 +140,47 @@ def read_project_preflight(tool_envelope, projects_record, frozen_manifest, depl
         if not name.lower().endswith(".py"):
             ignored += 1
             continue
+        if version == 2 and name == "_collection_task_input.py":
+            # A separate collection task's inert input is not implementation
+            # source or the engineering input whose exact hash is requested.
+            # Never parse, hash or export its contents through this readback.
+            ignored_generated += 1
+            continue
         try:
             raw = file["content"].encode("utf-8")
             if name == "_engineering_task_input.py":
                 input_observed = hashlib.sha256(raw).hexdigest()
             else:
                 sources[name] = source_bytes_sha256(raw)
+                source_bytes[name] = raw
         except (ValueError, UnicodeError):
             _fail("Returned Python source is not valid UTF-8 text")
+    # A PROJECT readback is the author's declared source, not a packaged
+    # worker artifact. Even a v2 policy must preserve its original EOF count
+    # here; canonical worker equivalence cannot approve a different project.
+    observed_manifest = sources
+    observed_records = None
+    if version == 2 and source_bytes:
+        try:
+            observed_manifest = build_manifest(source_bytes)
+            _, observed_records = parse_manifest(observed_manifest)
+        except (ValueError, TypeError):
+            _fail("Returned Python source cannot establish its declared source identity")
+    elif version == 2:
+        # There is no valid nonempty observed manifest to hash. Retain the
+        # missing-file diagnostics without manufacturing a valid empty policy.
+        observed_manifest = None
     missing = sorted(set(manifest) - set(sources))
     extra = sorted(set(sources) - set(manifest))
     different = sorted(name for name in set(manifest) & set(sources) if manifest[name] != sources[name])
+    if observed_records is not None:
+        different = sorted(name for name in set(records) & set(observed_records)
+                           if records[name] != observed_records[name])
     matches = not missing and not extra and not different
     input_bound = input_sha256 is not None and input_observed == input_sha256
-    return {"schema_version": 1, "kind": "returned_source_reference_preflight", "project_id": project_id,
-        "expected_manifest_hash": deployment_hash, "observed_source_reference_hash": content_hash(sources),
+    result = {"schema_version": 1, "kind": "returned_source_reference_preflight", "project_id": project_id,
+        "expected_manifest_hash": deployment_hash,
+        "observed_source_reference_hash": content_hash(observed_manifest) if observed_manifest is not None else None,
         "expected_implementation_count": len(manifest), "observed_implementation_count": len(sources),
         "missing_from_returned_reference": missing, "unexpected_in_returned_reference": extra,
         "different_paths": different, "files": [{"path":name, "expected_sha256":manifest.get(name),
@@ -158,6 +191,11 @@ def read_project_preflight(tool_envelope, projects_record, frozen_manifest, depl
         "ready_to_dispatch": False, "budget_admission_performed": False,
         "worker_source_verified": False, "full_cloud_inventory_certified": False,
         "financial_evidence": False}
+    if version == 2:
+        result.update(deployment_manifest_schema_version=2,
+                      source_identity_policy=frozen_manifest["source_identity_policy"],
+                      ignored_generated_input_file_count=ignored_generated)
+    return result
 
 
 def main():
@@ -172,7 +210,7 @@ def main():
     try:
         manifest = _json(args.manifest_file.read_text(encoding="utf-8-sig"))
         if isinstance(manifest, dict) and "source_files" in manifest:
-            manifest = manifest["source_files"]
+            manifest = manifest.get("deployment_manifest", manifest["source_files"])
         result = read_project_preflight(_json(args.project_tool_file.read_text(encoding="utf-8-sig")),
             _json(args.projects_file.read_text(encoding="utf-8-sig")), manifest, args.deployment_hash,
             project_id=args.project_id, input_sha256=args.input_sha256)

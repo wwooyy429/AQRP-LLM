@@ -13,7 +13,8 @@ import sys
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "cloud"))
-from qresearch.artifacts import canonical_json, content_hash, validate_key
+from qresearch.artifacts import canonical_json, content_hash
+from qresearch.deployment_sources import parse_manifest
 from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, EngineeringTaskError, submission_protocol
 from qresearch.engineering_data import verify_deployment
 from qresearch.registry import BudgetExceeded
@@ -34,14 +35,18 @@ def local_deployment_preflight(*, expected_hash=None):
     record = read_json(ROOT / "audit" / "deployment.json")
     if not isinstance(record, dict) or "source_files" not in record:
         raise ValueError("A built local deployment manifest is required")
-    manifest = record["source_files"]
+    manifest = record.get("deployment_manifest", record["source_files"])
+    version, records = parse_manifest(manifest)
     expected = content_hash(manifest) if expected_hash is None else expected_hash
-    verify_deployment(manifest, expected, source_root=ROOT / "cloud")
+    verify_deployment(manifest, expected, source_root=ROOT / "cloud", require_source_bytes=True)
+    generated = {"_engineering_task_input.py"}
+    if version == 2:
+        generated.add("_collection_task_input.py")
     observed = {path.relative_to(ROOT / "cloud").as_posix()
                 for path in (ROOT / "cloud").rglob("*")
                 if path.is_file() and path.suffix.lower() == ".py" and "__pycache__" not in path.parts
-                and path.relative_to(ROOT / "cloud").as_posix() != "_engineering_task_input.py"}
-    if observed != set(manifest):
+                and path.relative_to(ROOT / "cloud").as_posix() not in generated}
+    if observed != set(records):
         raise ValueError("The complete managed local Python set differs from the frozen deployment")
     return manifest
 
@@ -154,10 +159,9 @@ def admitted_input(bridge, attempt):
     if not isinstance(payload, dict) or not isinstance(payload.get("deployment_manifest"), dict) or not payload["deployment_manifest"]:
         raise ValueError("Original engineering deployment manifest is missing")
     manifest = payload["deployment_manifest"]
-    for name, digest in manifest.items():
-        validate_key(name)
-        if not name.endswith(".py") or not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None:
-            raise ValueError("Invalid original engineering deployment identity")
+    # Validate the original contract without replacing its version, EOF policy
+    # or bytes with today's built manifest. Settlement is not a new admission.
+    parse_manifest(manifest)
     if (payload != dict(bridge.payload(record["attempt_id"]), deployment_manifest=manifest)
             or content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]):
         raise ValueError("Original engineering input differs from its frozen attempt")

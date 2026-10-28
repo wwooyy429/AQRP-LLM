@@ -1,0 +1,9 @@
+部署源码协议离线修复候选已完成，尚未独立验收或云端复跑。
+固定源码父提交：8d65c290773547c83549c098172f1eb8c3376cd7
+源码清单哈希：bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a
+完整合成回归：825项通过；开发方辅助审阅：35项通过。
+旧v1严格EOF及原failed任务恢复保留；显式v2绑定原/规范哈希，本地预检仍严格，worker仅容忍有界EOF差异。
+122份历史记录、预算和暴露文件原字节未改变。
+无QC调用、无新配置登记、无Research/LEAN执行、无云端部署、无扣额退款。累计12/12、15/20、2/16，原轮关闭。
+原LEAN仍Runtime Error/failed；新协议需新配置容量与真实运行，不能复用旧失败计划。阶段2仍未验收，最终测试关闭。
+复验：python -B tools/stages.py verify；python -B audit/review_packages/deployment-eof-v2/run_independent_review.py；python -B audit/review_packages/deployment-eof-v2/verify_candidate.py。

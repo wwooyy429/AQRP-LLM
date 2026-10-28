@@ -9,7 +9,9 @@ import json
 from .artifacts import canonical_json, content_hash
 from .collection import HistoricalSnapshotCollector
 from .collection_tasks import CollectionTaskPlan, CHECKS, FLAGS, validate_report
-from .engineering_data import verify_deployment
+from .engineering_data import verify_deployment_observation
+from .deployment_sources import parse_manifest
+from .deployment_observation import validate_observation_binding
 from .engineering_receipts import (_tool, _research_stdout, _json, ReceiptParseError)
 from .engineering_tasks import EngineeringTaskError, _safe_identity
 from .historical_source import QuantConnectSnapshotSource
@@ -47,9 +49,11 @@ def run_collection_task(payload, *, quantbook=None, field_catalog, api=None, sto
     plan = context(payload, field_catalog=field_catalog)
     if type(synthetic) is not bool:
         raise EngineeringTaskError("Explicit synthetic classification required")
-    if isinstance(payload.get("deployment_manifest"), dict) and "_collection_task_input.py" in payload["deployment_manifest"]:
+    _, sources = parse_manifest(payload.get("deployment_manifest"))
+    if "_collection_task_input.py" in sources:
         raise EngineeringTaskError("Generated input must remain outside the implementation manifest")
-    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+    deployment_observation = verify_deployment_observation(payload.get("deployment_manifest"),
+        plan.to_dict()["deployment_hash"], source_root=source_root)
     if store is None:
         if quantbook is None:
             raise EngineeringTaskError("A cloud QuantBook and Object Store are required")
@@ -98,7 +102,11 @@ def run_collection_task(payload, *, quantbook=None, field_catalog, api=None, sto
     if plan.collection_plan.to_dict()["schema_version"] == 2:
         counts.update({name: first[name] for name in ("duplicate_projection_records", "conflicting_projection_records")})
         report["evidence"]["observation_policy"] = first["observation_policy"]
+    if deployment_observation is not None:
+        report["evidence"]["deployment_verification"] = deployment_observation
     validate_report(report, plan, payload["identity"])
+    validate_observation_binding(report["evidence"], payload["deployment_manifest"],
+                                 payload["identity"]["deployment_hash"])
     store.write_once(payload["report_key"], canonical_json(report))
     return {"cloud_report": report, "report_ref": {"key": payload["report_key"], "sha256": content_hash(report)}}
 
@@ -109,6 +117,9 @@ def stdout_marker(wrapper, *, payload, field_catalog):
     if not isinstance(wrapper, dict) or set(wrapper) != {"cloud_report", "report_ref"}:
         raise EngineeringTaskError("Only checked collection metadata may be printed")
     validate_report(wrapper["cloud_report"], plan, payload["identity"])
+    if "deployment_manifest" in payload:
+        validate_observation_binding(wrapper["cloud_report"]["evidence"], payload["deployment_manifest"],
+                                     payload["identity"]["deployment_hash"])
     if wrapper["report_ref"] != {"key": payload["report_key"], "sha256": content_hash(wrapper["cloud_report"])}:
         raise EngineeringTaskError("Printed report reference changed")
     encoded = base64.b64encode(canonical_json(wrapper)).decode("ascii")
@@ -139,6 +150,9 @@ def collection_research_observation(payload, deployment, tool_envelope, *, field
     if not isinstance(wrapper, dict) or set(wrapper) != {"cloud_report", "report_ref"}:
         raise ReceiptParseError("Only the collection report and content reference may leave cloud")
     validate_report(wrapper["cloud_report"], plan, payload["identity"])
+    if "deployment_manifest" in payload:
+        validate_observation_binding(wrapper["cloud_report"]["evidence"], payload["deployment_manifest"],
+                                     payload["identity"]["deployment_hash"])
     expected_ref = {"key": payload["report_key"], "sha256": content_hash(wrapper["cloud_report"])}
     if wrapper["report_ref"] != expected_ref:
         raise ReceiptParseError("Collection report reference changed")

@@ -4,11 +4,35 @@ import hashlib
 import json
 import re
 
-from qresearch.artifacts import canonical_json, content_hash, validate_key
+from qresearch.artifacts import canonical_json, content_hash
+from qresearch.deployment_sources import parse_manifest
+from qresearch.engineering_data import verify_deployment
 from qresearch.collection_tasks import CollectionTaskPlan, CollectionTaskBridge
 from qresearch.collection_execution import collection_research_observation
 from research import ROOT, read_json, write_changed, open_registry, export_usage
 from stages import source_manifest
+
+
+def built_deployment_manifest():
+    """Select the explicit new policy while retaining legacy build compatibility."""
+    record = read_json(ROOT / "audit/deployment.json")
+    if not isinstance(record, dict) or "source_files" not in record:
+        raise ValueError("A built local deployment manifest is required")
+    manifest = record.get("deployment_manifest", record["source_files"])
+    version, records = parse_manifest(manifest)
+    if version == 2:
+        # New admissions must prove the author's original source, even though
+        # an admitted worker may later use the declared bounded EOF policy.
+        # The v1 branch retains the historical preparation/recovery contract.
+        verify_deployment(manifest, content_hash(manifest), source_root=ROOT / "cloud", require_source_bytes=True)
+        observed = {path.relative_to(ROOT / "cloud").as_posix()
+                    for path in (ROOT / "cloud").rglob("*")
+                    if path.is_file() and path.suffix.lower() == ".py" and "__pycache__" not in path.parts
+                    and path.relative_to(ROOT / "cloud").as_posix()
+                        not in {"_engineering_task_input.py", "_collection_task_input.py"}}
+        if observed != set(records):
+            raise ValueError("The complete managed local Python set differs from the frozen deployment")
+    return manifest
 
 
 def execution_source_manifest():
@@ -36,7 +60,7 @@ def freeze_task(raw, listing, *, field_catalog):
     digest = execution_source_manifest()["source_hash"]
     raw["source_manifest_hash"] = digest
     raw["collection_plan"]["source_manifest_hash"] = digest
-    raw["deployment_hash"] = content_hash(read_json(ROOT / "audit/deployment.json")["source_files"])
+    raw["deployment_hash"] = content_hash(built_deployment_manifest())
     selected = raw["collection_plan"].get("fields", [])
     # The proposed document cannot redefine the trusted source field semantics.
     expected = {path: field_catalog[path] for path in selected if path in field_catalog}
@@ -108,10 +132,8 @@ def admitted_input(bridge, attempt):
     if not isinstance(payload, dict) or not isinstance(payload.get("deployment_manifest"), dict) or not payload["deployment_manifest"]:
         raise ValueError("Original deployment manifest is missing")
     manifest = payload["deployment_manifest"]
-    for name, digest in manifest.items():
-        validate_key(name)
-        if not name.endswith(".py") or not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None:
-            raise ValueError("Invalid original deployment file identity")
+    # Only validate the persisted contract; do not upgrade/rebind old inputs.
+    parse_manifest(manifest)
     if (payload != dict(bridge.payload(record["attempt_id"]), deployment_manifest=manifest)
             or content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]):
         raise ValueError("Admitted input differs from its immutable registered attempt")
@@ -133,7 +155,7 @@ def prepare_task(bridge, attempt):
     if bridge.store.exists("collection/admitted-inputs/" + record["attempt_id"] + ".json"):
         return admitted_input(bridge, record["attempt_id"])
     payload = bridge.payload(attempt)
-    manifest = read_json(ROOT / "audit/deployment.json")["source_files"]
+    manifest = built_deployment_manifest()
     if (content_hash(manifest) != bridge.plan.to_dict()["deployment_hash"]
             or execution_source_manifest()["source_hash"] != bridge.plan.to_dict()["source_manifest_hash"]):
         raise ValueError("Re-freeze a new source-bound task after implementation or catalog changes")
@@ -154,7 +176,7 @@ def prepare_task(bridge, attempt):
 
 def verify_current_source(bridge):
     if (execution_source_manifest()["source_hash"] != bridge.plan.to_dict()["source_manifest_hash"]
-            or content_hash(read_json(ROOT / "audit/deployment.json")["source_files"]) != bridge.plan.to_dict()["deployment_hash"]):
+            or content_hash(built_deployment_manifest()) != bridge.plan.to_dict()["deployment_hash"]):
         raise ValueError("Re-freeze source and deployment before new configuration or Research charging")
 
 

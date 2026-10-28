@@ -1,0 +1,65 @@
+{
+  "kind": "auxiliary_developer_side_review_findings",
+  "review_scope": "versioned EOF deployment identity and consumers only",
+  "all_recorded_findings_resolved_in_tested_snapshot": true,
+  "findings": [
+    {
+      "id": "local-review-encoding-cookie",
+      "issue": "compile(str) would ignore byte-level source encoding declarations and could miss invalid original raw imports",
+      "resolution": "v2 validates raw, universal-newline-normalized and canonical UTF-8 bytes using compile and AST; conflicting/non-UTF8 encoding declarations reject; v1 unchanged",
+      "verified_by": ["test_ascii_cookie_cannot_bypass_validity", "test_bom_cookie_conflict_cannot_be_stripped_away", "test_non_utf8_cookie_must_not_change_ast_interpretation"]
+    },
+    {
+      "id": "local-review-collection-stale-source",
+      "issue": "A strict overall source hash did not prove stale v2 deployment records described the actual local EOF bytes",
+      "resolution": "collection v2 freeze/precharge/first prepare validate physical original source identity and managed inventory; legacy recovery bypasses mutable current source",
+      "verified_by": "CLI agent tests plus read-only consumer review; independent integration verifies analogous stage2 strict behavior"
+    },
+    {
+      "id": "local-review-observation-type-and-count",
+      "issue": "Non-scalar verification_mode could raise TypeError; schema-only summary checks did not bind declared counts to admitted files",
+      "resolution": "closed mode type validation and original-manifest count/hash/mode binding added",
+      "verified_by": ["test_summary_unknown_and_non_scalar_modes_fail_closed", "test_summary_count_and_mode_must_match_admitted_manifest"]
+    },
+    {
+      "id": "local-review-collection-admission-namespace",
+      "issue": "CollectionTaskBridge initially looked up engineering/admitted-inputs instead of collection/admitted-inputs and skipped source-summary binding",
+      "resolution": "correct namespace required; new source-policy summary without original admission fails closed",
+      "verified_by": ["test_collection_bridge_uses_collection_admission_namespace_and_rejects_false_counts", "test_engineering_bridge_requires_manifest_bound_success_summary"]
+    },
+    {
+      "id": "local-review-project-generated-input",
+      "issue": "An existing collection generated input was treated as a forbidden implementation file in v2 engineering PROJECT source readback",
+      "resolution": "v2 engineering readback separately counts and ignores that generated content; it never satisfies the independent engineering input hash; v1 behavior retained",
+      "verified_by": ["test_collection_generated_input_cannot_satisfy_engineering_input_hash"]
+    }
+  ],
+  "final_result": {
+    "independent_synthetic_tests_passed": 35,
+    "failures": 0,
+    "errors": 0,
+    "actual_failed_attempt": "37dc855045e14ca49c88fd9d75f40cf7",
+    "original_manifest_version_preserved": 1,
+    "actual_attempt_status_preserved": "failed",
+    "protected_budget_journal_and_pointer_bytes_unchanged": true,
+    "cloud_calls": 0,
+    "provider_calls": 0,
+    "budget_debits": 0,
+    "gpt_work_acceptance": false,
+    "phase_2_acceptance": false,
+    "financial_evidence": false
+  },
+  "public_copy_suggestion": [
+    "independent_boundaries.py",
+    "independent_integration.py",
+    "run_independent_review.py",
+    "independent_review_result.json",
+    "review_findings.json"
+  ],
+  "limitations": [
+    "Tests refer to the source SHA snapshot in independent_review_result.json, not a final committed reviewer-approved source version",
+    "No cloud deployment or actual successful worker execution was attempted",
+    "No full historical US200, financial vintages, vendor delivery or ingestion-time certification was performed",
+    "Final evaluation remains closed and prior 2024-2025 exposure facts remain unchanged"
+  ]
+}
