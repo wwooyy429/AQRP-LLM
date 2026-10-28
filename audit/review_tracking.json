@@ -1,15 +1,15 @@
 {
-  "schema_version": 20,
+  "schema_version": 21,
   "repository": "wwooyy429/AQRP-LLM",
   "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
-  "reviewed_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
   "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
   "accepted_stages": [
     0,
     1
   ],
-  "acceptance_scope": "4a42c18_tested_EOF_core_and_bridge_scopes_only_delivery_blocked_WR28_Phase2_not_accepted",
-  "software_acceptance": "EOF_v2_tested_functional_scope_passed_candidate_delivery_failed_WR28",
+  "acceptance_scope": "Raw_Git_manifest_provenance_and_reproducible_audit_delivery_only_at2f5591e",
+  "software_acceptance": "WR28_audit_delivery_scope_independently_passed_closed_at2f5591e_prior_EOF_scope4a_retained_Phase2_not_accepted",
   "financial_evidence": false,
   "stage_acceptance": [
     {
@@ -21,16 +21,26 @@
       "status": "passed_in_tested_offline_scope",
       "independent_report_status": "已测离线范围通过",
       "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
-      "blocking_findings": [
-        "WR-28"
-      ],
+      "blocking_findings": [],
       "acceptance_gates": [],
       "latest_relevant_recheck": {
         "commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
         "verdict": "prior_scoped_acceptance_retained_and_relevant_rechecks_passed",
         "report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json"
       },
-      "delivery_status": "audit_delivery_fix_pending_independent_recheck"
+      "delivery_status": "WR28_independently_fixed_verified_closed_on2f5591e",
+      "latest_delivery_recheck": {
+        "review_id": "AQRP-20261028-2F5591E-WR28-24",
+        "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+        "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+        "status": "fixed_verified_closed",
+        "scope": "Raw Git protection declarations and reproducible audit delivery only",
+        "whole_phase2_accepted": false,
+        "new_cloud_success_verified": false,
+        "financial_evidence": false
+      }
     },
     {
       "stage": 1,
@@ -59,12 +69,10 @@
         "Original native compile packet and old failed worker source provenance remain insufficient; new success cannot retroactively supply them.",
         "Financial numeric fields, charged certification native dispatch, full historical US200/SID economic ambiguity and actual vintage/publication/delivery/ingestion evidence."
       ],
-      "status": "EOF_functional_scope_passed_WR28_delivery_failed_whole_stage_not_accepted",
-      "independent_report_status": "EOF-v2已测功能范围通过；WR-28/P2阻断交付；阶段2整体未验收",
+      "status": "bounded_offline_scopes_and_audit_delivery_passed_whole_stage_not_accepted",
+      "independent_report_status": "WR-28交付范围独立复验通过；既有EOF-v2有限范围保留；阶段2整体未验收",
       "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
-      "blocking_findings": [
-        "WR-28"
-      ],
+      "blocking_findings": [],
       "acceptance_gates": [
         {
           "id": "G1",
@@ -98,15 +106,29 @@
         },
         {
           "id": "G5",
-          "status": "offline_candidate_pending_independent_review_and_cloud_rerun",
-          "requirement": "Explicit v2 original/canonical source policy requires fixed-commit GPT Work review, valid new configuration capacity and actual admitted runtime evidence.",
+          "status": "limited_offline_functional_and_delivery_reviews_complete_new_configuration_and_actual_cloud_run_required",
+          "requirement": "Preserve finite functional review4a and delivery review2f. Before new real cloud validation, require valid new configuration capacity, formal admission and independently reviewed native terminal evidence.",
           "candidate_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
           "developer_synthetic_test_count": 825,
-          "cloud_rerun": false
+          "cloud_rerun": false,
+          "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+          "new_cloud_success": false
         }
       ],
       "candidate_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-      "delivery_status": "audit_delivery_fix_pending_independent_recheck"
+      "delivery_status": "WR28_independently_fixed_verified_closed_on2f5591e",
+      "latest_delivery_recheck": {
+        "review_id": "AQRP-20261028-2F5591E-WR28-24",
+        "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+        "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+        "status": "fixed_verified_closed",
+        "scope": "Raw Git protection declarations and reproducible audit delivery only",
+        "whole_phase2_accepted": false,
+        "new_cloud_success_verified": false,
+        "financial_evidence": false
+      }
     },
     {
       "stage": 3,
@@ -195,9 +217,7 @@
       ]
     }
   ],
-  "known_open_findings": [
-    "WR-28"
-  ],
+  "known_open_findings": [],
   "finding_developer_status": {
     "WR-04": "independently_verified_resolved_in_original_scope_on_fe4374c",
     "WR-05": "independently_verified_resolved_in_original_scope_on_fe4374c",
@@ -223,11 +243,11 @@
     "WR-25": "independently_verified_resolved_in_tested_offline_scope_on44676db",
     "WR-26": "independently_verified_resolved_in_tested_offline_scope_on44676db",
     "WR-27": "independently_verified_resolved_in_tested_offline_scope_on44676db",
-    "WR-28": "developer_fixed_and_clean_Git_replayed_pending_independent_recheck"
+    "WR-28": "independently_fixed_verified_closed_in_raw_Git_delivery_scope_on2f5591e"
   },
-  "latest_independent_report": "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
   "developer_fix_evidence": "audit/wr28_correction.json",
-  "current_handoff": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt",
+  "current_handoff": "audit/wr28_independent_closure.txt",
   "historical_accepted_version": {
     "schema_version": 2,
     "repository": "wwooyy429/AQRP-LLM",
@@ -1689,6 +1709,16 @@
       "verdict": "EOF_v2_tested_functional_scopes_passed_delivery_failed_WR28_P2",
       "stage2_accepted": false,
       "financial_evidence": false
+    },
+    {
+      "review_id": "AQRP-20261028-2F5591E-WR28-24",
+      "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+      "verdict": "WR28_audit_delivery_scope_fixed_verified_closed_no_new_confirmed_findings",
+      "whole_phase2_accepted": false,
+      "new_cloud_run": false,
+      "financial_evidence": false
     }
   ],
   "repair_acceptance": {
@@ -1892,7 +1922,7 @@
     "Native packet provenance beyond trusted dispatcher; self-consistent fabricated corpus cannot be certified by hashes alone.",
     "OS kill/power-loss durability, stages3-7, financial effectiveness and an untouched final holdout."
   ],
-  "new_candidate_acceptance": "WR28_delivery_developer_verified_pending_independent_recheck_Phase2_not_accepted",
+  "new_candidate_acceptance": "WR28_audit_delivery_independently_closed_only_whole_Phase2_not_accepted",
   "prior_stage0_stage1_acceptance_source": {
     "commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
     "source_manifest_hash": "8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45",
@@ -1990,7 +2020,7 @@
     "kind": "WR28_audit_only_delivery_correction",
     "unchanged_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
     "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
-    "independently_accepted": false,
+    "independently_accepted": true,
     "metadata_and_audit_code_only": true,
     "registry_or_budget_changed": false,
     "cloud_deployed": false,
@@ -2000,7 +2030,25 @@
     "new_LEAN_submissions": 0,
     "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
     "developer_clean_Git_replay_passed": true,
-    "developer_full_synthetic_test_count": 825
+    "developer_full_synthetic_test_count": 825,
+    "acceptance_scope": "Raw Git protection declarations and reproducible audit delivery only",
+    "accepted_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "whole_phase2_accepted": false,
+    "new_cloud_success_verified": false,
+    "current_archival_commit_independently_reviewed": false,
+    "independent_review": {
+      "review_id": "AQRP-20261028-2F5591E-WR28-24",
+      "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+      "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+      "status": "fixed_verified_closed",
+      "scope": "Raw Git protection declarations and reproducible audit delivery only",
+      "whole_phase2_accepted": false,
+      "new_cloud_success_verified": false,
+      "financial_evidence": false
+    }
   },
   "shared_admission_review_scope": {
     "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
@@ -2008,9 +2056,7 @@
     "subcases": 36,
     "status": "passed_in_tested_scope"
   },
-  "known_open_blocking_findings": [
-    "WR-28"
-  ],
+  "known_open_blocking_findings": [],
   "known_open_nonblocking_findings": [],
   "historical_independent_review_execution_scope_ae2b898": {
     "source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
@@ -2050,8 +2096,8 @@
   },
   "metadata_acceptance": "WR27_tested_crossroot_and_default_scope_passed_on44676db",
   "metadata_reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
-  "software_acceptance_bound_to_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-  "latest_software_independent_report": "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.json",
+  "software_acceptance_bound_to_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "latest_software_independent_report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
   "latest_metadata_review_execution_scope": {
     "source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
     "report_path": "audit/reviews/20261027-84414ab-windows/formal_report.json",
@@ -2466,7 +2512,7 @@
     "no_further_execution_authorized_by_review": true
   },
   "new_configuration_capacity_remaining": 0,
-  "historical_fields_note": "Historical acceptance fields retain their own fixed versions.4a42c18 EOF tested core/bridge scope passed; its delivery failedWR28. Audit-only2f5591e has developer cleanGit verification, pending independent recheck. Actual cloud source662ccd and original failed runtime remain unchanged.",
+  "historical_fields_note": "Historical findings/reports retain exact source versions.4a42c18 EOF tested functions passed, but its original delivery failedWR28. RawGit delivery at2f5591e is independently fixed/closed. This current metadata archive has no separate independent approval. Production remains4a, actual cloud runtime662ccd remains failed, andPhase2 is not accepted.",
   "developer_gate_verification": {
     "report": "audit/stage2_gate_verification_20261028.json",
     "actual_native_LEAN_status": "Runtime Error",
@@ -2478,16 +2524,31 @@
   },
   "latest_pending_candidate": {
     "kind": "WR28_audit_only_fix",
-    "status": "developer_fixed_and_clean_Git_replayed_pending_independent_recheck",
+    "status": "WR28_independently_closed_no_pending_WR28_recheck",
     "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
     "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
     "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
     "cloud_deployed": false,
     "final_test_enabled": false,
     "financial_evidence": false,
-    "review_handoff": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt",
+    "review_handoff": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
     "clean_Git_verification_passed": true,
-    "repository_synthetic_tests_passed": 825
+    "repository_synthetic_tests_passed": 825,
+    "pending": false,
+    "independent_review": {
+      "review_id": "AQRP-20261028-2F5591E-WR28-24",
+      "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+      "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+      "status": "fixed_verified_closed",
+      "scope": "Raw Git protection declarations and reproducible audit delivery only",
+      "whole_phase2_accepted": false,
+      "new_cloud_success_verified": false,
+      "financial_evidence": false
+    },
+    "whole_phase2_accepted": false,
+    "historical_review_request": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt"
   },
   "latest_independent_functional_review": {
     "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
@@ -2496,5 +2557,19 @@
     "original_delivery": "failed_WR28_P2",
     "whole_candidate_accepted": false,
     "phase2_accepted": false
+  },
+  "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "latest_WR28_independent_closure": {
+    "review_id": "AQRP-20261028-2F5591E-WR28-24",
+    "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+    "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+    "status": "fixed_verified_closed",
+    "scope": "Raw Git protection declarations and reproducible audit delivery only",
+    "whole_phase2_accepted": false,
+    "new_cloud_success_verified": false,
+    "financial_evidence": false
   }
 }

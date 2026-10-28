@@ -1,0 +1,529 @@
+**WR-28：独立复验后通过，可关闭。阶段2整体仍未通过验收。**
+
+审核固定提交为 `2f5591e28c0748ac42caeae7bbf3977141d031cb`。本次通过范围是**原始 Git 字节保护清单及审核资料的可复现交付**。未发现新的已确认缺陷；生产源码仍为 `4a42c18`，本次没有验证新版云端初始化成功。
+
+- [正式审核报告](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-2f5591e-20261028/formal_report.txt>)
+- [机器可读 JSON](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-2f5591e-20261028/formal_report.json>)
+- [完整独立复验包](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-2f5591e-20261028.zip>)
+
+复验包 SHA256：`f97510de6190d3812e11727819d231fa800e7ba059a3fe01d282d82d897a66f8`。
+
+**实际核验结果**
+
+| 检查 | 独立执行结果 |
+|---|---|
+| 新清单来源 | 122条记录逐一匹配不可变 Git 原始字节、SHA256、Git blob OID、字节数及旧声明 |
+| 干净交付 | 两份无 `.git` 导出、一份 LF 检出均通过 |
+| 开发者篡改负例 | 10个全部拒绝 |
+| 仓库回归 | 825项通过，失败、错误、跳过均为0 |
+| 开发者审计边界 | 11项通过，失败、错误、跳过均为0 |
+| 新增独立来源测试 | 8个方法／328场景，加3个方法／13场景，首次运行通过 |
+| 新增独立 CLI 测试 | 7个方法／34场景，首次运行通过；其中24种隔离篡改被拒绝 |
+| 重建稳定性 | 两次构建幂等，受保护源码、配置及部署文件原始字节不变 |
+| 历史保留 | 原错误清单、原失败检查器、首次失败、修正和重跑记录均保留 |
+
+这些计数包含重叠检查，不能相加宣传为独有测试总数。
+
+旧清单仍保留 **119/122匹配、3条错误声明**的历史事实。新提交通过不会倒改旧版本失败结论。原审核包的18,685项文件校验与 ZIP CRC，以及18,517份历史源码的 Git 内容映射也已核对。
+
+另确认一个使用边界：离线检查器验证的是文件与清单的一致性。若同时替换清单和文件，可构造自洽材料。因此必须将清单固定到本次审核的不可变 Git 提交；它不能独自证明远端运行或供应商数据真实性。
+
+**全系统覆盖结论**
+
+| 阶段 | 实现及本轮证据 | 缺失或阻断 | 验收结论 |
+|---|---|---|---|
+| 0 规范、身份、Registry、交付 | 122条 Git 来源和交付重现通过 | 不涵盖下游运行 | WR-28范围修复后通过；保留历史有限结论 |
+| 1 离线计算内核 | 源码未变，825项回归通过 | 无实际金融验证 | 保留历史有限通过范围 |
+| 2 QC、数据、任务桥 | 部分实现；本轮交付保护通过 | 新版真实运行、完整数据认证及认证派发未完成 | **未通过** |
+| 3 Research评价 | 部分计算原语 | 分层收益、正式六轮评价等缺失 | 未验收 |
+| 4 LEAN组合交易 | 契约及工程接收器 | 完整交易、账本对账、成本与风险证据缺失 | 未验收 |
+| 5 GPT闭环 | 控制器原语 | 模型、调用和费用配置未完成，无获验收闭环 | 未验收 |
+| 6 搜索与增量 | 相似性、相关性原语 | 消融及扣费后增量证据缺失 | 未验收 |
+| 7 冻结、最终测试、前向 | 元数据骨架 | 独立执行器、前向系统及样本独立性证据缺失 | 未验收 |
+
+**预算、部署和数据核对**
+
+48条权威账本事件保持不变，配置 **12/12**、Research **15/20**、LEAN **2/16**；本轮新增扣费、退款、配置登记及云端调用均为0。PR仍为草稿、未合并。
+
+原任务 `37dc855045e14ca49c88fd9d75f40cf7`／回测 `3e68866a46ca88ff16481c31b3c2c822` 的历史状态仍为 `Runtime Error / failed`。EOF-v2尚未登记或部署，没有新版云端成功证据。真实成功检查数及订单数均为 `null`。
+
+完整历史US200、SID经济歧义、财务版本、公开时点、实际送达及摄入认证仍缺证据。正式研究、自动GPT调用、交易和最终测试继续关闭；`financial_evidence=false`。
+
+**复现方式**
+
+环境为原生 Windows、Python 3.10.11、NumPy 1.26.4、pandas 2.3.3。完整命令、退出码和输出已收入复验包。主要执行命令如下，应在独立临时副本运行：
+
+```powershell
+python -B audit/review_packages/wr28/test_git_protection.py -q
+python -B audit/review_packages/wr28/verify_wr28_end_to_end.py --commit 2f5591e28c0748ac42caeae7bbf3977141d031cb --evidence-dir <独立证据目录> --full-verify
+```
+
+以下最小检查已实际运行通过。保存为 `minimal_wr28_fixed.py`，执行 `python -B minimal_wr28_fixed.py <固定提交源码目录>`：
+
+```python
+from pathlib import Path
+from hashlib import sha1, sha256
+import json, sys
+
+root = Path(sys.argv[1]).resolve()
+package = root / "audit/review_packages/deployment-eof-v2"
+old_raw = (package / "protected_before.json").read_bytes()
+manifest = json.loads((package / "protected_git_baseline.json").read_bytes())
+
+assert sha256(old_raw).hexdigest() == manifest["path_list_source"]["sha256"] == \
+    "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677"
+
+legacy = json.loads(old_raw)
+assert len(legacy) == len(manifest["files"]) == 122
+old_mismatches = 0
+
+for name, item in manifest["files"].items():
+    path = (root / name).resolve()
+    assert path.is_relative_to(root)
+    raw = path.read_bytes()
+    assert len(raw) == item["byte_count"], name
+    assert sha256(raw).hexdigest() == item["sha256"], name
+    assert sha1(
+        b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw
+    ).hexdigest() == item["git_blob_oid"], name
+    assert legacy[name] == item["legacy_declared_sha256"]
+    old_mismatches += legacy[name] != item["sha256"]
+
+assert old_mismatches == 3
+print(json.dumps({
+    "new_Git_raw_records_verified": 122,
+    "old_mismatches_explicitly_retained": 3,
+    "financial_evidence": False
+}))
+```
+
+该最小检查依赖清单已固定到获审 Git 提交；全部122条记录的独立 Git 来源重建另有完整脚本和输出。
+
+下一步应归档本次固定SHA的WR-28关闭结论。阶段2仍需有效配置额度和正式准入后的受限真实运行、原生终态回执，以及完整数据认证。本报告不增加执行授权或预算。
+
+完整机器可读报告如下：
+
+```json
+{
+  "review_id": "AQRP-20261028-2F5591E-WR28-24",
+  "review_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "baseline_commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+  "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "immutable_blob_baseline_commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+  "evidence_commits": {
+    "archive": "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f",
+    "original_runtime": "662ccd876b67ca0949f921a53c4c33df37cfbbf1"
+  },
+  "conclusion": "WR28/P2 fixed and independently CLOSED for the new audit-delivery scope at2f5591e. No new confirmed defect. Production EOF-v2 remains at4a42c18 with prior finite acceptance; phase2 overall remains NOT accepted and has no new cloud success.",
+  "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+  "deployment_hash": "8eb1e822e2b857356fb975d60cbfc0d37053600f777e21ee79fe96da5a020243",
+  "implementation_hash": "49eee02be86520d87dfbb8505da4c382ef9e4e0d73809c388bcea1dc7d6628ba",
+  "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+  "version_consistency": {
+    "candidate_files": 6379,
+    "baseline_files": 6180,
+    "archive_files": 6414,
+    "managed_production_manifest_files": 177,
+    "managed_cloud_files": 34,
+    "cloud_config_tools_tests_docs_README_changes": [],
+    "main_production_history_budget_exposure_union_raw_files_unchanged": 287,
+    "reviewer_changed_original_Git_files": false,
+    "private_LF_checkout_all6379_files_unchanged": true,
+    "evidence": "source_git_manifest.json; identity_verification.json; private_checkout_guard.json"
+  },
+  "PR": {
+    "number": 2,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "fixed_reviewed_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "archive_head": "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f",
+    "base": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "fixed_commit_CI_run": 40683345029,
+    "Python3.10": "success",
+    "Python3.11": "success",
+    "independently_extracted_CI_test_count": null
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "Git_GitHub_readonly": true,
+    "fresh_GitHub_reads": 4,
+    "private_Git_clones_exports_and_checkouts": true,
+    "offline_native_Windows_tests": true,
+    "QC_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "platform_compile_calls": 0,
+    "live_terminal_or_log_reads": 0,
+    "market_provider_calls": 0,
+    "model_API_calls": 0,
+    "market_rows_exported": 0,
+    "new_configuration_registration": 0,
+    "authoritative_budget_or_production_writes": 0,
+    "PR_push_approval_merge": 0
+  },
+  "WR28_resolution": {
+    "id": "WR-28",
+    "original_priority": "P2",
+    "status": "fixed_verified_closed",
+    "original_review_id": "AQRP-20261028-4A42C18-EOFV2-23",
+    "original_code_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "production_code_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "scope": "Raw Git protection declarations and reproducible audit delivery only",
+    "new_records_verified": 122,
+    "original_legacy_mismatches_retained": 3,
+    "basis": [
+      "Every new record independently matched rawGit bytes, SHA256, Git blob OID, bytecount and old declaration across all3 frozen snapshots.",
+      "Two clean no.git exports and one normalLF checkout passed unmodified new checker;10 official tamper cases rejected.",
+      "Independent24 isolated file/manifest/fixture mutations rejected; old baseline still reproduces original failure.",
+      "Original bad list/reconciliation/first failures, all old review corrections/reruns and frozen source maps retained; no historical failure rewritten."
+    ],
+    "not_granted": [
+      "Retroactive approval of old4a42c18 delivery checker",
+      "NewEOF-v2 actual cloud success",
+      "Completephase2, data certification or financial validity"
+    ]
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "scope": "contracts, source identity, registry, delivery",
+      "implementation": "offline components",
+      "evidence": "New122-record Git provenance, clean export/checkout reconciliation and historical retention passed.",
+      "verdict": "WR28_delivery_scope_fixed_verified; prior_finite_scope_retained",
+      "missing": "No downstream runtime or financial acceptance."
+    },
+    {
+      "stage": 1,
+      "scope": "restricted factors, labels, fixed models",
+      "implementation": "offline core unchanged",
+      "evidence": "Fresh825 repository regressions; prior4a42c18 finite numeric/core conclusions retained without recounting old independent suites.",
+      "verdict": "prior_finite_scope_retained",
+      "missing": "No active registered economic factor/model/trading specification or financial validation."
+    },
+    {
+      "stage": 2,
+      "scope": "QC deployment/source/cache/task bridge/data audit",
+      "implementation": "partial",
+      "evidence": "WR28 raw-Git delivery checks fixed; original failedv1 reconciliation preserved; EOF-v2 production code unchanged from4a42c18.",
+      "verdict": "not_accepted",
+      "missing": "Newv2 cloud success absent; configuration capacity0; full historical universe/SID/financial/vintage/publication/actual delivery and certification dispatch incomplete."
+    },
+    {
+      "stage": 3,
+      "scope": "Research evaluation",
+      "implementation": "partial primitives",
+      "evidence": "Generic repository regression only.",
+      "verdict": "not_accepted",
+      "missing": "Stratified-return implementation and real registered six-fold factor report."
+    },
+    {
+      "stage": 4,
+      "scope": "LEAN portfolio/execution/cost/risk",
+      "implementation": "contracts/engineering receiver",
+      "evidence": "No new actual cloud execution; original3e688failed.",
+      "verdict": "not_accepted",
+      "missing": "Generic execution adapter, financial ledger/reconciliation and stress evidence."
+    },
+    {
+      "stage": 5,
+      "scope": "bounded GPT workflow",
+      "implementation": "controller primitives",
+      "evidence": "Declared gates closed; production unchanged.",
+      "verdict": "not_accepted",
+      "missing": "GPT model/call/spend settings null and no accepted real closed loop."
+    },
+    {
+      "stage": 6,
+      "scope": "search/ablation/selection bias",
+      "implementation": "similarity/correlation primitives",
+      "evidence": "No new real financial trials.",
+      "verdict": "not_accepted",
+      "missing": "Preregistered ablation and net incremental performance evidence."
+    },
+    {
+      "stage": 7,
+      "scope": "freeze/final executor/forward monitoring",
+      "implementation": "metadata skeleton",
+      "evidence": "Exposure ledger and closed final gate preserved.",
+      "verdict": "not_accepted",
+      "missing": "Independent final executor and forward system;2024-2025 exposed,2026 independence unverified."
+    }
+  ],
+  "tests": [
+    {
+      "name": "repository_in_disposable_LF_checkout",
+      "methods": 825,
+      "named_scenarios": null,
+      "kind": "repository_suite_independently_executed",
+      "result": "passed",
+      "evidence": "repository_verification.json",
+      "actually_executed": true
+    },
+    {
+      "name": "developer_audit_boundaries",
+      "methods": 11,
+      "named_scenarios": null,
+      "kind": "developer_suite_independently_executed",
+      "result": "passed",
+      "evidence": "developer_audit11.stderr",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_provenance",
+      "methods": 8,
+      "named_scenarios": 328,
+      "kind": "new_independent_synthetic_and_Git",
+      "result": "passed_first_run",
+      "evidence": "provenance_agent/first/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_outer_provenance_and_exact_bounds",
+      "methods": 3,
+      "named_scenarios": 13,
+      "kind": "new_independent_synthetic_and_Git",
+      "result": "passed_first_run",
+      "evidence": "provenance_agent/supplement_first/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_no_git_CLI_and_fixture",
+      "methods": 7,
+      "named_scenarios": 34,
+      "kind": "new_independent_synthetic_CLI",
+      "result": "passed_first_run",
+      "evidence": "repro_agent/first/results.json",
+      "actually_executed": true
+    }
+  ],
+  "actually_executed": true,
+  "counting": "Methods, named scenarios, checker processes, Git calls, static file/blob/hash checks and metadata replays overlap; no unique grand total. Independent11 provenance methods are separate from developer11 audit methods. Earlier EOF-v2 and numeric independent suites are retained historical evidence, not new executions.",
+  "end_to_end": {
+    "kind": "developer_acceptance_program_independently_executed_on_fixed_commit",
+    "checker_processes": 13,
+    "positive_clean_exports": 2,
+    "positive_LF_checkouts": 1,
+    "negative_cases": 10,
+    "all_expected_outcomes_observed": true,
+    "protected_raw_bytes_equal_across_all3_modes": true,
+    "builds": 2,
+    "both_builds_config_changed": false,
+    "cloud_config_and_audit_deployment_raw_bytes_unchanged": true,
+    "repository_tests_actually_executed": 825,
+    "evidence": "end_to_end/new_checker_end_to_end_result.json; root_execution_records.json"
+  },
+  "independent_provenance": {
+    "methods": 11,
+    "named_scenarios": 341,
+    "first_run_passed": true,
+    "raw_records_verified": 122,
+    "manifest_raw_sha256": "1e0ddb39688b767bc798964c75598a254aa92a6b90ad2afc2290d17759839155",
+    "old_path_list_raw_sha256": "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677",
+    "old_path_list_Git_blob": "2988aa67d03d862d4544abfad98145f355d2cccb",
+    "fixed_snapshots": {
+      "baseline": {
+        "commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+        "tree": "884e1275aa938336624761880b82b13809653353"
+      },
+      "candidate": {
+        "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "tree": "2ae4560b47f469feacf49cc7171b23a7dc575266"
+      },
+      "materials": {
+        "commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+        "tree": "aca57cf7928428ce8da0cd41e5edb47a53fe79fb"
+      }
+    },
+    "coverage": "All122 exactGit records and per-path mutations, closedJSON/schema/types/path/source anchors, CRLF/BOM/missing,16MiB and Windows junction containment; builder ignores working-tree mutations and refuses conflicting output.",
+    "evidence": "provenance_agent/report.json"
+  },
+  "independent_CLI": {
+    "methods": 7,
+    "named_scenarios": 34,
+    "checker_processes": 28,
+    "Git_blob_processes": 1,
+    "candidate_no_git_positive": 2,
+    "one_positive_denied_all_subprocess": true,
+    "original_baseline_expected_failure": 1,
+    "isolated_candidate_mutations_rejected": 24,
+    "self_consistent_altered_manifest_and_source_accepted_as_trust_boundary": 1,
+    "fixture_raw_bytes": 3561,
+    "fixture_SHA256": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+    "v1_strict_v2_worker_local_strict_body_rejection_known_answers_passed": true,
+    "evidence": "repro_agent/report.json; repro_agent/execution_records.json"
+  },
+  "archive_preservation": {
+    "logical_static_checks": 58,
+    "static_passed": 58,
+    "private_Memory_metadata_checks": 5,
+    "unit_methods": 0,
+    "original_bad_manifest_unchanged": true,
+    "original_reconciliation_result_unchanged": true,
+    "original_failed_checker_kept": true,
+    "candidate_to_archive_originals_files_identical": 9,
+    "original_review_id": "AQRP-20261028-4A42C18-EOFV2-23",
+    "old_review_status_preserved": "confirmed_open_at_original_SHA",
+    "original_ZIP_SHA256": "e7f32eba7ccebcd6f833a9954b5ca13f50ec1a762497c59ae5f8a7a93fcc1910",
+    "original_ZIP_manifest_entries_verified": 18685,
+    "original_ZIP_CRC_passed": true,
+    "original_three_Git_source_blobs_verified": 18517,
+    "copied_original_non_source_files": 167,
+    "copied_original_bytes": 700596,
+    "additional_user_delivery_text_files": 1,
+    "compact_copied_index_count": 168,
+    "compact_seal_entries": 173,
+    "compact_actual_files": 174,
+    "compact_candidate_to_archive_raw_equal": true,
+    "omitted_only": "18517 duplicate source files and two large maps remain in separately retained original sealedZIP. All167 original non-source files, first failures, corrections, reruns andQA preserved.",
+    "evidence": "archive_agent/report.json"
+  },
+  "first_results": {
+    "provenance": "8/328 plus3/13 all passed first run; original scripts/output retained.",
+    "CLI": "7/34 all passed first run; expected old-baseline failure is not a new failure. Self-consistent corpus acceptance is explicitly NOT counted as rejection.",
+    "official_commands": "Fixed Git manifest builder,11 audit tests, full end-to-end and default compact import all exit0.",
+    "archive_reviewer_errors": "Three stopped reviewer attempts: narrow250-file set compared to287 broad union; supplemental user_delivery prefix filter misapplied; wrong readiness key. Corrected only independent populations/key, preserving originals; final58 static+5 metadata passed.",
+    "product_source_or_original_expected_hashes_changed_by_reviewer": false
+  },
+  "findings": [],
+  "historical_findings": {
+    "WR01_WR27": "Prior exact-SHA finite scopes retained without expansion.",
+    "WR28": {
+      "id": "WR-28",
+      "original_priority": "P2",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261028-4A42C18-EOFV2-23",
+      "original_code_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "production_code_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "scope": "Raw Git protection declarations and reproducible audit delivery only",
+      "new_records_verified": 122,
+      "original_legacy_mismatches_retained": 3,
+      "basis": [
+        "Every new record independently matched rawGit bytes, SHA256, Git blob OID, bytecount and old declaration across all3 frozen snapshots.",
+        "Two clean no.git exports and one normalLF checkout passed unmodified new checker;10 official tamper cases rejected.",
+        "Independent24 isolated file/manifest/fixture mutations rejected; old baseline still reproduces original failure.",
+        "Original bad list/reconciliation/first failures, all old review corrections/reruns and frozen source maps retained; no historical failure rewritten."
+      ],
+      "not_granted": [
+        "Retroactive approval of old4a42c18 delivery checker",
+        "NewEOF-v2 actual cloud success",
+        "Completephase2, data certification or financial validity"
+      ]
+    }
+  },
+  "budget_replay": {
+    "events": 48,
+    "journal_sha256": "ff0440eb196fc5e79be54ab0d6113630510a058313251be667fae6d064a4c71d",
+    "original46_prefix_sha256": "f50d4cd8195428966484230adf0fd54ccf77f796159af61df748f37a7d1101b1",
+    "original46_raw_bytes_preserved": true,
+    "usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    },
+    "limits": {
+      "configurations": 12,
+      "research": 20,
+      "lean": 16
+    },
+    "round_status": "closed",
+    "new_events": 0,
+    "new_debits": 0,
+    "refunds": 0,
+    "configuration_capacity_remaining": 0,
+    "new_configuration_registered": false,
+    "old_failed_admission_unchanged": true
+  },
+  "platform_evidence_level": {
+    "grade": "Read-only immutableGit/ZIP and archived native metadata; synthetic source replay. No live platform retrieval or new cloud execution.",
+    "old_attempt": "37dc855045e14ca49c88fd9d75f40cf7",
+    "old_backtest": "3e68866a46ca88ff16481c31b3c2c822",
+    "old_runtime_source": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "old_platform_status": "Runtime Error",
+    "old_ledger_status": "failed",
+    "old_manifest_schema": 1,
+    "old_input_hash": "8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03",
+    "actual_successful_LEAN_checks": null,
+    "actual_orders": null,
+    "EOF_v2_production_source": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "EOF_v2_registered_or_deployed": false,
+    "new_cloud_success": null,
+    "fixture_is_new_worker_observation": false,
+    "original_normal004_native_compile_packet": "absent",
+    "platform_transformation_layer_other_worker_files_and_39cafa_cause": "unproven"
+  },
+  "software_acceptance": {
+    "WR28_audit_delivery_scope": "fixed_verified_passed_and_closed_at_2f5591e",
+    "prior_EOF_v2_core_and_bridge_scope": "retained_at_4a42c18_only",
+    "phase2_overall": "not_accepted",
+    "cloud_initialization_fix_verified": false,
+    "new_v2_configuration_capacity_required": true,
+    "formal_research_enabled": false,
+    "GPT_runtime_enabled": false,
+    "orders_enabled": false,
+    "final_test_enabled": false
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "SID_economic_ambiguity_resolved": false,
+    "financial_numeric_catalog_count": 0,
+    "financial_vintage_publication_actual_delivery_ingestion": false,
+    "certification_computation_kernel": "implemented",
+    "charged_certification_native_dispatch_bridge": "not_implemented"
+  },
+  "financial_evidence": false,
+  "financial_metrics": {
+    "IC": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "NAV": null
+  },
+  "research_constraints": {
+    "universe": "Historical point-in-time top200 US equities; no201st substitution",
+    "timezone": "America/New_York",
+    "rolling": "Six fixed8-year/1-year folds2010-2017/2018 through2015-2022/2023; only frozen trainable parameters refit",
+    "final_window": "2024-01-01/2026-10-23; actual exits within boundary",
+    "2024_2025_exposed": true,
+    "2026_independence": "unverified",
+    "independent_final_executor_configured": false
+  },
+  "trust_boundary": "The supplied manifest must be pinned externally to the reviewed immutableGit commit. Offline verify_export checks internal raw-byte consistency; changing both the manifest and corresponding protected file can form a self-consistent invented corpus. Independently rebuilding every record from fixedGit exposes it. This is not a remote signature or proof of native/supplier provenance.",
+  "unverified": [
+    "NewEOF-v2 actual cloud deployment/Research/LEAN success; current configuration capacity0 and this review grants no execution.",
+    "Full historical universe/SID meaning, financial values/periods/units/vintages/publication and actual vendor delivery/ingestion, plus charged certification dispatch.",
+    "Exact platform transformation step, all worker-file identities, old39cafa cause and originalnormal004 native compile packet.",
+    "Remote authenticity beyond the pinnedGit/manifest and trusted dispatcher boundary; a self-consistent arbitrary replacement is not authenticated.",
+    "OS-kill/power-loss/all filesystem-race durability, stages3-7 and financial effectiveness remain unaccepted."
+  ],
+  "next_required_work": [
+    "Archive this fixed-SHA independent WR28 closure while retaining the old failure at its original SHA.",
+    "Keep EOF-v2 unregistered/undeployed until valid new configuration capacity and formal admission exist; do not reuse the old failed configuration.",
+    "After authorized bounded real execution, independently review native terminal evidence and actual checks/orders; separately complete data certification and missing modules.",
+    "Keep formal research, GPT autonomous calls, trading and final evaluation closed."
+  ],
+  "artifacts": {
+    "commands_exits_and_hashes": "root_execution_records.json; end_to_end/*; provenance_agent/*execution.json; repro_agent/execution_records.json; archive_agent/*execution.json",
+    "all_fixed_raw_source_maps": "source_git_manifest.json; identity_verification.json",
+    "new_minimum": "python -B minimal_wr28_fixed.py source",
+    "old_failure_reference": "source/audit/review_packages/wr28/originals and source/audit/reviews/20261028-4a42c18-eofv2",
+    "seal_verifier": "python -B verify_artifacts.py"
+  }
+}
+```

@@ -1,0 +1,717 @@
+{
+  "fixed_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "baseline_commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+  "archive_commit": "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f",
+  "checks": [
+    {
+      "name": "complete_raw_source_candidate",
+      "passed": true,
+      "detail": {
+        "files": 6379
+      }
+    },
+    {
+      "name": "complete_raw_source_baseline",
+      "passed": true,
+      "detail": {
+        "files": 6180
+      }
+    },
+    {
+      "name": "complete_raw_source_archive",
+      "passed": true,
+      "detail": {
+        "files": 6414
+      }
+    },
+    {
+      "name": "all_production_docs_README_byte_identical",
+      "passed": true,
+      "detail": {
+        "files": 168
+      }
+    },
+    {
+      "name": "baseline_to_fixed_audit_only",
+      "passed": true,
+      "detail": {
+        "changed_paths": [
+          "audit/review_packages/deployment-eof-v2/WR28_CORRECTION.txt",
+          "audit/review_packages/deployment-eof-v2/artifact_manifest.json",
+          "audit/review_packages/deployment-eof-v2/build_git_protection.py",
+          "audit/review_packages/deployment-eof-v2/fixtures/engineering_smoke_662ccd.py",
+          "audit/review_packages/deployment-eof-v2/git_protection.py",
+          "audit/review_packages/deployment-eof-v2/protected_git_baseline.json",
+          "audit/review_packages/deployment-eof-v2/verify_candidate.py",
+          "audit/review_packages/wr28/.gitattributes",
+          "audit/review_packages/wr28/WR28_README.txt",
+          "audit/review_packages/wr28/acceptance_plan.json",
+          "audit/review_packages/wr28/artifact_manifest.json",
+          "audit/review_packages/wr28/originals/artifact_manifest_1cf2657.json",
+          "audit/review_packages/wr28/originals/old_checker_export.stderr",
+          "audit/review_packages/wr28/originals/old_checker_export.stdout",
+          "audit/review_packages/wr28/originals/old_failure_result.json",
+          "audit/review_packages/wr28/originals/old_frozen_git_dependency.stderr",
+          "audit/review_packages/wr28/originals/old_frozen_git_dependency.stdout",
+          "audit/review_packages/wr28/originals/origins.json",
+          "audit/review_packages/wr28/originals/reconciliation_result_4a42c18.json",
+          "audit/review_packages/wr28/originals/verify_candidate_4a42c18.py",
+          "audit/review_packages/wr28/test_git_protection.py",
+          "audit/review_packages/wr28/unit_test_adaptation.json",
+          "audit/review_packages/wr28/unit_validation/result.json",
+          "audit/review_packages/wr28/unit_validation/stderr",
+          "audit/review_packages/wr28/unit_validation/stdout",
+          "audit/review_packages/wr28/verify_wr28_end_to_end.py",
+          "audit/review_tracking.json",
+          "audit/reviews/20261028-4a42c18-eofv2/.gitattributes",
+          "audit/reviews/20261028-4a42c18-eofv2/ARCHIVE_README.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/archive_manifest.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/EXPORT_COMPLETE",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/README.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/baseline_to_fixed.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/baseline_boundary_control.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/baseline_control.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/baseline_control.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/baseline_control_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/candidate_control.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/candidate_control.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/corrected.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/corrected.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/corrected/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/corrected/unittest.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/corrected_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/first.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/first.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/first/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/first/unittest.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/first_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/independent_bridge.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/independent_bridge_corrected.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/independent_bridge_first.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/qa.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/qa.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/report.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/report.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/bridge_agent/reviewer_helper_correction.diff",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/build.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/build.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/build_byte_identity.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/build_formal_report.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/ci_fixed.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/ci_fixed_jobs.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/developer_auxiliary35.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/developer_auxiliary35.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/developer_auxiliary_result.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/developer_candidate_checker.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/developer_candidate_checker.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/environment.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/continue_known_finding.diff",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/continued.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/continued.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/continued_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/final.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/final.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/final/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/final_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/first.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/first.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/first_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/independent_archive_validation.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/independent_archive_validation_continue.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/independent_archive_validation_final.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/independent_archive_validation_first.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_archive.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_archive.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_candidate.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_candidate.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/minimal_protected_manifest.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/native_hash_oracle_correction.diff",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/qa.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/qa.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/qa_first_tool_error.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/qa_formal.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/report.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/report.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/reviewer_hash_oracle_correction.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/system_boundaries.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/evidence_agent/write_report.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/export_fixed_sources.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/fixed_to_archive.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/git_archive_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/adapted_independent_review.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/harness.diff",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/independent_test_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/independent_test_results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/process_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_adapted56/replay.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic/output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic/process_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic/replay.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_atomic/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility/process_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility/replay.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility/test_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_compatibility/test_results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric/process_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric/replay.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric/test_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_numeric/test_results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson/process_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson/replay.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson/test_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/legacy_pearson/test_results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/minimal_wr28.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/minimal_wr28.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/minimal_wr28.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/minimal_wr28_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/package_review.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/build_report.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/deliverable_hashes.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/diagnostic_supplement.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/diagnostic_supplement_corrected.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/first.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/first.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/first/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/first/unittest.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/first_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/independent_policy.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/manual_eof_mre.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_baseline.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_baseline.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_baseline/a.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_baseline/mre_result.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_candidate.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_candidate.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_candidate/a.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_candidate/mre_result.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/mre_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/qa.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/qa.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/qa_formal.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/report.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/report.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_corrected.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_corrected.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_corrected/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_corrected/unittest.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_corrected_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_first.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_first.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_first/results.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_first/unittest.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/policy_agent/supplement_fixture_correction.diff",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/pr2_at_start.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/previous_review_to_baseline.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/remote_fixed_commit.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/repository_verification.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/repository_verify.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/repository_verify.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/requirements-audit.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/root_confirmed_protected_hash_mismatch.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/root_execution_records.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/run_root_checks.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/static_identity.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/static_identity.stderr",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/static_identity.stdout",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/static_identity_execution.json",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/static_identity_first_tool_output.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/user_review_charter.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/verify_artifacts.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/verify_static_identity.py",
+          "audit/reviews/20261028-4a42c18-eofv2/evidence/verify_static_identity_first.py",
+          "audit/reviews/20261028-4a42c18-eofv2/import_index.json",
+          "audit/reviews/20261028-4a42c18-eofv2/import_verification.json",
+          "audit/reviews/20261028-4a42c18-eofv2/user_delivery.txt",
+          "audit/reviews/20261028-4a42c18-eofv2/verify_import.py",
+          "audit/stage2_current_readiness.json",
+          "audit/wr28_correction.json"
+        ]
+      }
+    },
+    {
+      "name": "fixed_to_archive_audit_only",
+      "passed": true,
+      "detail": {
+        "changed_paths": [
+          "audit/review_packages/deployment-eof-v2/artifact_manifest.json",
+          "audit/review_packages/wr28/GPT_WORK_REVIEW.txt",
+          "audit/review_packages/wr28/WR28_README.txt",
+          "audit/review_packages/wr28/artifact_manifest.json",
+          "audit/review_packages/wr28/fixed_commit_validation/budget_journal_single_byte.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/budget_journal_single_byte.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/build_1.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/build_1.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/build_2.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/build_2.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/clean_export_1.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/clean_export_1.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/clean_export_2.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/clean_export_2.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/full_offline_verifier.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/full_offline_verifier.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/independent_lf_checkout.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/independent_lf_checkout.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_audit_data_exposure_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_audit_data_exposure_json.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_config_research_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_config_research_json.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_config_workflow_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/lf_to_crlf_config_workflow_json.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/manifest_expected_hash_tamper.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/manifest_expected_hash_tamper.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/new_checker_end_to_end_result.json",
+          "audit/review_packages/wr28/fixed_commit_validation/portable_fixture_eof_tamper.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/portable_fixture_eof_tamper.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/portable_fixture_missing.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/portable_fixture_missing.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_audit_data_exposure_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_audit_data_exposure_json.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_config_research_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_config_research_json.stdout",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_config_workflow_json.stderr",
+          "audit/review_packages/wr28/fixed_commit_validation/single_byte_config_workflow_json.stdout",
+          "audit/review_tracking.json",
+          "audit/stage2_current_readiness.json",
+          "audit/wr28_correction.json",
+          "audit/wr28_correction.txt"
+        ]
+      }
+    },
+    {
+      "name": "unchanged_source_manifest_bf19",
+      "passed": true,
+      "detail": {
+        "managed_files": 177
+      }
+    },
+    {
+      "name": "original_in_place_protected_before.json",
+      "passed": true
+    },
+    {
+      "name": "original_in_place_reconciliation_result.json",
+      "passed": true
+    },
+    {
+      "name": "original_bad_list_retained_122",
+      "passed": true
+    },
+    {
+      "name": "old_wrong_three_remain_truthfully_archived",
+      "passed": true,
+      "detail": {
+        "old_declared_match_count": 119,
+        "mismatches": [
+          "audit/data_exposure.json",
+          "config/research.json",
+          "config/workflow.json"
+        ]
+      }
+    },
+    {
+      "name": "all122_actual_original_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "main_287_actual_bytes_unchanged",
+      "passed": true,
+      "detail": {
+        "files": 287
+      }
+    },
+    {
+      "name": "original_Git_copy_verify_candidate_4a42c18.py",
+      "passed": true
+    },
+    {
+      "name": "original_Git_copy_artifact_manifest_1cf2657.json",
+      "passed": true
+    },
+    {
+      "name": "original_Git_copy_reconciliation_result_4a42c18.json",
+      "passed": true
+    },
+    {
+      "name": "old_failure_result_still_failed",
+      "passed": true
+    },
+    {
+      "name": "old_failure_stderr_retained",
+      "passed": true
+    },
+    {
+      "name": "compact_exact_sealed_file_set",
+      "passed": true,
+      "detail": {
+        "sealed_files": 173,
+        "actual_files": 174
+      }
+    },
+    {
+      "name": "all_compact_raw_hashes",
+      "passed": true
+    },
+    {
+      "name": "original_ZIP_hash_bytes",
+      "passed": true
+    },
+    {
+      "name": "original_ZIP_CRC",
+      "passed": true
+    },
+    {
+      "name": "original_ZIP_exact_member_population",
+      "passed": true
+    },
+    {
+      "name": "original_ZIP_raw_manifest_hash",
+      "passed": true
+    },
+    {
+      "name": "original_ZIP_exact_manifest_set",
+      "passed": true
+    },
+    {
+      "name": "all18685_original_ZIP_raw_hashes",
+      "passed": true
+    },
+    {
+      "name": "original_three_source_maps_hash",
+      "passed": true
+    },
+    {
+      "name": "original_source_map_candidate",
+      "passed": true
+    },
+    {
+      "name": "original_source_map_baseline",
+      "passed": true
+    },
+    {
+      "name": "original_source_map_archive",
+      "passed": true
+    },
+    {
+      "name": "supplemental_user_delivery_separately_preserved",
+      "passed": true
+    },
+    {
+      "name": "all_original_non_source_evidence_copied",
+      "passed": true
+    },
+    {
+      "name": "all167_compact_evidence_exact_original_bytes",
+      "passed": true
+    },
+    {
+      "name": "omissions_only_three_source_trees_and_two_maps",
+      "passed": true
+    },
+    {
+      "name": "entire_old_independent_report_preserved",
+      "passed": true
+    },
+    {
+      "name": "all_first_failure_correction_rerun_evidence_retained",
+      "passed": true,
+      "detail": {
+        "named_critical_files": 16
+      }
+    },
+    {
+      "name": "old_review_open_failure_not_rewritten",
+      "passed": true
+    },
+    {
+      "name": "original_git_tree_paths_candidate",
+      "passed": true
+    },
+    {
+      "name": "original_git_tree_paths_baseline",
+      "passed": true
+    },
+    {
+      "name": "original_git_tree_paths_archive",
+      "passed": true
+    },
+    {
+      "name": "Git_batch_fully_consumed",
+      "passed": true,
+      "detail": {
+        "unique_blobs": 3890
+      }
+    },
+    {
+      "name": "all_original_Git_blob_hashes_candidate",
+      "passed": true,
+      "detail": {
+        "files": 6179
+      }
+    },
+    {
+      "name": "all_original_Git_blob_hashes_baseline",
+      "passed": true,
+      "detail": {
+        "files": 6158
+      }
+    },
+    {
+      "name": "all_original_Git_blob_hashes_archive",
+      "passed": true,
+      "detail": {
+        "files": 6180
+      }
+    },
+    {
+      "name": "current48_journal_identity",
+      "passed": true
+    },
+    {
+      "name": "old46_raw_prefix_preserved",
+      "passed": true
+    },
+    {
+      "name": "independent48_event_hash_chain",
+      "passed": true
+    },
+    {
+      "name": "last_events_failure_then_closed",
+      "passed": true
+    },
+    {
+      "name": "read_only_Memory_Registry_replay",
+      "passed": true
+    },
+    {
+      "name": "actual_usage12_15_2",
+      "passed": true
+    },
+    {
+      "name": "actual_round_closed",
+      "passed": true
+    },
+    {
+      "name": "old_attempt_failed_not_rebound",
+      "passed": true
+    },
+    {
+      "name": "candidate3dd_configuration_not_registered",
+      "passed": true
+    },
+    {
+      "name": "all_four_declared_gates_closed",
+      "passed": true
+    },
+    {
+      "name": "stage0_7_plan_preserved",
+      "passed": true
+    },
+    {
+      "name": "old_LEAN_checks_orders_null",
+      "passed": true
+    },
+    {
+      "name": "new_policy_not_deployed_current_activity",
+      "passed": true
+    },
+    {
+      "name": "full_data_and_financial_gates_not_promoted",
+      "passed": true
+    },
+    {
+      "name": "final_raw_source_candidate",
+      "passed": true
+    },
+    {
+      "name": "final_raw_source_baseline",
+      "passed": true
+    },
+    {
+      "name": "final_raw_source_archive",
+      "passed": true
+    }
+  ],
+  "static_logical_checks": 56,
+  "metadata_replay_checks": 5,
+  "unit_methods": 0,
+  "new_platform_calls": 0,
+  "findings": [],
+  "all_passed": true,
+  "production_files_compared": 168,
+  "main_protected_files": 287,
+  "compact_copied_original_files": 167,
+  "compact_copied_original_bytes": 700596,
+  "compact_seal_files": 173,
+  "supplemental_user_delivery_files": 1,
+  "original_ZIP_manifest_entries": 18685,
+  "original_total_files": 18686,
+  "omitted_source_files": 18517,
+  "omitted_large_manifests": [
+    "artifact_manifest.json",
+    "source_git_manifest.json"
+  ],
+  "original_Git_source_maps": {
+    "candidate": 6179,
+    "baseline": 6158,
+    "archive": 6180
+  },
+  "original_ZIP_sha256": "e7f32eba7ccebcd6f833a9954b5ca13f50ec1a762497c59ae5f8a7a93fcc1910",
+  "budget": {
+    "events": 48,
+    "usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    },
+    "round_status": "closed",
+    "journal_sha256": "ff0440eb196fc5e79be54ab0d6113630510a058313251be667fae6d064a4c71d",
+    "old46_sha256": "f50d4cd8195428966484230adf0fd54ccf77f796159af61df748f37a7d1101b1",
+    "source_unchanged": true,
+    "no_new_configuration_registered": true
+  },
+  "commands": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "diff",
+        "--name-only",
+        "1cf26578da59eebd37e138ca5d6d076991386470",
+        "2f5591e28c0748ac42caeae7bbf3977141d031cb"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 14958,
+      "stdout_sha256": "113abb8dee1879ac7048f1c0d6af33bdb8fcc172205cf003ef985e7993c81793",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "diff",
+        "--name-only",
+        "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 3071,
+      "stdout_sha256": "0c8430d3bd7ea9d19fec4ec848e51b82f59e2c2b84b281ba9a0e93f67869d84a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "show",
+        "4a42c18f0b78bea2068d589bc12f1615712354c6:audit/review_packages/deployment-eof-v2/verify_candidate.py"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 5367,
+      "stdout_sha256": "2d8ca85514adec980eb932ec3f1d1b3e6c9625dc86d787031e9bf31bd6635845",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "show",
+        "1cf26578da59eebd37e138ca5d6d076991386470:audit/review_packages/deployment-eof-v2/artifact_manifest.json"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 1222,
+      "stdout_sha256": "3528e3c2fd08c5dc24ff29bf57e58a1af1416a2c4ba675f174c1114739ee2e08",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "show",
+        "4a42c18f0b78bea2068d589bc12f1615712354c6:audit/review_packages/deployment-eof-v2/reconciliation_result.json"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 755,
+      "stdout_sha256": "303b9a32aff6d0eb365284b20b578f59e1e8d572674e9115d0f2641014aeeb69",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "ls-tree",
+        "-rz",
+        "4a42c18f0b78bea2068d589bc12f1615712354c6"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 818824,
+      "stdout_sha256": "3e48ca0332e3139e3a74ac956a4c74a43ace17a11d03763b5a0c1b60a7e07cd3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "ls-tree",
+        "-rz",
+        "8d65c290773547c83549c098172f1eb8c3376cd7"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 816655,
+      "stdout_sha256": "6da060136695aeb68663f5257184c4026fe29436977f794bf963c93709f1b3de",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "ls-tree",
+        "-rz",
+        "1cf26578da59eebd37e138ca5d6d076991386470"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 818937,
+      "stdout_sha256": "cf7e235f47d7049b5e22dfd24bee56b37af98973c94e64555ebfe4f8ed7f82c9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "cat-file",
+        "--batch"
+      ],
+      "exit_code": 0,
+      "stdout_bytes": 43959713,
+      "stdout_sha256": "e783d7dbb06aef57fe81a0f36918b2e57b11369ba0f0e9ca87aaa374b7db33fa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_guards": {
+    "candidate": 6379,
+    "baseline": 6180,
+    "archive": 6414
+  }
+}

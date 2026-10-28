@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "原 LEAN 初始化因 worker 源码身份不同而中止；EOF-v2 修复在固定源码 `4a42c18` 的独立测试功能范围通过，但独审发现 WR-28/P2：保护清单三项取了本地 CRLF 哈希，发布的 Git 原始字节是 LF，原干净交付检查只匹配119/122并失败。本轮限定为 audit 交付修复：新增从不可变 Git blob 生成的原字节清单，绑定 SHA256、真实 blob OID 和字节数；不转换换行，旧错误声明及首次失败全部保留。\n\n固定待复验交付提交为 [`2f5591e`](https://github.com/wwooyy429/AQRP-LLM/commit/2f5591e28c0748ac42caeae7bbf3977141d031cb)，后续 `fc0ba0a` 仅封存执行结果与交接。生产 cloud/config/tools/tests/docs/README.md 与原资料1cf2657无差异，生产源码仍4a42c18。新 checker 以固定662ccd版本控制源码夹具作已知答案重放，可在无.git导出运行；该夹具不是新读取的 worker 文件。\n\n开发侧实际验证：固定2f5591e的两份独立无.git raw Git导出及一份正常LF检出，原样verify_candidate均通过；10个单字节、CRLF、账本、夹具缺失/篡改、manifest哈希负例均被拒绝，共13个checker进程。两次build幂等，cloud/config及audit/deployment原字节保持；官方 `python -B tools/stages.py verify` 在临时LF检出实际运行825项合成测试通过。另11项audit原始Git边界测试通过。计数不同且重叠，不相加为独立测试或金融样本。\n\n[WR-28修复报告](https://github.com/wwooyy429/AQRP-LLM/blob/fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f/audit/wr28_correction.txt)、[固定提交原始执行结果](https://github.com/wwooyy429/AQRP-LLM/blob/fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f/audit/review_packages/wr28/fixed_commit_validation/new_checker_end_to_end_result.json)及[GPT Work复审指令](https://github.com/wwooyy429/AQRP-LLM/blob/fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f/audit/review_packages/wr28/GPT_WORK_REVIEW.txt)已封存。原独审正式报告及全部首次失败/审查器修正/复跑证据紧凑归档，原39MB ZIP哈希及三套Git树映射已核验，没有再复制三套源码。\n\nWR-28状态为开发侧修复通过、等待独立复验，未自行关闭。阶段2整体仍未验收，PR保持草稿未合并。主仓库287份生产/历史/预算/暴露文件原字节保持；原LEAN仍Runtime Error/failed、v1 admission不变、7项成功检查和实际订单数仍null。EOF-v2尚未正式登记、部署或取得实际云端成功。\n\n本轮新增QC/供应商/Research/LEAN/compile/模型API调用、配置登记、预算事件及退款均0。累计配置12/12、Research15/20、LEAN2/16、48事件及原关闭轮次保持。新协议启用仍需有效新配置容量和正式准入，不得复用旧失败配置。完整历史US200、SID经济歧义、财务数值/版本/公开及实际送达/摄入凭证、计费认证派发仍有缺口；正式研究、GPT运行、交易及最终测试关闭，2024–2025暴露与2026独立性未认证事实保留。",
+    "title": "Stage 2: preserve native observations and verify the cloud engineering chain",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "8e2fef8d76e1bea6d945eaca40493549ee95a614",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-28T12:09:17Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 49,
+    "changed_files": 6357,
+    "additions": 685878,
+    "deletions": 198,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "Stage 2: preserve native observations and verify the cloud engineering chain"
+  },
+  "isError": false
+}

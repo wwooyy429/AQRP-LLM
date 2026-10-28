@@ -1,0 +1,382 @@
+[
+  {
+    "label": "candidate_plain",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 0,
+    "seconds": 1.3909999999996217,
+    "stdout_sha256": "79722fde0420d86c604e43ed564050c24c740529bff30818ee72e1763000a8f1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "candidate_subprocess_forbidden",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "-c",
+      "import subprocess,runpy;\ndef deny(*a,**k):raise RuntimeError(\"independent no-subprocess gate\");\nsubprocess.run=deny;subprocess.check_output=deny;subprocess.Popen=deny;runpy.run_path(\"verify_candidate.py\",run_name=\"__main__\")"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2",
+    "exit_code": 0,
+    "seconds": 1.5309999999990396,
+    "stdout_sha256": "79722fde0420d86c604e43ed564050c24c740529bff30818ee72e1763000a8f1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "baseline_original_failed",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\baselines\\1cf2657\\source\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\baselines\\1cf2657\\source",
+    "exit_code": 1,
+    "seconds": 0.8910000000032596,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e662294e2e00538b26f88105d3f27f45da63d64d893f1ccb0251e308ed80cb8d"
+  },
+  {
+    "label": "protected_same_size_flip_0",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9219999999986612,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "protected_same_size_flip_1",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.0159999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "protected_same_size_flip_2",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9690000000009604,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "research_CRLF",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9679999999971187,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "research_BOM",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9689999999973224,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "research_missing",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.0159999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e2972bb94e2414d94a4884ee5ebcfbe001ad0a0c34a10c00450bcbf26367e0a2"
+  },
+  {
+    "label": "budget_journal_one_byte",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9690000000009604,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "budget_baseline_one_byte",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9219999999986612,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "old_admission_one_byte",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.7659999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "record_SHA",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "record_OID",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.0469999999986612,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "record_size",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9530000000013388,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "dda9917e3e0700fabf42a779c94401df94ae7c643cec8f0a9efe86417c542bd4"
+  },
+  {
+    "label": "snapshot_commit",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.875,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2873fd9d199e141b944983b17b1329547ad80554dca4278490621c656d29e943"
+  },
+  {
+    "label": "snapshot_tree",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.7659999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2873fd9d199e141b944983b17b1329547ad80554dca4278490621c656d29e943"
+  },
+  {
+    "label": "path_list_origin",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9059999999990396,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2873fd9d199e141b944983b17b1329547ad80554dca4278490621c656d29e943"
+  },
+  {
+    "label": "manifest_bool_count",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.7659999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2873fd9d199e141b944983b17b1329547ad80554dca4278490621c656d29e943"
+  },
+  {
+    "label": "manifest_unknown_field",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.7649999999994179,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "2873fd9d199e141b944983b17b1329547ad80554dca4278490621c656d29e943"
+  },
+  {
+    "label": "manifest_duplicate_JSON_key",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9220000000022992,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "cde0e2a7566e3b4bc9b81a3a81d3ec3135522371fd9abbdd6f85d09f8a30b1e0"
+  },
+  {
+    "label": "manifest_BOM",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.9219999999986612,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "cde0e2a7566e3b4bc9b81a3a81d3ec3135522371fd9abbdd6f85d09f8a30b1e0"
+  },
+  {
+    "label": "legacy_source_extra_LF",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 0.875,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "4263b176d1fc820004c377d7f8b5933a8e1fee36444e218bb1a430990b41049c"
+  },
+  {
+    "label": "fixture_missing",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.2659999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "0e1f85a3e8ae5a6c62d15fc3f8143afe8ef47cc00bd768e4432d78e05ae360d7"
+  },
+  {
+    "label": "fixture_extra_LF",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.3119999999980791,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "d1b53c903e3f25360996dd591a068c1d806c15ae88d94d5158462e3d8ad553a8"
+  },
+  {
+    "label": "fixture_BOM",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.2809999999990396,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "d1b53c903e3f25360996dd591a068c1d806c15ae88d94d5158462e3d8ad553a8"
+  },
+  {
+    "label": "fixture_body_append",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 1,
+    "seconds": 1.2820000000028813,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "d1b53c903e3f25360996dd591a068c1d806c15ae88d94d5158462e3d8ad553a8"
+  },
+  {
+    "label": "fixture_git_662_blob",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "show",
+      "662ccd876b67ca0949f921a53c4c33df37cfbbf1:cloud/engineering_smoke.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent",
+    "exit_code": 0,
+    "seconds": 0.1720000000022992,
+    "stdout_sha256": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "selfconsistent_manifest_and_source_trust_boundary",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export\\audit\\review_packages\\deployment-eof-v2\\verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\repro_agent\\work\\no_git_export",
+    "exit_code": 0,
+    "seconds": 1.3280000000013388,
+    "stdout_sha256": "17c4d4b08aa3a4687af0d8698c3fb9f6e3fa08e582fec00ca47e11b424177b1a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

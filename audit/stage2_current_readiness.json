@@ -1,6 +1,6 @@
 {
-  "schema_version": 11,
-  "kind": "stage2_WR28_developer_delivery_fix_verified_pending_independent_recheck",
+  "schema_version": 12,
+  "kind": "stage2_WR28_independently_closed_real_runtime_and_data_gates_incomplete",
   "previous_readiness": {
     "commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
     "path": "audit/stage2_current_readiness.json",
@@ -27,23 +27,23 @@
     0,
     1
   ],
-  "latest_independent_report": "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.json",
+  "latest_independent_report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
   "stage2_status": "not_accepted_native_LEAN_failed_and_data_gates_incomplete",
   "new_candidate_independently_accepted": false,
   "current_activity": {
-    "kind": "WR28_audit_only_fix_and_fixed_commit_clean_Git_validation",
-    "production_source_unchanged": true,
-    "unchanged_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "kind": "archive_independent_WR28_closure_and_sync_current_metadata",
+    "parent_materials_commit": "fc0ba0ae36167a74c3e6c0c2e3c0cf33c3ba220f",
+    "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "production_source_changes": 0,
+    "new_product_test_runs": 0,
     "QC_calls": 0,
     "new_configuration_registrations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
-    "new_budget_events": 0,
-    "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
-    "synthetic_repository_test_count": 825,
-    "audit_checker_processes": 13
+    "new_budget_events": 0
   },
-  "current_activity_checker": "audit/review_packages/wr28/verify_wr28_end_to_end.py",
+  "current_activity_checker": "audit/reviews/20261028-2f5591e-wr28-closure/verify_import.py",
   "candidate_runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
   "candidate_cloud_deployed": true,
   "managed_cloud_files_verified": 32,
@@ -83,13 +83,10 @@
     "lean": 2
   },
   "global_limits_unchanged": true,
-  "known_open_software_findings_from_independent_reports": [
-    "WR-28"
-  ],
-  "new_candidate_review_status": "WR28_audit_only_developer_fix_verified_pending_independent_recheck",
+  "known_open_software_findings_from_independent_reports": [],
+  "new_candidate_review_status": "WR28_audit_delivery_scope_independently_closed_actual_runtime_and_data_still_unaccepted",
   "blockers": [
-    "WR-28/P2 remains pending independent closure; fixed audit commit2f5591e passed developer raw exports/LF checkout/negative cases and825 synthetic regressions.",
-    "Offline v2 source-policy candidate requires fixed-commit independent review and a new admissible configuration before real cloud revalidation; configuration budget is 12/12 and the old round is closed.",
+    "New v2 cloud validation still requires valid new configuration capacity, formal admission and successful actual runtime evidence; configuration budget12/12 and old roundclosed.",
     "Successful same-plan minimal LEAN engineering run absent; original attempt failed frozen-source hash check.",
     "Production financial numeric catalogue and charged certification native dispatch are missing.",
     "Full historical US200, SID economic ambiguity, financial vintage/publication and actual historical delivery/ingestion evidence remain insufficient.",
@@ -110,7 +107,8 @@
     "audit/stage2_normal004_review_followup.json",
     "audit/stage2_gate_verification_20261028.json",
     "audit/stage2_deployment_source_fix.json",
-    "audit/wr28_correction.json"
+    "audit/wr28_correction.json",
+    "audit/wr28_independent_closure.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -120,7 +118,7 @@
   "extra_spend_usd": 0,
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "current_activity_scope": "Audit-only raw Git baseline manifest, portable synthetic replay, preserved incorrect declarations and original failures. Production source/config and original data-exposure/budget bytes remain unchanged.",
+  "current_activity_scope": "Compact archive integrity and current-status reconciliation of the supplied fixed-SHA independent closure. No product changes, software test reruns, cloud calls or budget events.",
   "root_cause_investigation": {
     "finding_id": "RC003",
     "report": "audit/rootcause003_report.json",
@@ -141,16 +139,9 @@
     },
     {
       "id": "LEAN-WORKER-SOURCE-PARITY",
-      "status": "offline_versioned_policy_candidate_tested_pending_independent_review_and_actual_cloud_rerun",
+      "status": "offline_functional_scope4a_and_audit_delivery2f_reviewed_actual_new_cloud_parity_unverified",
       "scope": "engineering_smoke.py first rejected declared worker source only",
       "report": "audit/stage2_deployment_source_fix.json"
-    },
-    {
-      "id": "WR-28",
-      "status": "developer_fixed_and_clean_Git_replayed_pending_independent_recheck",
-      "scope": "Raw Git delivery proof correction; original protected files unchanged",
-      "report": "audit/wr28_correction.json",
-      "independent_closure": false
     }
   ],
   "latest_local_SID_diagnostic_deployed": true,
@@ -180,7 +171,7 @@
     "native_authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus.",
     "no_further_execution_authorized_by_review": true
   },
-  "new_candidate_scoped_software_review_passed": false,
+  "new_candidate_scoped_software_review_passed": true,
   "certification_computation_kernel": "implemented",
   "charged_certification_native_dispatch_bridge": "not_implemented",
   "financial_numeric_catalog_count": 0,
@@ -204,19 +195,39 @@
     "full_tests_passed": 825,
     "auxiliary_developer_tests_passed": 35,
     "deployed": false,
-    "independently_reviewed": false,
+    "independently_reviewed": true,
     "fixed_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-    "review_handoff": "audit/review_packages/deployment-eof-v2/GPT_WORK_REVIEW.txt"
+    "review_handoff": "audit/review_packages/deployment-eof-v2/GPT_WORK_REVIEW.txt",
+    "independent_review_scope": "Production4a EOF functions in prior finite scope; rawGit delivery2f closed by this review. WholePhase2 unaccepted.",
+    "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "delivery_independent_report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+    "whole_phase2_accepted": false
   },
   "new_configuration_capacity_required_for_cloud_activation": true,
   "latest_delivery_correction": {
     "finding": "WR-28",
-    "report": "audit/wr28_correction.json",
-    "status": "developer_fixed_and_clean_Git_replayed_pending_independent_recheck",
-    "independently_closed": false,
+    "report": "audit/wr28_independent_closure.json",
+    "status": "independently_fixed_verified_closed_at2f5591e",
+    "independently_closed": true,
     "fixed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
     "clean_Git_developer_checks_passed": true,
-    "review_handoff": "audit/review_packages/wr28/GPT_WORK_REVIEW.txt"
+    "review_handoff": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+    "previous_correction_report": "audit/wr28_correction.json",
+    "independent_review": {
+      "review_id": "AQRP-20261028-2F5591E-WR28-24",
+      "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+      "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+      "status": "fixed_verified_closed",
+      "scope": "Raw Git protection declarations and reproducible audit delivery only",
+      "whole_phase2_accepted": false,
+      "new_cloud_success_verified": false,
+      "financial_evidence": false
+    },
+    "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "acceptance_scope": "Raw Git protection declarations and reproducible audit delivery only",
+    "independent_review_complete": true
   },
   "latest_independent_functional_verdict": {
     "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
@@ -225,5 +236,41 @@
     "original_delivery": "failed_WR28_P2",
     "whole_candidate_accepted": false,
     "phase2_accepted": false
-  }
+  },
+  "new_candidate_independent_acceptance_scope": "Only prior EOF functions4a and rawGit audit delivery2f; not whole Phase2 or this new archival metadata commit.",
+  "delivery_scope_independently_accepted": true,
+  "closed_developer_findings": [
+    {
+      "id": "WR-28",
+      "status": "independently_fixed_verified_closed_at2f5591e",
+      "scope": "Raw Git delivery proof correction; original protected files unchanged",
+      "report": "audit/wr28_independent_closure.json",
+      "independent_closure": true,
+      "independent_review": {
+        "review_id": "AQRP-20261028-2F5591E-WR28-24",
+        "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+        "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+        "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+        "status": "fixed_verified_closed",
+        "scope": "Raw Git protection declarations and reproducible audit delivery only",
+        "whole_phase2_accepted": false,
+        "new_cloud_success_verified": false,
+        "financial_evidence": false
+      }
+    }
+  ],
+  "latest_independent_delivery_closure": {
+    "review_id": "AQRP-20261028-2F5591E-WR28-24",
+    "reviewed_delivery_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+    "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "report": "audit/reviews/20261028-2f5591e-wr28-closure/evidence/formal_report.json",
+    "report_raw_sha256": "b60ea3474d297a7b23b027cb3c6b5885736a9a9d840d4ffe5265e9ce28220934",
+    "status": "fixed_verified_closed",
+    "scope": "Raw Git protection declarations and reproducible audit delivery only",
+    "whole_phase2_accepted": false,
+    "new_cloud_success_verified": false,
+    "financial_evidence": false
+  },
+  "audit_manifest_trust_boundary": "The supplied manifest must be pinned externally to the reviewed immutableGit commit. Offline verify_export checks internal raw-byte consistency; changing both the manifest and corresponding protected file can form a self-consistent invented corpus. Independently rebuilding every record from fixedGit exposes it. This is not a remote signature or proof of native/supplier provenance."
 }

@@ -1,0 +1,88 @@
+{
+  "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "baseline_commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+  "scope": "Independent actual no.git CLI replay, negative file/artifact mutations, portable frozen-source fixture and explicit trusted-manifest authenticity boundary.",
+  "conclusion": "All independently executed scoped cases passed first run. Original baseline WR28 failure reproduced; fixed candidate checker passes without Git or subprocess access.24 isolated candidate mutations rejected. No new product finding confirmed; parent must separately judge Git provenance/archive retention and overall phase2.",
+  "findings": [],
+  "actually_executed": {
+    "unit_methods": 7,
+    "passed_methods": 7,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "named_scenarios": 34,
+    "unittest_subtest_count": null,
+    "first_run": true,
+    "checker_processes": 28,
+    "readonly_Git_blob_processes": 1,
+    "total_child_processes_in_suite": 29,
+    "candidate_clean_no_git_positive_processes": 2,
+    "baseline_expected_failure_processes": 1,
+    "candidate_isolated_mutation_rejection_processes": 24,
+    "trusted_manifest_boundary_acceptance_processes": 1,
+    "direct_fixture_known_answer_scenarios": 6,
+    "execution_record": "execution_records.json",
+    "result": "first/results.json",
+    "unittest_output": "first/unittest.txt",
+    "suite_process": "first_execution.json"
+  },
+  "counting": "7 methods/34 named scenarios,28 checker processes and1 readonly Git process are overlapping counts. Direct fixture source-policy calls are in one method. The self-consistent altered-manifest case is explicitly not counted as a tamper rejection, and the old baseline failure is expected. No unique grand total.",
+  "coverage": [
+    "Exact candidate6379-file private no.git copy passes full original verify_candidate entry, verifies122 protected files, preserves48 events and12/15/2, old failed/runtime_error v1 input and closed research/final flags.",
+    "Same positive entry also succeeds after subprocess.run/check_output/Popen are replaced by independent denying functions; no Git or other subprocess may be used inside the checker.",
+    "Unmodified original baseline checker fails exit1 at audit/data_exposure.json; independently computed old122 raw declarations still have exactly the original3 mismatches.",
+    "Actual protected data_exposure/research/workflow same-length byte flips, research CRLF/BOM/missing, registry journal/baseline and original admitted-input append are all rejected by original candidate checker.",
+    "Independent manifest SHA/OID/size edits, fixed source commit/tree changes, source-list origin change, bool count, unknown field, duplicate JSON key, BOM and old-path-list byte change all reject.",
+    "Pinned source fixture missing/extraLF/BOM/body-appended forms reject. Exact fixture equals raw git show662ccd source3561 bytes/SHA33ffa365...; one addedLF SHA5b7111... matches known prior source observation.",
+    "Direct actual source policy: legacy exact original accepted, legacy extraLF rejected with strict observed hash, explicitv2 worker extraLF accepted with normalized count1, strictlocal extraLF rejected and body-comment change rejected.",
+    "Private copy is restored byte-for-byte after every mutation; original candidate and baseline full raw file maps independently equal parent Git manifests."
+  ],
+  "authenticity_boundary": {
+    "actual_demonstration": "A private copy changed config/research.json toCRLF and recomputed its SHA256/Git blob OID/byte_count in the supplied protected manifest. The local checker accepted this self-consistent replacement, with legacy mismatch count2 instead of3.",
+    "meaning": "Both the supplied trusted audit artifact and protected file were changed, so this is no longer the pinned2f5591e Git version. The helper verifies internal raw-byte consistency under a manifest anchored externally by the reviewed Git commit; it cannot remotely authenticate an arbitrary replacement manifest without Git.",
+    "not_claimed": "This acceptance is not called a negative rejection, proof of immutable Git provenance, or a new WR29. Independent Git provenance reconstruction is owned by the sibling source-provenance audit; whole fixed-source version verification is required.",
+    "evidence": "raw/selfconsistent_manifest_and_source_trust_boundary.stdout; execution_records.json; scenario_records in first/results.json"
+  },
+  "source_guard": {
+    "candidate_files": 6379,
+    "candidate_original_bytes_unchanged": true,
+    "baseline_files": 6180,
+    "baseline_original_bytes_unchanged": true,
+    "private_copy_restored": true,
+    "no_git_in_private_copy": true,
+    "candidate_files_equal_fixed_Git_map": true,
+    "baseline_files_equal_fixed_Git_map": true,
+    "developer_test_fixtures_imported": false,
+    "product_original_expected_hashes_changed": false
+  },
+  "first_results": {
+    "all_first_methods_passed": true,
+    "original_stdout_stderr_commands_and_scripts_retained": true,
+    "reviewer_corrections": []
+  },
+  "real_actions": {
+    "QC_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "platform_compile_calls": 0,
+    "market_provider_calls": 0,
+    "model_API_calls": 0,
+    "authoritative_budget_writes": 0,
+    "new_configurations": 0,
+    "product_source_edits": 0
+  },
+  "limitations": [
+    "All negative files and source variants are synthetic modifications in a private copied export. No actual worker source, new cloud runtime, market data or platform terminal read here.",
+    "Exact fixture is the archived Git662ccd source only, not newly read worker bytes. Matching oneLF hash is not proof of a platform transformation step or other worker identity.",
+    "This subaudit did not rerun825 repository or developer11 tests. Parent is separately executing official clean exports/LF checkout/full verification.",
+    "The original task remains failed/runtime_error, actual7 successfulLEAN checks/orders remain null, configuration capacity remains0, and overall phase2/financial certification remains unaccepted.",
+    "Byte-validation under a pinned manifest is not a remote signature, tamper-proof history, or certification of a self-consistent forged corpus."
+  ],
+  "minimal_command": "python -B <fixed-source>/audit/review_packages/deployment-eof-v2/verify_candidate.py (read-only source export; expected candidateexit0, oldbaselineexit1)",
+  "replay_note": "To rerun the full independent suite, copy reviewer scripts plus source/baseline trees into an unsealed scratch folder with the same relative layout; work/no_git_export must not already exist. The suite writes only repro_agent scratch outputs and private mutations. Do not run output writers in the sealed evidence directory.",
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0"
+  },
+  "financial_evidence": false
+}

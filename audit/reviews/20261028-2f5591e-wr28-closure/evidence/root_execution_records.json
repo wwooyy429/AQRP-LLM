@@ -1,0 +1,101 @@
+[
+  {
+    "label": "clone_private_git",
+    "command": [
+      "git",
+      "clone",
+      "--quiet",
+      "--no-hardlinks",
+      "--no-checkout",
+      "--local",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028",
+    "exit_code": 0,
+    "seconds": 0.35900000000037835,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "checkout_private_git",
+    "command": [
+      "git",
+      "-c",
+      "core.autocrlf=false",
+      "-c",
+      "core.eol=lf",
+      "checkout",
+      "--quiet",
+      "--detach",
+      "2f5591e28c0748ac42caeae7bbf3977141d031cb"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree",
+    "exit_code": 0,
+    "seconds": 4.71900000000096,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "build_git_protection",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/deployment-eof-v2/build_git_protection.py",
+      "--repository",
+      ".",
+      "--output",
+      "audit/review_packages/deployment-eof-v2/protected_git_baseline.json"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree",
+    "exit_code": 0,
+    "seconds": 1.0309999999990396,
+    "stdout_sha256": "9ea0db18d220a4a1a2c5c0b35ca505ae8500d42cdfc3d9b66111444ebb0238e7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "developer_audit11",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/wr28/test_git_protection.py",
+      "-q"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree",
+    "exit_code": 0,
+    "seconds": 24.26599999999962,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "f5be2ed5db33c351b91b1c5fbabf2164085dc96709183237cd015aab7039a7d7"
+  },
+  {
+    "label": "developer_end_to_end_full",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/wr28/verify_wr28_end_to_end.py",
+      "--commit",
+      "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+      "--evidence-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\end_to_end",
+      "--full-verify"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree",
+    "exit_code": 0,
+    "seconds": 225.20300000000134,
+    "stdout_sha256": "6b2583acf8eedb76c0c5bba275dac6368538e4f5fcbb89ff49e61f6cb614b209",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "developer_verify_import",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/reviews/20261028-4a42c18-eofv2/verify_import.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2f5591e-20261028\\git_worktree",
+    "exit_code": 0,
+    "seconds": 0.3280000000013388,
+    "stdout_sha256": "2b098ef9937f02749e3ddeb7056b80b6411ab8abb0df62d04711747e3d7f2075",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
