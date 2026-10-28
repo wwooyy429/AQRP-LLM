@@ -693,7 +693,7 @@ class Registry:
                 return identity
             package = json.loads(encoded)
             if (self._collection_plan(package) is not None
-                    or (self._is_engineering_package(package) and package["plan"].get("schema_version") == 2)):
+                    or (self._is_engineering_package(package) and package["plan"].get("schema_version") in {2, 3})):
                 self._enforce_engineering_project(state, package)
             self._enforce_engineering_limit(state, "configurations", package)
             self._charge_reserved(state, "configurations", allocation, identity)
@@ -721,7 +721,7 @@ class Registry:
             raise ValueError("Engineering packages require their complete fixed schema marker")
         if collection:
             Registry._collection_plan(package)
-        elif plan.get("schema_version") == 2:
+        elif plan.get("schema_version") in {2, 3}:
             # A joint pilot is one complete engineering configuration, never an
             # unvalidated bag of child jobs. Replays use its frozen catalog;
             # the dispatcher separately checks the trusted current catalog.
@@ -782,8 +782,8 @@ class Registry:
 
     @staticmethod
     def _joint_engineering_plan(package: dict):
-        """Return the complete v2 contract, without changing legacy v1 claims."""
-        if not Registry._is_engineering_package(package) or package["plan"].get("schema_version") != 2:
+        """Return strict v2/v3 joint contracts; legacy v1 claims stay unchanged."""
+        if not Registry._is_engineering_package(package) or package["plan"].get("schema_version") not in {2, 3}:
             return None
         from .engineering_tasks import EngineeringTaskPlan
         plan = package["plan"]
