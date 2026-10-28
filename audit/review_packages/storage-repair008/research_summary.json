@@ -1,0 +1,111 @@
+{
+  "identity": {
+    "attempt_id": "95de031ff6a54c3fa1747fc44047cc4e",
+    "config_id": "9d464fb454afe9bd0b3826d2e22e6fe20f6f5948acc6c5985b09d89d3548a9b6",
+    "data_request_hash": "056f595b82292a35c54d72b372ea2f36afbc843a0c63d2f2dbc1d0825872960a",
+    "deployment_hash": "9dc37a07bd78de98d2f34f7e4ba0eaf29bd819e51aa44db5606816c17a503c33",
+    "plan_hash": "b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f",
+    "project_id": 38436695,
+    "source_manifest_hash": "60a42c12d0d195d7dc924e4520710c00ad960a92c606042e236d157be806c338",
+    "stage": "research"
+  },
+  "status": "completed",
+  "checks": {
+    "cache_only_consumer": true,
+    "collection_cache_only_replay": true,
+    "collection_nonempty": true,
+    "collection_windows_completed": true,
+    "coverage_observed_complete": true,
+    "development_only": true,
+    "final_request_rejected": true,
+    "raw_data_received": true,
+    "read_only_write_rejected": true,
+    "same_partition_ids": true,
+    "second_prefetch_no_history": true,
+    "source_snapshot_matches": true,
+    "symbol_registry_resolved": true
+  },
+  "statistics": {
+    "expected_formation_count": 250,
+    "history_calls_first": 0,
+    "history_calls_second": 0,
+    "record_count": 2510
+  },
+  "storage_preflight": {
+    "max_files": 1000,
+    "max_size_bytes": 52428800,
+    "remaining_bytes_after_reservation": 77264,
+    "remaining_files_after_reservation": 515,
+    "required_bytes": 65536,
+    "required_files": 8,
+    "reserve_bytes": 16384,
+    "reserve_files": 2,
+    "schema_version": 1,
+    "status": "sufficient",
+    "usage_method": "keys_file_stat",
+    "used_files": 475,
+    "used_size_bytes": 52269616
+  },
+  "collection_storage": {
+    "actual_availability_certified": false,
+    "data_identity_hash": "a91a84208a08613aec2e5d2ccd8cce0173d03678d2a43977d69b7d2bf66fb6c9",
+    "full_historical_US200_certified": false,
+    "mode": "verified_legacy",
+    "new_row_objects": false,
+    "origin_receipt_ref": {
+      "key": "engineering/occurrence-retention-normal004-v2/collection-probes/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/2d1095df62dc4222bffd8000c0737d38.json",
+      "sha256": "7c84c526080e50f39acdcaf0b884520cba6c8675d54ac34e4c3a012a5d5853ea"
+    },
+    "provider_calls": 0,
+    "requested_plan_hash": "713b8bb964acb1494d449ba47860a137bc22d3f24e98a623860295a41ec92bb8",
+    "reused_windows": 40,
+    "schema_version": 1,
+    "storage_plan_hash": "81d0fd54805d746e7ef6b9099b25ab858d8156c23207cbd69d1be1aec377ebe0",
+    "verified_window_count": 40
+  },
+  "collection_probe": {
+    "actual_availability_certified": false,
+    "cache_only_source_fetch_calls": 0,
+    "conflicting_projection_records": 0,
+    "duplicate_projection_records": 27,
+    "empty_windows": 13,
+    "financial_vintage_certified": false,
+    "full_historical_US200_certified": false,
+    "missing_values": {
+      "dollar_volume": 0,
+      "end_time": 0,
+      "has_fundamental_data": 0,
+      "time": 0
+    },
+    "observation_policy": "retain_source_occurrences",
+    "plan_hash": "713b8bb964acb1494d449ba47860a137bc22d3f24e98a623860295a41ec92bb8",
+    "receipt_ref": {
+      "key": "engineering/storage-repair-normal008-v4/collection-probes/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/95de031ff6a54c3fa1747fc44047cc4e.json",
+      "sha256": "c40999c0e420345882370f3dbf0d4d4288d9700c359a3fc899dc13bbeb072206"
+    },
+    "record_count": 208223,
+    "research_certified": false,
+    "reused_windows": 40,
+    "row_values_exported": false,
+    "schema_version": 2,
+    "source_fetch_calls": 0,
+    "window_count": 40
+  },
+  "deployment_verification": {
+    "canonical_sources_verified": true,
+    "declared_file_count": 43,
+    "deployment_hash": "9dc37a07bd78de98d2f34f7e4ba0eaf29bd819e51aa44db5606816c17a503c33",
+    "eof_normalized_file_count": 0,
+    "original_source_identity_match": true,
+    "schema_version": 1,
+    "source_identity_policy": "utf8_sig_universal_newlines_terminal_lf_v1",
+    "verification_mode": "worker_terminal_lf",
+    "verified_file_count": 43
+  },
+  "report_ref": {
+    "key": "engineering/storage-repair-normal008-v4/reports/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/research/95de031ff6a54c3fa1747fc44047cc4e.json",
+    "sha256": "7b666da83c78b1575a2717527f8a3f49d6fe2564e187214c454d059244d09eb4"
+  },
+  "financial_evidence": false,
+  "final_test_enabled": false
+}
