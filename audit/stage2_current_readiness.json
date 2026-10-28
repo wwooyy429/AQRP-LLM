@@ -108,7 +108,8 @@
     "audit/wr28_correction.json",
     "audit/wr28_independent_closure.json",
     "audit/cloud_v2_rerun_report.json",
-    "audit/stage2_round005_report.json"
+    "audit/stage2_round005_report.json",
+    "audit/rootcause005_report.json"
   ],
   "market_research_enabled": false,
   "llm_runtime_enabled": false,
@@ -120,16 +121,15 @@
   "year2026_independence": "not_certified",
   "current_activity_scope": "Approved reserve configuration registered. One precharged Research cell ran and failed with native CollectionError. Dependent LEAN not claimed or submitted. Round closed without retries/refunds.",
   "root_cause_investigation": {
-    "finding_id": "RC003",
-    "report": "audit/rootcause003_report.json",
-    "status": "RC003_repaired_and_bounded_Research_complete_with_explicit_occurrence_retention",
-    "production_fix_applied": true,
-    "cloud_revalidated": true,
+    "finding_id": "RC005",
+    "report": "audit/rootcause005_report.json",
+    "status": "failed_window_localized_storage_capacity_leading_hypothesis_not_native_confirmed",
+    "actual_failed_window": "2018-01-04 to2018-01-05 America/New_York",
+    "storage_capacity_hypothesis_native_confirmed": false,
+    "production_fix_applied": false,
     "new_Research_executions": 0,
     "new_configuration_debits": 0,
-    "final_test_enabled": false,
-    "cloud_nonempty_repair_observation": true,
-    "cloud_revalidation_scope": "bounded_engineering_Research_only_not_full_US200_or_financial_certification"
+    "final_test_enabled": false
   },
   "known_open_developer_findings": [
     {
@@ -311,5 +311,21 @@
   },
   "cloud_runtime_source_identity_evidence_scope": "35 actual PROJECT readbacks match; Research reached collection but emitted no final deployment report; no new LEAN worker observation.",
   "current_activity_evidence": "audit/stage2_round005_report.json",
-  "new_configuration_capacity_remaining": 0
+  "new_configuration_capacity_remaining": 0,
+  "previous_RC003_investigation": {
+    "finding_id": "RC003",
+    "report": "audit/rootcause003_report.json",
+    "status": "RC003_repaired_and_bounded_Research_complete_with_explicit_occurrence_retention",
+    "production_fix_applied": true,
+    "cloud_revalidated": true,
+    "new_Research_executions": 0,
+    "new_configuration_debits": 0,
+    "final_test_enabled": false,
+    "cloud_nonempty_repair_observation": true,
+    "cloud_revalidation_scope": "bounded_engineering_Research_only_not_full_US200_or_financial_certification"
+  },
+  "configuration_reset_authorization": {
+    "status": "recorded_not_applied",
+    "record": "audit/review_packages/rootcause005/configuration_reset_authorization.json"
+  }
 }

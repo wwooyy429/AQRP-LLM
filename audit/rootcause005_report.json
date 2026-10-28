@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "kind": "round005_cloud_failure_investigation",
+  "status": "failed_window_localized_storage_capacity_leading_hypothesis_not_native_confirmed",
+  "investigated_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+  "prior_delivery_commit": "7678acce9b194989b9364f0488a7914b495f3a6c",
+  "attempt_id": "020326aa00434b639e5a73a405168a97",
+  "proven": {
+    "native_terminal": "failed_CollectionError",
+    "unfinished_window": {
+      "start": "2018-01-04T00:00:00-05:00",
+      "end_exclusive": "2018-01-05T00:00:00-05:00",
+      "timezone": "America/New_York",
+      "identity_hash": "7d192eebb9e271c7d420d00e7e11cc9f98d6482e4c62fd68e6bb9dc7d365deb5"
+    },
+    "first_three_window_manifests_listed": true,
+    "fourth_intent_present_manifest_not_found": true,
+    "Object_Store_UI_usage": "49.85 MB / 50 MB",
+    "new_plan_id_and_source_manifest_change_collection_cache_keys": true,
+    "generic_collector_error_hides_distinct_internal_failures": true
+  },
+  "leading_hypothesis": {
+    "cause": "Object Store capacity insufficient for an additional immutable snapshot batch",
+    "support": "Near-full storage, old snapshot cache plus new plan identity requiring new objects, failure in fourth collection window, matching synthetic rejected-save error.",
+    "native_storage_limit_exceeded_event_or_save_return_observed": false,
+    "exact_exception_and_failed_store_operation": "not_recovered",
+    "confidence_class": "strong_circumstantial_evidence_not_direct_native_confirmation"
+  },
+  "limitations": [
+    "UI capacity is a current rounded display, not historical exact byte capacity at the failed save.",
+    "Different synthetic internal faults have the same outer native error; fault injection does not identify the historical fault.",
+    "No actual batch payload, dataframe, market row or row-derived value was exported.",
+    "Read-notebook tool returned no cell outputs; no original kernel exception context was recovered."
+  ],
+  "synthetic_verification": {
+    "cases": 4,
+    "normal_records": 1002,
+    "normal_batch_sizes": [
+      214908,
+      671
+    ],
+    "sizes_are_synthetic_not_cloud_batch_sizes": true,
+    "result": "all_assertions_passed",
+    "command": "python -B audit/review_packages/rootcause005/collection_probe_mre.py"
+  },
+  "repair_priorities": [
+    "Capture closed-enum internal collection step/error class and value-free Object Store error category.",
+    "Preflight Object Store free bytes and files plus required reserve before issuing source fetches.",
+    "Separate validated data-cache identity from incidental plan labels and unrelated code changes; strictly version source/projection/serialization semantics and audit any migration.",
+    "Compress or deduplicate immutable data objects in QC Cloud with verified readback; retain historical references and unfinished intents.",
+    "After code review and a new registered bounded execution grant, rerun once only when space is sufficient."
+  ],
+  "not_performed": {
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "production_source_edits": 0,
+    "configuration_registration_or_budget_events": 0,
+    "storage_purchase_or_deletion": 0,
+    "final_test_access": 0
+  },
+  "budget_reset_authorization": "audit/review_packages/rootcause005/configuration_reset_authorization.json",
+  "effective_usage_unchanged": {
+    "configurations": 13,
+    "research": 16,
+    "lean": 2
+  },
+  "budget_and_exposure_guard_before": {
+    "audit/runtime/registry/events.jsonl": "b7ea9c1a46416b68b05110a1cb2452502e983c8d18a449ae3b673f780124d7b5",
+    "audit/runtime/registry/baseline.json": "2b2bf6fa52287ef27bfe171fd5c5400f35f7a321c6387d011f9dbcc896e7e81e",
+    "config/budget.json": "da2ab214555e12aaca13f9d9e62c8a304dac7c5a29fc261a8de6bc9c4bbc75cc",
+    "audit/data_exposure.json": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95"
+  },
+  "acceptance": {
+    "new_independent_GPT_Work_acceptance": false,
+    "phase2_accepted": false,
+    "financial_evidence": false,
+    "final_test_enabled": false
+  },
+  "official_sources": [
+    {
+      "url": "https://www.quantconnect.com/docs/v2/cloud-platform/object-store",
+      "scope": "Organization-shared Object Store with independent storage quota; current documented free50MB tier."
+    },
+    {
+      "url": "https://github.com/QuantConnect/Lean/blob/master/Engine/Storage/LocalObjectStore.cs",
+      "scope": "Public source supports false-return storage-limit path; not pinned to actual cloud build and not proof that this path fired."
+    }
+  ]
+}

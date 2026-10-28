@@ -2470,13 +2470,14 @@
     "independently_accepted": false
   },
   "root_cause_followup": {
-    "finding_id": "RC003",
-    "historical_report": "audit/rootcause003_report.json",
-    "latest_runtime_report": "audit/stage2_normal004_report.json",
-    "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
-    "status": "implemented_and_bounded_Research_metadata_supported_no_full_data_certification",
-    "independent_bounded_software_scope_passed": true,
-    "financial_evidence": false,
+    "finding_id": "RC005",
+    "report": "audit/rootcause005_report.json",
+    "status": "failed_window_localized_storage_capacity_leading_hypothesis_not_native_confirmed",
+    "actual_failed_window": "2018-01-04 to2018-01-05 America/New_York",
+    "storage_capacity_hypothesis_native_confirmed": false,
+    "production_fix_applied": false,
+    "new_Research_executions": 0,
+    "new_configuration_debits": 0,
     "final_test_enabled": false
   },
   "phase2_repair_followup": {
@@ -2748,5 +2749,19 @@
     }
   },
   "latest_independently_reviewed_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
-  "current_verification_instruction": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt"
+  "current_verification_instruction": "audit/review_packages/cloud-v2-rerun/approved_round005/GPT_WORK_REVIEW.txt",
+  "previous_RC003_followup": {
+    "finding_id": "RC003",
+    "historical_report": "audit/rootcause003_report.json",
+    "latest_runtime_report": "audit/stage2_normal004_report.json",
+    "latest_independent_report": "audit/reviews/20261028-4520fd1-recheck/evidence/formal_report.json",
+    "status": "implemented_and_bounded_Research_metadata_supported_no_full_data_certification",
+    "independent_bounded_software_scope_passed": true,
+    "financial_evidence": false,
+    "final_test_enabled": false
+  },
+  "configuration_reset_authorization": {
+    "status": "recorded_not_applied",
+    "record": "audit/review_packages/rootcause005/configuration_reset_authorization.json"
+  }
 }
