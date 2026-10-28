@@ -1,0 +1,25 @@
+test_collection_real_worker_parser_bridge_and_namespace (__main__.BridgeTests) ... ok
+test_collection_summary_mutants_stop_marker_parser_and_bridge (__main__.BridgeTests) ... ok
+test_engineering_research_to_lean_completion_exact_policy_summary (__main__.BridgeTests) ... ok
+test_engineering_summary_mutants_and_missing_admission_rejected (__main__.BridgeTests) ... ok
+test_freeze_preview_is_strict_and_never_registers (__main__.BridgeTests) ... ok
+test_local_and_first_prepare_stay_strict_while_worker_accepts (__main__.BridgeTests) ... ok
+test_new_dispatch_rechecks_original_source_before_any_dispatch_record (__main__.BridgeTests) ... ok
+test_project_is_exact_and_collection_input_opaque (__main__.BridgeTests) ... ok
+test_v1_admission_restore_and_strict_worker_preserved (__main__.BridgeTests) ... ERROR
+test_v2_native_rejection_uses_records_not_manifest_wrapper_keys (__main__.BridgeTests) ... ok
+
+======================================================================
+ERROR: test_v1_admission_restore_and_strict_worker_preserved (__main__.BridgeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\bridge_agent\independent_bridge.py", line 200, in test_v1_admission_restore_and_strict_worker_preserved
+    self.assertNotIn('deployment_verification',report(original['payload'])['cloud_report']['evidence'])
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\bridge_agent\independent_bridge.py", line 53, in report
+    d=dict(schema_version=1,identity=payload['identity'],status='completed',terminal=True,checks={k:True for k in payload['plan']['required_checks'][stage]},statistics=counts,evidence={})
+KeyError: 'required_checks'
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.142s
+
+FAILED (errors=1)

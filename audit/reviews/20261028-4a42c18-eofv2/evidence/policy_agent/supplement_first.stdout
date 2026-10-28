@@ -1,0 +1,24 @@
+{"methods": 3, "named_scenarios": 18, "failure_records": 0, "error_records": 1, "skipped": 0, "success": false, "source_raw_unchanged": true, "source_files": 6179, "seconds": 2.889999999999418}
+test_legacy_default_and_explicit_diagnostics_preserve_versions (__main__.Tests) ... ok
+test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints (__main__.Tests) ... ERROR
+test_v2_errors_keep_real_strict_hashes_not_canonical_hashes (__main__.Tests) ... ok
+
+======================================================================
+ERROR: test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints (__main__.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\policy_agent\diagnostic_supplement.py", line 38, in test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints
+    cases.append('legacy-unrestricted/'+label);root=self.root(label,raw);manifest={'a.py':H(raw)};digest=content_hash(manifest);self.assertEqual(verify_deployment(manifest,digest,source_root=root),digest);self.assertIsNone(verify_deployment_observation(manifest,digest,source_root=root))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\policy_agent\diagnostic_supplement.py", line 13, in root
+    q=O/'cases'/label;q.mkdir(parents=True,exist_ok=True);(q/'a.py').write_bytes(raw);return q
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1143, in write_bytes
+    with self.open(mode='wb') as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\policy_agent\\supplement_first\\cases\\nul\\a.py'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.065s
+
+FAILED (errors=1)
+

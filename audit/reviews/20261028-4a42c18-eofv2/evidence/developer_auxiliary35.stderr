@@ -1,0 +1,40 @@
+test_all_generated_inputs_excluded_from_v2 (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_ascii_cookie_cannot_bypass_validity (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_body_whitespace_comment_and_import_changes_stay_distinct (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_bom_cookie_conflict_cannot_be_stripped_away (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_casefold_paths_are_ambiguous_for_v2 (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_closed_lf_record_types_and_bounds (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_closed_manifest_version_and_policy (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_invalid_syntax_never_becomes_canonical (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_known_answer_v1_preserves_eof (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_lf_count_cannot_be_changed_without_source_digest (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_no_source_execution_during_validation (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_non_utf8_cookie_must_not_change_ast_interpretation (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_old_bom_crlf_identity_is_unchanged (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_path_traversal_and_controls_reject (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_source_record_sha_tamper_rejects (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_terminal_continuation_is_unsafe (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_v1_hash_retains_old_invalid_python_support (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_v2_resource_limits (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_v2_strict_local_rejects_worker_eof_variations (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_v2_worker_accepts_only_terminal_lf_variations (independent_boundaries.IndependentIdentityBoundaries) ... ok
+test_body_tamper_uses_static_redacted_v2_failure (independent_integration.IndependentIntegration) ... ok
+test_collection_bridge_uses_collection_admission_namespace_and_rejects_false_counts (independent_integration.IndependentIntegration) ... ok
+test_collection_generated_input_cannot_satisfy_engineering_input_hash (independent_integration.IndependentIntegration) ... ok
+test_engineering_bridge_requires_manifest_bound_success_summary (independent_integration.IndependentIntegration) ... ok
+test_entire_manifest_validates_before_first_read (independent_integration.IndependentIntegration) ... ok
+test_project_readback_remains_strict_for_v2 (independent_integration.IndependentIntegration) ... ok
+test_strict_local_mode_rejects_extra_eof_and_retains_static_diagnostic (independent_integration.IndependentIntegration) ... ok
+test_summary_count_and_mode_must_match_admitted_manifest (independent_integration.IndependentIntegration) ... ok
+test_summary_unknown_and_non_scalar_modes_fail_closed (independent_integration.IndependentIntegration) ... ok
+test_v1_cannot_claim_v2_summary (independent_integration.IndependentIntegration) ... ok
+test_v1_still_rejects_eof_with_controlled_schema2 (independent_integration.IndependentIntegration) ... ok
+test_v1_success_gains_no_new_summary (independent_integration.IndependentIntegration) ... ok
+test_v2_local_preflight_does_not_accept_worker_tolerance (independent_integration.IndependentIntegration) ... ok
+test_v2_native_compile_rejection_uses_inner_paths (independent_integration.IndependentIntegration) ... ok
+test_worker_normalization_summary_is_bounded_and_manifest_bound (independent_integration.IndependentIntegration) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.119s
+
+OK

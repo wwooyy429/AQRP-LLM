@@ -1,0 +1,225 @@
+{
+  "kind": "static_system_boundaries_not_stage_acceptance",
+  "stages": [
+    {
+      "id": 0,
+      "name": "contracts_and_scaffold",
+      "depends_on": [],
+      "deliverables": [
+        "StudySpec",
+        "AuditEvidence",
+        "stage_plan",
+        "repository_and_review_identity"
+      ],
+      "acceptance": [
+        "reject_incomplete_contracts",
+        "hash_semantic_changes",
+        "preserve_budget_and_exposure",
+        "independent_work_review"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "offline_calculation",
+      "depends_on": [
+        0
+      ],
+      "deliverables": [
+        "restricted_factor_core",
+        "execution_labels",
+        "fixed_model_protocol",
+        "known_answer_tests"
+      ],
+      "acceptance": [
+        "three_manual_factor_answers",
+        "three_manual_label_answers",
+        "future_and_missing_data_boundaries",
+        "independent_work_recomputation"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "quantconnect_integration",
+      "depends_on": [
+        1
+      ],
+      "deliverables": [
+        "single_task_adapter",
+        "historical_universe_ingestion",
+        "availability_coverage_audit"
+      ],
+      "acceptance": [
+        "small_real_data_fixture",
+        "minimal_completed_backtest",
+        "raw_and_adjustment_trace",
+        "failure_recovery",
+        "full_universe_coverage_is_separate_gate"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "research_evaluation",
+      "depends_on": [
+        2
+      ],
+      "deliverables": [
+        "registered_fixed_model",
+        "six_rolling_folds",
+        "matched_labels",
+        "research_report"
+      ],
+      "acceptance": [
+        "independent_metric_recomputation",
+        "training_only_fitting",
+        "label_maturity",
+        "candidate_baseline_sample_match"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "portfolio_and_execution",
+      "depends_on": [
+        3
+      ],
+      "deliverables": [
+        "generic_LEAN_trading_adapter",
+        "explicit_cost_fill_risk",
+        "portfolio_ledger",
+        "parity_and_stress_report"
+      ],
+      "acceptance": [
+        "field_factor_signal_order_position_trace",
+        "net_value_and_cost_reconciliation",
+        "same_frozen_calculation",
+        "stress_and_incremental_tests"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "bounded_llm_loop",
+      "depends_on": [
+        4
+      ],
+      "deliverables": [
+        "llm_adapter",
+        "proposal_gateway",
+        "workflow_controller",
+        "development_memory"
+      ],
+      "acceptance": [
+        "reject_invalid_fields_and_future_inputs",
+        "duplicate_does_not_resubmit",
+        "budget_enforced_before_execution",
+        "bounded_repairs_and_no_test_feedback"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "restricted_search",
+      "depends_on": [
+        5
+      ],
+      "deliverables": [
+        "comparison_matrix",
+        "complexity_and_similarity_checks",
+        "ablation",
+        "selection_bias_diagnostics"
+      ],
+      "acceptance": [
+        "all_trials_recorded",
+        "fixed_model_then_fixed_factors",
+        "net_portfolio_increment",
+        "validation_reuse_accounted"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "freeze_and_forward",
+      "depends_on": [
+        6
+      ],
+      "deliverables": [
+        "release_bundle",
+        "independent_final_executor",
+        "forward_simulator",
+        "monitoring_and_rollback",
+        "round_conclusion"
+      ],
+      "acceptance": [
+        "complete_freeze",
+        "annual_refit_and_tail_rules",
+        "no_final_feedback",
+        "preserve_prior_exposure",
+        "pass_or_fail_or_insufficient_evidence"
+      ]
+    }
+  ],
+  "source_stage_plan_equals_baseline": true,
+  "declared_execution": {
+    "market_research_enabled": false,
+    "llm_runtime_enabled": false,
+    "final_test_enabled": false,
+    "live_trading_enabled": false,
+    "llm_provider": "GPT",
+    "llm_model": null,
+    "llm_call_limit": null,
+    "llm_spend_limit_usd": null,
+    "missing_settings_policy": "Stop the affected stage; do not infer credentials, budget, costs or financial design."
+  },
+  "engineering_source_catalog_fields": 15,
+  "financial_numeric_catalog_count": 0,
+  "catalog_all_certification_flags_false": true,
+  "certification_computation_kernel_implemented": true,
+  "canonical_certification_CLI_metadata_only": true,
+  "active_factor_fields": [],
+  "research_status": "generic_design_no_registered_factor",
+  "exposure": {
+    "schema_version": 1,
+    "record_date": "2026-10-26",
+    "factor_specific_sources_and_results_retained": false,
+    "records": [
+      {
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "exposure": "prior research screening and direction decisions",
+        "independent_test_eligible": false
+      },
+      {
+        "start": "2016-01-01",
+        "end": "2016-12-31",
+        "exposure": "technical data-clock/schema fixtures; no new-factor performance",
+        "independence_claim": false
+      },
+      {
+        "start": "2020-08-27",
+        "end": "2020-09-03",
+        "exposure": "technical corporate-action fixture; no new-factor performance",
+        "independence_claim": false
+      },
+      {
+        "start": "2018-01-01",
+        "end": "2018-12-31",
+        "exposure": "Two-symbol shared-cache and calendar engineering fixture; no economic factor, return or IC computed",
+        "independence_claim": false
+      }
+    ],
+    "requested_final_window": "2024-01-01/2026-10-23",
+    "whole_window_uncontaminated": false,
+    "year2026_independence": "requires independent review",
+    "note": "Deleting old files cannot erase prior research exposure; this minimal fact ledger contains no old factor formulas, parameters or performance."
+  },
+  "economic_validation": "not_performed",
+  "full_stage2": "not_accepted",
+  "stages3_to7": "unaccepted; generic calculation/controller/similarity/freeze primitives do not prove complete financial runtime",
+  "static_adds_unit_methods": 0,
+  "precise_refs": [
+    "config/development.json:10",
+    "config/development.json:23",
+    "config/data.json:54",
+    "config/source_catalog.json:5",
+    "tools/data_certification.py:16",
+    "tools/data_certification.py:30",
+    "cloud/qresearch/data_certification.py:411",
+    "audit/data_exposure.json:32"
+  ]
+}

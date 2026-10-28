@@ -1,0 +1,46 @@
+{
+  "kind": "independent_wr28_audit_only_acceptance_plan",
+  "status": "prepared_waiting_for_new_checker",
+  "immutable_references": {
+    "old_candidate": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "protected_baseline": "8d65c290773547c83549c098172f1eb8c3376cd7",
+    "old_archive": "1cf26578da59eebd37e138ca5d6d076991386470",
+    "original_failed_runtime": "662ccd876b67ca0949f921a53c4c33df37cfbbf1"
+  },
+  "preserve": [
+    "Original published mixed-CRLF/LF protected_before.json and old failure stderr/result",
+    "All 122 protected actual Git files and baseline/candidate/archive raw-byte equality",
+    "All production cloud/tools/config/tests files and prior immutable deployment/admission manifests",
+    "Budget totals, 48-event journal, original failed LEAN status, prior exposure facts and disabled final test"
+  ],
+  "required_fix_properties": [
+    "New audit-only raw-byte manifest comes from immutable baseline Git objects, not working-tree reads",
+    "Baseline commit/tree and per-file Git blob OID, raw SHA256 and byte size have explicit provenance",
+    "Raw means exact Git blob bytes: no UTF8 BOM removal, CRLF/universal-newline transformation or terminal-LF normalization",
+    "The protected path set remains exactly the old 122 paths; do not omit mismatching files",
+    "Original bad declaration remains preserved and is explicitly superseded rather than silently rewritten as historical truth",
+    "Portable original-runtime frozen-source evidence is included and pinned to immutable commit/path/blob/rawSHA/size",
+    "No-Git execution reads that pinned portable evidence and fails on missing/corrupt evidence; never silently falls back to current source or normalized bytes",
+    "Checker verifies relevant package manifest/provenance identities and performs protected raw-byte checks before and after reconciliation"
+  ],
+  "end_to_end_cases": [
+    {"id": "old-clean-export", "expected": "Old checker exits nonzero with original protected hash failure; exactly 119/122 declarations match immutable raw Git bytes"},
+    {"id": "old-no-git-dependency", "expected": "A direct original frozen git-show lookup in a no-Git export exits nonzero; disclose this separately from WR28 first-failure result"},
+    {"id": "new-fresh-raw-export", "expected": "Export the exact new audit-fix commit via git archive into a separate temporary directory with no .git; run unmodified new checker using its documented command and obtain success"},
+    {"id": "new-second-independent-export", "expected": "Repeat the same documented command from a second independently generated raw Git export, not a reused developer working tree"},
+    {"id": "new-LF-checkout", "expected": "Use an independent local clone with core.autocrlf=false and committed gitattributes; checkout exact new commit, verify raw file bytes and run unmodified new checker successfully"},
+    {"id": "three-single-byte-tampers", "paths": ["audit/data_exposure.json", "config/research.json", "config/workflow.json"], "expected": "For each path mutate one byte only in temporary export; checker must exit nonzero; restore exact original bytes between cases"},
+    {"id": "three-LF-to-CRLF-tampers", "paths": ["audit/data_exposure.json", "config/research.json", "config/workflow.json"], "expected": "For each known LF-only raw file replace LF by CRLF in temporary export; checker must exit nonzero even though JSON semantic content is unchanged"},
+    {"id": "budget-journal-byte-tamper", "path": "audit/runtime/registry/events.jsonl", "expected": "One-byte mutation is rejected before it can be mistaken for valid original budget evidence"},
+    {"id": "portable-evidence-tamper-and-removal", "expected": "Mutated/missing frozen runtime evidence fails; absence of .git cannot trigger a current-source or normalization fallback"},
+    {"id": "manifest-provenance-tamper", "expected": "Malformed/corrupt new raw manifest or provenance fails under the documented integrity contract"},
+    {"id": "readonly-side-effects", "expected": "The successful and rejected checker runs do not alter export protected bytes; main production/config/budget/protected bytes remain unchanged; no pycache under -B"}
+  ],
+  "counting": "Report commands/processes and negative scenarios separately; do not add overlapping checker assertions into a grand test total",
+  "not_covered": [
+    "No new cloud worker run, project operations, Research or LEAN submission",
+    "No market-data coverage/vintage/delivery/ingestion certification",
+    "No financial factor validity or full Phase 2 acceptance",
+    "No expansion of the existing EOF-v2 source equivalence policy"
+  ]
+}

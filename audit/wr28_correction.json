@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "WR28_audit_only_raw_Git_delivery_correction",
+  "parent_materials_commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+  "unchanged_production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "unchanged_production_source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+  "original_independent_review": {
+    "review_id": "AQRP-20261028-4A42C18-EOFV2-23",
+    "path": "audit/reviews/20261028-4a42c18-eofv2/evidence/formal_report.json",
+    "reviewed_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "tested_EOF_v2_functional_scope": "passed",
+    "candidate_delivery": "failed_WR28_P2",
+    "stage2_accepted": false
+  },
+  "status": "developer_targeted_fix_passed_clean_Git_replay_pending_independent_recheck",
+  "WR28_independently_closed": false,
+  "new_delivery_fix_commit": null,
+  "old_erroneous_manifest_preserved": {
+    "path": "audit/review_packages/deployment-eof-v2/protected_before.json",
+    "sha256": "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677",
+    "matched_raw_Git_files": 119,
+    "declared_files": 122,
+    "mismatched_paths": [
+      "audit/data_exposure.json",
+      "config/research.json",
+      "config/workflow.json"
+    ]
+  },
+  "corrected_manifest": {
+    "path": "audit/review_packages/deployment-eof-v2/protected_git_baseline.json",
+    "sha256": "1e0ddb39688b767bc798964c75598a254aa92a6b90ad2afc2290d17759839155",
+    "identity_policy": "sha256_and_git_sha1_blob_on_raw_bytes_v1",
+    "git_snapshots": {
+      "baseline": {
+        "commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+        "tree": "884e1275aa938336624761880b82b13809653353"
+      },
+      "candidate": {
+        "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "tree": "2ae4560b47f469feacf49cc7171b23a7dc575266"
+      },
+      "materials": {
+        "commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+        "tree": "aca57cf7928428ce8da0cd41e5edb47a53fe79fb"
+      }
+    },
+    "protected_file_count": 122,
+    "source_bytes": "immutable_Git_cat_file_blob_bytes_not_worktree",
+    "newline_normalization_at_verification": false
+  },
+  "old_local_result_scope_correction": "Original reconciliation_result is retained. It showed the original local worktree was unchanged; its clean Git delivery implication was false under WR28.",
+  "portable_replay": {
+    "path": "audit/review_packages/deployment-eof-v2/fixtures/engineering_smoke_662ccd.py",
+    "origin_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "origin_path": "cloud/engineering_smoke.py",
+    "bytes": 3561,
+    "sha256": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+    "role": "version_controlled_source_known_answer_synthetic_replay",
+    "worker_file_observation": false
+  },
+  "validation": {
+    "developer_unit_tests": {
+      "kind": "developer_audit_protection_boundary_tests",
+      "command": [
+        "python",
+        "-B",
+        "audit/review_packages/wr28/test_git_protection.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 45.893,
+      "unittest_count": 11,
+      "passed": true,
+      "protected_main_files": 287,
+      "main_original_raw_bytes_unchanged": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2c689f3a6abbccee3cec0d6f7c8473bd4313de192edb7b6f2f84ac03a79b1af1",
+      "new_QC_calls": 0,
+      "new_budget_debits": 0,
+      "GPT_Work_independent_acceptance": false,
+      "financial_evidence": false
+    },
+    "clean_Git_end_to_end": "pending_fixed_commit_execution",
+    "official_full_offline_verify": "pending_in_fixed_commit_LF_checkout",
+    "main_protected_production_and_history_files_raw_unchanged": 287,
+    "count_populations_overlap_and_are_not_financial_samples": true
+  },
+  "original_independent_archive": {
+    "directory": "audit/reviews/20261028-4a42c18-eofv2",
+    "original_ZIP_sha256": "e7f32eba7ccebcd6f833a9954b5ca13f50ec1a762497c59ae5f8a7a93fcc1910",
+    "duplicated_source_trees_omitted_from_Git": 3
+  },
+  "budget": {
+    "usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    },
+    "limits": {
+      "configurations": 12,
+      "research": 20,
+      "lean": 16
+    },
+    "events": 48,
+    "engineering_round": "closed",
+    "new_configuration_registrations": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_cloud_calls": 0,
+    "refunds": 0
+  },
+  "stage2_accepted": false,
+  "new_independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified"
+}

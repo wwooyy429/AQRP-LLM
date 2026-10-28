@@ -1,0 +1,13 @@
+WR-28 更正说明：原 protected_before.json 和 reconciliation_result.json 保持原字节。
+
+独立复验 AQRP-20261028-4A42C18-EOFV2-23 确认：原清单的三个值取自本地CRLF工作树，固定Git原文使用LF，因此原命令在干净Git交付上119/122匹配并失败。122份实际受保护文件在8d65c29、4a42c18和1cf2657三个Git树中均相同。原结果只支持当时本地工作树前后未变，不支持原先声明的干净Git交付复验通过。
+
+新 protected_git_baseline.json 独立取自固定Git基线8d65c290773547c83549c098172f1eb8c3376cd7原始blob，核对候选4a42c18及原资料1cf2657同122项一致，并记录SHA256、Git blob编号、字节数和原错误声明。校验读取导出文件原字节，不转换换行。单字节、BOM、LF到CRLF差异均应拒绝。
+
+build_git_protection.py只从本地不可变Git对象生成该新清单，已有不同输出会拒绝覆盖。verify_candidate.py使用新清单，同时固定旧声明原字节作为来源。旧checker、旧artifact_manifest及原成功摘要已原样保存于audit/review_packages/wr28/originals；独立原失败日志在audit/reviews/20261028-4a42c18-eofv2/evidence中。
+
+fixtures/engineering_smoke_662ccd.py是从662ccd876b67ca0949f921a53c4c33df37cfbbf1的cloud/engineering_smoke.py导出的3561字节版本控制源码，SHA256为33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90。它只用于已知答案合成重放，未被声称为新取回的worker文件。这样运行检查不再需要.git目录；构建来源清单仍明确需要本地Git对象。
+
+主工作树仍保留原有文件字节，可能含CRLF，不能用其替代Git原字节交付。用新的audit/review_packages/wr28/verify_wr28_end_to_end.py对固定新提交建立两份独立raw Git导出和一份LF检出并原样复验，结果另行保存，禁止覆盖旧证据。
+
+本次仅修审计交付，不修改cloud/config/tools/tests/docs生产源码，不登记配置或执行云端任务。预算12/12、15/20、2/16，48个事件与原failed任务、数据暴露事实、最终测试关闭状态保留。WR-28需新的独立复验才能关闭；阶段2整体仍未验收。

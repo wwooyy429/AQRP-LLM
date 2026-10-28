@@ -6,13 +6,13 @@ Run on the fixed review checkout with its original protected audit artifacts.
 from hashlib import sha256
 import json
 from pathlib import Path
-import subprocess
 import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[3]
 PACKAGE = Path(__file__).resolve().parent
 sys.dont_write_bytecode = True
+from git_protection import load_manifest, verify_export, read_replay_fixture
 sys.path[:0] = [str(ROOT / "cloud"), str(ROOT / "tools")]
 from qresearch.artifacts import FilesystemArtifactStore, content_hash
 from qresearch.deployment_sources import build_manifest, parse_manifest
@@ -24,9 +24,9 @@ import stage2
 
 
 def verify():
-    protected = json.loads((PACKAGE / "protected_before.json").read_text())
-    for name, digest in protected.items():
-        assert sha256((ROOT / name).read_bytes()).hexdigest() == digest, name
+    protected_raw = (PACKAGE / "protected_before.json").read_bytes()
+    protected = load_manifest((PACKAGE / "protected_git_baseline.json").read_bytes(), protected_raw)
+    protection = verify_export(ROOT, protected, protected_raw)
     store = FilesystemArtifactStore(ROOT / "audit/runtime")
     baseline = json.loads(store.read_bytes("registry/baseline.json"))
     registry = Registry(store, baseline)
@@ -45,7 +45,9 @@ def verify():
     assert sha256(packet_raw).hexdigest() == "61d3578b184d8667e73a53b2cdbfabc5c83570b6a652b17c554a9f076b92d497"
     native = backtest_runtime_failure(payload, deployment, "3e68866a46ca88ff16481c31b3c2c822", json.loads(packet_raw))
     assert native["platform"]["status"] == "runtime_error" and native["platform"]["terminal"] is True
-    frozen = subprocess.check_output(["git", "show", "662ccd876b67ca0949f921a53c4c33df37cfbbf1:cloud/engineering_smoke.py"], cwd=ROOT)
+    # A fixed, version-controlled source fixture enables .git-free replay. This
+    # is the archived 662ccd source, not a fresh or recovered worker-file read.
+    frozen = read_replay_fixture(ROOT)
     assert sha256(frozen).hexdigest() == "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90"
     assert sha256(frozen + b"\n").hexdigest() == "5b7111b3806c2f4a8f93b85ffb8a54fa63cebdefb126bcc449c6020b95d3c4e5"
     legacy = {"engineering_smoke.py": sha256(frozen).hexdigest()}
@@ -76,14 +78,16 @@ def verify():
             pass
         else:
             raise AssertionError("Body change was accepted")
-    for name, digest in protected.items():
-        assert sha256((ROOT / name).read_bytes()).hexdigest() == digest, name
+    assert verify_export(ROOT, protected, protected_raw) == protection
     return {"kind": "readonly_candidate_reconciliation_and_one_file_local_replay",
-        "protected_files_unchanged": len(protected), "registry_events": 48,
+        "protected_files_unchanged": protection["protected_git_blobs_verified"], "registry_events": 48,
+        "protected_git_baseline": protection,
         "global_usage": {name: value["total"] for name, value in snapshot["usage"].items()},
         "actual_original_LEAN_status": "runtime_error", "original_ledger_status": "failed",
         "legacy_manifest_version": 1, "original_input_retained": True,
         "synthetic_v2_one_LF_replay": "passed", "synthetic_local_strict_rejection": "passed",
+        "replay_source": "pinned_662ccd_version_controlled_source_fixture",
+        "replay_is_worker_file_observation": False,
         "synthetic_body_rejection": "passed", "actual_new_cloud_run": False,
         "cloud_calls": 0, "new_configurations": 0, "Research_executions": 0, "LEAN_submissions": 0,
         "stage2_accepted": False, "financial_evidence": False, "final_test_enabled": False}

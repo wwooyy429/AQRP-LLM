@@ -1,0 +1,5 @@
+Transcript of the first real tool execution, not a simulated product failure.
+Command: python.exe -B verify_static_identity.py
+Exit code:1
+SyntaxError at line25: expected 'else' after 'if' expression
+Reviewer typo joined the else keyword and integer literal as else1. Product code was never imported or executed in that initial static-check attempt. First script retained as verify_static_identity_first.py; correction inserts one space.
