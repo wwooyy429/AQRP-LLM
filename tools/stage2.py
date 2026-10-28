@@ -26,6 +26,22 @@ def _write(path, document):
     write_changed(path, json.dumps(document, ensure_ascii=False, indent=2) + "\n")
 
 
+def _source_size_preflight(sources):
+    """Check an explicit observed platform limit, without changing old inputs."""
+    path = ROOT / "config" / "quantconnect.json"
+    configuration = read_json(path) if path.exists() else {}
+    if "native_source_file_limit" not in configuration:
+        return None
+    policy = configuration["native_source_file_limit"]
+    if (type(policy) is not dict or type(policy.get("schema_version")) is not int
+            or policy["schema_version"] != 1
+            or type(policy.get("project_id")) is not int
+            or policy["project_id"] != configuration.get("active_project_id")):
+        raise ValueError("Observed source limit must belong to the selected project")
+    from qresearch.source_limits import validate_source_sizes
+    return validate_source_sizes(sources, max_file_characters=policy.get("max_file_characters"))
+
+
 def local_deployment_preflight(*, expected_hash=None):
     """Check the declared build against physical local sources before writing.
 
@@ -48,6 +64,8 @@ def local_deployment_preflight(*, expected_hash=None):
                 and path.relative_to(ROOT / "cloud").as_posix() not in generated}
     if observed != set(records):
         raise ValueError("The complete managed local Python set differs from the frozen deployment")
+    _source_size_preflight({name: (ROOT / "cloud" / name).read_text(encoding="utf-8-sig")
+                            for name in records})
     return manifest
 
 
@@ -199,6 +217,7 @@ def _prepare_input(bridge, attempt):
     manifest = joint_preflight(bridge)
     payload["deployment_manifest"] = manifest
     text = "TASK_INPUT_JSON = " + repr(canonical_json(payload).decode()) + "\n"
+    _source_size_preflight({"_engineering_task_input.py": text})
     path = ROOT / "audit" / "task_inputs" / (attempt + ".py")
     if path.exists() and path.read_bytes() != text.encode("utf-8"):
         raise ValueError("Previously prepared engineering input bytes cannot change")
