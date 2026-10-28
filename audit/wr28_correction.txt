@@ -1,0 +1,10 @@
+WR-28审计交付修复已完成开发侧复验，等待独立重审；没有将原WR直接关闭。
+固定交付代码：2f5591e28c0748ac42caeae7bbf3977141d031cb
+生产源码仍固定4a42c18，cloud/config/tools/tests/docs/README.md与原资料1cf2657无改动。
+原错误保护清单、119/122失败及原成功摘要保留。新清单取固定8d65c29原始Git blob，核对三树122项相同，以SHA256、blobOID及字节数严格检验，不转换换行。
+两份无.git干净Git导出、一份正常LF检出原样通过；10个篡改/缺证据负例均拒绝，共13个checker进程。
+11项audit边界检查通过；LF检出两次build幂等且原字节不变；官方python -B tools/stages.py verify实跑825项合成测试通过。不同计数不可相加为独立金融样本。
+主工作树287份生产/历史/预算/暴露文件原字节保持。原有CRLF不被改写，raw交付检查在Git原始导出/LF检出运行。
+原LEAN仍Runtime Error/failed，7项成功检查及实际订单数null；固定源码夹具仅作合成重放，不是worker文件实取。
+预算12/12、15/20、2/16及48事件保持；本轮无QC、Research、LEAN、模型API或供应商调用，无新登记/扣额/退款。阶段2整体未验收，最终测试关闭。
+独立重审指令：audit/review_packages/wr28/GPT_WORK_REVIEW.txt。

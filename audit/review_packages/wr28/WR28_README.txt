@@ -11,8 +11,8 @@ python -B audit/review_packages/deployment-eof-v2/build_git_protection.py --repo
 python -B audit/review_packages/wr28/test_git_protection.py -q
 
 固定新交付提交完成后，运行两个独立raw Git导出、一份LF检出、13个正反端到端检查、两次幂等build及官方825仓库合成测试：
-python -B audit/review_packages/wr28/verify_wr28_end_to_end.py --commit <固定40位新交付提交> --evidence-dir <新的空结果目录> --full-verify
+python -B audit/review_packages/wr28/verify_wr28_end_to_end.py --commit 2f5591e28c0748ac42caeae7bbf3977141d031cb --evidence-dir <新的空结果目录> --full-verify
 
 结果目录不得覆盖已有证据。临时源码导出自动清理，Git仅保存小型结果/日志，不重复保存完整源码树。生产cloud/config/tools/tests/docs源码、原权威预算/任务/数据暴露记录不变。
 
-当前仅11项开发方原始Git边界检查通过；完整新提交干净交付检查等待记录。WR-28仍待独立复验，阶段2整体未验收。预算12/12、15/20、2/16及48事件保持；无QC、Research、LEAN、模型、供应商调用或新增登记/扣费/退款。原LEAN仍Runtime Error/failed，七项成功检查及订单数null。正式研究、自动GPT、交易、最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。
+固定交付提交2f5591e28c0748ac42caeae7bbf3977141d031cb已通过11项audit边界检查、两份raw Git导出/一份LF检出、10个负例及官方825项合成回归；两次build幂等，原字节均保持。完整结果见fixed_commit_validation/new_checker_end_to_end_result.json。WR-28仍待独立复验，阶段2整体未验收。预算12/12、15/20、2/16及48事件保持；无QC、Research、LEAN、模型、供应商调用或新增登记/扣费/退款。原LEAN仍Runtime Error/failed，七项成功检查及订单数null。正式研究、自动GPT、交易、最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。

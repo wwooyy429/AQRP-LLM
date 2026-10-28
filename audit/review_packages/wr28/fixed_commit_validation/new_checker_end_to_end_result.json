@@ -1,0 +1,283 @@
+{
+  "kind": "developer_auxiliary_wr28_audit_only_end_to_end",
+  "reviewed_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "execution_environment": {
+    "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "win32",
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "cases": [
+    {
+      "case": "clean_export_1",
+      "exit_code": 0,
+      "expected_success": true,
+      "result_matches_expected": true,
+      "stdout_sha256": "79722fde0420d86c604e43ed564050c24c740529bff30818ee72e1763000a8f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checker_result": {
+        "LEAN_submissions": 0,
+        "Research_executions": 0,
+        "actual_new_cloud_run": false,
+        "actual_original_LEAN_status": "runtime_error",
+        "cloud_calls": 0,
+        "final_test_enabled": false,
+        "financial_evidence": false,
+        "global_usage": {
+          "configurations": 12,
+          "lean": 2,
+          "research": 15
+        },
+        "kind": "readonly_candidate_reconciliation_and_one_file_local_replay",
+        "legacy_manifest_version": 1,
+        "new_configurations": 0,
+        "original_input_retained": true,
+        "original_ledger_status": "failed",
+        "protected_files_unchanged": 122,
+        "protected_git_baseline": {
+          "baseline_commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+          "identity_policy": "sha256_and_git_sha1_blob_on_raw_bytes_v1",
+          "legacy_declarations_rewritten": false,
+          "legacy_declarations_source_sha256": "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677",
+          "legacy_declared_vs_git_blob_mismatch_count": 3,
+          "protected_git_blobs_verified": 122
+        },
+        "registry_events": 48,
+        "replay_is_worker_file_observation": false,
+        "replay_source": "pinned_662ccd_version_controlled_source_fixture",
+        "stage2_accepted": false,
+        "synthetic_body_rejection": "passed",
+        "synthetic_local_strict_rejection": "passed",
+        "synthetic_v2_one_LF_replay": "passed"
+      }
+    },
+    {
+      "case": "clean_export_2",
+      "exit_code": 0,
+      "expected_success": true,
+      "result_matches_expected": true,
+      "stdout_sha256": "79722fde0420d86c604e43ed564050c24c740529bff30818ee72e1763000a8f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checker_result": {
+        "LEAN_submissions": 0,
+        "Research_executions": 0,
+        "actual_new_cloud_run": false,
+        "actual_original_LEAN_status": "runtime_error",
+        "cloud_calls": 0,
+        "final_test_enabled": false,
+        "financial_evidence": false,
+        "global_usage": {
+          "configurations": 12,
+          "lean": 2,
+          "research": 15
+        },
+        "kind": "readonly_candidate_reconciliation_and_one_file_local_replay",
+        "legacy_manifest_version": 1,
+        "new_configurations": 0,
+        "original_input_retained": true,
+        "original_ledger_status": "failed",
+        "protected_files_unchanged": 122,
+        "protected_git_baseline": {
+          "baseline_commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+          "identity_policy": "sha256_and_git_sha1_blob_on_raw_bytes_v1",
+          "legacy_declarations_rewritten": false,
+          "legacy_declarations_source_sha256": "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677",
+          "legacy_declared_vs_git_blob_mismatch_count": 3,
+          "protected_git_blobs_verified": 122
+        },
+        "registry_events": 48,
+        "replay_is_worker_file_observation": false,
+        "replay_source": "pinned_662ccd_version_controlled_source_fixture",
+        "stage2_accepted": false,
+        "synthetic_body_rejection": "passed",
+        "synthetic_local_strict_rejection": "passed",
+        "synthetic_v2_one_LF_replay": "passed"
+      }
+    },
+    {
+      "case": "single_byte_audit_data_exposure_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "lf_to_crlf_audit_data_exposure_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "single_byte_config_research_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "lf_to_crlf_config_research_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "single_byte_config_workflow_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "lf_to_crlf_config_workflow_json",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "budget_journal_single_byte",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "portable_fixture_eof_tamper",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "20895e59d0e8a7ea02fa10d1fb96ee43781bcfe40c1116c5c53e8c04f9ce5aab"
+    },
+    {
+      "case": "portable_fixture_missing",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "bf286f698161457d6b3ead850fa3648dd54f48e9ab6770d6937b0364c6594f0c"
+    },
+    {
+      "case": "manifest_expected_hash_tamper",
+      "exit_code": 1,
+      "expected_success": false,
+      "result_matches_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4703d9f24ab841e6d906cb376122d73d6b1e13dec7f0d9cc9db0fb7e5ed02afe"
+    },
+    {
+      "case": "independent_lf_checkout",
+      "exit_code": 0,
+      "expected_success": true,
+      "result_matches_expected": true,
+      "stdout_sha256": "79722fde0420d86c604e43ed564050c24c740529bff30818ee72e1763000a8f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "checker_result": {
+        "LEAN_submissions": 0,
+        "Research_executions": 0,
+        "actual_new_cloud_run": false,
+        "actual_original_LEAN_status": "runtime_error",
+        "cloud_calls": 0,
+        "final_test_enabled": false,
+        "financial_evidence": false,
+        "global_usage": {
+          "configurations": 12,
+          "lean": 2,
+          "research": 15
+        },
+        "kind": "readonly_candidate_reconciliation_and_one_file_local_replay",
+        "legacy_manifest_version": 1,
+        "new_configurations": 0,
+        "original_input_retained": true,
+        "original_ledger_status": "failed",
+        "protected_files_unchanged": 122,
+        "protected_git_baseline": {
+          "baseline_commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+          "identity_policy": "sha256_and_git_sha1_blob_on_raw_bytes_v1",
+          "legacy_declarations_rewritten": false,
+          "legacy_declarations_source_sha256": "26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677",
+          "legacy_declared_vs_git_blob_mismatch_count": 3,
+          "protected_git_blobs_verified": 122
+        },
+        "registry_events": 48,
+        "replay_is_worker_file_observation": false,
+        "replay_source": "pinned_662ccd_version_controlled_source_fixture",
+        "stage2_accepted": false,
+        "synthetic_body_rejection": "passed",
+        "synthetic_local_strict_rejection": "passed",
+        "synthetic_v2_one_LF_replay": "passed"
+      }
+    }
+  ],
+  "process_count": 13,
+  "success_cases": 3,
+  "negative_cases": 10,
+  "all_expected_outcomes_observed": true,
+  "main_source_config_tests_protected_bytes_unchanged": true,
+  "checker_protected_bytes_unchanged": true,
+  "protected_raw_bytes_equal_across_two_exports_and_lf_checkout": true,
+  "protected_file_count": 122,
+  "old_wrong_declarations_retained": true,
+  "full_offline_verification": {
+    "command": "python -B tools/stages.py verify",
+    "execution_directory": "independent disposable LF checkout",
+    "exit_code": 0,
+    "local_tests_passed": true,
+    "reported_test_count": 825,
+    "source_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+    "builds": [
+      {
+        "sequence": 1,
+        "exit_code": 0,
+        "result": {
+          "config_changed": false,
+          "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+          "source_files": 34
+        },
+        "cloud_config_raw_bytes_unchanged": true,
+        "deployment_manifest_raw_bytes_unchanged": true,
+        "stdout_sha256": "1078fb90c4061c493bfd894b6811acb5e560982f86b3b0398b1201e257e8d7f1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "sequence": 2,
+        "exit_code": 0,
+        "result": {
+          "config_changed": false,
+          "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+          "source_files": 34
+        },
+        "cloud_config_raw_bytes_unchanged": true,
+        "deployment_manifest_raw_bytes_unchanged": true,
+        "stdout_sha256": "1078fb90c4061c493bfd894b6811acb5e560982f86b3b0398b1201e257e8d7f1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "builds_idempotent_and_raw_bytes_preserved": true,
+    "stdout_sha256": "2d240b407802cb29359297b0acaecd9c924ad80ed8fc13c86eeced7f23059f22",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "financial_evidence": false
+  },
+  "cloud_calls": 0,
+  "provider_calls": 0,
+  "budget_debits": 0,
+  "gpt_work_acceptance": false,
+  "phase_2_accepted": false,
+  "financial_evidence": false,
+  "passed": true
+}
