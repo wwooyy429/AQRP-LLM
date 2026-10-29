@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "actual_same_attempt_bound_production_stdio_invocation",
+  "argv": [
+    "tools/followup_host.py",
+    "serve",
+    "--enable-dispatch",
+    "--host-factory",
+    "audit.review_packages.live009.host_factory:create_host"
+  ],
+  "message": {
+    "command": "wake",
+    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2"
+  },
+  "exit_code": 0,
+  "stdout_original_base64": "eyJzY2hlbWFfdmVyc2lvbiI6IDEsICJ0eXBlIjogInN0YXR1cyIsICJhdHRlbXB0X2lkIjogIjExMTQ3ZmM1YTdhYzRmNmM5NTFhODZkMDIxZDA2OWIyIiwgImFjdGlvbiI6ICJhdHRlbnRpb25fcmVxdWlyZWQiLCAic2hvdWxkX2V4ZWN1dGUiOiBmYWxzZSwgImZhaWx1cmVfY29kZSI6ICJjb21wbGV0ZWRfcmVhZF9ub3RfYXV0aG9yaXplZCJ9DQo=",
+  "stderr_original_base64": "",
+  "factory_sha256": "34cf877688300fcb7ad90b31d868cfb70d705a27339e9729660465ed139fdefe",
+  "read_mode": "disabled",
+  "clock_override": false,
+  "new_execution_debits": 0,
+  "new_cloud_submissions": 0,
+  "outputs": [
+    {
+      "schema_version": 1,
+      "type": "status",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+      "action": "attention_required",
+      "should_execute": false,
+      "failure_code": "completed_read_not_authorized"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "kind": "actual_synthetic_historical_metadata_recovery_validation",
+  "runs": [
+    {
+      "name": "historical_recovery",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_historical_task_recovery.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "test_count": 10,
+      "reported_seconds": 1.67,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f30a951ec7b777da1b376336ec43da2ec2f1d12ee942769dacea54bc9781faf5",
+      "stdout_original": "historical_recovery.stdout.raw.base64",
+      "stderr_original": "historical_recovery.stderr.raw.base64"
+    },
+    {
+      "name": "storage_contract",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_collection_storage.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "test_count": 21,
+      "reported_seconds": 2.856,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ff5818464cac2b4d04479091a633c9c87a75ab119058b15e4f2ca1bdb89b0e69",
+      "stdout_original": "storage_contract.stdout.raw.base64",
+      "stderr_original": "storage_contract.stderr.raw.base64"
+    },
+    {
+      "name": "engineering_storage",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_engineering_storage.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "test_count": 11,
+      "reported_seconds": 6.153,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6b0be7baf5ae261278b8245f6763ea89c36b44ed7c752a2dda8b5adadfa8262a",
+      "stdout_original": "engineering_storage.stdout.raw.base64",
+      "stderr_original": "engineering_storage.stderr.raw.base64"
+    },
+    {
+      "name": "receipt_regression",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_engineering_receipts.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "test_count": 12,
+      "reported_seconds": 0.044,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "683255803ac11786c16efb0dde97c75dd85f5e7bf2b8e1698e24aa2520a2b38f",
+      "stdout_original": "receipt_regression.stdout.raw.base64",
+      "stderr_original": "receipt_regression.stderr.raw.base64"
+    },
+    {
+      "name": "registry_rounds",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_engineering_rounds.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "test_count": 12,
+      "reported_seconds": 1.228,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "edae4e7031259c994df04c334bdfb877e242b8494a0912edf78f8befb85b20a1",
+      "stdout_original": "registry_rounds.stdout.raw.base64",
+      "stderr_original": "registry_rounds.stderr.raw.base64"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "cloud/qresearch/collection_storage.py",
+      "sha256": "3f6ab1289fd83d404492439ca9ae5fe221ff3cfb27a22390b96b9f176215f769"
+    },
+    {
+      "path": "cloud/qresearch/engineering_storage.py",
+      "sha256": "38548b1399277337945bb77b86783fc23f2c7168b99880a312815fe9d86fb4c4"
+    },
+    {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "sha256": "78829323a2b5b748fdc9c6a76aa442cbcb1ea5d5120f974539dfab69e3b92597"
+    },
+    {
+      "path": "cloud/qresearch/engineering_receipts.py",
+      "sha256": "c70b158f8ed2d8f39637618c6e38bf8607a39a4cad33f44b5cd36ce4e9a50612"
+    },
+    {
+      "path": "cloud/qresearch/registry_engineering.py",
+      "sha256": "4c547f454b71846c1187ba1a02bc75c4598eb0e9e397b1e4b94940338dc8549c"
+    },
+    {
+      "path": "cloud/qresearch/task_followup.py",
+      "sha256": "5b1bce6f014f1759d28ebab17e683e1c2af628470c8758ed976752efd8bcbb52"
+    },
+    {
+      "path": "tools/stage2.py",
+      "sha256": "cf7a8bf35bef85f082a249121c0d1f10dd99a5fb691fc44cb96f97d53a9b1ce2"
+    },
+    {
+      "path": "tests/test_historical_task_recovery.py",
+      "sha256": "868bb8bb837c5eaf861cfca6a3bf466c1b433ef29b97d9bbd7a5b6e72dffd41d"
+    }
+  ],
+  "old_plan_hash": "6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b",
+  "old_processing_hash": "5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219",
+  "new_admission_remains_strict": true,
+  "historical_mode_is_not_a_JSON_field": true,
+  "test_registry_is_in_memory_copy_only": true,
+  "cloud_calls": 0,
+  "budget_mutations": 0,
+  "financial_certification": false,
+  "independent_acceptance": false,
+  "final_test_enabled": false
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "kind": "developer_synthetic_terminal_receipt_orchestrator_verification",
+  "started_at_utc": "2026-10-29T15:40:24.835197+00:00",
+  "finished_at_utc": "2026-10-29T15:40:28.731522+00:00",
+  "command": [
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_terminal_receipt_tasks.py",
+    "-q"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "exit_code": 0,
+  "test_count": 19,
+  "test_seconds": 2.196,
+  "source_raw_sha256": {
+    "cloud/qresearch/terminal_receipt_tasks.py": "a0ab5851e5462925f42351e1fb06514464dbfd944c62808b14c8e08db6c715db",
+    "tools/terminal_receipt_tasks.py": "45cbbd9b5606fc624c5fe9c338e9b8ff91e4faf6d4c3e7b066521c5a8b5a6017",
+    "tests/test_terminal_receipt_tasks.py": "cf619c5e4e2116b22a5a5bb387232a29038efded34bfa0b935f5655a9ec87c93",
+    "docs/terminal_receipts.md": "6a5284a5ff97c29e3d991b16811fbaf0f175fc97d9a995b713fccce0c4420eb4"
+  },
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "c4c5b517e658935554d04902e0e8b315d20d458effbeae676993cf77b78edfbd",
+  "original_outputs": [
+    "stdout.raw.base64",
+    "stderr.raw.base64"
+  ],
+  "actual_provider_or_QC_calls": 0,
+  "real_Registry_mutations": 0,
+  "execution_debits": 0,
+  "final_test_enabled": false,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "earlier_development_runs": [
+    {
+      "command": "python -B -m unittest discover -s tests -p test_terminal_receipt_tasks.py -q",
+      "test_count": 16,
+      "result": "failed_one_test_assertion",
+      "observed_seconds": 2.511,
+      "failure": "Test incorrectly treated the permitted exact log query as prohibited raw log data; its later cardinality assertion also expected6 rather than5 requests.",
+      "repair": "Assert absence of actual encoded chunk instead; expected discovery+terminal+two log pages+orders =5 requests.",
+      "classification": "test-only expectation correction",
+      "original_output_available": "original execution tool transcript only; no exact raw byte capture retained",
+      "original_output_base64_not_invented": true
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_terminal_receipt_tasks.py -q",
+      "test_count": 16,
+      "result": "passed",
+      "observed_seconds": 2.224,
+      "classification": "targeted synthetic rerun after test-only correction"
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_terminal_receipt_tasks.py -q",
+      "test_count": 17,
+      "result": "one_fixture_error",
+      "observed_seconds": 1.828,
+      "failure": "New bridge-settlement test changed external_id but retained old synthetic raw_receipt.backtestId; existing bridge correctly refused compile-only/inconsistent submission.",
+      "repair": "Bind both synthetic backtest identity fields consistently.",
+      "classification": "synthetic fixture correction",
+      "original_output_available": "original execution tool transcript only; no exact raw byte capture retained",
+      "original_output_base64_not_invented": true
+    },
+    {
+      "test_count": 17,
+      "result": "passed",
+      "observed_seconds": 1.746,
+      "classification": "targeted synthetic rerun after fixture correction"
+    },
+    {
+      "test_count": 17,
+      "result": "passed",
+      "observed_seconds": 1.703,
+      "classification": "defensive immutable context and response-copy boundary rerun"
+    },
+    {
+      "test_count": 18,
+      "result": "passed",
+      "observed_seconds": 2.442,
+      "classification": "updated genuine native runtime-failure path may settle without success log or zero-order proof; bounded unknown remains unresolved"
+    },
+    {
+      "test_count": 19,
+      "result": "passed",
+      "observed_seconds": 1.808,
+      "classification": "added known-answer same-attempt native failure settlement and no-debit/idempotency check"
+    }
+  ],
+  "implemented_boundaries": [
+    "trusted exact Python authority bound to immutable attempt/project/backtest/input context; no stdin or directory read grant",
+    "per-request durable at-most-once metadata reservation; crash/unknown does not redispatch",
+    "project discovery before reads, completed-success exact log pages/chunks and independent native empty order query",
+    "genuine parser-confirmed runtime failure is settleable without inventing logs/order success evidence",
+    "all native originals retained by cloud receipt_source, journals contain hashes and closed summaries only",
+    "reuses existing backtest_observation and existing same-attempt EngineeringTaskBridge settlement without extra charge"
+  ],
+  "remaining_limits": [
+    "No real production factory or receipt_source installed by this subtask",
+    "No real task, platform notice, native terminal or financial/data/billing acceptance demonstrated",
+    "Round close remains separate explicit operator action after unambiguous settlement"
+  ]
+}

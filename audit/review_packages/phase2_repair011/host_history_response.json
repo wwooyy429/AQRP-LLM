@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "kind": "actual_same_attempt_bound_production_stdio_invocation",
+  "argv": [
+    "tools/followup_host.py",
+    "serve",
+    "--enable-dispatch",
+    "--host-factory",
+    "audit.review_packages.live009.host_factory:create_host"
+  ],
+  "message": {
+    "command": "response",
+    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+    "correlation_id": "85d1ccaf290b4dca8306fa45fd61662f",
+    "tool_name": "mcp__quantconnect__list_backtests",
+    "arguments": {
+      "projectId": 38436695,
+      "page": 1
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"backtests\":[{\"backtestId\":\"6347a33efc37e761f486f982e804dbac\",\"status\":\"Runtime Error\",\"name\":\"AQRP Stage2 Host Integration 6a875a9e 11147fc5\",\"created\":\"2026-10-29 14:45:24\",\"progress\":1,\"tradeableDates\":0,\"snapshotId\":38623999,\"sharpeRatio\":0,\"alpha\":0,\"beta\":0,\"compoundingAnnualReturn\":0,\"drawdown\":0,\"lossRate\":0,\"netProfit\":0,\"parameters\":633,\"psr\":0,\"sortinoRatio\":null,\"trades\":0,\"treynorRatio\":0,\"winRate\":0},{\"backtestId\":\"8a45b6c62d55521033e9cc5b9b9d3950\",\"status\":\"Completed.\",\"name\":\"AQRP Stage2 CacheRef008 b1a4041c a03a7c76\",\"created\":\"2026-10-28 19:59:41\",\"progress\":1,\"tradeableDates\":250,\"snapshotId\":38591381,\"sharpeRatio\":0,\"alpha\":0,\"beta\":0,\"compoundingAnnualReturn\":0,\"drawdown\":0,\"lossRate\":0,\"netProfit\":0,\"parameters\":628,\"psr\":0,\"sortinoRatio\":null,\"trades\":0,\"treynorRatio\":0,\"winRate\":0},{\"backtestId\":\"3e68866a46ca88ff16481c31b3c2c822\",\"status\":\"Runtime Error\",\"name\":\"AQRP Stage2 Occurrence Reception 662ccd8 37dc8550\",\"created\":\"2026-10-27 19:45:49\",\"progress\":1,\"tradeableDates\":0,\"snapshotId\":38542289,\"sharpeRatio\":0,\"alpha\":0,\"beta\":0,\"compoundingAnnualReturn\":0,\"drawdown\":0,\"lossRate\":0,\"netProfit\":0,\"parameters\":464,\"psr\":0,\"sortinoRatio\":null,\"trades\":0,\"treynorRatio\":0,\"winRate\":0},{\"backtestId\":\"39cafa1e9b11f91b27e396b66d033a6d\",\"status\":\"Runtime Error\",\"name\":\"AQRP Stage2 Data Reception f5c08d0b bfd00f26\",\"created\":\"2026-10-26 04:30:52\",\"progress\":1,\"tradeableDates\":0,\"snapshotId\":38457775,\"sharpeRatio\":0,\"alpha\":0,\"beta\":0,\"compoundingAnnualReturn\":0,\"drawdown\":0,\"lossRate\":0,\"netProfit\":0,\"parameters\":304,\"psr\":0,\"sortinoRatio\":null,\"trades\":0,\"treynorRatio\":0,\"winRate\":0}],\"totalPages\":1}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "backtests": [
+          {
+            "backtestId": "6347a33efc37e761f486f982e804dbac",
+            "status": "Runtime Error",
+            "name": "AQRP Stage2 Host Integration 6a875a9e 11147fc5",
+            "created": "2026-10-29 14:45:24",
+            "progress": 1,
+            "tradeableDates": 0,
+            "snapshotId": 38623999,
+            "sharpeRatio": 0,
+            "alpha": 0,
+            "beta": 0,
+            "compoundingAnnualReturn": 0,
+            "drawdown": 0,
+            "lossRate": 0,
+            "netProfit": 0,
+            "parameters": 633,
+            "psr": 0,
+            "sortinoRatio": null,
+            "trades": 0,
+            "treynorRatio": 0,
+            "winRate": 0
+          },
+          {
+            "backtestId": "8a45b6c62d55521033e9cc5b9b9d3950",
+            "status": "Completed.",
+            "name": "AQRP Stage2 CacheRef008 b1a4041c a03a7c76",
+            "created": "2026-10-28 19:59:41",
+            "progress": 1,
+            "tradeableDates": 250,
+            "snapshotId": 38591381,
+            "sharpeRatio": 0,
+            "alpha": 0,
+            "beta": 0,
+            "compoundingAnnualReturn": 0,
+            "drawdown": 0,
+            "lossRate": 0,
+            "netProfit": 0,
+            "parameters": 628,
+            "psr": 0,
+            "sortinoRatio": null,
+            "trades": 0,
+            "treynorRatio": 0,
+            "winRate": 0
+          },
+          {
+            "backtestId": "3e68866a46ca88ff16481c31b3c2c822",
+            "status": "Runtime Error",
+            "name": "AQRP Stage2 Occurrence Reception 662ccd8 37dc8550",
+            "created": "2026-10-27 19:45:49",
+            "progress": 1,
+            "tradeableDates": 0,
+            "snapshotId": 38542289,
+            "sharpeRatio": 0,
+            "alpha": 0,
+            "beta": 0,
+            "compoundingAnnualReturn": 0,
+            "drawdown": 0,
+            "lossRate": 0,
+            "netProfit": 0,
+            "parameters": 464,
+            "psr": 0,
+            "sortinoRatio": null,
+            "trades": 0,
+            "treynorRatio": 0,
+            "winRate": 0
+          },
+          {
+            "backtestId": "39cafa1e9b11f91b27e396b66d033a6d",
+            "status": "Runtime Error",
+            "name": "AQRP Stage2 Data Reception f5c08d0b bfd00f26",
+            "created": "2026-10-26 04:30:52",
+            "progress": 1,
+            "tradeableDates": 0,
+            "snapshotId": 38457775,
+            "sharpeRatio": 0,
+            "alpha": 0,
+            "beta": 0,
+            "compoundingAnnualReturn": 0,
+            "drawdown": 0,
+            "lossRate": 0,
+            "netProfit": 0,
+            "parameters": 304,
+            "psr": 0,
+            "sortinoRatio": null,
+            "trades": 0,
+            "treynorRatio": 0,
+            "winRate": 0
+          }
+        ],
+        "totalPages": 1
+      },
+      "isError": false
+    }
+  },
+  "exit_code": 0,
+  "stdout_original_base64": "eyJzY2hlbWFfdmVyc2lvbiI6IDEsICJ0eXBlIjogInN0YXR1cyIsICJhdHRlbXB0X2lkIjogIjExMTQ3ZmM1YTdhYzRmNmM5NTFhODZkMDIxZDA2OWIyIiwgImFjdGlvbiI6ICJoaXN0b3J5X29ic2VydmVkIiwgInNob3VsZF9leGVjdXRlIjogZmFsc2V9DQo=",
+  "stderr_original_base64": "",
+  "factory_sha256": "34cf877688300fcb7ad90b31d868cfb70d705a27339e9729660465ed139fdefe",
+  "read_mode": "disabled",
+  "clock_override": false,
+  "new_execution_debits": 0,
+  "new_cloud_submissions": 0,
+  "outputs": [
+    {
+      "schema_version": 1,
+      "type": "status",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+      "action": "history_observed",
+      "should_execute": false
+    }
+  ]
+}

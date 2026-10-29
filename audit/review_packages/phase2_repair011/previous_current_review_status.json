@@ -1,0 +1,62 @@
+{
+  "schema_version": 4,
+  "latest_completed_review": "audit/review_results/wr29.json",
+  "latest_completed_verdict": "WR29_fixed_verified_closed_original_scope_only",
+  "latest_reviewed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+  "known_open_findings": [],
+  "closed_findings": [
+    {
+      "id": "WR-29",
+      "original_priority": "P1",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "original_file": "tools/followup_host.py",
+      "original_line": 469,
+      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+      "original_expected_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_actual_exits": [
+        0,
+        2,
+        2
+      ],
+      "fixed_actual_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_MRE_assertion_exit": 1,
+      "fixed_MRE_assertion_exit": 0,
+      "original_script_and_success_expectations_unchanged": true,
+      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+      "normal_path_and_strict_negative_paths_verified": true,
+      "not_granted": [
+        "倒改2d1d306原失败",
+        "生产factory/MCP调度/平台通知成功",
+        "完整回执收集或计费认证派发",
+        "完整阶段2、数据认证或金融有效性"
+      ]
+    }
+  ],
+  "software_acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "production_dispatch_enabled": true,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "metadata_archive_independently_accepted": false,
+  "production_dispatch_scope": "single user-authorized manual engineering round009; not unattended production research",
+  "automatic_production_loop_enabled": false,
+  "pending_review": {
+    "source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
+    "stable_execution_source_manifest_hash": "fe3df524e360fef6d74dc06559b553bd0005b9350c9f425855a4ec26ec4360c5",
+    "review_entry": "audit/review_packages/live009/GPT_WORK_REVIEW.md",
+    "status": "partial_engineering_evidence_only_pending_LEAN_and_certification",
+    "independent_acceptance": false
+  }
+}
