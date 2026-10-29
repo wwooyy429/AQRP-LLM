@@ -6,6 +6,8 @@
 
 `python -B tools/followup_host.py plan --attempt <32位原attempt>`默认返回`dispatch_disabled`。`serve`默认也关闭。启用必须由可信宿主显式安装factory并选择`--enable-dispatch --host-factory module:function`；factory构建已有任务的controller及`TransportAuthority`。stdin不能供应权限、改时钟或自选工具。生产CLI覆盖factory中的测试时钟，使用真实UTC；市场时间分区仍为美东。
 
+WR-29修复使标准脚本和`python -m followup_host`的薄入口先委派同一canonical模块，再加载factory。factory正常使用`from followup_host import FollowupHost, TransportAuthority`；不应引用`__main__`，也不通过放宽类型或权限验证兼容重复类身份。该修复的新固定SHA及真实子进程回归仍须独立复验，见`docs/review/wr29.md`。
+
 这不是LLM提案或FactorSpec的接口。可信factory本身必须由部署方固定、审核和授权，不能从模型输出、网页或原生工具文本导入任意模块。当前仓库不提供一个默认开通真实云端权限的factory。
 
 Python程序可注入`FollowupHost`及具有`call_tool(name, arguments)`的可信client，运行`run_once`；stdio宿主则按请求帧执行真实MCP工具，再把原响应与原correlation ID、工具名、参数和attempt交回进程。外层MCP连接器仍保有自己的拒绝权。此代码已具备可执行协议，不等于Codex/MCP真实宿主已接好或已得到平台通知传输证明。

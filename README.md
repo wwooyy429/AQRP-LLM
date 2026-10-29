@@ -1,6 +1,14 @@
 # AQRP-LLM：LLM＋QuantConnect因子研究平台
 
-## 当前host010离线开发与975f676审核登记
+## 当前WR-29入口修复候选
+
+独立审核固定2d1d306/fe08846，确认WR-29/P1：脚本和`-m`入口把宿主类定义成`__main__`身份，正常factory导入的canonical类被误拒。该版Python API的已测范围通过，CLI/stdio启用验收失败，阶段2整体仍未通过；975f676原有限结论保留。
+
+本轮统一规范导入身份，保留严格类型、authority、enabled及默认off检查，并补真实子进程的合法factory/坏factory、UTC、响应和重启回归。原0/2/2失败、修复记录、完整测试和新固定源码见[WR-29说明](docs/review/wr29.md)及`audit/current_review_package.json`。开发修复不等于独立关闭WR-29，须等待新SHA复验。
+
+本轮仍为纯离线：配置周期3/13、累计16，Research17/20、LEAN3/16及71事件不变；不触QC、编译、真实Research/回测或生产automation，008不重开，最终测试、正式研究、自动GPT及交易继续关闭。全历史US200、财务实际时点和计费认证仍是缺口。
+
+## 历史host010离线开发与975f676审核登记
 
 固定源码975f676已获独立审核的有限范围通过：实际重跑987项仓库回归、通知恢复18方法/106场景、Windows锁18方法/37场景及相关历史回归，未确认新产品缺陷。原正式报告、逐WR矩阵、首败和适配记录见[审核归档](audit/reviews/20261029-975f676-recovery009/import_index.json)，当前结论见[审核登记](audit/review_results/recovery009.json)。归档是明确选取范围的证据集，完整原ZIP另有哈希引用，不能称Git中含完整原包。
 

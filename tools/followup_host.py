@@ -14,6 +14,12 @@ this host stores hashes/closed metadata only. read_backtest hands off to the
 existing stage2 backtest-result parser (including logs/zero-order checks), and
 does not claim to settle the Registry or automate the complete receipt chain.
 """
+# Factories import this public module. Both executable forms must use its exact
+# classes too, rather than defining a second set under __main__.
+if __name__ == "__main__":
+    from followup_host import main as _canonical_main
+    raise SystemExit(_canonical_main())
+
 import argparse
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -476,7 +482,3 @@ def main(argv=None, *, input_stream=None, output_stream=None):
         output_stream.write(json.dumps(host.command({"command": "status", "attempt_id": args.attempt})) + "\n")
         output_stream.flush()
     return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
