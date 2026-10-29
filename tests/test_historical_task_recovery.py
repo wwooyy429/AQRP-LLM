@@ -147,6 +147,34 @@ class HistoricalTaskRecoveryTests(unittest.TestCase):
             operation_key='engineering-plan:'+PLAN+':research'))
         self.assertEqual(registry.snapshot()['usage']['research']['total'],0)
 
+    def test_all_closed_bridge_kinds_register_through_their_own_schema(self):
+        # Module aliases avoid exposing imported TestCase classes to discovery.
+        import test_engineering_receipts as engineering_fixture
+        import test_collection_tasks as collection_fixture
+        import test_certification_tasks as certification_fixture
+        from qresearch.collection_tasks import CollectionTaskBridge
+        from qresearch.certification_tasks import CertificationTaskBridge
+        certification_fixture.fixture_data.DataCertificationTests.setUpClass()
+        for kind in ('engineering','historical_collection','data_certification'):
+            with self.subTest(kind=kind):
+                _,registry=context()
+                allocation='normal'
+                if kind=='engineering':
+                    raw=engineering_fixture.context('research')[0]['plan']
+                    plan=EngineeringTaskPlan.from_dict(raw,discovered_project_ids=(17,))
+                    bridge=EngineeringTaskBridge(registry,plan)
+                elif kind=='historical_collection':
+                    bridge=CollectionTaskBridge(registry,collection_fixture.plan())
+                else:
+                    bridge=CertificationTaskBridge(registry,certification_fixture.plan())
+                    certification_fixture.authorize(registry,bridge.package)
+                    allocation='reserve'
+                config_id=bridge.register(allocation=allocation)
+                self.assertEqual(config_id,bridge.config_id)
+                self.assertEqual(registry.snapshot()['usage']['configurations']['total'],1)
+                self.assertEqual(registry.snapshot()['usage']['research']['total'],0)
+                self.assertEqual(registry.snapshot()['usage']['lean']['total'],0)
+
     def test_new_round_authorization_and_binding_cannot_admit_historical_contract(self):
         store,registry=context();plan=self.historical();old={'engineering_task_schema_version':1,'plan':plan.to_dict()}
         grant,authority=documents(registry,project=38436695,limits={'configurations':2,'research':1,'lean':1})

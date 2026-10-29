@@ -275,9 +275,20 @@ class EngineeringTaskBridge:
         return self.registry.register_config(self.package, allocation=allocation)
 
     def _require_current_admission(self):
-        """Historical plan objects cannot bypass today's admission checks."""
+        """Revalidate each closed task kind without changing its schema.
+
+        Collection and certification bridges inherit register(), but their
+        complete plans are not EngineeringTaskPlan documents. Delegate those
+        kinds to the Registry's existing closed validators; joint Engineering
+        plans still undergo the strict current storage compatibility check.
+        """
         document = self.plan.to_dict()
-        EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],))
+        if isinstance(self.plan, EngineeringTaskPlan):
+            EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],))
+        else:
+            declared = self.registry._collection_plan(self.package)
+            if declared is None or declared.to_dict() != document:
+                raise EngineeringTaskError("Admission requires a complete recognized closed task plan")
 
     def _operation(self, stage):
         if stage not in {"research", "lean"}:
