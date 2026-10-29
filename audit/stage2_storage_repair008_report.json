@@ -42,7 +42,7 @@
   "final_test_enabled": false,
   "software_test_count": 940,
   "software_source_hash": "1b6269226d7c579212b955cc8496909fd32b4adeae992075c1a0a3f23cedd0b8",
-  "status": "Research_completed_LEAN_submitted_awaiting_delivered_terminal",
+  "status": "bounded_engineering_round_completed_pending_independent_review_and_full_data_certification",
   "preview": {
     "plan_hash": "b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f",
     "configuration_hash": "9d464fb454afe9bd0b3826d2e22e6fe20f6f5948acc6c5985b09d89d3548a9b6",
@@ -57,7 +57,7 @@
   "Research_status": "completed",
   "Research_attempt": "95de031ff6a54c3fa1747fc44047cc4e",
   "Research_checks_passed": 13,
-  "LEAN_status": "pending",
+  "LEAN_status": "completed",
   "LEAN_attempt": "a03a7c7611fb496aaf5487ca8974b0d2",
   "LEAN_backtest_id": "8a45b6c62d55521033e9cc5b9b9d3950",
   "compile_success": true,
@@ -75,12 +75,32 @@
   },
   "preview_scope": "Historical pre-registration preview, not current registration/execution status",
   "followup": {
-    "status": "awaiting_delivered_terminal",
+    "status": "completed_and_closed",
     "automation_id": "aqrp-lean-008",
+    "automation_status": "deleted_obsolete_wait_only_monitor",
     "new_configuration_charges": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
-    "platform_status_polling_performed": false,
+    "historical_directory_reconciliations": 1,
+    "completed_task_result_reads": 1,
+    "prior_not_yet_delivered_status_polling_performed": false,
     "current_state_evidence": "audit/stage2_current_readiness.json"
-  }
+  },
+  "LEAN_checks_passed": 7,
+  "LEAN_engineering_summary": "audit/review_packages/storage-repair008/terminal/lean_summary.json",
+  "engineering_round_status": "closed",
+  "terminal_acquisition": "user_requested_single_historical_reconciliation",
+  "automatic_completion_notification_observed": false,
+  "notification_delivery_root_cause": "Not established: no delivery-chain logs; heartbeat had only watched chat notices and lacked reconciliation.",
+  "cloud_runtime_joint_gate_passed": true,
+  "LEAN_worker_source_scope": {
+    "canonical_sources_verified": true,
+    "declared_files": 43,
+    "verified_files": 43,
+    "eof_normalized_file_count": 43,
+    "original_source_identity_match": false,
+    "verification_mode": "worker_terminal_lf"
+  },
+  "local_settlement_scope": "Existing fixed stage2.py and engineering_round.py completed under explicitly archived exact-owner WinError32 lock-release backoff; product source/parsers/budgets unchanged.",
+  "local_filesystem_permanent_fix_in_runtime_source": false
 }
