@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "阶段2新增默认关闭的可执行JSON-lines宿主桥，连接既有固定TaskFollowupController与可信MCP工具client。重复唤醒、预留后崩溃或响应丢失不会重新派发；严格绑定attempt、correlation、工具名和参数。工具自身对read_backtest的权限限制独立生效，目录Completed不能绕过。PR保持草稿、未合并。\n\n固定新源码：[2d1d306](https://github.com/wwooyy429/AQRP-LLM/commit/2d1d3060dbc7eb136c1dee61f0647977528b8aad)；最终固定资料：[fe08846](https://github.com/wwooyy429/AQRP-LLM/commit/fe088461e84586d7feb73f20be54a22d09706942)。source hash为74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07。新源开发侧完整离线验证1006项通过；216份源码身份一致，346份守卫文件原字节不变。19项宿主专项、辅助10项边界和7项元数据范围检查分别记录，不与全量或旧987项累加。\n\n本次已正式归档旧975f676的独立有限通过结论：其987项仓库回归、通知恢复18方法/106场景、Windows锁18/37及相关历史回归通过，无新产品缺陷。实际执行审核的是本地Codex聊天“更新 GPT 审核与验收状态”；旧ChatGPT聊天仅有交接消息，不能称其执行本次测试。[原审核导入索引](https://github.com/wwooyy429/AQRP-LLM/blob/fe088461e84586d7feb73f20be54a22d09706942/audit/reviews/20261029-975f676-recovery009/import_index.json)固定报告/原ZIP SHA及实际审核身份。Git只选取205原件，CRLF/非UTF8另以raw.base64无损保留，LF镜像明确不属于原字节。旧scope不授予新宿主独审通过。\n\n宿主CLI plan/serve默认off，不打开真实Registry；启用需要可信安装的factory和TransportAuthority，stdin不能授予权限或时钟。项目发现独立获准、固定page1一次持久预留；对账沿用原pending+1800秒和最多3页。完成读取仅返回awaiting_native_receipt，仍须原stage2 parser→Bridge→Registry、完整同attempt日志/零订单与watch同步；本轮没有完整自动回执收集或计费认证派发完成声明。生产factory、transport和automation尚未启用。\n\n开发边界曾发现并修复UTF8字节门槛、直接API响应大小及status隐藏未知发现3项；原脚本、首败、修正后记录保留。资料发布曾混入14份合成临时store副本导致Windows长路径核对失败，已从最终交付移除，原私人证据及provisional Git版本/失败探针保留；产品源码和1006项测试身份未变。\n\n[当前审核包](https://github.com/wwooyy429/AQRP-LLM/blob/fe088461e84586d7feb73f20be54a22d09706942/audit/current_review_package.json)、[复审指令](https://github.com/wwooyy429/AQRP-LLM/blob/fe088461e84586d7feb73f20be54a22d09706942/audit/review_packages/host010/GPT_WORK_REVIEW.txt)、[开发报告](https://github.com/wwooyy429/AQRP-LLM/blob/fe088461e84586d7feb73f20be54a22d09706942/audit/host010_development_report.json)、[宿主说明](https://github.com/wwooyy429/AQRP-LLM/blob/fe088461e84586d7feb73f20be54a22d09706942/docs/followup_host.md)。固定资料核验：`python -B audit/review_packages/host010/verify_review.py`；独立代码回归：`python -B tools/stages.py verify`。旧009核对脚本应在原a6a5a16 Git树运行。\n\n本轮QC/Research/LEAN/编译/购买/准入均0；预算、71条Registry和2024–2025暴露不变：配置周期3/13、累计16，Research17/20、LEAN3/16，008已关轮。当前44份云端文件未因本轮部署，旧b1a R13/L7仅历史2018有限工程证据。新宿主待独立复审及真实联调；下一轮1/1/1只是未授权、未注册的准备方案。完整历史US200/SID、财务数值/版本/公开/实际送达/摄入和计费认证仍缺；阶段2整体及阶段3–7未验收。金融证据false，正式研究、自动GPT、交易和最终测试继续关闭，2026独立性未认证。\n\n已实际提交给原本地审核聊天“更新 GPT 审核与验收状态”，新独立结果待返回。审核对象仍固定源码2d1d306、资料fe08846；之后仅追加[交接记录](https://github.com/wwooyy429/AQRP-LLM/blob/027f29c6a6fe30fc2e1ef9e0b5af9b88d6875c25/audit/review_handoffs/host010.json)，未改变审核对象或授予验收。",
+    "title": "Stage 2: executable follow-up host and scoped independent review records",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "027f29c6a6fe30fc2e1ef9e0b5af9b88d6875c25",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "ffbdd09426074cfc2cea34c7881147838670f430",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-29T09:39:46Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 71,
+    "changed_files": 7392,
+    "additions": 798055,
+    "deletions": 292,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "Stage 2: executable follow-up host and scoped independent review records"
+  },
+  "isError": false
+}

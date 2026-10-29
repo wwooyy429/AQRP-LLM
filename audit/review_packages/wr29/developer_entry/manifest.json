@@ -1,0 +1,25 @@
+{
+  "baseline_head": "027f29c6a6fe30fc2e1ef9e0b5af9b88d6875c25",
+  "reviewed_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+  "reviewed_host_blob": "73e02130a03f55fa7a245cf355f4bee685129259",
+  "repaired_host_blob": "e79bc5943d3f6685f5ebab5417e6c5f17b5d7bfc",
+  "repaired_host_sha256": "2de1476cd878569d6588b3077cdc888a3186a03ae9e1a989d41e35c376039a08",
+  "test_sha256": "f01a9306eaa5ed94e93a8d2971616fb536e59795fff92ae1d9376268de771ca3",
+  "baseline_reproducer_exit_codes": [
+    0,
+    2,
+    2
+  ],
+  "repaired_reproducer_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "baseline_new_regression": "1 test, 2 subtest failures (script/module), exit 1",
+  "final_entrypoint_tests": "6 tests passed, 71.499 seconds, exit 0",
+  "unchanged_existing_host_tests": "19 tests passed, 11.404 seconds, exit 0",
+  "first_new_test_fixture_correction": "First post-fix clock test used a submission in the future and expected wait_for_delivery before registering. It was corrected to a submission five minutes before real UTC and a pre-registered private synthetic pending watch. Original log retained.",
+  "prohibited_services_used": false,
+  "final_evaluation_enabled": false,
+  "commits_created": false
+}

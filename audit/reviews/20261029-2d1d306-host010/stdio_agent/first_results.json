@@ -1,0 +1,80 @@
+{
+  "methods": 15,
+  "named_scenarios": 56,
+  "cases": [
+    "default_off_plan_3",
+    "default_off_plan_5",
+    "default_off_serve_3",
+    "default_off_python_no_store",
+    "CLI_gate_--enable-dispatch",
+    "CLI_gate_missingseparator",
+    "CLI_gate_2099-01-01",
+    "bad_frame_0",
+    "bad_frame_1",
+    "bad_frame_2",
+    "bad_frame_3",
+    "bad_frame_4",
+    "bad_frame_5",
+    "bad_frame_6",
+    "bad_frame_7",
+    "bad_frame_8",
+    "bad_frame_9",
+    "bad_frame_10",
+    "bad_frame_11",
+    "bad_frame_12",
+    "bad_frame_13",
+    "bad_frame_14",
+    "framing_no_newline",
+    "framing_UTF8_over_limit",
+    "framing_ASCII_truncated_tail",
+    "actual_stdio_multiple_frames",
+    "strict_json_{\"v\":{\"a\":1,\"a\":2}}",
+    "strict_json_{\"v\":[NaN]}",
+    "strict_json_{\"v\":-Infinity}",
+    "strict_valid_unicode",
+    "bound_rejection_correlation",
+    "bound_rejection_tool",
+    "bound_rejection_page",
+    "bound_rejection_bool_page",
+    "bound_rejection_extra_arg",
+    "bound_rejection_extra_message",
+    "bound_rejection_command",
+    "foreign_attempt_no_stream",
+    "native_reject_conflict",
+    "native_reject_unknown",
+    "native_reject_nonfinite",
+    "directory_terminal_never_authorizes_chat_read",
+    "completed_read_no_settlement_and_no_raw_native_storage",
+    "read_reject_project_bool",
+    "read_reject_foreign_project",
+    "read_reject_foreign_task",
+    "read_reject_not_complete",
+    "read_reject_progress_bool",
+    "read_reject_progress_half",
+    "read_reject_unknown_status",
+    "stdin_authority_injection_0",
+    "stdin_authority_injection_1",
+    "stdin_authority_injection_2",
+    "stdin_authority_injection_3",
+    "identical_accepted_response_no_event",
+    "conflicting_accepted_response_fail_closed"
+  ],
+  "failures": [
+    [
+      "test_06_production_CLI_replaces_factory_clock (__main__.StdioBoundary)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\stdio_agent\\independent_stdio.py\", line 153, in test_06_production_CLI_replaces_factory_clock\n    self.assertEqual(p.returncode,0,p.stderr);self.assertTrue((Path(root)/'factory_called.txt').exists())\nAssertionError: 2 != 0 : usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: factory must return an explicitly enabled FollowupHost\n\n"
+    ],
+    [
+      "test_10_direct_API_size_gate_is_before_store_and_no_echo (__main__.StdioBoundary)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\stdio_agent\\independent_stdio.py\", line 188, in test_10_direct_API_size_gate_is_before_store_and_no_echo\n    r=h.accept_response(m);self.assertEqual(r['failure_code'],'response_too_large');self.assertEqual(h.store.read_bytes(h._stream(a)),before)\nAssertionError: 'invalid_native_response' != 'response_too_large'\n- invalid_native_response\n+ response_too_large\n\n"
+    ]
+  ],
+  "errors": [
+    [
+      "test_07_actual_stdio_discovery_response_and_unknown_after_restart (__main__.StdioBoundary)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\stdio_agent\\independent_stdio.py\", line 162, in test_07_actual_stdio_discovery_response_and_unknown_after_restart\n    req=json.loads(first.stdout);self.assertEqual(req['tool_name'],product.PROJECTS)\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\json\\__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\json\\decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\json\\decoder.py\", line 355, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+    ]
+  ],
+  "skips": [],
+  "actually_executed": true
+}

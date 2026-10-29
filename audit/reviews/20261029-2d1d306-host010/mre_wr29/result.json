@@ -1,0 +1,20 @@
+{
+  "reviewed_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\source\\tools\\followup_host.py",
+    "serve",
+    "--enable-dispatch",
+    "--host-factory",
+    "factory_wr29:build"
+  ],
+  "PYTHONPATH": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\mre_wr29",
+  "expected_exit": 0,
+  "actual_exit": 2,
+  "expected": "A valid enabled same-source factory plus empty stdin must start and exit normally without a tool call.",
+  "actual_stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\r\n                        [--host-factory HOST_FACTORY]\r\n                        {plan,serve}\r\nfollowup_host.py: error: factory must return an explicitly enabled FollowupHost\r\n",
+  "cloud_calls": 0,
+  "production_or_budget_writes": 0,
+  "explanation": "The CLI defines FollowupHost as __main__.FollowupHost; the factory imports the same source as followup_host.FollowupHost. Exact class identity differs."
+}

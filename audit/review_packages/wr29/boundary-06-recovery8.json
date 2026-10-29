@@ -1,0 +1,128 @@
+{
+  "scope": "development_support_not_formal_acceptance",
+  "host_sha256": "2de1476cd878569d6588b3077cdc888a3186a03ae9e1a989d41e35c376039a08",
+  "before_events": [
+    {
+      "identity": {
+        "attempt_id": "1361bbadf9584539982dc9d7eb011373",
+        "backtest_id": "synthetic-wr29-backtest",
+        "deadline": "2001-01-01T00:30:00+00:00",
+        "project_id": 17,
+        "submitted_at": "2001-01-01T00:00:00+00:00"
+      },
+      "kind": "bound"
+    },
+    {
+      "arguments": {
+        "page": 1
+      },
+      "correlation_id": "b25cdc4313324e63b83764885e7e8aad",
+      "decision_hash": "33ded6be416e88e76b074f4809306cedf9d57292fdad3fe6ab3395244d80f8a5",
+      "kind": "reserved",
+      "reserved_at": "2026-10-29T12:11:52.831056+00:00",
+      "tool_name": "mcp__quantconnect__list_projects"
+    }
+  ],
+  "after_events": [
+    {
+      "identity": {
+        "attempt_id": "1361bbadf9584539982dc9d7eb011373",
+        "backtest_id": "synthetic-wr29-backtest",
+        "deadline": "2001-01-01T00:30:00+00:00",
+        "project_id": 17,
+        "submitted_at": "2001-01-01T00:00:00+00:00"
+      },
+      "kind": "bound"
+    },
+    {
+      "arguments": {
+        "page": 1
+      },
+      "correlation_id": "b25cdc4313324e63b83764885e7e8aad",
+      "decision_hash": "33ded6be416e88e76b074f4809306cedf9d57292fdad3fe6ab3395244d80f8a5",
+      "kind": "reserved",
+      "reserved_at": "2026-10-29T12:11:52.831056+00:00",
+      "tool_name": "mcp__quantconnect__list_projects"
+    },
+    {
+      "correlation_id": "b25cdc4313324e63b83764885e7e8aad",
+      "kind": "response",
+      "outcome": "projects_observed",
+      "project_ids": [
+        17
+      ],
+      "response_hash": "599839af04f30c4f47a9e0c1aeec1d3f27af7bece217933ea976c919eee64383"
+    },
+    {
+      "arguments": {
+        "page": 1,
+        "projectId": 17
+      },
+      "correlation_id": "48f712e2555e4cec99a00ae56ecac07a",
+      "decision_hash": "3958e1c7ea9dc8ca48da110b494b91b865a2e9b57cc5deb448bdea6c38f58a76",
+      "kind": "reserved",
+      "reserved_at": "2026-10-29T12:14:15.628140+00:00",
+      "tool_name": "mcp__quantconnect__list_backtests"
+    }
+  ],
+  "records": [
+    {
+      "entry": "canonical",
+      "exit": 0,
+      "stdin": "{\"command\": \"response\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"correlation_id\": \"b25cdc4313324e63b83764885e7e8aad\", \"tool_name\": \"mcp__quantconnect__list_projects\", \"arguments\": {\"page\": 1}, \"result\": {\"structuredContent\": {\"success\": true, \"projects\": [{\"projectId\": 17, \"name\": \"SYNTHETIC_WR29\", \"language\": \"Py\"}], \"page\": 1, \"nextPage\": null, \"totalPages\": 1}, \"content\": [{\"type\": \"text\", \"text\": \"{\\\"success\\\": true, \\\"projects\\\": [{\\\"projectId\\\": 17, \\\"name\\\": \\\"SYNTHETIC_WR29\\\", \\\"language\\\": \\\"Py\\\"}], \\\"page\\\": 1, \\\"nextPage\\\": null, \\\"totalPages\\\": 1}\"}], \"isError\": false}}\n{\"command\": \"wake\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\"}\n",
+      "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"action\": \"projects_observed\", \"should_execute\": false}\n{\"tool_name\": \"mcp__quantconnect__list_backtests\", \"arguments\": {\"projectId\": 17, \"page\": 1}, \"schema_version\": 1, \"type\": \"tool_request\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"correlation_id\": \"48f712e2555e4cec99a00ae56ecac07a\"}\n",
+      "stderr": "",
+      "trace": null
+    },
+    {
+      "entry": "script",
+      "exit": 0,
+      "stdin": "{\"command\": \"response\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"correlation_id\": \"b25cdc4313324e63b83764885e7e8aad\", \"tool_name\": \"mcp__quantconnect__list_projects\", \"arguments\": {\"page\": 1}, \"result\": {\"structuredContent\": {\"success\": true, \"projects\": [{\"projectId\": 17, \"name\": \"SYNTHETIC_WR29\", \"language\": \"Py\"}], \"page\": 1, \"nextPage\": null, \"totalPages\": 1}, \"content\": [{\"type\": \"text\", \"text\": \"{\\\"success\\\": true, \\\"projects\\\": [{\\\"projectId\\\": 17, \\\"name\\\": \\\"SYNTHETIC_WR29\\\", \\\"language\\\": \\\"Py\\\"}], \\\"page\\\": 1, \\\"nextPage\\\": null, \\\"totalPages\\\": 1}\"}], \"isError\": false}}\n{\"command\": \"wake\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\"}\n",
+      "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"action\": \"projects_observed\", \"should_execute\": false}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"reserved_response_unknown\"}\n",
+      "stderr": "",
+      "trace": null
+    },
+    {
+      "entry": "module",
+      "exit": 0,
+      "stdin": "{\"command\": \"response\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"correlation_id\": \"b25cdc4313324e63b83764885e7e8aad\", \"tool_name\": \"mcp__quantconnect__list_projects\", \"arguments\": {\"page\": 1}, \"result\": {\"structuredContent\": {\"success\": true, \"projects\": [{\"projectId\": 17, \"name\": \"SYNTHETIC_WR29\", \"language\": \"Py\"}], \"page\": 1, \"nextPage\": null, \"totalPages\": 1}, \"content\": [{\"type\": \"text\", \"text\": \"{\\\"success\\\": true, \\\"projects\\\": [{\\\"projectId\\\": 17, \\\"name\\\": \\\"SYNTHETIC_WR29\\\", \\\"language\\\": \\\"Py\\\"}], \\\"page\\\": 1, \\\"nextPage\\\": null, \\\"totalPages\\\": 1}\"}], \"isError\": false}}\n{\"command\": \"wake\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\"}\n",
+      "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"action\": \"projects_observed\", \"should_execute\": false}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"1361bbadf9584539982dc9d7eb011373\", \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"reserved_response_unknown\"}\n",
+      "stderr": "",
+      "trace": null
+    }
+  ],
+  "checks": [
+    {
+      "label": "canonical original response accepted idempotently",
+      "passed": true
+    },
+    {
+      "label": "canonical next wake dispatches once or refuses unknown replay",
+      "passed": true
+    },
+    {
+      "label": "script original response accepted idempotently",
+      "passed": true
+    },
+    {
+      "label": "script next wake dispatches once or refuses unknown replay",
+      "passed": true
+    },
+    {
+      "label": "module original response accepted idempotently",
+      "passed": true
+    },
+    {
+      "label": "module next wake dispatches once or refuses unknown replay",
+      "passed": true
+    },
+    {
+      "label": "no discovery redispatch; exactly one history reservation",
+      "passed": true
+    },
+    {
+      "label": "private registry journal unchanged",
+      "passed": true
+    }
+  ]
+}

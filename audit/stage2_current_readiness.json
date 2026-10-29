@@ -1,29 +1,29 @@
 {
-  "schema_version": 21,
-  "kind": "host010_offline_candidate_after_registered975f676_review",
+  "schema_version": 22,
+  "kind": "WR29_entrypoint_fix_candidate",
   "previous_readiness": {
-    "commit": "338bd6ea211d287396836752509d828c156ec442",
+    "commit": "027f29c6a6fe30fc2e1ef9e0b5af9b88d6875c25",
     "path": "audit/stage2_current_readiness.json",
-    "preserved_copy": "audit/review_packages/host010/previous_stage2_current_readiness.snapshot.json"
+    "preserved_copy": "audit/review_packages/wr29/previous_stage2_current_readiness.snapshot.json"
   },
-  "candidate_runtime_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
-  "candidate_execution_source_manifest_hash": "74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07",
+  "candidate_runtime_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "candidate_execution_source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
   "candidate_cloud_deployed": false,
   "candidate_independent_acceptance": false,
-  "stage2_status": "975f676_tested_scope_passed_new_host_candidate_pending_whole_stage2_not_accepted",
+  "stage2_status": "WR29_P1_developer_fix_pending_independent_recheck_whole_stage2_not_accepted",
   "stage2_accepted": false,
   "financial_evidence": false,
   "current_activity": {
-    "kind": "offline_host_adapter_development_and_independent_review_registration",
-    "baseline_commit": "338bd6ea211d287396836752509d828c156ec442",
+    "kind": "offline_WR29_canonical_entrypoint_fix",
+    "baseline_commit": "027f29c6a6fe30fc2e1ef9e0b5af9b88d6875c25",
     "new_configurations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
     "new_budget_events": 0,
-    "repository_synthetic_tests": 1006,
+    "repository_synthetic_tests": 1012,
     "local_full_suite_passed": true,
-    "test_report": "audit/review_packages/host010/full_offline_validation/result.json",
-    "review_handoff": "audit/review_packages/host010/GPT_WORK_REVIEW.txt"
+    "test_report": "audit/review_packages/wr29/full_offline_validation/result.json",
+    "review_handoff": "audit/review_packages/wr29/GPT_WORK_REVIEW.txt"
   },
   "historical_real_runtime": {
     "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
@@ -150,10 +150,21 @@
     "candidate_policy": "config/task_followup.json",
     "real_host_dispatch_integration_accepted": false
   },
-  "known_open_software_findings_from_independent_reports": [],
-  "new_candidate_independent_acceptance_scope": "New host adapter has no independent acceptance; prior975f676 scope remains fixed.",
+  "known_open_software_findings_from_independent_reports": [
+    {
+      "id": "WR-29",
+      "priority": "P1",
+      "independent_status": "open_pending_new_SHA_recheck",
+      "developer_status": "implemented_pending_independent_recheck",
+      "reviewed_defective_source": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "developer_candidate_source": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "report": "audit/reviews/20261029-2d1d306-host010/formal_report.json"
+    }
+  ],
+  "new_candidate_independent_acceptance_scope": "WR29 remains independently open; developer success cannot close it.",
   "certification_status": "insufficient_evidence",
   "blockers": [
+    "WR29/P1 requires independent exact-new-source subprocess recheck.",
     "New host adapter requires its own fixed-version independent review and actual host integration.",
     "New candidate44-file cloud chain has not run.",
     "Full2010-2023 historical US200/SID/calendar/raw-prices/actions coverage remains uncertified.",
@@ -194,243 +205,169 @@
   ],
   "latest_completed_independent_review": {
     "schema_version": 1,
-    "kind": "registered_independent_tested_scope_not_whole_system_acceptance",
-    "review_id": "AQRP-20261029-975F676-RECOVERY009-25",
-    "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
-    "materials_commit": "a6a5a165d87c172535cdea6cf495e3c1a850e6e4",
-    "source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
-    "report": "audit/reviews/20261029-975f676-recovery009/formal_report.json",
-    "report_is_readable_LF_mirror": true,
-    "original_report": "audit/reviews/20261029-975f676-recovery009/formal_report.json.raw.base64",
-    "original_report_sha256": "ef0fa58a5e87d0930ed7b6c6ddbd11a1b96ecc0ea56678dd7989dbee2a890057",
-    "archive_index": "audit/reviews/20261029-975f676-recovery009/import_index.json",
-    "source_bundle_sha256": "c4437f468fdb57797832df564eb917f3798cc1fe6b6f87dbe39bef6bf7bcace4",
+    "kind": "registered_failed_independent_host_review",
+    "review_id": "AQRP-20261029-2D1D306-HOST010-26",
+    "source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+    "source_manifest_hash": "74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07",
+    "materials_commit": "fe088461e84586d7feb73f20be54a22d09706942",
+    "report": "audit/reviews/20261029-2d1d306-host010/formal_report.json",
+    "report_is_LF_mirror": true,
+    "original_report": "audit/reviews/20261029-2d1d306-host010/formal_report.json.raw.base64",
+    "original_report_sha256": "224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14",
+    "archive_index": "audit/reviews/20261029-2d1d306-host010/import_index.json",
     "archive_is_selected_not_complete_bundle": true,
+    "source_bundle_sha256": "feffb44a08485c0ac7dd87b46f47b53e810964c270ae41a9446ae6980aba4723",
     "actual_review_task": {
       "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
       "host_id": "local",
-      "title": "更新 GPT 审核与验收状态",
       "kind": "codex",
-      "execution_environment": "local",
-      "completed_turn_id": "01a18688-4f78-79e1-b014-83ff4ca9b3ae",
-      "identity_evidence": "Read by the parent archivist from the completed local Codex review task."
+      "title": "更新 GPT 审核与验收状态"
     },
-    "previous_chatgpt_task_was_handoff_only": true,
-    "verdict": "passed_in_independently_tested_offline_scope",
-    "repository_tests": 987,
+    "verdict": "failed_enabled_CLI_stdio_WR29",
+    "findings": [
+      {
+        "id": "WR-29",
+        "priority": "P1",
+        "reviewed_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+        "title": "Enabled CLI rejects a valid trusted factory because its host class is imported under a different module identity",
+        "file": "tools/followup_host.py",
+        "line": 469,
+        "related_lines": [
+          468,
+          469,
+          470
+        ],
+        "trigger": "Execute documented python tools/followup_host.py serve --enable-dispatch --host-factory valid_factory:create; valid_factory normally imports FollowupHost from followup_host and returns an explicitly enabled real host/controller/authority. Empty stdin is sufficient.",
+        "expected": "Valid explicitly enabled trusted factory is accepted; empty serve input exits0 without reading Registry attempts or dispatching.",
+        "actual": "Both script and python -m followup_host launch create a distinct __main__.FollowupHost. The valid factory returns followup_host.FollowupHost. Exact type identity comparison fails; argparse exits2 before serve/clock assignment.",
+        "independent_control": "The identical factory called through canonical Python import exits0 and prints True followup_host. Imported product.main with the identical fixture also succeeds and overrides the future factory clock; real CLI remains rejected.",
+        "impact": "The new documented enabled stdio/CLI deployment path cannot start with normal import-based factories, blocking executable host integration in that scope. Default off and canonical Python API remain usable;this is not a permission bypass or evidence of cloud execution.",
+        "minimal_reproducer": "python -B stdio_agent/minimal_cli_factory_repro.py source",
+        "minimum_expected_exit": 0,
+        "minimum_actual_cli_exits": {
+          "script": 2,
+          "module": 2
+        },
+        "minimum_script_assertion_exit": 1,
+        "minimal_fix": "Give the host/controller authority types one canonical import identity and keep a thin executable wrapper, or otherwise make the documented factory import path share that identity before loading factories. Retain strict enabled/controller/authority validation and default-off gating;do not accept arbitrary duck types or require an undocumented __main__ workaround.",
+        "required_regressions": [
+          "Actual subprocess enabled script serve and module serve with an ordinary import-based valid factory and stdin EOF return0.",
+          "Actual enabled plan/serve against a private already-pending attempt preserves UTC override,discovery/response/restart paths.",
+          "Malformed/incompatible/disabled factory remains rejected;default-off does not import factory or open Registry.",
+          "Preserve both current product failure expectations and minimum failure when reviewing the repaired newSHA."
+        ]
+      }
+    ],
     "tests": [
       {
         "name": "repository",
-        "methods": 987,
+        "methods": 1006,
+        "passed": 1006,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
         "scenarios": null,
-        "kind": "repository_suite",
-        "result": "passed",
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
+        "kind": "repository_synthetic_suite",
         "actually_executed": true
       },
       {
-        "name": "independent_notification",
-        "methods": 18,
-        "scenarios": 106,
-        "kind": "new_independent_synthetic_and_Windows_processes",
-        "result": "passed_after_reviewer_fixture_correction",
+        "name": "developer_host_subset",
+        "methods": 19,
+        "passed": 19,
         "failures": 0,
         "errors": 0,
         "skips": 0,
+        "scenarios": null,
+        "kind": "subset_rerun_not_extra_unique_tests",
         "actually_executed": true
       },
       {
-        "name": "independent_Windows_lock",
-        "methods": 18,
-        "scenarios": 37,
-        "kind": "new_independent_native_Win32_and_synthetic",
-        "result": "passed_first_run",
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "actually_executed": true
-      },
-      {
-        "name": "independent_cycles_rounds_preflight",
+        "name": "developer_scope_metadata",
         "methods": 7,
-        "scenarios": 28,
-        "kind": "new_independent_synthetic_and_processes",
-        "result": "passed_first_run",
+        "passed": 7,
         "failures": 0,
         "errors": 0,
         "skips": 0,
-        "actually_executed": true
-      },
-      {
-        "name": "independent_storage_identity",
-        "methods": 5,
-        "scenarios": 26,
-        "kind": "new_independent_known_answers",
-        "result": "passed_first_run",
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "actually_executed": true
-      },
-      {
-        "name": "historical_numeric_time",
-        "methods": 16,
-        "scenarios": 84,
-        "kind": "original_independent_suite_replayed_on_current_source",
-        "result": "passed_first_run",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "historical_Pearson",
-        "methods": 10,
-        "scenarios": 896,
-        "kind": "original_independent_suite_replayed_on_current_source",
-        "result": "passed_first_run",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "historical_IC_summary",
-        "methods": 11,
-        "scenarios": 716,
-        "kind": "original_independent_suite_replayed_on_current_source",
-        "result": "passed_first_run",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "historical_certification",
-        "methods": 13,
-        "scenarios": 43,
-        "kind": "original_independent_suite_replayed_on_current_source",
-        "result": "passed_first_run",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "historical_carriers",
-        "methods": 15,
-        "scenarios": 80,
-        "kind": "original_then_fixture_adapted_independent_suite",
-        "result": "passed_after_two_preserved_fixture_adaptations",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "WR25_WR26_MRE",
-        "methods": null,
-        "scenarios": 7,
-        "kind": "original_MRE_expected_outcomes",
-        "result": "matched",
-        "actually_executed": true,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0
-      },
-      {
-        "name": "historical_WR28_audit",
-        "methods": 11,
         "scenarios": null,
-        "kind": "developer_audit_suite_replayed_for_original_frozen_scope",
-        "result": "passed",
-        "actually_executed": true,
+        "kind": "metadata_boundary_suite",
+        "actually_executed": true
+      },
+      {
+        "name": "independent_Python_API",
+        "methods": 18,
+        "passed": 18,
         "failures": 0,
         "errors": 0,
-        "skips": 0
+        "skips": 0,
+        "scenarios": 89,
+        "kind": "new_independent_synthetic_and_native_processes",
+        "actually_executed": true
+      },
+      {
+        "name": "independent_stdio_CLI",
+        "methods": 19,
+        "passed": 17,
+        "failures": 2,
+        "errors": 0,
+        "skips": 0,
+        "successfully_completed_scenarios": 69,
+        "kind": "new_independent_actual_subprocess_and_synthetic",
+        "actually_executed": true
+      },
+      {
+        "name": "prior_Windows_lock_replayed_on_current_source",
+        "methods": 18,
+        "passed": 18,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "scenarios": 37,
+        "kind": "original_independent_suite_replay",
+        "actually_executed": true
+      },
+      {
+        "name": "prior_notification_main_replayed",
+        "methods": 12,
+        "passed": 12,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "scenarios": 79,
+        "kind": "original_independent_suite_replay",
+        "actually_executed": true
+      },
+      {
+        "name": "prior_notification_supplement_replayed",
+        "methods": 6,
+        "passed": 6,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "scenarios": 27,
+        "kind": "original_independent_suite_replay",
+        "actually_executed": true
+      },
+      {
+        "name": "prior_cycles_rounds_replayed",
+        "methods": 7,
+        "passed": 7,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "scenarios": 28,
+        "kind": "original_independent_suite_replay",
+        "actually_executed": true
       }
     ],
-    "all_original_independent_suites_rerun": false,
-    "counts_overlap_do_not_sum": true,
-    "new_findings": [],
-    "stage_results": [
-      {
-        "stage": 0,
-        "modules": "规范、身份、Registry、预算、持久化和交付",
-        "implementation": "已有离线组件",
-        "evidence": "987回归；213份身份；通知、原生锁、周期/轮次和资料检查",
-        "verdict": "已测离线范围回归通过",
-        "missing": "不包含真实宿主调度与远端真实性认证"
-      },
-      {
-        "stage": 1,
-        "modules": "因子、PIT、标签、模型和滚动内核",
-        "implementation": "已有离线内核",
-        "evidence": "987回归及原数值16、Pearson10、IC汇总11方法重放",
-        "verdict": "已测离线范围回归通过",
-        "missing": "无已认证经济因子、生产模型或金融检验"
-      },
-      {
-        "stage": 2,
-        "modules": "QC、缓存、摄入、任务桥、通知恢复",
-        "implementation": "部分实现",
-        "evidence": "本地通知恢复及Windows修复通过；旧b1a归档工程回执重解析",
-        "verdict": "局部软件范围通过；整体未通过",
-        "missing": "新候选真实调度/云端；完整US200/SID及财务时点认证；完整计费认证派发"
-      },
-      {
-        "stage": 3,
-        "modules": "评价、共同样本、成熟标签、滚动",
-        "implementation": "局部内核",
-        "evidence": "仓库与数值合成回归",
-        "verdict": "未验收",
-        "missing": "完整分层收益/风险报告和真实固定六轮研究"
-      },
-      {
-        "stage": 4,
-        "modules": "无订单接收器、标签成交与成本",
-        "implementation": "局部工程组件",
-        "evidence": "旧有限2018工程零订单回执",
-        "verdict": "未验收",
-        "missing": "完整组合、订单成交、持仓现金净值、风险、对账及压力验证"
-      },
-      {
-        "stage": 5,
-        "modules": "提案、持久化控制器、adapter接口",
-        "implementation": "局部原语",
-        "evidence": "离线回归；闸门关闭",
-        "verdict": "未验收",
-        "missing": "实际GPT客户端、模型/调用/费用设置和真实无人值守闭环"
-      },
-      {
-        "stage": 6,
-        "modules": "结构相似、相关性、复杂度",
-        "implementation": "局部原语",
-        "evidence": "合成回归",
-        "verdict": "未验收",
-        "missing": "完整搜索、消融、净组合增量和选择偏差实证"
-      },
-      {
-        "stage": 7,
-        "modules": "冻结元数据、暴露记录及闸门",
-        "implementation": "骨架",
-        "evidence": "原暴露与关闭闸门保留",
-        "verdict": "未验收",
-        "missing": "独立最终执行器、前向模拟、监控回滚；2026独立性未认证"
-      }
-    ],
+    "prior975f676_scope_retained": true,
+    "prior_passed_result": "audit/review_results/recovery009.json",
+    "new_fix_independent_acceptance": false,
     "stage2_accepted": false,
-    "whole_system_accepted": false,
     "financial_evidence": false,
     "final_test_enabled": false,
-    "new_cloud_calls": 0,
     "new_budget_events": 0,
-    "reviewer_followup_tasks": "audit/review_packages/host010/reviewer_followup_tasks.txt",
-    "reviewer_followup_tasks_original_sha256": "8ea41e8362494cac933a0817e7c9d674c4ed405e8731f9e8586b1969b07ab0cb",
-    "new_host_implementation_inherits_this_acceptance": false
+    "new_cloud_calls": 0
   },
   "next_engineering_preparation": "audit/review_packages/host010/next_engineering_preparation.json",
-  "current_activity_evidence": "audit/host010_development_report.json"
+  "current_activity_evidence": "audit/wr29_development_report.json"
 }

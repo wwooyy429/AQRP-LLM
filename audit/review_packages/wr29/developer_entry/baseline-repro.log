@@ -1,0 +1,5 @@
+{"canonical_import_control": {"expected_exit": 0, "actual_exit": 0, "stdout": "", "stderr": ""}, "documented_script": {"expected_exit": 0, "actual_exit": 2, "stdout": "", "stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: factory must return an explicitly enabled FollowupHost\n"}, "documented_module": {"expected_exit": 0, "actual_exit": 2, "stdout": "", "stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: factory must return an explicitly enabled FollowupHost\n"}}
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\ѧϰ\Ͷ��\����\�������ױ���\LLM���\review-2d1d306-20261029\minimal_wr29.py", line 31, in <module>
+    assert all(item['actual_exit']==0 for item in observed.values()),'WR-29: valid factory rejected by executable entry'
+AssertionError: WR-29: valid factory rejected by executable entry
