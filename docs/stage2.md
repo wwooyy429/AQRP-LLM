@@ -1,5 +1,7 @@
 # 阶段2：数据接入与任务桥
 
+> 历史时点说明：本页保留原开发版本的参数和状态，不是当前调度指令。新的统一复审与现状见[全部开发与修复入口](review/current/README.md)，通知恢复见[固定跟进程序](task_followup.md)。原限额与原结论不据此改写。
+
 > 当前状态、版本与终态入账顺序见[阶段2继续工作](stage2-continuation.md)。原audit/stage2_readiness.json是早期历史诊断，当前差距见audit/stage2_current_readiness.json。
 
 > 新增[历史快照采集模块](stage2-snapshot-collection.md)已完成离线实现，尚未接入本页固定两股任务桥或开展新云端运行。其模板不构成已登记的全市场采集计划。

@@ -1,0 +1,13 @@
+跟进一个已接受的AQRP工程LEAN任务时，先读取AGENTS.md、config/task_followup.json、原始attempt和提交证据。禁止创建新配置、Research、回测或订单，不更改预算，不打开最终测试。
+
+每次唤醒先执行固定程序tools/task_followup.py next --attempt <已登记attempt>，不能只等待聊天通知。now由生产CLI提供，不自行改时钟。
+- action=finished：确认原Registry终态及工程轮状态，资料完成后删除本次监控，不再查询。
+- action=wait_for_delivery：不查询QC状态，静默等待原生完成通知或固定截止点。
+- action=list_projects且should_execute=false：先真实调用list_projects并保存完整原生封装，再用--projects-file调用next。使用返回的匹配项目编号。
+- should_execute=true：仅执行返回的精确tool_request一次，不能自行增加参数或重派。每次历史目录响应交给history --tool-file，然后再next。
+- action=read_completed_backtest：这是程序已经验证历史终态后的单次完成结果读取；还需完整原生结果、同attempt的AQRP日志分块及订单数证据，通过原tools/stage2.py固定parser结算，不能由摘要或LLM布尔授予成功。
+- action=attention_required或CLI错误：停止自动请求，保留已接受任务和所有占用，报告一次具体问题。未知响应不能重新派发、重提或退款。
+
+如果真正的原生终态通知先到，按原回执链核对并结算同一任务，再sync watch。原始行和逐行衍生值留在QC Cloud。编译成功不是运行成功；有限工程通过不是独审或金融有效性通过。原生终态通过后只追加合法结算和关轮记录，不新增执行扣额。
+
+只有完成、失败、实质变化或需要用户处理才通知；重复的等待状态保持安静。复审和最终测试开关保持关闭，2024–2025暴露及2026独立性未认证保留。不要声称本指令本身已经完成了生产调度器部署或通知链路认证。

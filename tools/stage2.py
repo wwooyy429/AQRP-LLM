@@ -26,6 +26,24 @@ def _write(path, document):
     write_changed(path, json.dumps(document, ensure_ascii=False, indent=2) + "\n")
 
 
+def _followup_after_receipt(bridge, attempt, *, terminal=False):
+    """Old fixtures keep their old shape; configured dispatch never silently loses recovery."""
+    path = ROOT / "config/task_followup.json"
+    if not path.exists():
+        return None
+    from qresearch.task_followup import TaskFollowupController
+    try:
+        controller = TaskFollowupController(bridge.registry, read_json(path))
+        return controller.sync(attempt) if terminal else controller.register(attempt)
+    except Exception:
+        # The accepted/terminal Registry transition is already durable. This
+        # is an explicit metadata-recovery condition, never a legacy downgrade
+        # or permission to recreate the remote job. No third-party text leaks.
+        return {"status": "attention_required", "action": "attention_required",
+            "reason": "receipt_saved_followup_metadata_needs_recovery",
+            "attempt_id": attempt, "should_execute": False, "tool_request": None}
+
+
 def _source_size_preflight(sources):
     """Check an explicit observed platform limit, without changing old inputs."""
     path = ROOT / "config" / "quantconnect.json"
@@ -64,6 +82,10 @@ def local_deployment_preflight(*, expected_hash=None):
                 and path.relative_to(ROOT / "cloud").as_posix() not in generated}
     if observed != set(records):
         raise ValueError("The complete managed local Python set differs from the frozen deployment")
+    followup_policy = ROOT / "config/task_followup.json"
+    if followup_policy.exists():
+        from qresearch.task_followup import validate_policy
+        validate_policy(read_json(followup_policy))
     _source_size_preflight({name: (ROOT / "cloud" / name).read_text(encoding="utf-8-sig")
                             for name in records})
     return manifest
@@ -448,6 +470,9 @@ def main():
             result = vars(settle_research_result(bridge, args.attempt, native))
         elif args.command == "backtest-submission":
             result = vars(bridge.record_submission(args.attempt, backtest_submission(payload, deployment, native)))
+            followup = _followup_after_receipt(bridge, args.attempt)
+            if followup is not None:
+                result["task_followup"] = followup
         elif args.command == "backtest-rejection":
             result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
         else:
@@ -456,6 +481,9 @@ def main():
             record = bridge._record(args.attempt)
             observed = backtest_observation(payload, deployment, record["external_id"], native, read_json(args.logs_file))
             result = vars(bridge.consume_completion(args.attempt, completion_source=lambda _: observed))
+            followup = _followup_after_receipt(bridge, args.attempt, terminal=True)
+            if followup is not None:
+                result["task_followup"] = followup
     if args.command not in {"research-cell", "research-dispatch"}:
         export_usage(bridge.registry)
     print(json.dumps(result, ensure_ascii=True))
