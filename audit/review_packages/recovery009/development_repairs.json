@@ -38,5 +38,16 @@
     "real_registry_or_budget_changes": 0,
     "cloud_calls": 0,
     "financial_evidence": false
+  },
+  {
+    "command": "Post-publication raw-file and clean-tree verification",
+    "initial_result": "31 published blobs raw-verified; clean-tree assertion failed for generated build_preflight.json CRLF",
+    "cause": "Developer ad-hoc write_text generated Windows newlines for a new audit file",
+    "repair": "Preserve original raw bytes/hash and prior Git commit, normalize only new generated preflight to LF, rebuild packet and publish correction",
+    "subsequent_result": "See delivery_representation_repair.json and final fixed-Git verification",
+    "product_source_changed": false,
+    "real_registry_or_budget_changes": 0,
+    "cloud_calls": 0,
+    "financial_evidence": false
   }
 ]
