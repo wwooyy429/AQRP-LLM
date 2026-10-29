@@ -1,6 +1,6 @@
 {
-  "schema_version": 25,
-  "kind": "repair011_offline_software_passed_actual_original_task_needs_native_receipt",
+  "schema_version": 26,
+  "kind": "round009_native_capacity_failure_settled_storage_headroom_blocker",
   "previous_readiness": {
     "commit": "38dabe11d3899acd109b6c36131561e1dbbddd1e",
     "preserved_copy": "audit/review_packages/phase2_repair011/previous_stage2_current_readiness.json"
@@ -9,16 +9,17 @@
   "candidate_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
   "candidate_cloud_deployed": false,
   "candidate_independent_acceptance": false,
-  "stage2_status": "offline_repairs_passed_original009_directory_runtime_error_pending_native_receipt_and_reset_scope",
+  "stage2_status": "round009_failed_closed_capacity_insufficient_new_candidate_not_deployed",
   "stage2_accepted": false,
   "financial_evidence": false,
   "current_activity": {
-    "kind": "authorized_offline_software_repair_and_same_task_bounded_reconciliation",
+    "kind": "delivered_same_attempt_native_failure_reconciliation",
     "new_configurations": 0,
     "new_Research_executions": 0,
     "new_LEAN_submissions": 0,
     "new_budget_events": 0,
-    "journal_events": 78
+    "new_settlement_and_closure_events": 2,
+    "journal_events": 80
   },
   "historical_real_runtime": {
     "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
@@ -134,8 +135,8 @@
     "lean": 16
   },
   "budget_and_prior_exposure_preserved": true,
-  "journal_events": 78,
-  "current_round_closed": false,
+  "journal_events": 80,
+  "current_round_closed": true,
   "automatic_retry_enabled": false,
   "new_submit_allowed": false,
   "followup": {
@@ -149,20 +150,23 @@
     "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
     "backtest_id": "6347a33efc37e761f486f982e804dbac",
     "deadline": "2026-10-29T15:15:59.738191+00:00",
-    "host_real_stdio_status": "wait_for_delivery",
+    "host_real_stdio_status": "finished_by_verified_terminal_sync",
     "real_host_outbound_project_and_history_transport_exercised": true,
     "new_receipt_collector_implemented": true,
     "new_receipt_collector_independently_accepted": false,
     "actual_directory_status": "Runtime Error",
-    "native_terminal_received": false,
-    "attention_reason": "completed_read_not_authorized"
+    "native_terminal_received": true,
+    "attention_reason": null,
+    "actual_native_status": "runtime_error",
+    "task_status": "failed",
+    "new_receipt_collector_production_chain_exercised": false
   },
   "known_open_software_findings_from_independent_reports": [],
   "new_candidate_independent_acceptance_scope": "New repair011 candidate awaiting exact-version independent review",
   "certification_status": "insufficient_evidence",
   "blockers": [
-    "original009 native failure details and same-attempt settlement",
-    "reset scope choice then valid-cycle application after unresolved work is reconciled",
+    "Object Store headroom below frozen LEAN write envelope; reference-aware storage disposition pending",
+    "reset scope choice still pending; original009 unsettled-task blocker now resolved",
     "production collector factory/receipt source and real native receipt chain",
     "real QC validation of the new47-file candidate",
     "full historical US200 and financial original values/vintages/publication/actual-delivery/ingestion receipts",
@@ -201,7 +205,8 @@
     "audit/stage2_storage_repair008_report.json",
     "audit/software_recovery009_report.json",
     "audit/stage2_host_integration009_report.json",
-    "audit/stage2_repair011_report.json"
+    "audit/stage2_repair011_report.json",
+    "audit/stage2_native_failure009_report.json"
   ],
   "latest_completed_independent_review": {
     "schema_version": 1,
@@ -582,5 +587,14 @@
     "source_files": 44,
     "scope": "2018 AAPL/MSFT and archived40windows engineering only",
     "new47_file_candidate_cloud_acceptance": false
+  },
+  "latest_runtime_report": "audit/stage2_native_failure009_report.json",
+  "actual_original009_terminal": {
+    "status": "runtime_error",
+    "registry_status": "failed",
+    "round_status": "closed",
+    "failure_code": "byte_capacity_insufficient",
+    "report": "audit/stage2_native_failure009_report.json",
+    "automatic_push_observed": false
   }
 }
