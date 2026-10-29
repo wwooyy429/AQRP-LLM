@@ -1,0 +1,10 @@
+{
+  "scope": "independent audit helper only",
+  "initial_script": "audit_archive_first.py",
+  "initial_exit": 1,
+  "initial_error": "AssertionError aux_focused10",
+  "cause": "Reviewer assumed the selected focused-replay JSON was a top-level list; actual documented shape is an object with records list.",
+  "change": "Read focused.records while retaining exact ten runs, each exit0 and passed=true expectations.",
+  "expected_product_behavior_or_source_changed": false,
+  "original_script_and_stdout_stderr_retained": true
+}

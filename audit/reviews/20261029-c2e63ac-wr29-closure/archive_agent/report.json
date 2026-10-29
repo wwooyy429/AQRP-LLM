@@ -1,0 +1,274 @@
+{
+  "review_kind": "independent_WR29_archive_history_budget_and_raw_identity_recheck",
+  "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "materials_commit": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe"
+  },
+  "findings": [],
+  "tests": [
+    {
+      "name": "windows_lock",
+      "methods": 18,
+      "named_scenarios": 37,
+      "passed_methods": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "first_execution_passed": true,
+      "actually_executed": true,
+      "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "script_changed": false
+    },
+    {
+      "name": "notifications",
+      "methods": 12,
+      "named_scenarios": 79,
+      "passed_methods": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "first_execution_passed": true,
+      "actually_executed": true,
+      "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "script_changed": false
+    },
+    {
+      "name": "notification_supplement",
+      "methods": 6,
+      "named_scenarios": 27,
+      "passed_methods": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "first_execution_passed": true,
+      "actually_executed": true,
+      "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "script_changed": false
+    },
+    {
+      "name": "cycles_rounds",
+      "methods": 7,
+      "named_scenarios": 28,
+      "passed_methods": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "first_execution_passed": true,
+      "actually_executed": true,
+      "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "script_changed": false
+    }
+  ],
+  "counting": "43方法/171命名场景为原975独立脚本在当前source的实际重放，与根端1012及其他套件重叠；静态/文件/blob/元数据核验不是unit；开发辅助79/84、89/90、恢复8/8及克隆10/10这里只核对归档，没有独立运行它们的历史store。",
+  "static_logical_checks": 45370,
+  "additional_representation_checks": 4,
+  "static_are_not_unit_methods": true,
+  "old_complete_ZIP": {
+    "raw_sha256": "feffb44a08485c0ac7dd87b46f47b53e810964c270ae41a9446ae6980aba4723",
+    "CRC": true,
+    "manifest_entries": 14691,
+    "ZIP_entries": 14692,
+    "old_Git_blob_counts": {
+      "source": 7080,
+      "materials": 7445
+    }
+  },
+  "selected_archive": {
+    "originals": 161,
+    "original_bytes": 614188,
+    "direct_raw": 77,
+    "mirrors_with_raw_base64": 84,
+    "representation_files": 246,
+    "actual_files": 247,
+    "not_complete_bundle": true
+  },
+  "current_identity": {
+    "managed_files": 218,
+    "source_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+    "cloud_config_unchanged_from2d": true
+  },
+  "developer_guard": {
+    "records": 348,
+    "before_after_exact_equal": true,
+    "worktree_CRLF_vs_Git": [
+      "audit/data_exposure.json",
+      "cloud/main.py",
+      "config/data.json",
+      "config/research.json",
+      "docs/review/phase0-phase1/manifest.json"
+    ],
+    "developer_live_worktree_independently_read": false
+  },
+  "budget": {
+    "events": 71,
+    "journal_sha256": "cea800e0fe5a0facc5f2aed238d105a6f3d1c80db40c1dc4b674efd3026cd48a",
+    "prior69_prefix_sha256": "2d3131a32864434d22635f058ec3de8062e9b1b610a90185bf6ba6cf9c637934",
+    "lifetime": {
+      "configurations": {
+        "total": 16,
+        "normal": 11,
+        "reserve": 5
+      },
+      "research": {
+        "total": 17,
+        "normal": 9,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 3,
+        "normal": 3,
+        "reserve": 0
+      }
+    },
+    "configuration_cycle": {
+      "authorization_ref": {
+        "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+        "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+      },
+      "capacity": {
+        "normal": 8,
+        "reserve": 5,
+        "total": 13
+      },
+      "cycle_id": "configuration-cycle-20261029-002",
+      "cycle_ref": {
+        "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+        "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+      },
+      "lifetime_usage": {
+        "normal": 11,
+        "reserve": 5,
+        "total": 16
+      },
+      "remaining": {
+        "normal": 5,
+        "reserve": 5,
+        "total": 10
+      },
+      "schema_version": 1,
+      "sequence": 1,
+      "starting_lifetime_usage": {
+        "normal": 8,
+        "reserve": 5,
+        "total": 13
+      },
+      "state_hash": "71e8d4669064df703f96a1a56da1ccbb3d7efa12380bf6befa3b9cb772564775",
+      "usage": {
+        "normal": 3,
+        "reserve": 0,
+        "total": 3
+      }
+    },
+    "new_events": 0,
+    "new_debits": 0,
+    "refunds": 0,
+    "original_human_authorization_dialogue_independently_obtained": false
+  },
+  "developer_auxiliary_metadata": {
+    "first": {
+      "passed": 79,
+      "total": 84,
+      "untraced_receipt_failures": 2,
+      "fixture_errors": 3
+    },
+    "second": {
+      "passed": 89,
+      "total": 90,
+      "captured_append_EACCES": 1
+    },
+    "recovery8": true,
+    "focused_clones10": true,
+    "not_all_runs_green": true,
+    "first_two_cause_not_proven_same_as_EACCES": true,
+    "original_historical_stores_not_replayed_here": true
+  },
+  "developer_auxiliary_replays_executed_this_round": false,
+  "source_guard": {
+    "source": {
+      "files": 7448,
+      "changed": [],
+      "extra_or_missing": []
+    },
+    "materials": {
+      "files": 7766,
+      "changed": [],
+      "extra_or_missing": []
+    },
+    "archive_agent/replay_context/source": {
+      "files": 7448,
+      "changed": [],
+      "extra_or_missing": []
+    }
+  },
+  "preserved_history": {
+    "old_formal_SHA256": "224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14",
+    "old_WR29_failure": "open_at2d1d306",
+    "old_API_limited_pass": true,
+    "prior975_limited_pass": true,
+    "candidate_independent_status": "pending_in_materials",
+    "new_WR29_independent_verdict": "not_determined_by_archive_checks",
+    "first_failures_fixtures_QA_originals_restored": true
+  },
+  "reviewer_corrections": [
+    {
+      "scope": "read-only exploratory structure probes, not product tests",
+      "events": [
+        {
+          "exit": 1,
+          "error": "AttributeError: list has no keys",
+          "cause": "reviewer assumed first diagnostic JSON was an object; actual list; corrected later structure inspection"
+        },
+        {
+          "error": "looked for replay_history.py; actual helper filename run_replays.py",
+          "action": "read correct filename only"
+        }
+      ],
+      "source_or_product_changed": false
+    },
+    {
+      "scope": "independent audit helper only",
+      "initial_script": "audit_archive_first.py",
+      "initial_exit": 1,
+      "initial_error": "AssertionError aux_focused10",
+      "cause": "Reviewer assumed the selected focused-replay JSON was a top-level list; actual documented shape is an object with records list.",
+      "change": "Read focused.records while retaining exact ten runs, each exit0 and passed=true expectations.",
+      "expected_product_behavior_or_source_changed": false,
+      "original_script_and_stdout_stderr_retained": true
+    }
+  ],
+  "software_acceptance": {
+    "historical_windows_notification_cycles_replayed": "passed_in_actually_executed_scope",
+    "new_WR29_CLI_verdict": "parent_and_entry_agent_determine",
+    "stage2_overall": "not_accepted",
+    "stages3_to7": "not_accepted"
+  },
+  "platform_evidence_level": "Immutable Git/local ZIP/raw restored original review evidence; old b1a archived platform claims retained only in their historical scope. No fresh QC retrieval or native-provider execution.",
+  "unverified": [
+    "Raw provenance established only against immutable Git/local sealed ZIP, not a native remote signature.",
+    "Selected 161 original entries are not the complete original bundle; old full ZIP separately reverified here.",
+    "Developer auxiliary original stores are deliberately excluded; original historical store/cloned scripts were not executed from absent stores.",
+    "Budget authorization material is only replayed as existing metadata; original human dialogue not independently obtained.",
+    "New real factory/transport/notifications/cloud engineering chain and complete receipt collection have not been exercised here.",
+    "Full historical US200/SID/financial value/vintage/publication/actual vendor delivery/ingestion and charged certification dispatch remain unaccepted.",
+    "Financial efficacy,2026 independence and independent final executor remain uncertified."
+  ],
+  "external_calls": {
+    "QC": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "compile": 0,
+    "market": 0,
+    "model": 0
+  },
+  "authoritative_budget_or_production_writes": 0,
+  "financial_evidence": false,
+  "artifacts": {
+    "static": "audit_archive.py; static_results.json; git_execution.json",
+    "first_error": "audit_archive_first.py; static_first.stdout; static_first.stderr; static_correction.json",
+    "replays": "run_replays.py; replay_execution.json; *_result.json; *.stdout; *.stderr",
+    "source_guard": "source_guard.json; additional_representation_checks.json"
+  }
+}

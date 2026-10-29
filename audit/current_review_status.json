@@ -1,28 +1,53 @@
 {
-  "schema_version": 2,
-  "latest_completed_review": "audit/review_results/host010.json",
-  "latest_completed_verdict": "failed_WR29_P1",
-  "latest_reviewed_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
-  "known_open_findings": [
+  "schema_version": 3,
+  "latest_completed_review": "audit/review_results/wr29.json",
+  "latest_completed_verdict": "WR29_fixed_verified_closed_original_scope_only",
+  "latest_reviewed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+  "known_open_findings": [],
+  "closed_findings": [
     {
       "id": "WR-29",
-      "priority": "P1",
-      "independent_status": "open_pending_new_SHA_recheck",
-      "developer_status": "implemented_pending_independent_recheck",
-      "reviewed_defective_source": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
-      "developer_candidate_source": "c2e63ac5f19901bd95e127069b5998452f7f9864",
-      "report": "audit/reviews/20261029-2d1d306-host010/formal_report.json"
+      "original_priority": "P1",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "original_file": "tools/followup_host.py",
+      "original_line": 469,
+      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+      "original_expected_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_actual_exits": [
+        0,
+        2,
+        2
+      ],
+      "fixed_actual_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_MRE_assertion_exit": 1,
+      "fixed_MRE_assertion_exit": 0,
+      "original_script_and_success_expectations_unchanged": true,
+      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+      "normal_path_and_strict_negative_paths_verified": true,
+      "not_granted": [
+        "倒改2d1d306原失败",
+        "生产factory/MCP调度/平台通知成功",
+        "完整回执收集或计费认证派发",
+        "完整阶段2、数据认证或金融有效性"
+      ]
     }
   ],
-  "prior_scoped_approval_source": "975f676d62b561689909744f9e7236290e3f5fcb",
-  "new_candidate": {
-    "kind": "WR29_canonical_entrypoint_fix",
-    "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
-    "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
-    "independent_acceptance": false,
-    "cloud_deployed": false
-  },
+  "software_acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "production_dispatch_enabled": false,
   "stage2_accepted": false,
   "financial_evidence": false,
-  "final_test_enabled": false
+  "final_test_enabled": false,
+  "metadata_archive_independently_accepted": false
 }

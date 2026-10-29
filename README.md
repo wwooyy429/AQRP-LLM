@@ -1,10 +1,22 @@
 # AQRP-LLM：LLM＋QuantConnect因子研究平台
 
-## 当前WR-29入口修复候选
+## 当前WR-29独立关闭登记
+
+WR-29/P1已在固定源码`c2e63ac5f19901bd95e127069b5998452f7f9864`的原CLI/stdio合法factory身份缺陷范围内独立复验通过并关闭，未确认新增产品缺陷。独立审核实际重跑1012项仓库测试，原最小脚本不改成功预期：旧2d1d306为0/2/2，新c2e63ac为0/0/0；精确类型、authority/controller、enabled和默认off保持。
+
+本轮只归档并更新状态，不修改已验收的宿主/计算代码。当前[关闭结果](audit/review_results/wr29.json)、[关闭资料](audit/review_packages/wr29_closure/README.md)和[当前审核状态](audit/current_review_status.json)为入口；完整原报告和选取归档范围见[导入索引](audit/reviews/20261029-c2e63ac-wr29-closure/import_index.json)。旧失败、旧待审包和旧handoff均按原Git版本保留，不能以它们的pending快照覆盖新关闭结论，也不能倒改原失败为通过。
+
+关闭只覆盖原WR-29和已测本地CLI/stdio/API范围。真实factory/transport/通知/云端链、完整回执收集、US200/SID、财务实际时点和计费认证仍缺，阶段2整体及阶段3–7未验收，金融证据false。当前源码身份仍为`9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f`；新归档元数据本身没有另获独立验收。
+
+配置周期3/13、累计16、Research17/20、LEAN3/16及71事件不变，008保持关闭；无新QC/Research/LEAN/编译/准入或生产automation。未来1/1/1仅未授权准备，实际派发、最终测试、正式研究、自动GPT及交易继续关闭，2024–2025暴露和2026独立性未认证保留。
+
+## 历史WR-29入口修复候选
+
+以下为f698a38资料时点的候选说明；其中待复验状态属于历史。原候选包应从[固定f698a38](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/audit/current_review_package.json)读取，不能用当前动态指针重解释。
 
 独立审核固定2d1d306/fe08846，确认WR-29/P1：脚本和`-m`入口把宿主类定义成`__main__`身份，正常factory导入的canonical类被误拒。该版Python API的已测范围通过，CLI/stdio启用验收失败，阶段2整体仍未通过；975f676原有限结论保留。
 
-本轮统一规范导入身份，保留严格类型、authority、enabled及默认off检查，并补真实子进程的合法factory/坏factory、UTC、响应和重启回归。原0/2/2失败、修复记录、完整测试和新固定源码见[WR-29说明](docs/review/wr29.md)及`audit/current_review_package.json`。开发修复不等于独立关闭WR-29，须等待新SHA复验。
+本轮统一规范导入身份，保留严格类型、authority、enabled及默认off检查，并补真实子进程的合法factory/坏factory、UTC、响应和重启回归。原0/2/2失败、修复记录、完整测试和新固定源码见[原候选WR-29说明](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/docs/review/wr29.md)及原f698a38候选包。当时开发修复不等于独立关闭，尚待新SHA复验；现已完成的关闭另见本文顶部登记。
 
 本轮仍为纯离线：配置周期3/13、累计16，Research17/20、LEAN3/16及71事件不变；不触QC、编译、真实Research/回测或生产automation，008不重开，最终测试、正式研究、自动GPT及交易继续关闭。全历史US200、财务实际时点和计费认证仍是缺口。
 

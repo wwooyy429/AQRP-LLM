@@ -1,0 +1,10 @@
+{
+  "scope": "Reviewer helper preparation only; no product or formal-report modification",
+  "operation": "PowerShell inline Python -c to copy check_formal.py with final SHA and output filename",
+  "exit_code": 1,
+  "error": "PowerShell quoting parsed D/formal_QA.json as a command; following Python could not find check_formal_final.py",
+  "new_checker_created_by_failed_command": false,
+  "formal_report_or_original_QA_changed": false,
+  "test_reruns": 0,
+  "remedy": "Use saved prepare_final_QA.py then execute the new read-only checker; retain first check_formal.py/formal_QA.json unchanged"
+}

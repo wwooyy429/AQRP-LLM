@@ -1,0 +1,190 @@
+[
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "plan",
+      "--attempt",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    "input_sha256": "5a793442ae7d875607520fd9123fbbb2d1ec281a30c49170cf3487f03e273ea5",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 1.125
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "plan",
+      "--attempt",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--host-factory",
+      "independent_stdio:trusted_factory"
+    ],
+    "input_sha256": "5a793442ae7d875607520fd9123fbbb2d1ec281a30c49170cf3487f03e273ea5",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 1.36
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve",
+      "--host-factory",
+      "does_not_exist:factory"
+    ],
+    "input_sha256": "5a793442ae7d875607520fd9123fbbb2d1ec281a30c49170cf3487f03e273ea5",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 1.078
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "plan",
+      "--attempt",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--enable-dispatch"
+    ],
+    "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: dispatch requires a trusted --host-factory\n",
+    "seconds": 0.937
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "plan",
+      "--attempt",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--enable-dispatch",
+      "--host-factory",
+      "missingseparator"
+    ],
+    "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: host factory must be module:function\n",
+    "seconds": 0.86
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "plan",
+      "--attempt",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--now",
+      "2099-01-01"
+    ],
+    "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: followup_host.py [-h] [--attempt ATTEMPT] [--enable-dispatch]\n                        [--host-factory HOST_FACTORY]\n                        {plan,serve}\nfollowup_host.py: error: unrecognized arguments: --now 2099-01-01\n",
+    "seconds": 0.875
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve"
+    ],
+    "input_sha256": "9e44fdd37ae3b6ba176f40acf65148c6dbde95ceb0c9cc89aab8ee548d8ab28b",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": null, \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"invalid_message_or_store_state\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 0.922
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve"
+    ],
+    "input_sha256": "cf4b09c6a476d92fdc9e149f9b711f636f77a36a9e15d16e966fbb0705007e02",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\", \"action\": \"dispatch_disabled\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 1.015
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve",
+      "--enable-dispatch",
+      "--host-factory",
+      "independent_stdio:trusted_factory"
+    ],
+    "input_sha256": "3a12018c6cbb477bc258380c64e39562d758b2a551489cbfe3f85ea41c130917",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"805744df5a6541c5a6375a1a76b757c2\", \"action\": \"wait_for_delivery\", \"should_execute\": false}\n",
+    "stderr": "",
+    "seconds": 1.25
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve",
+      "--enable-dispatch",
+      "--host-factory",
+      "independent_stdio:trusted_factory"
+    ],
+    "input_sha256": "bd66c389ae2444fc539f94d9a1f3ae403974c7bcd4d16b5b64725aa195155a58",
+    "exit_code": 0,
+    "stdout": "{\"tool_name\": \"mcp__quantconnect__list_projects\", \"arguments\": {\"page\": 1}, \"schema_version\": 1, \"type\": \"tool_request\", \"attempt_id\": \"663fcc75d67c483897d7ce827d2e3772\", \"correlation_id\": \"2d9e8bfb4354483ba43c671c82677da5\"}\n",
+    "stderr": "",
+    "seconds": 1.141
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve",
+      "--enable-dispatch",
+      "--host-factory",
+      "independent_stdio:trusted_factory"
+    ],
+    "input_sha256": "694ec2e1ada7a4d9f65602dbe602945491b2ae55a1bc886d234434cbcd95a091",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"663fcc75d67c483897d7ce827d2e3772\", \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"reserved_response_unknown\"}\n{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"663fcc75d67c483897d7ce827d2e3772\", \"action\": \"attention_required\", \"should_execute\": false, \"failure_code\": \"reserved_response_unknown\"}\n",
+    "stderr": "",
+    "seconds": 1.062
+  },
+  {
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\source\\tools\\followup_host.py",
+      "serve",
+      "--enable-dispatch",
+      "--host-factory",
+      "independent_stdio:trusted_factory"
+    ],
+    "input_sha256": "77f521b21c5ef79f4ebeaab5e6841e00b663ed7da701db594d413fffc367d913",
+    "exit_code": 0,
+    "stdout": "{\"schema_version\": 1, \"type\": \"status\", \"attempt_id\": \"663fcc75d67c483897d7ce827d2e3772\", \"action\": \"projects_observed\", \"should_execute\": false}\n{\"tool_name\": \"mcp__quantconnect__list_backtests\", \"arguments\": {\"projectId\": 880031, \"page\": 1}, \"schema_version\": 1, \"type\": \"tool_request\", \"attempt_id\": \"663fcc75d67c483897d7ce827d2e3772\", \"correlation_id\": \"cb86bc32de4f4ff9a02e8cc3a28236d8\"}\n",
+    "stderr": "",
+    "seconds": 1.375
+  }
+]
