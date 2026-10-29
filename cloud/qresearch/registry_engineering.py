@@ -184,6 +184,8 @@ class RegistryEngineeringMixin:
                         or canonical_json(original_authorization) != canonical_json(authorization)):
                     raise RegistryError("Engineering round identity cannot be overwritten")
                 return self._round_snapshot(state, old)
+            for package in packages:
+                self._require_current_joint_storage(package)
             record = self._validate_round_authorization(state, grant, authorization, packages)
             grant_ref = self._round_reference(grant, "authorizations")
             references = [self._round_reference(item, "configurations") for item in packages]
@@ -208,6 +210,7 @@ class RegistryEngineeringMixin:
             record = state["engineering_rounds"][round_id]
             if state["engineering_round_configs"].get(identity) == round_id:
                 return identity
+            self._require_current_joint_storage(package)
             self._validate_round_binding(state, record, package)
             reference = self._round_reference(package, "configurations")
             self.store.write_once(reference["key"], canonical_json(package))
@@ -273,7 +276,8 @@ class RegistryEngineeringMixin:
             # unvalidated bag of child jobs. Replays use its frozen catalog;
             # the dispatcher separately checks the trusted current catalog.
             from .engineering_tasks import EngineeringTaskPlan
-            frozen = EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan.get("project_id"),))
+            frozen = EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan.get("project_id"),),
+                                                  historical_decode=True)
             if frozen.to_dict() != plan:
                 raise ValueError("Joint engineering registration requires its frozen canonical plan")
         return True
@@ -283,8 +287,9 @@ class RegistryEngineeringMixin:
     def _collection_candidate(plan: Any) -> bool:
         # Reserved collection shape must not become an unbounded generic task
         # by dropping the envelope marker or changing scope/task_kind.
-        return isinstance(plan, dict) and (plan.get("task_kind") == "historical_collection"
-            or "collection_plan" in plan or "field_catalog" in plan)
+        return isinstance(plan, dict) and (plan.get("task_kind") in {"historical_collection", "data_certification"}
+            or "collection_plan" in plan or "field_catalog" in plan or "certification_plan" in plan
+            or "input_refs" in plan or "source_binding" in plan)
 
 
     @staticmethod
@@ -296,6 +301,17 @@ class RegistryEngineeringMixin:
                 or type(package.get("engineering_task_schema_version")) is not int
                 or package["engineering_task_schema_version"] != 1):
             raise ValueError("Collection tasks require the shared engineering package marker")
+        # Certification is an explicit new Research-only schema. Reserved keys
+        # cannot downgrade to generic engineering by changing just task_kind.
+        if (plan.get("task_kind") == "data_certification" or "certification_plan" in plan
+                or "input_refs" in plan or "source_binding" in plan):
+            from .certification_tasks import CertificationTaskPlan
+            catalog = plan.get("certification_plan", {}).get("financial_catalog") if isinstance(plan.get("certification_plan"), dict) else None
+            frozen = CertificationTaskPlan.from_dict(plan,
+                discovered_project_ids=(plan.get("project_id"),), financial_catalog=catalog)
+            if frozen.to_dict() != plan:
+                raise ValueError("Certification registration requires its frozen canonical plan")
+            return frozen
         # This validates persisted shape/identity only. The trusted dispatcher
         # separately supplies actual discovered projects and trusted catalog.
         from .collection_tasks import CollectionTaskPlan
@@ -327,8 +343,9 @@ class RegistryEngineeringMixin:
 
     @staticmethod
     def _collection_operation(plan, stage: str, operation_key: str) -> None:
+        prefix = "certification-plan:" if plan is not None and plan.to_dict().get("task_kind") == "data_certification" else "collection-plan:"
         if plan is not None and (stage != "research"
-                or operation_key != "collection-plan:" + plan.hash + ":research"):
+                or operation_key != prefix + plan.hash + ":research"):
             raise RegistryError("Collection tasks permit only their fixed Research operation")
 
 
@@ -339,7 +356,20 @@ class RegistryEngineeringMixin:
             return None
         from .engineering_tasks import EngineeringTaskPlan
         plan = package["plan"]
-        return EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan["project_id"],))
+        return EngineeringTaskPlan.from_dict(plan, discovered_project_ids=(plan["project_id"],),
+                                             historical_decode=True)
+
+
+    @staticmethod
+    def _require_current_joint_storage(package: dict) -> None:
+        """New admission stays strict while persisted package decoding survives."""
+        if (isinstance(package, dict) and isinstance(package.get("plan"), dict)
+                and package["plan"].get("schema_version") in {2, 3, 4}
+                and package["plan"].get("scope") == "engineering"):
+            from .engineering_tasks import EngineeringTaskPlan
+            document = package["plan"]
+            EngineeringTaskPlan.from_dict(document,
+                discovered_project_ids=(document.get("project_id"),))
 
 
     @staticmethod
@@ -431,8 +461,11 @@ class RegistryEngineeringMixin:
         """
         if not self._is_engineering_package(package):
             return
+        self._require_current_joint_storage(package)
         identity = content_hash(package)
         own_id = state["engineering_round_configs"].get(identity)
+        if package["plan"].get("task_kind") == "data_certification" and own_id is None:
+            raise BudgetExceeded("Certification requires an explicitly user-authorized engineering round")
         if own_id is not None:
             record = state["engineering_rounds"][own_id]
             if record["status"] != "open" or self._round_usage(state, record)[kind] >= record["grant"]["limits"][kind]:
@@ -473,5 +506,20 @@ class RegistryEngineeringMixin:
             if collection is not None or kind != "configurations":
                 self._enforce_engineering_project(state, package)
             self._enforce_engineering_limit(state, kind, package)
+
+    def _certification_transition(self, state: dict, record: dict, kind: str, *, fields=None, result=None) -> None:
+        """New explicit certification tasks require original native proof.
+
+        Called under LOCK, including replay; no Registry/Bridge public reader
+        may be called from the pure metadata validator.
+        """
+        package = json.loads(self.store.read_bytes("configurations/" + record["config_id"] + ".json"))
+        if not isinstance(package, dict) or not isinstance(package.get("plan"), dict) or package["plan"].get("task_kind") != "data_certification":
+            return
+        from .certification_tasks import validate_registry_transition
+        try:
+            validate_registry_transition(self.store, package, record, kind, fields=fields, result=result)
+        except (KeyError, TypeError, ValueError, OSError) as error:
+            raise RegistryError("Certification transition requires original fixed-parser native evidence") from error
 
 

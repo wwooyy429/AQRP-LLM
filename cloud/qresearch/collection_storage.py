@@ -21,7 +21,11 @@ from .collection import (CollectionError, CollectionIntegrityError, CollectionIn
 _HASH = re.compile(r"[0-9a-f]{64}")
 _IDENTITY_FIELDS = {"attempt_id", "config_id", "data_request_hash", "deployment_hash", "plan_hash",
                     "project_id", "source_manifest_hash", "stage"}
-_SOURCES = {"historical_source.py", "collection.py", "artifacts.py", "contracts.py"}
+_LEGACY_SOURCES = {"historical_source.py", "collection.py", "artifacts.py", "contracts.py"}
+_SOURCES = _LEGACY_SOURCES | {"financial_fields.py"}
+_FINANCIAL_REFERENCES = {"financial_fields", "FINANCIAL_FIELD_PATH", "FinancialFieldError",
+                         "extract_financial_field", "validate_financial_field",
+                         "financial_field_definition"}
 _SELECTORS = {
     "collection.py": {"_HASH", "_PATH", "_FIELDS", "_ROOT", "_OCCURRENCE_ROOT",
                       "_OBSERVATION_POLICY", "_OCCURRENCE_COUNTS", "_FLAGS",
@@ -97,17 +101,46 @@ def _semantic_import_bindings(tree, names):
     return bindings
 
 
+def _financial_dependency(text):
+    """Reject incomplete legacy maps when the adapter references the new helper."""
+    try:
+        tree = ast.parse(text)
+    except (SyntaxError, ValueError):
+        _fail()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            if any("financial_fields" in alias.name.split(".") for alias in node.names):
+                return True
+        elif isinstance(node, ast.ImportFrom):
+            if ("financial_fields" in (node.module or "").split(".")
+                    or any(alias.name == "financial_fields" for alias in node.names)):
+                return True
+        elif isinstance(node, ast.Name) and node.id in _FINANCIAL_REFERENCES:
+            return True
+        elif isinstance(node, ast.Attribute) and node.attr in _FINANCIAL_REFERENCES:
+            return True
+        elif (isinstance(node, ast.Constant) and type(node.value) is str
+                and "financial_fields" in node.value.split(".")):
+            # Include literal module names passed to a dynamic importer.
+            return True
+    return False
+
+
 def processing_contract_sha256(sources=None):
     """Bind projection/time/serialization semantics independently of deployment.
 
-The closed rule uses the complete historical adapter source and selected AST
-definitions in its dependency closure. Incidental file/plan labels and logging
-are excluded. The optional exact four-source map supports offline comparison
-with an immutable older Git version; runtime always calls without overrides.
+The current closed rule includes the complete historical and financial adapter
+sources plus selected AST definitions in the remaining closure. The optional
+four-source map retains the original v1 hash for an older adapter that does not
+reference the financial helper. Runtime always binds all five current sources;
+missing helper dependencies cannot become a four-source compatibility claim.
     """
     if sources is None:
-        sources = {name: Path(__file__).with_name(name).read_bytes() for name in _SOURCES}
-    if type(sources) is not dict or set(sources) != _SOURCES:
+        try:
+            sources = {name: Path(__file__).with_name(name).read_bytes() for name in _SOURCES}
+        except OSError:
+            _fail()
+    if type(sources) is not dict or set(sources) not in (_LEGACY_SOURCES, _SOURCES):
         _fail()
     normalized = {}
     for name, raw in sources.items():
@@ -118,7 +151,12 @@ with an immutable older Git version; runtime always calls without overrides.
             normalized[name] = text.replace("\r\n", "\n").replace("\r", "\n").rstrip("\n") + "\n"
         except (UnicodeError, ValueError):
             _fail()
+    legacy = set(sources) == _LEGACY_SOURCES
+    if legacy and _financial_dependency(normalized["historical_source.py"]):
+        _fail()
     selected = {"historical_source.py": normalized["historical_source.py"]}
+    if not legacy:
+        selected["financial_fields.py"] = normalized["financial_fields.py"]
     for name, wanted in _SELECTORS.items():
         try:
             tree = ast.parse(normalized[name])
@@ -149,7 +187,8 @@ with an immutable older Git version; runtime always calls without overrides.
             "definitions": {label: ast.dump(_UnwrapDiagnostics().visit(deepcopy(node)), include_attributes=False)
                             for label, node in sorted(found.items())},
             "dependency_bindings": _semantic_import_bindings(tree, _SEMANTIC_IMPORTS[name])}
-    return content_hash({"closed_processing_rule": "snapshot-projection-dependency-v1", "sources": selected})
+    rule = "snapshot-projection-dependency-v1" if legacy else "snapshot-projection-dependency-v2"
+    return content_hash({"closed_processing_rule": rule, "sources": selected})
 
 
 def data_identity(plan, processing_hash):
@@ -193,17 +232,19 @@ def _receipt_identity(raw, legacy):
     return raw
 
 
-def validate_storage_policy(policy, requested_plan):
-    """Pure validation; callers cannot approve arbitrary processing fingerprints."""
+def validate_storage_policy_structure(policy, requested_plan):
+    """Decode frozen provenance without claiming current processing compatibility.
+
+    This metadata-only reader preserves historical identities. It must never
+    replace the current-contract validator at cache reads or new admission.
+    """
     if (type(policy) is not dict or set(policy) != {"schema_version", "mode", "processing_contract_sha256", "legacy"}
             or type(policy["schema_version"]) is not int or policy["schema_version"] != 1
             or type(policy["mode"]) is not str
             or policy["mode"] not in {"reuse_verified_legacy_only", "stable_prefetch"}
             or not _is_hash(policy["processing_contract_sha256"])):
         _fail()
-    actual = processing_contract_sha256()
-    if not _is_hash(actual) or actual != policy["processing_contract_sha256"]:
-        _fail()
+    actual = policy["processing_contract_sha256"]
     data_identity(requested_plan, actual)
     old = policy["legacy"]
     if old is None:
@@ -232,6 +273,15 @@ def validate_storage_policy(policy, requested_plan):
         return json.loads(canonical_json(policy))
     except (TypeError, ValueError):
         _fail()
+
+
+def validate_storage_policy(policy, requested_plan):
+    """Require the current processing fingerprint before cache use/admission."""
+    frozen = validate_storage_policy_structure(policy, requested_plan)
+    actual = processing_contract_sha256()
+    if not _is_hash(actual) or actual != frozen["processing_contract_sha256"]:
+        _fail()
+    return frozen
 
 
 class StableCollectionCache:

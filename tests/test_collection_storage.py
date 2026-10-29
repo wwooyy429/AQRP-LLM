@@ -3,6 +3,7 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
+import subprocess
 import sys
 import unittest
 from unittest.mock import patch
@@ -212,7 +213,66 @@ class ProcessingFingerprintTests(unittest.TestCase):
     def source_map(self):
         folder = Path(__file__).resolve().parents[1] / "cloud/qresearch"
         return {name: (folder / name).read_bytes() for name in
-                ("historical_source.py", "collection.py", "artifacts.py", "contracts.py")}
+                ("historical_source.py", "collection.py", "artifacts.py", "contracts.py", "financial_fields.py")}
+
+    def test_financial_helper_body_is_an_explicit_runtime_dependency(self):
+        sources = self.source_map(); baseline = processing_contract_sha256(sources)
+        self.assertEqual(processing_contract_sha256(), baseline)
+        changed = dict(sources)
+        changed["financial_fields.py"] = changed["financial_fields.py"].replace(
+            b'presence("12M")', b'presence("3M")', 1)
+        self.assertNotEqual(changed["financial_fields.py"], sources["financial_fields.py"])
+        self.assertNotEqual(processing_contract_sha256(changed), baseline)
+        missing = {name: raw for name, raw in sources.items() if name != "financial_fields.py"}
+        with self.assertRaises(CollectionError):
+            processing_contract_sha256(missing)
+
+    def test_legacy_four_map_with_new_helper_import_or_reference_rejects(self):
+        sources = self.source_map()
+        legacy = {name: raw for name, raw in sources.items() if name != "financial_fields.py"}
+        for adapter in (b'from .financial_fields import extract_financial_field\n',
+                        b'import qresearch.financial_fields as fixed_financial\n',
+                        b'from . import financial_fields\n',
+                        b'def project(item):\n    return extract_financial_field(item)\n',
+                        b'def project(item):\n    return fixed.financial_fields(item)\n',
+                        b'module = __import__("qresearch.financial_fields")\n'):
+            changed = dict(legacy); changed["historical_source.py"] = adapter
+            with self.subTest(adapter=adapter), self.assertRaises(CollectionError):
+                processing_contract_sha256(changed)
+
+    def test_current_five_source_newlines_are_canonical_and_closed(self):
+        sources = self.source_map(); baseline = processing_contract_sha256(sources)
+        varied = {name: b'\xef\xbb\xbf' + raw.replace(b'\r\n', b'\n').rstrip(b'\n').replace(
+            b'\n', b'\r\n') + b'\r\n\r\n' for name, raw in sources.items()}
+        self.assertEqual(processing_contract_sha256(varied), baseline)
+        with self.assertRaises(CollectionError):
+            processing_contract_sha256(sources | {"another_dependency.py": b'pass\n'})
+        with patch('qresearch.collection_storage.Path.read_bytes',side_effect=FileNotFoundError('SYNTHETIC_PRIVATE_PATH')):
+            with self.assertRaises(CollectionError) as caught:
+                processing_contract_sha256()
+        self.assertNotIn('PRIVATE',str(caught.exception))
+
+    def test_immutable_legacy_four_source_contract_preserves_known_hash(self):
+        root = Path(__file__).resolve().parents[1]
+        commit = "5e09e63d87a42a07a448e27da6aedbe4e8210a6f"
+        names = ("historical_source.py", "collection.py", "artifacts.py", "contracts.py")
+        sources = {name: subprocess.check_output(
+            ["git", "cat-file", "blob", commit + ":cloud/qresearch/" + name], cwd=root)
+            for name in names}
+        legacy = processing_contract_sha256(sources)
+        self.assertEqual(legacy,"5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219")
+        self.assertNotEqual(processing_contract_sha256(),legacy)
+
+    def test_old_frozen_cache_contract_does_not_fetch_or_write_under_new_runtime(self):
+        store, _, requested, policy, _ = fixture()
+        old = "5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219"
+        source = ForbiddenSource(); before = deepcopy(store._data)
+        for selected in (policy | {"processing_contract_sha256":old},
+                         policy | {"legacy":policy["legacy"] | {"processing_contract_sha256":old}}):
+            with self.assertRaises(CollectionError):
+                StableCollectionCache(store,requested,selected,synthetic=True).collect(source)
+            self.assertEqual(source.calls,0)
+            self.assertEqual(store._data,before)
 
     def test_fingerprint_rejects_missing_sources_and_tracks_semantic_changes(self):
         sources = self.source_map(); baseline = processing_contract_sha256(sources)

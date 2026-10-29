@@ -176,7 +176,8 @@ def bridge_for_attempt(attempt, *, registry=None):
             or not isinstance(package["plan"], dict) or package["plan"].get("task_kind") == "historical_collection"):
         raise ValueError("Attempt does not identify an immutable Engineering configuration")
     raw = package["plan"]
-    plan = EngineeringTaskPlan.from_dict(raw, discovered_project_ids=(raw.get("project_id"),))
+    plan = EngineeringTaskPlan.from_dict(raw, discovered_project_ids=(raw.get("project_id"),),
+                                         historical_decode=True)
     bridge = EngineeringTaskBridge(registry, plan)
     if bridge.config_id != record["config_id"]:
         raise ValueError("Persisted Engineering configuration is not canonical")

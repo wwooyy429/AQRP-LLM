@@ -16,6 +16,8 @@ import pandas as pd
 from .artifacts import canonical_json, content_hash
 from .collection import SourceDiagnosticError, _catalog
 from .contracts import DEVELOPMENT_END, NY, aware
+from .financial_fields import (FINANCIAL_FIELD_PATH, FinancialFieldError,
+                               extract_financial_field, validate_financial_field)
 
 
 class HistoricalSourceError(SourceDiagnosticError):
@@ -166,7 +168,15 @@ class QuantConnectSnapshotSource:
                 or observation_policy not in {"unique_sid", "retain_source_occurrences"}):
             raise HistoricalSourceError("A closed native observation policy is required")
         self.qb, self.api = quantbook, api
-        self._catalog_bytes = canonical_json(_catalog(field_catalog))
+        catalog = _catalog(field_catalog)
+        for path, definition in catalog.items():
+            if (path == FINANCIAL_FIELD_PATH
+                    or definition["role"] == "as_reported_financial_value"):
+                try:
+                    validate_financial_field(path, definition)
+                except FinancialFieldError:
+                    raise HistoricalSourceError("Financial source catalog requires its exact frozen definition") from None
+        self._catalog_bytes = canonical_json(catalog)
         self.limit = max_records_per_snapshot
         self.observation_policy = observation_policy
         self.universe = None
@@ -308,7 +318,20 @@ class QuantConnectSnapshotSource:
                 for position, (path, definition) in enumerate(selected.items(), 1):
                     diagnostic["projection_position"] = position
                     diagnostic["projection_kind"] = definition["kind"]
-                    values[path] = _scalar(_attribute(item, path), definition["kind"])
+                    if (path == FINANCIAL_FIELD_PATH
+                            or definition["role"] == "as_reported_financial_value"):
+                        try:
+                            value = extract_financial_field(item, path, definition)
+                        except FinancialFieldError as error:
+                            # Never stringify even an apparent owned subclass:
+                            # native numeric conversions can throw one too.
+                            message = ("Native source property access failed"
+                                if type(error) is FinancialFieldError and error.reason == "native_property_failed"
+                                else "Invalid specified-period financial projection")
+                            raise HistoricalSourceError(message) from None
+                    else:
+                        value = _attribute(item, path)
+                    values[path] = _scalar(value, definition["kind"])
                 diagnostic["rows_emitted"] += 1
                 row = {"sid": sid, "snapshot_at": stamp.isoformat(), "values": values}
                 if self.observation_policy == "retain_source_occurrences":

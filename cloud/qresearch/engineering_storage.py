@@ -20,7 +20,9 @@ def _hash(value):
     return type(value) is str and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
 
 
-def validate_storage_policy(raw, child, *, plan_version=4):
+def validate_storage_policy(raw, child, *, plan_version=4, historical_decode=False):
+    if type(historical_decode) is not bool:
+        raise ValueError("Historical storage decoding requires an explicit boolean") from None
     if (type(raw) is not dict or set(raw) != {"schema_version", "price_cache_mode", "capacity",
             "collection_cache", "lean_record_encoding"} or type(raw["schema_version"]) is not int
             or raw["schema_version"] != 1 or raw["price_cache_mode"] != "cache_only"
@@ -37,11 +39,16 @@ def validate_storage_policy(raw, child, *, plan_version=4):
                 or not 4096 <= counts["reserve_bytes"] <= 1048576
                 or not 1 <= counts["reserve_files"] <= 32):
             raise ValueError("Storage reservations exceed the fixed engineering bounds") from None
-    from .collection_storage import StableCollectionCache
-    # Constructor validates the complete frozen cache policy without reading I/O.
-    class NoIO:
-        residency = "quantconnect_cloud"
-    StableCollectionCache(NoIO(), child, raw["collection_cache"])
+    if historical_decode:
+        from .collection_storage import validate_storage_policy_structure
+        validate_storage_policy_structure(raw["collection_cache"], child)
+    else:
+        from .collection_storage import StableCollectionCache
+        # Only new/current paths require today's source compatibility. An old
+        # admitted receipt is decoded separately, never read as a current cache.
+        class NoIO:
+            residency = "quantconnect_cloud"
+        StableCollectionCache(NoIO(), child, raw["collection_cache"])
     if raw["collection_cache"]["mode"] != "reuse_verified_legacy_only":
         raise ValueError("This engineering repair is verified legacy-cache-only") from None
     return raw

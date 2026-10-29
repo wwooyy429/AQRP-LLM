@@ -93,7 +93,8 @@ class TaskFollowupController:
                 or package["plan"].get("task_kind") == "historical_collection"):
             _fail("Follow-up requires the original Engineering configuration")
         document = package["plan"]
-        plan = EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],))
+        plan = EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],),
+                                             historical_decode=True)
         bridge = EngineeringTaskBridge(self.registry, plan)
         if bridge.config_id != record["config_id"] or record["operation_key"] != bridge._operation("lean"):
             _fail("Attempt does not match the original frozen Engineering operation")

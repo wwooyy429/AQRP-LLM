@@ -123,7 +123,11 @@ class EngineeringTaskPlan:
         raise TypeError("Use EngineeringTaskPlan.from_dict with trusted discovered project IDs")
 
     @classmethod
-    def from_dict(cls, raw, *, discovered_project_ids, probe_field_catalog=None):
+    def from_dict(cls, raw, *, discovered_project_ids, probe_field_catalog=None, historical_decode=False):
+        # Python-only trusted metadata decoding. This is never a document flag
+        # and grants no registration, charge, cache access or execution right.
+        if type(historical_decode) is not bool:
+            raise EngineeringTaskError("Historical plan decoding requires an explicit boolean")
         value = _mapping(json.loads(canonical_json(raw)), "engineering plan")
         required = {"schema_version", "plan_id", "scope", "project_id", "source_manifest_hash",
                     "deployment_hash", "request_mode", "observation_window", "required_checks",
@@ -171,7 +175,8 @@ class EngineeringTaskPlan:
             value["collection_probe"] = {"collection_plan": cp, "field_catalog": child.field_catalog}
             if version in {3, 4}:
                 from .engineering_storage import validate_storage_policy
-                validate_storage_policy(value["storage_policy"], child, plan_version=version)
+                validate_storage_policy(value["storage_policy"], child, plan_version=version,
+                                        historical_decode=historical_decode)
         validate_key(value["report_namespace"])
         if mode == "symbol_resolution":
             template = _mapping(value["request_template"], "request_template")
@@ -266,7 +271,13 @@ class EngineeringTaskBridge:
         self.config_id = content_hash(self.package)
 
     def register(self, *, allocation="normal"):
+        self._require_current_admission()
         return self.registry.register_config(self.package, allocation=allocation)
+
+    def _require_current_admission(self):
+        """Historical plan objects cannot bypass today's admission checks."""
+        document = self.plan.to_dict()
+        EngineeringTaskPlan.from_dict(document, discovered_project_ids=(document["project_id"],))
 
     def _operation(self, stage):
         if stage not in {"research", "lean"}:
@@ -296,6 +307,7 @@ class EngineeringTaskBridge:
         return self.registry.read_result(records[-1]["attempt_id"])
 
     def claim(self, stage, *, allocation="normal", retry_of=None, reason=None):
+        self._require_current_admission()
         operation = self._operation(stage)
         document = self.plan.to_dict()
         if stage == "lean":

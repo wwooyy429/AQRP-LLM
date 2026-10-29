@@ -115,7 +115,8 @@ def _context(payload, deployment, stage):
         payload = _json(encoded)
         identity = payload["identity"]
         _identity_shape(identity)
-        plan = EngineeringTaskPlan.from_dict(payload["plan"], discovered_project_ids=(identity["project_id"],))
+        plan = EngineeringTaskPlan.from_dict(payload["plan"], discovered_project_ids=(identity["project_id"],),
+                                             historical_decode=True)
         document = plan.to_dict()
         if (identity["stage"] != stage or identity["plan_hash"] != plan.hash
                 or identity["config_id"] != content_hash({"engineering_task_schema_version": 1, "plan": document})

@@ -682,9 +682,9 @@ class DataCertificationTests(unittest.TestCase):
     def test_capabilities_and_CLI_remain_metadata_only(self):
         catalog = json.loads((ROOT/'config/source_catalog.json').read_bytes())['fields']
         result = certification_capabilities(catalog)
-        self.assertEqual(result['declared_financial_value_field_count'],0)
+        self.assertEqual(result['declared_financial_value_field_count'],1)
         self.assertFalse(result['ready_to_dispatch'])
-        self.assertIn('financial_value_catalog_not_available',result['gap_codes'])
+        self.assertNotIn('financial_value_catalog_not_available',result['gap_codes'])
         with tempfile.TemporaryDirectory() as directory:
             file=Path(directory)/'plan.json';file.write_bytes(canonical_json(self.frozen_plan.to_dict()))
             command=[sys.executable,'-B',str(ROOT/'tools/data_certification.py'),'validate-plan','--plan-file',str(file)]

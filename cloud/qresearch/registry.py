@@ -299,6 +299,9 @@ class Registry(RegistryEngineeringMixin):
                             raise CorruptRegistry("Completed result bytes differ from journal")
                         if canonical_json(json.loads(result)) != result:
                             raise CorruptRegistry("Completed result is not canonical JSON")
+                    if kind in {"pending", "completed", "failed"}:
+                        self._certification_transition(state, record, kind, fields=event,
+                            result=json.loads(result) if kind == "completed" else None)
                     record.update(event)
                     record["status"] = kind
                 else:
@@ -652,6 +655,8 @@ class Registry(RegistryEngineeringMixin):
             raise RegistryError("An ambiguous submission requires an explicit reconciliation receipt")
         if kind == "pending" and record["status"] == "ambiguous":
             raise RegistryError("Ambiguous submission must be resolved by an observed final result or reconciliation")
+        if kind in {"pending", "failed"}:
+            self._certification_transition(state, record, kind, fields=fields)
         event = dict(fields, kind=kind, attempt_id=attempt_id)
         self._append(event)
         record.update(event)
@@ -691,6 +696,7 @@ class Registry(RegistryEngineeringMixin):
             record = state["attempts"][attempt_id]
             if record["status"] == "failed":
                 raise RegistryError("A failed attempt cannot be completed; register an explicit retry")
+            self._certification_transition(state, record, "completed", fields={"external_id": external_id if external_id is not None else record.get("external_id")}, result=result)
             self.store.write_once(record["result_key"], encoded)
             if record["status"] == "completed":
                 return self._attempt(record)
