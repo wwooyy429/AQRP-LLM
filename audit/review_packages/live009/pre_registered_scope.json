@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "round_id": "stage2-host-integration-round-009",
+  "human_request": "请开始真实联调、完整回执、数据及计费认证",
+  "project_id": 38436695,
+  "scope": "bounded engineering host integration and evidence collection, not financial research",
+  "execution_limits": {
+    "new_configurations": 1,
+    "research_executions": 1,
+    "lean_submissions": 1,
+    "explicit_create_compile": 1,
+    "automatic_retries": 0,
+    "extra_spend_usd": 0
+  },
+  "implicit_compile_policy": "source writes and create_backtest may compile automatically; count them separately from the single explicit create_compile request",
+  "transport_limits": {
+    "project_inventory": 3,
+    "full_source_readbacks": 3,
+    "per_changed_source_write": 1,
+    "task_input_writes_per_stage": 1,
+    "research_cell_write": 1,
+    "research_execute": 1,
+    "historical_list_projects": 1,
+    "historical_list_backtest_pages": 3,
+    "terminal_metadata_reads_after_actual_delivery": 1,
+    "terminal_log_pages": 8,
+    "terminal_order_pages": 1
+  },
+  "stop_conditions": [
+    "source exact readback or build validation fails",
+    "capacity preflight fails",
+    "Research native result is failed, ambiguous or missing any fixed check",
+    "LEAN compilation fails",
+    "submission state is unknown",
+    "host transport is unavailable or disallowed",
+    "terminal receipt identity cannot be reconciled"
+  ],
+  "capacity_policy": "read live capacity inside the already predebited fixed worker; no separate uncharged probe; fail closed without retry or refund",
+  "source_policy": "approved c2e63ac implementation plus a new engineering plan configuration; freeze actual full source manifest before admission; operator factory has a separate content hash",
+  "cache_policy": "reuse only verified prior price and occurrence caches; no new historical-universe query; cached fixture is not a certification of the migrated Morningstar feed",
+  "data_certification": {
+    "full_US200": false,
+    "numeric_financial_catalog_count": 0,
+    "vendor_revision_receipt_ingestion_evidence": "not supplied",
+    "status": "evidence_insufficient",
+    "no_vendor_timing_inferred_from_LEAN_clock": true
+  },
+  "billing_certification": {
+    "internal_registry_is_authoritative_for_research_quota": true,
+    "platform_invoice_evidence": "not yet supplied",
+    "status": "evidence_insufficient",
+    "no_purchase_authorized": true
+  },
+  "read_permission": "No fresh-backtest read without delivered native completion and connector permission. Historical directory completion is not a read grant.",
+  "market_data_policy": "Real rows and row-level derived values remain in QC Cloud. Retain only source and permitted aggregate receipts locally.",
+  "final_test_enabled": false,
+  "financial_research_enabled": false,
+  "automatic_GPT_enabled": false,
+  "live_trading_enabled": false,
+  "exposure": {
+    "2024_2025": "previously exposed",
+    "2026": "independence uncertified"
+  },
+  "independent_acceptance": false
+}

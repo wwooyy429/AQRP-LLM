@@ -1,27 +1,25 @@
 {
-  "schema_version": 23,
-  "kind": "WR29_independent_closure_registered_no_product_change",
+  "schema_version": 24,
+  "kind": "round009_real_engineering_pending_terminal",
   "previous_readiness": {
-    "commit": "e48beff7343ab61726682f67867785d7078572b7",
+    "commit": "34b30b5685e4ffa8685cee9a4438d714cbf11468",
     "path": "audit/stage2_current_readiness.json",
-    "preserved_copy": "audit/review_packages/wr29_closure/previous_stage2_current_readiness.snapshot.json"
+    "preserved_copy": "audit/review_packages/live009/previous_stage2_current_readiness.json"
   },
-  "candidate_runtime_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
-  "candidate_execution_source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
-  "candidate_cloud_deployed": false,
-  "candidate_independent_acceptance": true,
-  "stage2_status": "WR29_original_defect_closed_local_scope_passed_whole_stage2_unaccepted",
+  "candidate_runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
+  "candidate_execution_source_manifest_hash": "fe3df524e360fef6d74dc06559b553bd0005b9350c9f425855a4ec26ec4360c5",
+  "candidate_cloud_deployed": true,
+  "candidate_independent_acceptance": false,
+  "stage2_status": "round009_Research_completed_LEAN_pending_full_data_and_billing_insufficient",
   "stage2_accepted": false,
   "financial_evidence": false,
   "current_activity": {
-    "kind": "independent_scope_closure_registration_only",
-    "baseline_commit": "e48beff7343ab61726682f67867785d7078572b7",
-    "product_source_changed": false,
-    "software_tests_repeated": false,
-    "new_configurations": 0,
-    "new_Research_executions": 0,
-    "new_LEAN_submissions": 0,
-    "new_budget_events": 0
+    "kind": "user_authorized_manual_real_engineering_round009",
+    "new_configurations": 1,
+    "new_Research_executions": 1,
+    "new_LEAN_submissions": 1,
+    "new_budget_events": 7,
+    "journal_events": 78
   },
   "historical_real_runtime": {
     "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
@@ -122,14 +120,14 @@
     }
   },
   "global_usage": {
-    "configurations": 16,
-    "research": 17,
-    "lean": 3
+    "configurations": 17,
+    "research": 18,
+    "lean": 4
   },
   "configuration_cycle_usage": {
-    "used": 3,
+    "used": 4,
     "limit": 13,
-    "remaining": 10
+    "remaining": 9
   },
   "effective_global_limits": {
     "configuration_cycle": 13,
@@ -137,26 +135,33 @@
     "lean": 16
   },
   "budget_and_prior_exposure_preserved": true,
-  "journal_events": 71,
-  "current_round_closed": true,
+  "journal_events": 78,
+  "current_round_closed": false,
   "automatic_retry_enabled": false,
   "new_submit_allowed": false,
   "followup": {
     "old_automation_id": "aqrp-lean-008",
     "old_automation_status": "DELETED",
-    "new_live_watch_created": false,
+    "new_live_watch_created": true,
     "candidate_policy": "config/task_followup.json",
-    "real_host_dispatch_integration_accepted": false
+    "real_host_dispatch_integration_accepted": false,
+    "new_live_watch_kind": "durable TaskFollowupController registration, not a scheduler",
+    "new_automation_created": false,
+    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+    "backtest_id": "6347a33efc37e761f486f982e804dbac",
+    "deadline": "2026-10-29T15:15:59.738191+00:00",
+    "host_real_stdio_status": "wait_for_delivery"
   },
   "known_open_software_findings_from_independent_reports": [],
-  "new_candidate_independent_acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "new_candidate_independent_acceptance_scope": "New configuration and operator assembly pending independent review; prior WR29 finite-scope closure preserved",
   "certification_status": "insufficient_evidence",
   "blockers": [
-    "Actual production factory/transport/scheduler/notification integration remains unverified.",
-    "New44-file source has no actual cloud engineering run; old b1a2018 chain remains historical.",
-    "Complete native receipt collection/settlement/round-closing integration is not accepted.",
+    "New44-file Research13/13 is completed; same-source LEAN native terminal remains undelivered and pending.",
+    "Actual factory/UTC/real Registry stdio status path ran; outbound MCP transport, scheduler and automatic notification remain unverified.",
+    "Native terminal, all log chunks, independent zero-order receipt, same-attempt settlement and round closure remain pending.",
     "Full2010-2023 historical US200/SID/calendar/raw-price/corporate-action coverage is uncertified.",
     "Financial numeric catalog remains0; vintage/publication/actual historical vendor-delivery/ingestion evidence is incomplete.",
+    "Platform billing evidence is unavailable; user confirms no receipt. Internal quota and SDK capacity are not platform billing.",
     "Complete charged certification native dispatch and stages3-7 remain unaccepted."
   ],
   "execution_gates": {
@@ -189,7 +194,8 @@
     "audit/stage2_storage_repair006_report.json",
     "audit/stage2_storage_repair007_report.json",
     "audit/stage2_storage_repair008_report.json",
-    "audit/software_recovery009_report.json"
+    "audit/software_recovery009_report.json",
+    "audit/stage2_host_integration009_report.json"
   ],
   "latest_completed_independent_review": {
     "schema_version": 1,
@@ -501,9 +507,9 @@
     "new_budget_events": 0,
     "new_cloud_calls": 0
   },
-  "next_engineering_preparation": "audit/review_packages/wr29_closure/next_work.json",
-  "current_activity_evidence": "audit/wr29_closure_report.json",
-  "candidate_independent_acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "next_engineering_preparation": "audit/review_packages/live009/certification_gates.json",
+  "current_activity_evidence": "audit/stage2_host_integration009_report.json",
+  "candidate_independent_acceptance_scope": "New config and operator assembly not independently accepted; prior WR29 finite closure remains preserved",
   "closed_software_findings_from_independent_reports": [
     {
       "id": "WR-29",
@@ -542,5 +548,19 @@
         "完整阶段2、数据认证或金融有效性"
       ]
     }
-  ]
+  ],
+  "current_real_runtime": {
+    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+    "backtest_id": "6347a33efc37e761f486f982e804dbac",
+    "status": "pending",
+    "submission_accepted": true,
+    "explicit_compile_succeeded": true,
+    "native_terminal_delivered": false,
+    "native_terminal_collected": false,
+    "logs_collected": false,
+    "independent_zero_orders_collected": false,
+    "Research_attempt_id": "44eda8401c554e0b87bc01598169c919",
+    "Research_checks": "13/13",
+    "runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f"
+  }
 }

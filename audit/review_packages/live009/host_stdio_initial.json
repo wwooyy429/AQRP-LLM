@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "kind": "actual_production_UTC_real_registry_stdio_invocation",
+  "runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
+  "argv": [
+    "tools/followup_host.py",
+    "serve",
+    "--enable-dispatch",
+    "--host-factory",
+    "audit.review_packages.live009.host_factory:create_host"
+  ],
+  "commands": [
+    {
+      "command": "register",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2"
+    },
+    {
+      "command": "wake",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2"
+    }
+  ],
+  "factory_file": "audit/review_packages/live009/host_factory.py",
+  "factory_sha256": "34cf877688300fcb7ad90b31d868cfb70d705a27339e9729660465ed139fdefe",
+  "clock_override": false,
+  "read_grants": [],
+  "exit_code": 0,
+  "stdout_original_base64": "eyJzY2hlbWFfdmVyc2lvbiI6IDEsICJ0eXBlIjogInN0YXR1cyIsICJhdHRlbXB0X2lkIjogIjExMTQ3ZmM1YTdhYzRmNmM5NTFhODZkMDIxZDA2OWIyIiwgImFjdGlvbiI6ICJ3YWl0X2Zvcl9kZWxpdmVyeSIsICJzaG91bGRfZXhlY3V0ZSI6IGZhbHNlfQ0KeyJzY2hlbWFfdmVyc2lvbiI6IDEsICJ0eXBlIjogInN0YXR1cyIsICJhdHRlbXB0X2lkIjogIjExMTQ3ZmM1YTdhYzRmNmM5NTFhODZkMDIxZDA2OWIyIiwgImFjdGlvbiI6ICJ3YWl0X2Zvcl9kZWxpdmVyeSIsICJzaG91bGRfZXhlY3V0ZSI6IGZhbHNlfQ0K",
+  "stderr_original_base64": "",
+  "stdout_sha256": "1740bd860d307b29fc47223e2b204572af477f55f67b85e33092cc5035a02054",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "local_fixture_or_mock": false,
+  "actual_remote_MCP_dispatch_demonstrated": false,
+  "financial_acceptance": false,
+  "independent_acceptance": false,
+  "final_test_enabled": false,
+  "outputs": [
+    {
+      "schema_version": 1,
+      "type": "status",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+      "action": "wait_for_delivery",
+      "should_execute": false
+    },
+    {
+      "schema_version": 1,
+      "type": "status",
+      "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+      "action": "wait_for_delivery",
+      "should_execute": false
+    }
+  ]
+}
