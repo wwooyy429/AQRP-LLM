@@ -1,0 +1,7 @@
+固定源码b1a4041ce98867047294b8f0830292af5d7ec56e；资料提交须由PR链接外部固定。当前LEAN终态未送达，ledger pending，不能将资料准备完成理解为验收通过。
+入口：../GPT_WORK_REVIEW.txt；review_checklist.json；review_packet_manifest.json。
+离线证据核对：python -B audit/review_packages/storage-repair008/followup/verify_followup.py
+正式独立软件测试：在固定提交的干净检出执行python -B tools/stages.py verify，并自行设计边界/答案。
+当前跟进没有更改cloud/tools/tests/docs/templates/config的运行设计，config/budget.json也与前资料40d1原字节相同。940是固定运行源码的既有开发测试，本次未重复运行。
+verify_followup仅证明本地资料/身份/预算自洽，不证明平台来源、供应商历史覆盖、独立软件验收或金融价值。旧tools/review_metadata.py是早期特定资料修复的验证器，不是本轮原生结果判定器。
+终态送达后只使用现有tools/stage2.py固定parser结算同一attempt，不修改源码/计划或触发重试；然后更新报告/readiness/README/指令和清单，以新不可变Git提交外部固定，保留本次pending快照。预算不变；终态结算和关轮可追加合法journal事件，但不新增执行扣额或退款。重新运行本资料核对及重封包时先执行verify_followup.py --seal，再不带参数核对；不得通过重封包掩盖原Git证据差异。
