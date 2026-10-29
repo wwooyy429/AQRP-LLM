@@ -1,0 +1,213 @@
+test_both_matching_carriers_with_hidden_outputs_still_rejected (__main__.IndependentCarrierTests) ... ok
+test_collection_complete_chain_all_supported_modes (__main__.IndependentCarrierTests) ... ok
+test_collection_wrong_json_root_types_are_rejected (__main__.IndependentCarrierTests) ... ok
+test_conflicts_on_either_side_are_rejected_without_ledger_writes (__main__.IndependentCarrierTests) ... ok
+test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected (__main__.IndependentCarrierTests) ... ok
+test_duplicate_keys_inside_marker_rejected_in_both_carriers (__main__.IndependentCarrierTests) ... ok
+test_equivalent_wrapped_json_controls (__main__.IndependentCarrierTests) ... ok
+test_multiple_text_blocks_are_one_equivalent_list_observation (__main__.IndependentCarrierTests) ... ok
+test_nonidentical_typed_values_or_output_order_rejected (__main__.IndependentCarrierTests) ... ok
+test_old_lean_each_native_stage_conflict_rejected (__main__.IndependentCarrierTests) ... test_old_lean_matching_runtime_failure_reconciles_without_row_text (__main__.IndependentCarrierTests) ... test_old_lean_submission_read_and_logs_complete_chain (__main__.IndependentCarrierTests) ... test_old_research_complete_chain_equivalent_carriers (__main__.IndependentCarrierTests) ... test_old_research_conflicting_carrier_rejected (__main__.IndependentCarrierTests) ... test_top_level_and_block_metadata_cannot_hide_rows (__main__.IndependentCarrierTests) ... ok
+
+======================================================================
+ERROR: test_old_lean_each_native_stage_conflict_rejected (__main__.IndependentCarrierTests) (old_lean_conflict='submission')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 285, in test_old_lean_each_native_stage_conflict_rejected
+    h=self.old();h.lean_context();before=deepcopy(h.local._data)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_each_native_stage_conflict_rejected (__main__.IndependentCarrierTests) (old_lean_conflict='read')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 285, in test_old_lean_each_native_stage_conflict_rejected
+    h=self.old();h.lean_context();before=deepcopy(h.local._data)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_each_native_stage_conflict_rejected (__main__.IndependentCarrierTests) (old_lean_conflict='logs')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 285, in test_old_lean_each_native_stage_conflict_rejected
+    h=self.old();h.lean_context();before=deepcopy(h.local._data)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_matching_runtime_failure_reconciles_without_row_text (__main__.IndependentCarrierTests) (old_lean_failure='equal_dual_runtime_error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 294, in test_old_lean_matching_runtime_failure_reconciles_without_row_text
+    h=self.old();h.lean_context()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_submission_read_and_logs_complete_chain (__main__.IndependentCarrierTests) (old_lean_mode='direct')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 266, in test_old_lean_submission_read_and_logs_complete_chain
+    h=self.old();h.lean_context(mode)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_submission_read_and_logs_complete_chain (__main__.IndependentCarrierTests) (old_lean_mode='structured')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 266, in test_old_lean_submission_read_and_logs_complete_chain
+    h=self.old();h.lean_context(mode)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_submission_read_and_logs_complete_chain (__main__.IndependentCarrierTests) (old_lean_mode='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 266, in test_old_lean_submission_read_and_logs_complete_chain
+    h=self.old();h.lean_context(mode)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_lean_submission_read_and_logs_complete_chain (__main__.IndependentCarrierTests) (old_lean_mode='dual')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 266, in test_old_lean_submission_read_and_logs_complete_chain
+    h=self.old();h.lean_context(mode)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_complete_chain_equivalent_carriers (__main__.IndependentCarrierTests) (old_research_mode='direct')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 262, in test_old_research_complete_chain_equivalent_carriers
+    h=self.old();self.assertEqual(h.complete_research(mode).status,'completed');h.assert_no_rows(self)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_complete_chain_equivalent_carriers (__main__.IndependentCarrierTests) (old_research_mode='structured')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 262, in test_old_research_complete_chain_equivalent_carriers
+    h=self.old();self.assertEqual(h.complete_research(mode).status,'completed');h.assert_no_rows(self)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_complete_chain_equivalent_carriers (__main__.IndependentCarrierTests) (old_research_mode='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 262, in test_old_research_complete_chain_equivalent_carriers
+    h=self.old();self.assertEqual(h.complete_research(mode).status,'completed');h.assert_no_rows(self)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_complete_chain_equivalent_carriers (__main__.IndependentCarrierTests) (old_research_mode='dual')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 262, in test_old_research_complete_chain_equivalent_carriers
+    h=self.old();self.assertEqual(h.complete_research(mode).status,'completed');h.assert_no_rows(self)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_conflicting_carrier_rejected (__main__.IndependentCarrierTests) (old_research_side='structured')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 275, in test_old_research_conflicting_carrier_rejected
+    h=self.old();base=native_stdout(h.rwrapper);bad=deepcopy(base);bad['outputs'].append({'output_type':'stream','name':'stdout','text':SECRET})
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+======================================================================
+ERROR: test_old_research_conflicting_carrier_rejected (__main__.IndependentCarrierTests) (old_research_side='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 275, in test_old_research_conflicting_carrier_rejected
+    h=self.old();base=native_stdout(h.rwrapper);bad=deepcopy(base);bad['outputs'].append({'output_type':'stream','name':'stdout','text':SECRET})
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 158, in old
+    def old(self):h=OldEngineering();self.objects.append(h);return h
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\carriers_baseline_adapter\independent_carrier_boundaries_corrected.py", line 129, in __init__
+    self.rwrapper=_finish(self.cloud,self.rpayload,{'raw_data_received':True,'second_prefetch_no_history':True},
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\history_agent\replay_context\source\cloud\qresearch\engineering_data.py", line 402, in _finish
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+KeyError: 'deployment_manifest'
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.789s
+
+FAILED (errors=14)
+
+{"commit": "be9442603a31481a9a71e51ca794df77650c7411", "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source", "command_argv": ["C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_baseline_adapter\\independent_carrier_boundaries_corrected.py", "--source", "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source", "--out", "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\carriers_baseline_adapter_results"], "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]", "platform": "Windows-10-10.0.26300-SP0", "pandas": "2.3.3", "numpy": "1.26.4", "source_raw_sha256": {"cloud/qresearch/engineering_receipts.py": "7ea0bed92ce6031c56203c78ee8e5b50bf02a1601626cd58dd9db61fea3881f6", "cloud/qresearch/engineering_tasks.py": "ba2e7fe47c8937c8d6b23dde5ba49376c5f1e368f59702ffe8f351844ee98cb1", "cloud/qresearch/engineering_data.py": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a", "cloud/qresearch/collection_execution.py": "721f0b370b6473c7e23a74ad68f54ba44391d99d7f8abea28ea16567f0b9d880", "cloud/qresearch/collection_tasks.py": "d5e582a42ff98e8c26fe9f13fefa22aa2ae89197c964a450958c9e5a49439b80", "cloud/qresearch/registry.py": "8ad57eb1daa0bc30485e53123964d4d808a30c5991cb1722bd60e419cad5a219"}, "script_sha256": "1e420ce89ca0b1cb15b3534aa35a55ca111c800700ebfdeff8a5e69d33520265", "methods": 15, "subcases": 80, "failure_records": 0, "error_records": 14, "skipped": 0, "success": false, "actions": {"SDK": 0, "Research": 0, "LEAN": 0, "market": 0, "models": 0, "deploy": 0, "actual_budget_change": 0, "source_edit": 0}, "scope": "fixed synthetically constructed carrier/receipt/Bridge/Registry paths; not arbitrary SDK envelope certification or real remote execution"}

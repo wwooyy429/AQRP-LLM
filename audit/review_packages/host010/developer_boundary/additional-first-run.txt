@@ -1,0 +1,27 @@
+test_host_status_exposes_unknown_project_discovery (__main__.HostBoundaryTests) ... FAIL
+test_direct_api_rejects_byte_oversize_before_persistence (__main__.HostBoundaryTests) ... FAIL
+
+======================================================================
+FAIL: test_host_status_exposes_unknown_project_discovery (__main__.HostBoundaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\ѧϰ\Ͷ��\����\�������ױ���\LLM ����������\.git\repair-work\host010-boundary\check_boundaries.py", line 160, in test_host_status_exposes_unknown_project_discovery
+    self.assertEqual(result['action'], 'attention_required')
+AssertionError: 'register_watch' != 'attention_required'
+- register_watch
++ attention_required
+
+
+======================================================================
+FAIL: test_direct_api_rejects_byte_oversize_before_persistence (__main__.HostBoundaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\ѧϰ\Ͷ��\����\�������ױ���\LLM ����������\.git\repair-work\host010-boundary\check_boundaries.py", line 173, in test_direct_api_rejects_byte_oversize_before_persistence
+    self.assertEqual({k: len(v) for k, v in store._data.items()}, {k: len(v) for k, v in before.items()}, 'oversized API response reached persistence')
+AssertionError: {'reg[872 chars]owup-host/be12b4b27ecf4eddbd168f9a4e1304a9/events.jsonl': 1111} != {'reg[872 chars]owup-host/be12b4b27ecf4eddbd168f9a4e1304a9/events.jsonl': 786}
+Diff is 1217 characters long. Set self.maxDiff to None to see it. : oversized API response reached persistence
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.044s
+
+FAILED (failures=2)

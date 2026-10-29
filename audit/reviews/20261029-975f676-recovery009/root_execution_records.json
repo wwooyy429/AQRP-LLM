@@ -1,0 +1,79 @@
+[
+  {
+    "label": "build_first",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/research.py",
+      "build"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\work_source",
+    "exit_code": 0,
+    "seconds": 1.659
+  },
+  {
+    "label": "build_second",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/research.py",
+      "build"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\work_source",
+    "exit_code": 0,
+    "seconds": 1.863
+  },
+  {
+    "label": "repository_verify",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/stages.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\work_source",
+    "exit_code": 0,
+    "seconds": 310.192
+  },
+  {
+    "label": "clone_private",
+    "command": [
+      "git",
+      "clone",
+      "--no-checkout",
+      "--no-hardlinks",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\materials_checkout"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029",
+    "exit_code": 0,
+    "seconds": 1.229
+  },
+  {
+    "label": "checkout_materials",
+    "command": [
+      "git",
+      "-c",
+      "core.autocrlf=false",
+      "-c",
+      "core.eol=lf",
+      "checkout",
+      "--detach",
+      "a6a5a165d87c172535cdea6cf495e3c1a850e6e4"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\materials_checkout",
+    "exit_code": 0,
+    "seconds": 9.872
+  },
+  {
+    "label": "verify_materials",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/recovery009/verify_review.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\materials_checkout",
+    "exit_code": 0,
+    "seconds": 46.716
+  }
+]

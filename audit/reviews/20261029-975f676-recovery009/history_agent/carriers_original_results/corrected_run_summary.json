@@ -1,0 +1,387 @@
+{
+  "commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source",
+  "command_argv": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_original\\independent_carrier_boundaries_corrected.py",
+    "--source",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source",
+    "--out",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\carriers_original_results"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "7ea0bed92ce6031c56203c78ee8e5b50bf02a1601626cd58dd9db61fea3881f6",
+    "cloud/qresearch/engineering_tasks.py": "ba2e7fe47c8937c8d6b23dde5ba49376c5f1e368f59702ffe8f351844ee98cb1",
+    "cloud/qresearch/engineering_data.py": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+    "cloud/qresearch/collection_execution.py": "721f0b370b6473c7e23a74ad68f54ba44391d99d7f8abea28ea16567f0b9d880",
+    "cloud/qresearch/collection_tasks.py": "d5e582a42ff98e8c26fe9f13fefa22aa2ae89197c964a450958c9e5a49439b80",
+    "cloud/qresearch/registry.py": "8ad57eb1daa0bc30485e53123964d4d808a30c5991cb1722bd60e419cad5a219"
+  },
+  "script_sha256": "c8453cd71eda8927bafc5bd50b32e8ac36a36c133f1c837558e548ad42f0b06c",
+  "methods": 15,
+  "subcases": 80,
+  "failure_records": 0,
+  "error_records": 44,
+  "skipped": 0,
+  "success": false,
+  "first_failure": {
+    "method": "test_both_matching_carriers_with_hidden_outputs_still_rejected (__main__.IndependentCarrierTests)",
+    "subtest": "test_both_matching_carriers_with_hidden_outputs_still_rejected (__main__.IndependentCarrierTests) (agreeing_hidden_output='extra_stdout')",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_original\\independent_carrier_boundaries_corrected.py\", line 224, in test_both_matching_carriers_with_hidden_outputs_still_rejected\n    h=self.collection();native=native_stdout(h.wrapper);native['outputs'].append(extra)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_original\\independent_carrier_boundaries_corrected.py\", line 157, in collection\n    def collection(self):h=Collection();self.objects.append(h);return h\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_original\\independent_carrier_boundaries_corrected.py\", line 76, in __init__\n    super().__init__()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\carriers_original\\independent_carrier_boundaries_corrected.py\", line 65, in __init__\n    self.local=MemoryArtifactStore();self.reg=Registry(self.local,BUDGET);self.cloud=MemoryArtifactStore()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\cloud\\qresearch\\registry.py\", line 131, in __init__\n    self._validate_usage(self.initial_usage, self._initial_limits)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\cloud\\qresearch\\registry.py\", line 152, in _validate_usage\n    raise BudgetExceeded(\"{} {} budget exhausted\".format(stage, allocation))\nqresearch.registry_engineering.BudgetExceeded: configurations normal budget exhausted\n"
+  },
+  "inputs": [
+    {
+      "method": "test_both_matching_carriers_with_hidden_outputs_still_rejected",
+      "agreeing_hidden_output": "extra_stdout"
+    },
+    {
+      "method": "test_both_matching_carriers_with_hidden_outputs_still_rejected",
+      "agreeing_hidden_output": "display"
+    },
+    {
+      "method": "test_both_matching_carriers_with_hidden_outputs_still_rejected",
+      "agreeing_hidden_output": "error"
+    },
+    {
+      "method": "test_both_matching_carriers_with_hidden_outputs_still_rejected",
+      "agreeing_hidden_output": "stderr"
+    },
+    {
+      "method": "test_collection_complete_chain_all_supported_modes",
+      "collection_mode": "direct"
+    },
+    {
+      "method": "test_collection_complete_chain_all_supported_modes",
+      "collection_mode": "structured"
+    },
+    {
+      "method": "test_collection_complete_chain_all_supported_modes",
+      "collection_mode": "content"
+    },
+    {
+      "method": "test_collection_complete_chain_all_supported_modes",
+      "collection_mode": "dual"
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "NoneType",
+      "value": null
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "bool",
+      "value": false
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "bool",
+      "value": true
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "int",
+      "value": 0
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "int",
+      "value": 1
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "float",
+      "value": 1.5
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "list",
+      "value": []
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "dict",
+      "value": {}
+    },
+    {
+      "method": "test_collection_wrong_json_root_types_are_rejected",
+      "native_type": "str",
+      "value": "not a marker"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "structured",
+      "conflict": "extra_stdout"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "structured",
+      "conflict": "display"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "structured",
+      "conflict": "error"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "structured",
+      "conflict": "status"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "structured",
+      "conflict": "nested_metadata"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "content",
+      "conflict": "extra_stdout"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "content",
+      "conflict": "display"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "content",
+      "conflict": "error"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "content",
+      "conflict": "status"
+    },
+    {
+      "method": "test_conflicts_on_either_side_are_rejected_without_ledger_writes",
+      "carrier": "content",
+      "conflict": "nested_metadata"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":1,\"x\":1}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":1,\"x\":2}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"nested\":{\"x\":1,\"x\":1}}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":NaN}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":Infinity}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":-Infinity}"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "content_text": "{\"x\":"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "bad_carrier": "none_carriers"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "bad_carrier": "dict_content"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "bad_carrier": "number_block_text"
+    },
+    {
+      "method": "test_duplicate_json_keys_nonfinite_and_bad_carriers_rejected",
+      "bad_carrier": "structured_nan"
+    },
+    {
+      "method": "test_duplicate_keys_inside_marker_rejected_in_both_carriers",
+      "marker_duplicate": "wrapper"
+    },
+    {
+      "method": "test_duplicate_keys_inside_marker_rejected_in_both_carriers",
+      "marker_duplicate": "report"
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "carrier_mode": "direct"
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "carrier_mode": "structured"
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "carrier_mode": "content"
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "carrier_mode": "dual"
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "optional_empty": 0
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "optional_empty": 1
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "optional_empty": 2
+    },
+    {
+      "method": "test_equivalent_wrapped_json_controls",
+      "optional_empty": 3
+    },
+    {
+      "method": "test_multiple_text_blocks_are_one_equivalent_list_observation",
+      "multiple_blocks": "typed_list_mirror"
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 0
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 1
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 2
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 3
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 4
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 5
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 6
+    },
+    {
+      "method": "test_nonidentical_typed_values_or_output_order_rejected",
+      "type_or_order": 7
+    },
+    {
+      "method": "test_old_lean_each_native_stage_conflict_rejected",
+      "old_lean_conflict": "submission"
+    },
+    {
+      "method": "test_old_lean_each_native_stage_conflict_rejected",
+      "old_lean_conflict": "read"
+    },
+    {
+      "method": "test_old_lean_each_native_stage_conflict_rejected",
+      "old_lean_conflict": "logs"
+    },
+    {
+      "method": "test_old_lean_matching_runtime_failure_reconciles_without_row_text",
+      "old_lean_failure": "equal_dual_runtime_error"
+    },
+    {
+      "method": "test_old_lean_submission_read_and_logs_complete_chain",
+      "old_lean_mode": "direct"
+    },
+    {
+      "method": "test_old_lean_submission_read_and_logs_complete_chain",
+      "old_lean_mode": "structured"
+    },
+    {
+      "method": "test_old_lean_submission_read_and_logs_complete_chain",
+      "old_lean_mode": "content"
+    },
+    {
+      "method": "test_old_lean_submission_read_and_logs_complete_chain",
+      "old_lean_mode": "dual"
+    },
+    {
+      "method": "test_old_research_complete_chain_equivalent_carriers",
+      "old_research_mode": "direct"
+    },
+    {
+      "method": "test_old_research_complete_chain_equivalent_carriers",
+      "old_research_mode": "structured"
+    },
+    {
+      "method": "test_old_research_complete_chain_equivalent_carriers",
+      "old_research_mode": "content"
+    },
+    {
+      "method": "test_old_research_complete_chain_equivalent_carriers",
+      "old_research_mode": "dual"
+    },
+    {
+      "method": "test_old_research_conflicting_carrier_rejected",
+      "old_research_side": "structured"
+    },
+    {
+      "method": "test_old_research_conflicting_carrier_rejected",
+      "old_research_side": "content"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "top_extra_row"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "top_error"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "meta_row"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "block_extra"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "block_meta"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "annotation_row"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "content_image"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "isError_zero"
+    },
+    {
+      "method": "test_top_level_and_block_metadata_cannot_hide_rows",
+      "envelope_metadata": "isError_true"
+    }
+  ],
+  "actions": {
+    "SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deploy": 0,
+    "actual_budget_change": 0,
+    "source_edit": 0
+  },
+  "scope": "fixed synthetically constructed carrier/receipt/Bridge/Registry paths; not arbitrary SDK envelope certification or real remote execution"
+}

@@ -1,0 +1,29 @@
+--- original
++++ manifest_adapter
+@@ -28,7 +28,7 @@
+ 
+ def forbidden(*a,**kw):raise AssertionError('network prohibited in independent review')
+ socket.socket=forbidden
+-BUDGET=json.loads((ROOT/'config/budget.json').read_text(encoding='utf-8'))
++BUDGET=json.loads((ROOT/'audit/runtime/registry/baseline.json').read_text(encoding='utf-8'))
+ CAT={'dollar_volume':{'kind':'number','role':'independent_synthetic','unit':'USD','period_accessor':None}}
+ SECRET='INDEPENDENT-BE94426-CLOUD-ROW-DO-NOT-EXPORT'
+ INPUTS=[]
+@@ -117,7 +117,7 @@
+             'max_retries':{'research':1,'lean':1},'report_namespace':'independent-old-engineering',
+             'orders_enabled':False,'financial_metrics_enabled':False,'economic_factor':None,'economic_model':None},discovered_project_ids=(99682,))
+         self.bridge=EngineeringTaskBridge(self.reg,plan);self.bridge.register();self.research=self.bridge.claim('research')
+-        self.rpayload=self.bridge.payload(self.research);self.rdeploy=self.deployment(self.rpayload)
++        self.rpayload=dict(self.bridge.payload(self.research),deployment_manifest=self.manifest);self.rdeploy=self.deployment(self.rpayload)
+         refs={}
+         for name in ('resolved_registry_ref','resolved_request_ref'):
+             doc={'synthetic_secret':SECRET,'purpose':name};key='synthetic-cloud/'+name+'.json'
+@@ -136,7 +136,7 @@
+         return self.bridge.consume_completion(self.research,completion_source=lambda _:parsed['completion'])
+     def lean_context(self,mode='dual'):
+         self.complete_research(mode)
+-        self.lean=self.bridge.claim('lean');self.lpayload=self.bridge.payload(self.lean);self.ldeploy=self.deployment(self.lpayload)
++        self.lean=self.bridge.claim('lean');self.lpayload=dict(self.bridge.payload(self.lean),deployment_manifest=self.manifest);self.ldeploy=self.deployment(self.lpayload)
+         self.lwrapper=_finish(self.cloud,self.lpayload,{'raw_data_received':True,'no_orders':True},
+             {'data_event_count':6,'slice_count':3,'orders_submitted':0,'runtime_error_count':0},self.resolution)
+         self.external='independent-native-backtest-id'

@@ -1,0 +1,56 @@
+[
+  {
+    "variant": "capabilities",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\tools\\data_certification.py",
+      "capabilities"
+    ],
+    "exit_code": 0,
+    "stdout_raw_sha256": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "variant": "valid_plan",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\tools\\data_certification.py",
+      "validate-plan",
+      "--plan-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\certification\\valid_plan.json"
+    ],
+    "exit_code": 0,
+    "stdout_raw_sha256": "55e0433ccbc7a92b534545a2c4159b92515a8b082a8764e5f3b6d9446246c26a",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "variant": "duplicate_JSON_key",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\tools\\data_certification.py",
+      "validate-plan",
+      "--plan-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\certification\\duplicate_JSON_key.json"
+    ],
+    "exit_code": 2,
+    "stdout_raw_sha256": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "variant": "unknown_override",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\source\\tools\\data_certification.py",
+      "validate-plan",
+      "--plan-file",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\history_agent\\replay_context\\certification\\unknown_override.json"
+    ],
+    "exit_code": 2,
+    "stdout_raw_sha256": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

@@ -1,0 +1,11 @@
+--- original
++++ baseline_adapter
+@@ -28,7 +28,7 @@
+ 
+ def forbidden(*a,**kw):raise AssertionError('network prohibited in independent review')
+ socket.socket=forbidden
+-BUDGET=json.loads((ROOT/'config/budget.json').read_text(encoding='utf-8'))
++BUDGET=json.loads((ROOT/'audit/runtime/registry/baseline.json').read_text(encoding='utf-8'))
+ CAT={'dollar_volume':{'kind':'number','role':'independent_synthetic','unit':'USD','period_accessor':None}}
+ SECRET='INDEPENDENT-BE94426-CLOUD-ROW-DO-NOT-EXPORT'
+ INPUTS=[]

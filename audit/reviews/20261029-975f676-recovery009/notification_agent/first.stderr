@@ -1,0 +1,31 @@
+test_01_closed_policy (__main__.Tests) ... ok
+test_02_original_pending_boundary_and_clock (__main__.Tests) ... ok
+test_03_project_discovery_and_cli_shape (__main__.Tests) ... ok
+test_04_three_pages_one_read_real_parser_bridge_completion (__main__.Tests) ... ERROR
+test_05_runtime_failure_no_refund_or_new_attempt (__main__.Tests) ... ok
+test_06_attention_matrix (__main__.Tests) ... ok
+test_07_unknown_response_restart_and_late_response (__main__.Tests) ... ok
+test_08_bad_history_has_no_read_authority (__main__.Tests) ... ok
+test_09_identity_and_terminal_parser_rejects (__main__.Tests) ... ok
+test_10_thread_and_process_once (__main__.Tests) ... ok
+test_11_reservation_faults_fail_closed (__main__.Tests) ... ok
+test_12_cli_uses_UTC_and_metadata_actions_cannot_dispatch (__main__.Tests) ... ok
+
+======================================================================
+ERROR: test_04_three_pages_one_read_real_parser_bridge_completion (__main__.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\notification_agent\independent_notifications.py", line 177, in test_04_three_pages_one_read_real_parser_bridge_completion
+    payload=bridge.payload(a); parsed=backtest_observation(payload,deployment(payload),BACKTEST,native_terminal(payload),log_envelopes(payload))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\source\cloud\qresearch\engineering_receipts.py", line 777, in backtest_observation
+    wrapper, log_receipts = _logs(payload, external_id, log_envelopes)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\source\cloud\qresearch\engineering_receipts.py", line 696, in _logs
+    _fail("Engineering log chunks are missing, duplicated or inconsistent")
+  File "C:\Users\11638\.codex\tmp\aqrp-review-975f676-20261029\source\cloud\qresearch\engineering_receipts.py", line 43, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Engineering log chunks are missing, duplicated or inconsistent
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.870s
+
+FAILED (errors=1)

@@ -1,0 +1,26 @@
+{
+  "kind": "read_only_history_specialist_first_formal_QA_issue_record",
+  "formal_report_sha256": "aad0c66f970efe90f53e1877028ab4dbda07778651de66868f4774266b9e82ad",
+  "static_checks": 1,
+  "passed_checks": 0,
+  "scope": "First manual issue pinpointed from actual read-only formal JSON review; later complete programmatic QA is separate.",
+  "issues": [
+    {
+      "location": "reviewer_corrections.carrier_first_run.adaptation",
+      "actual": "仅更新合成baseline及三处completion fixture；15方法/80场景通过，断言未改",
+      "expected": "One baseline-reference change and two rpayload/lpayload deployment_manifest fixture additions; three changed sites total.",
+      "impact": "Report wording only, no product issue or acceptance reversal.",
+      "notified_root_before_correction": true,
+      "root_preserved_pre_QA_report": "formal_report_pre_QA.json and formal_report_pre_QA.txt"
+    }
+  ],
+  "QA_helper_first_parse_error": {
+    "original_script": "qa_formal_first.py",
+    "error": "json.decoder.JSONDecodeError: Extra data: line437 column1 (char14296)",
+    "cause": "Formal text contains the fullJSON followed by the runnable MRE; first QA helper tried to JSON-load the entire remaining suffix.",
+    "correction": "Read the first complete JSON object using JSONDecoder.raw_decode; preserve trailing runnableMRE as valid content.",
+    "formal_report_changed_by_this_agent": false
+  },
+  "product_tests_rerun": false,
+  "formal_report_or_product_modified": false
+}

@@ -1,0 +1,153 @@
+{
+  "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "methods": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "named_scenarios": 28,
+  "observations": [
+    {
+      "name": "revision_only_one_configuration_reserve",
+      "new_config_limit": 4
+    },
+    {
+      "name": "cycle_only_configuration_capacity_reset",
+      "lifetime_configs": 5,
+      "current_cycle_configs": 1,
+      "research": 3,
+      "lean": 3
+    },
+    {
+      "name": "revision_cycle_and_old_configuration_reuse_idempotent"
+    },
+    {
+      "name": "old_cycle_origin_and_journal_prefix_preserved"
+    },
+    {
+      "name": "reject_revision_two_config_slots"
+    },
+    {
+      "name": "reject_revision_research_increment"
+    },
+    {
+      "name": "reject_stale_cycle_state"
+    },
+    {
+      "name": "reject_revision_after_cycle"
+    },
+    {
+      "name": "cycle_blocked_started"
+    },
+    {
+      "name": "cycle_blocked_pending"
+    },
+    {
+      "name": "cycle_blocked_ambiguous"
+    },
+    {
+      "name": "cycle_blocked_open_schema4_round"
+    },
+    {
+      "name": "closed_round_allows_reset_without_execution_refund"
+    },
+    {
+      "name": "schema4_round_one_config_binding_cap"
+    },
+    {
+      "name": "schema4_parallel_parent_claim",
+      "processes": 4,
+      "requests": 4,
+      "dispatch_permissions": 1,
+      "results": [
+        {
+          "ok": true,
+          "should_execute": true,
+          "attempt_id": "9c62de318fbd4564ab37a74ff47dc1a7"
+        },
+        {
+          "ok": true,
+          "should_execute": false,
+          "attempt_id": "9c62de318fbd4564ab37a74ff47dc1a7"
+        },
+        {
+          "ok": true,
+          "should_execute": false,
+          "attempt_id": "9c62de318fbd4564ab37a74ff47dc1a7"
+        },
+        {
+          "ok": true,
+          "should_execute": false,
+          "attempt_id": "9c62de318fbd4564ab37a74ff47dc1a7"
+        }
+      ]
+    },
+    {
+      "name": "schema4_failure_closed_restart_no_reset_or_refund",
+      "usage": {
+        "configurations": 1,
+        "research": 1,
+        "lean": 0
+      }
+    },
+    {
+      "name": "schema4_unverified_Research_cannot_charge_LEAN"
+    },
+    {
+      "name": "cross_project_new_cycle_global_reservations_atomic",
+      "projects": [
+        6601,
+        6602
+      ],
+      "results": [
+        {
+          "ok": true,
+          "round_id": "SYNTHETIC-project-6602"
+        },
+        {
+          "ok": false,
+          "type": "BudgetExceeded",
+          "message": "Engineering grant exceeds remaining research normal capacity",
+          "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\windows_lock_agent\\supplement\\independent_cycles_rounds.py\", line 67, in process_action\n    grant,auth,full=payload; result=registry.authorize_engineering_round(grant,[full],auth)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\source\\cloud\\qresearch\\registry_engineering.py\", line 187, in authorize_engineering_round\n    record = self._validate_round_authorization(state, grant, authorization, packages)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-975f676-20261029\\source\\cloud\\qresearch\\registry_engineering.py\", line 146, in _validate_round_authorization\n    raise BudgetExceeded(\"Engineering grant exceeds remaining \" + kind + \" \" + part + \" capacity\")\nqresearch.registry_engineering.BudgetExceeded: Engineering grant exceeds remaining research normal capacity\n"
+        }
+      ]
+    },
+    {
+      "name": "new_round_name_or_project_after_close_cannot_reset_global_research",
+      "research": 6,
+      "lean": 4
+    },
+    {
+      "name": "source_exact_CJK_BOM_CRLF_count",
+      "characters": 4,
+      "utf8_bytes": 8
+    },
+    {
+      "name": "source_reject_one_over"
+    },
+    {
+      "name": "source_reject_nonBMP"
+    },
+    {
+      "name": "source_reject_bool_limit"
+    },
+    {
+      "name": "source_reject_control"
+    },
+    {
+      "name": "CLI_source_size_freeze_and_register_no_debit"
+    },
+    {
+      "name": "CLI_source_size_claim_no_debit_legal_registration_retained"
+    },
+    {
+      "name": "CLI_followup_policy_freeze_and_register_no_debit"
+    },
+    {
+      "name": "CLI_followup_policy_claim_no_debit_legal_registration_retained"
+    }
+  ],
+  "failure_details": [],
+  "cloud_calls": 0,
+  "real_budget_writes": 0,
+  "original_source_writes": 0
+}

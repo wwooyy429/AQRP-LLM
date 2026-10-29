@@ -1,0 +1,12 @@
+{
+  "kind": "reviewer_summary_helper_correction_not_product_fix",
+  "original_helper": "build_report_first.py",
+  "original_execution": "Stopped locally before final report: an inefficient raw-guard generator recomputed the whole file hash map once per candidate file. All actual historical tests had already finished; no tests or production functions were interrupted.",
+  "corrections": [
+    "Compute original/replay raw file maps once each, then compare the cached maps.",
+    "Read the existing IC summary output exact_summary_results.json instead of the mistaken exact_test_results.json name."
+  ],
+  "original_test_expectations_changed": false,
+  "product_source_changed": false,
+  "all_test_first_failures_retained": true
+}

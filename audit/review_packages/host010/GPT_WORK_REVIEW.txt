@@ -1,0 +1,16 @@
+请独立复审AQRP-LLM本轮host010，并保留975f676原范围通过结论。审核资料版本以此次实际交接消息中的固定Git SHA为准，读取audit/current_review_package.json；新源码固定2d1d3060dbc7eb136c1dee61f0647977528b8aad，source hash 74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07。不要审漂移HEAD，也不要只重复开发者计数。
+
+先读AGENTS.md、config/development.json、docs/followup_host.md、本目录README和prior reviewer_followup_tasks.txt，以及audit/review_results/recovery009.json。原975f676在本地Codex任务“更新 GPT 审核与验收状态”完成了独审：987仓库及实际有限新增/历史回归通过，无新产品缺陷，完整阶段2仍未通过。原ChatGPT6ade...任务仅有交接。205项原报告/脚本/首败/夹具修复/QA选取归档，原ZIP SHA c4437f468fdb57797832df564eb917f3798cc1fe6b6f87dbe39bef6bf7bcace4；selected archive并非完整包。原CRLF/非UTF8通过raw.base64无损保留，可读mirror不能称原字节。
+
+本轮真正新增的产品文件是tools/followup_host.py和tests/test_followup_host.py，另有宿主说明。生产CLI plan/serve默认off，显式enable还须可信Python host factory，stdin不能指定权限/工具/时钟。请特别检查factory信任边界与实际连接器权限：没有生产factory或transport就不能宣称真实宿主接通；目录Completed不能解除chat read_backtest对尚未实际送达结果的读取限制。
+
+请实际运行python -B tools/stages.py verify及本目录verify_review.py、--self-test，在私有临时检出与合成store自行构造独立反例。工具与host单测计数、辅助边界和旧987存在重叠，不累加成独有总数。
+重点覆盖：默认off不触真实store；原pending+1800秒且CLI不能伪造now；list_projects独立前置授权/单页单次持久预留；next.should_execute是历史/read唯一许可，register/sync/status无派发权；宿主锁/Registry锁无死锁；精确项目/页/attempt/correlation/tool/参数绑定；多线程多进程、预留后崩溃、工具执行后响应丢失和重启不重派；未知发现的status/plan可见性；错误拒绝幂等；JSON重复键、bool/int、非有限数、UTF8字节及直接API响应门槛；分页冲突、仍运行、无目标、attention停止；read可信凭证不能来自stdin或LLM布尔；native raw不入本地事件；完成读取仅awaiting_native_receipt，不授予Registry成功；原生产parser→Bridge→Registry仍可结算迟到同attempt终态，日志与零订单要求保持。
+
+开发边界曾复现UTF8门槛、直接API过大和status隐藏未知3项，均保留原脚本/首败/修正后日志；另补了重复拒绝幂等。这只是开发辅助验证，不能直接关闭独审。元数据请核对：latest completed review只批准975f676已测范围；新host候选pending；phase2整体false；旧budget/tracking/readiness/pending请求包是原时点快照，不从旧状态授新权利。恢复205原件并核对原raw哈希、selected范围、原始正式报告SHA ef0fa58a5e87d0930ed7b6c6ddbd11a1b96ecc0ea56678dd7989dbee2a890057。
+
+审阅所有实际已存在阶段组件及WR01–28原范围回归映射时，使用docs/review/current/history.json和新归档矩阵。stage0/1、stage2本地宿主软件、真实宿主/工程链、全历史数据认证和完整阶段2必须分别结论；stage3–7完整能力仍未验收。旧b1a的R13/L7/零订单与LEAN43 EOF归一化只作旧2018有限工程证据，不继承给本候选。新候选云端清单44、未部署运行；完整财务数值目录仍0、真实vintage/公开/实际送达/摄入未知，完整计费认证派发未完成。
+
+严格不调用QC、Research、编译、回测、市场/模型API、资源购买或生产automation；不修改真实Registry、预算、生产源码、配置周期和闸门。当前用量配置周期3/13、累计16，Research17/20、LEAN3/16，71事件，008关轮，不重提、不退款。下一轮1/1/1只是待授权建议，不能视为本轮执行许可。2024–2025已暴露、2026独立性未认证；最终测试、正式研究、自动GPT、交易关闭。
+
+交付固定版本、环境、实际命令/退出码、仓库与独立测试结果、新发现最小复现/级别/源行、完整失败和修复历史、预算/原前缀/暴露保护核对，以及各范围通过/未验收/证据不足。不要代改生产代码或合并PR。若无法实际执行，明确未执行；不得将软件测试、工程零订单或开发布尔解释为金融有效性。
