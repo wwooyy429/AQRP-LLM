@@ -1,102 +1,48 @@
 {
-  "schema_version": 19,
-  "kind": "stage2_round008_native_terminal_reconciled",
+  "schema_version": 20,
+  "kind": "recovery009_software_candidate_not_cloud_deployed",
   "previous_readiness": {
-    "commit": "4a1bd3549d443d49f6ddd46820e3f807d00924ee",
+    "commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
     "path": "audit/stage2_current_readiness.json",
-    "raw_sha256": "8349b0709d7e4f07bf82b67d57a8508945b3865b770e55a43f937a057eb3f4dc",
-    "local_preserved_copy": "audit/review_packages/storage-repair008/terminal/previous_readiness_pending.snapshot.json"
+    "raw_sha256": "5ce8d4ea78c0e41027dd2aa15536b546d8276abe109923e1e3c573df33fe191c",
+    "preserved_copy": "audit/review_packages/recovery009/previous_readiness.snapshot.json"
   },
-  "candidate_runtime_source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
-  "candidate_execution_source_manifest_hash": "60a42c12d0d195d7dc924e4520710c00ad960a92c606042e236d157be806c338",
-  "candidate_deployment_hash": "9dc37a07bd78de98d2f34f7e4ba0eaf29bd819e51aa44db5606816c17a503c33",
+  "candidate_runtime_source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "candidate_execution_source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
+  "candidate_cloud_deployed": false,
   "candidate_independent_acceptance": false,
-  "stage2_status": "not_accepted_bounded_native_chain_completed_independent_review_and_full_data_gates_open",
+  "stage2_status": "new_software_candidate_awaiting_independent_review_full_data_gates_open",
   "stage2_accepted": false,
   "financial_evidence": false,
   "current_activity": {
-    "kind": "same_attempt_native_terminal_reconciled_no_new_execution",
+    "kind": "offline_software_recovery_no_new_execution",
+    "report": "audit/software_recovery009_report.json",
+    "review_handoff": "docs/review/current/GPT_WORK_REVIEW.txt",
+    "repository_synthetic_tests": 987,
+    "software_tests_repeated": true,
+    "new_configurations": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0
+  },
+  "historical_real_runtime": {
+    "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+    "terminal_materials_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
     "report": "audit/stage2_storage_repair008_report.json",
-    "review_handoff": "audit/review_packages/storage-repair008/GPT_WORK_REVIEW.txt",
-    "runtime_source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
-    "repository_synthetic_tests": 940,
-    "software_tests_repeated_this_followup": false,
-    "new_configurations_this_followup": 0,
-    "new_Research_executions_this_followup": 0,
-    "new_LEAN_submissions_this_followup": 0
+    "bounded_native_chain_completed": true,
+    "research_checks": "13/13",
+    "lean_checks": "7/7",
+    "current_round_closed": true,
+    "lean_attempt": "a03a7c7611fb496aaf5487ca8974b0d2",
+    "backtest_id": "8a45b6c62d55521033e9cc5b9b9d3950",
+    "automatic_push_observed": false,
+    "LEAN_source_verification": {
+      "canonical_sources_verified": true,
+      "eof_normalized_file_count": 43,
+      "original_source_identity_match": false,
+      "verification_mode": "worker_terminal_lf"
+    },
+    "new_candidate_cloud_evidence": false
   },
-  "current_activity_evidence": "audit/stage2_storage_repair008_report.json",
-  "candidate_cloud_deployed": true,
-  "managed_cloud_files_verified": 43,
-  "cloud_source_updates_incomplete": false,
-  "cloud_runtime_source_identity_verified_in_Research": true,
-  "cloud_runtime_source_identity_evidence_scope": "43 PROJECT original readbacks match. Research worker43 verified with0 EOF normalization. LEAN worker43 canonical verified with43 EOF normalizations; LEAN original_source_identity_match=false. Not an unlisted-file or full historical-data certificate.",
-  "cloud_runtime_joint_gate_passed": true,
-  "current_Research_attempt": "95de031ff6a54c3fa1747fc44047cc4e",
-  "current_Research_platform_status": "completed",
-  "current_Research_engineering_status": "13_of_13_fixed_checks_passed",
-  "current_Research_ledger_status": "completed",
-  "current_LEAN_attempt": "a03a7c7611fb496aaf5487ca8974b0d2",
-  "current_LEAN_platform_status": "Completed.",
-  "current_LEAN_ledger_status": "completed",
-  "latest_backtest_id": "8a45b6c62d55521033e9cc5b9b9d3950",
-  "pending_backtest_id": null,
-  "latest_runtime_round_LEAN_submissions": 1,
-  "new_LEAN_success": true,
-  "compile_response_archived": true,
-  "compile_response_evidence": "audit/review_packages/storage-repair008/lean_compile.json",
-  "native_compile_packet_archived": false,
-  "native_compile_packet_scope": "Original compiled worker packet unavailable; a create_compile success response is separately archived and is not that packet.",
-  "engineering_round_id": "stage2-storage-repair-round-008",
-  "engineering_round_status": "closed",
-  "engineering_stop_caps": {
-    "configurations": 1,
-    "research": 1,
-    "lean": 1
-  },
-  "engineering_observed_used": {
-    "configurations": 1,
-    "research": 1,
-    "lean": 1
-  },
-  "automatic_retry_enabled": false,
-  "new_submit_allowed": false,
-  "current_round_closed": true,
-  "global_usage": {
-    "configurations": 16,
-    "research": 17,
-    "lean": 3
-  },
-  "effective_global_limits": {
-    "configuration_cycle": 13,
-    "research": 20,
-    "lean": 16
-  },
-  "configuration_cycle_usage": {
-    "used": 3,
-    "limit": 13,
-    "remaining": 10
-  },
-  "configuration_reset_authorization": {
-    "status": "applied_append_only",
-    "cycle_id": "configuration-cycle-20261029-002",
-    "current_configuration_usage": 3,
-    "capacity": 13,
-    "lifetime_configuration_usage": 16,
-    "current_state_evidence": "config/budget.json",
-    "original_application_record": "audit/review_packages/storage-repair006/configuration_cycle_application.json"
-  },
-  "new_configuration_capacity_remaining": 10,
-  "budget_and_prior_exposure_preserved": true,
-  "latest_requested_rerun": {
-    "report": "audit/stage2_storage_repair008_report.json",
-    "software_passed": true,
-    "new_cloud_execution": "Research_completed13_and_LEAN_completed7_same_plan_closed",
-    "new_v2_cloud_success": true,
-    "scope": "bounded2018 engineering only; not fullPhase2 or financial validity"
-  },
-  "delivery_scope_independently_accepted": false,
-  "new_candidate_independent_acceptance_scope": "b1a4041 runtime and round008 delivery pending independent exact-version GPT Work review; earlier finite approvals remain historical only.",
   "historical_independent_scope": {
     "accepted_offline_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
     "accepted_source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
@@ -176,15 +122,43 @@
       }
     }
   },
-  "historical_independent_scope_notice": "WR25-27 and WR28 acceptance remains limited to exact historical sources/delivery; not acceptance of current b1a4041/008. Full previous readiness bytes are preserved by reference.",
+  "global_usage": {
+    "configurations": 16,
+    "research": 17,
+    "lean": 3
+  },
+  "configuration_cycle_usage": {
+    "used": 3,
+    "limit": 13,
+    "remaining": 10
+  },
+  "effective_global_limits": {
+    "configuration_cycle": 13,
+    "research": 20,
+    "lean": 16
+  },
+  "budget_and_prior_exposure_preserved": true,
+  "journal_events": 71,
+  "current_round_closed": true,
+  "automatic_retry_enabled": false,
+  "new_submit_allowed": false,
+  "followup": {
+    "old_automation_id": "aqrp-lean-008",
+    "old_automation_status": "DELETED",
+    "new_live_watch_created": false,
+    "candidate_policy": "config/task_followup.json",
+    "real_host_dispatch_integration_accepted": false
+  },
   "known_open_software_findings_from_independent_reports": [],
+  "new_candidate_independent_acceptance_scope": "Pending; no historical finite approval inherited.",
   "certification_status": "insufficient_evidence",
   "blockers": [
-    "Exactb1a4041 runtime and terminal-delivery package still need independent GPT Work review.",
-    "Full2010-2023 historical US200/listing/category/SID/expected-session liquidity and price/corporate-action coverage remain uncertified.",
-    "Financial numeric catalogue, report vintages, publication time and actual historical vendor-delivery/ingestion evidence remain incomplete.",
-    "Complete charged certification worker/native dispatch is not accepted.",
-    "Automatic completion-push delivery root cause remains unproven; local WinError32 release contention has only an archived operator workaround, not a permanent shared-library fix."
+    "No new candidate cloud deployment or live MCP dispatcher integration.",
+    "Automatic push transport/root-cause hop remains unproven; bounded recovery is not a push guarantee.",
+    "Full 2010-2023 historical US200 and financial numeric/vintage/publication/vendor-delivery/ingestion evidence remain uncertified.",
+    "Complete charged certification dispatch, real six-fold factor/model research and portfolio trading are not accepted.",
+    "Stage3-7 have partial components or missing workflows; no independent final executor or forward operations.",
+    "2024-2025 exposure retained; 2026 independence not certified."
   ],
   "execution_gates": {
     "market_research_enabled": false,
@@ -194,17 +168,6 @@
   },
   "prior_2024_2025_exposure_preserved": true,
   "year2026_independence": "not_certified",
-  "followup": {
-    "automation_id": "aqrp-lean-008",
-    "status": "DELETED",
-    "cadence": "every30minutes",
-    "allowed_actions_before_terminal": "inspect delivered notices and local evidence only; no platform backtest/status/log polling",
-    "notify_policy": "only meaningful completion/failure or required user action",
-    "stop_after_reconciliation": "deleted",
-    "delete_reason": "Wait-only monitor obsolete; native terminal reconciled and round closed.",
-    "terminal_acquisition": "single historical directory reconciliation",
-    "automatic_completion_push_observed": false
-  },
   "reports": [
     "audit/stage2_round002_report.json",
     "audit/stage2_round002_data_certification.json",
@@ -226,19 +189,7 @@
     "audit/rootcause005_report.json",
     "audit/stage2_storage_repair006_report.json",
     "audit/stage2_storage_repair007_report.json",
-    "audit/stage2_storage_repair008_report.json"
-  ],
-  "LEAN_source_verification": {
-    "canonical_sources_verified": true,
-    "eof_normalized_file_count": 43,
-    "original_source_identity_match": false,
-    "verification_mode": "worker_terminal_lf"
-  },
-  "local_metadata_io_observation": {
-    "WinError32_during_release": true,
-    "two_direct_settlement_attempts_failed_before_transition": true,
-    "same_exact_lock_owner_backoff_used": true,
-    "product_source_changed": false,
-    "permanent_library_repair_included": false
-  }
+    "audit/stage2_storage_repair008_report.json",
+    "audit/software_recovery009_report.json"
+  ]
 }

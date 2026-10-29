@@ -1,0 +1,42 @@
+[
+  {
+    "command": "python -B -m unittest discover -s tests -p test_followup_cli.py -v",
+    "initial_result": "6 tests;5passed1error",
+    "cause": "Invented fixture report set corporate_action_received but omitted required dividend_event_count; existing fixed guard correctly rejected",
+    "repair": "Add synthetic dividend_event_count2 and recompute synthetic report_ref hash",
+    "subsequent_result": "6tests passed",
+    "real_registry_or_budget_changes": 0,
+    "cloud_calls": 0,
+    "financial_evidence": false
+  },
+  {
+    "command": "Read-only build preflight probe importing processing_contract_sha256 from qresearch.cache_v3",
+    "initial_result": "ModuleNotFoundError before any preflight or state action",
+    "cause": "Developer used an incorrect module name in an ad-hoc probe",
+    "repair": "Import from existing qresearch.collection_storage and rerun read-only preflight",
+    "subsequent_result": "See build_preflight.json; no product patch required",
+    "real_registry_or_budget_changes": 0,
+    "cloud_calls": 0,
+    "financial_evidence": false
+  },
+  {
+    "command": "Guarded full offline verifier, initial foreground session",
+    "initial_result": "Process exit1073807364 without final verifier output/result; indeterminate, not passed",
+    "cause": "Execution process terminated; no evidence identifies the terminating component",
+    "repair": "Keep aborted001 metadata and rerun same frozen source in a hidden independent local process",
+    "subsequent_result": "See full_offline_validation/result.json; no product patch prompted by this interruption",
+    "real_registry_or_budget_changes": 0,
+    "cloud_calls": 0,
+    "financial_evidence": false
+  },
+  {
+    "command": "Private finalization helper representation-policy string replacement",
+    "initial_result": "PowerShell rejected the ad-hoc Python -c quoting before Python ran",
+    "cause": "Developer command quoting error",
+    "repair": "Use apply_patch on the private helper; no product change or original-file normalization",
+    "subsequent_result": "Helper corrected and independent verifier process launched",
+    "real_registry_or_budget_changes": 0,
+    "cloud_calls": 0,
+    "financial_evidence": false
+  }
+]
