@@ -1,0 +1,891 @@
+{
+  "kind": "fixed_post_native_inventory_metadata_analysis_not_deletion_approval",
+  "input_settled_result_sha256": "87e7afb7b2bd478e50995143497807dae0dc9892b8808d9474940b37c36ab9f7",
+  "native_identity": {
+    "attempt_id": "d22d36298ece423da53ed13817dd9b2e",
+    "config_id": "af100cd106ffb1791dba688745b538172a5c3cb3fbd6edb0c5676ea0415116cd",
+    "plan_hash": "936f412cbeb24ab7f4d4946b9150ef63823b587c67ab1b9e9698d6be36248643",
+    "project_id": 38436695,
+    "stage": "research",
+    "worker_sha256": "9f60769abc5430d2501e563750dcf13100662e7e181a450407ba8f0722981763"
+  },
+  "capacity_observation": {
+    "free_size_bytes": 53895,
+    "key_size_sha256": "fed74f73aca0dddfb905874cb90872d8996053c4dae2506c225afeddf940181a",
+    "lean_byte_envelope_sufficient": false,
+    "lean_required_bytes": 73728,
+    "max_files": 1000,
+    "max_size_bytes": 52428800,
+    "used_files": 488,
+    "used_size_bytes": 52374905
+  },
+  "two_matching_metadata_passes_not_atomic_snapshot": true,
+  "lean_frozen_byte_envelope_shortfall_bytes": 19833,
+  "full_LEAN_file_count_capacity_or_reservation_not_certified": true,
+  "namespace_leaf_only_totals": [
+    {
+      "namespace": "aqrp/engineering/v2/audit-evidence",
+      "objects": 10,
+      "exact_physical_bytes": 252310,
+      "content_status_counts": {
+        "not_read": 10
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/cache",
+      "objects": 1,
+      "exact_physical_bytes": 237,
+      "content_status_counts": {
+        "not_read": 1
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/coverage-inputs/v1",
+      "objects": 2,
+      "exact_physical_bytes": 329129,
+      "content_status_counts": {
+        "not_read": 2
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/engineering",
+      "objects": 32,
+      "exact_physical_bytes": 106506,
+      "content_status_counts": {
+        "not_read": 12,
+        "retained_unknown_schema": 20
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/feature-cache/v1",
+      "objects": 15,
+      "exact_physical_bytes": 336077,
+      "content_status_counts": {
+        "metadata_verified": 10,
+        "payload_hash_verified": 5
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/historical-snapshots/v1",
+      "objects": 102,
+      "exact_physical_bytes": 2052326,
+      "content_status_counts": {
+        "metadata_verified": 92,
+        "not_read": 10
+      },
+      "retained": true
+    },
+    {
+      "namespace": "aqrp/engineering/v2/historical-snapshots/v2",
+      "objects": 314,
+      "exact_physical_bytes": 49161139,
+      "content_status_counts": {
+        "metadata_verified": 87,
+        "not_read": 3,
+        "payload_hash_verified": 224
+      },
+      "retained": true
+    },
+    {
+      "namespace": "generic-research/v1",
+      "objects": 12,
+      "exact_physical_bytes": 137181,
+      "content_status_counts": {
+        "not_read": 12
+      },
+      "retained": true
+    }
+  ],
+  "leaf_parent_totals": [
+    {
+      "parent": "aqrp/engineering/v2",
+      "objects": 1,
+      "exact_physical_bytes": 237
+    },
+    {
+      "parent": "aqrp/engineering/v2/audit-evidence",
+      "objects": 10,
+      "exact_physical_bytes": 252310
+    },
+    {
+      "parent": "aqrp/engineering/v2/coverage-inputs/v1",
+      "objects": 1,
+      "exact_physical_bytes": 328629
+    },
+    {
+      "parent": "aqrp/engineering/v2/coverage-inputs/v1/provenance",
+      "objects": 1,
+      "exact_physical_bytes": 500
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/host-integration-normal009-v4/collection-probes/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b",
+      "objects": 1,
+      "exact_physical_bytes": 16815
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/host-integration-normal009-v4/reports/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/research",
+      "objects": 1,
+      "exact_physical_bytes": 6276
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/host-integration-normal009-v4/resolutions/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/joint-round002-v1/resolutions/3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/joint-round002-v2/collection-probes/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e",
+      "objects": 1,
+      "exact_physical_bytes": 16569
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/joint-round002-v2/reports/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/research",
+      "objects": 1,
+      "exact_physical_bytes": 4601
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/joint-round002-v2/resolutions/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/joint-v1/resolutions/4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/collection-probes/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+      "objects": 1,
+      "exact_physical_bytes": 16815
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/reports/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/research",
+      "objects": 1,
+      "exact_physical_bytes": 4774
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/resolutions/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/repaired-round003-v1/resolutions/82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/sid-diagnostic-normal004-v1/resolutions/489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/source-policy-v2-round005/resolutions/7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/collection-probes/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f",
+      "objects": 1,
+      "exact_physical_bytes": 16815
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/received/a03a7c7611fb496aaf5487ca8974b0d2",
+      "objects": 2,
+      "exact_physical_bytes": 3401
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/reports/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/lean",
+      "objects": 1,
+      "exact_physical_bytes": 3950
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/reports/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/research",
+      "objects": 1,
+      "exact_physical_bytes": 6270
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/resolutions/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/v2/reports/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/research",
+      "objects": 1,
+      "exact_physical_bytes": 3720
+    },
+    {
+      "parent": "aqrp/engineering/v2/engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489",
+      "objects": 2,
+      "exact_physical_bytes": 650
+    },
+    {
+      "parent": "aqrp/engineering/v2/feature-cache/v1/intents",
+      "objects": 5,
+      "exact_physical_bytes": 1842
+    },
+    {
+      "parent": "aqrp/engineering/v2/feature-cache/v1/manifests",
+      "objects": 5,
+      "exact_physical_bytes": 5712
+    },
+    {
+      "parent": "aqrp/engineering/v2/feature-cache/v1/objects",
+      "objects": 5,
+      "exact_physical_bytes": 328523
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v1/intents",
+      "objects": 48,
+      "exact_physical_bytes": 9984
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v1/objects",
+      "objects": 10,
+      "exact_physical_bytes": 1970928
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v1/windows",
+      "objects": 44,
+      "exact_physical_bytes": 71414
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v2/intents",
+      "objects": 44,
+      "exact_physical_bytes": 9152
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v2/objects",
+      "objects": 227,
+      "exact_physical_bytes": 49033293
+    },
+    {
+      "parent": "aqrp/engineering/v2/historical-snapshots/v2/windows",
+      "objects": 43,
+      "exact_physical_bytes": 118694
+    },
+    {
+      "parent": "generic-research/v1",
+      "objects": 1,
+      "exact_physical_bytes": 533
+    },
+    {
+      "parent": "generic-research/v1/feature-cache/v1/intents",
+      "objects": 4,
+      "exact_physical_bytes": 1354
+    },
+    {
+      "parent": "generic-research/v1/feature-cache/v1/manifests",
+      "objects": 4,
+      "exact_physical_bytes": 4434
+    },
+    {
+      "parent": "generic-research/v1/feature-cache/v1/objects",
+      "objects": 3,
+      "exact_physical_bytes": 130860
+    }
+  ],
+  "role_counts": {
+    "engineering_receipt": 30,
+    "feature_intent": 5,
+    "feature_manifest": 5,
+    "feature_payload": 5,
+    "historical_intent": 92,
+    "historical_payload": 237,
+    "historical_window": 87,
+    "other_unread": 27
+  },
+  "content_status_counts": {
+    "metadata_verified": 189,
+    "not_read": 50,
+    "payload_hash_verified": 229,
+    "retained_unknown_schema": 20
+  },
+  "prior_UI_vs_current_SDK_metadata": {
+    "prior_UI_leaf_objects": 456,
+    "prior_UI_keys_still_observed": 456,
+    "prior_UI_keys_not_observed_now": [],
+    "additional_enumerated_keys": [
+      "aqrp/engineering/v2/engineering/host-integration-normal009-v4/collection-probes/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/44eda8401c554e0b87bc01598169c919.json",
+      "aqrp/engineering/v2/engineering/host-integration-normal009-v4/reports/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/research/44eda8401c554e0b87bc01598169c919.json",
+      "aqrp/engineering/v2/engineering/host-integration-normal009-v4/resolutions/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/host-integration-normal009-v4/resolutions/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v1/resolutions/3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v1/resolutions/3d93941d8e389c23d4476f448c9c8645be314f2e2fb38c0f7bd37484f7503bda/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v2/collection-probes/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v2/reports/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/research/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v2/resolutions/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/joint-round002-v2/resolutions/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/joint-v1/resolutions/4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/joint-v1/resolutions/4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/collection-probes/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/2d1095df62dc4222bffd8000c0737d38.json",
+      "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/reports/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/research/2d1095df62dc4222bffd8000c0737d38.json",
+      "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/resolutions/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/resolutions/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/repaired-round003-v1/resolutions/82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/repaired-round003-v1/resolutions/82afef5ce2f0c5db9d072001abb9910821b41b20219925178edd4b2ecb614016/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/sid-diagnostic-normal004-v1/resolutions/489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/sid-diagnostic-normal004-v1/resolutions/489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/source-policy-v2-round005/resolutions/7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/source-policy-v2-round005/resolutions/7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/collection-probes/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/95de031ff6a54c3fa1747fc44047cc4e.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/received/a03a7c7611fb496aaf5487ca8974b0d2/3a62e505503235bcab0188ab808ecc3a1e0a05ae913ff9cb5594f7d7e064c3b1.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/received/a03a7c7611fb496aaf5487ca8974b0d2/b8c9b3623bc122ad2f690418aa4f23d2aeb4fc2995ece93f98927251c86a264b.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/reports/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/lean/a03a7c7611fb496aaf5487ca8974b0d2.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/reports/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/research/95de031ff6a54c3fa1747fc44047cc4e.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/resolutions/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/resolutions/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+      "aqrp/engineering/v2/engineering/v2/reports/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/research/746bb41966c04fbcbe036148fa849f6e.json",
+      "aqrp/engineering/v2/engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+      "aqrp/engineering/v2/engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json"
+    ],
+    "additional_keys_are_not_claimed_newly_created": true,
+    "prior_UI_unvisited_subtrees_did_not_previously_certify_their_children": true
+  },
+  "typed_reference_summary": {
+    "edges": 229,
+    "different_sources": 33,
+    "different_targets": 229,
+    "all_observed_targets_exist_and_hash_match": true,
+    "by_kind": {
+      "feature_manifest_payload": 5,
+      "historical_window_batch": 224
+    },
+    "scope": "known metadata schemas and authorized development payloads only; unknown consumers/receipts stay outside this graph"
+  },
+  "old13_priority_pool": {
+    "all_present": true,
+    "objects": [
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/336ac7d05cf90bb3db468f457d2bb10158866e7f55a9c6d42641070fd8dd8336.json",
+        "exact_size_bytes": 197062,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3a5c15e7af890c6bd5a7209ab2c30dedf9c93f60b0b1d19e5ab3255eccaa5108.json",
+        "exact_size_bytes": 197137,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3c83c5657ddc06c1adf7ee748ef686970830ca7eef5244e3b26ef08094d27b68.json",
+        "exact_size_bytes": 196994,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3dcbf5bafc8ecd471e172c7911ea905d2d90cdc5bf92bd3e22ff12dd5c21566c.json",
+        "exact_size_bytes": 197079,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/6dc05520fea94b197441fc489f7dd08ee6d7ef41999613ced80f57558454eb93.json",
+        "exact_size_bytes": 196994,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/b70c7dcfbb1ea18f740564b0f244286eda29721ca62d44c4f551f85c1df05051.json",
+        "exact_size_bytes": 197137,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/bf6d935ccd5cdb3433b2b01009e167f4fa22a9a307cb02b5102b2f7406e0aeb1.json",
+        "exact_size_bytes": 197079,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/c7fccd5ce63bd2ac1194cef31426666a303b9779d4d17b2eb02cd0c13a69657c.json",
+        "exact_size_bytes": 197062,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/db44c3a1fca89e6033c69d7b79bc58ea1213efd65485bf1ddf86cd803bbf2707.json",
+        "exact_size_bytes": 197192,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/e7902abff8749bcb3c182235b1df69f3c65bb30c9843486b7d9dd70e872c58a2.json",
+        "exact_size_bytes": 197192,
+        "role": "historical_payload",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "generic-research/v1/feature-cache/v1/objects/3dbf2cc2d2584af110aad65afd1c47155cc7095077fd0792119ed8bfffd323c0.json",
+        "exact_size_bytes": 66768,
+        "role": "other_unread",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "generic-research/v1/feature-cache/v1/objects/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.json",
+        "exact_size_bytes": 2,
+        "role": "other_unread",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      },
+      {
+        "key": "generic-research/v1/feature-cache/v1/objects/ef4b7c48749a22bbc9788a979da82fec3c3ce5942611c478f9361cb94654ff29.json",
+        "exact_size_bytes": 64090,
+        "role": "other_unread",
+        "content_status": "not_read",
+        "actual_content_hash_verified": false,
+        "incoming_edges_in_this_typed_graph": 0,
+        "local_reference_claims_not_authenticated_edges": 0,
+        "deletion_authorized": false,
+        "retained": true
+      }
+    ],
+    "exact_physical_bytes": 2101788,
+    "bytes_are_not_reclaimable_space": true
+  },
+  "payload_review_pool_without_observed_typed_incoming_edges": [
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/336ac7d05cf90bb3db468f457d2bb10158866e7f55a9c6d42641070fd8dd8336.json",
+      "exact_size_bytes": 197062,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3a5c15e7af890c6bd5a7209ab2c30dedf9c93f60b0b1d19e5ab3255eccaa5108.json",
+      "exact_size_bytes": 197137,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3c83c5657ddc06c1adf7ee748ef686970830ca7eef5244e3b26ef08094d27b68.json",
+      "exact_size_bytes": 196994,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/3dcbf5bafc8ecd471e172c7911ea905d2d90cdc5bf92bd3e22ff12dd5c21566c.json",
+      "exact_size_bytes": 197079,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/6dc05520fea94b197441fc489f7dd08ee6d7ef41999613ced80f57558454eb93.json",
+      "exact_size_bytes": 196994,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/b70c7dcfbb1ea18f740564b0f244286eda29721ca62d44c4f551f85c1df05051.json",
+      "exact_size_bytes": 197137,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/bf6d935ccd5cdb3433b2b01009e167f4fa22a9a307cb02b5102b2f7406e0aeb1.json",
+      "exact_size_bytes": 197079,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/c7fccd5ce63bd2ac1194cef31426666a303b9779d4d17b2eb02cd0c13a69657c.json",
+      "exact_size_bytes": 197062,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/db44c3a1fca89e6033c69d7b79bc58ea1213efd65485bf1ddf86cd803bbf2707.json",
+      "exact_size_bytes": 197192,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v1/objects/e7902abff8749bcb3c182235b1df69f3c65bb30c9843486b7d9dd70e872c58a2.json",
+      "exact_size_bytes": 197192,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v2/objects/1f8a988e5fa5502d10e1840d5ad4210b739651477dbdffdfd66594d29aaabfcb.json",
+      "exact_size_bytes": 224051,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": false,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v2/objects/233ee594609deac9643ae90d7da0cd3eb729bce425926653a54a277d4277dd08.json",
+      "exact_size_bytes": 224055,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": false,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "aqrp/engineering/v2/historical-snapshots/v2/objects/6a5a38b63c99fb8016567ccb0613b3aa4c44ac66e62976dff063e22409c6284a.json",
+      "exact_size_bytes": 223008,
+      "role": "historical_payload",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": false,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "generic-research/v1/feature-cache/v1/objects/3dbf2cc2d2584af110aad65afd1c47155cc7095077fd0792119ed8bfffd323c0.json",
+      "exact_size_bytes": 66768,
+      "role": "other_unread",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "generic-research/v1/feature-cache/v1/objects/4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.json",
+      "exact_size_bytes": 2,
+      "role": "other_unread",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    },
+    {
+      "key": "generic-research/v1/feature-cache/v1/objects/ef4b7c48749a22bbc9788a979da82fec3c3ce5942611c478f9361cb94654ff29.json",
+      "exact_size_bytes": 64090,
+      "role": "other_unread",
+      "content_status": "not_read",
+      "content_sha256": null,
+      "was_in_old13_priority_pool": true,
+      "local_reference_claims_not_authenticated_edges": 0,
+      "review_reason": "no_incoming_edge_in_this_incomplete_typed_graph",
+      "not_a_global_unreferenced_proof": true,
+      "deletion_authorized": false,
+      "retained": true
+    }
+  ],
+  "payload_review_pool_summary": {
+    "objects": 16,
+    "exact_physical_bytes": 2772902,
+    "old13_objects": 13,
+    "old13_exact_physical_bytes": 2101788,
+    "new_objects": 3,
+    "new_exact_physical_bytes": 671114,
+    "not_a_deletion_manifest_or_potential_reclaim_estimate": true
+  },
+  "actual_raw_hash_repeat_groups": [
+    {
+      "reported_raw_sha256": "9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb",
+      "objects": 5,
+      "size_per_object_bytes": 380,
+      "physical_bytes_across_paths": 1900,
+      "paths": [
+        "aqrp/engineering/v2/engineering/host-integration-normal009-v4/resolutions/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+        "aqrp/engineering/v2/engineering/joint-round002-v2/resolutions/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+        "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/resolutions/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+        "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/resolutions/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json",
+        "aqrp/engineering/v2/engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json"
+      ],
+      "roles": [
+        "engineering_receipt"
+      ],
+      "all_under_historical_resolution_paths": true,
+      "comparison_evidence": "same_cloud_computed_full_object_SHA256_and_exact_size",
+      "byte_by_byte_pair_comparison_performed": false,
+      "hash_equality_is_not_release_permission": true,
+      "retained": true,
+      "deletion_authorized": false
+    },
+    {
+      "reported_raw_sha256": "ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d",
+      "objects": 5,
+      "size_per_object_bytes": 270,
+      "physical_bytes_across_paths": 1350,
+      "paths": [
+        "aqrp/engineering/v2/engineering/host-integration-normal009-v4/resolutions/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+        "aqrp/engineering/v2/engineering/joint-round002-v2/resolutions/480ca56ec352a829bfab551646c36027a4b9a88e0e0c93d671c411bdeae3e57e/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+        "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2/resolutions/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+        "aqrp/engineering/v2/engineering/storage-repair-normal008-v4/resolutions/b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json",
+        "aqrp/engineering/v2/engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json"
+      ],
+      "roles": [
+        "engineering_receipt"
+      ],
+      "all_under_historical_resolution_paths": true,
+      "comparison_evidence": "same_cloud_computed_full_object_SHA256_and_exact_size",
+      "byte_by_byte_pair_comparison_performed": false,
+      "hash_equality_is_not_release_permission": true,
+      "retained": true,
+      "deletion_authorized": false
+    }
+  ],
+  "historical_receipt_subtrees": [
+    {
+      "prefix": "aqrp/engineering/v2/engineering/host-integration-normal009-v4",
+      "objects": 4,
+      "exact_physical_bytes": 23741,
+      "content_read_objects": 4,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/joint-round002-v1",
+      "objects": 2,
+      "exact_physical_bytes": 650,
+      "content_read_objects": 0,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/joint-round002-v2",
+      "objects": 4,
+      "exact_physical_bytes": 21820,
+      "content_read_objects": 4,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/joint-v1",
+      "objects": 2,
+      "exact_physical_bytes": 650,
+      "content_read_objects": 0,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2",
+      "objects": 4,
+      "exact_physical_bytes": 22239,
+      "content_read_objects": 4,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/repaired-round003-v1",
+      "objects": 2,
+      "exact_physical_bytes": 650,
+      "content_read_objects": 0,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/sid-diagnostic-normal004-v1",
+      "objects": 2,
+      "exact_physical_bytes": 650,
+      "content_read_objects": 0,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/source-policy-v2-round005",
+      "objects": 2,
+      "exact_physical_bytes": 650,
+      "content_read_objects": 0,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/storage-repair-normal008-v4",
+      "objects": 7,
+      "exact_physical_bytes": 31086,
+      "content_read_objects": 5,
+      "retained": true,
+      "content_reference_closure_verified": false
+    },
+    {
+      "prefix": "aqrp/engineering/v2/engineering/v2",
+      "objects": 3,
+      "exact_physical_bytes": 4370,
+      "content_read_objects": 3,
+      "retained": true,
+      "content_reference_closure_verified": false
+    }
+  ],
+  "evidence_gaps": [
+    "20 content-read metadata objects use unrecognized schemas; their transitive references are not decoded",
+    "50 objects remain content-unread, including all16 bounded-graph payload review candidates",
+    "11 locally/UI claimed allowlist keys were not found; local claims include historical/synthetic placeholders",
+    "cross-project dynamic and external consumers are not certified by this typed graph",
+    "no raw headers or payload hashes were inspected for the16 review candidates",
+    "historical retention responsibility and safe deletion have not been independently accepted"
+  ],
+  "required_before_any_disposition": [
+    "Obtain authorized cloud-resident candidate headers and raw hashes without opening unapproved final-window content",
+    "Resolve all relevant historical receipt/configuration/schema references and unknown/dynamic consumers",
+    "Bind ownership, restore/retention responsibility, exact keys/bytes and a frozen disposition procedure",
+    "Independently review the exact candidate evidence; obtain explicit user deletion authorization only after a concrete safe manifest exists",
+    "Recheck capacity and source identities before any later admitted execution; never lower the frozen73728B envelope"
+  ],
+  "mtime_or_failed_status_used_as_garbage_proof": false,
+  "same_basename_or_equal_display_size_used_as_duplicate_proof": false,
+  "all_objects_and_history_retained": true,
+  "global_reference_closure_complete": false,
+  "confirmed_reclaimable_objects": [],
+  "confirmed_reclaimable_bytes": 0,
+  "potential_reclaimable_total_bytes": null,
+  "cloud_calls": 0,
+  "Registry_or_budget_changes": 0,
+  "new_Research_or_LEAN_executions": 0,
+  "cloud_deletions": 0,
+  "independent_acceptance": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

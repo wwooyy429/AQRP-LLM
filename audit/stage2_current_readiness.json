@@ -1,15 +1,15 @@
 {
-  "schema_version": 28,
+  "schema_version": 29,
   "kind": "current_stage2_native_failure_and_scoped_review_with_explicit_history",
   "previous_readiness": {
     "commit": "38dabe11d3899acd109b6c36131561e1dbbddd1e",
     "preserved_copy": "audit/review_packages/phase2_repair011/previous_stage2_current_readiness.json"
   },
-  "candidate_runtime_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
-  "candidate_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
+  "candidate_runtime_source_commit": "df48fbbe1f403913501c6bad16474fd7d4e2e25e",
+  "candidate_execution_source_manifest_hash": "3647699251dee91509f5fdfffb1f6c1a3d4267ef51a71c8274aaaeb7526f9db7",
   "candidate_cloud_deployed": false,
   "candidate_independent_acceptance": false,
-  "stage2_status": "round009_failed_closed_capacity_insufficient_new_candidate_not_deployed",
+  "stage2_status": "inventory015_completed_closed_storage_and_full_certification_blocked",
   "stage2_accepted": false,
   "financial_evidence": false,
   "historical_real_runtime": {
@@ -111,14 +111,14 @@
     }
   },
   "global_usage": {
-    "configurations": 17,
-    "research": 18,
+    "configurations": 18,
+    "research": 19,
     "lean": 4
   },
   "configuration_cycle_usage": {
-    "used": 4,
+    "used": 5,
     "limit": 13,
-    "remaining": 9
+    "remaining": 8
   },
   "effective_global_limits": {
     "configuration_cycle": 13,
@@ -126,7 +126,7 @@
     "lean": 16
   },
   "budget_and_prior_exposure_preserved": true,
-  "journal_events": 80,
+  "journal_events": 86,
   "current_round_closed": true,
   "automatic_retry_enabled": false,
   "new_submit_allowed": false,
@@ -188,7 +188,8 @@
     "audit/stage2_host_integration009_report.json",
     "audit/stage2_repair011_report.json",
     "audit/stage2_native_failure009_report.json",
-    "audit/stage2_storage_inventory012_report.json"
+    "audit/stage2_storage_inventory012_report.json",
+    "audit/stage2_storage_inventory015_report.json"
   ],
   "closed_software_findings_from_independent_reports": [
     {
@@ -399,27 +400,25 @@
     "final_test_enabled": false
   },
   "current_activity": {
-    "kind": "current_history_pointer_unification_only",
-    "new_configurations": 0,
-    "new_Research_executions": 0,
+    "kind": "readonly_native_storage_inventory_completed_closed",
+    "new_configurations": 1,
+    "new_Research_executions": 1,
     "new_LEAN_submissions": 0,
-    "new_budget_events": 0,
-    "new_settlement_and_closure_events": 0,
-    "journal_events": 80,
-    "cloud_calls": 0,
-    "cloud_deletions": 0,
-    "product_tests_rerun": false,
-    "evidence": "audit/review_packages/status014/status_report.json"
+    "new_registry_events": 6,
+    "journal_events": 86,
+    "Object_Store_deletions": 0,
+    "independent_acceptance": false,
+    "report": "audit/stage2_storage_inventory015_report.json"
   },
-  "current_activity_evidence": "audit/review_packages/status014/status_report.json",
-  "new_candidate_independent_acceptance_scope": "Product-core finite offline conclusions remain scoped to their reviewed versions. WR31 closes only the fixed-d177 offline audit tool; it does not accept the new47-file production candidate, whole Phase2, complete data coverage or platform billing.",
+  "current_activity_evidence": "audit/stage2_storage_inventory015_report.json",
+  "new_candidate_independent_acceptance_scope": "WR31 fixed-d177 audit closure retained; df48 inventory software/runtime requires independent review; full49 production candidate, data and billing remain unaccepted",
   "blockers": [
-    "QC-resident exact capacity, full historical/dynamic reference closure and safe storage disposition evidence",
-    "Production collector factory, receipt source, transport and same-attempt native receipt chain",
-    "Real QC deployment/compile/run validation of the new47-file candidate",
-    "Full historical US200, SID, expected sessions/actions and financial values/vintages/publication/actual-delivery/ingestion/currency/unit evidence",
-    "Actual platform billing evidence",
-    "Exact-version independent acceptance of the remaining Phase2 production/data scope; WR31 audit scope already closed"
+    "Frozen LEAN byte envelope needs73728B; observed free53895B, deficit19833B; no safe disposition authorized",
+    "Unknown receipt schemas/unread candidates/cross-project consumers prevent complete reference and deletion certification",
+    "Full49 production deployment/run and production collector native chain remain unverified",
+    "Full historical US200 and financial versions/publication/actual delivery/ingestion/currency/unit evidence missing",
+    "Actual platform billing evidence unavailable",
+    "Exact-version independent review of new inventory software and runtime metadata pending"
   ],
   "administrative_status": {
     "budget_unchanged": true,
@@ -429,5 +428,30 @@
     "reset_is_not_a_precondition_for_work_within_current_limits": true
   },
   "next_engineering_preparation": "audit/review_packages/storage_inventory013_wr31/CLOUD_REFERENCE_PLAN.txt",
-  "next_preparation_scope": "Immutable earlier plan; any new execution needs its own actual budget admission and platform permission, not this metadata update"
+  "next_preparation_scope": "Immutable earlier plan; any new execution needs its own actual budget admission and platform permission, not this metadata update",
+  "current_storage_inventory": {
+    "report": "audit/stage2_storage_inventory015_report.json",
+    "software_source_commit": "df48fbbe1f403913501c6bad16474fd7d4e2e25e",
+    "attempt_id": "d22d36298ece423da53ed13817dd9b2e",
+    "status": "completed",
+    "round_status": "closed",
+    "objects": 488,
+    "free_bytes": 53895,
+    "LEAN_byte_envelope_deficit": 19833,
+    "all_objects_retained": true,
+    "safe_deletion_accepted": false,
+    "global_reference_closure_complete": false,
+    "independent_review_status": "pending_new_exact_version",
+    "Research_used": 19,
+    "LEAN_used": 4,
+    "configuration_cycle_used": 5,
+    "configuration_lifetime": 18,
+    "Registry_events": 86
+  },
+  "historical_previous_candidate_identity": {
+    "candidate_runtime_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+    "candidate_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b"
+  },
+  "candidate_local_cloud_source_files": 49,
+  "new_submit_allowed_scope": "Full production Research/LEAN remains closed; the separately granted single readonly inventory is completed and its1/1/0 round is closed"
 }
