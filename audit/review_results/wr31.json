@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "review_id": "AQRP-20261030-5955CA8-INVENTORY012-29",
+  "reviewed_audit_program_commit": "5955ca8fe68d047514a4064c78841045a866241e",
+  "reviewed_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "finding": {
+    "id": "WR-31",
+    "priority": "P2",
+    "status": "open_reproduced",
+    "scope": "012离线盘点审计分析器；产品dee核心有限通过不撤销",
+    "affected_commit": "5955ca8fe68d047514a4064c78841045a866241e",
+    "file": "audit/review_packages/storage_inventory012/analyze_inventory.py",
+    "lines": [
+      19,
+      128,
+      179,
+      242
+    ],
+    "analyzer_sha256": "d6a11c4b9552d660384d497589b32e9e784b1282f31f654e52da6f6c15d0619b",
+    "trigger": [
+      "-1 to 1 of 1",
+      "1 to 1 of 1; 2 to 2 of 2"
+    ],
+    "other_input": "相同一行、Page1of1；合法1 to1of1正对照通过",
+    "expected": "拒绝负起点/同一label矛盾范围，或标记listing不完整；不得返回complete true",
+    "actual": "两者都被无符号RANGE.search截为1 to1of1，目录及合成tree_complete均true",
+    "impact": "可把损坏/含糊元数据误称分页完整，影响后续window缺失判断；目前实际126标签无此形态，全部删除标志仍false",
+    "minimum_reproduction": "minimal_wr31.py（实际退出1；原期望未改）",
+    "minimum_fix": "对每个完整range标签或明确支持的完整外层模板解析；拒绝负号及额外/重复range；保留双向position/key、总数/行数及混合viewport规则",
+    "required_regression": [
+      "两个原始坏range保持拒绝期望",
+      "合法43项混合page3/4布局",
+      "position/key冲突、少行、重复行、总数变",
+      "合法empty0/0与非空0/0",
+      "63条实际原件重建和保守保留门禁"
+    ],
+    "fix_applied_by_reviewer": false,
+    "actual_observations_triggered": false
+  },
+  "prior_product_finite_pass_preserved": true,
+  "actual_saved_UI_finite_scope_passed": true,
+  "general_analyzer_failed_WR31": true,
+  "whole_phase2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "full_report_original_sha256": "4e039edb731140fc44d9726cd342eaf27f9615a579df8419a8eb9c5823638d4e",
+  "status": "developer_fixed_pending_independent_retest",
+  "independently_closed": false,
+  "developer_repair_report": "audit/stage2_storage_inventory013_wr31_report.json",
+  "current_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt",
+  "finding_status_at_original_independent_review": "open_reproduced",
+  "new_independent_retest_received": false,
+  "budget_changes": 0,
+  "cloud_calls": 0
+}

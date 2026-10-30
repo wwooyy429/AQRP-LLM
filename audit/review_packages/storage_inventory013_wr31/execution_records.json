@@ -1,0 +1,73 @@
+[
+  {
+    "name": "MRE_final",
+    "argv": [
+      "python",
+      "-B",
+      "audit/review_packages/storage_inventory013_wr31/reviewer_minimal_wr31.py",
+      "audit/review_packages/storage_inventory013_wr31/analyze_inventory.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout_sha256": "3b017582e1dcc1e1321e75887bd703ef8ec4326b7def20861c6eef090a3a3665",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actually_executed": true,
+    "cloud_calls": 0,
+    "budget_changes": 0,
+    "financial_evidence": false,
+    "independent_acceptance": false
+  },
+  {
+    "name": "boundary_final",
+    "argv": [
+      "python",
+      "-B",
+      "audit/review_packages/storage_inventory013_wr31/check_boundaries.py",
+      "audit/review_packages/storage_inventory013_wr31/analyze_inventory.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout_sha256": "cb68bbdf384bc0d1b049669b042dde7f66b92e077c95ded817ed8261269287d5",
+    "stderr_sha256": "2125ec85af552a0392491e089a0b250a77c5154c775df005d8c3aa2107f61d6b",
+    "actually_executed": true,
+    "cloud_calls": 0,
+    "budget_changes": 0,
+    "financial_evidence": false,
+    "independent_acceptance": false
+  },
+  {
+    "name": "legacy20_final",
+    "argv": [
+      "python",
+      "-B",
+      "audit/review_packages/storage_inventory013_wr31/check_legacy_known_answers.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "5cad395a0eca51fddf8f8b7900133a9a1c3e9dc170ebd465df279cbb16a486d7",
+    "actually_executed": true,
+    "cloud_calls": 0,
+    "budget_changes": 0,
+    "financial_evidence": false,
+    "independent_acceptance": false
+  },
+  {
+    "name": "product_offline",
+    "argv": [
+      "python",
+      "-B",
+      "tools/stages.py",
+      "verify"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0,
+    "stdout_sha256": "01dc1b7c2f84fca0bc76f4b8542bb7a0af70bbc9b5184b000de7a70093a071eb",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actually_executed": true,
+    "cloud_calls": 0,
+    "budget_changes": 0,
+    "financial_evidence": false,
+    "independent_acceptance": false
+  }
+]

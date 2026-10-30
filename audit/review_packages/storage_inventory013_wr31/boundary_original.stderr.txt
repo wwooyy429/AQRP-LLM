@@ -1,0 +1,565 @@
+test_01_original_WR31_ranges (__main__.PagingBoundaryKnownAnswers) ... test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) ... test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) ... test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) ... test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) ... test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) ... test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) ... test_08_supported_ascii_controls (__main__.PagingBoundaryKnownAnswers) ... ok
+test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) ... test_10_empty_and_compact_page_controls (__main__.PagingBoundaryKnownAnswers) ... ok
+test_11_mixed_viewport_layout_43 (__main__.PagingBoundaryKnownAnswers) ... ok
+test_12_position_count_duplicate_and_total_conflicts (__main__.PagingBoundaryKnownAnswers) ... ok
+
+======================================================================
+ERROR: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label='None')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 36, in check
+    value = assess(observations)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 28, in assess
+    return ANALYZER.analyze({"scope_root": "synthetic", "observations": observations}, {}, {})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory012\analyze_inventory.py", line 125, in analyze
+    for text in observation.get("paging", []):
+TypeError: 'NoneType' object is not iterable
+
+======================================================================
+FAIL: test_01_original_WR31_ranges (__main__.PagingBoundaryKnownAnswers) (label='-1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_01_original_WR31_ranges (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1; 2 to 2 of 2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='+1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to -1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to +1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of -1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of +1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to 1.0 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1.0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='--1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='−1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_02_signed_or_noninteger_range_tokens (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1e0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='garbage 1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1 garbage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='x1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='(1 to 1 of 1)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1; 1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1; 2 to 2 of 2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='1 to 1 of 1 Page 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_03_range_junk_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Range: 1 to 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page -1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page +1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of -1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of +1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='garbage Page 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of 1 garbage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of 1x')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of 1; Page 1 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of 1; Page 2 of 2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1.0 of 1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='Page 1 of 1.0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_04_page_junk_signs_and_multiple_claims (__main__.PagingBoundaryKnownAnswers) (label='(Page 1 of 1)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label="'unknown'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label="''")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label="'-bad range'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label='42')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label='None')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label='True')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label='{}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_05_extra_unknown_or_nonstring_labels (__main__.PagingBoundaryKnownAnswers) (label='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="'1 to 1 of 1'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="{'1 to 1 of 1': None, 'Page 1 of 1': None}")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label='[]')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['1 to 1 of 1']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['Page 1 of 1']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['1 to 1 of 1', 'Page 1 of 1', 'Page 1 of 1']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['1 to 1 of 1', 'Page 1 of 1', 'Page 2 of 2']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['1 to 1 of 1', '1 to 1 of 1', 'Page 1 of 1']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_06_container_and_claim_cardinality (__main__.PagingBoundaryKnownAnswers) (label="['1 to 1 of 1', '2 to 2 of 2', 'Page 1 of 1']")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('١ to ١ of ١', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('１ to １ of １', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page ١ of ١')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page １ of １')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1\\nto 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1\\n', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page\\n1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page 1 of 1\\n')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1\\rto 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1\\xa0to 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page\\xa01 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_07_unicode_and_line_breaks (__main__.PagingBoundaryKnownAnswers) (label="('1\\x00 to 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 41, in check
+    self.assertIs(bool(directory["invalid_paging"]), lexical_invalid)
+AssertionError: False is not True
+
+======================================================================
+FAIL: test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) (label="('00000001 to 1 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) (label="('1 to 00000001 of 1', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 00000001', 'Page 1 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page 0000001 of 1')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+======================================================================
+FAIL: test_09_numeric_width_and_bounds (__main__.PagingBoundaryKnownAnswers) (label="('1 to 1 of 1', 'Page 1 of 0000001')")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory013_wr31\check_boundaries.py", line 38, in check
+    self.assertIs(directory["all_entries_observed_at_UI_metadata_level"], expected_complete)
+AssertionError: True is not False
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.022s
+
+FAILED (failures=68, errors=1)
