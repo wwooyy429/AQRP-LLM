@@ -1,14 +1,9 @@
 {
-  "schema_version": 3,
-  "kind": "repair011_actual_software_and_bounded_reconciliation_review_packet",
+  "schema_version": 4,
   "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
   "source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
-  "review_entry": "audit/review_packages/phase2_repair011/GPT_WORK_REVIEW.md",
-  "packet_manifest": "audit/review_packages/phase2_repair011/packet_manifest.json",
-  "verification_script": "audit/review_packages/phase2_repair011/verify_packet.py",
   "latest_independent_result": "audit/review_results/wr31.json",
   "WR29_independently_closed": true,
-  "independent_review_status": "pending_new_exact_version_review",
   "metadata_archive_independently_accepted": false,
   "whole_phase2_acceptance_ready": false,
   "stage2_accepted": false,
@@ -54,5 +49,43 @@
     "historical_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt"
   },
   "WR31_independently_closed": true,
-  "independent_review_status_scope": "Historical product011 request; latest WR31 fixed-d177 offline audit closure is registered separately and is not pending."
+  "historical_product_review_request": {
+    "original": {
+      "kind": "repair011_actual_software_and_bounded_reconciliation_review_packet",
+      "review_entry": "audit/review_packages/phase2_repair011/GPT_WORK_REVIEW.md",
+      "packet_manifest": "audit/review_packages/phase2_repair011/packet_manifest.json",
+      "verification_script": "audit/review_packages/phase2_repair011/verify_packet.py",
+      "independent_review_status": "pending_new_exact_version_review",
+      "independent_review_status_scope": "Historical product011 request; latest WR31 fixed-d177 offline audit closure is registered separately and is not pending."
+    },
+    "scope": "Original011 fixed materials and verifier are historical; their pending assertions do not override WR31 closure"
+  },
+  "kind": "current_review_state_with_explicit_historical_product_requests",
+  "review_entry": "audit/review_packages/status014/README.txt",
+  "current_state_report": "audit/review_packages/status014/status_report.json",
+  "latest_independent_review": {
+    "review_id": "AQRP-20261030-D177619-WR31-30",
+    "result": "audit/review_results/wr31.json",
+    "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+    "reviewed_audit_program_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+    "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+    "independently_closed": true,
+    "scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+    "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+    "formal_report_raw_sha256": "3ab91d1bd95b8d572b81518edd23a493f70e16757a49e1181d82ea3418efe356",
+    "reviewer_full_product1085_rerun": false,
+    "reviewer_reparsed_developer1085_records": true,
+    "stage2_accepted": false,
+    "financial_evidence": false,
+    "final_test_enabled": false
+  },
+  "independent_review_status": "fixed_verified_closed_for_tested_offline_audit_scope",
+  "independent_review_status_scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+  "remaining_phase2_acceptance": {
+    "status": "production_and_full_data_evidence_incomplete",
+    "stage2_accepted": false,
+    "product_candidate_cloud_validated": false,
+    "WR31_scoped_closed": true,
+    "scope": "WR31 closure grants no complete production, data, billing or financial acceptance"
+  }
 }

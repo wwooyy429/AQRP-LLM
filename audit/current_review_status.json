@@ -1,5 +1,5 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "latest_completed_review": "audit/review_results/wr31.json",
   "latest_completed_verdict": "fixed_verified_closed_for_tested_offline_audit_scope",
   "latest_reviewed_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
@@ -68,14 +68,6 @@
   "metadata_archive_independently_accepted": false,
   "production_dispatch_scope": "Newcandidate defaultoff; no new cloud dispatch authorized by this metadata",
   "automatic_production_loop_enabled": false,
-  "pending_review": {
-    "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
-    "stable_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
-    "review_entry": "audit/review_packages/phase2_repair011/GPT_WORK_REVIEW.md",
-    "status": "developer_offline_passed_new_exact_version_review_pending",
-    "independent_acceptance": false,
-    "does_not_include_closed_WR31": true
-  },
   "runtime_addendum": {
     "report": "audit/stage2_native_failure009_report.json",
     "review_entry": "audit/review_packages/phase2_terminal009/GPT_WORK_RUNTIME_ADDENDUM.txt",
@@ -108,5 +100,23 @@
     "reviewer_reparsed_developer1085_records": true,
     "whole_phase2_accepted": false,
     "historical_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt"
+  },
+  "historical_product_review_request": {
+    "original": {
+      "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+      "stable_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
+      "review_entry": "audit/review_packages/phase2_repair011/GPT_WORK_REVIEW.md",
+      "status": "developer_offline_passed_new_exact_version_review_pending",
+      "independent_acceptance": false,
+      "does_not_include_closed_WR31": true
+    },
+    "scope": "Earlier011 request, kept as history; WR31 is independently closed and remaining production/data acceptance is separate"
+  },
+  "current_phase2_acceptance": {
+    "status": "production_and_full_data_evidence_incomplete",
+    "stage2_accepted": false,
+    "product_candidate_cloud_validated": false,
+    "WR31_scoped_closed": true,
+    "scope": "WR31 closure grants no complete production, data, billing or financial acceptance"
   }
 }

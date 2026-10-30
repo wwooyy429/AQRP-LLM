@@ -1,5 +1,7 @@
 # AQRP-LLM：LLM＋QuantConnect因子研究平台
 
+当前状态入口已统一014：009为原生容量失败并关轮，WR31为固定d177619所测离线范围独立关闭。旧pending、旧WR29 latest和011请求的原字节已集中保留为历史，当前入口不再以它们覆盖新终态。[状态迁移记录](audit/review_packages/status014/status_report.json)仅证明元数据整理，不授予新47文件生产、完整数据/计费或阶段2通过。本步骤预算和80条权威事件未变；后续云内盘点另行准入、先扣额、零自动重试，不删除对象或开启最终测试。
+
 ## 当前WR-31：固定d177619的所测离线范围已独立关闭
 
 正式独立复验确认WR-31在`d1776193d37748ef78da405af370e9190f597e2f`的离线解析、路径、原件及Git交付范围修复后通过并关闭，无新增开放发现。[关闭登记](audit/review_results/wr31.json)、[正式独立报告](audit/review_packages/wr31_closure/reviewer_formal_report.txt)及[原件导入索引](audit/review_packages/wr31_closure/import_index.json)保存精确范围。审核者仅重解析开发1085项原始记录，没有在本轮再次全量执行；此前产品核心有限通过保留。

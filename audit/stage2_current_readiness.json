@@ -1,6 +1,6 @@
 {
-  "schema_version": 27,
-  "kind": "round009_native_capacity_failure_settled_storage_headroom_blocker",
+  "schema_version": 28,
+  "kind": "current_stage2_native_failure_and_scoped_review_with_explicit_history",
   "previous_readiness": {
     "commit": "38dabe11d3899acd109b6c36131561e1dbbddd1e",
     "preserved_copy": "audit/review_packages/phase2_repair011/previous_stage2_current_readiness.json"
@@ -12,15 +12,6 @@
   "stage2_status": "round009_failed_closed_capacity_insufficient_new_candidate_not_deployed",
   "stage2_accepted": false,
   "financial_evidence": false,
-  "current_activity": {
-    "kind": "delivered_same_attempt_native_failure_reconciliation",
-    "new_configurations": 0,
-    "new_Research_executions": 0,
-    "new_LEAN_submissions": 0,
-    "new_budget_events": 0,
-    "new_settlement_and_closure_events": 2,
-    "journal_events": 80
-  },
   "historical_real_runtime": {
     "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
     "terminal_materials_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
@@ -162,17 +153,7 @@
     "new_receipt_collector_production_chain_exercised": false
   },
   "known_open_software_findings_from_independent_reports": [],
-  "new_candidate_independent_acceptance_scope": "New repair011 candidate awaiting exact-version independent review",
   "certification_status": "insufficient_evidence",
-  "blockers": [
-    "Object Store headroom below frozen LEAN write envelope; reference-aware storage disposition pending",
-    "reset scope choice still pending; original009 unsettled-task blocker now resolved",
-    "production collector factory/receipt source and real native receipt chain",
-    "real QC validation of the new47-file candidate",
-    "full historical US200 and financial original values/vintages/publication/actual-delivery/ingestion receipts",
-    "authenticated reporting currency/unit evidence and platform billing evidence",
-    "exact-version independent software review"
-  ],
   "execution_gates": {
     "market_research_enabled": false,
     "llm_runtime_enabled": false,
@@ -209,319 +190,6 @@
     "audit/stage2_native_failure009_report.json",
     "audit/stage2_storage_inventory012_report.json"
   ],
-  "latest_completed_independent_review": {
-    "schema_version": 1,
-    "kind": "registered_independent_WR29_scoped_closure",
-    "review_id": "AQRP-20261029-C2E63AC-WR29-27",
-    "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
-    "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
-    "materials_commit": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
-    "report": "audit/reviews/20261029-c2e63ac-wr29-closure/formal_report.json",
-    "report_is_readable_mirror": true,
-    "original_report_reference": "audit/reviews/20261029-c2e63ac-wr29-closure/formal_report.json.raw.base64",
-    "original_report_encoding": "base64",
-    "original_report_sha256": "3e8f605973c618ba9aa1761ade0a9901b9fb7003fb609492664621d99c517470",
-    "archive_index": "audit/reviews/20261029-c2e63ac-wr29-closure/import_index.json",
-    "original_bundle_sha256": "aa3255bf18d19c397a3b50bcbdca7533c72d6ad4736776d970233e431fb332f6",
-    "selected_archive_not_complete_original_bundle": true,
-    "actual_review_task": {
-      "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
-      "host_id": "local",
-      "kind": "codex",
-      "title": "更新 GPT 审核与验收状态",
-      "completed_turn_id": "01a1879e-1025-7ce2-bfef-06fea9080a7c"
-    },
-    "WR29_resolution": {
-      "id": "WR-29",
-      "original_priority": "P1",
-      "status": "fixed_verified_closed",
-      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
-      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
-      "original_file": "tools/followup_host.py",
-      "original_line": 469,
-      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
-      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
-      "original_expected_exits": [
-        0,
-        0,
-        0
-      ],
-      "original_actual_exits": [
-        0,
-        2,
-        2
-      ],
-      "fixed_actual_exits": [
-        0,
-        0,
-        0
-      ],
-      "original_MRE_assertion_exit": 1,
-      "fixed_MRE_assertion_exit": 0,
-      "original_script_and_success_expectations_unchanged": true,
-      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
-      "normal_path_and_strict_negative_paths_verified": true,
-      "not_granted": [
-        "倒改2d1d306原失败",
-        "生产factory/MCP调度/平台通知成功",
-        "完整回执收集或计费认证派发",
-        "完整阶段2、数据认证或金融有效性"
-      ]
-    },
-    "WR29_independently_closed": true,
-    "new_findings": [],
-    "acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
-    "stage_results": [
-      {
-        "stage": 0,
-        "modules": "规范、身份、Registry、预算、归档",
-        "implementation": "已有组件",
-        "evidence": "1012回归、218身份、161原件恢复、71事件重放",
-        "verdict": "已测离线回归范围通过",
-        "missing": "不涵盖生产调度或远端真实性"
-      },
-      {
-        "stage": 1,
-        "modules": "因子、PIT、标签、模型、滚动内核",
-        "implementation": "共享内核未改",
-        "evidence": "仓库及既往相关回归重放",
-        "verdict": "已测回归范围通过",
-        "missing": "无金融有效性验收"
-      },
-      {
-        "stage": 2,
-        "modules": "QC、任务桥、通知与本地宿主",
-        "implementation": "部分实现",
-        "evidence": "WR29原范围关闭；本地CLI/stdio/API及故障恢复有限测试通过",
-        "verdict": "局部软件通过；整体未通过",
-        "missing": "真实factory/transport/通知/新云端工程、完整回执、数据认证及计费认证派发"
-      },
-      {
-        "stage": 3,
-        "modules": "评价、共同样本与滚动",
-        "implementation": "局部内核",
-        "evidence": "合成回归",
-        "verdict": "未验收",
-        "missing": "完整分层收益/风险及真实固定六轮研究"
-      },
-      {
-        "stage": 4,
-        "modules": "工程接收器、标签成交/成本",
-        "implementation": "局部组件",
-        "evidence": "无新真实执行，旧b1a有限证据保留",
-        "verdict": "未验收",
-        "missing": "完整组合交易/账本/风险/压力与对账"
-      },
-      {
-        "stage": 5,
-        "modules": "受限提案与持久化状态机",
-        "implementation": "局部组件",
-        "evidence": "默认关闭及权限边界测试",
-        "verdict": "未验收",
-        "missing": "实际GPT客户端、模型/调用/费用及真实研究闭环"
-      },
-      {
-        "stage": 6,
-        "modules": "相似性、相关性及复杂度",
-        "implementation": "局部组件",
-        "evidence": "合成回归",
-        "verdict": "未验收",
-        "missing": "完整搜索/消融/净增量/选择偏差实证"
-      },
-      {
-        "stage": 7,
-        "modules": "冻结、暴露与关闭闸门",
-        "implementation": "元数据骨架",
-        "evidence": "既往暴露保留，最终测试关闭",
-        "verdict": "未验收",
-        "missing": "独立最终执行器/前向监控回滚及2026独立性"
-      }
-    ],
-    "independent_tests": [
-      {
-        "name": "repository",
-        "methods": 1012,
-        "scenarios": null,
-        "passed": 1012,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "repository_synthetic_suite",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "original_host_subset",
-        "methods": 19,
-        "scenarios": null,
-        "passed": 19,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "overlapping_repository_subset",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "new_entrypoint_subset",
-        "methods": 6,
-        "scenarios": null,
-        "passed": 6,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "overlapping_repository_subset",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "metadata_scope_self_test",
-        "methods": 7,
-        "scenarios": null,
-        "passed": 7,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "developer_scope_suite",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "original_independent_stdio",
-        "methods": 15,
-        "scenarios": 61,
-        "passed": 15,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "original_independent_stdio_supplement",
-        "methods": 4,
-        "scenarios": 12,
-        "passed": 4,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "new_independent_entrypoints",
-        "methods": 8,
-        "scenarios": 51,
-        "passed": 8,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "new_actual_subprocess_and_synthetic",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "original_independent_API",
-        "methods": 12,
-        "scenarios": 63,
-        "passed": 12,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "original_independent_API_supplement",
-        "methods": 6,
-        "scenarios": 26,
-        "passed": 6,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "new_independent_append_recovery",
-        "methods": 3,
-        "scenarios": 28,
-        "passed": 3,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "actual_Win32_fault_and_synthetic",
-        "first_run": "one_reviewer_OS_field_expectation_corrected_then_passed",
-        "actually_executed": true
-      },
-      {
-        "name": "prior_Windows_lock",
-        "methods": 18,
-        "scenarios": 37,
-        "passed": 18,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "prior_notification_main",
-        "methods": 12,
-        "scenarios": 79,
-        "passed": 12,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "prior_notification_supplement",
-        "methods": 6,
-        "scenarios": 27,
-        "passed": 6,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      },
-      {
-        "name": "prior_cycles_rounds",
-        "methods": 7,
-        "scenarios": 28,
-        "passed": 7,
-        "failures": 0,
-        "errors": 0,
-        "skips": 0,
-        "kind": "original_script_replayed_on_fixed_source",
-        "first_run": "passed",
-        "actually_executed": true
-      }
-    ],
-    "test_counts_overlap_do_not_sum": true,
-    "tests_repeated_this_registration": false,
-    "product_code_changed_this_registration": false,
-    "original_failed_result": "audit/review_results/host010.json",
-    "prior975_finite_result": "audit/review_results/recovery009.json",
-    "metadata_archive_independently_accepted": false,
-    "stage2_accepted": false,
-    "financial_evidence": false,
-    "final_test_enabled": false,
-    "new_budget_events": 0,
-    "new_cloud_calls": 0
-  },
-  "next_engineering_preparation": "audit/review_packages/live009/certification_gates.json",
-  "current_activity_evidence": "audit/stage2_repair011_report.json",
-  "candidate_independent_acceptance_scope": "New repair011 candidate not independently reviewed; prior finite WR29 closure remains historical",
   "closed_software_findings_from_independent_reports": [
     {
       "id": "WR-29",
@@ -559,29 +227,24 @@
         "完整回执收集或计费认证派发",
         "完整阶段2、数据认证或金融有效性"
       ]
+    },
+    {
+      "id": "WR-31",
+      "priority": "P2",
+      "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+      "independently_closed": true,
+      "review_id": "AQRP-20261030-D177619-WR31-30",
+      "fixed_audit_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+      "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+      "scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+      "result": "audit/review_results/wr31.json",
+      "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+      "reviewer_full_product1085_rerun": false,
+      "reviewer_reparsed_developer1085_records": true,
+      "whole_phase2_accepted": false,
+      "financial_evidence": false
     }
   ],
-  "current_real_runtime": {
-    "project_id": 38436695,
-    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
-    "backtest_id": "6347a33efc37e761f486f982e804dbac",
-    "host_production_UTC": true,
-    "native_project_discovery_calls": 1,
-    "bounded_historical_directory_calls": 1,
-    "directory_status": "Runtime Error",
-    "progress": 1,
-    "Registry_status": "pending",
-    "completed_read_permission": "disabled_no_delivered_native_result",
-    "read_backtest_calls": 0,
-    "log_calls": 0,
-    "order_calls": 0,
-    "actual_error_details_available": false,
-    "round_closed": false,
-    "unknown_failure_cause_not_invented": true,
-    "status": "pending",
-    "runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
-    "new47_file_candidate_deployed": false
-  },
   "historical_round009_Research": {
     "runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
     "checks": "13/13",
@@ -637,5 +300,134 @@
     "whole_phase2_accepted": false,
     "historical_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt"
   },
-  "final_test_enabled": false
+  "final_test_enabled": false,
+  "historical_state_references": {
+    "current_real_runtime": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "current_real_runtime",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Original009 pre-delivery pending observation, superseded by the native failure settlement"
+    },
+    "latest_completed_independent_review": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "latest_completed_independent_review",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Earlier WR29 finite closure, not the latest review"
+    },
+    "current_activity": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "current_activity",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Earlier009 failure settlement activity, including its two historical settlement/closure events"
+    },
+    "new_candidate_independent_acceptance_scope": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "new_candidate_independent_acceptance_scope",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Historical011 product-review request wording; not the closed WR31 audit-tool review"
+    },
+    "candidate_independent_acceptance_scope": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "candidate_independent_acceptance_scope",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Historical011 product-review request wording; not a new acceptance decision"
+    },
+    "next_engineering_preparation": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "next_engineering_preparation",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Earlier live009 preparation artifact; historical source rather than current certification completeness"
+    },
+    "current_activity_evidence": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "current_activity_evidence",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Earlier011 implementation report, not evidence that this metadata migration executed a cloud task"
+    },
+    "blockers": {
+      "kind": "historical_snapshot_not_current_state",
+      "original_file": "audit/stage2_current_readiness.json",
+      "original_JSON_field": "blockers",
+      "raw_original_archive": "audit/review_packages/status014/previous_state.json",
+      "meaning": "Earlier mixed current/historical blocker list; reset scope is not an active prerequisite while the budget remains unchanged"
+    }
+  },
+  "current_real_runtime": {
+    "kind": "settled_original009_native_failure_not_new_execution",
+    "project_id": 38436695,
+    "round_id": "stage2-host-integration-round-009",
+    "attempt_id": "11147fc5a7ac4f6c951a86d021d069b2",
+    "backtest_id": "6347a33efc37e761f486f982e804dbac",
+    "runtime_source_commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
+    "status": "failed",
+    "Registry_status": "failed",
+    "registry_status": "failed",
+    "native_status": "runtime_error",
+    "round_status": "closed",
+    "round_closed": true,
+    "failure_code": "byte_capacity_insufficient",
+    "actual_error_details_available": true,
+    "native_terminal_received": true,
+    "automatic_notification_observed": false,
+    "successful_engineering_log_chain": false,
+    "independent_zero_order_evidence": null,
+    "new47_file_candidate_deployed": false,
+    "source_report": "audit/stage2_native_failure009_report.json",
+    "source_report_sha256": "7a80b48975560f7a4103522c21e68c3201cb91f6c23a908fa1a1f242ddde4aea"
+  },
+  "latest_completed_independent_review": {
+    "review_id": "AQRP-20261030-D177619-WR31-30",
+    "result": "audit/review_results/wr31.json",
+    "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+    "reviewed_audit_program_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+    "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+    "independently_closed": true,
+    "scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+    "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+    "formal_report_raw_sha256": "3ab91d1bd95b8d572b81518edd23a493f70e16757a49e1181d82ea3418efe356",
+    "reviewer_full_product1085_rerun": false,
+    "reviewer_reparsed_developer1085_records": true,
+    "stage2_accepted": false,
+    "financial_evidence": false,
+    "final_test_enabled": false
+  },
+  "current_activity": {
+    "kind": "current_history_pointer_unification_only",
+    "new_configurations": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_budget_events": 0,
+    "new_settlement_and_closure_events": 0,
+    "journal_events": 80,
+    "cloud_calls": 0,
+    "cloud_deletions": 0,
+    "product_tests_rerun": false,
+    "evidence": "audit/review_packages/status014/status_report.json"
+  },
+  "current_activity_evidence": "audit/review_packages/status014/status_report.json",
+  "new_candidate_independent_acceptance_scope": "Product-core finite offline conclusions remain scoped to their reviewed versions. WR31 closes only the fixed-d177 offline audit tool; it does not accept the new47-file production candidate, whole Phase2, complete data coverage or platform billing.",
+  "blockers": [
+    "QC-resident exact capacity, full historical/dynamic reference closure and safe storage disposition evidence",
+    "Production collector factory, receipt source, transport and same-attempt native receipt chain",
+    "Real QC deployment/compile/run validation of the new47-file candidate",
+    "Full historical US200, SID, expected sessions/actions and financial values/vintages/publication/actual-delivery/ingestion/currency/unit evidence",
+    "Actual platform billing evidence",
+    "Exact-version independent acceptance of the remaining Phase2 production/data scope; WR31 audit scope already closed"
+  ],
+  "administrative_status": {
+    "budget_unchanged": true,
+    "reset_applied_this_update": false,
+    "old_reset_scope_choice_pending": true,
+    "old_unsettled009_reset_blocker_resolved": true,
+    "reset_is_not_a_precondition_for_work_within_current_limits": true
+  },
+  "next_engineering_preparation": "audit/review_packages/storage_inventory013_wr31/CLOUD_REFERENCE_PLAN.txt",
+  "next_preparation_scope": "Immutable earlier plan; any new execution needs its own actual budget admission and platform permission, not this metadata update"
 }
