@@ -1,5 +1,13 @@
 # AQRP-LLM：LLM＋QuantConnect因子研究平台
 
+## 当前只读存储盘点012：456个叶子对象，尚无确认可回收项
+
+按用户要求只读盘点Object Store，不删除、不新增Research/LEAN、不改预算或打开最终测试。63条实际UI观测覆盖31个已访问目录，合并重复观测后为456个叶子对象；10个历史工程回执子树整棵保留，组织完整引用闭包尚未取得。96组同digest名称都是身份索引重复，不能算内容副本。10个旧版快照对象及3个旧共享缓存对象列入待证复核池，v1四份及v2一份未匹配完成window的intent均保留。确认可释放0 B、潜在总量未知，不代表没有可能回收空间。
+
+账号拦截了单个元数据清单下载，未绕过；A1占用使其他项目消费者核查不完整。未取得云端metadata内容和实际字节hash，不把当前49.95MB/50MB的四舍五入UI或文件名当证据补齐。[可读清单](audit/review_packages/storage_inventory012/REPORT.txt)、[待复核池](audit/review_packages/storage_inventory012/review_pool.json)、[实际报告](audit/stage2_storage_inventory012_report.json)保留所有限制。审计工具20项合成已知答案通过，分页误判首败及修复原件保留；没有重跑产品全量，也没有授予阶段2独立通过。
+
+权威Registry仍80事件，配置周期4/13（累计17）、Research18/20、LEAN4/16及源码dee26ee不变。以下009结算与011软件说明保持各自范围。
+
 ## 当前阶段2：原回测009已确认容量预检失败并结算
 
 用户送达原结果页完整错误后，先列出QC项目，再合法重读同一原回测。固定解析器确认`AQRP_STORAGE byte_capacity_insufficient`；原attempt已结算failed，零重试009轮已关闭。错误信息和Stacktrace属于同一次异常。实际Object Store页面显示49.95MB/50MB，冻结LEAN需要65536B写入包加8192B安全余量（合计72KiB）。源码未发现重复计量缓存；当前页面为四舍五入显示，不能替代失败瞬时SDK数值或报告准确短缺字节。

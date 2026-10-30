@@ -1,0 +1,19 @@
+Object Store只读回收盘点012复审补充
+
+请固定含本包的实际Git资料提交，提交SHA以原审核聊天和PR2的固定链接为准。产品源码仍是dee26eec9481e8c75c09c2b97c680707d1814452，原软件复审资料71514320d525ae3ca53ae69a2574e4d0feb007c3及009终态资料898347fea164784506bfcee2a81c848f14bb9f91保持原历史状态。本包不修改产品计算/云端源码、配置或预算，不是金融因子研究，不重跑1085项产品套件，也不自授阶段2通过。
+
+先运行 python -B audit/review_packages/storage_inventory012/verify_packet.py，只读核对本包文件SHA、实际原始UI工具文本、当前232源码与80事件预算，并在内存重算fixed assessment；它不触QC。可另运行check_analyzer.py复核20个字面合成known-answer。独立审查须自行构造边界，不仅重复开发断言；新测试和报告使用单独目录，保留首败。
+
+关键事实与边界：63条实际UI观测，共31个已访问目录、456个叶子对象、40个目录项；33行是重复观测，不是额外对象。10个未访问目录均为历史engineering回执子树，整棵保留。已访问目录的range/position/key全部完整，但不能扩张为组织全树或完整引用闭包。raw_UI_metadata_blocks.zlib.base64保存40个实际表格工具文本块和2个容量探针；首探针仅得到Usage标签，后一探针才取得49.95MB/50MB，不能倒改首结果。原工具文本/字节SHA不证明服务端真实性，也不是SDK精确容量。
+
+原始UI既有object marker，也有带显式列名的TUPLES marker。原始保存的是已观察过的浏览器输出，不是浏览器内部状态或对象内容。未导出行情、财务面板、特征或订单行。单个窗口元数据清单的Download被账号的Export Object Store Derivative Data权限提示拦截，没有取得文件，也未绕过或购买。跨项目object_store代码搜索一项目返回0 literal matches，其余A1占用失败；literal0不能证明无动态读取者，失败也未被写成完成。
+
+local_reference_roots.json扫描全部本地audit/config文件，提取298个候选引用根与18个保留命名空间。这包含未显式标synthetic的独立测试样例及占位摘要，仅可作保守保留线索，不是云端存在性、真实引用边或重复副本数。应核对实际UI path匹配与未知来源，不得按本地未出现判定无引用。
+
+96组相同digest basename全为intent/window或manifest身份索引名称，不是内容相等证明。v1/v2投影语义不同；window basename是身份摘要，batch basename才预期绑定完整payload（仍未读取验证）。成功intent、失败/closed任务及历史receipt仍保留。v1四个、v2一个未匹配完成window的intent都不能删，也不能按mtime指定其batch。review_pool.json中的10个v1原始对象和3个旧共享缓存对象只是优先核对池，未证明无引用；所有456对象均deletion_authorized=false，confirmed_reclaimable_bytes=0、potential_total=null。0表示证据不足，不表示物理上没有可释放对象。
+
+请重点复验分页首败与修复：窄窗Page1of3覆盖1..21，宽窗Page2of4覆盖13..24，随后25..36、37..43；统一用位置→键一致性、行数与总数核对，不能因页数随布局变化而漏判，也不能在位置冲突/少行/总数变化时误判完整。Factor_Validator空目录0/0被支持，但非空0/0拒绝。原15项通过、扩展19项中4失败、最终20项通过、首轮实际误判与中间修复均保留；旧object_assessment.json不覆盖，当前结果为object_assessment.pagination_fixed.json。协作原始块复核首次只认一种marker失败，已记录为审阅探针修正，不算产品缺陷或独立验收。
+
+预算、源码和最终边界：与14c82c5基线逐字节核对，Registry仍80事件，配置周期4/13（累计17）、Research18/20、LEAN4/16不变。无新增配置准入、Research/LEAN执行、退款/重置、Object Store save/delete/clear或购买；元数据读取不构成平台账单认证。最终测试、正式研究、自动GPT及交易保持关闭，2024–2025暴露和2026独立性未认证保留。
+
+复审禁止触QC、执行Research/LEAN、打开真实对象内容、调整预算、删除对象或打开最终窗口。分别报告工具一致性、引用/字节证据缺口和可回收结论；本包只能支持“可见清单和保守保留审核”，不能认证实际内容重复、全引用闭包或安全删除。

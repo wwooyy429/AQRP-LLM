@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "kind": "local_source_only_conservative_reclaim_policy_review",
+  "scope": "Read-only semantic review; no cloud inventory, object reads, Registry writes or runtime execution",
+  "basis": [
+    {"path": "AGENTS.md", "rule": "Preserve historical records, data residency, quota and final-test boundaries"},
+    {"path": "cloud/qresearch/collection.py", "lines": [171, 172, 237, 243, 300, 331, 335, 432, 459, 481, 538, 545, 559, 590]},
+    {"path": "cloud/qresearch/cache.py", "lines": [61, 65, 73, 75, 80, 88]},
+    {"path": "cloud/qresearch/collection_storage.py", "lines": [194, 205, 261, 267, 311, 333]},
+    {"path": "cloud/qresearch/received_manifest.py", "lines": [90, 96, 109]},
+    {"path": "audit/runtime/configurations/64e7ef0354b78b69d97bd97b5e2a0210c0545bf08c921b53fbde98f6a0f2810a.json", "role": "Frozen round009 retains explicit original legacy receipt and processing contract"},
+    {"path": "audit/review_packages/rootcause005/storage_UI_observations.json", "role": "Historical UI metadata only; not current inventory or byte measurements"}
+  ],
+  "version_semantics": {
+    "historical_snapshots_v1": "Schema1 strict unique-SID projection; old failed/interrupted configurations remain historical roots. A later v2 directory does not prove v1 bytes are equivalent or unused.",
+    "historical_snapshots_v2": "Schema2 retains every source occurrence and source_record_index. Duplicate selected field projections are retained evidence, not removable row duplicates.",
+    "window_filename_hash": "Hash of plan_hash, synthetic flag and window identity; it is not a hash of the completed manifest bytes.",
+    "batch_object_filename_hash": "Hash of the complete canonical payload, including schema, plan_hash, window, batch_index and records. Same projected financial values in another plan do not establish byte equality.",
+    "intents": "Persistent source-fetch guard and historical evidence. A completed window can coexist with its original intent because success does not delete it. An unfinished intent intentionally blocks implicit retry.",
+    "stable_cache": "Current verified_legacy mode follows the pinned original receipt and verifies all original windows/batches. The receipt, window manifests and transitive original data must remain. The newer processing contract does not permit relabeling old rows.",
+    "received_reference_manifest": "cached_row_reference_v1 holds references to five original price-cache objects; a small new receiver manifest is not a replacement copy of those original price objects."
+  },
+  "automatic_reclaim_decisions_rejected": [
+    {"claim": "v1 is old, therefore remove its approximately2MB folder", "reason": "Version and semantics differ; historical failed-source evidence and implicit plan reachability remain unresolved."},
+    {"claim": "An intent has a matching completed window, therefore delete the intent", "reason": "Source implementation retains intents by design; they bind historical dispatch/no-refetch evidence and must not be silently rewritten."},
+    {"claim": "The task failed or round closed, therefore its cache is unreferenced", "reason": "Failed and closed attempts remain historical roots; later verified_legacy consumers can still depend on old completed snapshots."},
+    {"claim": "Same digest-like basename or rounded size proves duplicate bytes", "reason": "Digest roles differ across object types, and path names/rounded sizes do not verify actual contents."},
+    {"claim": "No local explicit key reference proves a cloud object is orphaned", "reason": "Cloud manifests, receipt window_refs, event streams, derived key rules and other project readers can supply unseen edges."},
+    {"claim": "Repeated projection records inside a v2 batch can be deleted", "reason": "Occurrence preservation is frozen source semantics; row removal would alter history and hashes."}
+  ],
+  "candidate_categories_in_review_priority_order": [
+    {
+      "category": "Unreferenced exact second object copy outside all protected namespaces",
+      "conditions": ["Complete stable organization object inventory", "All current and historical reference roots resolved", "No implicit schema-derived reference or other-project consumer", "Actual full-byte SHA and size equal a retained copy", "Not a receipt, manifest, intent, event stream or required failure artifact"],
+      "current_classification": "needs_evidence",
+      "reason_for_priority": "Could release physical bytes without altering retained identities, if every condition is independently established."
+    },
+    {
+      "category": "Partial-write batch with no completed window manifest",
+      "conditions": ["Cloud-only header/plan binding inspection", "Resolve associated intent and failed attempt", "Explicit forensic retention disposition", "No inbound reference from any current or historical metadata", "Actual stored byte count"],
+      "current_classification": "quarantine_for_review_not_delete",
+      "reason_for_priority": "Potentially larger abandoned writes exist in this storage design, but missing manifest alone is not permission to remove failure evidence."
+    },
+    {
+      "category": "Temporary or legacy duplicate objects whose ownership can be proven",
+      "conditions": ["Exact object-level ownership and purpose", "No reference or historical receipt obligation", "Actual bytes and retained equivalent verified where necessary"],
+      "current_classification": "needs_evidence",
+      "reason_for_priority": "Search outside the protected active/historical snapshot closure before considering any referenced cache. Names such as old or temp are insufficient."
+    }
+  ],
+  "currently_proven_reclaimable_objects_by_this_local_review": [],
+  "confirmed_reclaimable_lower_bound_bytes": 0,
+  "total_potential_reclaimable_bytes": null,
+  "size_statement": "The parent observed rounded current UI sizes of approximately2MB for v1 and47MB for v2. This source-only review has not measured or independently re-observed either size; neither entire directory may be counted as reclaimable.",
+  "missing_evidence": [
+    "Complete cloud object list and exact physical byte sizes",
+    "Current cloud metadata/reference closure, including other project consumers",
+    "Actual byte digests for candidate duplicate pairs",
+    "Disposition of partial-write/failure forensics"
+  ],
+  "product_source_changed": false,
+  "cloud_calls": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "Registry_or_budget_changes": 0,
+  "cloud_deletions": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

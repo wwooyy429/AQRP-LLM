@@ -1,0 +1,26 @@
+QuantConnect Object Store 只读回收审查清单（012）
+
+结论：已记录456个可见叶子对象、核对31个已访问目录。10个历史工程回执子目录整棵保留，未展开其后代；本轮不是组织完整引用闭包或SDK字节认证。
+当前刷新后的UI显示49.95 MB/50 MB。确认可回收清单为空，确认可释放0 B；潜在可释放总量未知。0 B表示尚无足够安全回收证据，不表示没有垃圾对象。
+
+空间分布（全部是UI显示的近似值，父子目录不可重复相加）：
+  aqrp/engineering/v2/historical-snapshots/v2：约47 MB；227个数据对象、43份窗口清单、44份intent。
+  aqrp/engineering/v2/historical-snapshots/v1：约2 MB；10个数据对象、44份窗口清单、48份intent。
+  aqrp/engineering/v2/feature-cache/v1：约329 KB；5个价格对象及5份manifest、5份intent，保留。
+  aqrp/engineering/v2/coverage-inputs/v1：约322 KB；覆盖输入快照及来源凭证，保留。
+  aqrp/engineering/v2/audit-evidence：约247 KB；10份历史审核/覆盖证据，保留。
+  aqrp/engineering/v2/engineering：约105 KB；10个历史回执子树，整棵保留。
+  generic-research/v1：约134 KB；3个数据对象及历史索引/事件，归属和消费者未认证，保留。
+  Factor_Validator：UI为空目录；不能据此获得有意义的存储释放量。
+
+优先复核池（review_pool.json；不是删除清单）：
+  1. historical-snapshots/v1/objects下10个对象，逐项显示193 KB；显示数合计1930 KB，仍不是真实字节或可释放量。须在云内核验头部、全部历史引用及失败取证保留责任。
+  2. generic-research旧共享缓存3个对象；须核验当前/历史消费者、实际内容与所有权。没有本地显式引用不能判定无引用。
+  3. v1有4份、v2有1份intent未见同名完成window；原intent仍保留。不从修改时间推断哪个批次属于它，也不把它们当垃圾。
+
+重复核对：96组相同digest文件名均为intent/window或manifest身份索引，不能当内容副本。没有取得实际payload字节相等证明；旧版与新版投影语义不同、失败或退休状态都不自动解除引用。
+
+证据缺口：账号拒绝Object Store单个清单文件下载；未绕过。MCP无对象清单读取接口，跨项目代码搜索也受到A1占用限制。未知动态消费者、未展开历史回执、云内metadata内容与实际字节hash未认证。需要后续QC云内只读引用闭包/哈希核验才能形成可批准删除的清单，本轮未执行或扣额。
+
+保存了实际UI元数据原始工具文本、分页重叠、初始误判和修复。审计分析器20项合成已知答案通过；不是产品1085项全量重跑、独立验收或金融证据。
+预算原字节与80事件保持：配置周期4/13（累计17）、Research18/20、LEAN4/16。无新配置/Research/LEAN、无退款/重置/云端删除或购买。正式研究、自动GPT、交易与最终测试继续关闭；2024–2025已暴露和2026独立性未认证保留。
