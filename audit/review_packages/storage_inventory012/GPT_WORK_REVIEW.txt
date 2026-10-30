@@ -1,5 +1,7 @@
 Object Store只读回收盘点012复审补充
 
+交付首版3314f75的54份原字节均与Git blob匹配，但本地git status因根*.json text eol=lf过滤与14份原始CRLF审计JSON不一致而失败。首败另存git_delivery_initial_filter_failure.json；只在本审计包加入目录级.gitattributes的* -text，未规范化任何原件，也不更改产品源码/研究配置。请使用后续修正后的固定资料SHA，而不是把3314首败抹成通过。
+
 请固定含本包的实际Git资料提交，提交SHA以原审核聊天和PR2的固定链接为准。产品源码仍是dee26eec9481e8c75c09c2b97c680707d1814452，原软件复审资料71514320d525ae3ca53ae69a2574e4d0feb007c3及009终态资料898347fea164784506bfcee2a81c848f14bb9f91保持原历史状态。本包不修改产品计算/云端源码、配置或预算，不是金融因子研究，不重跑1085项产品套件，也不自授阶段2通过。
 
 先运行 python -B audit/review_packages/storage_inventory012/verify_packet.py，只读核对本包文件SHA、实际原始UI工具文本、当前232源码与80事件预算，并在内存重算fixed assessment；它不触QC。可另运行check_analyzer.py复核20个字面合成known-answer。独立审查须自行构造边界，不仅重复开发断言；新测试和报告使用单独目录，保留首败。
