@@ -25,8 +25,13 @@ def main():
     assert sha256(journal).hexdigest()==proof['registry_sha256']
     assert len(journal.splitlines())==80
     assert digest(ROOT/'config/budget.json')==proof['budget_sha256']
-    for path, expected in proof['configuration_raw_hashes'].items():
-        assert digest(ROOT/path)==expected,path
+    workspace_forms, Git_forms = 0, 0
+    for item in proof['configuration_known_raw_forms']:
+        path=ROOT/item['path'];raw=path.read_bytes();actual=sha256(raw).hexdigest()
+        assert actual in {item['workspace_raw_sha256'],item['baseline_Git_raw_sha256']},item['path']
+        assert sha256(path.read_text(encoding='utf-8-sig').encode('utf-8')).hexdigest()==item['normalized_text_sha256'],item['path']
+        workspace_forms += actual == item['workspace_raw_sha256']
+        Git_forms += actual == item['baseline_Git_raw_sha256']
     sys.path.insert(0,str(ROOT/'tools'))
     from stages import source_manifest
     source=source_manifest()
@@ -71,6 +76,8 @@ def main():
     assert all(plan[name] is False for name in ('market_research_enabled','llm_runtime_enabled','final_test_enabled','live_trading_enabled'))
     print(json.dumps({'metadata_files_verified':len(manifest['files']),
         'unchanged_012_files':len(proof['unchanged_012_files']),'selected_original_review_files':len(index['selected_files']),
+        'configuration_files_verified_against_explicit_known_raw_forms':len(proof['configuration_known_raw_forms']),
+        'configuration_workspace_raw_matches':workspace_forms,'configuration_baseline_Git_raw_matches':Git_forms,
         'source_files_unchanged':232,'registry_events_unchanged':80,
         'actual_metadata_semantic_parity':True,'old_MRE_failure_preserved':True,
         'developer_product_tests':1085,'developer_boundary_methods':12,'developer_boundary_subtests':96,
