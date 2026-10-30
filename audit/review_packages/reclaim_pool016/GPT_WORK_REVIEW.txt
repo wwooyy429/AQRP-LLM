@@ -1,0 +1,28 @@
+回收核对016及前序015独立审核指令
+
+本次用户请求是逐项判断16个核对池对象是否具备删除证据，并将资料提交GPT审核。用户此前“先不要删除”的约束继续生效。此包没有删除命令，也没有Object Store删除授权。
+
+审核对象分三层，必须分别报告：
+1. 产品软件固定df48fbbe1f403913501c6bad16474fd7d4e2e25e；其1135项完整合成测试是开发侧历史结果。015软件独立复审尚无新完成结论，不能用WR31旧关闭替代。
+2. 原生运行资料固定052e712bc8f53d5375970942cd3418016b5d3c90。读取该版本storage_inventory015/GPT_WORK_REVIEW.txt，核对实际单次Research、同attempt原生completed、86事件和关轮。在该固定检出运行verify_runtime.py；不要要求其历史hash断言适用于016改过current元数据的当前目录。
+3. 本次016审核材料以发送消息/PR2给出的完整Git提交为准。先运行audit/review_packages/reclaim_pool016/verify_packet.py，再在独立目录构造边界测试。新程序只是既有元数据的离线保留评估器，没有生产配置或Research任务。
+
+本次实际做了什么：先列QC项目，使用返回ID；主项目38436695完成object_store源码查询5页/50条，读取engineering_smoke.py、qresearch/cache.py、qresearch/collection.py。其他四项目38433216、38437839、38433336、38432534的相同查询原生isError：A1节点占用。这些原件在cloud_source_checks.json。查询结果是静态源码证据，不是运行中/动态/外部消费者完整清单；不能把错误当零匹配，也不能把源码可读解释为任务实际运行。
+
+本轮没有执行Research/LEAN，没有读取或写入Object Store payload，没有创建/替换云端源码或notebook，没有调节容量阈值，没有注册新研究配置、重置/退款、购买或删除。配置周期5/13（累计18）、Research19/20、LEAN4/16、Registry86全部原字节保持。最后一次Research未消耗：跨项目检查与候选日期授权尚未收敛，原015不允许读取这些对象，重跑无法补足缺口。2024–2025曾使用、2026独立性未认证，最终测试/正式研究/自动GPT/交易保持关闭。
+
+请独立核对下列内容：
+- 原13加新v2三=16个精确key/size；合计2,772,902B，v1十个1,970,928B、v2三个671,114B、generic三个130,860B。assessment.json及REPORT.txt逐项列出，来源015唯一键/size观测。数字不是本轮重新观测的Object Store容量。
+- 16个对象在原015中均not_read、content_sha256=null，229条有界typed图没有入边；这不是孤儿或删除证明。当前提出删除清单为空，confirmed0只表示证明不足，potential null，不代表不存在可释放空间。
+- historical collector可能先写batch，后写完成window；unfinished intent须保留并阻止自动重取。不能因failed/closed/老版本/无完成window而认定batch垃圾。v1与v2保留重复观测语义不同，不能认定互为可替换副本。
+- generic源码使用旧namespace，仅是潜在静态消费者。未核对实际manifest/payload不能确定其三个具体对象是否仍被引用。熟悉的文件名hash或2B长度不能推断内容为空或准许删除；同大小不等于raw重复。
+- 20个未知schema涉及12个已观察rawSHA。analyze_pool.py对固定pre016 46d281d3ca800148b57123edd426d096bbfc1d1e的8362个Git-tracked audit原始blob（65,925,708B）做SHA256精确比对，无相同原件。未解压历史压缩包、未比对未跟踪文件，未命中不是云端原件不存在或无引用的证明。
+- 所有历史intent、receipt、resolution及唯一复现材料继续保留。必须先取得可信日期/metadata授权，再云内核对候选header/rawhash/所属intent、manifest和历史用途；补齐跨项目/动态消费者及保留/恢复责任，才可能另行提出具体处置清单。不得为盘点而打开未知或2024+行级数据。
+- 25项新测试为开发内交叉检查，实际stdout/stderr/exit保留。没有本轮重跑1135，不可把两个数字相加或称独立软件验收。developer_first_failure.json如实记录最初误判read_file响应success字段的失败；没有原始文件时必须明确缺口，不允许重造原件。
+- packet/protection原始Git blob核验覆盖旧文件，只有README、实验台账与三个current元数据合法追加/更新；原始台账前缀、预算/config、源代码、原015/012及WR31材料均不倒改。
+
+独立边界重点：无入边仍保留；伪造content hash、basename空数组、等大小、丢项目/缺页、MCP错误包装或冲突表示、bool冒充整数、原数据size/role/权限篡改、未知schema跳过、真实行值/异常夹带、预算与final门绕过。报告是固定证据核对器，不是通用自动垃圾收集器；不对未来未审对象授删除权限。
+
+请给出可复现的缺陷、固定版本/命令、独立测试实际执行情况，区分“开发测试记录重解析”与“审核者实际重跑”。阶段2整体仍未通过，当前资料不能构成安全删除许可、金融有效性、完整历史数据或计费认证。
+
+复审只允许读取固定Git源码/许可元数据并在独立目录运行离线合成测试。禁止QC/浏览器数据访问、Research/LEAN/GPT API、预算变更、对象读写/删除、购买、最终测试、合并PR或发消息到其他聊天。回复本审核聊天，由开发侧主动读取审核结果。

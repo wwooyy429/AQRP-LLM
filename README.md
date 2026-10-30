@@ -271,3 +271,5 @@ GPT Work首次实际审核固定提交113fdf7：仓库112项测试通过，独�
 
 Phase 0/1重新送审的统一入口为[复审开发资料](docs/review/phase0-phase1/README.md)，包括固定源码清单、开发说明、验收矩阵、手算样例、历史报告、后续改动、开放WR-04和可执行离线检查。该资料将历史通过、开发侧复核及待开展的独立复审分开，不改变原结论或授权新的市场执行。
 
+
+回收核对016已完成现有证据的逐对象核对：16个对象共2,772,902 B，当前可建议删除0个，确认可回收0 B（证据不足，潜在量未知）。主项目5页源码搜索已齐；其他4项目仍因A1占用查询失败。历史partial batch、legacy manifest、日期与原件身份仍缺，全部对象/intent/历史回执保留。本轮不再执行Research，保留最后一次额度；配置5/13（累计18）、Research19/20、LEAN4/16、Registry86均不变。新核对资料待独立GPT复审，阶段2与最终测试继续关闭。详见 audit/review_packages/reclaim_pool016/REPORT.txt 及 GPT_WORK_REVIEW.txt。

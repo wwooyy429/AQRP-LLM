@@ -1,0 +1,59 @@
+回收核对016：16个对象全部保留，当前删除建议为空
+
+用户要求先核对可删除对象再提交GPT审核，本轮未删除。此结论来自015既有原生盘点、当前源码只读查询及离线程序，不是新的候选内容读取或独立验收。
+
+对象逐项结果（完整key、字节、缺失证据见assessment.json）：
+
+aqrp/engineering/v2/historical-snapshots/v1/objects/
+对象名（.json） | 实际物理字节（015观测） | 当前判断
+336ac7d05cf90bb3db468f457d2bb10158866e7f55a9c6d42641070fd8dd8336.json | 197062 | 证据不足，保留
+3a5c15e7af890c6bd5a7209ab2c30dedf9c93f60b0b1d19e5ab3255eccaa5108.json | 197137 | 证据不足，保留
+3c83c5657ddc06c1adf7ee748ef686970830ca7eef5244e3b26ef08094d27b68.json | 196994 | 证据不足，保留
+3dcbf5bafc8ecd471e172c7911ea905d2d90cdc5bf92bd3e22ff12dd5c21566c.json | 197079 | 证据不足，保留
+6dc05520fea94b197441fc489f7dd08ee6d7ef41999613ced80f57558454eb93.json | 196994 | 证据不足，保留
+b70c7dcfbb1ea18f740564b0f244286eda29721ca62d44c4f551f85c1df05051.json | 197137 | 证据不足，保留
+bf6d935ccd5cdb3433b2b01009e167f4fa22a9a307cb02b5102b2f7406e0aeb1.json | 197079 | 证据不足，保留
+c7fccd5ce63bd2ac1194cef31426666a303b9779d4d17b2eb02cd0c13a69657c.json | 197062 | 证据不足，保留
+db44c3a1fca89e6033c69d7b79bc58ea1213efd65485bf1ddf86cd803bbf2707.json | 197192 | 证据不足，保留
+e7902abff8749bcb3c182235b1df69f3c65bb30c9843486b7d9dd70e872c58a2.json | 197192 | 证据不足，保留
+组计：10对象 / 1970928 B
+
+aqrp/engineering/v2/historical-snapshots/v2/objects/
+对象名（.json） | 实际物理字节（015观测） | 当前判断
+1f8a988e5fa5502d10e1840d5ad4210b739651477dbdffdfd66594d29aaabfcb.json | 224051 | 证据不足，保留
+233ee594609deac9643ae90d7da0cd3eb729bce425926653a54a277d4277dd08.json | 224055 | 证据不足，保留
+6a5a38b63c99fb8016567ccb0613b3aa4c44ac66e62976dff063e22409c6284a.json | 223008 | 证据不足，保留
+组计：3对象 / 671114 B
+
+generic-research/v1/feature-cache/v1/objects/
+对象名（.json） | 实际物理字节（015观测） | 当前判断
+3dbf2cc2d2584af110aad65afd1c47155cc7095077fd0792119ed8bfffd323c0.json | 66768 | 证据不足，保留
+4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945.json | 2 | 证据不足，保留
+ef4b7c48749a22bbc9788a979da82fec3c3ce5942611c478f9361cb94654ff29.json | 64090 | 证据不足，保留
+组计：3对象 / 130860 B
+
+合计16对象 / 2,772,902 B；提出删除0对象，确认可回收0 B，潜在可回收量未知。确认0是证据不足的保守结论，不代表已经证明全部永久不可回收。没有生成可执行删除清单。
+
+本轮新增证据：先列QC项目；主项目38436695 object_store源码5页50条已齐，三份相关producer/consumer源码已取原件。其他4项目查询仍被A1节点占用阻挡，保持未知，不当作无匹配。主项目源码中engineering_smoke.py使用generic-research/v1；这是旧namespace的潜在消费者，不能直接认定这三个具体对象当前正被引用。静态搜索也不覆盖所有动态路径与外部消费者。
+
+13个historical对象：collector可能在写入batch后中断，完成window尚未写入；unfinished intent仍是恢复与防止重复采集的依据。需要在可信日期授权后，在云内读取并核对payload header/rawhash、plan/window/batch身份及intent；不能以failed/closed/旧版/无入边为删除证明。v1与v2语义不同，不认定互为可替代重复。
+
+3个generic对象：SharedDataCache依manifest/request/payload SHA读取数据；实际manifest和原件未核对，尚不能判断是否闲置。2B大小、熟悉的hash文件名不证明内容为空，同大小不证明重复。
+
+所有16个在015中均not_read、content_sha256=null。本轮没有读取Object Store payload，未获得新的header/rawhash或开发日期；229条已解析typed边没有入边不构成完整引用闭包。20个未知schema涉及12个rawSHA；固定pre016 Git快照8362个audit原始blob、65,925,708B的精确SHA比对无匹配。未解压历史压缩包、未检查未跟踪文件；不能用无匹配推断云端原件或引用不存在。
+
+后续核对顺序：
+1. 先补齐四个项目及活动/动态/外部消费者，核对未知receipt schema、历史压缩引用与保留责任。
+2. 从可信metadata取得候选日期和身份授权；legacy数组无独立header时先找manifest。不为回收而读取未知或2024+行级数据。
+3. 如证据能够收敛，再冻结新worker/完整工程配置、合成验收并先扣账后运行一次受限云内核对。原015重跑不能补这些对象的权限与schema缺口。当前保留最后一次Research额度。
+4. 只有原件、依赖、恢复和保留责任完整且独立审核通过，才形成具体待批准处置清单；实际删除须另行明确授权。
+
+本轮开发内交叉检查：25项边界测试实际通过，完整stdout/stderr/exit和离线评估输出已保存。1135项完整产品测试是固定软件df48fbb的历史开发结果，本轮未重跑，不与25相加。不是GPT独立验收。
+
+失败记录：首次开发误要求read_file返回success字段，按实际content/filePath/fileSize修复，原件未改变；说明见developer_first_failure.json。打包助手首次误将所有既有工作区raw字节与Git blob相等作为前提，在7bf旧文件处失败；改为保护历史Git blob并对本次包使用raw SHA，保留原失败，未重写历史行尾。首次打包已写的current资料/台账/README通过幂等检查避免重复追加。
+
+预算周期5/13（累计18）、Research19/20、LEAN4/16、Registry86保持不变。本轮新增执行0、配置扣账0、重置/退款/购买0、Object Store读写/删除0；QC源码/项目查询不是Research执行。旧容量仍为015观测：空闲53,895 B、冻结LEAN要求73,728 B，短缺19,833 B，本轮未重测容量或降低阈值。
+
+原始记录保护以固定pre016 Git 46d281d3ca800148b57123edd426d096bbfc1d1e为准：仅README、实验台账与三个current元数据有授权更新；其余8599个历史Git blob ID应在新提交中原样保留。此声明不等同全部既有工作区行尾与Git raw一致。预算/Registry另做raw SHA，实验台账保留原始字节前缀。
+
+软件/015运行资料及016新核对待独立精确版本审核；WR31仅旧范围关闭。阶段2整体未通过；生产候选/回执链、完整US200和财务可得性/版本、计费认证仍待补证。最终测试、正式研究、自动GPT、交易继续关闭；2024–2025暴露和2026独立性未认证保留。
