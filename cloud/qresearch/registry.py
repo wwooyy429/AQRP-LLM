@@ -248,6 +248,9 @@ class Registry(RegistryEngineeringMixin):
                     if kind == "config_registered":
                         if event.get("configuration_cycle_id", INITIAL_CYCLE) != state["configuration_cycle"]["cycle_id"]:
                             raise CorruptRegistry("Configuration charge belongs to another allowance cycle")
+                        if self._inventory_plan(json.loads(data)) is not None:
+                            self._enforce_engineering_project(state, json.loads(data))
+                            self._enforce_engineering_limit(state, "configurations", json.loads(data))
                         self._charge_reserved(state, "configurations", event["allocation"], identity)
                     else:
                         self._verify_import(json.loads(data), event["source_reference"], event["allocation"])
@@ -279,6 +282,8 @@ class Registry(RegistryEngineeringMixin):
                     if any(item["config_id"] == identity and item["stage"] == stage and
                            item["status"] in _OPEN_STATES for item in state["attempts"].values()):
                         raise CorruptRegistry("Attempt overlaps unresolved work for the same config and stage")
+                    self._inventory_admission(state, identity, stage, operation,
+                        retry_of=event.get("retry_of"), allocation=event["allocation"])
                     self._charge_reserved(state, stage, event["allocation"], identity)
                     record = dict(event, status="started", external_id=None)
                     if record["result_key"] != self.result_key(identity, stage, operation):
@@ -301,6 +306,8 @@ class Registry(RegistryEngineeringMixin):
                             raise CorruptRegistry("Completed result is not canonical JSON")
                     if kind in {"pending", "completed", "failed"}:
                         self._certification_transition(state, record, kind, fields=event,
+                            result=json.loads(result) if kind == "completed" else None)
+                        self._inventory_transition(state, record, kind, fields=event,
                             result=json.loads(result) if kind == "completed" else None)
                     record.update(event)
                     record["status"] = kind
@@ -497,6 +504,7 @@ class Registry(RegistryEngineeringMixin):
                 return identity
             package = json.loads(encoded)
             if (self._collection_plan(package) is not None
+                    or self._inventory_plan(package) is not None
                     or (self._is_engineering_package(package) and package["plan"].get("schema_version") in {2, 3, 4})):
                 self._enforce_engineering_project(state, package)
             self._enforce_engineering_limit(state, "configurations", package)
@@ -600,6 +608,11 @@ class Registry(RegistryEngineeringMixin):
             package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
             collection = self._collection_plan(package)
             self._collection_operation(collection, stage, operation_key)
+            inventory = self._inventory_plan(package)
+            if inventory is not None and (stage != "research"
+                    or operation_key != "object-store-inventory:" + inventory.hash + ":research"
+                    or retry_of is not None or allocation != "normal"):
+                raise RegistryError("Inventory permits only its fixed normal Research operation without retry")
             joint = self._joint_engineering_plan(package)
             self._joint_operation(joint, stage, operation_key)
             existing_id = state["operations"].get(operation_id)
@@ -616,6 +629,8 @@ class Registry(RegistryEngineeringMixin):
                     if joint is not None:
                         raise RegistryError("Unresolved joint engineering operation requires reconciliation")
                     return self._attempt(record)
+            self._inventory_admission(state, config_id, stage, operation_key,
+                retry_of=retry_of, allocation=allocation)
             self._joint_admission(state, config_id, stage, joint)
             self._enforce_engineering_project(state, package)
             if collection is not None:
@@ -657,6 +672,7 @@ class Registry(RegistryEngineeringMixin):
             raise RegistryError("Ambiguous submission must be resolved by an observed final result or reconciliation")
         if kind in {"pending", "failed"}:
             self._certification_transition(state, record, kind, fields=fields)
+            self._inventory_transition(state, record, kind, fields=fields)
         event = dict(fields, kind=kind, attempt_id=attempt_id)
         self._append(event)
         record.update(event)
@@ -697,6 +713,7 @@ class Registry(RegistryEngineeringMixin):
             if record["status"] == "failed":
                 raise RegistryError("A failed attempt cannot be completed; register an explicit retry")
             self._certification_transition(state, record, "completed", fields={"external_id": external_id if external_id is not None else record.get("external_id")}, result=result)
+            self._inventory_transition(state, record, "completed", fields={"external_id": external_id if external_id is not None else record.get("external_id")}, result=result)
             self.store.write_once(record["result_key"], encoded)
             if record["status"] == "completed":
                 return self._attempt(record)

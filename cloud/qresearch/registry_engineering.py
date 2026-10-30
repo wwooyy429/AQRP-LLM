@@ -106,8 +106,14 @@ class RegistryEngineeringMixin:
             raise ValueError("Engineering round requires a complete engineering package")
         # Additional rounds admit only the strict frozen collection/joint schemas;
         # a generic marker or a mutable plan name is not an authorization route.
-        if self._collection_plan(package) is None and self._joint_engineering_plan(package) is None:
+        if (self._collection_plan(package) is None and self._joint_engineering_plan(package) is None
+                and self._inventory_plan(package) is None):
             raise ValueError("Additional rounds require a frozen collection or joint task")
+        if self._inventory_plan(package) is not None:
+            grant = record["grant"]
+            if (grant["schema_version"] != 2 or grant["allocation"] != "normal"
+                    or grant["limits"] != {"configurations": 1, "research": 1, "lean": 0}):
+                raise RegistryError("Inventory round must be explicitly version2 normal1/1/0")
         if package["plan"]["project_id"] != record["grant"]["project_id"]:
             raise RegistryError("Configuration project differs from the authorized round")
         identity = content_hash(package)
@@ -262,14 +268,17 @@ class RegistryEngineeringMixin:
         marked = "engineering_task_schema_version" in package
         engineering_plan = isinstance(plan, dict) and plan.get("scope") == "engineering"
         collection = RegistryEngineeringMixin._collection_candidate(plan)
-        if not marked and not engineering_plan and not collection:
+        inventory = RegistryEngineeringMixin._inventory_candidate(plan)
+        if not marked and not engineering_plan and not collection and not inventory:
             return False
         if (type(package.get("engineering_task_schema_version")) is not int
                 or package["engineering_task_schema_version"] != 1
                 or set(package) != {"engineering_task_schema_version", "plan"}
                 or not engineering_plan):
             raise ValueError("Engineering packages require their complete fixed schema marker")
-        if collection:
+        if inventory:
+            RegistryEngineeringMixin._inventory_plan(package)
+        elif collection:
             RegistryEngineeringMixin._collection_plan(package)
         elif plan.get("schema_version") in {2, 3, 4}:
             # A joint pilot is one complete engineering configuration, never an
@@ -281,6 +290,47 @@ class RegistryEngineeringMixin:
             if frozen.to_dict() != plan:
                 raise ValueError("Joint engineering registration requires its frozen canonical plan")
         return True
+
+
+    @staticmethod
+    def _inventory_candidate(plan: Any) -> bool:
+        return isinstance(plan, dict) and (plan.get("task_kind") == "object_store_inventory"
+            or "inventory_policy" in plan or "worker_sha256" in plan)
+
+
+    @staticmethod
+    def _inventory_plan(package: dict):
+        if not isinstance(package, dict) or not RegistryEngineeringMixin._inventory_candidate(package.get("plan")):
+            return None
+        if (set(package) != {"engineering_task_schema_version", "plan"}
+                or type(package.get("engineering_task_schema_version")) is not int
+                or package["engineering_task_schema_version"] != 1):
+            raise ValueError("Inventory tasks require their fixed engineering package marker")
+        from .storage_inventory_tasks import InventoryTaskPlan
+        raw = package["plan"]
+        frozen = InventoryTaskPlan.from_dict(raw, discovered_project_ids=(raw.get("project_id"),))
+        if frozen.to_dict() != raw:
+            raise ValueError("Inventory registration requires its canonical frozen plan")
+        return frozen
+
+
+    def _inventory_admission(self, state, config_id, stage, operation_key, *, retry_of=None, allocation="normal"):
+        package = json.loads(self.store.read_bytes("configurations/" + config_id + ".json"))
+        plan = self._inventory_plan(package)
+        if plan is None:
+            return
+        if (stage != "research" or operation_key != "object-store-inventory:" + plan.hash + ":research"
+                or retry_of is not None or allocation != "normal"):
+            raise RegistryError("Inventory permits one fixed normal Research operation and no retry")
+        own_id = state["engineering_round_configs"].get(config_id)
+        if own_id is None:
+            raise BudgetExceeded("Inventory requires an explicit user-authorized engineering round")
+        grant = state["engineering_rounds"][own_id]["grant"]
+        if (grant["schema_version"] != 2 or grant["allocation"] != "normal"
+                or grant["limits"] != {"configurations": 1, "research": 1, "lean": 0}):
+            raise RegistryError("Inventory requires a version2 normal grant bounded to1 configuration/1 Research/0 LEAN")
+        if any(r["config_id"] == config_id and r["stage"] == stage for r in state["attempts"].values()):
+            raise RegistryError("Inventory has no second execution or retry")
 
 
     @staticmethod
@@ -466,6 +516,13 @@ class RegistryEngineeringMixin:
         own_id = state["engineering_round_configs"].get(identity)
         if package["plan"].get("task_kind") == "data_certification" and own_id is None:
             raise BudgetExceeded("Certification requires an explicitly user-authorized engineering round")
+        if self._inventory_plan(package) is not None:
+            if kind == "lean" or own_id is None:
+                raise BudgetExceeded("Inventory requires its explicit Research-only round")
+            grant = state["engineering_rounds"][own_id]["grant"]
+            if (grant["schema_version"] != 2 or grant["allocation"] != "normal"
+                    or grant["limits"] != {"configurations": 1, "research": 1, "lean": 0}):
+                raise RegistryError("Inventory requires its exact version2 normal1/1/0 grant")
         if own_id is not None:
             record = state["engineering_rounds"][own_id]
             if record["status"] != "open" or self._round_usage(state, record)[kind] >= record["grant"]["limits"][kind]:
@@ -497,6 +554,8 @@ class RegistryEngineeringMixin:
             collection = self._collection_plan(package)
             if collection is not None and kind == "lean":
                 raise RegistryError("Collection tasks permit only Research admission")
+            if self._inventory_plan(package) is not None and kind == "lean":
+                raise RegistryError("Inventory permits only Research admission")
             if kind == "configurations" and identity in state["configs"]:
                 return
             same = [record for record in state["attempts"].values()
@@ -521,5 +580,16 @@ class RegistryEngineeringMixin:
             validate_registry_transition(self.store, package, record, kind, fields=fields, result=result)
         except (KeyError, TypeError, ValueError, OSError) as error:
             raise RegistryError("Certification transition requires original fixed-parser native evidence") from error
+
+
+    def _inventory_transition(self, state: dict, record: dict, kind: str, *, fields=None, result=None) -> None:
+        package = json.loads(self.store.read_bytes("configurations/" + record["config_id"] + ".json"))
+        if self._inventory_plan(package) is None:
+            return
+        from .storage_inventory_tasks import validate_registry_transition
+        try:
+            validate_registry_transition(self.store, package, record, kind, fields=fields, result=result)
+        except (KeyError, TypeError, ValueError, OSError) as error:
+            raise RegistryError("Inventory transition requires original fixed-parser native evidence") from error
 
 

@@ -1,0 +1,13 @@
+只读Object Store盘点015：软件冻结与执行边界
+
+步骤1状态统一固定d63a929，旧009原生failed/closed与WR31固定d177离线有限关闭不变。此处是新软件，不能继承WR31对旧分析器的验收。新worker与任务桥提供专用object_store_inventory kind、Research-only normal工程round1配置/1Research/0LEAN、零重试、前置扣额、源码/cell/native proof守卫。只上传单个标准库worker，不部署完整49文件生产候选。
+
+完整离线 python -B tools/stages.py verify 实际1135项通过，238源文件；其中25 worker、23 task与2 security方法已包含在1135内，重复运行不相加。另有一个实际生成cell在合成SDK内执行并经同一固定parser解析的往返正例。新模块及全库没有独立验收结论；正式数据、费用后因子和阶段2验收均未通过。
+
+development_originals压缩保存42份实际开发脚本/源码快照/首败/修复输出与记录。nested未知payload先读后拒绝、报告伪称未知内容已哈希、初始task冲突异常/SDK-failure fixture及native wrapper修复均保留。首并行snapshot只承诺起跑前捕获，冻结旧源负对照另有真实执行；不能把全部历史轮数相加或追认为首次全通过。
+
+220个精确metadata候选来自012已见路径及本地候选根，后者含synthetic/placeholder，不能当真云端引用边。只读SDK完整keys/stat、原生max_size/max_files及合法开发window派生的payload哈希/typed引用；不输出真实行、财务值或native异常文本。两遍元数据一致非原子快照，get_file_path可能flush既有SDK dirty cache，不能谎称SDK内部绝对零写。代码没有save/delete/clear或市场接口。全局闭包与安全删除仍不授予，所有历史和未知对象保留。
+
+source_identity_preflight记录旧Research44源exact支持和旧LEAN EOF包装区别；新任务仍要求单worker原字节精确SHA，不用Research试错归一化或降低冻结73728B门槛。此次脚本执行完成也不能替代完整US200/财务/平台账单或生产collector验证。
+
+软件包核验入口：python -B audit/review_packages/storage_inventory015/verify_software.py。此程序仅用于固定的执行前Git检出；注册/claim会合法改变预算投影，后续运行材料另列，不要求旧执行前80事件快照在执行后当前工作区通过。
