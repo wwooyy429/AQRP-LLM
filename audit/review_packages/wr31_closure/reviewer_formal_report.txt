@@ -1,0 +1,541 @@
+WR31独立复验：固定d177619所测离线审计解析/原件/交付/路径范围修复后通过并关闭。阶段2整体仍未通过。
+产品仍dee，源码与配置未改；预算80事件不变。旧012失败及69b首败保留，不重跑产品1085；开发新1085只原样重解析。
+原MRE旧exit1新exit0，三项原预期不变。正式研究、GPT、交易、最终测试关闭，456/10/13全部保留，不授删除。
+
+完整JSON：
+{
+  "review_id": "AQRP-20261030-D177619-WR31-30",
+  "reviewed_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "reviewed_audit_program_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+  "baseline_commit": "5955ca8fe68d047514a4064c78841045a866241e",
+  "evidence_commits": [
+    "69b3be64d27aaed4eb12518c7c2c75fe5ae781d1",
+    "d1776193d37748ef78da405af370e9190f597e2f"
+  ],
+  "historical_materials": {
+    "software": "71514320d525ae3ca53ae69a2574e4d0feb007c3",
+    "runtime": "898347fea164784506bfcee2a81c848f14bb9f91",
+    "inventory012": "5955ca8fe68d047514a4064c78841045a866241e",
+    "012_delivery": "31ddda8abd3fb746fa75408672e9e5c66d639c2d"
+  },
+  "source_manifest_hash": "397c9cfe2130a0c36d7c8b8bd7cd0051a93c1556562dc03a9575139ba54c099c",
+  "deployment_hash": "778d6bc9319504202f0afb021dda90303714271e638a4ddfa2c6ebe9c4a3e3fc",
+  "overall": "WR31在固定d177619所测离线解析、原件、交付及路径范围修复后通过并关闭；阶段2整体仍未通过",
+  "version_identity": {
+    "product_source_and_config_files_raw_unchanged": 232,
+    "fixed_materials_Git_raw_files": 8471,
+    "candidate_cloud_files": 47,
+    "new_candidate_deployed_compiled_executed": false,
+    "PR2": {
+      "draft": true,
+      "merged": false,
+      "observed_head": "eea0f6eaed9375bc8efef4aeac35510d9f2afa69",
+      "later_delta": "仅delivery_confirmation.json发布记录，已读差异，未扩大固定目标"
+    },
+    "prior012_report_raw_sha256": "4e039edb731140fc44d9726cd342eaf27f9615a579df8419a8eb9c5823638d4e",
+    "old012_failure_not_rewritten": true,
+    "012_late_QA": "25项迟到只读QA仅另存补充，不改变012原封存时点"
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "used": [
+      "只读Git/GitHub",
+      "本机Windows/Python独立离线测试",
+      "原件/哈希/归档重解析"
+    ],
+    "QC_or_live_browser": 0,
+    "real_object_contents_or_exports": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "native_compile": 0,
+    "product_model_API": 0,
+    "real_budget_config_writes": 0,
+    "real_delete_save_clear": 0,
+    "purchases": 0,
+    "PR_mutations": 0,
+    "other_chat_messages_sent": 0
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范/交付/审计工具",
+      "implementation": "产品核心未变，013修复审计器",
+      "evidence": "57资料、28配置精确已知raw、232源码；原MRE及独立语法/路径测试",
+      "blockers": [],
+      "verdict": "WR31及本轮所测交付/解析/路径范围修复后通过；旧核心有限通过保留"
+    },
+    {
+      "stage": 1,
+      "modules": "离线计算内核",
+      "implementation": "产品源码未改",
+      "evidence": "此前审核者固定S1085有限通过保留；本轮仅重解析开发1085原记录",
+      "blockers": [
+        "本轮未新做独立产品全量/数值验收"
+      ],
+      "verdict": "保留既有有限结论"
+    },
+    {
+      "stage": 2,
+      "modules": "任务/存储/数据/回执",
+      "implementation": "013离线盘点修复；云内方案仅准备",
+      "evidence": "63观察整体结构语义相同，456/31/10/96及80事件/009failed-closed保留",
+      "blockers": [
+        "云内完整引用闭包/实际字节",
+        "新47文件与生产collector真实运行",
+        "完整US200及财务时点/币种/版本认证",
+        "平台账单"
+      ],
+      "verdict": "本轮离线审计范围通过；阶段2整体未通过"
+    },
+    {
+      "stage": 3,
+      "modules": "Research评价/六折滚动",
+      "implementation": "部分离线函数/协议，未变",
+      "evidence": "本轮无真实评价",
+      "blockers": [
+        "真实同样本六折及成熟标签"
+      ],
+      "verdict": "未验收"
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN组合/执行/成本/风险",
+      "implementation": "工程宿主不替代完整交易链",
+      "evidence": "本轮无订单/成交/净值测试",
+      "blockers": [
+        "完整账本、成本对账及压力/增量"
+      ],
+      "verdict": "未实现或未验收范围不得通过"
+    },
+    {
+      "stage": 5,
+      "modules": "GPT受限闭环",
+      "implementation": "部分接口，自动调用关闭",
+      "evidence": "本轮无模型调用",
+      "blockers": [
+        "真实受限闭环及模型/额度配置"
+      ],
+      "verdict": "未验收"
+    },
+    {
+      "stage": 6,
+      "modules": "受限搜索与增量",
+      "implementation": "部分约束/协议，未变",
+      "evidence": "本轮无实际搜索",
+      "blockers": [
+        "试验登记/选择偏差/成本后增量"
+      ],
+      "verdict": "未验收"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结/独立最终执行器/前向",
+      "implementation": "门禁保持关闭",
+      "evidence": "2024–2025暴露、2026独立性未认证保留",
+      "blockers": [
+        "完整冻结与独立隔离执行器"
+      ],
+      "verdict": "未验收，最终测试关闭"
+    }
+  ],
+  "tests": [
+    {
+      "name": "原审核MRE字节不改旧/新重放",
+      "command": "python -B original_minimal_wr31.py <012_or013_analyze_inventory.py>",
+      "MRE_sha256": "2b439aee831db91582e006582abd197a6bec7bcc835c50350ef9d066475a08ad",
+      "old_exit": 1,
+      "new_exit": 0,
+      "expected_complete": [
+        true,
+        false,
+        false
+      ],
+      "old_actual": [
+        true,
+        true,
+        true
+      ],
+      "new_actual": [
+        true,
+        false,
+        false
+      ],
+      "case_count": 3,
+      "actually_executed": true,
+      "records": "root_execution.json + parser_agent/execution_records.json"
+    },
+    {
+      "name": "独立解析首轮",
+      "methods": 11,
+      "labeled_scenarios": 100,
+      "passed": 11,
+      "failures": 0,
+      "errors": 0,
+      "fixture_corrections": null,
+      "actually_executed": true,
+      "records": "parser_agent/independent_result.json"
+    },
+    {
+      "name": "独立原件/路径首轮",
+      "methods": 12,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "CLI_processes": 16,
+      "labeled_scenarios": 22,
+      "all_CLI_expectations_passed": true,
+      "actually_executed": true,
+      "records": "archive_paths_agent/test_result.json + CLI_execution_records.json"
+    },
+    {
+      "name": "独立配置守卫首轮",
+      "methods": 7,
+      "guard_invocations": 63,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "actually_executed": true,
+      "scope": "原verifier AST prefix定向fixture；非63个完整端到端验证器",
+      "records": "delivery_agent/configuration_guards_result.json"
+    },
+    {
+      "name": "固定资料校验",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/verify_packet.py",
+      "exit_code": 0,
+      "metadata_files": 57,
+      "old012_directory_files": 52,
+      "configuration_files": 28,
+      "source_files": 232,
+      "events": 80,
+      "actually_executed": true,
+      "kind": "identity/parity_checks_not_product_unit_methods"
+    },
+    {
+      "name": "开发新边界重放",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_boundaries.py",
+      "methods": 12,
+      "subtests": 96,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "actually_executed": true,
+      "authorship": "developer_collaborative_not_reviewer_independent"
+    },
+    {
+      "name": "原20字面重放",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_legacy_known_answers.py",
+      "methods": 20,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "actually_executed": true,
+      "legacy_assertions_changed": false
+    },
+    {
+      "name": "首次候选兼容失败控制",
+      "command": "python -B replay_first_candidate.py",
+      "methods": 20,
+      "failures": 1,
+      "errors": 0,
+      "actual_exit": 1,
+      "actually_executed": true,
+      "reason": "拒绝超大Page时reason与旧invalid_UI_page_count不兼容；原断言保留",
+      "records": "first_candidate_legacy20.stdout/stderr + first_candidate_replay.json"
+    },
+    {
+      "name": "实际清单全结构语义对照",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_actual_parity.py",
+      "observations": 63,
+      "labels": 126,
+      "semantic_equal": true,
+      "canonical_assessment_sha256": "ffebae054587c3f287b6cb69b733a3e83d9145044f60b7549b9cfd0c79ce9dd6",
+      "exit_code": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "新鲜固定Git交付对照",
+      "old69b_verifier_exit": 1,
+      "old_first_assertion": "config/data.json",
+      "fixed_d177_verifier_exit": 0,
+      "both_Git_status_clean": true,
+      "actually_executed": true,
+      "records": "delivery_agent/initial_lf_result.json + fixed_lf_result.json"
+    },
+    {
+      "name": "历史保护/归档核对",
+      "static_metadata_checks": 29,
+      "failed_checks": 0,
+      "actually_executed": true,
+      "records": "delivery_agent/history_result_v2.json + delivery_agent/report.json (28+1)"
+    },
+    {
+      "name": "开发产品全量归档",
+      "methods": 1085,
+      "reported_seconds": 362.297,
+      "declared_exit": 0,
+      "raw_stdout_stderr_hashes_reparsed": true,
+      "actually_executed_by_reviewer_this_round": false,
+      "source": "developer_archive",
+      "raw_stage_and_LF_mirror_same_bytes_at_fixed_Git": true,
+      "stage_sha256": "1aac704096da1ef3e3b445bf2ef0f4a8126f9bf54b0c8ce7430bc00a9232b50e"
+    }
+  ],
+  "actually_executed": true,
+  "counting_policy": "方法、subtest、标签、CLI进程、guard调用、文件校验及旧/新重复重放分开，不相加为独有测试总数。本轮审核者没有重新执行1085产品全量；此前固定S的独立有限通过保留。",
+  "findings": [
+    {
+      "id": "WR-31",
+      "priority": "P2",
+      "old_affected_commit": "5955ca8fe68d047514a4064c78841045a866241e",
+      "fixed_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+      "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+      "new_file": "audit/review_packages/storage_inventory013_wr31/analyze_inventory.py",
+      "new_analyzer_sha256": "fab147512adb3141899ebd26a29bdf388d4ecbad0823922808ab047ae2d4298e",
+      "verified_lines": [
+        22,
+        23,
+        128,
+        139,
+        141,
+        152,
+        154,
+        167,
+        365,
+        373
+      ],
+      "old_triggers": [
+        "-1 to 1 of 1",
+        "1 to 1 of 1; 2 to 2 of 2"
+      ],
+      "actual_fix": "完整ASCII fullmatch、恰好一range一Page、list[str]、未知/重复label拒绝、转int前限宽；位置/键双向一致和合法混合布局保持",
+      "positive_path_preserved": "合法原正例、全部63实际观察/126标签、原20字面及真实CLI均通过",
+      "interface_scope": "按本轮明确013契约要求Page唯一且存在；不是追认旧012全部自由形式标签",
+      "reviewer_changed_production_or_target_code": false,
+      "old_failure_and_assertions_preserved": true
+    }
+  ],
+  "new_open_findings": [],
+  "archive_identity": {
+    "selected_original_reviewer_files": 18,
+    "selected_only_not_full_original_bundle": true,
+    "original_bundle_bytes_claim": 21699361,
+    "original_bundle_sha256": "a7d5079a7b9c17645bbc760986861219397144e4fb9a2e456839825569079f35",
+    "selected_decoded_bytes": 117801,
+    "selected_archive_encoded_sha256": "2545e89e99059d2636c75c5b3a688149c02ac71fd3350ee18a5646edd03a8c00",
+    "selected_archive_decoded_sha256": "84cd36af09f92a81f40cadff424f948e2fdea3f84dd60b5b0dd2a5b720bd6ead",
+    "all18_match_prior_sealed_and_local_raw": true,
+    "old012_directory_files_preserved": 52,
+    "old012_count_is_not_same_set_as_old_manifest52": true,
+    "baseline_prior_review_package_files_preserved": 7877,
+    "runtime_files_preserved": 145
+  },
+  "configuration_identity": {
+    "files": 28,
+    "different_existing_raw_pairs": 2,
+    "coincident_raw_pairs": 26,
+    "different_paths": [
+      "config/data.json",
+      "config/research.json"
+    ],
+    "known_per_file_forms_total": 30,
+    "fresh_workspace_matches": 26,
+    "fresh_Git_matches": 28,
+    "match_counters_overlap_not_partition": true,
+    "both_known_forms_require_identical_frozen_normalized_text": true,
+    "third_BOM_mixed_newline_or_changed_text_rejected": true,
+    "same_JSON_semantics_does_not_bypass_text_hash": true,
+    "budget_and_Registry_require_single_raw_hash": true,
+    "config_or_source_normalized_or_modified_to_pass": false
+  },
+  "first_failures_and_limits": [
+    {
+      "scope": "旧012原MRE",
+      "actual_exit": 1,
+      "new_same_script_exit": 0,
+      "old_failure_kept": true
+    },
+    {
+      "scope": "第一次修复候选",
+      "old_MRE_and_new_boundary_passed_but_legacy20_failed": 1,
+      "first_candidate_source_and_raw_outputs_preserved": true,
+      "independent_replay_legacy20_failed_same_reason": true,
+      "fix": "只恢复诊断分类，旧断言未改"
+    },
+    {
+      "scope": "69b新鲜Git配置身份首败",
+      "actual_exit": 1,
+      "first_assertion": "config/data.json",
+      "raw_config_bytes_changed": false,
+      "fixed_d177_same_checkout_exit": 0,
+      "not_same_as_prior012_mixed_reset_issue": true
+    },
+    {
+      "scope": "开发setup导入报告hash误配",
+      "recorded_failure": "将formal_report.json哈希误配TXT",
+      "original_helper_source_and_separate_stderr_missing": true,
+      "not_claimed_restored_or_independently_replayed": true
+    },
+    {
+      "scope": "审核者history probe",
+      "first_error": "KeyError configuration_raw_sha256",
+      "correct_field": "configuration_raw_hashes",
+      "correction": "仅审核字段名及独立输出目录，原脚本/partial Git输出/stderr保留；产品和预期不改"
+    }
+  ],
+  "visible_inventory": {
+    "observations": 63,
+    "paging_labels": 126,
+    "leaf_objects": 456,
+    "visited_directories": 31,
+    "protected_unvisited_subtrees": 10,
+    "identity_digest_groups": 96,
+    "review_pool_objects": 13,
+    "review_pool_is_deletion_list": false,
+    "confirmed_reclaimable_bytes": 0,
+    "zero_is_no_verified_reclaim_proof_not_zero_possible_garbage": true,
+    "potential_reclaimable_total_bytes": null,
+    "all_objects_deletion_authorized": false,
+    "global_reference_closure_certified": false,
+    "physical_byte_or_content_equality_certified": false
+  },
+  "budget_replay": {
+    "evidence_level": "fixed_archived_local_metadata_raw_and_Memory_replay_not_QC_billing",
+    "events": 80,
+    "journal_sha256": "f4cd74a7fcefd5593385316bf54ff23e94087bda69672ebedc45b8dd41837b3d",
+    "budget_sha256": "25d14c4116afbd71af972fd1b00d678214c4fbfd0732aa3ec43a5dbea346d453",
+    "configuration_cycle": {
+      "used": 4,
+      "limit": 13
+    },
+    "lifetime_configurations": 17,
+    "Research": {
+      "used": 18,
+      "limit": 20
+    },
+    "LEAN": {
+      "used": 4,
+      "limit": 16
+    },
+    "new_debits": 0,
+    "reset": 0,
+    "refunds": 0,
+    "cloud_plan_dispatch_or_quota_reservation_found": false,
+    "old009": "failed/closed"
+  },
+  "platform_evidence_level": {
+    "reviewer_live_QC_or_browser_access": false,
+    "saved_UI_metadata_only": "前轮归档原文及本轮全结构语义对照",
+    "remote_issuer_or_HTTP_authentication": false,
+    "exact_SDK_capacity_or_billing": false,
+    "cloud_reference_plan": "仅准备，未执行或授予读取/删除/Research/LEAN/购买权限"
+  },
+  "historical_findings": {
+    "WR01_WR30": "此前有限结论和失败记录保留",
+    "WR31_012": "旧595及012独立失败报告不倒改",
+    "WR31_013": "仅在本固定版本所测范围修复后关闭",
+    "012_late_QA": "另存补充，不重写原封存"
+  },
+  "software_acceptance": {
+    "WR31_offline_audit_scope": "fixed_verified_closed_at_d177619",
+    "new_parser_paths_delivery": "passed_tested_scope",
+    "old012_current_actual_metadata_assessment": "semantic_equal_preserved",
+    "prior_dee_product_scope": "preserved_not_rerun_here",
+    "whole_phase2": "not_accepted"
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "financial_vintage_currency_availability": false,
+    "safe_deletion": false
+  },
+  "financial_evidence": false,
+  "financial_metrics": {
+    "IC": null,
+    "ICIR": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "portfolio_increment": null
+  },
+  "unverified": [
+    "全组织目录/云内全引用闭包、动态及外部消费者",
+    "真实对象header/payload哈希、实际字节及精确容量/可释放量",
+    "13复核对象及10历史子树的安全删除证明",
+    "新47文件生产运行和collector完整装配",
+    "完整US200/SID/行情/行动及财务版本/币种/公开/实际送达/摄入认证",
+    "平台计费凭证、2026独立性和阶段3–7完整金融链"
+  ],
+  "gates": {
+    "formal_research": false,
+    "automatic_GPT": false,
+    "trading": false,
+    "final_test": false,
+    "2024_2025": "previously_exposed",
+    "2026_independence": "unverified"
+  },
+  "next_tasks": [
+    {
+      "id": "013-01",
+      "task": "归档本固定SHA的WR31有限关闭和旧失败/修复记录",
+      "evidence": "不覆盖旧012和69b首败；不把18选取原件称完整旧包"
+    },
+    {
+      "id": "013-02",
+      "task": "保持456对象、10历史子树和13复核池保留",
+      "evidence": "0B仅为缺少可回收证明，potential未知；未取得云内完整引用和实际字节前不作删除结论"
+    },
+    {
+      "id": "013-03",
+      "task": "云内闭包/精确容量方案保持准备状态，另按明确授权与预算准入执行",
+      "evidence": "本轮不派发、不预留、不Research/LEAN、不购买/删除"
+    },
+    {
+      "id": "013-04",
+      "task": "继续补足阶段2真实生产链、完整数据和计费证据",
+      "evidence": "本轮软件关闭不授予阶段2、金融或最终测试通过"
+    }
+  ],
+  "artifacts": {
+    "formal_JSON": "formal_report.json",
+    "formal_text": "formal_report.txt",
+    "minimum": "original_minimal_wr31.py",
+    "root_commands": "root_execution.json + first_candidate_replay.json",
+    "specialist_commands": "parser_agent/ + archive_paths_agent/ + delivery_agent/",
+    "raw_Git_map": "git_manifest.json",
+    "prior012_report": "baseline012_review/formal_report.json",
+    "all_actual_first_failures_and_available_records_retained": true
+  },
+  "generated_utc": "2026-10-30T10:20:44.635961+00:00",
+  "report_revision": {
+    "pre_QA_raw_sha256": "79856be9abe1a85c86f54d5c8b51930aec05321c0519ce357dd206420717fe96",
+    "correction": "29项历史/导出检查的索引补齐为history_result_v2.json的28项加report.json中的1项完整导出guard；计数、测试和结论未变，未重跑产品。",
+    "corrected_utc": "2026-10-30T10:22:34.717280+00:00"
+  }
+}
+
+原最小复现（同一脚本分别指定012/013，旧1新0）：
+"""Independent literal pagination contract; exits1 whileWR31 is present."""
+from pathlib import Path
+import importlib.util,json,sys
+source=Path(sys.argv[1]).resolve()
+spec=importlib.util.spec_from_file_location('fixed_inventory_analyzer',source);a=importlib.util.module_from_spec(spec);spec.loader.exec_module(a)
+rows=[{'name':'synthetic-a.json','type':'JSON','display_size':'1 KB','last_modified':'synthetic','exact_bytes':None}]
+cases=[('valid','1 to 1 of 1',True),('negative_start','-1 to 1 of 1',False),('contradictory_ranges','1 to 1 of 1; 2 to 2 of 2',False)]
+observed=[]
+for label,paging,expected in cases:
+ result=a.analyze({'scope_root':'synthetic','observations':[{'path':'synthetic','paging':[paging,'Page 1 of 1'],'rows':rows}]},{},{})
+ observed.append({'case':label,'paging':paging,'expected_complete':expected,'actual_complete':result['directories'][0]['all_entries_observed_at_UI_metadata_level'],'actual_UI_tree_complete':result['UI_tree_listing_complete_within_declared_scope'],'deletion_authorized':result['objects'][0]['deletion_authorized']})
+print(json.dumps(observed))
+assert all(r['expected_complete']==r['actual_complete'] for r in observed),'WR-31: invalid/ambiguous paging accepted as complete'

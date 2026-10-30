@@ -1,9 +1,44 @@
 {
-  "schema_version": 1,
-  "review_id": "AQRP-20261030-5955CA8-INVENTORY012-29",
-  "reviewed_audit_program_commit": "5955ca8fe68d047514a4064c78841045a866241e",
-  "reviewed_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "schema_version": 2,
+  "kind": "registered_independent_WR31_finite_closure",
+  "review_id": "AQRP-20261030-D177619-WR31-30",
+  "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "source_manifest_hash": "397c9cfe2130a0c36d7c8b8bd7cd0051a93c1556562dc03a9575139ba54c099c",
+  "reviewed_audit_program_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+  "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+  "independently_closed": true,
   "finding": {
+    "id": "WR-31",
+    "priority": "P2",
+    "old_affected_commit": "5955ca8fe68d047514a4064c78841045a866241e",
+    "fixed_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+    "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+    "new_file": "audit/review_packages/storage_inventory013_wr31/analyze_inventory.py",
+    "new_analyzer_sha256": "fab147512adb3141899ebd26a29bdf388d4ecbad0823922808ab047ae2d4298e",
+    "verified_lines": [
+      22,
+      23,
+      128,
+      139,
+      141,
+      152,
+      154,
+      167,
+      365,
+      373
+    ],
+    "old_triggers": [
+      "-1 to 1 of 1",
+      "1 to 1 of 1; 2 to 2 of 2"
+    ],
+    "actual_fix": "完整ASCII fullmatch、恰好一range一Page、list[str]、未知/重复label拒绝、转int前限宽；位置/键双向一致和合法混合布局保持",
+    "positive_path_preserved": "合法原正例、全部63实际观察/126标签、原20字面及真实CLI均通过",
+    "interface_scope": "按本轮明确013契约要求Page唯一且存在；不是追认旧012全部自由形式标签",
+    "reviewer_changed_production_or_target_code": false,
+    "old_failure_and_assertions_preserved": true
+  },
+  "original_review_id": "AQRP-20261030-5955CA8-INVENTORY012-29",
+  "original_finding": {
     "id": "WR-31",
     "priority": "P2",
     "status": "open_reproduced",
@@ -37,19 +72,183 @@
     "fix_applied_by_reviewer": false,
     "actual_observations_triggered": false
   },
-  "prior_product_finite_pass_preserved": true,
-  "actual_saved_UI_finite_scope_passed": true,
-  "general_analyzer_failed_WR31": true,
-  "whole_phase2_accepted": false,
-  "financial_evidence": false,
-  "final_test_enabled": false,
-  "full_report_original_sha256": "4e039edb731140fc44d9726cd342eaf27f9615a579df8419a8eb9c5823638d4e",
-  "status": "developer_fixed_pending_independent_retest",
-  "independently_closed": false,
-  "developer_repair_report": "audit/stage2_storage_inventory013_wr31_report.json",
-  "current_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt",
-  "finding_status_at_original_independent_review": "open_reproduced",
-  "new_independent_retest_received": false,
+  "original_failed_result": "audit/review_packages/storage_inventory013_wr31/registered_independent_result.json",
+  "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+  "formal_report_text": "audit/review_packages/wr31_closure/reviewer_formal_report.txt",
+  "formal_report_raw_sha256": "3ab91d1bd95b8d572b81518edd23a493f70e16757a49e1181d82ea3418efe356",
+  "archive_index": "audit/review_packages/wr31_closure/import_index.json",
+  "acceptance_scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+  "new_open_findings": [],
+  "prior_dee_product_finite_pass_preserved": true,
+  "reviewer_full_product1085_rerun": false,
+  "reviewer_reparsed_developer1085_records": true,
+  "independent_tests": [
+    {
+      "name": "原审核MRE字节不改旧/新重放",
+      "command": "python -B original_minimal_wr31.py <012_or013_analyze_inventory.py>",
+      "MRE_sha256": "2b439aee831db91582e006582abd197a6bec7bcc835c50350ef9d066475a08ad",
+      "old_exit": 1,
+      "new_exit": 0,
+      "expected_complete": [
+        true,
+        false,
+        false
+      ],
+      "old_actual": [
+        true,
+        true,
+        true
+      ],
+      "new_actual": [
+        true,
+        false,
+        false
+      ],
+      "case_count": 3,
+      "actually_executed": true,
+      "records": "root_execution.json + parser_agent/execution_records.json"
+    },
+    {
+      "name": "独立解析首轮",
+      "methods": 11,
+      "labeled_scenarios": 100,
+      "passed": 11,
+      "failures": 0,
+      "errors": 0,
+      "fixture_corrections": null,
+      "actually_executed": true,
+      "records": "parser_agent/independent_result.json"
+    },
+    {
+      "name": "独立原件/路径首轮",
+      "methods": 12,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "CLI_processes": 16,
+      "labeled_scenarios": 22,
+      "all_CLI_expectations_passed": true,
+      "actually_executed": true,
+      "records": "archive_paths_agent/test_result.json + CLI_execution_records.json"
+    },
+    {
+      "name": "独立配置守卫首轮",
+      "methods": 7,
+      "guard_invocations": 63,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "actually_executed": true,
+      "scope": "原verifier AST prefix定向fixture；非63个完整端到端验证器",
+      "records": "delivery_agent/configuration_guards_result.json"
+    },
+    {
+      "name": "固定资料校验",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/verify_packet.py",
+      "exit_code": 0,
+      "metadata_files": 57,
+      "old012_directory_files": 52,
+      "configuration_files": 28,
+      "source_files": 232,
+      "events": 80,
+      "actually_executed": true,
+      "kind": "identity/parity_checks_not_product_unit_methods"
+    },
+    {
+      "name": "开发新边界重放",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_boundaries.py",
+      "methods": 12,
+      "subtests": 96,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "actually_executed": true,
+      "authorship": "developer_collaborative_not_reviewer_independent"
+    },
+    {
+      "name": "原20字面重放",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_legacy_known_answers.py",
+      "methods": 20,
+      "failures": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "actually_executed": true,
+      "legacy_assertions_changed": false
+    },
+    {
+      "name": "首次候选兼容失败控制",
+      "command": "python -B replay_first_candidate.py",
+      "methods": 20,
+      "failures": 1,
+      "errors": 0,
+      "actual_exit": 1,
+      "actually_executed": true,
+      "reason": "拒绝超大Page时reason与旧invalid_UI_page_count不兼容；原断言保留",
+      "records": "first_candidate_legacy20.stdout/stderr + first_candidate_replay.json"
+    },
+    {
+      "name": "实际清单全结构语义对照",
+      "command": "python -B materials/audit/review_packages/storage_inventory013_wr31/check_actual_parity.py",
+      "observations": 63,
+      "labels": 126,
+      "semantic_equal": true,
+      "canonical_assessment_sha256": "ffebae054587c3f287b6cb69b733a3e83d9145044f60b7549b9cfd0c79ce9dd6",
+      "exit_code": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "新鲜固定Git交付对照",
+      "old69b_verifier_exit": 1,
+      "old_first_assertion": "config/data.json",
+      "fixed_d177_verifier_exit": 0,
+      "both_Git_status_clean": true,
+      "actually_executed": true,
+      "records": "delivery_agent/initial_lf_result.json + fixed_lf_result.json"
+    },
+    {
+      "name": "历史保护/归档核对",
+      "static_metadata_checks": 29,
+      "failed_checks": 0,
+      "actually_executed": true,
+      "records": "delivery_agent/history_result_v2.json + delivery_agent/report.json (28+1)"
+    },
+    {
+      "name": "开发产品全量归档",
+      "methods": 1085,
+      "reported_seconds": 362.297,
+      "declared_exit": 0,
+      "raw_stdout_stderr_hashes_reparsed": true,
+      "actually_executed_by_reviewer_this_round": false,
+      "source": "developer_archive",
+      "raw_stage_and_LF_mirror_same_bytes_at_fixed_Git": true,
+      "stage_sha256": "1aac704096da1ef3e3b445bf2ef0f4a8126f9bf54b0c8ce7430bc00a9232b50e"
+    }
+  ],
+  "counting_policy": "方法、subtest、标签、CLI进程、guard调用、文件校验及旧/新重复重放分开，不相加为独有测试总数。本轮审核者没有重新执行1085产品全量；此前固定S的独立有限通过保留。",
+  "software_acceptance": {
+    "WR31_offline_audit_scope": "fixed_verified_closed_at_d177619",
+    "new_parser_paths_delivery": "passed_tested_scope",
+    "old012_current_actual_metadata_assessment": "semantic_equal_preserved",
+    "prior_dee_product_scope": "preserved_not_rerun_here",
+    "whole_phase2": "not_accepted"
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "financial_vintage_currency_availability": false,
+    "safe_deletion": false
+  },
+  "tests_repeated_by_developer_this_registration": false,
+  "product_source_changed_this_registration": false,
+  "objects456_subtrees10_review_pool13_retained": true,
+  "safe_deletion_authorized": false,
+  "confirmed_reclaimable_bytes": 0,
+  "potential_reclaimable_total_bytes": null,
+  "new_cloud_calls": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
   "budget_changes": 0,
-  "cloud_calls": 0
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
 }
