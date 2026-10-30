@@ -1,0 +1,28 @@
+--- independent_annotations.py
++++ independent_annotations_role_corrected.py
+@@ -162,7 +162,7 @@
+     def test_official_schema_registered_field_contract(self):
+         schema=json.loads((OUT/'official_mcp_schema_2025-11-25.json').read_text(encoding='utf-8'))['$defs']
+         checks={'annotation_fields':set(schema['Annotations']['properties'])=={'audience','priority','lastModified'},
+-            'role_enum':schema['Role']['enum']==['user','assistant'],
++            'role_enum':set(schema['Role']['enum'])=={'user','assistant'},
+             'priority_interval':schema['Annotations']['properties']['priority']['minimum']==0 and schema['Annotations']['properties']['priority']['maximum']==1,
+             'text_string':schema['TextContent']['properties']['text']['type']=='string'}
+         for name,value in checks.items():
+@@ -296,7 +296,7 @@
+         super().addFailure(test,err)
+ 
+ stream=io.StringIO();result=unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=AuditResult).run(unittest.defaultTestLoader.loadTestsFromTestCase(IndependentAnnotationTests))
+-raw=stream.getvalue();(OUT/'first_run_unittest.txt').write_text(raw,encoding='utf-8')
++raw=stream.getvalue();(OUT/'role_corrected_unittest.txt').write_text(raw,encoding='utf-8')
+ files=['cloud/qresearch/engineering_receipts.py','cloud/qresearch/engineering_data.py','cloud/qresearch/engineering_tasks.py',
+     'cloud/qresearch/collection_execution.py','cloud/qresearch/collection_tasks.py','cloud/qresearch/quantconnect.py','cloud/qresearch/registry.py']
+ summary={'commit':'dc49f0f3037918f3ce4413665c59b164a8d6e2b7','command_argv':sys.argv,'python':sys.version,
+@@ -306,6 +306,6 @@
+     'skipped':len(result.skipped),'success':result.wasSuccessful(),'first_failure':result.first_failure,'inputs':INPUTS,
+     'actions':{'real_SDK':0,'Research':0,'LEAN':0,'market':0,'models':0,'deploy':0,'real_budget_changes':0,'candidate_source_edits':0},
+     'scope':'registered annotation/clock subset, invented weekday calendar and constant numbers for actual pure-Python worker execution; not actual SDK/cloud/data evidence'}
+-(OUT/'first_run_summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
++(OUT/'role_corrected_summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
+ print(raw);print(json.dumps({k:v for k,v in summary.items() if k not in {'inputs','first_failure'}},ensure_ascii=False))
+ sys.exit(0 if result.wasSuccessful() else 1)

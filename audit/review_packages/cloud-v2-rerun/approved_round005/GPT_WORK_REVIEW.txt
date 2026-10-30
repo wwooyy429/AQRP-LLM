@@ -1,0 +1,21 @@
+请对AQRP-LLM本轮全部新增开发及云端执行证据进行独立审核。先取得PR#2当前HEAD并记录完整40位SHA，固定该不可变交付版本再工作；不要以移动分支作为审核身份。
+
+生产执行源码固定为0f6d8c0606d1e3253632b167cab73dd04d03658a；本交付在其上只增加执行账本、状态及审计材料。与父版本2af0ced1baade64541ad9c7cbbdcad88e36f4af5比较新增预算修订实现、CLI、测试及其调用影响。既往4a42c18的EOF-v2有限功能、2f5591e的WR-28原始Git交付独审结论按原范围保留，不能自动扩张到0f6或阶段2整体。
+
+审核范围：
+1. cloud/qresearch/budget_revisions.py、registry.py、tools/budget_revision.py、两份新增测试、生成配置和配置语义。独立构造边界测试，核查仅追加授权配置总额12->13及reserve4->5，normal8、Research20、LEAN16、零费用、最终测试关闭保持；原48事件和baseline不被重置；重复、冲突、过期、活动尝试、无授权/错误授权及崩溃后投影恢复边界；旧轮授权兼容和重复授权身份校验。不能只运行开发者测试。
+2. 批准来源human_approval.json是批准时快照，实际human“批准”是来源；内容哈希不构成人类身份签名。审查预算修订、轮次grant、配置登记、预扣、原生错误归属、结算、关闭全链。事件49修订、50授权、51配置、52Research预扣、53逻辑外部任务身份、54失败、55关闭。累计配置13/13、Research16/20、LEAN2/16；本轮1配置/1Research/0LEAN，失败无退款、无自动重试。未使用的本轮LEAN授权已随关闭结束。
+3. 真实项目已列出后仅使用返回ID38436695。对照35个声明源码、10次变更上传及逐文件读回元数据、输入b727e7d...、冻结计划和调度绑定。完整项目/未声明文件及LEAN worker库存未被认证。研究入口首次选错Markdown被固定程序拒绝，原Markdown已恢复，实际code index1的完整源码再次读取后才绑定。未修改parser、注册计划或重复预扣；实际execute_cell恰为一次。不要将同一次原生错误的两个表示计作两次执行。
+4. 原生Research回执为CollectionError，已由真实工具包装和固定程序结算failed。没有成功终报、完整检查数、经济指标或新LEAN任务；依赖Research成功的LEAN没有claim、提交或轮询。当前只能定位到collection.py480通用非CollectionError分支，底层异常类型/失败步骤未知；不能宣称已证明供应商、权限、资源限额、重复SID或已修复实际云端问题。
+5. 检查全部当前状态、README、预算投影、审计清单及历史报告的版本/时点范围一致性；原失败和2024–2025数据暴露保留，2026独立性未认证，正式因子研究、自动模型API、最终测试和实盘均关闭。不得把小工程样例等同全历史US200/财务版本/公开/实际送达/摄入数据认证。
+
+实际开发验证：python -B tools/stages.py verify在冻结源码配置的临时LF检出中通过844项合成测试；完整原始输出及环境在full_offline_validation/。开发侧内部辅助检查及本轮只读核对均不是GPT Work独立批准。允许独立重跑离线测试，但务必在独立副本运行，不能覆盖权威账本或改变审批状态。
+
+可复验入口：
+python -B audit/review_packages/cloud-v2-rerun/approved_round005/verify_round005.py
+python -B tools/stages.py verify
+核查audit/stage2_round005_report.json、audit/stage2_current_readiness.json、audit/review_tracking.json、approved_round005/artifact_manifest.json、registry_after_round_close.json及原生research_execute_cell_observation.json。
+
+请勿调用QuantConnect、供应商、Research、LEAN、外部LLM或重新授权/修改预算。全局配置13/13和Research reserve8/8已满，本轮已关闭。审计清单需从固定Git逐项验证，内部自洽不等同远端签名或供应商真实性。
+
+最终交付应写明固定审核SHA、独立测试方法/原始输出、复现步骤和分级发现；分别判定新增预算软件、调度/回执边界、审计交付、实际云端运行、数据覆盖和金融证据。即使软件局部通过，本轮真实Research仍失败、完整阶段2仍未验收，不得推进自动金融研究或开启最终测试。

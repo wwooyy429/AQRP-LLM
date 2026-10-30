@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "kind": "registered_failed_independent_host_review",
+  "review_id": "AQRP-20261029-2D1D306-HOST010-26",
+  "source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+  "source_manifest_hash": "74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07",
+  "materials_commit": "fe088461e84586d7feb73f20be54a22d09706942",
+  "report": "audit/reviews/20261029-2d1d306-host010/formal_report.json",
+  "report_is_LF_mirror": true,
+  "original_report": "audit/reviews/20261029-2d1d306-host010/formal_report.json.raw.base64",
+  "original_report_sha256": "224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14",
+  "archive_index": "audit/reviews/20261029-2d1d306-host010/import_index.json",
+  "archive_is_selected_not_complete_bundle": true,
+  "source_bundle_sha256": "feffb44a08485c0ac7dd87b46f47b53e810964c270ae41a9446ae6980aba4723",
+  "actual_review_task": {
+    "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
+    "host_id": "local",
+    "kind": "codex",
+    "title": "更新 GPT 审核与验收状态"
+  },
+  "verdict": "failed_enabled_CLI_stdio_WR29",
+  "findings": [
+    {
+      "id": "WR-29",
+      "priority": "P1",
+      "reviewed_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "title": "Enabled CLI rejects a valid trusted factory because its host class is imported under a different module identity",
+      "file": "tools/followup_host.py",
+      "line": 469,
+      "related_lines": [
+        468,
+        469,
+        470
+      ],
+      "trigger": "Execute documented python tools/followup_host.py serve --enable-dispatch --host-factory valid_factory:create; valid_factory normally imports FollowupHost from followup_host and returns an explicitly enabled real host/controller/authority. Empty stdin is sufficient.",
+      "expected": "Valid explicitly enabled trusted factory is accepted; empty serve input exits0 without reading Registry attempts or dispatching.",
+      "actual": "Both script and python -m followup_host launch create a distinct __main__.FollowupHost. The valid factory returns followup_host.FollowupHost. Exact type identity comparison fails; argparse exits2 before serve/clock assignment.",
+      "independent_control": "The identical factory called through canonical Python import exits0 and prints True followup_host. Imported product.main with the identical fixture also succeeds and overrides the future factory clock; real CLI remains rejected.",
+      "impact": "The new documented enabled stdio/CLI deployment path cannot start with normal import-based factories, blocking executable host integration in that scope. Default off and canonical Python API remain usable;this is not a permission bypass or evidence of cloud execution.",
+      "minimal_reproducer": "python -B stdio_agent/minimal_cli_factory_repro.py source",
+      "minimum_expected_exit": 0,
+      "minimum_actual_cli_exits": {
+        "script": 2,
+        "module": 2
+      },
+      "minimum_script_assertion_exit": 1,
+      "minimal_fix": "Give the host/controller authority types one canonical import identity and keep a thin executable wrapper, or otherwise make the documented factory import path share that identity before loading factories. Retain strict enabled/controller/authority validation and default-off gating;do not accept arbitrary duck types or require an undocumented __main__ workaround.",
+      "required_regressions": [
+        "Actual subprocess enabled script serve and module serve with an ordinary import-based valid factory and stdin EOF return0.",
+        "Actual enabled plan/serve against a private already-pending attempt preserves UTC override,discovery/response/restart paths.",
+        "Malformed/incompatible/disabled factory remains rejected;default-off does not import factory or open Registry.",
+        "Preserve both current product failure expectations and minimum failure when reviewing the repaired newSHA."
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "name": "repository",
+      "methods": 1006,
+      "passed": 1006,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": null,
+      "kind": "repository_synthetic_suite",
+      "actually_executed": true
+    },
+    {
+      "name": "developer_host_subset",
+      "methods": 19,
+      "passed": 19,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": null,
+      "kind": "subset_rerun_not_extra_unique_tests",
+      "actually_executed": true
+    },
+    {
+      "name": "developer_scope_metadata",
+      "methods": 7,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": null,
+      "kind": "metadata_boundary_suite",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_Python_API",
+      "methods": 18,
+      "passed": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": 89,
+      "kind": "new_independent_synthetic_and_native_processes",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_stdio_CLI",
+      "methods": 19,
+      "passed": 17,
+      "failures": 2,
+      "errors": 0,
+      "skips": 0,
+      "successfully_completed_scenarios": 69,
+      "kind": "new_independent_actual_subprocess_and_synthetic",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_Windows_lock_replayed_on_current_source",
+      "methods": 18,
+      "passed": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": 37,
+      "kind": "original_independent_suite_replay",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_main_replayed",
+      "methods": 12,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": 79,
+      "kind": "original_independent_suite_replay",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_supplement_replayed",
+      "methods": 6,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": 27,
+      "kind": "original_independent_suite_replay",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_cycles_rounds_replayed",
+      "methods": 7,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "scenarios": 28,
+      "kind": "original_independent_suite_replay",
+      "actually_executed": true
+    }
+  ],
+  "prior975f676_scope_retained": true,
+  "prior_passed_result": "audit/review_results/recovery009.json",
+  "new_fix_independent_acceptance": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "new_budget_events": 0,
+  "new_cloud_calls": 0
+}

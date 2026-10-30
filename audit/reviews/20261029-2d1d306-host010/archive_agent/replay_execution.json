@@ -1,0 +1,687 @@
+[
+  {
+    "name": "windows_lock",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\windows_lock_agent\\independent_windows_lock.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context",
+    "script_original_sha256": "5e7b8ed2f9245ca45132b99ef4014a3c8478d9914891425166da9f75c3439fee",
+    "script_changed": false,
+    "exit_code": 0,
+    "seconds": 7.266,
+    "result": "windows_lock_agent/first_results.json",
+    "output_result": {
+      "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+      "platform": "win32",
+      "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+      "methods": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "named_scenarios": 37,
+      "observations": [
+        {
+          "name": "native_Win32_delay",
+          "observed_winerrors": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "body_entries": 1,
+          "retry_simulated": false,
+          "owner": {
+            "key": "synthetic/native-real",
+            "owner_token": "4c59d95232ca4b3b82cab0f9ee1d73eb",
+            "process_id": 104664
+          }
+        },
+        {
+          "name": "native_Win32_exhaustion",
+          "winerror": 32,
+          "elapsed_seconds": 0.125,
+          "body_entries": 1,
+          "owner_preserved": true
+        },
+        {
+          "name": "native_body_exception_not_replaced"
+        },
+        {
+          "name": "on_disk_pid"
+        },
+        {
+          "name": "on_disk_token"
+        },
+        {
+          "name": "on_disk_key"
+        },
+        {
+          "name": "on_disk_unknown_field"
+        },
+        {
+          "name": "on_disk_whitespace"
+        },
+        {
+          "name": "captured_bool_pid"
+        },
+        {
+          "name": "captured_other_pid"
+        },
+        {
+          "name": "captured_upper_token"
+        },
+        {
+          "name": "captured_short_token"
+        },
+        {
+          "name": "captured_unknown"
+        },
+        {
+          "name": "captured_unsafe_key"
+        },
+        {
+          "name": "captured_wrong_key_path"
+        },
+        {
+          "name": "captured_whitespace"
+        },
+        {
+          "name": "captured_BOM"
+        },
+        {
+          "name": "captured_not_JSON"
+        },
+        {
+          "name": "wrong_lock_leaf_preserved"
+        },
+        {
+          "name": "retry_gate_True_5"
+        },
+        {
+          "name": "retry_gate_True_33"
+        },
+        {
+          "name": "retry_gate_True_None"
+        },
+        {
+          "name": "retry_gate_False_32"
+        },
+        {
+          "name": "replacement_during_backoff_preserved"
+        },
+        {
+          "name": "disappearance_after_denial_not_success"
+        },
+        {
+          "name": "owner_read_error_preserved"
+        },
+        {
+          "name": "bounded_timeout_0",
+          "attempts": 1,
+          "backoffs": 0,
+          "simulated_seconds": 0
+        },
+        {
+          "name": "bounded_timeout_0.07",
+          "attempts": 2,
+          "backoffs": 2,
+          "simulated_seconds": 0.07
+        },
+        {
+          "name": "bounded_timeout_2",
+          "attempts": 40,
+          "backoffs": 40,
+          "simulated_seconds": 2.0
+        },
+        {
+          "name": "bounded_timeout_20",
+          "attempts": 121,
+          "backoffs": 120,
+          "simulated_seconds": 5.999999999999987
+        },
+        {
+          "name": "nonadvancing_clock_cap",
+          "attempts": 121,
+          "backoffs": 120
+        },
+        {
+          "name": "release_has_independent_window"
+        },
+        {
+          "name": "nonretry_release_error_body_context_preserved"
+        },
+        {
+          "name": "six_process_eighteen_requests",
+          "request_count": 18,
+          "processes": 6,
+          "dispatches": 1,
+          "research_charges": 1,
+          "results": [
+            {
+              "ok": true,
+              "should_execute": true,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "05b64dbcb4ec4105b0e0ba4da79e78a2"
+            }
+          ]
+        },
+        {
+          "name": "WR04_cross_project_process_atomic_last_slot",
+          "results": [
+            {
+              "ok": true,
+              "should_execute": true,
+              "attempt_id": "c0a18a997c074e90b404cabd33e30159"
+            },
+            {
+              "ok": false,
+              "type": "BudgetExceeded",
+              "message": "Stage2 engineering stop condition reached for research"
+            }
+          ],
+          "research_used": 2,
+          "first_failure_retained": true,
+          "reuse_free": true
+        },
+        {
+          "name": "write_once_original_immutable"
+        },
+        {
+          "name": "occupied_lock_not_reclaimed"
+        }
+      ],
+      "failure_details": [],
+      "cloud_calls": 0,
+      "original_source_writes": 0,
+      "real_budget_writes": 0
+    }
+  },
+  {
+    "name": "notifications",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context",
+    "script_original_sha256": "6cad84cbf0fb3746174f08acbbccdb9b342fd9545a281d6e658d336ec14078ab",
+    "script_changed": false,
+    "exit_code": 0,
+    "seconds": 5.281,
+    "result": "notification_agent/corrected_results.json",
+    "output_result": {
+      "methods": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "named_scenarios": 79,
+      "scenarios": [
+        "policy-invalid-0",
+        "policy-invalid-1",
+        "policy-invalid-2",
+        "policy-invalid-3",
+        "policy-invalid-4",
+        "policy-invalid-5",
+        "policy-invalid-6",
+        "policy-invalid-7",
+        "policy-invalid-8",
+        "policy-valid",
+        "before-boundary-2026-01-20T06:00:00+00:00",
+        "before-boundary-2026-01-20T06:29:59.999999+00:00",
+        "before-boundary-2026-01-20T14:29:59.999999+08:00",
+        "bad-clock-datetime.datetime(2026, 1, 20, 5, 59, 59, 999999, tzinfo=datetime.timezone.utc)",
+        "bad-clock-datetime.datetime(2026, 1, 20, 6, 0)",
+        "bad-clock-None",
+        "bad-clock-True",
+        "exact-deadline-no-registry-debit",
+        "post-reservation-rollback",
+        "invalid-projects-(9322,)",
+        "invalid-projects-(True,)",
+        "invalid-projects-('9321',)",
+        "invalid-projects-(-1,)",
+        "invalid-projects-{9321}",
+        "actual-shaped-list-projects",
+        "project-packet-invalid-0",
+        "project-packet-invalid-1",
+        "project-packet-invalid-2",
+        "project-packet-invalid-3",
+        "project-packet-invalid-4",
+        "history-page-1",
+        "history-page-2",
+        "history-page-3",
+        "terminal-summary-not-settlement",
+        "native-parser-bridge-registry-completion-without-financial-leak",
+        "native-runtime-failure-settles-original-without-refund",
+        "attention-running",
+        "attention-queued",
+        "attention-missing",
+        "attention-no-pagination",
+        "attention-failure",
+        "three-page-hard-stop",
+        "durable-unknown-not-reissued-after-restart",
+        "original-late-response-settles-only-reservation",
+        "malformed-history-0",
+        "malformed-history-1",
+        "malformed-history-2",
+        "malformed-history-3",
+        "malformed-history-4",
+        "malformed-history-5",
+        "malformed-history-6",
+        "malformed-history-7",
+        "malformed-history-8",
+        "malformed-history-9",
+        "malformed-history-10",
+        "malformed-history-11",
+        "malformed-history-12",
+        "malformed-history-13",
+        "hidden-carrier-conflict",
+        "wrong-project",
+        "unreserved-page",
+        "native-terminal-reject-0",
+        "native-terminal-reject-1",
+        "native-terminal-reject-2",
+        "native-terminal-reject-3",
+        "native-terminal-reject-4",
+        "missing-log-rejected",
+        "log-identity-attempt_id",
+        "log-identity-source_manifest_hash",
+        "log-identity-project_id",
+        "24-thread-requests-one-permission",
+        "6-processes-18-requests-one-permission",
+        "reservation-crash-durable-False",
+        "reservation-crash-durable-True",
+        "CLI-register-no-dispatch",
+        "CLI-sync-no-dispatch",
+        "CLI-status-no-dispatch",
+        "CLI-no-operator-clock-override",
+        "CLI-clock-aware-UTC"
+      ],
+      "subprocesses": [
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-0.stdout",
+          "stderr": "process-0.stderr"
+        },
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-1.stdout",
+          "stderr": "process-1.stderr"
+        },
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-2.stdout",
+          "stderr": "process-2.stderr"
+        },
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-3.stdout",
+          "stderr": "process-3.stderr"
+        },
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-4.stdout",
+          "stderr": "process-4.stderr"
+        },
+        {
+          "command": [
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+            "-B",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\independent_notifications.py",
+            "--worker",
+            "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\tmpcm0p_sv5",
+            "d89b5259615c4b6b91e40836c790a383"
+          ],
+          "exit_code": 0,
+          "stdout": "process-5.stdout",
+          "stderr": "process-5.stderr"
+        }
+      ],
+      "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+      "cloud_calls": 0
+    }
+  },
+  {
+    "name": "notification_supplement",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\notification_agent\\supplement_notifications.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context",
+    "script_original_sha256": "bd72417c6bb7811e1d0ba799746ee9098e7a072ec1f21f53f162fbd6bd1503dc",
+    "script_changed": false,
+    "exit_code": 0,
+    "seconds": 2.078,
+    "result": "notification_agent/supplement_results.json",
+    "output_result": {
+      "methods": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "named_scenarios": 27,
+      "scenarios": [
+        "watch-tamper-project",
+        "watch-tamper-attempt",
+        "watch-tamper-source",
+        "watch-tamper-config",
+        "watch-tamper-backtest",
+        "watch-tamper-deadline",
+        "watch-tamper-policy",
+        "watch-tamper-extra-registration-key",
+        "watch-tamper-unregistered-reservation",
+        "watch-tamper-wrong-page",
+        "watch-tamper-boolean-page",
+        "watch-tamper-unknown-kind",
+        "watch-tamper-duplicate-reservation",
+        "watch-tamper-fabricated-registry-finished",
+        "reservation-clock-'2026-01-20T06:29:59.999999+00:00'",
+        "reservation-clock-'2026-01-20T14:30:00+08:00'",
+        "reservation-clock-'2026-01-20T06:30:00'",
+        "reservation-clock-'2026-01-20T06:30:00Z'",
+        "reservation-clock-None",
+        "reservation-clock-True",
+        "next-page-cannot-backdate",
+        "24-completed-read-requests-only-one-permission",
+        "watch-write-failure-keeps-accepted-pending",
+        "register-recovery-keeps-original-deadline",
+        "late-native-delivery-closes-unknown-watch-idempotently",
+        "same-page-idempotent-conflicting-response-rejected",
+        "pagination-change-does-not-authorize-query"
+      ],
+      "cloud_calls": 0
+    }
+  },
+  {
+    "name": "cycles_rounds",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\windows_lock_agent\\supplement\\independent_cycles_rounds.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context",
+    "script_original_sha256": "baf50382cb04263ccd196cdd384b3a281761eee150c79e97f065ffc1b7501286",
+    "script_changed": false,
+    "exit_code": 0,
+    "seconds": 17.875,
+    "result": "windows_lock_agent/supplement/first_results.json",
+    "output_result": {
+      "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+      "methods": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "named_scenarios": 28,
+      "observations": [
+        {
+          "name": "revision_only_one_configuration_reserve",
+          "new_config_limit": 4
+        },
+        {
+          "name": "cycle_only_configuration_capacity_reset",
+          "lifetime_configs": 5,
+          "current_cycle_configs": 1,
+          "research": 3,
+          "lean": 3
+        },
+        {
+          "name": "revision_cycle_and_old_configuration_reuse_idempotent"
+        },
+        {
+          "name": "old_cycle_origin_and_journal_prefix_preserved"
+        },
+        {
+          "name": "reject_revision_two_config_slots"
+        },
+        {
+          "name": "reject_revision_research_increment"
+        },
+        {
+          "name": "reject_stale_cycle_state"
+        },
+        {
+          "name": "reject_revision_after_cycle"
+        },
+        {
+          "name": "cycle_blocked_started"
+        },
+        {
+          "name": "cycle_blocked_pending"
+        },
+        {
+          "name": "cycle_blocked_ambiguous"
+        },
+        {
+          "name": "cycle_blocked_open_schema4_round"
+        },
+        {
+          "name": "closed_round_allows_reset_without_execution_refund"
+        },
+        {
+          "name": "schema4_round_one_config_binding_cap"
+        },
+        {
+          "name": "schema4_parallel_parent_claim",
+          "processes": 4,
+          "requests": 4,
+          "dispatch_permissions": 1,
+          "results": [
+            {
+              "ok": true,
+              "should_execute": true,
+              "attempt_id": "c0191b9b0b8746cda17162354a9cda75"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "c0191b9b0b8746cda17162354a9cda75"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "c0191b9b0b8746cda17162354a9cda75"
+            },
+            {
+              "ok": true,
+              "should_execute": false,
+              "attempt_id": "c0191b9b0b8746cda17162354a9cda75"
+            }
+          ]
+        },
+        {
+          "name": "schema4_failure_closed_restart_no_reset_or_refund",
+          "usage": {
+            "configurations": 1,
+            "research": 1,
+            "lean": 0
+          }
+        },
+        {
+          "name": "schema4_unverified_Research_cannot_charge_LEAN"
+        },
+        {
+          "name": "cross_project_new_cycle_global_reservations_atomic",
+          "projects": [
+            6601,
+            6602
+          ],
+          "results": [
+            {
+              "ok": true,
+              "round_id": "SYNTHETIC-project-6601"
+            },
+            {
+              "ok": false,
+              "type": "BudgetExceeded",
+              "message": "Engineering grant exceeds remaining research normal capacity",
+              "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\windows_lock_agent\\supplement\\independent_cycles_rounds.py\", line 67, in process_action\n    grant,auth,full=payload; result=registry.authorize_engineering_round(grant,[full],auth)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\source\\cloud\\qresearch\\registry_engineering.py\", line 187, in authorize_engineering_round\n    record = self._validate_round_authorization(state, grant, authorization, packages)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\replay_context\\source\\cloud\\qresearch\\registry_engineering.py\", line 146, in _validate_round_authorization\n    raise BudgetExceeded(\"Engineering grant exceeds remaining \" + kind + \" \" + part + \" capacity\")\nqresearch.registry_engineering.BudgetExceeded: Engineering grant exceeds remaining research normal capacity\n"
+            }
+          ]
+        },
+        {
+          "name": "new_round_name_or_project_after_close_cannot_reset_global_research",
+          "research": 6,
+          "lean": 4
+        },
+        {
+          "name": "source_exact_CJK_BOM_CRLF_count",
+          "characters": 4,
+          "utf8_bytes": 8
+        },
+        {
+          "name": "source_reject_one_over"
+        },
+        {
+          "name": "source_reject_nonBMP"
+        },
+        {
+          "name": "source_reject_bool_limit"
+        },
+        {
+          "name": "source_reject_control"
+        },
+        {
+          "name": "CLI_source_size_freeze_and_register_no_debit"
+        },
+        {
+          "name": "CLI_source_size_claim_no_debit_legal_registration_retained"
+        },
+        {
+          "name": "CLI_followup_policy_freeze_and_register_no_debit"
+        },
+        {
+          "name": "CLI_followup_policy_claim_no_debit_legal_registration_retained"
+        }
+      ],
+      "failure_details": [],
+      "cloud_calls": 0,
+      "real_budget_writes": 0,
+      "original_source_writes": 0
+    }
+  }
+]

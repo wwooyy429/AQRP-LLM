@@ -1,0 +1,72 @@
+{
+  "kind": "developer_artifact_import_scope_repair_before_handoff",
+  "prior_provisional_delivery_commit": "c5b99f401d5c5334901b651abfffa765ed52422b",
+  "initial_result": "Raw publication verification failed at git show <commit>:<long synthetic fixture path> before reset; Windows filename too long.",
+  "cause": "Recursive developer-evidence importer included generated private synthetic Registry fixture metadata directories.",
+  "repair": "Exclude synthetic-* store trees; retain actual scripts/logs/failures and original private copies. Use blob IDs for raw verification, not a commit:path working-tree stat.",
+  "removed_generated_copies": [
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/configurations/d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66.json",
+      "original_sha256": "d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/engineering/evidence/2d57543c99da46258d129e74cb20295e/completion/d18c8dddf8d43849b841697b3bb27711842da480b1512e72a6fc8e3d48b56d69.json",
+      "original_sha256": "d18c8dddf8d43849b841697b3bb27711842da480b1512e72a6fc8e3d48b56d69"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/engineering/evidence/2d57543c99da46258d129e74cb20295e/submission/262c39200f7633b77c9b88166d888a21c1346c294a307ccd16ca1e1a031d62bd.json",
+      "original_sha256": "262c39200f7633b77c9b88166d888a21c1346c294a307ccd16ca1e1a031d62bd"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/engineering/evidence/567a459590c84b7e84df4bdf9ca4bed5/submission/728426b5633add442c70fef59fc3802f0e3e65e81d83f82e5a5f521e5c874557.json",
+      "original_sha256": "728426b5633add442c70fef59fc3802f0e3e65e81d83f82e5a5f521e5c874557"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/engineering/submissions/2d57543c99da46258d129e74cb20295e.json",
+      "original_sha256": "18a12b08179dc1e2d06462e586e2b207a9028b535a4fc68215dd8443e2569e04"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/engineering/submissions/567a459590c84b7e84df4bdf9ca4bed5.json",
+      "original_sha256": "6d1394799af691b285ce35db9e3f1d9f66a1bcbe83c44f7617a2c5fc34f2f96d"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-567a459590c84b7e84df4bdf9ca4bed5/results/d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66/research/4676ad1dbdc981bbce0eab44001d8b8635bfb699ae67fc2d19d78e351fa80d3c.json",
+      "original_sha256": "3e53a6c9aba1ce461af6577b677e12e9f0700a1eb8b1b401d56a98c1a6307a7c"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/configurations/d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66.json",
+      "original_sha256": "d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/engineering/evidence/1b3e28b1ca854d82adde8c2837d81bb6/completion/85c7cd2d8ccf9dae5f2416a605bc94857f1c5e6832477ddd7be70c9227f97a20.json",
+      "original_sha256": "85c7cd2d8ccf9dae5f2416a605bc94857f1c5e6832477ddd7be70c9227f97a20"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/engineering/evidence/1b3e28b1ca854d82adde8c2837d81bb6/submission/55744ce3be9898a188bf820356b2fe40569d0bba80c3ad1d90289cb270950bfe.json",
+      "original_sha256": "55744ce3be9898a188bf820356b2fe40569d0bba80c3ad1d90289cb270950bfe"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/engineering/evidence/fe12f219eba043bfbb288c5e5431dc65/submission/6521aec9dba282e3f11d7e64eb4c63c1aba0a888fe7ec4b7bc47b83aa50da31c.json",
+      "original_sha256": "6521aec9dba282e3f11d7e64eb4c63c1aba0a888fe7ec4b7bc47b83aa50da31c"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/engineering/submissions/1b3e28b1ca854d82adde8c2837d81bb6.json",
+      "original_sha256": "dd22076f7ab811dcbd6b44ec43835850e39154d76ceb99d8a92176a3d08fc025"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/engineering/submissions/fe12f219eba043bfbb288c5e5431dc65.json",
+      "original_sha256": "ea5ceb0ba51d7a2a750465c305f53e33b9dd232fd4edc6ba2abcb34b85b55d3c"
+    },
+    {
+      "path": "developer_boundary/synthetic-multiprocess-fe12f219eba043bfbb288c5e5431dc65/results/d34ab56ff157e803f01ee439b7d99ff26564673a28179c854f4a5227bf507f66/research/4676ad1dbdc981bbce0eab44001d8b8635bfb699ae67fc2d19d78e351fa80d3c.json",
+      "original_sha256": "bfb9b7f7657b3134dda28b4d6b13f4ce3fa18001fd772828b06130d159611890"
+    }
+  ],
+  "original_private_records_preserved": true,
+  "product_source_changed": false,
+  "source_manifest_changed": false,
+  "full_offline_test_count": 1006,
+  "new_budget_events": 0,
+  "new_cloud_calls": 0,
+  "final_test_enabled": false
+}

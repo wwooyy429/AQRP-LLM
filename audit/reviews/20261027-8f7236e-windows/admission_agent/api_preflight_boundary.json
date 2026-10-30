@@ -1,0 +1,84 @@
+{
+  "preflight_refusal": {
+    "type": "ValueError",
+    "message": "Joint engineering source and deployment must be frozen before new charging"
+  },
+  "before": {
+    "configurations": {
+      "total": 0,
+      "normal": 0,
+      "reserve": 0
+    },
+    "research": {
+      "total": 0,
+      "normal": 0,
+      "reserve": 0
+    },
+    "lean": {
+      "total": 0,
+      "normal": 0,
+      "reserve": 0
+    }
+  },
+  "after": {
+    "configurations": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    },
+    "research": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    },
+    "lean": {
+      "total": 0,
+      "normal": 0,
+      "reserve": 0
+    }
+  },
+  "result": {
+    "attempt_id": "c6a774c2a850459981bb29d8f82e8f72",
+    "config_id": "f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e",
+    "stage": "research",
+    "operation_key": "engineering-plan:78d9836a52bcb0fc55a077d3c3f856aa727c234ec275627a4b33add22a3a42f4:research",
+    "status": "failed",
+    "should_execute": false,
+    "allocation": "normal",
+    "result_key": "results/f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e/research/ab2f6bb9ebc8253b2c63aff9fdc91fbb9edb93739c1d19cc92556404df0a1316.json",
+    "external_id": null
+  },
+  "synthetic_adapter_calls": [
+    {
+      "identity": {
+        "plan_hash": "78d9836a52bcb0fc55a077d3c3f856aa727c234ec275627a4b33add22a3a42f4",
+        "config_id": "f1b1c764cf6e826bcb25360c916b3e79486fd718019fb71c0a1e0ccfbc25212e",
+        "attempt_id": "c6a774c2a850459981bb29d8f82e8f72",
+        "stage": "research",
+        "project_id": 931001,
+        "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "data_request_hash": "542767b071163ccc937d456b26043b9950402f759184e81376ee6ff50d9feb90"
+      },
+      "usage_before_callback": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    }
+  ],
+  "actual_remote_calls": 0,
+  "scope": "The public Bridge does not itself invoke tools.stage2.joint_preflight. Trusted caller/adapter boundary remains; this is not a successful wrong-deployment worker execution."
+}

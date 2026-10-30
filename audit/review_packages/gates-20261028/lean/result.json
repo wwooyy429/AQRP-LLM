@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "kind": "developer_readonly_original_LEAN_gate_verification",
+  "source_commit": "d23c0ab93ceba71529eb813e349c8dfdcbb5ea88",
+  "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+  "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+  "backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+  "identity": {
+    "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+    "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+    "data_request_hash": "501f33c0e1b67599533bc3a822b137fb807971d6dfab445b52ce6df046189778",
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+    "plan_hash": "9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+    "project_id": 38436695,
+    "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+    "stage": "lean"
+  },
+  "deployment": {
+    "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+    "input_hash": "8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03",
+    "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820"
+  },
+  "existing_ledger_status": "pending",
+  "authoritative_events": 46,
+  "usage": {
+    "configurations": {
+      "total": 12,
+      "normal": 8,
+      "reserve": 4
+    },
+    "research": {
+      "total": 15,
+      "normal": 8,
+      "reserve": 7
+    },
+    "lean": {
+      "total": 2,
+      "normal": 2,
+      "reserve": 0
+    }
+  },
+  "required_checks": {
+    "lean": [
+      "source_snapshot_matches",
+      "raw_data_received",
+      "complete_expected_bars",
+      "no_orders",
+      "development_only",
+      "symbol_registry_resolved",
+      "corporate_action_received"
+    ],
+    "research": [
+      "source_snapshot_matches",
+      "raw_data_received",
+      "second_prefetch_no_history",
+      "same_partition_ids",
+      "cache_only_consumer",
+      "read_only_write_rejected",
+      "final_request_rejected",
+      "coverage_observed_complete",
+      "development_only",
+      "symbol_registry_resolved",
+      "collection_windows_completed",
+      "collection_cache_only_replay",
+      "collection_nonempty"
+    ]
+  },
+  "native_submission_verified": true,
+  "native_submission_packet_sha256": "277e27fc97fe5a27c63b91e9e1087600f12fa264a6248577be58de9bb1810dda",
+  "original_input_hash_verified": true,
+  "Research_resolution_matches_original_payload": true,
+  "log_query": "AQRP_ENGINEERING 37dc855045e14ca49c88fd9d75f40cf7",
+  "actual_terminal_obtained": false,
+  "actual_runtime_checks": null,
+  "actual_orders": null,
+  "LEAN_gate": "insufficient_evidence_no_terminal",
+  "fixed_fixture_git_archive_sha256": "f20815a73687dbb7b859e2ac6883fee428510687f041b0d5f6b623713945a3d0",
+  "runs": [
+    {
+      "label": "engineering_receipts",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_engineering_receipts.py",
+        "-q"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "seconds": 3.296,
+      "methods": 12,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7582003ea4d7163fdae83a45c77b54c3b21ca259f21cd460320b579560ecde08"
+    },
+    {
+      "label": "native_runtime_failure",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_native_runtime_failure.py",
+        "-q"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "seconds": 2.438,
+      "methods": 15,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c539740d52669146e46f015e8d5ed6dd125c6d1e159379c9a2e544d71e3610f7"
+    },
+    {
+      "label": "normal_round",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_normal_engineering_round.py",
+        "-q"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "seconds": 2.312,
+      "methods": 8,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5a37401678b3d0bb2a1fea5121ad5b1f01692241777ba144edb5f5501150349a"
+    },
+    {
+      "label": "full_capacity",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\gate-verification-20261028\\lean\\full-capacity-suite\\settlement_frontier_tests.py"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\gate-verification-20261028\\lean\\full-capacity-suite",
+      "exit_code": 0,
+      "seconds": 73.235,
+      "methods": 7,
+      "stdout_sha256": "7495f2fb5d0421c8d952f21b574ba4ad9194865e639224615c7c61f94bc037bb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "capacity_named_scenarios": 32,
+  "actual_full_capacity_processes": 4,
+  "capacity_thread_workers": 12,
+  "protected_files_unchanged": 207,
+  "QC_calls": 0,
+  "Research_calls": 0,
+  "LEAN_submissions": 0,
+  "true_ledger_writes": 0,
+  "product_edits": 0,
+  "independent_GPT_Work_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "limitations": [
+    "synthetic tests do not supply missing live terminal or original worker source",
+    "native Total Orders is enforced only when present; actual zero-order claim requires delivered native counter or equivalent actual order evidence",
+    "an explicit runtime-error terminal can settle failure only, without manufacturing seven results or zero orders",
+    "native identity originates from trusted actual I/O context; hashes are not a remote signature"
+  ],
+  "execution_note": "Copied immutable Git metadata/cloud fixture into private work area for all full-capacity synthetic settlement; original archived scripts and production data remain unchanged.",
+  "Research_resolution_verified_against_original_completed_result": true
+}

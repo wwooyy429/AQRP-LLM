@@ -1,0 +1,93 @@
+test_bound_success_wrong_cell_index_rejects_without_downstream_admission (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... ok
+test_completed_new_success_cannot_replay_after_dispatch_removed (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... FAIL
+test_explicit_legacy_admission_without_protocol_preserves_success_only (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... ok
+test_invalid_or_missing_original_entry_and_dispatch_reject_both_terminal_shapes (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... test_new_entry_without_dispatch_rejects_native_failure (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... ok
+test_new_entry_without_dispatch_rejects_success_before_all_writes (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... test_new_success_and_failure_parser_require_an_original_binding (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... ERROR
+test_valid_binding_success_is_completed_replayable_and_unlocks_lean (test_wr21_research_dispatch.WR21ResearchDispatchTests) ... ok
+
+======================================================================
+ERROR: test_new_success_and_failure_parser_require_an_original_binding (test_wr21_research_dispatch.WR21ResearchDispatchTests) (tool={'projectId': 17, 'index': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 122, in test_new_success_and_failure_parser_require_an_original_binding
+    receipts.research_observation(payload, deployment, tool, dispatch_required=True)
+TypeError: research_observation() got an unexpected keyword argument 'dispatch_required'
+
+======================================================================
+ERROR: test_new_success_and_failure_parser_require_an_original_binding (test_wr21_research_dispatch.WR21ResearchDispatchTests) (tool={'projectId': 17, 'index': 2})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 122, in test_new_success_and_failure_parser_require_an_original_binding
+    receipts.research_observation(payload, deployment, tool, dispatch_required=True)
+TypeError: research_observation() got an unexpected keyword argument 'dispatch_required'
+
+======================================================================
+ERROR: test_new_success_and_failure_parser_require_an_original_binding (test_wr21_research_dispatch.WR21ResearchDispatchTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 124, in test_new_success_and_failure_parser_require_an_original_binding
+    success = receipts.research_observation(payload, deployment, research_tool(payload),
+TypeError: research_observation() got an unexpected keyword argument 'dispatch_required'
+
+======================================================================
+FAIL: test_completed_new_success_cannot_replay_after_dispatch_removed (test_wr21_research_dispatch.WR21ResearchDispatchTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 141, in test_completed_new_success_cannot_replay_after_dispatch_removed
+    with self.assertRaises(EngineeringTaskError):
+AssertionError: EngineeringTaskError not raised
+
+======================================================================
+FAIL: test_invalid_or_missing_original_entry_and_dispatch_reject_both_terminal_shapes (test_wr21_research_dispatch.WR21ResearchDispatchTests) (mode='dispatch-missing', terminal='success')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 100, in test_invalid_or_missing_original_entry_and_dispatch_reject_both_terminal_shapes
+    self.assert_rejected_unchanged(fixture, tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 24, in assert_rejected_unchanged
+    with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError, ValueError)):
+AssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.engineering_receipts.ReceiptParseError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_new_entry_without_dispatch_rejects_success_before_all_writes (test_wr21_research_dispatch.WR21ResearchDispatchTests) (version=1, index=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 42, in test_new_entry_without_dispatch_rejects_success_before_all_writes
+    self.assert_rejected_unchanged(fixture, tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 24, in assert_rejected_unchanged
+    with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError, ValueError)):
+AssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.engineering_receipts.ReceiptParseError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_new_entry_without_dispatch_rejects_success_before_all_writes (test_wr21_research_dispatch.WR21ResearchDispatchTests) (version=1, index=999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 42, in test_new_entry_without_dispatch_rejects_success_before_all_writes
+    self.assert_rejected_unchanged(fixture, tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 24, in assert_rejected_unchanged
+    with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError, ValueError)):
+AssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.engineering_receipts.ReceiptParseError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_new_entry_without_dispatch_rejects_success_before_all_writes (test_wr21_research_dispatch.WR21ResearchDispatchTests) (version=2, index=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 42, in test_new_entry_without_dispatch_rejects_success_before_all_writes
+    self.assert_rejected_unchanged(fixture, tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 24, in assert_rejected_unchanged
+    with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError, ValueError)):
+AssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.engineering_receipts.ReceiptParseError'>, <class 'ValueError'>) not raised
+
+======================================================================
+FAIL: test_new_entry_without_dispatch_rejects_success_before_all_writes (test_wr21_research_dispatch.WR21ResearchDispatchTests) (version=2, index=999)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 42, in test_new_entry_without_dispatch_rejects_success_before_all_writes
+    self.assert_rejected_unchanged(fixture, tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr21_research_dispatch.py", line 24, in assert_rejected_unchanged
+    with self.assertRaises((EngineeringTaskError, receipts.ReceiptParseError, ValueError)):
+AssertionError: (<class 'qresearch.engineering_tasks.EngineeringTaskError'>, <class 'qresearch.engineering_receipts.ReceiptParseError'>, <class 'ValueError'>) not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.175s
+
+FAILED (failures=6, errors=3)

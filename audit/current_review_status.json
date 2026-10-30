@@ -1,0 +1,160 @@
+{
+  "schema_version": 7,
+  "latest_completed_review": "audit/review_results/wr31.json",
+  "latest_completed_verdict": "fixed_verified_closed_for_tested_offline_audit_scope",
+  "latest_reviewed_source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "source_manifest_hash": "397c9cfe2130a0c36d7c8b8bd7cd0051a93c1556562dc03a9575139ba54c099c",
+  "known_open_findings": [],
+  "closed_findings": [
+    {
+      "id": "WR-29",
+      "original_priority": "P1",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "original_file": "tools/followup_host.py",
+      "original_line": 469,
+      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+      "original_expected_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_actual_exits": [
+        0,
+        2,
+        2
+      ],
+      "fixed_actual_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_MRE_assertion_exit": 1,
+      "fixed_MRE_assertion_exit": 0,
+      "original_script_and_success_expectations_unchanged": true,
+      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+      "normal_path_and_strict_negative_paths_verified": true,
+      "not_granted": [
+        "倒改2d1d306原失败",
+        "生产factory/MCP调度/平台通知成功",
+        "完整回执收集或计费认证派发",
+        "完整阶段2、数据认证或金融有效性"
+      ]
+    },
+    {
+      "id": "WR-31",
+      "priority": "P2",
+      "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+      "independently_closed": true,
+      "review_id": "AQRP-20261030-D177619-WR31-30",
+      "fixed_audit_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+      "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+      "scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+      "result": "audit/review_results/wr31.json",
+      "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+      "reviewer_full_product1085_rerun": false,
+      "reviewer_reparsed_developer1085_records": true,
+      "whole_phase2_accepted": false,
+      "financial_evidence": false
+    }
+  ],
+  "software_acceptance_scope": "Prior WR29/core finite conclusions preserved; WR31 fixed-d177 offline audit parsing, paths, originals and delivery independently closed; whole Phase2 not accepted.",
+  "production_dispatch_enabled": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "metadata_archive_independently_accepted": false,
+  "production_dispatch_scope": "Newcandidate defaultoff; no new cloud dispatch authorized by this metadata",
+  "automatic_production_loop_enabled": false,
+  "runtime_addendum": {
+    "report": "audit/stage2_native_failure009_report.json",
+    "review_entry": "audit/review_packages/phase2_terminal009/GPT_WORK_RUNTIME_ADDENDUM.txt",
+    "software_source_unchanged": true,
+    "native_failure_settled": true,
+    "round009_closed": true,
+    "independent_acceptance": false
+  },
+  "latest_reviewed_audit_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+  "storage_inventory_WR31": {
+    "review_entry": "audit/review_packages/wr31_closure/README.txt",
+    "repaired_analyzer": "audit/review_packages/storage_inventory013_wr31/analyze_inventory.py",
+    "status": "fixed_verified_closed_for_tested_offline_audit_scope",
+    "012_existing_actual_UI_scope_independently_passed": true,
+    "012_general_analyzer_independently_failed": true,
+    "012_raw_files_unchanged": 52,
+    "new_candidate_independently_accepted": true,
+    "cloud_calls": 0,
+    "budget_changes": 0,
+    "final_test_enabled": false,
+    "historical_developer_candidate_report": "audit/stage2_storage_inventory013_wr31_report.json",
+    "report": "audit/wr31_independent_closure.json",
+    "fixed_audit_commit": "d1776193d37748ef78da405af370e9190f597e2f",
+    "independent_review_id": "AQRP-20261030-D177619-WR31-30",
+    "independent_result": "audit/review_results/wr31.json",
+    "formal_report": "audit/review_packages/wr31_closure/reviewer_formal_report.json",
+    "independent_acceptance_scope": "Fixed d177619 tested offline parsing, path restrictions, original preservation and Git delivery only",
+    "independently_closed": true,
+    "reviewer_full_product1085_rerun": false,
+    "reviewer_reparsed_developer1085_records": true,
+    "whole_phase2_accepted": false,
+    "historical_review_entry": "audit/review_packages/storage_inventory013_wr31/GPT_WORK_REVIEW.txt"
+  },
+  "historical_product_review_request": {
+    "original": {
+      "source_commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+      "stable_execution_source_manifest_hash": "922e92ed2de87952d4f6f2ca252773110a9be6817b7f7e8f9ae26d87621b208b",
+      "review_entry": "audit/review_packages/phase2_repair011/GPT_WORK_REVIEW.md",
+      "status": "developer_offline_passed_new_exact_version_review_pending",
+      "independent_acceptance": false,
+      "does_not_include_closed_WR31": true
+    },
+    "scope": "Earlier011 request, kept as history; WR31 is independently closed and remaining production/data acceptance is separate"
+  },
+  "current_phase2_acceptance": {
+    "status": "production_and_full_data_evidence_incomplete",
+    "stage2_accepted": false,
+    "product_candidate_cloud_validated": false,
+    "WR31_scoped_closed": true,
+    "scope": "WR31 closure grants no complete production, data, billing or financial acceptance"
+  },
+  "current_storage_inventory": {
+    "report": "audit/stage2_storage_inventory015_report.json",
+    "software_source_commit": "df48fbbe1f403913501c6bad16474fd7d4e2e25e",
+    "attempt_id": "d22d36298ece423da53ed13817dd9b2e",
+    "status": "completed",
+    "round_status": "closed",
+    "objects": 488,
+    "free_bytes": 53895,
+    "LEAN_byte_envelope_deficit": 19833,
+    "all_objects_retained": true,
+    "safe_deletion_accepted": false,
+    "global_reference_closure_complete": false,
+    "independent_review_status": "pending_new_exact_version",
+    "Research_used": 19,
+    "LEAN_used": 4,
+    "configuration_cycle_used": 5,
+    "configuration_lifetime": 18,
+    "Registry_events": 86
+  },
+  "pending_review": {
+    "source_commit": "df48fbbe1f403913501c6bad16474fd7d4e2e25e",
+    "full_source_manifest_hash": "04ea4a4e643eb2f332bc49df6d461aac8ce03840bf812429757171a23ca597bf",
+    "stable_execution_source_hash": "3647699251dee91509f5fdfffb1f6c1a3d4267ef51a71c8274aaaeb7526f9db7",
+    "review_entry": "audit/review_packages/storage_inventory015/GPT_WORK_REVIEW.txt",
+    "status": "new_inventory_software_and_native_runtime_pending_independent_review",
+    "independent_acceptance": false
+  },
+  "reclaim_pool016": {
+    "pool_objects": 16,
+    "pool_physical_bytes": 2772902,
+    "proposed_deletion_keys": [],
+    "confirmed_reclaimable_bytes": 0,
+    "all_objects_retained": true,
+    "independent_review": "pending_exact_version",
+    "safe_deletion_accepted": false,
+    "report": "audit/stage2_reclaim_pool016_report.json",
+    "review_entry": "audit/review_packages/reclaim_pool016/GPT_WORK_REVIEW.txt"
+  }
+}

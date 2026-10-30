@@ -1,0 +1,28 @@
+{
+  "kind": "actual_first_candidate_regression_failure",
+  "candidate_sha256": "499588a7e9637ab07abac81a40e90bc64b4c6fe52f07df6494900b114f311fc3",
+  "original_MRE_exit": 0,
+  "boundaries_methods": 12,
+  "boundaries_subtests": 96,
+  "boundaries_exit": 0,
+  "legacy20_exit": 1,
+  "legacy_failures": 1,
+  "cause": "Oversized complete numeric page label rejected conservatively but diagnostic changed from invalid_UI_page_count; retain literal legacy expectation and restore compatible diagnostic.",
+  "no_expected_values_changed": true,
+  "old_boundary_negative_control": {
+    "exit_code": 1,
+    "failure_records": 68,
+    "error_records": 1,
+    "methods": 12,
+    "subtests_executed": 96,
+    "error_reason": "old analyzer iterates None paging; this is a target boundary error, not a reviewer-probe repair"
+  },
+  "setup_import_failure": {
+    "exit_code": 1,
+    "cause": "Developer initially associated user-provided formal_report.json SHA with formal_report.txt. Corrected association after reading actual hashes; original review bytes unchanged.",
+    "original_helper_source_and_separate_raw_stderr_not_retained": true
+  },
+  "financial_evidence": false,
+  "cloud_calls": 0,
+  "budget_changes": 0
+}

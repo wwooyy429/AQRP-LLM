@@ -1,0 +1,14 @@
+只读最终QA结论：本代理native范围、证据等级和WR21相关表述未发现实质错误，无需修改root报告。
+
+本次对照formal_report.json/.txt、findings.json、test_execution_summary.json及本代理已完成结果；另只读根wr21_confirmation/downstream_execution.json和entry_additional/results.json。未重跑测试、未改root或生产，仅写本qa.txt。
+
+1. 新Research failure6/91、旧native9/90、另旧2程序8manual均准确，134CLI/14synthetic_finish/worker-SDK0准确。新增写fault2已包含在6/91，未重复加为manual。
+2. 原f5d raw SHA14ae4a...及完整result hash6a5371...正确；2个MCP载体是1个逻辑失败，9traceback数组条目和43物理行分开，未把traceback_line_count=9称为9物理行。
+3. 正常15→17→17与两故障路径15→16→18→18分列，额外pending审计事件未称新执行扣费。真实17账本、7/10/1用量及13事件raw前缀未被审核重写、退款或生成成功产物。
+4. 失败原件是开发归档的独立离线解析（证据等级3含义），当前源码和cell source是审核者独立只读（等级4含义）；正式JSON及TXT明确区分，未冒称本轮fresh live notebook失败或SDK运行。
+5. isError=false没有被误认cell成功；CollectionError底层cause仍未知。History次数、接收行、订单和金融统计保持null，没有从错误traceback推断0或成功工程报告。7fc实际执行身份与deb后置本地解析修补身份分开。
+6. WR21明确是new entry marker存在但dispatch缺席，沿legacy成功分支使completed；合法绑定和明确旧无marker成功兼容正例保留。根原字节17CLI重放及另1次同父LEAN准入仅为隔离合成账本中的真实生产函数调用，没有实际provider/LEAN提交或真实限额突破。
+7. 根入口正控3链21CLI=19普通+2并发进程、one permit、retarget/unknown/no-backfill与entry_additional实际记录一致；未声称被中断子代理后来没有执行的扩展。
+8. 本代理局部失败解析/恢复通过与整轮WR21/WR20软件验收失败没有混同；G3局部证据通过但成功入口缺陷仍阻断，G1真实失败、G2根因不足、G4数据认证缺口和阶段2未通过均保留。
+
+本QA不重新独立认证其他代理的远程来源或WR20全部细节，仅确认其与native报告、证据限制及本次只读确认的WR21后续范围一致。

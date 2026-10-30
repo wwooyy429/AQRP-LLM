@@ -1,0 +1,74 @@
+AQRP-LLM 独立复审正式报告
+审核编号：AQRP-20261026-D0B9C98-WINDOWS-04
+固定源码：d0b9c98ae9490b977d62f3e9742d854146d298b4
+比较基线：7b0dccebef2d3582e1b07ada05211863c3cba0d8
+
+总体结论：WR-08在本轮实际覆盖的合法IC输入及数值容差范围修复后通过；阶段0、1的实际离线范围修复后通过。已实现的阶段3统计模块通过本轮离线检查，完整阶段3未验收。阶段2仍待平台运行及数据证据，完整系统未验收通过。无新增生产阻断发现，financial_evidence=false。
+
+证据分级：E1静态源码/哈希/事件链；E2审核者本轮实际离线合成执行；E3开发者归档平台原生工具JSON离线重解析；E4审核者当前只读QC项目源码及GitHub元数据；E5独立金融证据无。合成数据不证明因子有效。
+
+全系统覆盖矩阵
+阶段0 | 规范、配置、身份、Registry、原子准入 | 工程核心已实现 | 仓库280、准入19、适配56、116静态检查、两次构建 | passed_after_fix | 实际覆盖的离线工程范围
+阶段1 | 因子、PIT、标签、模型、共享评价 | 离线内核及提前评价接口已实现 | 仓库280、归档回归、新摘要11、新兼容8 | passed_after_fix | 本轮独立覆盖的离线计算、WR-08修复及既有回归
+阶段2 | QC数据、缓存、任务桥 | 工程桥及小样例已实现 | 准入19及适配56通过；旧平台归档E3；当前源码只读E4 | pending_acceptance | 候选未部署或运行、LEAN无交付终态、完整数据未认证
+阶段3 | 滚动Research评价 | 六轮、成熟标签、共同样本及部分指标已实现 | 摘要11、兼容8及60预测/6模型恢复合成链通过 | pending_acceptance | 已实现统计模块通过本轮离线检查，完整Research阶段未验收
+阶段4 | 组合、订单、成交、成本、风险、账本 | 工程宿主及接口，完整交易验证未交付 | 静态检查，无完整真实交易链证据 | not_accepted | 完整阶段尚未验收
+阶段5 | GPT提案、受限网关、控制器 | 部分受限接口已实现 | 离线接口回归，真实GPT闭环未执行 | not_accepted | 完整阶段尚未验收
+阶段6 | 去重、相关、搜索、组合增量 | 部分去重及相关接口已实现 | 相关接口回归通过；无实际搜索和组合增量证据 | not_accepted | 完整阶段尚未验收
+阶段7 | 冻结、独立最终执行、前向、监控 | 存在门禁，完整执行及前向证据未交付 | 配置及暴露记录核对 | not_accepted | 完整阶段尚未验收
+
+WR-08修复验收及数值范围
+源码evaluation.py:276-307新增稳定矩统计，310-316汇总公开输出。完全相等的IC样本用精确相等判断常数，标准差严格0、ICIR NaN。非恒定样本缩放、锚点去偏移、fsum居中、hypot范数，ICIR在缩放尺度直接求比，保留ddof=1与不年化规则。
+根代理实际重跑原最小复现：[0.7]*6，旧7b退出1，mean=0.7000000000000001、std=1.2161883888976234e-16、ICIR=5755687247059590；d0退出0，mean=0.7、std=0、ICIR=NaN。负常数同样修复。原代码和原失败均保留。
+合法相邻浮点[0.7,nextafter(0.7,+inf)]的标准差=7.850462293418876e-17，未被抹零。subnormal[0,min_float]的公开mean舍入为0、std为min_float，而ICIR为0.7071067811865475；ICIR来自未丢失比例的缩放矩，不能用已舍入的公开mean/std反推它。
+新增摘要11方法采用独立Fraction原始矩与180位Decimal，覆盖正负非完美常数、不同天数、0/1日/缺失、相邻浮点、subnormal、重排平移、抵消、480个确定种子随机案例及独立日IC到摘要样例。716子例、719次摘要比较，均在预先记录的范围通过。
+常数要求严格零标准差和NaN。非零可表示标准差必须保持正；正常std容差32eps相对，subnormal另容许2ULP；ICIR容差32eps*max(1,abs(预期))，大比值为相对界，小比值为绝对界。mean使用输入尺度的16eps绝对界及2ULP量化界。最大正常std相对误差2.8107271145275333e-16，最大ICIR误差/(eps*max(1,abs预期))=1.6868995801715694。
+强抵消不保证近零结果的统一相对精度或正确舍入：[0.7,-0.7,1e-200]的真实均值约3.333e-201，新实现为1.1102230246251565e-16，绝对误差低于eps*输入尺度。纯相对精度探索11方法9通过2失败，4条记录，最大绝对差异8.847089727481716e-17。该探索及旧版比较完整保留，作为已知精度限制，不宣称其通过，也未据此复现原WR-08的巨大虚假ICIR或已证明的下游决策错误。
+
+实际执行（方法数与子例分开，重复不加总为独有测试）
+repository_verify: 方法280，通过280，失败0，错误0，跳过0；子例None；退出0。
+archived_compatibility: 方法12，通过12，失败0，错误0，跳过0；子例22；退出0。
+archived_pearson: 方法10，通过10，失败0，错误0，跳过0；子例896；退出0。
+archived_numeric: 方法16，通过16，失败0，错误0，跳过0；子例84；退出0。
+archived_atomic: 方法19，通过19，失败0，错误0，跳过0；子例9；退出0。
+previous_adapted: 方法56，通过56，失败0，错误0，跳过0；子例25；退出0。
+new_independent_summary_final: 方法11，通过11，失败0，错误0，跳过0；子例716；退出0。
+new_independent_compatibility: 方法8，通过8，失败0，错误0，跳过0；子例16；退出0。
+negative_7b_compatibility: 方法12，通过11，失败1，错误0，跳过0；子例22；退出1。
+
+新增兼容8方法16子例全部通过。独立ridge完整六轮产生60预测和6可恢复模型，各轮80训练/10验证；12日RankIC均为0.7、std0、ICIR未定义。恢复产物预测一致；没有导入开发者测试夹具。此处为合成工程链。
+原样56历史50通过/3失败/3错误保留；本轮重跑认可适配56，仍要求一个许可、一个BudgetExceeded拒绝及预算计数2，未改经济/数值预期。
+归档12/10重放仅运行原测试类，未把原main机器专属静态或历史辅助入口称为本轮重跑。归档数值脚本内部的历史fe SHA保持原件，实际本轮源码以外层replay逐文件哈希及根执行记录认证。
+审核器首次摘要11方法9通过2错误，共8错误记录，源于误差观测公式eps*subnormal下溢为0。生产断言未失败。仅纠正观测计算顺序并增强正std断言，原预期和原容差未改变；首次源码、结果、输出及diff均保留。
+开发者15项旧源码负对照、首次14/15修复的工具摘要只按开发归档处理，没有宣称本轮独立整套执行；没有虚构不存在的首次完整日志。
+静态证据116/116通过，不是单元方法；42受保护文件原始字节相同。两次构建exit0，全部270文件字节稳定，不是新增测试方法。
+
+实际命令与环境
+解释器及工作目录的绝对路径见runs/execution_records.json、root_execution_records.json与两套独立报告。主要入口：
+python -B tools/stages.py verify（独立副本runs/repository_source）
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_compatibility --suite compatibility
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_pearson --suite pearson
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_numeric --suite numeric
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_atomic --suite atomic
+python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/previous_adapted_56 --mode adapted
+python -B numeric_agent/exact_ic_summary_review.py
+python -B compat_agent/public_compatibility.py
+原生Windows-10-10.0.26300-SP0，Python3.10.11、numpy1.26.4、pandas2.3.3、longdouble尾数位52；主重放BLAS/OMP/MKL线程1。传递依赖实测版本见environment.json和requirements-audit.txt。审核者未在Linux实际执行，CI状态不混作本机测试。
+
+版本、部署、任务、预算及数据
+270个ZIP文件与固定d0 Git逐字节一致；84源码清单hash=8eb4c21c2d0852b1649b00e9bf1ea970c0b1c01b0ee23eba0bb147a6ed7ade45。
+交付ZIP SHA256=9df9886fe135dfdfd332237af161f5d3e1a714c671adf9f6a443634301b994bf。
+本地候选25文件部署hash=d3073a98740a1eb2ea7f2a7b4e85c458684fc00cb9c72dddc0a00e60771b26c2。生成配置的设计hash仍272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94，共享实现hash更新为c45fac14382f2c585c2e0d95f636a7c82f1dac67cc9cb80490944d6d8631db65。
+审核者先list_projects，再read_project(38436695)，仅保存源码不读notebook数据。当前25部署文件全部匹配旧75，其hash仍dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6，与d0七路径不同。d0未部署、未取得它的云端编译或运行证据。
+任务输入SHA95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0吻合既有attempt bfd00f2611fd4496b9498d4597618a8e准入输入。LEAN39cafa1e9b11f91b27e396b66d033a6d只保留归档pending；当前终态null，本轮未轮询或读取日志。
+PR1草稿未合并，head6a1edbf；PR2以它为base，固定head d0，仍草稿未合并。该head的pull_request/push两条CI40308490650、40308482587成功；仅作为只读元数据。
+12事件链及投影吻合：配置6/12（正常6/预留0），Research9/20（正常6/预留3），LEAN1/16（正常1/预留0）。本轮新增配置、市场、模型调用均0；历史汇总起点并非逐项重建全部早期操作。
+旧7b审核15份原件逐字节相同，更早92份审核证据未变。配置、预算、暴露、准入和时间分区未改；生产路径仅evaluation.py及生成research_config.py变化。Pearson/Spearman、daily_rank_ic、walk_forward_evaluate原函数未变，全部旧测试未改。
+完整历史US200、财务修订版本和实际供应商送达未认证。2024-2025已有暴露，2026独立性null。GPT模型、次数/费用额度仍null；市场、模型、最终测试和实盘开关均关闭。
+
+最小复验
+python -B minimal_wr08_original.py source
+当前退出0；替换source为baselines/7b0dcce/source应退出1。该原件未改断言。独立测试脚本、完整输出及首次失败另存，不修改开发者源码。
+
+下一步
+本轮无新增生产阻断修复任务。阶段2需要在另行授权和有效预算内取得新版本必要部署/运行及既有LEAN交付终态，并补齐数据认证；阶段3完整评价及4-7缺失交付仍需各自验收。修复软件不构成因子金融有效、可盈利或可实盘结论。全部可能输入、统一相对精度、其他系统及真实金融结果不在本轮认证范围。

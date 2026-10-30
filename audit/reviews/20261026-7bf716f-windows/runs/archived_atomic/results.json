@@ -1,0 +1,320 @@
+{
+  "reviewed_source_commit": "see_replay_source_hashes",
+  "actually_executed": true,
+  "methods": 19,
+  "passed_methods": 19,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "subcases": 9,
+  "failure_records_including_subtests": 0,
+  "error_records_including_subtests": 0,
+  "observations": [
+    {
+      "case": "__main__.Admission.test_configuration_memory",
+      "resource": "configurations",
+      "surface": "memory",
+      "results": [
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for configurations"
+        },
+        {
+          "outcome": "admitted",
+          "config_id": "32c3859b6298c42d473d3007d4e390bf3649a96bd17ef269e41ee5b002978b02"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_configuration_native_processes",
+      "resource": "configurations",
+      "surface": "processes",
+      "results": [
+        {
+          "outcome": "admitted",
+          "config_id": "32c3859b6298c42d473d3007d4e390bf3649a96bd17ef269e41ee5b002978b02"
+        },
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for configurations"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_configuration_separate_stores",
+      "resource": "configurations",
+      "surface": "filesystem",
+      "results": [
+        {
+          "outcome": "admitted",
+          "config_id": "265f78edfab7c59a1510ed00eaf0f96f41b34a82d8478f54c91afdb788ba4f7c"
+        },
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for configurations"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_lean_memory",
+      "resource": "lean",
+      "surface": "memory",
+      "results": [
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for lean"
+        },
+        {
+          "outcome": "admitted",
+          "attempt_id": "2916d90079894ed39c36f0b442a3f571"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_lean_native_processes",
+      "resource": "lean",
+      "surface": "processes",
+      "results": [
+        {
+          "outcome": "admitted",
+          "attempt_id": "37e9b950a6d04b0884970ae6eb8e7c6a"
+        },
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for lean"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_lean_separate_stores",
+      "resource": "lean",
+      "surface": "filesystem",
+      "results": [
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for lean"
+        },
+        {
+          "outcome": "admitted",
+          "attempt_id": "f978983ca5c84f13bc7b4ce22323daef"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_research_memory",
+      "resource": "research",
+      "surface": "memory",
+      "results": [
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for research"
+        },
+        {
+          "outcome": "admitted",
+          "attempt_id": "b7de54a3fc3a46bbbbf21a7a43c2281b"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_research_native_processes",
+      "resource": "research",
+      "surface": "processes",
+      "results": [
+        {
+          "outcome": "admitted",
+          "attempt_id": "9ba99ea953ac4d60846b2360fa30ec0b"
+        },
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for research"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    {
+      "case": "__main__.Admission.test_research_separate_stores",
+      "resource": "research",
+      "surface": "filesystem",
+      "results": [
+        {
+          "outcome": "rejected",
+          "exception": "BudgetExceeded",
+          "reason": "Stage2 engineering stop condition reached for research"
+        },
+        {
+          "outcome": "admitted",
+          "attempt_id": "c72739d230de401fa5163c60f8d78424"
+        }
+      ],
+      "final_usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    }
+  ],
+  "failure_details": [],
+  "error_details": [],
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]"
+  },
+  "developer_fixtures_imported": false,
+  "scope": "atomic admission; no remote receipts or real market execution",
+  "exit_code": 0
+}

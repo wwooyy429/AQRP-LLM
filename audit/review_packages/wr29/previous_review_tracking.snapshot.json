@@ -1,0 +1,144 @@
+{
+  "schema_version": 23,
+  "repository": "wwooyy429/AQRP-LLM",
+  "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+  "previous_tracking": {
+    "commit": "338bd6ea211d287396836752509d828c156ec442",
+    "path": "audit/review_tracking.json",
+    "preserved_copy": "audit/review_packages/host010/previous_review_tracking.snapshot.json"
+  },
+  "latest_independent_report": "audit/reviews/20261029-975f676-recovery009/formal_report.json",
+  "latest_independent_result": "audit/review_results/recovery009.json",
+  "reviewed_source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "reviewed_delivery_commit": "a6a5a165d87c172535cdea6cf495e3c1a850e6e4",
+  "source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
+  "accepted_stages": [
+    0,
+    1
+  ],
+  "acceptance_scope": "only independently tested offline scope of975f676; no whole-stage2 approval",
+  "software_acceptance_bound_to_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "stage_acceptance": [
+    {
+      "stage": 0,
+      "modules": "规范、身份、Registry、预算、持久化和交付",
+      "implementation": "已有离线组件",
+      "evidence": "987回归；213份身份；通知、原生锁、周期/轮次和资料检查",
+      "verdict": "已测离线范围回归通过",
+      "missing": "不包含真实宿主调度与远端真实性认证"
+    },
+    {
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型和滚动内核",
+      "implementation": "已有离线内核",
+      "evidence": "987回归及原数值16、Pearson10、IC汇总11方法重放",
+      "verdict": "已测离线范围回归通过",
+      "missing": "无已认证经济因子、生产模型或金融检验"
+    },
+    {
+      "stage": 2,
+      "modules": "QC、缓存、摄入、任务桥、通知恢复",
+      "implementation": "部分实现",
+      "evidence": "本地通知恢复及Windows修复通过；旧b1a归档工程回执重解析",
+      "verdict": "局部软件范围通过；整体未通过",
+      "missing": "新候选真实调度/云端；完整US200/SID及财务时点认证；完整计费认证派发"
+    },
+    {
+      "stage": 3,
+      "modules": "评价、共同样本、成熟标签、滚动",
+      "implementation": "局部内核",
+      "evidence": "仓库与数值合成回归",
+      "verdict": "未验收",
+      "missing": "完整分层收益/风险报告和真实固定六轮研究"
+    },
+    {
+      "stage": 4,
+      "modules": "无订单接收器、标签成交与成本",
+      "implementation": "局部工程组件",
+      "evidence": "旧有限2018工程零订单回执",
+      "verdict": "未验收",
+      "missing": "完整组合、订单成交、持仓现金净值、风险、对账及压力验证"
+    },
+    {
+      "stage": 5,
+      "modules": "提案、持久化控制器、adapter接口",
+      "implementation": "局部原语",
+      "evidence": "离线回归；闸门关闭",
+      "verdict": "未验收",
+      "missing": "实际GPT客户端、模型/调用/费用设置和真实无人值守闭环"
+    },
+    {
+      "stage": 6,
+      "modules": "结构相似、相关性、复杂度",
+      "implementation": "局部原语",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整搜索、消融、净组合增量和选择偏差实证"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结元数据、暴露记录及闸门",
+      "implementation": "骨架",
+      "evidence": "原暴露与关闭闸门保留",
+      "verdict": "未验收",
+      "missing": "独立最终执行器、前向模拟、监控回滚；2026独立性未认证"
+    }
+  ],
+  "known_open_findings": [],
+  "known_open_findings_scope": "No new product defect confirmed in this exact review; not proof of absence in untested code.",
+  "current_candidate": {
+    "kind": "offline_followup_host_adapter",
+    "source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+    "source_manifest_hash": "74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07",
+    "independent_acceptance": false,
+    "cloud_deployed": false
+  },
+  "latest_real_runtime_source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+  "historical_terminal_materials_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+  "actual_review_task": {
+    "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
+    "host_id": "local",
+    "title": "更新 GPT 审核与验收状态",
+    "kind": "codex",
+    "execution_environment": "local",
+    "completed_turn_id": "01a18688-4f78-79e1-b014-83ff4ca9b3ae",
+    "identity_evidence": "Read by the parent archivist from the completed local Codex review task."
+  },
+  "current_engineering_round": {
+    "round_id": "stage2-storage-repair-round-008",
+    "status": "closed",
+    "new_round_registered": false
+  },
+  "budget_usage": {
+    "configuration_cycle": {
+      "used": 3,
+      "limit": 13
+    },
+    "lifetime_configurations": 16,
+    "research": {
+      "used": 17,
+      "limit": 20
+    },
+    "lean": {
+      "used": 3,
+      "limit": 16
+    },
+    "journal_events": 71
+  },
+  "remaining_stage2_acceptance_gates": [
+    "New host adapter requires its own fixed-version independent review and actual host integration.",
+    "New candidate44-file cloud chain has not run.",
+    "Full2010-2023 historical US200/SID/calendar/raw-prices/actions coverage remains uncertified.",
+    "Financial numeric catalog is0; actual historical vintage/publication/vendor-delivery/ingestion evidence absent.",
+    "Complete charged certification dispatch remains unaccepted."
+  ],
+  "new_market_or_model_calls": 0,
+  "new_budget_events": 0,
+  "whole_system_acceptance": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_evaluation_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified",
+  "sealed_request_package009": "Use original a6a5a16 Git snapshot; its pending flag is the historical request, not current review status."
+}

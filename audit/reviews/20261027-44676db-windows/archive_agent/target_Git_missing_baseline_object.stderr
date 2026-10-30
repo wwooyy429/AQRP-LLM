@@ -1,0 +1,13 @@
+fatal: path 'audit/stage2_current_readiness.json' exists on disk, but not in '0000000000000000000000000000000000000000'
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-44676db-20261027\source\tools\review_metadata.py", line 92, in <module>
+    print(json.dumps(check_repository(args.root), ensure_ascii=True))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-44676db-20261027\source\tools\review_metadata.py", line 75, in check_repository
+    previous = json.loads(git("show", baseline + ":audit/stage2_current_readiness.json"))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-44676db-20261027\source\tools\review_metadata.py", line 73, in git
+    return subprocess.check_output(["git", *args], cwd=root)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'show', '0000000000000000000000000000000000000000:audit/stage2_current_readiness.json']' returned non-zero exit status 128.

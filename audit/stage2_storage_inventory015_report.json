@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "kind": "actual_native_readonly_inventory015_completed_storage_gate_blocked",
+  "created_UTC": "2026-10-30T11:58:49.388738+00:00",
+  "software_source_commit": "df48fbbe1f403913501c6bad16474fd7d4e2e25e",
+  "software_test_full_source_hash": "04ea4a4e643eb2f332bc49df6d461aac8ce03840bf812429757171a23ca597bf",
+  "current_full_source_hash": "287170b901f52bec49e7b287ea541a3902fce2c7163953d4c40eaa634da22625",
+  "stable_execution_source_hash": "3647699251dee91509f5fdfffb1f6c1a3d4267ef51a71c8274aaaeb7526f9db7",
+  "source_files": 238,
+  "only_source_manifest_difference_after_execution": [
+    "config/budget.json"
+  ],
+  "difference_is_authorized_budget_usage_projection": true,
+  "full_product_synthetic_tests_at_software_freeze": 1135,
+  "product_tests_repeated_after_usage_only_change": false,
+  "project_id": 38436695,
+  "round_id": "stage2-object-store-inventory015",
+  "attempt_id": "d22d36298ece423da53ed13817dd9b2e",
+  "configuration_hash": "af100cd106ffb1791dba688745b538172a5c3cb3fbd6edb0c5676ea0415116cd",
+  "plan_hash": "936f412cbeb24ab7f4d4946b9150ef63823b587c67ab1b9e9698d6be36248643",
+  "native_status": "completed",
+  "Registry_status": "completed",
+  "round_status": "closed",
+  "actual_Research_execute_calls": 1,
+  "actual_LEAN_submissions": 0,
+  "automatic_retries": 0,
+  "refunds": 0,
+  "budget_resets": 0,
+  "extra_purchases": 0,
+  "worker_sha256": "9f60769abc5430d2501e563750dcf13100662e7e181a450407ba8f0722981763",
+  "worker_PROJECT_exact_readback": true,
+  "worker_runtime_exact_source_guard_passed": true,
+  "isolated_worker_file_count": 1,
+  "full49_production_candidate_deployed": false,
+  "capacity_method": "QC SDK keys/get_file_path stat; unique-key byte sum; native max_size/max_files; two matching metadata observations",
+  "capacity_observed": {
+    "free_size_bytes": 53895,
+    "key_size_sha256": "fed74f73aca0dddfb905874cb90872d8996053c4dae2506c225afeddf940181a",
+    "lean_byte_envelope_sufficient": false,
+    "lean_required_bytes": 73728,
+    "max_files": 1000,
+    "max_size_bytes": 52428800,
+    "used_files": 488,
+    "used_size_bytes": 52374905
+  },
+  "frozen_LEAN_byte_envelope_deficit": 19833,
+  "capacity_is_not_platform_billing_evidence": true,
+  "atomic_snapshot_or_exclusive_reservation": false,
+  "objects_observed": 488,
+  "actual_object_hashes": 438,
+  "typed_references": {
+    "edges": 229,
+    "different_sources": 33,
+    "different_targets": 229,
+    "all_observed_targets_exist_and_hash_match": true,
+    "by_kind": {
+      "feature_manifest_payload": 5,
+      "historical_window_batch": 224
+    },
+    "scope": "known metadata schemas and authorized development payloads only; unknown consumers/receipts stay outside this graph"
+  },
+  "read_summary": {
+    "metadata_keys_found": 209,
+    "metadata_keys_requested": 220,
+    "metadata_passes": 2,
+    "metadata_read_calls": 209,
+    "missing_metadata_keys": 11,
+    "objects_hashed": 438,
+    "payload_read_calls": 229,
+    "total_read_bytes": 49007355,
+    "unread_objects": 50,
+    "unrecognized_metadata_objects": 20
+  },
+  "bounded_graph_payload_review_pool": {
+    "objects": 16,
+    "exact_physical_bytes": 2772902,
+    "old13_objects": 13,
+    "old13_exact_physical_bytes": 2101788,
+    "new_objects": 3,
+    "new_exact_physical_bytes": 671114,
+    "not_a_deletion_manifest_or_potential_reclaim_estimate": true
+  },
+  "pool_is_not_a_safe_deletion_manifest": true,
+  "all_objects_and_historical_receipts_retained": true,
+  "explicit_Object_Store_save_delete_clear_calls": 0,
+  "SDK_may_flush_existing_dirty_cache_during_get_file_path": true,
+  "global_reference_closure_complete": false,
+  "confirmed_reclaimable_bytes": 0,
+  "potential_reclaimable_total_bytes": null,
+  "independent_safe_deletion_acceptance": false,
+  "source_static_cross_project_check": "main35 matches complete; four other project checks returned A1 busy, not treated as no consumers",
+  "evidence_gaps": [
+    "20 content-read metadata objects use unrecognized schemas; their transitive references are not decoded",
+    "50 objects remain content-unread, including all16 bounded-graph payload review candidates",
+    "11 locally/UI claimed allowlist keys were not found; local claims include historical/synthetic placeholders",
+    "cross-project dynamic and external consumers are not certified by this typed graph",
+    "no raw headers or payload hashes were inspected for the16 review candidates",
+    "historical retention responsibility and safe deletion have not been independently accepted"
+  ],
+  "native_tool_response": "audit/review_packages/storage_inventory015/execute_cell_native.json",
+  "native_result": "audit/review_packages/storage_inventory015/settled_result.json",
+  "fixed_analysis": "audit/review_packages/storage_inventory015/actual_analysis.stdout.txt",
+  "registry_events_before": 80,
+  "registry_events_after": 86,
+  "original80_raw_prefix_preserved": true,
+  "new_registry_event_kinds": [
+    "engineering_round_authorized",
+    "config_registered",
+    "attempt_started",
+    "pending",
+    "completed",
+    "engineering_round_closed"
+  ],
+  "usage_after": {
+    "configurations": {
+      "total": 18,
+      "normal": 13,
+      "reserve": 5
+    },
+    "research": {
+      "total": 19,
+      "normal": 11,
+      "reserve": 8
+    },
+    "lean": {
+      "total": 4,
+      "normal": 4,
+      "reserve": 0
+    }
+  },
+  "configuration_cycle_after": {
+    "authorization_ref": {
+      "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+      "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+    },
+    "capacity": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "cycle_id": "configuration-cycle-20261029-002",
+    "cycle_ref": {
+      "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+      "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+    },
+    "lifetime_usage": {
+      "normal": 13,
+      "reserve": 5,
+      "total": 18
+    },
+    "remaining": {
+      "normal": 3,
+      "reserve": 5,
+      "total": 8
+    },
+    "schema_version": 1,
+    "sequence": 1,
+    "starting_lifetime_usage": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "state_hash": "176c585e47ec1b421f204a9231adb79294498b0eab6771c30737fa370a3afb77",
+    "usage": {
+      "normal": 5,
+      "reserve": 0,
+      "total": 5
+    }
+  },
+  "budget_limits_unchanged": true,
+  "additional_Research_remaining": 1,
+  "LEAN_used": 4,
+  "ordered_work": [
+    {
+      "step": 1,
+      "status": "completed",
+      "fixed_commit": "d63a92975744b588def319c632d0cfe90f3841d6"
+    },
+    {
+      "step": 2,
+      "status": "bounded_cloud_diagnostic_completed_full_closure_and_disposition_insufficient"
+    },
+    {
+      "step": 3,
+      "status": "blocked_frozen_storage_gate_no_production_candidate_execution"
+    },
+    {
+      "step": 4,
+      "status": "inventory_own_native_receipt_complete_production_collector_chain_still_unverified"
+    },
+    {
+      "step": 5,
+      "status": "full_US200_financial_vintage_availability_currency_evidence_missing"
+    },
+    {
+      "step": 6,
+      "status": "platform_billing_evidence_missing_whole_phase2_not_accepted"
+    }
+  ],
+  "new_software_independent_review": "pending_exact_version_review",
+  "WR31_scoped_closure_preserved": true,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "2024_2025_exposure_preserved": true,
+  "2026_independence": "not_certified",
+  "read_byte_counter_scope": "Explicit object_store.read_bytes returned bytes only; SDK get_file_path/stat materialization I/O is not measured by this counter.",
+  "wall_time_limit_scope": "Cooperative checks between SDK operations; not a hard interruption guarantee for a blocking SDK call.",
+  "local_report_generator_first_failure": "audit/review_packages/storage_inventory015/first_report_generator_failure.json"
+}

@@ -1,0 +1,12 @@
+只读QA结论：未发现本代理恢复范围或证据边界的实质错误，无需修正。
+
+核对文件：新根formal_report.json、formal_report.txt，对照recovery_agent/report.json。未重跑测试，未修改正式报告、生产源码、预算或账本；本次仅写本qa.txt。
+
+1. 原恢复5方法/46子例、新loader合同3方法/28子例均全过；另1程序/4个合成失败探针单列，未误作4个unittest方法。总计8方法/74子例与4探针分列准确。
+2. recovery_runtime_counts中的116实际CLI进程、12 direct freeze进程、14 synthetic metadata_finish、实际worker0，与本代理原始记录一致。该worker0仅限恢复代理，报告另列联合worker组件和注解worker次数，范围未混淆。
+3. WR18_acceptance.compatibility保留v1/v2 Research/LEAN成功失败、status缺席/completed及已完成幂等，符合本代理覆盖。原提交status缺席与同步completed合法路径均保留，幂等读没有被表述为重新执行许可。
+4. 4个失败探针被明确标为合成检查失败Research报告和合成LEAN Runtime Error，不是真实原生失败证据；platform_evidence_level.real_native_failure_receipt_verified=false。未将成功合成cell中的failed检查报告当作真实失败Research执行。
+5. WR18软件修复后通过限定于已测本地合同/合成范围；stage2/full_stage2仍pending，真实部署、成功/失败原生执行和数据/金融认证继续未验收。WR19/P3另列为非阻断元数据问题，没有混同为本代理的生产缺陷。
+6. 本轮无QC访问；旧LEAN last_archived_status=pending但current_platform_status/completed/failed均null，status_results_logs_read=false。历史25实现+1输入核对与本轮源码/部署/终态认证已区分。
+
+补充：原字节脚本摘要仍保留ae commit字面量，本代理report.json已有明确解释，并用实际--source argv和81f工程源码哈希绑定本轮目标；正式报告未把这些旧字面量当作本轮源码身份。

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "review_kind": "developer_materials_read_only_QA",
+  "issues": [
+    {
+      "id": "P01-MAT-01",
+      "finding": "wasSuccessful alone permits skipped/expectedFailure methods; strict all-passed guard required",
+      "repair": "Require passed==expected count and zero failed/errors/skipped/expected/unexpected outcomes",
+      "status": "strict_guard_updated_before_final_delivery"
+    },
+    {
+      "id": "P01-MAT-02",
+      "finding": "Initial developer check used NumPy 2.2.6 instead of locked1.26.4",
+      "repair": "Preserve unpinned compatibility report and rerun in isolated pinned environment",
+      "status": "unpinned_report_preserved_pinned_venv141_passed"
+    }
+  ],
+  "production_source_changed": false,
+  "new_market_calls": 0,
+  "new_review_requested": false,
+  "final_pinned_developer_check": {
+    "run": 141,
+    "passed": 141,
+    "requirements_top_level_versions_matched": true,
+    "independent_review": false
+  }
+}

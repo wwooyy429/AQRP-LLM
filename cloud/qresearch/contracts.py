@@ -20,6 +20,30 @@ def aware(value):
     return result.tz_convert(NY)
 
 
+def formation_index(values):
+    """Use one NY timezone implementation while preserving actual instants.
+
+    Pandas considers pytz and ZoneInfo indexes unequal despite equal instants.
+    All shared feature/membership boundaries therefore normalize representation
+    before structural equality checks. Naive or missing times remain invalid.
+    """
+    if isinstance(values, pd.DatetimeIndex) and values.tz is None:
+        raise ValueError("Explicit time zone required")
+    return pd.DatetimeIndex([aware(value) for value in values], tz=NY,
+                            name=getattr(values, "name", None))
+
+
+def canonical_membership(frame):
+    """Copy historical members with a canonical, still strictly aligned index."""
+    if not isinstance(frame, pd.DataFrame) or not isinstance(frame.index, pd.DatetimeIndex):
+        raise ValueError("Universe membership must be a time-indexed DataFrame")
+    result = frame.copy(deep=True)
+    result.index = formation_index(frame.index)
+    if not result.index.is_unique or not result.index.is_monotonic_increasing:
+        raise ValueError("Universe membership times must be causal, aware, unique and sorted")
+    return result
+
+
 def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=True,
                                      separators=(",", ":"), allow_nan=False).encode()).hexdigest()
@@ -86,7 +110,7 @@ class PITWindow:
         for field, frame in self.matrices.items():
             if not isinstance(frame, pd.DataFrame):
                 raise ValueError("Feature matrices must be DataFrames")
-            index = pd.DatetimeIndex(frame.index)
+            index = formation_index(pd.DatetimeIndex(frame.index))
             if index.tz is None or not index.is_unique or not index.is_monotonic_increasing:
                 raise ValueError("Formation index must be unique, sorted and timezone aware")
             if len(index) and index.max() > stamp:
@@ -99,10 +123,10 @@ class PITWindow:
             if field.lower().startswith(("label", "target", "future_", "forward_")):
                 raise ValueError("Labels must remain separate")
             copied[field] = frame.reindex(columns=sids).copy(deep=True)
+            copied[field].index = index
         membership = self.universe_membership
         if membership is not None:
-            if not isinstance(membership, pd.DataFrame) or not isinstance(membership.index, pd.DatetimeIndex):
-                raise ValueError("Universe membership must be a time-indexed DataFrame")
+            membership = canonical_membership(membership)
             if (membership.index.tz is None or not membership.index.is_unique
                     or not membership.index.is_monotonic_increasing
                     or (len(membership) and membership.index.max() > stamp)):

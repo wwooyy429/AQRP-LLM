@@ -1,0 +1,24 @@
+--- independent_archive_validation_continue.py
++++ independent_archive_validation_final.py
+@@ -26,6 +26,12 @@
+ check('protected_declares122',len(protected)==122)
+ for label,root in [('candidate',S),('baseline',B),('archive',A)]:
+  check('protected_raw_all_'+label,all(digest((root/name).read_bytes())==d for name,d in protected.items()),detail={'files':122})
++check('protected_actual_original_bytes_equal_baseline_archive',all((S/name).read_bytes()==(B/name).read_bytes()==(A/name).read_bytes()for name in protected))
++pkg=S/'audit/review_packages/deployment-eof-v2';artifact=read(pkg,'artifact_manifest.json')
++check('package_artifact_all10_raw_hashes',len(artifact['files'])==10 and all(digest((pkg/n).read_bytes())==d for n,d in artifact['files'].items()))
++full=read(pkg,'full_offline_verification.json');ref=full['stage_verification_ref']
++check('full_offline_stage_raw_reference',digest((S/ref['path']).read_bytes())==ref['sha256'])
++check('full_offline_embedded_outputs_hashes',all(digest(full[n].encode())==full[n+'_sha256']for n in ['stdout','stderr']))
+ declared_maps=read(S.parents[0],'source_git_manifest.json')
+ for name in before:check('complete_raw_git_'+name,before[name]==declared_maps[name]['files'],detail={'count':len(before[name])})
+ 
+@@ -70,7 +76,7 @@
+ check('native_failure_equals_original_saved_completion',completion==stored_completion and digest(canon(completion))==expected_ref['sha256'],'dynamic_Metadata')
+ submission=bridge._recorded_submission(payload);status,passed=bridge._completion_contract(payload,submission,completion)
+ check('failure_contract_never_success',status=='runtime_error'and passed is False,'dynamic_Metadata')
+-check('raw_native_response_hash_bound',completion['platform']['raw_receipt']['response_sha256']==digest(canon(native)))
++check('raw_native_response_hash_bound',completion['platform']['raw_receipt']['response_sha256']==digest(canon(packet['result'])))
+ check('raw_native_completion_identity_bound',completion['platform']['deployment']==deployment and completion['platform']['identity']==dict(payload['identity'],external_id='3e68866a46ca88ff16481c31b3c2c822'))
+ calls=[]
+ def forbidden_reader(*args):calls.append(True);raise AssertionError('Already-failed original called completion reader')

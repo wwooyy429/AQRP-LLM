@@ -1,0 +1,47 @@
+--- original_nested_annotations_probe.py
++++ adapted_nested_annotations_probe.py
+@@ -15,6 +15,7 @@
+ from qresearch.registry import Registry
+ from qresearch.collection_tasks import CollectionTaskPlan,CollectionTaskBridge
+ from qresearch.collection_execution import run_collection_task,stdout_marker,collection_research_observation
++from qresearch.engineering_receipts import ReceiptParseError
+ def forbidden(*a,**kw):raise AssertionError('network prohibited')
+ socket.socket=forbidden
+ CAT={'dollar_volume':{'kind':'number','role':'independent_synthetic','unit':'USD','period_accessor':None}}
+@@ -58,19 +59,26 @@
+         envelope={'tool_name':'mcp__quantconnect__jupyter_execute_cell','arguments':{'projectId':99791,'index':2},
+             'result':{'isError':False,'structuredContent':native,
+                 'content':[{'type':'text','text':json.dumps(native,indent=2),'annotations':{}}]}}
+-        parsed=collection_research_observation(payload,deployment,envelope,field_catalog=CAT)
+-        bridge.record_submission(attempt,parsed['submission'])
+-        final=bridge.consume_completion(attempt,completion_source=lambda _:parsed['completion'])
+-        result=bridge.read_result(final)
++        before=dict(local._data); usage_before=reg.snapshot()['usage']; parsed=None; result=None; error=None
++        try:
++            parsed=collection_research_observation(payload,deployment,envelope,field_catalog=CAT)
++            bridge.record_submission(attempt,parsed['submission'])
++            final=bridge.consume_completion(attempt,completion_source=lambda _:parsed['completion'])
++            result=bridge.read_result(final)
++        except ReceiptParseError as exc:
++            error=str(exc)
++        actual_status=bridge._record(attempt)['status']
++        passed=(actual_status=='completed') if positive else (error is not None and actual_status=='started' and local._data==before)
+         record={'case':label,'native_shape':shape,'expected':('completed' if positive else 'reject'),
+-            'actual_status':final.status,'passes_expected_gate':positive or final.status!='completed',
+-            'parsed_stdout_only':parsed['completion']['platform']['raw_receipt']['stdout_only'],
+-            'parsed_marker_count':parsed['completion']['platform']['raw_receipt']['marker_count'],
+-            'market_values_exported':result['cloud_report']['market_values_exported'],
++            'actual_status':actual_status,'passes_expected_gate':passed,'error':error,
++            'parsed_stdout_only':parsed['completion']['platform']['raw_receipt']['stdout_only'] if parsed else None,
++            'parsed_marker_count':parsed['completion']['platform']['raw_receipt']['marker_count'] if parsed else None,
++            'market_values_exported':result['cloud_report']['market_values_exported'] if result else None,
+             'row_sentinel_persisted_in_registry':SECRET.encode() in b''.join(local._data.values()),
+-            'native_envelope':envelope,'source_fetch_calls':source.calls,'research_usage':reg.snapshot()['usage']['research']['total']}
++            'native_envelope':envelope,'source_fetch_calls':source.calls,'research_usage':reg.snapshot()['usage']['research']['total'],
++            'usage_unchanged':reg.snapshot()['usage']==usage_before,'registry_unchanged_on_reject':local._data==before if error else None}
+         records.append(record)
+-summary={'commit':'be9442603a31481a9a71e51ca794df77650c7411','command_argv':sys.argv,
++summary={'commit':'dc49f0f3037918f3ce4413665c59b164a8d6e2b7','command_argv':sys.argv,
+     'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'method':'synthetic full-chain parameterized probe',
+     'subcases':len(records),'negative_false_acceptances':sum(not x['passes_expected_gate'] for x in records),
+     'positive_controls':sum(x['expected']=='completed' for x in records),'cases':records,

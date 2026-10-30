@@ -1,0 +1,36 @@
+[
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\independent_receipts.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent'",
+    "tool_chunk_id": "f22ecb",
+    "exit_code": 1,
+    "purpose": "首次独立14方法54子例；保留2个回归失败"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\minimal_parallel_output.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\minimal_parallel_output.json'",
+    "tool_chunk_id": "bddb39",
+    "exit_code": 1,
+    "purpose": "公共prepare-task→worker→原生形状→CLI research-result→Registry最小复现；3个误接受"
+  },
+  {
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\adapter_recovery.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\adapter_recovery.json'",
+    "tool_chunk_id": "e11f78",
+    "exit_code": 0,
+    "purpose": "实际合成adapter回调未知/拒绝/worker异常3个恢复探针"
+  },
+  {
+    "purpose": "只读发现路径错误",
+    "tool_chunk_id": "b6f55d",
+    "exit_code": 1,
+    "command": "Get-Content -LiteralPath 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source\\cloud\\qresearch\\collection_task_cli.py'",
+    "error": "Cannot find path ... because it does not exist.",
+    "resolution": "rg --files定位到source/tools/collection_task_cli.py后读取；未修改源文件。"
+  },
+  {
+    "purpose": "只读预期研究入口路径不存在",
+    "tool_chunk_id": "33b016",
+    "exit_code": 1,
+    "command": "rg -n -C 3 'collection|run_collection' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source\\cloud\\research.py' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source\\cloud\\research.ipynb' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\source\\cloud\\research_config.py'",
+    "error": "cloud/research.py与cloud/research.ipynb不存在",
+    "resolution": "改读实际worker和tools/collection_task_cli.py；不将路径发现错误报告为产品缺陷。"
+  }
+]

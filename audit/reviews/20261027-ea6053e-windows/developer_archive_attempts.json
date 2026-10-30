@@ -1,0 +1,31 @@
+{
+  "kind": "developer_archival_reader_attempts_not_product_failures",
+  "attempts": [
+    {
+      "attempt": 1,
+      "full_original_manifest_and_ZIP_verified": true,
+      "fixed_git_snapshots_verified": [
+        4541,
+        4270,
+        4204
+      ],
+      "result": "stopped_before_selection_finished",
+      "exception": "UnicodeDecodeError",
+      "operation": "raw.decode(utf-8) on original non-UTF8 stdout",
+      "first_path": "archive_agent/first.stdout",
+      "initial_helper_preserved_as": "developer_archive_initial.py"
+    },
+    {
+      "attempt": 2,
+      "correction": "Explicitly retain two non-UTF8 originals externally by raw path/hash; never transcode them. Original first-result JSON/stderr/corrected records remain selected.",
+      "result": "completed",
+      "complete_manifest_and_ZIP_verified": true,
+      "fixed_git_snapshots_verified": [
+        4541,
+        4270,
+        4204
+      ],
+      "selected_original_count": 325
+    }
+  ]
+}

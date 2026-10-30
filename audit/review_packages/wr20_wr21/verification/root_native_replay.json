@@ -1,0 +1,51 @@
+{
+  "kind": "developer_isolated_original_packet_replay",
+  "cases": [
+    {
+      "case": "original_17_replay",
+      "passed": true,
+      "events": [
+        17,
+        17,
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_absent": true
+    },
+    {
+      "case": "15_17_17_recovery",
+      "passed": true,
+      "events": [
+        15,
+        17,
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_absent": true
+    },
+    {
+      "case": "missing_dispatch",
+      "passed": true,
+      "events": [
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_absent": true
+    },
+    {
+      "case": "wrong_cell",
+      "passed": true,
+      "events": [
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_absent": true
+    }
+  ],
+  "original_packet_sha256": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3",
+  "real_runtime_unchanged": true,
+  "real_budget_unchanged": true,
+  "new_cloud_calls": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false
+}

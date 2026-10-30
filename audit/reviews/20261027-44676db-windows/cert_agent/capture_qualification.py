@@ -1,0 +1,5 @@
+from pathlib import Path
+import hashlib,json,os,subprocess,time
+O=Path(__file__).parent;cmd=[r'C:\Users\11638\.codex\tmp\aqrp-review-20261026\venv\Scripts\python.exe','-B',str(O/'independent_qualification_boundaries.py')];t=time.perf_counter();r=subprocess.run(cmd,cwd=O,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',PYTHONIOENCODING='utf-8',OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1'),capture_output=True)
+for n,b in [('qualification_first.stdout',r.stdout),('qualification_first.stderr',r.stderr)]:(O/n).write_bytes(b)
+e={'command':cmd,'cwd':str(O),'exit_code':r.returncode,'seconds':time.perf_counter()-t,'script_raw_sha256':hashlib.sha256((O/'independent_qualification_boundaries.py').read_bytes()).hexdigest(),'stdout_raw_sha256':hashlib.sha256(r.stdout).hexdigest(),'stderr_raw_sha256':hashlib.sha256(r.stderr).hexdigest(),'actually_executed':True,'new_market_QC_model_or_authoritative_budget_calls':0};(O/'qualification_execution.json').write_bytes((json.dumps(e,ensure_ascii=False,indent=2)+'\n').encode());print(r.stdout.decode());raise SystemExit(r.returncode)

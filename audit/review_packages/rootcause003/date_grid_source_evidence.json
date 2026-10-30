@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "purpose": "public_code_and_synthetic_calendar_evidence_no_market_rows",
+  "public_image_source_mapping": {
+    "image": "quantconnect/research:18207",
+    "public_image_url": "https://hub.docker.com/layers/quantconnect/research/18207/images/sha256-1caea42620292c4a1a9584d244a5a861e06c08110cf37a6285539703135bc11a",
+    "manifest_digest": "sha256:1caea42620292c4a1a9584d244a5a861e06c08110cf37a6285539703135bc11a",
+    "selected_layer_command": "COPY ./Lean/Launcher/bin/Debug/ /Lean/Launcher/bin/Debug/",
+    "selected_code_layer_bytes": 25795508,
+    "selected_code_layer_sha256": "067c3c21ebf9697620874ea65d9f59ea69d5f86171833d862b95a8fe0274a082",
+    "source_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+    "binary_source_link_evidence": [
+      {
+        "assembly": "QuantConnect.Algorithm",
+        "dll_sha256": "44ebeff5d98a943680f9eb6337f3b6cfc681bbc4185be719f4886eec84008cf1",
+        "pdb_sha256": "4ec779cbb06600131b94dd4a6faadfe301cdf891a771ae34a1ddb4cf5c8dc774",
+        "source_link": {
+          "documents": {
+            "/LeanCloud/CI.Builder/bin/Release/src/QuantConnect/Lean/*": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/*"
+          }
+        }
+      },
+      {
+        "assembly": "QuantConnect.Common",
+        "dll_sha256": "04cd63cf8425bbd2887b6aba003699b8460bb21fd157be1ca727d7e2f16c5144",
+        "pdb_sha256": "194d9b0a25c2f1c09d278302da7a2fea7f9c6ca115f7a51bd0d6b7c9ed456bcc",
+        "source_link": {
+          "documents": {
+            "/LeanCloud/CI.Builder/bin/Release/src/QuantConnect/Lean/*": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/*"
+          }
+        }
+      },
+      {
+        "assembly": "QuantConnect.Research",
+        "dll_sha256": "d21bc289b09e43c94319ce47601ca1e3c1ad9a4e26ef89f170ab9d5795dfd28e",
+        "pdb_sha256": "0cdc03c74f335f86d278100b8a29e5ca8a42640b59ecac437188b12a3b3b9cda",
+        "source_link": {
+          "documents": {
+            "/LeanCloud/CI.Builder/bin/Release/src/QuantConnect/Lean/*": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/*"
+          }
+        }
+      }
+    ],
+    "cloud_same_binary_bytes_verified": false,
+    "reason_not_cloud_identity": "Same public LEAN version label is not a cloud assembly hash or loaded-image identity receipt."
+  },
+  "upstream_source_files": [
+    {
+      "path": "Common/Time.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Time.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Time.cs",
+      "sha256": "ffff9ee93b45d03367bd4a262e7222afacce5d9a7ca836d7d3bdf0bb70e0ce8e",
+      "excerpts": [
+        {
+          "first_line": 571,
+          "last_line": 596,
+          "source": "        public static IEnumerable<DateTime> EachTradeableDayInTimeZone(SecurityExchangeHours exchange, DateTime from, DateTime thru, DateTimeZone timeZone, bool includeExtendedMarketHours = true)\n        {\n            var currentExchangeTime = from;\n            thru = thru.Date.AddDays(1); // we want to include the full thru date\n            while (currentExchangeTime < thru)\n            {\n                // take steps of max size of one day in the data time zone\n                var currentInTimeZone = currentExchangeTime.ConvertTo(exchange.TimeZone, timeZone);\n                var currentInTimeZoneEod = currentInTimeZone.Date.AddDays(1);\n\n                var currentExchangeTimeEod = currentInTimeZoneEod.ConvertTo(timeZone, exchange.TimeZone);\n\n                // don't pass the end\n                if (currentExchangeTimeEod > thru)\n                {\n                    currentExchangeTimeEod = thru;\n                }\n\n                // perform market open checks in the exchange time zone\n                if (exchange.IsOpen(currentExchangeTime, currentExchangeTimeEod, includeExtendedMarketHours))\n                {\n                    yield return currentInTimeZone.Date;\n                }\n\n                currentExchangeTime = currentExchangeTimeEod;\n            }"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/HistoryRequest.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequest.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequest.cs",
+      "sha256": "1cc88953e8bff8373dc3ec9e6bae01947d6e611e3f44a0fb1fa10d64e93a5f15",
+      "excerpts": [
+        {
+          "first_line": 103,
+          "last_line": 108,
+          "source": "        public override IEnumerable<DateTime> TradableDaysInDataTimeZone => Time.EachTradeableDayInTimeZone(ExchangeHours,\n            StartTimeLocal,\n            EndTimeLocal,\n            DataTimeZone,\n            IncludeExtendedMarketHours);\n"
+        }
+      ]
+    },
+    {
+      "path": "Common/Extensions.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Extensions.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Extensions.cs",
+      "sha256": "c34e4f3c1403ba1b09a6d0582271f6e9a67bb0ee62d274d06b9f546f751e22ae",
+      "excerpts": [
+        {
+          "first_line": 222,
+          "last_line": 251,
+          "source": "        public static MarketHoursDatabase.Entry GetEntry(this MarketHoursDatabase marketHoursDatabase, Symbol symbol, IEnumerable<Type> dataTypes)\n        {\n            if (symbol.SecurityType == SecurityType.Base)\n            {\n                if (!marketHoursDatabase.TryGetEntry(symbol.ID.Market, symbol, symbol.ID.SecurityType, out var entry))\n                {\n                    var type = dataTypes.Single();\n                    var baseInstance = type.GetBaseDataInstance();\n                    baseInstance.Symbol = symbol;\n                    SecurityIdentifier.TryGetCustomDataType(symbol.ID.Symbol, out var customType);\n                    // for custom types we will add an entry for that type\n                    entry = marketHoursDatabase.SetEntryAlwaysOpen(symbol.ID.Market, customType != null ? $\"TYPE.{customType}\" : null, SecurityType.Base, baseInstance.DataTimeZone());\n                }\n                return entry;\n            }\n\n            var result = marketHoursDatabase.GetEntry(symbol.ID.Market, symbol, symbol.ID.SecurityType);\n\n            // For the OptionUniverse and FutureUniverse types, the exchange and data time zones are set to the same value (exchange tz).\n            // This is not actual options/futures data, just chains/universe selection, so we don't want any offsets\n            // between the exchange and data time zones.\n            // If the MHDB were data type dependent as well, this would be taken care in there.\n            if (result != null && dataTypes.Any(dataType => dataType.IsAssignableTo(typeof(BaseChainUniverseData))))\n            {\n                result = new MarketHoursDatabase.Entry(result.ExchangeHours.TimeZone, result.ExchangeHours);\n            }\n\n            return result;\n        }\n"
+        }
+      ]
+    },
+    {
+      "path": "Common/Securities/MarketHoursDatabase.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Securities/MarketHoursDatabase.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Securities/MarketHoursDatabase.cs",
+      "sha256": "f786f49fe7f1ef88341c85ae57f6023cd80ae4146ffff72376281de31599c073",
+      "excerpts": [
+        {
+          "first_line": 253,
+          "last_line": 268,
+          "source": "        private bool TryGetEntryImpl(string market, string symbol, SecurityType securityType, out Entry entry)\n        {\n            var symbolKey = new SecurityDatabaseKey(market, symbol, securityType);\n            return Entries.TryGetValue(symbolKey, out entry)\n                // now check with null symbol key\n                || Entries.TryGetValue(symbolKey.CreateCommonKey(), out entry)\n                // if FOP check for future\n                || securityType == SecurityType.FutureOption && TryGetEntry(market,\n                    FuturesOptionsSymbolMappings.MapFromOption(symbol), SecurityType.Future, out entry)\n                // if custom data type check for type specific entry\n                || (securityType == SecurityType.Base && SecurityIdentifier.TryGetCustomDataType(symbol, out var customType)\n                    && Entries.TryGetValue(new SecurityDatabaseKey(market, $\"TYPE.{customType}\", securityType), out entry));\n        }\n\n        /// <summary>\n        /// Gets the entry for the specified market/symbol/security-type"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/Fundamental/FundamentalUniverse.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FundamentalUniverse.cs",
+      "sha256": "275d6b36f27a20b2723a99bf62d99f4f1b35465829c3445d12220b36e2d98769",
+      "excerpts": [
+        {
+          "first_line": 71,
+          "last_line": 82,
+          "source": "        public override BaseData Reader(SubscriptionDataConfig config, string line, DateTime date, bool isLiveMode)\n        {\n            try\n            {\n                var csv = line.Split(',');\n                var symbol = new Symbol(SecurityIdentifier.Parse(csv[0]), csv[1]);\n                return new Fundamental(date, symbol);\n            }\n            catch (Exception)\n            {\n                return null;\n            }"
+        },
+        {
+          "first_line": 108,
+          "last_line": 114,
+          "source": "        public override Symbol UniverseSymbol(string market = null)\n        {\n            market ??= QuantConnect.Market.USA;\n            var ticker = $\"{GetType().Name}-{market}-{Interlocked.Increment(ref _universeCount):D10}-{Guid.NewGuid()}\";\n            return Symbol.Create(ticker, SecurityType.Equity, market, baseDataType: GetType());\n        }\n"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/Fundamental/Fundamental.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Fundamental.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/Fundamental.cs",
+      "sha256": "89c885e5d5020cf24c6270a3515d1b7d57b634dd369bee861be960a89bfc5343",
+      "excerpts": [
+        {
+          "first_line": 25,
+          "last_line": 26,
+          "source": "    public class Fundamental : FineFundamental\n    {"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/Fundamental/FineFundamental.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FineFundamental.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/Fundamental/FineFundamental.cs",
+      "sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8",
+      "excerpts": [
+        {
+          "first_line": 25,
+          "last_line": 26,
+          "source": "    public partial class FineFundamental\n    {"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/UniverseSelection/CoarseFundamental.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/CoarseFundamental.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/CoarseFundamental.cs",
+      "sha256": "3c835e791a458de46effe1478f46f18d5488794b80ba0dcd1be9ebc8f312dc2b",
+      "excerpts": [
+        {
+          "first_line": 70,
+          "last_line": 74,
+          "source": "        public override DateTime EndTime\n        {\n            get { return Time + QuantConnect.Time.OneDay; }\n            set { Time = value - QuantConnect.Time.OneDay; }\n        }"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/UniverseSelection/FundamentalUniverseFactory.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/FundamentalUniverseFactory.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/UniverseSelection/FundamentalUniverseFactory.cs",
+      "sha256": "afa8ef09e94699ba3a7818af0e6aa77ee5ac755b2f51a24133964f5b280f99e7",
+      "excerpts": [
+        {
+          "first_line": 96,
+          "last_line": 111,
+          "source": "        public static SubscriptionDataConfig CreateConfiguration(Symbol symbol)\n        {\n            return new SubscriptionDataConfig(typeof(Fundamental.FundamentalUniverse),\n                symbol: symbol,\n                resolution: Resolution.Daily,\n                dataTimeZone: TimeZones.NewYork,\n                exchangeTimeZone: TimeZones.NewYork,\n                fillForward: false,\n                extendedHours: false,\n                isInternalFeed: true,\n                isCustom: false,\n                tickType: null,\n                isFilteredSubscription: false\n                );\n        }\n    }"
+        }
+      ]
+    },
+    {
+      "path": "Common/Data/HistoryRequestFactory.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequestFactory.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequestFactory.cs",
+      "sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+      "excerpts": [
+        {
+          "first_line": 84,
+          "last_line": 95,
+          "source": "            var request = new HistoryRequest(subscription,\n                exchangeHours,\n                startAlgoTz.ConvertToUtc(_algorithm.TimeZone),\n                endAlgoTz.ConvertToUtc(_algorithm.TimeZone))\n            {\n                DataType = dataType,\n                Resolution = resolution.Value,\n                FillForwardResolution = fillForwardResolution,\n                TickType = subscription.TickType\n            };\n\n            if (extendedMarketHours != null)"
+        }
+      ]
+    },
+    {
+      "path": "Algorithm/QCAlgorithm.History.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Algorithm/QCAlgorithm.History.cs",
+      "sha256": "5dea50e7a720de016fa2ee9abcf8a546402148037c589a43152c894128f66c6e",
+      "excerpts": [
+        {
+          "first_line": 337,
+          "last_line": 345,
+          "source": "        public IEnumerable<BaseDataCollection> History(Universe universe, DateTime start, DateTime end, Resolution? resolution = null,\n            bool? fillForward = null, bool? extendedMarketHours = null, DataMappingMode? dataMappingMode = null,\n            DataNormalizationMode? dataNormalizationMode = null, int? contractDepthOffset = null)\n        {\n            resolution ??= universe.Configuration.Resolution;\n            var requests = CreateDateRangeHistoryRequests(new[] { universe.Symbol }, universe.DataType, start, end, resolution, fillForward, extendedMarketHours,\n                dataMappingMode, dataNormalizationMode, contractDepthOffset);\n            return GetDataTypedHistory<BaseDataCollection>(requests).Select(x => x.Values.Single());\n        }"
+        },
+        {
+          "first_line": 1404,
+          "last_line": 1422,
+          "source": "        private SecurityExchangeHours GetExchangeHours(Symbol symbol, Type type = null)\n        {\n            return GetMarketHours(symbol, type).ExchangeHours;\n        }\n\n        private MarketHoursDatabase.Entry GetMarketHours(Symbol symbol, Type type = null)\n        {\n            var hoursEntry = type != null\n                ? MarketHoursDatabase.GetEntry(symbol, new[] { type })\n                : MarketHoursDatabase.GetEntry(symbol.ID.Market, symbol, symbol.ID.SecurityType);\n\n\n            // user can override the exchange hours in algorithm, i.e. HistoryAlgorithm\n            Security security;\n            if (Securities.TryGetValue(symbol, out security))\n            {\n                return new MarketHoursDatabase.Entry(hoursEntry.DataTimeZone, security.Exchange.Hours);\n            }\n"
+        }
+      ]
+    },
+    {
+      "path": "Research/QuantBook.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Research/QuantBook.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Research/QuantBook.cs",
+      "sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6",
+      "excerpts": [
+        {
+          "first_line": 939,
+          "last_line": 962,
+          "source": "        private IEnumerable<BaseDataCollection> RunUniverseSelection(Universe universe, DateTime start, DateTime? end = null, IDateRule dateRule = null)\n        {\n            var endDate = end ?? DateTime.UtcNow.Date;\n            var history = History(universe, start, endDate);\n\n            HashSet<Symbol> filteredSymbols = null;\n            SecurityType? filteredSecurityType = null;\n            Func<BaseDataCollection, BaseDataCollection> processDataPoint = dataPoint =>\n            {\n                var utcTime = dataPoint.EndTime.ConvertToUtc(universe.Configuration.ExchangeTimeZone);\n                var selection = universe.SelectSymbols(utcTime, dataPoint);\n                if (!ReferenceEquals(selection, Universe.Unchanged))\n                {\n                    filteredSymbols = selection.ToHashSet();\n                    filteredSecurityType = filteredSymbols.FirstOrDefault()?.ID.SecurityType;\n                }\n                dataPoint.Data = FilterUniverseData(dataPoint.Data, filteredSymbols, filteredSecurityType);\n                return dataPoint;\n            };\n\n            Func<BaseDataCollection, DateTime> getTime = dataPoint => dataPoint.EndTime.Date;\n\n            return PerformSelection<BaseDataCollection, BaseDataCollection>(history, processDataPoint, getTime, start, endDate, dateRule);\n        }"
+        },
+        {
+          "first_line": 1124,
+          "last_line": 1141,
+          "source": "        protected static IEnumerable<T1> PerformSelection<T1, T2>(\n            IEnumerable<T2> history,\n            Func<T2, T1> processDataPointFunction,\n            Func<T2, DateTime> getTime,\n            DateTime start,\n            DateTime endDate,\n            IDateRule dateRule = null)\n        {\n            if (dateRule == null)\n            {\n                foreach (var dataPoint in history)\n                {\n                    yield return processDataPointFunction(dataPoint);\n                }\n\n                yield break;\n            }\n"
+        }
+      ]
+    },
+    {
+      "path": "Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs",
+      "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs",
+      "raw_url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs",
+      "sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842",
+      "excerpts": [
+        {
+          "first_line": 204,
+          "last_line": 226,
+          "source": "        private class TimeBasedFilter\n        {\n            public Type RequestedType { get; set; }\n            public DateTime EndTimeLocal { get; set; }\n            public DateTime StartTimeLocal { get; set; }\n            public TimeBasedFilter(HistoryRequest request)\n            {\n                RequestedType = request.DataType;\n                EndTimeLocal = request.EndTimeLocal;\n                StartTimeLocal = request.StartTimeLocal;\n            }\n            public bool Filter(BaseData data)\n            {\n                // filter out all aux data, unless if we are asking for aux data\n                if (data.DataType == MarketDataType.Auxiliary && data.GetType() != RequestedType) return false;\n                // filter out future data\n                if (data.EndTime > EndTimeLocal) return false;\n                // filter out data before the start\n                return data.EndTime > StartTimeLocal;\n            }\n        }\n    }\n}"
+        }
+      ]
+    }
+  ],
+  "reference_calendar_origin": {
+    "path": "Data/market-hours/market-hours-database.json",
+    "url": "https://github.com/QuantConnect/Lean/blob/f3d841e60dfd010ee5fc293ea893e56952484108/Data/market-hours/market-hours-database.json",
+    "whole_reference_file_sha256": "f44effe21e7937a76a426bdb6a0de427b6440160b811b33bb6ed28c0f04ea1f0",
+    "entry": "Equity-usa-[*]",
+    "excerpt_years": [
+      2017,
+      2018,
+      2019
+    ],
+    "licensed_quotes_or_financial_values": false
+  },
+  "reference_calendar_excerpt": {
+    "dataTimeZone": "America/New_York",
+    "exchangeTimeZone": "America/New_York",
+    "sunday": [],
+    "monday": [
+      {
+        "start": "04:00:00",
+        "end": "09:30:00",
+        "state": "premarket"
+      },
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      },
+      {
+        "start": "16:00:00",
+        "end": "20:00:00",
+        "state": "postmarket"
+      }
+    ],
+    "tuesday": [
+      {
+        "start": "04:00:00",
+        "end": "09:30:00",
+        "state": "premarket"
+      },
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      },
+      {
+        "start": "16:00:00",
+        "end": "20:00:00",
+        "state": "postmarket"
+      }
+    ],
+    "wednesday": [
+      {
+        "start": "04:00:00",
+        "end": "09:30:00",
+        "state": "premarket"
+      },
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      },
+      {
+        "start": "16:00:00",
+        "end": "20:00:00",
+        "state": "postmarket"
+      }
+    ],
+    "thursday": [
+      {
+        "start": "04:00:00",
+        "end": "09:30:00",
+        "state": "premarket"
+      },
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      },
+      {
+        "start": "16:00:00",
+        "end": "20:00:00",
+        "state": "postmarket"
+      }
+    ],
+    "friday": [
+      {
+        "start": "04:00:00",
+        "end": "09:30:00",
+        "state": "premarket"
+      },
+      {
+        "start": "09:30:00",
+        "end": "16:00:00",
+        "state": "market"
+      },
+      {
+        "start": "16:00:00",
+        "end": "20:00:00",
+        "state": "postmarket"
+      }
+    ],
+    "saturday": [],
+    "holidays": [
+      "1/2/2017",
+      "1/1/2018",
+      "1/1/2019",
+      "1/16/2017",
+      "1/15/2018",
+      "1/21/2019",
+      "2/20/2017",
+      "2/19/2018",
+      "2/18/2019",
+      "4/14/2017",
+      "3/30/2018",
+      "4/19/2019",
+      "5/29/2017",
+      "5/28/2018",
+      "5/27/2019",
+      "7/4/2017",
+      "7/4/2018",
+      "7/4/2019",
+      "9/4/2017",
+      "9/3/2018",
+      "9/2/2019",
+      "11/23/2017",
+      "11/22/2018",
+      "11/28/2019",
+      "12/05/2018",
+      "12/25/2017",
+      "12/25/2018",
+      "12/25/2019"
+    ]
+  },
+  "universe_security_type": "Equity",
+  "universe_market": "usa",
+  "universe_extended_hours": false,
+  "frozen_fixture": {
+    "start": "2018-01-01T00:00:00-05:00",
+    "end_exclusive": "2018-02-10T00:00:00-05:00",
+    "timezone": "America/New_York",
+    "calendar_days_per_request": 1
+  },
+  "frozen_admission": {
+    "path": "audit/runtime/engineering/admitted-inputs/d45af7fcfdc849c888694aaa6dd7c0ae.json",
+    "sha256": "fd20455f9efae51d873600887b35c589aec972c4657536412085d077a8ca0010"
+  },
+  "local_source": {
+    "path": "cloud/qresearch/historical_source.py",
+    "sha256": "3e6b9fa6a12acedfa469f69bc909b6d7e2a37acd4329d47e59e4632e86f8442d",
+    "commit": "fbb24d3150bbf9d7a549f75d14cecd6063c43f22"
+  },
+  "sufficiency_condition": "Standard US-equity exchange hours, no per-universe AlwaysOpen override, frozen one-day requests, Fundamental date+1 EndTime.",
+  "verification_limit": "Source-equivalent tests; exact public SDK source was read but not executed. Host has .NET3.1/8 runtimes, no SDK and no .NET10 runtime. Cloud binary and request-hour settings still require a separate native receipt.",
+  "market_data_requested": false,
+  "QC_tasks_submitted": 0,
+  "financial_evidence": false,
+  "global_usage_observed_unchanged": {
+    "configurations": 9,
+    "research": 12,
+    "lean": 1
+  },
+  "final_test_enabled": false
+}

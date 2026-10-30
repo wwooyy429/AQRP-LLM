@@ -1,0 +1,27 @@
+{
+  "url": "https://raw.githubusercontent.com/QuantConnect/Lean/f3d841e60dfd010ee5fc293ea893e56952484108/Common/Data/HistoryRequestFactory.cs",
+  "saved_file": "upstream_history_factory.cs",
+  "sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+  "role": "Additional root check closes request factory hop; no bound shift, timezone conversion only",
+  "relevant_raw_one_based_lines": [
+    {
+      "line": 86,
+      "text": "startAlgoTz.ConvertToUtc(_algorithm.TimeZone),"
+    },
+    {
+      "line": 87,
+      "text": "endAlgoTz.ConvertToUtc(_algorithm.TimeZone))"
+    }
+  ],
+  "other_raw_trace_correction": {
+    "Algorithm/QCAlgorithm.History.cs:CreateDateRangeHistoryRequests": [
+      1101,
+      1111
+    ],
+    "Research/QuantBook.cs:PerformSelection_no_dateRule": [
+      1132,
+      1136
+    ]
+  },
+  "real_SDK_executed": false
+}

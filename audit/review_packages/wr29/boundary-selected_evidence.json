@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "scope": "development_support_only_not_formal_GPT_acceptance_or_financial_evidence",
+  "frozen": true,
+  "files": [
+    {
+      "path": "export/01-minimal.json",
+      "origin": "original-minimal-result.json",
+      "sha256": "622b0a238aa66ae36ed14b0334559f1a83d65cddf9a7e2aff6bb3dbd74fd0cc9",
+      "bytes": 545,
+      "meaning": "Original reviewer reproduction; actual canonical/script/module exits 0/0/0."
+    },
+    {
+      "path": "export/02-round1.json",
+      "origin": "run-20261029T120628630572Z/results.json",
+      "sha256": "30cc48849e9dd8c402b56abee1418af48da36224bc747424f196fda80a4d38f4",
+      "bytes": 73485,
+      "meaning": "First full run: 84 assertions, 79 pass, 5 fail. Includes 3 incorrect future-submission fixture expectations and 2 untraced CLI receipt failures."
+    },
+    {
+      "path": "export/03-round2.json",
+      "origin": "run-20261029T121029989473Z/results.json",
+      "sha256": "c9e2c945311bec075674506cc364d85079ad1189c058bc5de377870c270f8f32",
+      "bytes": 80850,
+      "meaning": "Corrected full run: 90 assertions, 89 pass, 1 append refusal with captured traceback. 71 real subprocesses."
+    },
+    {
+      "path": "export/04-eacces-trace.txt",
+      "origin": "run-20261029T121029989473Z/module-late-original-exception.txt",
+      "sha256": "b08d2bc353438e6672cee8cc5b2d5a161b9f5c32e442c2aa9ce97885e969cef3",
+      "bytes": 1466,
+      "meaning": "Exact captured PermissionError during private-store append_event path.open(ab)."
+    },
+    {
+      "path": "export/05-focused10.json",
+      "origin": "focused-result.json",
+      "sha256": "d5a8210123037323b78eefc56d752e2a5b87c2f80e2e16913f8e44b1bffc933c",
+      "bytes": 14001,
+      "meaning": "10/10 real subprocess replays on private clones using original first-round correlations and response bodies."
+    },
+    {
+      "path": "export/06-recovery8.json",
+      "origin": "io-refusal-recovery-result.json",
+      "sha256": "2aeadde87aa8511b7393364d7e2bf4ef71dbaa62c87af08fae1424a2f092e20a",
+      "bytes": 7042,
+      "meaning": "8/8 recovery assertions across 3 real subprocesses on second-round refused store; no new discovery and one history request; journal unchanged."
+    },
+    {
+      "path": "export/07-first-api-diagnostic.json",
+      "origin": "late-response-diagnostic.json",
+      "sha256": "d5964a0085a206fe6ff45964e59c2af16f90f81d142c4db4db5ca64b55793f49",
+      "bytes": 484,
+      "meaning": "Two first-round original responses later accepted by direct API; first-round precise exception was not captured."
+    },
+    {
+      "path": "export/08-first-canonical-stdin.jsonl",
+      "origin": "focused-20261029T121235642246Z/canonical-original-input.jsonl",
+      "sha256": "ea78228deca6128c2af1e74b008e76ed0876d89d66a2322f8ed0ae5dbe39567c",
+      "bytes": 669,
+      "meaning": "Deterministic reconstruction of exact first-round canonical late-response stdin from saved request and fixed native fixture."
+    },
+    {
+      "path": "export/09-first-module-stdin.jsonl",
+      "origin": "focused-20261029T121235642246Z/module-original-input.jsonl",
+      "sha256": "72207ef06d62e6666b868affbfa6c4ccffa72e9c0d0f9e410c726e9d2f7b996d",
+      "bytes": 669,
+      "meaning": "Deterministic reconstruction of exact first-round module late-response stdin from saved request and fixed native fixture."
+    },
+    {
+      "path": "export/10-second-refusal-stdin.jsonl",
+      "origin": "io-recovery-canonical-input.jsonl",
+      "sha256": "efacb6395c0f7969ef8264c9a30a07a0f0d21f7b71a6d3a9a436b227b03d3abe",
+      "bytes": 669,
+      "meaning": "Deterministic reconstruction of second-round refused stdin, replayed verbatim by recovery probe; saved original request correlation and native fixture."
+    },
+    {
+      "path": "export/11-first-factory-reconstructed.py",
+      "origin": "first-round-factory-reconstructed.py",
+      "sha256": "1a2a62651b9635e5e97d33603970c05d04be3364d0c073d102ed00b08fabbe77",
+      "bytes": 2157,
+      "meaning": "Reconstructed original untraced private factory; tracing wrapper and traceback import removed from otherwise unchanged fixture."
+    },
+    {
+      "path": "export/12-traced-factory.py",
+      "origin": "wr29_boundary_factory.py",
+      "sha256": "5e9b40af9fc8ec4989f619f3d8ecaff71f7058dd9c82718ec5208c655babb96e",
+      "bytes": 2467,
+      "meaning": "Exact second-round and focused/recovery private factory; wrapper records and rethrows command exceptions without changing host type."
+    },
+    {
+      "path": "export/13-independent-validator.py",
+      "origin": "independent_boundary.py",
+      "sha256": "ea003599a2eb42d946510273065f59840f7bd7931bb1de296f7c766635a6c1de",
+      "bytes": 20079,
+      "meaning": "Exact corrected 90-assertion validator snapshot; hash equals second-round validator_sha256."
+    },
+    {
+      "path": "export/14-minimal-wrapper.py",
+      "origin": "run_original_minimal.py",
+      "sha256": "307746d009c3923fa9f9ba53ad802690d9bd85571654d36e755a9ce8130712f9",
+      "bytes": 898,
+      "meaning": "Actual wrapper used to capture official minimal reproduction and input-source hash."
+    },
+    {
+      "path": "export/15-focused-replay.py",
+      "origin": "focused_late_response.py",
+      "sha256": "5996ab2039798649d0f3d9618d883e4111c64cce2b4abe4f4e3fb1e3ca16c4b5",
+      "bytes": 4023,
+      "meaning": "Actual focused-clone replay program; historical store paths identify synthetic evidence, excluded from archive."
+    },
+    {
+      "path": "export/16-io-refusal-recovery.py",
+      "origin": "verify_io_refusal_recovery.py",
+      "sha256": "8a65221373121b4286d877fadb3ab42b8ef84078c67d7343619bba76068d94ee",
+      "bytes": 4553,
+      "meaning": "Actual original-response recovery probe; no new real dispatch or production store."
+    },
+    {
+      "path": "export/17-direct-diagnostic.py",
+      "origin": "diagnose_late_response.py",
+      "sha256": "8440e5a22fae64446f65b85732803c8d793b34dff5f80a1f9c2e0183cc36614b",
+      "bytes": 1568,
+      "meaning": "Actual first-round direct API diagnostic."
+    },
+    {
+      "path": "export/18-malicious-factory.py",
+      "origin": "wr29_malicious.py",
+      "sha256": "f7702c4867da944d939be976e39172ed250c70e69b5d9e20414ad5b08d32199d",
+      "bytes": 168,
+      "meaning": "Private factory import sentinel used by default-off checks; never imported during those passing cases."
+    },
+    {
+      "path": "export/19-summary.json",
+      "origin": "generated_summary",
+      "sha256": "7552bb2c32df1f1139b623f4a2b03dbf99d20a32c3a343091c78e08d4f7e12b8",
+      "bytes": 3223
+    },
+    {
+      "path": "export/20-summary.txt",
+      "origin": "generated_summary",
+      "sha256": "edfc9d291393eeff49bc10ce6b3c1202f1d2c0f2691e538da7cbb6bdadb329a5",
+      "bytes": 2033
+    }
+  ],
+  "exclude_patterns": [
+    "**/stores/**",
+    "**/*-store/**",
+    "**/registry/**",
+    "**/configurations/**",
+    "**/engineering/**"
+  ],
+  "note": "Copy only files listed here, not entire directories. Raw JSON preserves every prior failed output; no market rows exist."
+}

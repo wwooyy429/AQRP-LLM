@@ -1,0 +1,638 @@
+AQRP-LLM 独立修复复审正式报告
+审核编号：AQRP-20261026-BE94426-WINDOWS-08
+固定源码：be9442603a31481a9a71e51ca794df77650c7411
+比较基线：e513c66e5965133fbe83fb0ab987eae853f96260
+
+总体结论：WR-11、WR-12在本轮原问题和实际离线覆盖范围修复后通过；新增确认WR-13/P2，受支持嵌套text节点忽略未知annotations，采集回执边界仍失败。阶段2及完整系统未验收，financial_evidence=false。阶段0/1既有范围和共享预算准入保持。
+E1为静态/哈希/AST/固定SDK合同，E2为审核者本轮Windows实际合成执行，E3为既有开发归档原生JSON离线重解析，E4为本轮只读QC源码及GitHub PR/CI，E5无。没有修改开发者生产代码、真实配置或账本，没有提交/推送/批准/合并PR，没有新增Research、LEAN、模型、部署、购买或交易，没有轮询/读取待终态LEAN日志或打开最终数据。
+
+全系统覆盖矩阵
+阶段0 | 章程、身份、源码清单、Registry预算及状态 | 原范围已实现；新增共享额度路径已实现 | 391仓库、既有回归、原24/36准入及519项审计检查 | 阻断[] | 通过；范围原验收范围和本轮共享准入范围；不扩大到阶段2回执
+阶段1 | 字段/算子、标签、模型、数值与时间 | 原范围已实现 | 既有12/10/16/19/56及d0回归实际通过 | 阻断[] | 修复后通过；范围既有离线范围与既有数值精度边界
+阶段2 | 历史源、缓存、采集任务、输入、worker、回执、CLI | 离线路径已实现；新版实际平台运行和数据认证未完成 | 原24/36与14/54、新15/80载体及12/36恢复通过；WR-13完整链5例中3误接受 | 阻断['WR-13', '新版真实运行与失败回执证据缺失', '旧LEAN无已交付终态', '历史US200及财务时点未认证'] | 失败；范围WR-11和WR-12原范围修复后通过；受支持嵌套文本回执边界失败，整阶段仍未验收
+阶段3 | Research评价、滚动验证、风险与增量 | 部分离线统计基础 | 基础数值回归；无完整真实研究链 | 阻断['真实Research评价及滚动证据缺失'] | 未验收；范围接口或局部计算不构成整阶段通过
+阶段4 | LEAN组合、订单、成交、现金、净值和成本 | 工程宿主/提交基础 | 旧无订单工程任务归档pending | 阻断['完整组合交易对账和终态证据缺失'] | 未验收；范围工程宿主不等于交易验证
+阶段5 | GPT受限生成和调用闭环 | 受限协议基础；自动调用关闭 | 静态配置与安全拒绝路径 | 阻断['具体模型、次数与费用上限未配置；闭环未验收'] | 未验收；范围本轮模型调用0
+阶段6 | 受限搜索、消融、组合增量 | 完整链未交付 | 无实际搜索和金融增量证据 | 阻断['完整研究交付缺失'] | 未实现/未验收；范围不由前置接口自动通过
+阶段7 | 冻结、独立最终测试、前向运行 | 最终测试关闭 | 暴露记录及关闭门槛保持 | 阻断['完整冻结与独立执行器缺失', '2024–2025已暴露；2026独立性未知'] | 未验收；范围不打开最终数据
+
+修复验收
+WR-11：engineering_receipts.py:92–135遍历全部实际存在载体，按完整规范JSON比较，拒绝冲突、隐藏text/display/error及未知外层metadata，保留等价镜像。原最小载体脚本当前exit0、旧e513 exit1；原14/54当前通过，新15/80修正版通过，旧Research/LEAN及新采集合法链均保留。None表示缺席，不能据此要求与空字符串产生两载体冲突。WR-13是另一递归内容入口遗漏，不把原不同载体修复失败事实与新问题混淆。
+WR-12：collection_task_cli.py:68–94按已预扣attempt的Registry不可变config重建原catalog/plan，97–126验证原admission/manifest/input哈希及现存本地字节；prepare和result按attempt恢复，新的登记/claim仍校验当前源码。原pointer/catalog两个原字节脚本当前均exit0、旧e513均exit1，当前新12/36实际CLI+完整副本+Filesystem Registry边界通过。A→B、目录/源码变化、指针损坏/缺失和进程重启后旧回执可结算；输入缺失从已准入绑定恢复，不创建文件或重取，不退款也不新扣费。未prepare的旧attempt遇源码/部署/目录变化不能生成新输入，完成任务不能再次prepare。任意能直接重写可信store的Python进程不在此CLI授权证明范围，未据任意文件篡改另造失控结论。
+
+新增问题 WR-13 / P2
+title：受支持的嵌套text节点忽略未知annotations，额外行侧载荷仍被认证stdout-only并完成。
+trigger：合法固定marker位于content/outputs包装text节点或原生text根；annotations含未知rows；structuredContent与content为完整语义相同的镜像。
+expected：载体一致后仍递归核验内容；未登记的行或错误侧载荷应在完成认证前拒绝。
+actual：完整worker→parser→Bridge/Registry的3种负例都completed，stdout_only=true、marker_count=1、market_values_exported=false；无注解及标准注解2正例完成。
+impact：输出边界及完成证据认证遗漏受支持路径。全部行合成，sentinel未写入Registry；不声称真实QC已发送此形状或发生市场行泄漏。
+minimal_reproduction：python -B minimal_nested_annotations.py source；完整链：python -B receipt_agent/nested_annotations_probe.py --source source --out result.json；均exit1。
+fix：对所有受支持text节点递归校验annotations，明确合法字段和类型，拒绝未知rows/error等侧载荷；保留合法标准注解和等价双载体。
+regression：content包装、outputs包装、text根的未知行/错误注解拒绝；无注解及合法标准注解正例；新采集和旧Research完整链；拒绝不写完成、不新增扣费。
+history：同分支在7bf和e513已存在；本轮新增独立发现。
+
+源码位置为engineering_receipts.py:271–273。_native已确认两载体一致，但_research_stdout遇到type=text节点时直接visit(text)，没有检查annotations；collection_execution.py:140随后认证stdout_only=True。外层文本块对annotations有严格限制，嵌套受支持路径却忽略它。三种负例是content包装、outputs包装和text根；两正例为无注解和标准audience/priority/lastModified注解。root亲自逐字节重跑完整5例，仍3个误完成。行只存在合成原生形状输入，Registry不含sentinel，只存摘要。本问题不证明真实SDK发送了该形状或真实市场值外传，也不是声称本提交首次引入。
+
+实际执行（方法与子例分开，重叠不累计为独有测试）
+repository_verify: 方法391，通过391，失败0，错误0，跳过0，子例None。
+archived_compatibility: 方法12，通过12，失败0，错误0，跳过0，子例22。
+archived_pearson: 方法10，通过10，失败0，错误0，跳过0，子例896。
+archived_numeric: 方法16，通过16，失败0，错误0，跳过0，子例84。
+archived_atomic: 方法19，通过19，失败0，错误0，跳过0，子例9。
+previous_adapted_56: 方法56，通过56，失败0，错误0，跳过0，子例25。
+d0_summary: 方法11，通过11，失败0，错误0，跳过0，子例716。
+d0_compatibility: 方法8，通过8，失败0，错误0，跳过0，子例16。
+fbe_source: 方法8，通过8，失败0，错误0，跳过0，子例73。
+fbe_boundary: 方法3，通过3，失败0，错误0，跳过0，子例3。
+fbe_collection: 方法19，通过19，失败0，错误0，跳过0，子例31。
+7bf_dates: 方法9，通过9，失败0，错误0，跳过0，子例27。
+7bf_intervals: 方法12，通过12，失败0，错误0，跳过0，子例75。
+e513_admission: 方法24，通过24，失败0，错误0，跳过0，子例36。
+e513_receipts: 方法14，通过14，失败0，错误0，跳过0，子例54。
+new_carriers_corrected: 方法15，通过15，失败0，错误0，跳过0，子例80。
+new_recovery: 方法12，通过12，失败0，错误0，跳过0，子例36。
+
+原公开3探针当前全exit0，旧e513全exit1，脚本字节不变，非单元方法。WR13完整5变体为2正例完成、3负例误完成；root再重放不算10个独有变体。519哈希/AST/JSON检查通过，0单元方法；两次隔离build exit0且891文件字节稳定。所有未执行、skip或历史归档均未冒称本轮通过。
+审核器首跑记录均保留：载体15方法80子例首跑1失败记录属于把None误当实际存在载体，另存修正版及diff；证据首跑518/519的1失败属于说明字符串误要求布尔；原回执路径首次exit2执行0方法，后按归档去重引用解析到相同原字节脚本14/54通过；prep一次UTF-8打印漏编码只影响信息输出。均不作为产品缺陷，也不覆盖原件。
+原样56历史50通过/3失败/3错误、认可适配及旧精度限制保持。归档脚本历史SHA字面量仍是原内容，当前身份由外层固定Git/文件hash及实际参数绑定。
+
+命令及环境
+python -B tools/stages.py verify（runs/repository_source独立副本）
+python -B run_main_checks.py（原类及原main回放，原路径失败单列）
+python -B run_resolved_receipts.py（解析归档去重引用后运行原14/54）
+python -B run_original_probes.py（当前与旧e513各3次）
+python -B receipt_agent/independent_carrier_boundaries.py --source source --out receipt_agent
+python -B receipt_agent/independent_carrier_boundaries_corrected.py --source source --out receipt_agent
+python -B recovery_agent/independent_recovery.py
+python -B run_root_nested_probes.py
+所有展开的完整实际命令、cwd、参数与退出码见JSON command_logs。没有把开发侧重放当审核者执行。
+实际查询环境：{"os": "Windows-10-10.0.26300-SP0", "python": "3.10.11", "python_executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe", "dependencies": {"numpy": "1.26.4", "pandas": "2.3.3", "python-dateutil": "3.0.0", "pytz": "2026.5", "six": "1.17.0", "tzdata": "2026.5"}, "longdouble_nmant": 52, "blas_threads_for_main_replays": 1, "real_AlgorithmImports_executed": false}
+
+版本/平台/预算/数据一致性
+891份固定Git原文件逐字节核验，108源码hash bb6346f5d345b6827fe577314e91a675b981522434b3417d87b88d72674b96f0。
+执行hash 45f87a0b13f2431deb478bbde98681a9f8da6dfbf2dde2cc8cfadcc7cc0f5d7e；仅budget.usage排除；107份其他源码、3种usage变化、45项政策变更与新增政策键探针通过。
+29份本地部署hash c8d20b02e3175287890fb161f0d3f1e85f0dc5dd5ed9f88178f17a80531f16ed；配置hash 272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94；实现hash 8a91f7bbf4d94cd4bfd0ba44bc42b41f26216449280bbe591b59dbe532f3caff。本地构建不当作云端部署/运行。
+旧e513归档254原件+14去重引用逐字节核验，268个总清单和12个回执清单绑定通过；更早460证据及20固定SDK原件不变。37保护文件、12事件和开关不变。
+
+本轮先list_projects，再只读38436695的源码，仅保存.py。25份云端源码仍对应75f24629，云端部署hash dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6，与候选12路径不同。旧input SHA95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0仍绑定bfd00f2611fd4496b9498d4597618a8e，不是新版真实输入读回。
+旧LEAN39cafa1e9b11f91b27e396b66d033a6d仅归档pending，当前终态null；未轮询/读日志/重交。PR1/2仍open/draft/unmerged，PR2 base6a1edbf、head精确be944；当前独立取得同提交PR CI40345201497 success。未假设其他未读取CI运行。
+预算配置6/12（正常6预留0）、Research9/20（正常6预留3）、LEAN1/16（正常1预留0）。本轮真实新增三类和模型调用0，合成账本7/10/1不写真实账本。早期aggregate起点不冒称逐项独立重建。2024–2025暴露保持，2026独立性null；模型/次数/费用限额null，正式研究/最终测试/交易关闭。
+
+未验证及后续
+修复WR13递归注解边界，交付新固定SHA并保留本轮失败；复验未知row/error拒绝及标准注解、等价镜像、旧Research/新采集合法链。新版真实部署/输入读回/成功和完整失败回执、旧LEAN已交付终态、完整历史US200、财务版本/公开/实际送达/摄入及公司行动仍缺证据。阶段3–7各自仍需完整交付，软件验收不等于金融有效性。
+包内run_offline_review.py提供新目录离线重现；本轮仅检查聚合入口语法和help，各验收命令已实际分别执行，不声称聚合入口完整重跑。生成副本的重复源码不归档，保留测试、命令、结果及合成状态差异，可从固定source重建；原临时目录不删除。
+
+可直接运行最小复现（提取器边界，完整有效报告/worker链另已实际执行并归档）
+python -B minimal_nested_annotations.py source（当前exit1）
+"""WR-13 extractor boundary; full valid-report chain is separately archived."""
+import json,sys
+from pathlib import Path
+sys.path.insert(0,str(Path(sys.argv[1])/'cloud'))
+from qresearch.engineering_receipts import _native,_research_stdout,ReceiptParseError
+marker='AQRP_ENGINEERING_JSON e30='
+clean={'type':'text','text':marker}
+assert _research_stdout(_native({'structuredContent':{'content':[clean]}}))=='e30='
+hidden=dict(clean,annotations={'rows':[{'sid':'SYNTHETIC-SID','close':123.45}]})
+native={'content':[hidden],'status':'completed','success':True}
+result={'structuredContent':native,'content':[{'type':'text','text':json.dumps(native)}]}
+rejected=False
+try: print('accepted marker:',_research_stdout(_native(result)))
+except ReceiptParseError: rejected=True
+assert rejected,'Nested unregistered row annotations must not be silently ignored'
+
+完整机器可读JSON
+{
+  "review_id": "AQRP-20261026-BE94426-WINDOWS-08",
+  "reviewed_source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "baseline_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "evidence_commits": {
+    "historical_runtime": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "historical_execution_archive": "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "current_delivery": "be9442603a31481a9a71e51ca794df77650c7411"
+  },
+  "source_manifest_hash": "bb6346f5d345b6827fe577314e91a675b981522434b3417d87b88d72674b96f0",
+  "source_manifest_files": 108,
+  "git_files_verified": 891,
+  "execution_source_manifest_hash": "45f87a0b13f2431deb478bbde98681a9f8da6dfbf2dde2cc8cfadcc7cc0f5d7e",
+  "deployment_hash": "c8d20b02e3175287890fb161f0d3f1e85f0dc5dd5ed9f88178f17a80531f16ed",
+  "deployment_hash_scope": "本地29份源码候选；未部署运行",
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "python_executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "longdouble_nmant": 52,
+    "blas_threads_for_main_replays": 1,
+    "real_AlgorithmImports_executed": false
+  },
+  "tool_capabilities": {
+    "GitHub": "只读PR/CI/固定Git源码",
+    "QuantConnect": "先list_projects，再只读38436695源码；不读取notebook或待终态任务",
+    "offline": "原生Windows合成、并发、独立进程和故障注入",
+    "write_scope": "独立审核临时区和新报告；无开发/生产修改"
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "章程、身份、源码清单、Registry预算及状态",
+      "implementation": "原范围已实现；新增共享额度路径已实现",
+      "evidence": "391仓库、既有回归、原24/36准入及519项审计检查",
+      "blockers": [],
+      "status": "通过",
+      "scope": "原验收范围和本轮共享准入范围；不扩大到阶段2回执"
+    },
+    {
+      "stage": 1,
+      "modules": "字段/算子、标签、模型、数值与时间",
+      "implementation": "原范围已实现",
+      "evidence": "既有12/10/16/19/56及d0回归实际通过",
+      "blockers": [],
+      "status": "修复后通过",
+      "scope": "既有离线范围与既有数值精度边界"
+    },
+    {
+      "stage": 2,
+      "modules": "历史源、缓存、采集任务、输入、worker、回执、CLI",
+      "implementation": "离线路径已实现；新版实际平台运行和数据认证未完成",
+      "evidence": "原24/36与14/54、新15/80载体及12/36恢复通过；WR-13完整链5例中3误接受",
+      "blockers": [
+        "WR-13",
+        "新版真实运行与失败回执证据缺失",
+        "旧LEAN无已交付终态",
+        "历史US200及财务时点未认证"
+      ],
+      "status": "失败",
+      "scope": "WR-11和WR-12原范围修复后通过；受支持嵌套文本回执边界失败，整阶段仍未验收"
+    },
+    {
+      "stage": 3,
+      "modules": "Research评价、滚动验证、风险与增量",
+      "implementation": "部分离线统计基础",
+      "evidence": "基础数值回归；无完整真实研究链",
+      "blockers": [
+        "真实Research评价及滚动证据缺失"
+      ],
+      "status": "未验收",
+      "scope": "接口或局部计算不构成整阶段通过"
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN组合、订单、成交、现金、净值和成本",
+      "implementation": "工程宿主/提交基础",
+      "evidence": "旧无订单工程任务归档pending",
+      "blockers": [
+        "完整组合交易对账和终态证据缺失"
+      ],
+      "status": "未验收",
+      "scope": "工程宿主不等于交易验证"
+    },
+    {
+      "stage": 5,
+      "modules": "GPT受限生成和调用闭环",
+      "implementation": "受限协议基础；自动调用关闭",
+      "evidence": "静态配置与安全拒绝路径",
+      "blockers": [
+        "具体模型、次数与费用上限未配置；闭环未验收"
+      ],
+      "status": "未验收",
+      "scope": "本轮模型调用0"
+    },
+    {
+      "stage": 6,
+      "modules": "受限搜索、消融、组合增量",
+      "implementation": "完整链未交付",
+      "evidence": "无实际搜索和金融增量证据",
+      "blockers": [
+        "完整研究交付缺失"
+      ],
+      "status": "未实现/未验收",
+      "scope": "不由前置接口自动通过"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、独立最终测试、前向运行",
+      "implementation": "最终测试关闭",
+      "evidence": "暴露记录及关闭门槛保持",
+      "blockers": [
+        "完整冻结与独立执行器缺失",
+        "2024–2025已暴露；2026独立性未知"
+      ],
+      "status": "未验收",
+      "scope": "不打开最终数据"
+    }
+  ],
+  "tests": {
+    "actually_executed": true,
+    "suites": [
+      {
+        "id": "repository_verify",
+        "methods": 391,
+        "passed": 391,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": null,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_compatibility",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 22,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_pearson",
+        "methods": 10,
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 896,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_numeric",
+        "methods": 16,
+        "passed": 16,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 84,
+        "actually_executed": true
+      },
+      {
+        "id": "archived_atomic",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 9,
+        "actually_executed": true
+      },
+      {
+        "id": "previous_adapted_56",
+        "methods": 56,
+        "passed": 56,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 25,
+        "actually_executed": true
+      },
+      {
+        "id": "d0_summary",
+        "methods": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 716,
+        "actually_executed": true
+      },
+      {
+        "id": "d0_compatibility",
+        "methods": 8,
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 16,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_source",
+        "methods": 8,
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 73,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_boundary",
+        "methods": 3,
+        "passed": 3,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 3,
+        "actually_executed": true
+      },
+      {
+        "id": "fbe_collection",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 31,
+        "actually_executed": true
+      },
+      {
+        "id": "7bf_dates",
+        "methods": 9,
+        "passed": 9,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 27,
+        "actually_executed": true
+      },
+      {
+        "id": "7bf_intervals",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 75,
+        "actually_executed": true
+      },
+      {
+        "id": "e513_admission",
+        "methods": 24,
+        "passed": 24,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 36,
+        "actually_executed": true
+      },
+      {
+        "id": "e513_receipts",
+        "methods": 14,
+        "passed": 14,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 54,
+        "actually_executed": true
+      },
+      {
+        "id": "new_carriers_corrected",
+        "methods": 15,
+        "passed": 15,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 80,
+        "actually_executed": true
+      },
+      {
+        "id": "new_recovery",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 36,
+        "actually_executed": true
+      }
+    ],
+    "counts_are_overlapping_not_unique": true,
+    "original_public_reproductions": {
+      "unchanged_scripts": true,
+      "candidate_passed": 3,
+      "candidate_exit_codes": [
+        0,
+        0,
+        0
+      ],
+      "baseline_e513_failed": 3,
+      "baseline_exit_codes": [
+        1,
+        1,
+        1
+      ],
+      "unit_methods": null
+    },
+    "additional_probes": {
+      "WR13_full_chain": {
+        "variants": 5,
+        "positive_passed": 2,
+        "false_acceptances": 3,
+        "root_replay_same_result": true,
+        "unit_methods": null
+      },
+      "WR13_extractor_boundary": {
+        "actually_executed": true,
+        "exit_code": 1,
+        "unit_methods": null
+      }
+    },
+    "audit_checks": {
+      "checks": 519,
+      "passed": 519,
+      "failed": 0,
+      "unit_methods": 0
+    },
+    "isolated_builds": {
+      "executed": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "all_891_raw_files_unchanged": true
+    },
+    "command_logs": [
+      "runs/execution_records.json",
+      "runs/e513_receipts_resolved.command.json",
+      "original_probes/execution_records.json",
+      "receipt_agent/command_log.json",
+      "recovery_agent/command_log.json",
+      "root_nested_commands.json"
+    ],
+    "reviewer_measurement_corrections": {
+      "carrier_first": {
+        "methods": 15,
+        "passed": 14,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0,
+        "subcases": 80,
+        "failure_records": 1,
+        "product_failure": false,
+        "reason": "None表示载体缺席；另存修正版改为两个实际存在载体的嵌套null与空字符串"
+      },
+      "evidence_first": {
+        "checks": 519,
+        "passed": 518,
+        "failed": 1,
+        "product_failure": false,
+        "reason": "历史SHA说明是字符串，审核器误要求布尔True，另存修正且不改输入"
+      },
+      "archived_receipt_path": {
+        "initial_exit_code": 2,
+        "methods_executed": 0,
+        "product_failure": false,
+        "resolution": "按归档14份去重引用定位原字节脚本，随后14/54通过"
+      },
+      "preparation_print": {
+        "product_failure": false,
+        "reason": "UTF-8文件打印漏指定编码；仅信息输出失败"
+      }
+    },
+    "historical_harness_limits": "原样56历史50/3/3及认可适配差异保留；旧SHA字面量不作为本轮执行身份。新旧运行均由外层固定源码与哈希绑定。",
+    "portable_runner": {
+      "help_and_syntax_checked": true,
+      "full_aggregate_executed": false,
+      "individual_acceptance_runs_actually_executed": true
+    }
+  },
+  "findings": [
+    {
+      "id": "WR-13",
+      "priority": "P2",
+      "source_commit": "be9442603a31481a9a71e51ca794df77650c7411",
+      "file": "cloud/qresearch/engineering_receipts.py",
+      "lines": [
+        271,
+        272,
+        273
+      ],
+      "related_location": "cloud/qresearch/collection_execution.py:140",
+      "title": "受支持的嵌套text节点忽略未知annotations，额外行侧载荷仍被认证stdout-only并完成",
+      "trigger": "合法固定marker位于content/outputs包装text节点或原生text根；annotations含未知rows；structuredContent与content为完整语义相同的镜像",
+      "expected": "载体一致后仍递归核验内容；未登记的行或错误侧载荷应在完成认证前拒绝",
+      "actual": "完整worker→parser→Bridge/Registry的3种负例都completed，stdout_only=true、marker_count=1、market_values_exported=false；无注解及标准注解2正例完成",
+      "impact": "输出边界及完成证据认证遗漏受支持路径。全部行合成，sentinel未写入Registry；不声称真实QC已发送此形状或发生市场行泄漏",
+      "minimal_reproduction": "python -B minimal_nested_annotations.py source；完整链：python -B receipt_agent/nested_annotations_probe.py --source source --out result.json；均exit1",
+      "fix": "对所有受支持text节点递归校验annotations，明确合法字段和类型，拒绝未知rows/error等侧载荷；保留合法标准注解和等价双载体",
+      "regression": "content包装、outputs包装、text根的未知行/错误注解拒绝；无注解及合法标准注解正例；新采集和旧Research完整链；拒绝不写完成、不新增扣费",
+      "evidence_level": [
+        "E1",
+        "E2"
+      ],
+      "introduced_by_this_commit": false,
+      "history": "同分支在7bf和e513已存在；本轮新增独立发现"
+    }
+  ],
+  "budget_replay": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_lean": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    },
+    "initial_usage_is_historical_aggregate": true,
+    "new_real_configurations": 0,
+    "new_real_Research": 0,
+    "new_real_LEAN": 0,
+    "new_model_calls": 0,
+    "authoritative_files_unchanged": true
+  },
+  "platform_evidence_level": {
+    "E1": "静态、哈希、AST和固定SDK合同",
+    "E2": "审核者实际合成执行；无真实AlgorithmImports",
+    "E3": "既有开发归档原生证据离线重解析",
+    "E4": "本轮只读QC源码和GitHub元数据",
+    "E5": null
+  },
+  "platform_state": {
+    "current_cloud_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "cloud_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+    "cloud_py_files": 25,
+    "candidate_differing_paths": 12,
+    "candidate_actual_runtime_verified": false,
+    "old_lean_external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "old_lean_archived_status": "pending",
+    "old_lean_current_terminal": null,
+    "polled_pending_lean": false,
+    "PR2_draft": true,
+    "CI_success_run_ids": [
+      40345201497
+    ]
+  },
+  "historical_findings": {
+    "WR-01_to_WR-10": "既有记录和各自通过范围保留；本轮对应离线回归通过；不覆盖原失败",
+    "WR-04": "24/36含混合任务与独立进程竞争通过",
+    "WR-08_precision_limit": "保留原普通精度/取消误差边界，不泛化纯相对误差",
+    "WR-09_WR-10": "9/27与12/75通过；Daily/Python微秒合同范围",
+    "WR-11": {
+      "status": "修复后通过",
+      "scope": "原不同载体/隐藏输出问题；原复现和14/54、新15/80通过；不扩大为所有递归元数据安全认证"
+    },
+    "WR-12": {
+      "status": "修复后通过",
+      "scope": "按原attempt结算、原输入绑定、切换/重启/缺失输入及拒绝篡改；原2复现及新12/36通过，预算不增加"
+    }
+  },
+  "unverified": [
+    "新版云端真实部署/输入读回/运行",
+    "真实成功与完整失败回执",
+    "旧LEAN已交付终态",
+    "完整历史US200、SID/分类/公司行动、财务修订及公开/实际送达/摄入时点",
+    "完整阶段3–7",
+    "2026独立性",
+    "具体GPT模型及调用次数/费用上限",
+    "Linux原生执行"
+  ],
+  "software_acceptance": {
+    "overall": "failed",
+    "WR11_WR12_original_scope": "passed_after_fix",
+    "collection_receipt_boundary": "failed",
+    "blocking_findings": [
+      "WR-13"
+    ],
+    "shared_budget_tested_scope": "passed",
+    "stage0_1_prior_scope": "retained",
+    "whole_system": "not_accepted"
+  },
+  "data_certification": {
+    "historical_US200": false,
+    "financial_vintages": false,
+    "actual_availability": false,
+    "final_2024_2025_previously_exposed": true,
+    "independence_2026": null,
+    "final_test_enabled": false
+  },
+  "financial_evidence": false
+}

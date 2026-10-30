@@ -1,0 +1,127 @@
+[
+  {
+    "label": "candidate_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "seconds": 0.509,
+    "stdout_raw_sha256": "2ded254a2a07c72782fbb8e6bdfe6ed2d6a99747950336b87d0881e9e609dd59",
+    "stdout_bytes": 45383680,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": true
+  },
+  {
+    "label": "baseline_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58"
+    ],
+    "exit_code": 0,
+    "seconds": 0.715,
+    "stdout_raw_sha256": "e96aa3ee06eba9f4281b4a616bda5a8e4882f9185002ac2aa692759d4748d8d2",
+    "stdout_bytes": 42792960,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": true
+  },
+  {
+    "label": "actual7fc_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6"
+    ],
+    "exit_code": 0,
+    "seconds": 1.304,
+    "stdout_raw_sha256": "bcfa3c175cdf919b7b25c697c9699d51858ce88c410a39ba3a0af1e84e46d009",
+    "stdout_bytes": 38645760,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": true
+  },
+  {
+    "label": "baseline_to_candidate_name_status",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--name-status",
+      "--no-renames",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "seconds": 0.442,
+    "stdout_raw_sha256": "74ffb8c6cb4f58f64153852b5fed1069e9161cb1cd27e2f8021c745e27c7f23e",
+    "stdout_bytes": 34995,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": false
+  },
+  {
+    "label": "baseline_to_candidate_full_patch",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "diff",
+      "--no-ext-diff",
+      "--binary",
+      "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6"
+    ],
+    "exit_code": 0,
+    "seconds": 0.446,
+    "stdout_raw_sha256": "287b81e8d231397c62750d01806678709df3b40183d2b16e3ecf1df7404b2ce1",
+    "stdout_bytes": 2478131,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": false
+  },
+  {
+    "label": "old13_registry",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "show",
+      "66ff72ffaaff8c91c008898e6527c91131176c2a:audit/runtime/registry/events.jsonl"
+    ],
+    "exit_code": 0,
+    "seconds": 0.447,
+    "stdout_raw_sha256": "7bf5a215401e0d901e82087036cf9770a9d8f9e2ad867dacefc2f491c91d5ef5",
+    "stdout_bytes": 9312,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": false
+  },
+  {
+    "label": "old_original_failed_baseline_deb_archive",
+    "command": [
+      "git",
+      "-C",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+      "archive",
+      "deb85d9f27441b275ab8b108f0232ecd2707a1e8"
+    ],
+    "exit_code": 0,
+    "seconds": 0.539,
+    "stdout_raw_sha256": "6b4dc4e2bdbb7da364fc8894381ad93f7b393b8f7bc2634a37606d2a294fb011",
+    "stdout_bytes": 38973440,
+    "stderr_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_bytes": 0,
+    "binary_stdout_reconstructible_not_retained": true
+  }
+]

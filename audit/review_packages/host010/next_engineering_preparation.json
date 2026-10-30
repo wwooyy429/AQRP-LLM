@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "kind": "bounded_followup_preparation_not_execution_authorization",
+  "status": "offline_preparation_only",
+  "execution_enabled": false,
+  "registered": false,
+  "source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+  "source_manifest_hash": "74bbefc270a6bd0d1385db9624eaa2bd600e38503f5932a88267a02a11c76a07",
+  "host_version": "followup-host-v1",
+  "proposed_round_id": "stage2-host-integration-round-009",
+  "attempt_id": null,
+  "external_backtest_id": null,
+  "project_id": null,
+  "identity_policy": "New frozen source/plan/admitted input and predebit; do not reopen or rename round008.",
+  "prior_approved_software": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "new_host_independent_acceptance": false,
+  "scope": "2018 cached engineering; not factor research or full-history certification",
+  "request_template": {
+    "dataset": "US Equities",
+    "fields": [
+      "open",
+      "high",
+      "low",
+      "close",
+      "volume"
+    ],
+    "start": "2018-01-01T00:00:00-05:00",
+    "end": "2019-01-01T00:00:00-05:00",
+    "data_version": "qc-engineering-2018-raw-snapshot-v1",
+    "universe_hash": null,
+    "normalization": "raw",
+    "timezone": "America/New_York"
+  },
+  "observation_window": {
+    "start": "2018-01-03T00:00:00-05:00",
+    "end_exclusive": "2019-01-01T00:00:00-05:00"
+  },
+  "existing_engineering_template": "config/engineering_storage_round008_pilot.json",
+  "price_policy": "cache_only",
+  "collection_policy": "reuse_verified_legacy_only",
+  "lean_storage_policy": "cached_row_reference_v1",
+  "processing_contract_sha256": "5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219",
+  "unchanged_engineering_checks": {
+    "Research": 13,
+    "LEAN": 7
+  },
+  "proposed_caps_not_granted": {
+    "configurations": 1,
+    "research_executions": 1,
+    "lean_submissions": 1,
+    "compile": 1,
+    "automatic_retries": 0,
+    "extra_purchases": 0
+  },
+  "existing_global_limits": {
+    "extra_resource_purchases": 0,
+    "extra_spend_USD": 0,
+    "full_configurations": 13,
+    "lean_submission_attempts": 16,
+    "optimization_jobs": 0,
+    "research_execution_attempts": 20
+  },
+  "actual_usage": {
+    "complete_strategy_configurations_frozen": 0,
+    "configuration_budget_charges": 16,
+    "configuration_normal_used": 11,
+    "configuration_reserve_used": 5,
+    "lean_normal_used": 3,
+    "lean_reserve_used": 0,
+    "lean_submission_attempts": 3,
+    "research_execution_attempts": 17,
+    "research_normal_used": 9,
+    "research_reserve_used": 8
+  },
+  "actual_cycle_usage": {
+    "normal": 3,
+    "reserve": 0,
+    "total": 3
+  },
+  "no_admission_or_debit_performed": true,
+  "call_list_status": "not_authorized_in_this_round; complete final response/log/order bounds and actual connector capability before dispatch",
+  "mandatory_call_order": [
+    "actual list_projects and read-only inventory",
+    "fixed admission and project protection",
+    "necessary writes and exact managed readback",
+    "one cache-only Research; settle13 checks",
+    "compile once only after Research success",
+    "one predebited no-order LEAN",
+    "native delivered notice or policy-permitted bounded reconciliation",
+    "native parser logs/orders identity checks and same-attempt settlement/round closure"
+  ],
+  "followup_policy": {
+    "schema_version": 1,
+    "notification_grace_seconds": 1800,
+    "max_history_pages": 3
+  },
+  "connector_permission_precedence": "No historical Completed summary, local reservation or LLM flag overrides read_backtest delivered-result restrictions. Unsupported reads stop with attention.",
+  "stop_on": [
+    "cache_missing_or_conflicting",
+    "source_or_input_mismatch",
+    "capacity_insufficient",
+    "SID_ambiguity_outside_fixture_scope",
+    "unknown_submission_or_response",
+    "native_request_denied",
+    "missing_native_terminal_or_complete_logs_or_zero_orders",
+    "any_13_or_7_check_failure"
+  ],
+  "unobserved_notification_branch": "Remain not verified; never submit another task merely for branch coverage.",
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

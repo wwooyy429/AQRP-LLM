@@ -1,0 +1,502 @@
+{
+  "reviewed_source_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "verdict_in_scope": "WR11/WR12 recovery and shared-task compatibility remain passing in the tested scope; no new recovery defect confirmed.",
+  "unchanged_original_recovery_replay": {
+    "methods": 12,
+    "passed_methods": 12,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 36,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\recovery_agent\\independent_recovery.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027",
+    "elapsed_seconds": 199.26499999999942
+  },
+  "new_parser_recovery_interaction": {
+    "methods": 2,
+    "passed_methods": 2,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 6,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\recovery_agent\\new_parser_recovery.py"
+    ]
+  },
+  "counts_are_separate_overlapping_suites": true,
+  "current_execution_identity": {
+    "reviewed_source_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+    "actual_source_directory": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source",
+    "source_files": 1088,
+    "source_raw_bytes_before_after_equal": true,
+    "previous_original_script": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\recovery_agent\\independent_recovery.py",
+    "copied_script": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\recovery_agent\\independent_recovery.py",
+    "script_raw_bytes_equal_original": true,
+    "script_sha256": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4",
+    "historical_literal_commit_in_original_output": "be9442603a31481a9a71e51ca794df77650c7411",
+    "historical_literal_is_not_current_execution_identity": true,
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\recovery_agent\\independent_recovery.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027",
+    "exit_code": 0,
+    "elapsed_seconds": 199.26499999999942,
+    "methods": 12,
+    "passed_methods": 12,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 36,
+    "skipped": 0,
+    "failure_records": 0,
+    "error_records": 0,
+    "protected_module_comparison_with_be944": {
+      "tools/collection_task_cli.py": {
+        "current_sha256": "402134f8063246d385d956eee9da72b9e6b9fec1aa78037f9911afc371d915c8",
+        "previous_sha256": "402134f8063246d385d956eee9da72b9e6b9fec1aa78037f9911afc371d915c8",
+        "raw_bytes_equal": true
+      },
+      "tools/stage2_collection.py": {
+        "current_sha256": "d5ccf547693f3ce4c4be40da2e40608451b4e5886e5c5f9ac90fccb7711c62d5",
+        "previous_sha256": "d5ccf547693f3ce4c4be40da2e40608451b4e5886e5c5f9ac90fccb7711c62d5",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/registry.py": {
+        "current_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+        "previous_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection_tasks.py": {
+        "current_sha256": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+        "previous_sha256": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/engineering_tasks.py": {
+        "current_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+        "previous_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection_execution.py": {
+        "current_sha256": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+        "previous_sha256": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/collection.py": {
+        "current_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+        "previous_sha256": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+        "raw_bytes_equal": true
+      },
+      "cloud/qresearch/historical_source.py": {
+        "current_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+        "previous_sha256": "e979799f49ab66472c3c26467b8172608f9872645f7df6b86ec2919c13ed0556",
+        "raw_bytes_equal": true
+      }
+    },
+    "source_function_locations": {
+      "tools/collection_task_cli.py:execution_source_manifest": [
+        14,
+        25
+      ],
+      "tools/collection_task_cli.py:freeze_task": [
+        28,
+        54
+      ],
+      "tools/collection_task_cli.py:current_bridge": [
+        57,
+        65
+      ],
+      "tools/collection_task_cli.py:bridge_for_attempt": [
+        68,
+        94
+      ],
+      "tools/collection_task_cli.py:admitted_input": [
+        97,
+        126
+      ],
+      "tools/collection_task_cli.py:prepare_task": [
+        129,
+        152
+      ],
+      "tools/collection_task_cli.py:verify_current_source": [
+        155,
+        158
+      ],
+      "tools/collection_task_cli.py:execute_metadata_command": [
+        161,
+        198
+      ],
+      "tools/stage2_collection.py:catalog": [
+        15,
+        24
+      ],
+      "tools/stage2_collection.py:preview": [
+        27,
+        38
+      ],
+      "tools/stage2_collection.py:main": [
+        41,
+        72
+      ],
+      "cloud/qresearch/engineering_receipts.py:_fail": [
+        39,
+        40
+      ],
+      "cloud/qresearch/engineering_receipts.py:_annotations": [
+        43,
+        78
+      ],
+      "cloud/qresearch/engineering_receipts.py:_text_node": [
+        81,
+        87
+      ],
+      "cloud/qresearch/engineering_receipts.py:_hash": [
+        90,
+        91
+      ],
+      "cloud/qresearch/engineering_receipts.py:_json": [
+        94,
+        105
+      ],
+      "cloud/qresearch/engineering_receipts.py:_context": [
+        108,
+        132
+      ],
+      "cloud/qresearch/engineering_receipts.py:_native": [
+        135,
+        175
+      ],
+      "cloud/qresearch/engineering_receipts.py:_tool": [
+        178,
+        210
+      ],
+      "cloud/qresearch/engineering_receipts.py:_ref": [
+        213,
+        219
+      ],
+      "cloud/qresearch/engineering_receipts.py:_report": [
+        222,
+        270
+      ],
+      "cloud/qresearch/engineering_receipts.py:_decode": [
+        273,
+        283
+      ],
+      "cloud/qresearch/engineering_receipts.py:_research_stdout": [
+        286,
+        334
+      ],
+      "cloud/qresearch/engineering_receipts.py:_platform": [
+        337,
+        339
+      ],
+      "cloud/qresearch/engineering_receipts.py:research_observation": [
+        342,
+        352
+      ],
+      "cloud/qresearch/engineering_receipts.py:backtest_submission": [
+        355,
+        365
+      ],
+      "cloud/qresearch/engineering_receipts.py:_logs": [
+        368,
+        402
+      ],
+      "cloud/qresearch/engineering_receipts.py:backtest_observation": [
+        405,
+        452
+      ],
+      "cloud/qresearch/engineering_receipts.py:pairs": [
+        95,
+        101
+      ],
+      "cloud/qresearch/engineering_receipts.py:visit": [
+        290,
+        329
+      ]
+    },
+    "actual_external_calls": 0,
+    "author_test_fixture_imports": false,
+    "scope": "Independent synthetic recovery replay through actual CLI/full copied source/Filesystem Registry; not platform or financial evidence."
+  },
+  "original_suite_literal_commit_note": "The prior script is intentionally byte-identical. Its first_results.json commit literal says be944, but actual source path, copied file location, whole source hashes, command log and this outer record bind this execution to dc49. The historical literal must not be used as current execution identity.",
+  "evidence": [
+    "Original be944 independent_recovery.py is byte-identical (SHA256 9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4) and was actually run once against dc49 source via ROOT.parent/source.",
+    "Original replay used complete dc49 source copies (1088 files), actual production CLI subprocesses, actual source-manifest calculation and Filesystem Registry. No CLI, Registry or manifest checks were mocked.",
+    "Original 12 methods / 36 subcases retain A->B settlement, catalog/source changes, missing/corrupt current pointer, restarts, identity/input/deployment/canonical-bytes tampering rejection, current source gates for never-prepared input, completed-input refusal and free idempotent settlement.",
+    "Six new cases run within A->B plus source and catalog drift. Three nested annotations with unknown rows/error/outputs each fail before transition, retain started and identical journal/quota, then the corrected receipt completes the same original attempt without another charge.",
+    "Three legal annotations (None, empty object and registered audience/priority/lastModified) complete through the same old-attempt recovery path after source/catalog drift.",
+    "Both supplemental methods / six subcases passed on first execution. Original and supplemental outputs and command logs are separate; no failed record or original script was overwritten.",
+    "CLI entry, collection_task_cli, Registry, CollectionTaskPlan/Bridge, EngineeringTaskBridge and collection worker/parser are raw-byte identical to be944, as are snapshot collector and source adapter. Shared authoritative accounting implementation was not changed by this commit."
+  ],
+  "new_parser_observations": [
+    {
+      "annotation": "rows",
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    },
+    {
+      "annotation": "error",
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    },
+    {
+      "annotation": "outputs",
+      "charge_unchanged": true,
+      "corrected_status": "completed",
+      "invalid_exit": 1,
+      "unchanged_before_correction": true
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": null,
+      "status": "completed"
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {},
+      "status": "completed"
+    },
+    {
+      "charge_unchanged": true,
+      "legal_annotation": {
+        "audience": [
+          "assistant",
+          "assistant"
+        ],
+        "lastModified": "2026-10-27T00:30:00+08:00",
+        "priority": 0
+      },
+      "status": "completed"
+    }
+  ],
+  "original_base_observations": {
+    "A_to_B": {
+      "budget": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "journal_repeat_unchanged": true,
+      "repeat_status": "completed",
+      "status": "completed"
+    },
+    "base": {
+      "attempt": "264c417127b84685b916eecf6944fbdf",
+      "source_copy_complete": true,
+      "source_file_count": 1088,
+      "usage": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "worker": {
+        "missing_values": {
+          "dollar_volume": 2,
+          "has_fundamental_data": 0
+        },
+        "source_calls": 2,
+        "statistics": {
+          "cache_only_source_fetch_calls": 0,
+          "empty_windows": 0,
+          "record_count": 6,
+          "reused_windows": 0,
+          "source_fetch_calls": 2,
+          "window_count": 2
+        }
+      }
+    }
+  },
+  "actual_child_command_counts": {
+    "original": {
+      "commands": 61,
+      "success": 28,
+      "expected_refusals": 33
+    },
+    "new_parser": {
+      "commands": 15,
+      "success": 12,
+      "expected_refusals": 3
+    }
+  },
+  "confirmed_new_recovery_findings": [],
+  "minimal_new_failing_reproduction": null,
+  "accurate_source_ranges": {
+    "tools/collection_task_cli.py:execution_source_manifest": [
+      14,
+      25
+    ],
+    "tools/collection_task_cli.py:freeze_task": [
+      28,
+      54
+    ],
+    "tools/collection_task_cli.py:current_bridge": [
+      57,
+      65
+    ],
+    "tools/collection_task_cli.py:bridge_for_attempt": [
+      68,
+      94
+    ],
+    "tools/collection_task_cli.py:admitted_input": [
+      97,
+      126
+    ],
+    "tools/collection_task_cli.py:prepare_task": [
+      129,
+      152
+    ],
+    "tools/collection_task_cli.py:verify_current_source": [
+      155,
+      158
+    ],
+    "tools/collection_task_cli.py:execute_metadata_command": [
+      161,
+      198
+    ],
+    "tools/stage2_collection.py:catalog": [
+      15,
+      24
+    ],
+    "tools/stage2_collection.py:preview": [
+      27,
+      38
+    ],
+    "tools/stage2_collection.py:main": [
+      41,
+      72
+    ],
+    "cloud/qresearch/engineering_receipts.py:_fail": [
+      39,
+      40
+    ],
+    "cloud/qresearch/engineering_receipts.py:_annotations": [
+      43,
+      78
+    ],
+    "cloud/qresearch/engineering_receipts.py:_text_node": [
+      81,
+      87
+    ],
+    "cloud/qresearch/engineering_receipts.py:_hash": [
+      90,
+      91
+    ],
+    "cloud/qresearch/engineering_receipts.py:_json": [
+      94,
+      105
+    ],
+    "cloud/qresearch/engineering_receipts.py:_context": [
+      108,
+      132
+    ],
+    "cloud/qresearch/engineering_receipts.py:_native": [
+      135,
+      175
+    ],
+    "cloud/qresearch/engineering_receipts.py:_tool": [
+      178,
+      210
+    ],
+    "cloud/qresearch/engineering_receipts.py:_ref": [
+      213,
+      219
+    ],
+    "cloud/qresearch/engineering_receipts.py:_report": [
+      222,
+      270
+    ],
+    "cloud/qresearch/engineering_receipts.py:_decode": [
+      273,
+      283
+    ],
+    "cloud/qresearch/engineering_receipts.py:_research_stdout": [
+      286,
+      334
+    ],
+    "cloud/qresearch/engineering_receipts.py:_platform": [
+      337,
+      339
+    ],
+    "cloud/qresearch/engineering_receipts.py:research_observation": [
+      342,
+      352
+    ],
+    "cloud/qresearch/engineering_receipts.py:backtest_submission": [
+      355,
+      365
+    ],
+    "cloud/qresearch/engineering_receipts.py:_logs": [
+      368,
+      402
+    ],
+    "cloud/qresearch/engineering_receipts.py:backtest_observation": [
+      405,
+      452
+    ],
+    "cloud/qresearch/engineering_receipts.py:pairs": [
+      95,
+      101
+    ],
+    "cloud/qresearch/engineering_receipts.py:visit": [
+      290,
+      329
+    ]
+  },
+  "risk_and_scope_boundaries": [
+    "Synthetic native-shaped observations only. No real SDK, market, Research, LEAN, model, deployment or project operation was called.",
+    "Recovery trusts already charged immutable configuration and admitted-input metadata in the dispatcher/store boundary; these are not cryptographic authorization tokens. Recovery grants no new claim or execution.",
+    "Original source tree all 1088 raw files is unchanged before/after replay. All mutations are confined to new independently copied test workspaces.",
+    "7/10/1 usage is isolated-copy state after one new synthetic task; production 6/9/1 is untouched.",
+    "This task does not certify all annotations, all native platform envelopes, current cloud execution, historical coverage, whole stage2 completion or financial validity.",
+    "The prior 24/36 admission suite is assigned to root for its own replay; it is not claimed as an additional execution in this subreport.",
+    "cases/ and parser_cases/ are reconstructable test workspaces. Package the scripts/results/logs, not those repeated source copies. Run original recovery replay before supplemental probe so its generated prepared fixture exists in the local command log."
+  ],
+  "actual_external_calls": 0,
+  "author_fixture_imports": false,
+  "artifact_sha256": {
+    "build_report.py": "76681072b0ce9751246a805a7ee810312a6141250870c5c10c973671947bc628",
+    "command_log.json": "f265dd4b2cdcdce0fa1b07086216de49966f635d3e53d35d5b1c05363025b57e",
+    "current_execution.json": "65e6382168f37b1368a50dcec50ae199d98edfdd28566dff3a3017b653204532",
+    "execute_replay.py": "a5239580619511ce2cacf123c764131476ad6f4f5c19c1b9fd0ffd5f67b79733",
+    "first_output.txt": "f4cfc757925096a33dbbe648d47ff35187a001fd9be75de108e1c89c57a620d6",
+    "first_results.json": "3b487227b95bbaed79643e5e556bd001f472b4e77ea5f306675566ad9d8549eb",
+    "independent_recovery.py": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4",
+    "new_parser_recovery.py": "2b6320fe3c2b578f3c7d7c77c17cfba60d631f6ff858dd1b78ab1881460a90be",
+    "parser_command_log.json": "429c8ed94b7d421520f587b5f5f59f3299807e060e4771da1d909a7c37f4290b",
+    "parser_first_output.txt": "b54209f18362b76c1f45a70b5aebbd7683fd90de3e9b87e97925ed7705ccf465",
+    "parser_first_results.json": "60b5a685c0d779916e31214dbeb954cd985c563b926d17944cbaf8357e808a50",
+    "replay_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replay_stdout.txt": "b20add9f182b04d95d23d928f21f884b4b190c9b1e6eeeed283cd404aab209c1"
+  }
+}

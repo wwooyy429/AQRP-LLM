@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "developer_synthetic_regression_only",
+  "runs": [
+    {
+      "command": "python -B tools/research.py build",
+      "exit_code": 0,
+      "seconds": 0.5
+    },
+    {
+      "command": "python -B tools/stages.py verify",
+      "exit_code": 0,
+      "seconds": 187.953
+    }
+  ],
+  "source_hash": "48fe39868d76c8a8d65432e137a6fa3bd82144db35251eebe1df848db9dd9aec",
+  "test_output": "----------------------------------------------------------------------\nRan 737 tests in 186.019s\n\nOK\n",
+  "existing_runtime_bytes_unchanged": true,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

@@ -1,0 +1,12 @@
+WR29 independent development-support boundary evidence
+
+Frozen product: c2e63ac5f19901bd95e127069b5998452f7f9864.
+Host SHA256: 2de1476cd878569d6588b3077cdc888a3186a03ae9e1a989d41e35c376039a08.
+
+The official minimal reproduction passed 3/3 real subprocess entries. The corrected independent matrix used 71 real subprocesses and passed 89/90 assertions immediately. Its one failed late-response assertion captured PermissionError in artifacts.py:386 when appending to the private synthetic host stream. The host retained reserved_response_unknown and did not redispatch. Original-response recovery then passed 8/8 assertions across canonical/script/module; cloned original-response replays passed 10/10 subprocesses. These counts are separate and must not be summed into a claimed all-green full run.
+
+The first run used 68 real subprocesses: 79/84 assertions passed. Three failures were wrong test expectations for impossible future accepted timestamps. Two CLI late-response failures had no traceback and later accepted the same response through direct API; their exact initial exception remains unproven. All original failed outputs and the correction are preserved.
+
+The checks support the WR29 canonical module identity fix and preserved strict gates. They are development support, not formal GPT acceptance, stage completion, market-data coverage or financial evidence. No production store, authoritative budget, QuantConnect operation or market provider was used. Generated synthetic stores are excluded from the archive whitelist. The captured storage refusal and its recovery are distinct from module-identity acceptance.
+
+Use selected_evidence.json as the archive whitelist. Every listed export file carries its original evidence path and SHA256. Reconstructed stdin and the original untraced factory are explicitly labelled; no first-round hidden traceback is claimed. The traced factory only records and rethrows command exceptions while retaining the exact public host type. No product code was modified by this reviewer.

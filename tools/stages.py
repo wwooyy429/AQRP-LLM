@@ -14,15 +14,16 @@ from qresearch.artifacts import content_hash
 from research import read_json, write_changed
 
 
-def source_manifest():
+def source_manifest(root=None):
+    root = ROOT if root is None else Path(root).resolve()
     files = {}
     for folder in ("cloud", "config", "templates", "tests", "tools", "docs", ".github"):
-        for path in sorted((ROOT / folder).rglob("*")):
+        for path in sorted((root / folder).rglob("*")):
             if path.is_file() and path.suffix in {".py", ".json", ".md", ".yml", ".yaml"} and "__pycache__" not in path.parts:
-                files[path.relative_to(ROOT).as_posix()] = hashlib.sha256(
+                files[path.relative_to(root).as_posix()] = hashlib.sha256(
                     path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
     for name in ("requirements-test.txt", ".gitattributes", ".gitignore", "AGENTS.md"):
-        path = ROOT / name
+        path = root / name
         if path.exists():
             files[name] = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
     return {"source_files": files, "source_hash": content_hash(files), "market_data_included": False}

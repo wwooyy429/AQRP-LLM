@@ -6,10 +6,12 @@ import errno
 import json
 import multiprocessing
 from pathlib import Path
+import stat
 import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 import os
 
@@ -42,7 +44,12 @@ def _process_claim(root, config_id, queue):
         attempt = registry.begin_attempt(config_id, "research", operation_key="fixed-six-fold-run")
         queue.put((attempt.should_execute, attempt.attempt_id))
     except Exception as error:
-        queue.put(("error", repr(error)))
+        chain, cause = [], error
+        while cause is not None:
+            chain.append({"type": type(cause).__name__, "message": str(cause),
+                          "errno": getattr(cause, "errno", None), "winerror": getattr(cause, "winerror", None)})
+            cause = cause.__cause__
+        queue.put(("error", repr(error), chain))
 
 
 class _CompletionInterruptedStore(MemoryArtifactStore):
@@ -282,6 +289,83 @@ class PersistenceTests(unittest.TestCase):
                             operation()
             with self.assertRaises(ValueError):
                 FilesystemArtifactStore(directory, data_classification="quantconnect_market_data")
+
+    def test_deleted_ordinary_leaf_is_not_resolved_into_ntfs_deleted_namespace(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = FilesystemArtifactStore(directory)
+            leaf = store.root / ".locks" / "synthetic.lock"
+            leaf.parent.mkdir()
+            leaf.write_bytes(b"synthetic owner")
+            original = Path.resolve
+            leaf_resolves = []
+
+            def resolve(path, *args, **kwargs):
+                if path == leaf:
+                    leaf_resolves.append(path)
+                    # Deterministic stand-in for the observed Windows result;
+                    # ordinary leaves must never call this resolution branch.
+                    return Path("C:/$Extend/$Deleted/synthetic-deleted-inode")
+                return original(path, *args, **kwargs)
+
+            with patch.object(Path, "resolve", resolve):
+                self.assertEqual(store._path(".locks/synthetic.lock"), leaf)
+                leaf.unlink()
+                self.assertEqual(store._path(".locks/synthetic.lock"), leaf)
+            self.assertEqual(leaf_resolves, [])
+
+    def test_parent_and_existing_link_or_reparse_leaf_cannot_escape(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory)
+            root = base / "inside"
+            outside = base / "outside"
+            outside.mkdir()
+            store = FilesystemArtifactStore(root)
+            original_resolve, original_lstat = Path.resolve, Path.lstat
+            parent, leaf = root / "redirect", root / "leaf"
+
+            def parent_redirect(path, *args, **kwargs):
+                return outside if path == parent else original_resolve(path, *args, **kwargs)
+
+            with patch.object(Path, "resolve", parent_redirect), self.assertRaises(ValueError):
+                store._path("redirect/item.json")
+
+            for mode, attributes in ((stat.S_IFLNK, 0),
+                                     (stat.S_IFREG, getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400))):
+                metadata = SimpleNamespace(st_mode=mode, st_file_attributes=attributes)
+
+                def lstat(path, *args, **kwargs):
+                    return metadata if path == leaf else original_lstat(path, *args, **kwargs)
+
+                def leaf_redirect(path, *args, **kwargs):
+                    return outside / "escaped.json" if path == leaf else original_resolve(path, *args, **kwargs)
+
+                with self.subTest(mode=mode, attributes=attributes), patch.object(Path, "lstat", lstat), patch.object(
+                        Path, "resolve", leaf_redirect), self.assertRaises(ValueError):
+                    store._path("leaf")
+            self.assertEqual(list(outside.iterdir()), [])
+
+    def test_path_resolution_preserves_real_parent_and_leaf_io_errors(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = FilesystemArtifactStore(directory)
+            original_resolve, original_lstat = Path.resolve, Path.lstat
+            leaf, parent = store.root / "item", store.root
+            for phase in ("parent", "leaf"):
+                denied = PermissionError(errno.EACCES, "synthetic actual permission failure")
+
+                def resolve(path, *args, **kwargs):
+                    if phase == "parent" and path == parent:
+                        raise denied
+                    return original_resolve(path, *args, **kwargs)
+
+                def lstat(path, *args, **kwargs):
+                    if phase == "leaf" and path == leaf:
+                        raise denied
+                    return original_lstat(path, *args, **kwargs)
+
+                with self.subTest(phase=phase), patch.object(Path, "resolve", resolve), patch.object(
+                        Path, "lstat", lstat), self.assertRaises(PermissionError) as raised:
+                    store._path("item")
+                self.assertIs(raised.exception, denied)
 
     def test_occupied_lock_is_preserved_and_fails_closed(self):
         with tempfile.TemporaryDirectory() as directory:

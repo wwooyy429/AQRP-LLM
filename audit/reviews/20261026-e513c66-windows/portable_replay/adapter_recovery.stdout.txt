@@ -1,0 +1,61 @@
+{
+  "fixed_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "command_argv": [
+    "receipt_agent/adapter_recovery.py",
+    "--source",
+    "source",
+    "--out",
+    "adapter_recovery.json"
+  ],
+  "script_sha256": "301cec8aa0217a37a2f4223b2c360e0d887df8f11fa2187d2f79677ce829dc31",
+  "probes": [
+    {
+      "variant": "unknown_then_late_complete",
+      "passes": true,
+      "first_status": "ambiguous",
+      "final_status": "completed",
+      "adapter_calls": 1,
+      "source_calls": 1,
+      "usage_seen_before_callback": [
+        10
+      ],
+      "final_research_usage": 10,
+      "error_row_sentinel_in_local_store": false,
+      "actual_execution_failure_marker_produced": null
+    },
+    {
+      "variant": "rejected_then_explicit_retry",
+      "passes": true,
+      "first_status": "failed",
+      "final_status": "completed",
+      "adapter_calls": 2,
+      "source_calls": 1,
+      "usage_seen_before_callback": [
+        10,
+        11
+      ],
+      "final_research_usage": 11,
+      "error_row_sentinel_in_local_store": false,
+      "actual_execution_failure_marker_produced": null
+    },
+    {
+      "variant": "worker_error_unknown_no_auto_refetch",
+      "passes": true,
+      "first_status": "ambiguous",
+      "final_status": "ambiguous",
+      "adapter_calls": 1,
+      "source_calls": 1,
+      "usage_seen_before_callback": [
+        10
+      ],
+      "final_research_usage": 10,
+      "error_row_sentinel_in_local_store": false,
+      "actual_execution_failure_marker_produced": false
+    }
+  ],
+  "passed": 3,
+  "actual_SDK_executed": false,
+  "real_Research": 0,
+  "real_budget_changes": 0,
+  "scope": "synthetic callback recovery only; actual failure receipt remains unverified"
+}

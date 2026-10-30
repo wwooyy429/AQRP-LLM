@@ -1,0 +1,4 @@
+First root summary attempt was an inline PowerShell/Python reader and failed to parse before executing any statement.
+At line8 its conditional expression contained: data.get('subcases')if folder=='compat_failure'else0
+Python reported SyntaxError: expected 'else' after 'if' expression.
+Corrected only the reviewer reader token spacing to 'else 0' in build_dispatch_summary.py. No test was run, no report/source/registry was changed by this failed reader. Full original inline input and traceback remain in tool history.

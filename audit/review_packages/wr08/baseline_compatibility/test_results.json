@@ -1,0 +1,20 @@
+{
+  "methods": 12,
+  "passed_methods": 11,
+  "failed_methods": 1,
+  "error_methods": 0,
+  "skipped": 0,
+  "failure_records": 1,
+  "error_records": 0,
+  "expected_failures": 0,
+  "unexpected_successes": 0,
+  "subcases": 22,
+  "observations": null,
+  "failures": [
+    {
+      "test": "test_same_nonperfect_rank_daily_ic_keeps_constant_icir_nan (archived_suite.PublicContracts)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-wr08-replay-kcwyphan\\compat_agent\\compatibility_checks.py\", line 144, in test_same_nonperfect_rank_daily_ic_keeps_constant_icir_nan\n    self.assertTrue(stats['sample_std_ic']==0. and np.isnan(stats['icir']),stats)\nAssertionError: False is not true : {'valid_days': 6, 'total_days': 6, 'mean_ic': 0.7000000000000001, 'sample_std_ic': 1.2161883888976234e-16, 'icir': 5755687247059590.0, 'icir_annualized': False, 'common_observations': 30}\n"
+    }
+  ],
+  "errors": []
+}

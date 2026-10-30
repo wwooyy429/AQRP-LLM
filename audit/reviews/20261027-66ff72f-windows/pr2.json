@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "阶段2原LEAN在初始化时因冻结部署身份不匹配而失败，旧检查只返回通用错误。当前候选增加有界逐文件诊断，并在冻结、登记、扣费及首次准备输入前核对物理源码、完整受管Python集合和计划冻结的部署哈希，避免在可本地发现的源码漂移后消耗预算。\n\n**固定审核版本：`66ff72ffaaff8c91c008898e6527c91131176c2a`。PR保持草稿，尚未合并；阶段2整体未通过。**\n\n- 共享诊断沿用UTF-8-sig与通用换行合同，文件末尾换行参与哈希；每文件单次读取，错误仅包含安全路径或路径哈希、预期/实际SHA-256。拒绝非法、设备及控制字符路径。\n- 本地预检保留v2稳定执行源码/目录身份；v1不新增会被自身预算投影破坏的全量源码身份复查，仍严格绑定物理部署。旧已准入输入恢复先返回原输入，不依赖当前源码、不补旧协议标记。\n- 新只读 `tools/deployment_preflight.py` 核对实际项目列表、read_project身份及所有载体、路径、源码引用和可选原输入。输出仅有元数据，始终不授予派发/worker认证。含真实notebook的原生返回不可为使用CLI而落盘。\n- 先前原生编译拒绝、运行失败解析与原attempt结算功能仍包含于候选，均待此次固定版本独立审核。不得沿用81f的软件批准给新增功能授权。\n\n实际原任务 `bfd00f2611fd4496b9498d4597618a8e` / 回测 `39cafa1e9b11f91b27e396b66d033a6d` 已依据真实原生运行异常结算failed。此次项目源码读取的25份已知旧实现及原输入严格匹配原冻结身份；它是当前返回引用，不是失败worker快照。自动导入属于官方文档支持的待证机制，合成插入演示不证明本次根因。**尚未识别具体worker差异，未宣称原云端故障已消除，未部署新候选。**\n\n验证：本地 `python -B tools/research.py build` 和 `python -B tools/stages.py verify` 实际通过530项合成测试；最终Git导出的15项诊断、22项预检及额外16方法开发侧探针通过，计数存在重叠。原字节基线失败、夹具修正、DEL路径发现及修后输出均归档。发布检查逐项验证96个变化文件及78份原字节证据，所有源码/执行/部署身份一致，工作区干净。首次796ed92发布的README编码损坏已在最终提交更正，程序与规范源码未变。\n\n[最终版本CI：Python3.10/3.11均成功](https://github.com/wwooyy429/AQRP-LLM/actions/runs/40471231434)。CI及开发侧探针不是GPT Work验收。\n\n送审入口：[开发说明](https://github.com/wwooyy429/AQRP-LLM/blob/66ff72ffaaff8c91c008898e6527c91131176c2a/docs/stage2-deployment-repair.md)、[复现资料](https://github.com/wwooyy429/AQRP-LLM/blob/66ff72ffaaff8c91c008898e6527c91131176c2a/audit/review_packages/deployment_integrity/README.md)、[证据清单](https://github.com/wwooyy429/AQRP-LLM/blob/66ff72ffaaff8c91c008898e6527c91131176c2a/audit/review_packages/deployment_integrity/developer_outputs_manifest.json)、[当前状态](https://github.com/wwooyy429/AQRP-LLM/blob/66ff72ffaaff8c91c008898e6527c91131176c2a/audit/stage2_current_readiness.json)。\n\n源码清单 `be03e60b842695537192d78c33af0246009382d67528574a43bf541e06f08d1e`；稳定执行清单 `1b8339b34322f2a1a26176fe7cf339fe7f796b23696148154e11ca4ea82ab13e`；部署 `e96729c6fa3617f37f25eec71969a7824bd019ea6990f9df956c5c41ae030431`。\n\n本轮新增配置/Research/LEAN均为0；全局配置6/12、Research9/20、LEAN1/16，实际账本13事件、旧输入及失败原件逐字节未变。此前WR01–19仍只在原审核范围关闭，软件通过身份81fbe52、元数据通过84414ab不变。Research原生异常、真实新版成功运行、历史US200/财务版本/实际送达及公司行动认证仍缺。最终测试、正式研究、自动GPT及交易关闭；2024–2025已暴露、2026独立性未知。工程结果不构成金融有效性证据。",
+    "title": "阶段2：任务桥、原生失败回执与冻结部署预检（待独立验收）",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "747a2c40e7806c15dc87e92b03756136259aad5d",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-27T08:08:28Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 25,
+    "changed_files": 3119,
+    "additions": 419203,
+    "deletions": 170,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "阶段2：任务桥、原生失败回执与冻结部署预检（待独立验收）"
+  },
+  "isError": false
+}

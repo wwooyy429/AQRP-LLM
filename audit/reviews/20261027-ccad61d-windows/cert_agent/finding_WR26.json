@@ -1,0 +1,30 @@
+{
+  "id": "WR-26",
+  "priority": "P2",
+  "blocking": true,
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "title": "老SID形成时点无可知current主表段且流动性全缺时被完整性循环跳过",
+  "locations": [
+    {"file": "cloud/qresearch/data_certification.py", "line": 340, "end_line": 355},
+    {"file": "cloud/qresearch/data_certification.py", "line": 460, "end_line": 464}
+  ],
+  "trigger": "已知老listed SID的旧ticker-mapping区间Jan25终结，但没有明确listed=False或退市证据。替代current段available_at为Feb2 09:00:00.000001，晚于两次形成时点；或替代段完全缺失。与此同时该SID全部liquidity缺失，由第201名补位。这里旧区间终结是映射证据终结，不能当作已知证券退市。",
+  "expected": "形成时点当前分类不可知必须计unknown/证据不足，不能因为没有active行就隐式排除。不得把未来可知的新段回填过去；明确且及时的listed=False区间仍可合法排除。",
+  "actual": "两种case都可能得到observations_passed、12checks=true、expected candidate cells8000、missing candidate cells0、inconsistent classification cells0。旧listed区间仍保留，却不进入当前候选义务或未知集合。",
+  "cause": "active先过滤then-effective且then-available行；_historical_candidate_evidence收集历史后，只遍历current.items()。已知历史SID若当前段不存在/未来才可知，就根本不进入unknown判断。流动性存在时排名后的missing master检查会暴露问题，但全缺时rank201补位隐藏了缺失分类。",
+  "positive_controls": [
+    "及时known current+完整liquidity可通过。",
+    "及时known current+全liquidity缺失因WR22修复正确不足。",
+    "明确及时listed=False current+全liquidity缺失可合法排除。",
+    "未来current但liquidity齐全因排名后missing master检查正确不足。"
+  ],
+  "scope_and_severity": "P2有界观测完整性缺陷，独立于WR25枚举值入口。它不是宣称已认证全市场库存或供应商来源；没有将未来值用于真实交易的证据。正式vendor/full-history/availability/vintage/research/export/financial标志仍false，真实平台/预算/最终测试不变。",
+  "reproduction": "python -B cert_agent/minimal_wr26.py --output <fresh-result.json>；依赖相邻原创cert_fixture.py，四正控先过，再测future-current及missing-current坏例，当前exit1。first_future_current_probe原件及future_current_execution.json保留。",
+  "minimal_fix": "以形成时点可知的历史SID及当前分类证据联合核对覆盖，不能只遍历已有current行。没有明确排除或退市证据的已知历史SID，当前段缺失或尚不可知时保留unknown并阻止观测通过；不读取未来值填回过去，不将映射effective_to当退市，不误伤明确unlisted或合法年轻IPO。",
+  "regression_tasks": [
+    "旧listed映射段结束、新current未来才可知+liquidity全缺：不足。",
+    "旧listed段结束、没有current+liquidity全缺：不足。",
+    "及时current完整/全缺、明确及时unlisted、未来current但liquidity齐全四控制保持。",
+    "原WR20/22及连续区间/gap/overlap/私有重核/false认证保持。"
+  ]
+}

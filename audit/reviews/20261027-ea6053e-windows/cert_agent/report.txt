@@ -1,0 +1,12 @@
+固定ea6053e3e9ef4be17db246daf18a4cf9b2e5be58，基线deb85d9。
+结论：原WR20 IPO过滤范围通过；新增WR22/P2使当前数据观测模块软件验收失败。全阶段2、正式数据认证及金融有效性仍不通过或证据不足。
+未改旧fixture/MRE/13方法断言：baseline exit1/12过1失败/43场景；candidate exit0/13过/43场景。6份复制脚本逐字节一致；SOURCE显式绑定由外部wrapper实现，原嵌入deb文字不冒称candidate身份。
+新增9方法：8通过、1失败、0错误，23命名场景（不是23 unittest子例），2失败记录均属WR22：老SID全缺流动性，近期新ticker或同ticker新区间。
+WR22单独4场景：相同映射完整流动性通过、同SID单session缺失不足、同SID全缺错误通过、真正年轻IPO合法排除通过；首反例与最小反例均exit1。
+IPO同日盘中/收盘相等/收盘后一微秒、19/20期、可用时点相等/一微秒后、未知listing、近期classification/mapping完整记录、refs/raw/count保留、summary私有重算及7个正式认证false均已实际测试通过。
+原MRE的fixed_commit=deb及SID200_ranked_first=True是未改脚本写死的旧说明；外部execution绑定新源码，actual_report_status用于当前结果，不能把写死字段当新实际排名。
+0–7静态矩阵80份精确源码引用已重定位和rawhash核对；矩阵新增0软件方法/0平台调用。阶段3分层收益未实现，阶段4通用组合账本/成本/风险、阶段5实际GPT闭环、阶段6真实搜索/消融净增量、阶段7独立执行器均未验收。
+正式研究/自动GPT/交易/最终测试关闭，active factor/model/trading null；GPT model/call/spend null。真实17事件7/10/1、工程2/2/1停止门保持；本代理未写权威账本。2024–25已暴露、2026独立性未知。
+全部输入原创synthetic memory；未使用开发fixture作为唯一输入；无QC/市场/model调用、source修改或真实科研预算消耗。各方法/场景/MRE重复不相加为独有总数。
+首次PowerShell输出载体及脚本直接UTF8结果保留，后续MRE和suite准确capture_output原stdoutstderr另存。无已执行软件fixture/runner error。
+新report SHA256在写入后由主审或Get-FileHash取得；system_matrix ddaaf92a99496d2176430691ee68c52b4a2858cbdcac7673e0204d41ebda537a

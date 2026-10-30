@@ -1,0 +1,73 @@
+{
+  "software_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "plan_hash": "4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7",
+  "config_id": "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+  "research_attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+  "allocation": "reserve",
+  "before_event_count": 13,
+  "after_event_count": 15,
+  "Research_tool_not_yet_called": true,
+  "LEAN_tool_not_yet_called": true,
+  "input_hash": "03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b",
+  "input_path": "audit/task_inputs/f5d05f5b964b4a1d924e4b70cd207386.py",
+  "commands": [
+    {
+      "label": "freeze",
+      "command": [
+        "freeze",
+        "--plan-file",
+        "config/engineering_joint_pilot.json",
+        "--projects-file",
+        "audit/stage2_completion_projects.json"
+      ],
+      "exit_code": 0,
+      "result": {
+        "schema_version": 1,
+        "plan_key": "engineering/frozen-plans/4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7.json",
+        "plan_hash": "4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7",
+        "project_listing_ref": {
+          "key": "engineering/project-listings/d5e61bc1413bbe4224e4e148f2c3abfbdeef5f1c05e325ad6b6c51507eb64348.json",
+          "sha256": "d5e61bc1413bbe4224e4e148f2c3abfbdeef5f1c05e325ad6b6c51507eb64348"
+        },
+        "configuration_registered": false,
+        "execution_started": false
+      }
+    },
+    {
+      "label": "register",
+      "command": [
+        "register",
+        "--allocation",
+        "reserve"
+      ],
+      "exit_code": 0,
+      "result": {
+        "config_id": "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+        "plan_hash": "4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7"
+      }
+    },
+    {
+      "label": "claim_research",
+      "command": [
+        "claim",
+        "--stage",
+        "research",
+        "--allocation",
+        "reserve"
+      ],
+      "exit_code": 0,
+      "result": {
+        "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+        "config_id": "8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1",
+        "stage": "research",
+        "operation_key": "engineering-plan:4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7:research",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "reserve",
+        "result_key": "results/8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1/research/a8b0d99c59895724e3c8f0427cec3e2c1bd00df442b7bae3a2b77ea802748d96.json",
+        "external_id": null
+      }
+    }
+  ],
+  "financial_evidence": false
+}

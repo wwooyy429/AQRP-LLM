@@ -1,0 +1,163 @@
+[
+  {
+    "label": "build",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/research.py",
+      "build"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 1.7030000000013388,
+    "stdout_sha256": "1078fb90c4061c493bfd894b6811acb5e560982f86b3b0398b1201e257e8d7f1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "repository_verify",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "tools/stages.py",
+      "verify"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 292.6570000000029,
+    "stdout_sha256": "e5be66883883f92df29d3750a6450b9648c5c50caf5da28668423e76834cb60f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "developer_auxiliary35",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/deployment-eof-v2/run_independent_review.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 2.264999999999418,
+    "stdout_sha256": "5732cc147e8e7992e062d0bf1243a07ca7f60935152f32f88a59457de783bac2",
+    "stderr_sha256": "6351c3ca9717934153df79b1a572b9d2efcedb7aedb66dd31f19c70558f0a4f6",
+    "extra_environment": {}
+  },
+  {
+    "label": "developer_candidate_checker",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "audit/review_packages/deployment-eof-v2/verify_candidate.py"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 1,
+    "seconds": 1.2659999999996217,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "39dc1f7e7ee90f5a3bbdc62cf0b6a97dd4f296efd94b538c656744a72a0dd0b0",
+    "extra_environment": {
+      "GIT_DIR": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo\\.git",
+      "GIT_WORK_TREE": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source"
+    }
+  },
+  {
+    "label": "legacy_compatibility",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source\\docs\\review\\wr08\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\legacy_compatibility",
+      "--suite",
+      "compatibility"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 1.75,
+    "stdout_sha256": "81d6d6cbfc26d55d928395e932dc052e006023faa1debece088ab280cc561d93",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "legacy_pearson",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source\\docs\\review\\wr08\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\legacy_pearson",
+      "--suite",
+      "pearson"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 2.562000000001717,
+    "stdout_sha256": "38e0db87eca05252b99aff2db74af931ef3aa8c30d94939cc5829be0da08f77a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "legacy_numeric",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source\\docs\\review\\wr07\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\legacy_numeric",
+      "--suite",
+      "numeric"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 2.452999999997701,
+    "stdout_sha256": "dd53024fdd919da9339233e624ff2b1a1bd9f0b23b178d866099f26931a5f932",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "legacy_atomic",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source\\docs\\review\\wr07\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\legacy_atomic",
+      "--suite",
+      "atomic"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 7.890999999999622,
+    "stdout_sha256": "4756673e46a95a03045e8adf5d68e837c8a1143ea52bfbdfec04175634c56289",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  },
+  {
+    "label": "legacy_adapted56",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source\\docs\\review\\wr04-wr06\\replay.py",
+      "--source-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\source",
+      "--output-dir",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\legacy_adapted56",
+      "--mode",
+      "adapted"
+    ],
+    "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\verification_source",
+    "exit_code": 0,
+    "seconds": 9.5470000000023,
+    "stdout_sha256": "c78c4d777870a90f9c3bdd4e31c7afc95cf74ca2cb5004b47e0d9b59a4e7a9d7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "extra_environment": {}
+  }
+]

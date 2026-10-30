@@ -1,0 +1,39 @@
+--- unchanged-original-minimal_wr18.py
++++ verify_wr18_repair.py
+@@ -1,5 +1,5 @@
+ """Synthetic input-binding counterexample; no SDK, worker or remote calls.
+-Usage: python -B minimal_wr18.py SOURCE. Current candidate must exit 1.
++Usage: python -B minimal_wr18.py SOURCE. Repair must reject without writes and exit 0; original baseline exits 1.
+ """
+ from pathlib import Path
+ from copy import deepcopy
+@@ -8,7 +8,7 @@
+ sys.dont_write_bytecode = True
+ sys.path.insert(0, str(S/'cloud'))
+ from qresearch.artifacts import MemoryArtifactStore, canonical_json, content_hash
+-from qresearch.registry import Registry
++from qresearch.registry import Registry, RegistryError
+ from qresearch.engineering_tasks import EngineeringTaskPlan, EngineeringTaskBridge, EngineeringTaskError
+ from qresearch.collection import HistoricalCollectionPlan
+ 
+@@ -68,8 +68,15 @@
+     cloud_report=obs['cloud_report'], report_ref=obs['report_ref'],
+     platform_evidence_ref={'key':key,'sha256':digest}, financial_evidence=False)
+ r.complete(a,result,external_id=ext)
+-before = r.snapshot()['usage']['lean']['total']
+-lean = r.begin_attempt(b.config_id,'lean',operation_key=b._operation('lean'))
+-print('conflicting input: should_execute=',lean.should_execute,
+-      'LEAN usage=',before,'->',r.snapshot()['usage']['lean']['total'])
+-assert not lean.should_execute, 'WR-18: conflicting Research input admitted as LEAN dependency'
++before_usage = r.snapshot()['usage']
++before_artifacts = deepcopy(r.store._data)
++refused = False
++try:
++    r.begin_attempt(b.config_id, 'lean', operation_key=b._operation('lean'))
++except RegistryError as exc:
++    refused = True
++    print('Registry refused:', exc)
++assert refused, 'WR-18: conflicting Research input admitted'
++assert r.snapshot()['usage'] == before_usage
++assert r.store._data == before_artifacts
++print('repaired: matching allowed, conflicting refused, no new artifacts/debit')

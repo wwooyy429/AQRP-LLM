@@ -1,0 +1,131 @@
+{
+  "reviewer": "receipt_agent independent review",
+  "fixed_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "date": "2026-10-26",
+  "verdict": "不通过：WR-11/P2已复现；真实新版运行和完整失败回执验证另有未完成门槛。",
+  "first_run": {
+    "methods": 14,
+    "passed_methods": 13,
+    "failed_methods": 1,
+    "subcases": 54,
+    "failure_records": 2,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": {
+      "method": "test_native_parallel_content_row_leak_must_be_rejected (__main__.IndependentReceiptTests)",
+      "subtest": "test_native_parallel_content_row_leak_must_be_rejected (__main__.IndependentReceiptTests) (parallel_content='text_row')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-e513c66-20261026\\receipt_agent\\independent_receipts.py\", line 287, in test_native_parallel_content_row_leak_must_be_rejected\n    with self.assertRaises(API_ERRORS): h.parse(envelope)\nAssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'TypeError'>, <class 'KeyError'>) not raised\n"
+    }
+  },
+  "additional_minimal_probes": {
+    "variants": 5,
+    "positive_controls": 2,
+    "positive_passed": 2,
+    "negative_variants": 3,
+    "incorrectly_accepted": 3
+  },
+  "additional_adapter_recovery_probes": {
+    "probes": 3,
+    "passed": 3
+  },
+  "counts_are_overlapping_not_unique": true,
+  "method_subcases": {
+    "test_complete_worker_native_parser_registry_chain": 3,
+    "test_context_rejects_cross_identity_and_report_paths": 10,
+    "test_corrupt_cache_or_receipt_never_refetches": 4,
+    "test_cross_attempt_report_replay_rejected": 1,
+    "test_deployment_and_input_bindings_reject_changes": 3,
+    "test_deployment_source_bytes_checked_before_source_fetch": 1,
+    "test_inert_input_loader_never_executes_additional_code": 4,
+    "test_native_errors_extra_stdout_and_displays_rejected": 10,
+    "test_native_parallel_content_row_leak_must_be_rejected": 2,
+    "test_reentry_is_cache_only_and_same_report": 1,
+    "test_report_metadata_whitelist_and_false_limitations": 12,
+    "test_source_failure_suppresses_rows_and_blocks_same_attempt_retry": 1,
+    "test_unknown_adapter_and_late_success_reconciliation": 1,
+    "test_valid_shape_failed_marker_marks_registry_failed": 1
+  },
+  "findings": [
+    {
+      "id": "WR-11",
+      "priority": "P2",
+      "title": "双输出载体冲突被忽略，带额外行或错误的原生形状回执被认作stdout-only并完成",
+      "primary_file": "cloud/qresearch/engineering_receipts.py",
+      "start_line": 92,
+      "end_line": 93,
+      "downstream": [
+        {
+          "file": "cloud/qresearch/collection_execution.py",
+          "start_line": 122,
+          "end_line": 140
+        },
+        {
+          "file": "tools/collection_task_cli.py",
+          "start_line": 123,
+          "end_line": 125
+        }
+      ],
+      "trigger": "同一result含合法structuredContent marker，同时content含额外text行、display_data行或执行error。",
+      "actual": "_native只返回structuredContent；另一输出载体完全未检查。collection_research_observation写stdout_only=True与marker_count=1；CLI research-result完整Bridge/Registry链把3个负例都终结为completed，报告market_values_exported=False。",
+      "expected": "等价双表示可通过；冲突的额外输出、行展示或错误必须在终态认证前拒绝，不能宣称stdout-only。",
+      "effect": "本地台账的元数据完整性与数据外传门槛失真。另一个载体真实含什么不能由被忽略的载体哈希证明；携带执行错误亦被完成。",
+      "non_claim": "没有发现行字节被该parser写入Registry；Registry只保存原native结果digest和固定元数据。复现所有行与错误都是合成，无真实数据外传或真实Research执行。",
+      "controls": "单载体及content/structuredContent完全等价的双载体两个正例均completed。单个有效载体内部的额外stdout、display_data、stderr、error、重复marker均被现有检查拒绝。",
+      "line_cause": "engineering_receipts._native在92-93行提前return；collection_execution.py:140无条件标记stdout_only，tools/collection_task_cli.py:123-125随后入账。",
+      "inherited_from_7bf": true,
+      "inherited_file_sha256": "69326601a5180487695a66e7dc5d7f858efdfac691c49f72b85958948680491d",
+      "introduced_by_current_commit_claimed": false,
+      "reproduction": "minimal_parallel_output.py",
+      "regression": "independent_receipts.py:test_native_parallel_content_row_leak_must_be_rejected",
+      "fix_direction": "解析/正规化全部存在的输出载体；容许等价重复表示，拒绝冲突或额外行/显示/错误后才设置stdout_only。不要一律拒绝SDK规范的等价双表示。"
+    }
+  ],
+  "source_hashes_before_after_equal": true,
+  "source_hashes": {
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/engineering_receipts.py": "69326601a5180487695a66e7dc5d7f858efdfac691c49f72b85958948680491d",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/collection.py": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b",
+    "tools/collection_task_cli.py": "ef7a978e6c4879f8021fe5982a0a8c69950b9451c2df671dc944b46a866d7872"
+  },
+  "coverage": [
+    "独立采集源→缓存→固定报告→structured/content/direct三种原生形状→pending→Registry completed。",
+    "跨attempt/plan_hash/config_id/project/source/deployment/request/stage/report_path/external_identity_kind篡改拒绝；completion input_hash与已存submission不同拒绝。",
+    "部署源码变更在source.fetch前拒绝；惰性输入只接受单字符串赋值，额外语句/调用/错误变量名拒绝。",
+    "固定报告flags、字段白名单、missing计数、count bool、receipt路径与check/status不一致均拒绝。",
+    "完整重入不fetch且恢复同报告；receipt identity/window/payload损坏及payload缺失不fetch。",
+    "真正调用合成adapter：未知提交只扣一次保持ambiguous，晚到成功可核对终结；明确拒绝不回款，显式retry再扣后成功；worker异常保持ambiguous且不自动重取。",
+    "源异常带合成行sentinel不会进入错误消息或Registry；合法报告和台账无合成行SID/数值。"
+  ],
+  "uncompleted_evidence_separate_from_findings": [
+    "未执行真实SDK/Python.NET/Research/LEAN；原生形状成功链不是实际平台成功执行证据。",
+    "未验证真实执行失败的交付回执及失败终态完整链。worker源异常仅观察到抛出、intent保留和ambiguous阻止自动重试；现有CLI成功marker路径不把无marker错误直接当可重试失败，符合文档声明但不满足完整运行门槛。",
+    "手动将固定check置false的失败marker探针仅验证元数据形状→Registry failed，不能冒充实际worker异常/平台失败回执。",
+    "CLI research-result使用admission中已准备的deployment/input_hash，native参数只有projectId/index；本次只证明准备字节自洽和submission/completion一致，未证明真实云端上传/执行输入的独立读回。该点由受信调度器I/O边界承担，未单独另报缺陷。",
+    "未证明历史US200成员、SID/分类/交易日、财务数值/修订/实际送达；未授权正式研究、最终测试或交易。"
+  ],
+  "commands": "command_log.json",
+  "regression_inputs": "first_run_summary.json:inputs",
+  "first_failure_preserved": "first_run_summary.json:first_failure / first_run_unittest.txt",
+  "minimal_full_output": "minimal_parallel_output.json",
+  "adapter_full_output": "adapter_recovery.json",
+  "actions": {
+    "real_SDK": 0,
+    "market": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "model_API": 0,
+    "deployment": 0,
+    "real_budget_changes": 0,
+    "source_edits": 0,
+    "actual_final_market_data_opened": 0
+  },
+  "reviewer_process_notes": [
+    "不导入作者测试/fixture；所有输入、store、源行及异常均新造。",
+    "首次运行14/54原始失败完整留存，未修生产源码，也未改首次测试后重跑覆盖失败。",
+    "仅在receipt_agent目录写脚本/报告/临时合成部署和输入；临时目录由其TemporaryDirectory正常清理。",
+    "发现错误路径均为只读探索，见命令日志；不混作产品失败。"
+  ]
+}

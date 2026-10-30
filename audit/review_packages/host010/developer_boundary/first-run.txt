@@ -1,0 +1,22 @@
+test_default_gate_does_not_open_or_import_factory (__main__.HostBoundaryTests) ... ok
+test_directory_terminal_and_input_booleans_cannot_grant_read (__main__.HostBoundaryTests) ... ok
+test_discovery_reservation_survives_restart_and_original_response (__main__.HostBoundaryTests) ... ok
+test_exact_binding_rejects_wrong_tool_arguments_and_correlation (__main__.HostBoundaryTests) ... ok
+test_late_original_native_parser_settles_despite_host_attention (__main__.HostBoundaryTests) ... ok
+test_malformed_and_ascii_overlimit_lines_have_no_store_writes (__main__.HostBoundaryTests) ... ok
+test_multiprocess_unique_discovery_output (__main__.HostBoundaryTests) ... ok
+test_utf8_byte_limit_rejects_oversized_unicode_response (__main__.HostBoundaryTests) ... FAIL
+
+======================================================================
+FAIL: test_utf8_byte_limit_rejects_oversized_unicode_response (__main__.HostBoundaryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\ѧϰ\Ͷ��\����\�������ױ���\LLM ����������\.git\repair-work\host010-boundary\check_boundaries.py", line 153, in test_utf8_byte_limit_rejects_oversized_unicode_response
+    self.assertEqual(store._data, before, 'oversized UTF-8 response reached the durable ledger')
+AssertionError: {'reg[18280 chars]:2}\n{"event":{"failure_code":"invalid_native_[282 chars]}\n'} != {'reg[18280 chars]:2}\n'}
+Diff is 373744 characters long. Set self.maxDiff to None to see it. : oversized UTF-8 response reached the durable ledger
+
+----------------------------------------------------------------------
+Ran 8 tests in 5.315s
+
+FAILED (failures=1)

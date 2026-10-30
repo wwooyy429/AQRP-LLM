@@ -1,0 +1,29 @@
+Read-only final QA of formal_report.json/.txt, findings.json and verify_wr18_repair.py.
+No substantive error found within WR18/admission scope. No tests or platform calls made during QA (0 new unit methods).
+
+- WR18 repaired acceptance matches the shared _recorded_submission(436-479) and _completion_contract(662-690), used by Bridge692-715 and authoritative Registry419/420 under the held transaction lock. Valid matching Research permits LEAN; input mismatch/empty raw/missing submission fail before new LEAN debit.
+- Root verify_wr18_repair.py retains the same positive and conflicting-observation construction as the short original. It explicitly catches safe RegistryError then asserts the entire usage and MemoryArtifactStore data mapping are unchanged. Its diff does not convert a permission into success: saved baseline raw exits1 at 'assert refused', candidate raw exits0 after actual refusal/no-write assertions.
+- Original short script exit1 is explicitly classified as uncaught safe refusal, rather than product failure. Full original MRE old1/new0 is recorded separately.
+- Original9methods/4subcases plus corrected new9methods/39subcases =18methods/43subcases. First new9 run8pass/1auditor-fixture error is preserved; corrected execution does not add unique methods. Pure AST comparison confirms all assert nodes are unchanged. Both script hashes match report.
+- WR19/P3 is explicitly nonblocking metadata and separate from WR18. findings.json equals formal_report.findings. Stage2 overall remains pending, stage3-7 unaccepted, financial/data certification false. Current-round QC access is explicitly absent; prior platform evidence is labelled historical.
+
+Minor documentation-only nit: verify_wr18_repair.py docstring's Usage still says 'minimal_wr18.py SOURCE'. Formal report commands correctly use verify_wr18_repair.py; this does not affect the saved execution or acceptance conclusion.
+
+QA read-only lookup note: one Get-Content batch first guessed repair_probe output names without '.txt'; files were not found. Immediately read the actual listed baseline/candidate .stdout.txt/.stderr.txt files. This was a QA filename lookup error, not a test/product error or a rerun.
+Other agents'453/historical/recovery/WR19 calculations were not re-executed by this QA.
+
+Read-only mechanical checks:
+{
+  "fixed_81_identity": true,
+  "findings_equal": true,
+  "WR19_nonblocking": true,
+  "old9_results": true,
+  "new9_results": true,
+  "unique18_43": true,
+  "first_error_reported": true,
+  "all_assertions_unchanged": true,
+  "first_script_hash": true,
+  "corrected_script_hash": true,
+  "repair_probe_old1_new0": true,
+  "no_current_QC_claim": true
+}

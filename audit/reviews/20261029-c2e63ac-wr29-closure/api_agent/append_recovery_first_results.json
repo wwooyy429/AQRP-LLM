@@ -1,0 +1,32 @@
+{
+  "methods": 3,
+  "scenarios": [
+    "injected_preappend_zero_bytes",
+    "preappend_inspect_unknown_no_request",
+    "preappend_prepare_unknown_no_request",
+    "original_response_recovered",
+    "original_response_idempotent",
+    "one_next_history_after_recovery",
+    "no_discovery_or_budget_reexecution",
+    "post_full_append_event_is_durable",
+    "postappend_original_response_idempotent",
+    "controller_observation_durable_before_host_ack",
+    "gap_no_redispatch",
+    "original_history_response_recovered_idempotently",
+    "read_grant_still_required_and_no_settlement",
+    "all_response_faults_budget_unchanged"
+  ],
+  "named_scenarios": 14,
+  "failures": [
+    [
+      "test_03_actual_Win32_append_denial_real_CLI_and_cross_entry_recovery (__main__.AppendRecovery)",
+      "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\independent_append_recovery.py\", line 65, in test_03_actual_Win32_append_denial_real_CLI_and_cross_entry_recovery\n    try:h.accept_response(m)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source\\tools\\followup_host.py\", line 397, in accept_response\n    self._append(attempt, {\"kind\": \"response\", \"correlation_id\": correlation,\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source\\tools\\followup_host.py\", line 240, in _append\n    self.store.append_event(self._stream(attempt), event)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source\\cloud\\qresearch\\artifacts.py\", line 386, in append_event\n    with path.open(\"ab\") as output:\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nPermissionError: [Errno 13] Permission denied: 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-c2e63ac-20261029\\\\api_agent\\\\native-append-pm7xp3ql\\\\engineering\\\\followup-host\\\\1823a17a982341feb6311d214f4f67c1\\\\events.jsonl'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\independent_append_recovery.py\", line 68, in test_03_actual_Win32_append_denial_real_CLI_and_cross_entry_recovery\n    self.assertEqual(exc.errno,13);self.assertEqual(exc.winerror,32);self.assertEqual(Path(exc.filename),path);scenario('actual_native_PermissionError13_WinError32_at_exact_host_stream')\nAssertionError: None != 32\n"
+    ]
+  ],
+  "errors": [],
+  "skips": [],
+  "observations": [],
+  "subprocesses": [],
+  "actually_executed": true,
+  "kind": "reviewer_independent_injected_and_actual_Win32_private_append_denial"
+}

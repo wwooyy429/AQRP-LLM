@@ -1,0 +1,24 @@
+{
+  "id": "WR-25",
+  "priority": "P2",
+  "blocking": true,
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "title": "主表未映射分类字符串在流动性全缺时被当作明确排除，错误观测通过",
+  "locations": [
+    {"file": "cloud/qresearch/data_certification.py", "line": 287, "end_line": 288},
+    {"file": "cloud/qresearch/data_certification.py", "line": 355, "end_line": 362}
+  ],
+  "trigger": "同一老SID保留完整旧listed主表段和新mapping，current instrument_type是UNMAPPED_VENDOR_CODE，既不在上游注册分类枚举中也非明确ETF等排除类型。该SID全部liquidity缺失，并由第201名补位。输入走正常DataCertificationPlan/ingest/store_certification_table/audit_data_certification路径，无私有store篡改或绕过hash验证。",
+  "expected": "枚举外的未映射分类必须拒绝或保留unknown，不能当作已知不合格证券排除；观测完整性不能通过。None同样未知，明确etf可合法排除。",
+  "actual": "observations_passed，全部12checks=true，inconsistent_classification_cells=0、known_eligible_candidate_expected_cells=8000、missing_candidate_session_cells=0。相同代码在liquidity齐全时因主表/排名类型不一致而不足，None+全缺不足，明确etf+全缺可通过。",
+  "cause": "security-master的_rows只对非None instrument_type做非空文本检查；_historical_candidate_evidence只把None识别为unknown，再把所有不在INCLUDED的文本直接continue为排除。相对地，ingestion.py:36–37及211–212明确拒绝非_CLASSIFICATIONS的liquidity分类。完整性审计的主表入口没有使用相同的封闭枚举或unknown语义。",
+  "scope_and_severity": "P2观测审计完整性缺陷，阻断当前数据观测模块整体验收。旧ea同字节首probe亦返回observations_passed；属于本轮修补未覆盖的既有路径，不能称本轮引入的回归。所有vendor/full-history/actual-availability/vintage/research/export/financial标志仍false，没有实际供应商认证、因子选择、金融有效性或预算改变证据。",
+  "reproduction": "python -B cert_agent/minimal_wr25.py --output <fresh-result.json>；只依赖旁边原创cert_fixture.py，三正控先过，坏例当前exit1。根另有minimal_wr25.py --source source --output <fresh-result.json>及wr25_confirmation独立重复。首probe及baseline ea重放原件保留。",
+  "minimal_fix": "在主表入口与完整性判断中复用封闭的分类枚举：未知/未映射值拒绝或计unknown，只有明确listed=False或明确已知排除类型才可排除。不能仅因不属于INCLUDED就认定属于排除类型；保留合法ETF及None正控、原WR20/22和私有重算。",
+  "regression_tasks": [
+    "未知代码/unknown/拼写错误分类+全liquidity缺失：拒绝或不足。",
+    "同一未知分类但liquidity齐全、None+全缺均不足；明确etf或明确unlisted仍可排除。",
+    "正常store_certification_table及audit路径需验证，不只测试内部helper。",
+    "原WR20/22反例通过及历史区间/私有输入/正式false标志保持。"
+  ]
+}

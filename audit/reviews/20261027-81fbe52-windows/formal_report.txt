@@ -1,0 +1,12 @@
+81fbe529独立复验：WR-18在本轮范围修复后通过，未发现新增阻断性软件缺陷；WR-19/P3是非阻断历史比较元数据错配。阶段2整体仍待验收。
+固定SHA：81fbe5294055423e88ee5aeae48ca6223e7971da
+WR18原完整MRE原字节旧ae退出1，新81退出0：input_hash冲突/空raw/无提交3路径扣费前拒绝，合法匹配完成准入。原短脚本仍退出1是新RegistryError安全早拒绝，非原bug残留。新增明确拒绝/无写入断言探针旧1新0，原脚本及adapter diff均保留。
+本地规定入口453通过；16旧套件248方法/2307子例、Collection12/36、注解10/803、联合worker9/81、原7准入都过。WR18原9/4与新修正版9/39=18方法43子例过。恢复原5/46、新3/28以及4合成失败手工探针均过，方法/子例/重复次数分列。
+新共享合同首9方法8通过1审核输入错误：collection_nonempty=false与40个非空窗口矛盾，产品正确拒绝。仅将该失败检查输入改为raw_data_received=false，断言和生产不变；首脚本/raw及修正diff保留。
+元数据634检查最终633过1真实声明不符（WR19）。首627过7不符中6条是审核器CRLF末行OK解析测量错误，修正后仍保留1条真实错配；不把测量错误计产品失败。
+WR19：audit/stage2_current_readiness.json:124标candidate=ae却保留12。按所引ae29文件与旧25已知参考重算9不同+4不在参考=13，raw/LF一致；root自包含MRE也13/12退出1。P3不阻断软件通过，不证明实际云端缺4或全集；明确属于dc49的历史12不作为错误，不覆盖旧表。
+2374源raw等固定Git；62开发原件、463旧审核原件/21引用、1674旧证据及3902旧最终artifact/ZIP核验。两build两preview/纯预检通过，源与权威账本不变。
+本轮没有访问QuantConnect；此前25实现及1输入核对只是历史平台证据，不冒充本轮源码/部署/终态核验。旧LEAN39cafa...当前完成/失败未知，未读状态/结果/日志或轮询。
+12事件重放预算6/12、Research9/20、LEAN1/16，工程各用1/2。真实Research/LEAN/模型/部署/预算变更0；2024–25暴露保留，2026独立性未知。正式研究/自动GPT/最终测试/交易关闭。
+阶段0/1原离线范围保持；阶段2已测软件通过但真实运行/原生失败与US200/财务时点认证仍缺；阶段3–7未验收，data_certification=false、financial_evidence=false。
+可运行修复探针：python -B verify_wr18_repair.py source（本候选0，旧ae1）；非阻断最小：python -B minimal_wr19.py source（当前声明12/计算13退出1）。完整原MRE保留original_probes/minimal_checked_dependency.py。所有脚本/原命令/raw/环境/覆盖矩阵/问题修复及回归建议见同目录JSON与附件。未修改/批准/合并开发成果。

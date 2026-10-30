@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "kind": "requested_software_rerun_completed_cloud_dispatch_pending_budget_clarification",
+  "request_text": "请重跑软件测试和新增云端执行",
+  "fixed_tested_repository_commit": "87c458b73fbf6455e9a71da4b3970cba08965c36",
+  "production_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+  "software_rerun": {
+    "repository_tests": 825,
+    "audit_unit_tests": 11,
+    "checker_processes": 13,
+    "positive_clean_deliveries": 3,
+    "negative_cases_rejected": 10,
+    "builds": 2,
+    "all_passed": true,
+    "builds_idempotent": true,
+    "main_original_raw_bytes_preserved": true,
+    "counts_overlap_not_additive": true,
+    "not_independent_GPT_Work_acceptance": true,
+    "full_result_ref": "audit/review_packages/cloud-v2-rerun/offline_validation/new_checker_end_to_end_result.json",
+    "unit_result_ref": "audit/review_packages/cloud-v2-rerun/audit_unit_validation/audit_unit_result.json"
+  },
+  "cloud_execution": {
+    "user_requested": true,
+    "QC_metadata_calls": 3,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "configuration_registrations": 0,
+    "budget_events_added": 0,
+    "writes_or_deployments": 0,
+    "status": "not_dispatched_pending_explicit_configuration_limit_approval_and_append_only_revision_support",
+    "project_id": 38436695,
+    "plan_preview": "audit/review_packages/cloud-v2-rerun/execution_proposal.json"
+  },
+  "current_budget": {
+    "usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    },
+    "limits": {
+      "configurations": 12,
+      "research": 20,
+      "lean": 16
+    },
+    "events": 48,
+    "journal_sha256": "ff0440eb196fc5e79be54ab0d6113630510a058313251be667fae6d064a4c71d",
+    "round004_status": "closed"
+  },
+  "approval_question_pending": {
+    "proposed_global_limits": {
+      "configurations": 13,
+      "research": 20,
+      "lean": 16
+    },
+    "proposed_new_round": {
+      "configurations": 1,
+      "research": 1,
+      "lean": 1,
+      "automatic_retries": 0,
+      "extra_spend_USD": 0
+    },
+    "actual_human_budget_increase_approval_received": false,
+    "reason": "AGENTS forbids LLM budget changes; existing limits are exhausted and no revision API exists. Research/LEAN request does not specify a new configuration cap."
+  },
+  "WR28_independently_closed_scope_preserved": true,
+  "stage2_accepted": false,
+  "actual_new_v2_cloud_success": null,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "old_failed_v1_attempt_reinterpreted": false,
+  "prior_2024_2025_exposure_preserved": true
+}

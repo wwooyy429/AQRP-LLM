@@ -1,0 +1,28 @@
+--- independent_carrier_boundaries.py
++++ independent_carrier_boundaries_corrected.py
+@@ -167,7 +167,7 @@
+         for number,value in enumerate(variants):
+             with self.case(optional_empty=number):self.assertEqual(_native(value),base)
+     def test_nonidentical_typed_values_or_output_order_rejected(self):
+-        pairs=[(True,1),(1,1.0),(1,'1'),(None,''),([1,2],[2,1]),({'x':[]},{'x':{}}),
++        pairs=[(True,1),(1,1.0),(1,'1'),({'x':None},{'x':''}),([1,2],[2,1]),({'x':[]},{'x':{}}),
+             ({'status':'ok'},{'status':'error'}),({'x':'审核'},{'x':'审查'})]
+         for number,(left,right) in enumerate(pairs):
+             with self.case(type_or_order=number):
+@@ -315,7 +315,7 @@
+         super().addFailure(test,err)
+ 
+ stream=io.StringIO();result=unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=AuditResult).run(unittest.defaultTestLoader.loadTestsFromTestCase(IndependentCarrierTests))
+-raw=stream.getvalue();(OUT/'first_run_unittest.txt').write_text(raw,encoding='utf-8')
++raw=stream.getvalue();(OUT/'corrected_run_unittest.txt').write_text(raw,encoding='utf-8')
+ files=['cloud/qresearch/engineering_receipts.py','cloud/qresearch/engineering_tasks.py','cloud/qresearch/engineering_data.py',
+     'cloud/qresearch/collection_execution.py','cloud/qresearch/collection_tasks.py','cloud/qresearch/registry.py']
+ summary={'commit':'be9442603a31481a9a71e51ca794df77650c7411','source_root':str(ROOT),'command_argv':sys.argv,
+@@ -326,6 +326,6 @@
+     'first_failure':result.first_failure,'inputs':INPUTS,
+     'actions':{'SDK':0,'Research':0,'LEAN':0,'market':0,'models':0,'deploy':0,'actual_budget_change':0,'source_edit':0},
+     'scope':'fixed synthetically constructed carrier/receipt/Bridge/Registry paths; not arbitrary SDK envelope certification or real remote execution'}
+-(OUT/'first_run_summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
++(OUT/'corrected_run_summary.json').write_text(json.dumps(summary,indent=2,ensure_ascii=False),encoding='utf-8')
+ print(raw);print(json.dumps({k:v for k,v in summary.items() if k not in {'inputs','first_failure'}},ensure_ascii=False))
+ sys.exit(0 if result.wasSuccessful() else 1)

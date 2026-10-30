@@ -1,0 +1,38 @@
+{
+  "methods": 3,
+  "named_scenarios": 18,
+  "scenario_labels": [
+    "v1-diag/lf/False",
+    "v1-diag/lf/True",
+    "v1-diag/utf8/False",
+    "v1-diag/utf8/True",
+    "legacy-unrestricted/invalidsyntax",
+    "legacy-unrestricted/nul",
+    "v2-strict-diag/0/0/False",
+    "v2-strict-diag/0/0/True",
+    "v2-strict-diag/0/2/False",
+    "v2-strict-diag/0/2/True",
+    "v2-strict-diag/2/0/False",
+    "v2-strict-diag/2/0/True",
+    "v2-strict-diag/2/2/False",
+    "v2-strict-diag/2/2/True",
+    "v2-strict-diag/64/0/False",
+    "v2-strict-diag/64/0/True",
+    "v2-strict-diag/64/2/False",
+    "v2-strict-diag/64/2/True"
+  ],
+  "failure_records": 0,
+  "error_records": 1,
+  "skipped": 0,
+  "success": false,
+  "source_raw_unchanged": true,
+  "source_files": 6179,
+  "seconds": 2.889999999999418,
+  "failures": [],
+  "errors": [
+    {
+      "test": "test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints (__main__.Tests)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\policy_agent\\diagnostic_supplement.py\", line 38, in test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints\n    cases.append('legacy-unrestricted/'+label);root=self.root(label,raw);manifest={'a.py':H(raw)};digest=content_hash(manifest);self.assertEqual(verify_deployment(manifest,digest,source_root=root),digest);self.assertIsNone(verify_deployment_observation(manifest,digest,source_root=root))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4a42c18-20261028\\policy_agent\\diagnostic_supplement.py\", line 13, in root\n    q=O/'cases'/label;q.mkdir(parents=True,exist_ok=True);(q/'a.py').write_bytes(raw);return q\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1143, in write_bytes\n    with self.open(mode='wb') as f:\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\11638\\\\.codex\\\\tmp\\\\aqrp-review-4a42c18-20261028\\\\policy_agent\\\\supplement_first\\\\cases\\\\nul\\\\a.py'\n"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "WR-16",
+    "priority": "P2",
+    "reviewed_source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+    "title": "联合计划的执行约束未在共享Registry准入事务内执行",
+    "locations": [
+      {
+        "file": "cloud/qresearch/registry.py",
+        "line": 502,
+        "end_line": 508
+      },
+      {
+        "file": "cloud/qresearch/registry.py",
+        "line": 487,
+        "end_line": 488
+      },
+      {
+        "file": "cloud/qresearch/engineering_tasks.py",
+        "line": 394,
+        "end_line": 409
+      }
+    ],
+    "trigger": "对已注册合法v2计划直接调用Registry.begin_attempt；operation任意、Research尚未完成先LEAN，或max_retries=0的失败Research显式重试。",
+    "expected": "在预扣和写入attempt前拒绝不符合父计划固定operation、Research依赖及重试上限的请求，账本字节和用量不变。",
+    "actual": "三个负例均获得should_execute=true并扣1槽。Bridge会拒绝前置LEAN与超零重试；但直接Registry生成的超零重试仍能由Bridge.payload生成可用Research输入。错误operation与前置LEAN则在后续payload阶段才拒绝，已消耗额度。",
+    "scope_and_severity": "有实际预算及任务可靠性影响，阻断本候选软件验收。全局12/20/16和工程2/2/2上限仍有效；当前真实工程已用1/2时额外重试会受总上限约束，不声称现账本可以超支。合成空工程域独立证明每计划max_retries=0失效。无实际远端执行。",
+    "reproduction": "python -B minimal_boundaries.py source registry；本提交exit1，should_execute=True，Research用量1→2，payload stage=research。完整三分支见admission_agent/minimal_joint_registry.py。",
+    "minimal_fix": "将v2固定operation、同父Research完成依赖和每阶段重试次数校验放入Registry.begin_attempt的同一LOCK事务，在_charge之前执行；保留合法幂等复用与失败不退款。",
+    "regression_tests": "直接Registry/Bridge/CLI三入口；max0/1、任意operation、LEAN前置、失败显式重试和并发最后槽；非法请求无账本/用量变更，合法成功链保持。"
+  },
+  {
+    "id": "WR-17",
+    "priority": "P2",
+    "reviewed_source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+    "title": "v1冻结入口可覆盖未结算旧任务的当前计划指针",
+    "locations": [
+      {
+        "file": "tools/stage2.py",
+        "line": 75,
+        "end_line": 78
+      },
+      {
+        "file": "tools/stage2.py",
+        "line": 82,
+        "end_line": 92
+      },
+      {
+        "file": "tools/stage2.py",
+        "line": 173,
+        "end_line": 187
+      }
+    ],
+    "trigger": "含原LEAN pending记录的完整临时副本中，先运行v2 freeze被拒绝，再通过v1 config/engineering.json运行同项目freeze。",
+    "expected": "所有会改变项目结算上下文的冻结入口，在同一Registry锁下检查pending/started/ambiguous；拒绝时保留旧指针和账本。",
+    "actual": "v2拒绝且指针不变；v1 freeze exit0并改变audit/engineering_current.json，journal未变。随后真实CLI prepare --attempt bfd00f2611fd4496b9498d4597618a8e exit1：Attempt does not belong to this exact registered task plan。",
+    "scope_and_severity": "继承的v1入口使本轮新增v2在途保护不完整；原任务身份仍在不可变账本中，未丢数据，可恢复指针，但正常CLI恢复被阻断。未执行任何旧结果读取或远端更新。历史WR-12仅Collection任务恢复通过范围不被改写。",
+    "reproduction": "python -B minimal_boundaries.py source freeze；只创建新临时副本，本提交exit1，内部freeze exit0且pointer changed=True。完整前后对照及prepare错误见admission_agent/minimal_pending_freeze.py。",
+    "minimal_fix": "统一v1/v2 freeze的同项目在途检查、锁和指针写入；结果/prepare最好按原attempt冻结配置解析，避免可变current指针阻断已准入任务。",
+    "regression_tests": "原pending账本下v1/v2/混合并发freeze都应拒绝且无指针/账本变更；换current目录或计划后仍能按原attempt结算；终态后合法新冻结可用。"
+  }
+]

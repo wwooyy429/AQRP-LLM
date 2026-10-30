@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "kind": "developer_software_recovery009_report",
+  "source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
+  "changes": [
+    "fixed policy bounded historical terminal reconciliation",
+    "shared filesystem exact-owner WinError32 bounded lock release",
+    "stage2 receipt entrypoint watch enrollment/sync with explicit recovery failures",
+    "unified all-stage development and WR01-28 historical audit index"
+  ],
+  "actual_full_verification": {
+    "schema_version": 1,
+    "kind": "developer_recovery009_full_offline_source_overlay_verification",
+    "fixed_base_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+    "source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
+    "source_file_count": 213,
+    "main_source_overlay_identity_match": true,
+    "official_command": "python -B tools/stages.py verify",
+    "execution_directory": "disposable LF checkout with the current frozen source/config overlay",
+    "test_count": 987,
+    "reported_test_seconds": 204.858,
+    "elapsed_seconds": 227.256,
+    "exit_code": 0,
+    "local_tests_passed": true,
+    "execution": {
+      "exit_code": 0,
+      "stdout_sha256": "d74997161da668df33fd6bdc5080f10ad4cd14edc229a6b295884bdff1782221",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage_verification_sha256": "67af03793528df943284ce9977a395eb15cdb8fd8c2488c0d81bed12084e4946",
+    "main_guard_file_count": 343,
+    "main_original_raw_bytes_unchanged": true,
+    "main_journal_event_count_before": 71,
+    "main_journal_sha256": "cea800e0fe5a0facc5f2aed238d105a6f3d1c80db40c1dc4b674efd3026cd48a",
+    "main_budget_projection_sha256": "4c1eb6c573002bd2019b9268d764d521b9f8cf9f43e1b1f68b656a3916022861",
+    "environment": {
+      "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+      "UTF8": true,
+      "BLAS_OMP_threads": 1
+    },
+    "new_cloud_calls": 0,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "new_budget_events": 0,
+    "real_operator_commands_invoked": false,
+    "independent_GPT_Work_acceptance": false,
+    "phase2_accepted": false,
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "passed": true
+  },
+  "additional_synthetic_tests": {
+    "task_followup": 22,
+    "followup_cli": 6,
+    "lock_release": 19,
+    "counts_overlap_full_suite_do_not_sum": true
+  },
+  "auxiliary_independent_synthetic_review": "audit/review_packages/recovery009/auxiliary_boundary_result.json",
+  "additional_developer_auxiliary_replay": {
+    "windows_shared_handle_release_seconds": 0.391,
+    "18_requests_6_processes_dispatches": 1,
+    "real_registry_unchanged": true,
+    "is_independent_GPT_Work_review": false
+  },
+  "development_failures_and_repairs": "audit/review_packages/recovery009/development_repairs.json",
+  "build_preflight": "audit/review_packages/recovery009/build_preflight.json",
+  "source_deployed_to_cloud": false,
+  "new_cloud_execution": false,
+  "historical_real_engineering": {
+    "source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+    "terminal_materials_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+    "research_checks": "13/13",
+    "lean_checks": "7/7",
+    "orders": 0,
+    "acquisition": "single historical directory reconciliation; no automatic push observed",
+    "lean_eof_normalized_files": 43,
+    "lean_original_source_identity_match": false,
+    "scope": "2018 engineering only; not inherited by new source"
+  },
+  "global_usage": {
+    "configurations": 16,
+    "research": 17,
+    "lean": 3
+  },
+  "configuration_cycle_usage": {
+    "used": 3,
+    "limit": 13,
+    "remaining": 10
+  },
+  "protected_history": "audit/review_packages/recovery009/protected_history.json",
+  "journal_events": 71,
+  "independent_review_status": "pending",
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "execution_gates": {
+    "market_research_enabled": false,
+    "llm_runtime_enabled": false,
+    "live_trading_enabled": false,
+    "final_test_enabled": false
+  },
+  "limitations": [
+    "No new candidate cloud deployment or live MCP dispatcher integration.",
+    "Automatic push transport/root-cause hop remains unproven; bounded recovery is not a push guarantee.",
+    "Full 2010-2023 historical US200 and financial numeric/vintage/publication/vendor-delivery/ingestion evidence remain uncertified.",
+    "Complete charged certification dispatch, real six-fold factor/model research and portfolio trading are not accepted.",
+    "Stage3-7 have partial components or missing workflows; no independent final executor or forward operations.",
+    "2024-2025 exposure retained; 2026 independence not certified."
+  ]
+}

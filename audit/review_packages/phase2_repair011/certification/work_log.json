@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "kind": "developer_certification_task_implementation_log",
+  "scope": "Offline shared-library, CLI and authoritative Registry admission software; no actual QC execution or independent acceptance",
+  "changed_sources": [
+    "cloud/qresearch/certification_tasks.py",
+    "tools/certification_tasks.py",
+    "tests/test_certification_tasks.py",
+    "docs/certification_tasks.md",
+    "cloud/qresearch/registry_engineering.py",
+    "cloud/qresearch/registry.py"
+  ],
+  "unchanged_core_budget_files": [
+    "cloud/qresearch/engineering_rounds.py",
+    "config/budget.json"
+  ],
+  "implementation": [
+    "Explicit task_kind=data_certification reserves the schema against generic-engineering downgrade.",
+    "Research-only admission requires an existing user-bound engineering-round grant; no legacy ungranted allowance, alternate operation, LEAN or retry.",
+    "Immutable plan and input reference package; original admission and deterministic cell-source readback pinned before one trusted native dispatch.",
+    "QC-only worker reads six immutable reference lists through the existing data_certification kernel, verifies v2 source identity and checks live SDK capacity before metadata writes.",
+    "Closed aggregate native success marker and source/cell-bound notebook-error parsing; exact same-attempt Registry settlement; unknown transport output remains unresolved and spent quota is retained.",
+    "Diagnostic execution completion is separate from insufficient data evidence. All vendor, full-US200, financial-vintage, actual-availability, Research and financial approval flags remain false.",
+    "Fixed production date frontier precedes final window before security/calendar bootstrap. Generic Registry transitions cannot manufacture certification terminal certainty without original fixed-parser native proof."
+  ],
+  "initial_diagnostic": {
+    "command": "python -X utf8 -B -m unittest test_certification_tasks -q",
+    "actual_result": "64 tests,5 errors; 48 legacy imported fixture-class tests overlap existing suite and are not64 new tests",
+    "evidence": "initial_diagnostic_run.json",
+    "exact_original_process_bytes_captured": false,
+    "result_is_tool_return_text_observation": true,
+    "source_not_yet_frozen_during_initial_development": true,
+    "product_failure": "Generated cell source used identity dictionary insertion order; canonical admission recovery changed that order and the fixed exact-source audit correctly refused the cell.",
+    "fix": "Canonicalize identity through canonical JSON before embedding repr; added original-versus-recovered source known-answer assertion.",
+    "fixture_adjustment": "Import the legacy fixture module instead of exposing its TestCase class to unittest discovery."
+  },
+  "final_validation": {
+    "command": "python -X utf8 -B -m unittest test_certification_tasks test_collection_tasks test_engineering_rounds -q",
+    "result": "44 tests passed; no failures or errors",
+    "new_certification_tests": 21,
+    "count_overlaps_full_repository_suite": true,
+    "evidence": "final_result.json",
+    "stdout_original": "final.stdout.raw.base64",
+    "stderr_original": "final.stderr.raw.base64",
+    "source_hashes_unchanged_during_run": true,
+    "actual_cloud_calls": 0,
+    "real_budget_mutations": 0
+  },
+  "unverified": [
+    "Actual production QuantBook bootstrap, SDK/runtime and cloud source packaging.",
+    "Actual certification task native dispatch and settlement against real cloud references.",
+    "Complete historical US200 inventory/calendar/raw-price/action inputs and source occurrence-to-ingestion bridge.",
+    "Authoritative financial report/vintage/publication/vendor-delivery/ingestion receipts.",
+    "Platform invoice or billed-resource authenticity; internal quota/capacity is not billing evidence.",
+    "Complete CLI/filesystem crash-recovery acceptance and independent exact-version review."
+  ],
+  "final_test_enabled": false,
+  "financial_evidence": false,
+  "independent_acceptance": false,
+  "core_Registry_change_scope": "Certification-only native-proof transition guards on pending/completed/failed, including replay; no quota math or old schema semantics changed",
+  "earlier_passing_runs": [
+    {
+      "tests": 39,
+      "evidence": "before_frontier_fix/final_result.json",
+      "scope": "Earlier code before fixed QC frontier; source-specific prior pass only"
+    },
+    {
+      "tests": 40,
+      "evidence": "before_native_proof_fix/final_result.json",
+      "scope": "Earlier code before fixed native callback proof guards; source-specific prior pass only"
+    }
+  ],
+  "developer_review_repairs": [
+    {
+      "issue": "QC bootstrap inherited default current date before add_equity",
+      "origin": "Parent static software review; no actual QC execution",
+      "fix": "Set NY frontier to exclusive end minus one calendar day before adding SPY",
+      "test": "SDK mock known answers2018-02-02 to2018-02-01 and2024-01-01 to2023-12-31"
+    },
+    {
+      "issue": "Inherited public callbacks could complete a certification task without native dispatch/result proof",
+      "origin": "Actual synthetic before/after unchanged MRE; not an independent acceptance verdict",
+      "before": "callback_before_fix.json",
+      "after": "callback_after_fix.json",
+      "before_exit": 1,
+      "after_exit": 0,
+      "fix": "Disable ordinary public callbacks; fixed native parser writes immutable proof; virtual base metadata checks and Registry admission/replay require exact original proof",
+      "new_tests": [
+        "public/base callbacks before and after binding rejected",
+        "generic Registry completion/failure/pending rejected without native proof",
+        "free callbacks cannot overwrite actual native proof",
+        "proof corruption detected by journal replay"
+      ]
+    }
+  ],
+  "native_proof_is_not_remote_signature": true,
+  "trusted_filesystem_writer_forgery_is_out_of_scope": true,
+  "root_official_full_suite": "Pending coordinating agent run; do not add overlapping counts"
+}

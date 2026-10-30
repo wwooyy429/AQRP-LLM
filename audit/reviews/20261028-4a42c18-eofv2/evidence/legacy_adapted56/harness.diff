@@ -1,0 +1,31 @@
+--- archived/independent_review.py
++++ developer/adapted_independent_review.py
+@@ -163,14 +163,23 @@
+                 def work(pair):
+                     doc,retry=pair; b=bridge(r,doc)
+                     _limits(b,kind); barrier.wait(10)
+-                    if kind=='configurations': return {'ok':True,'registered':b.register()}
+-                    a=b.claim(kind,retry_of=retry,reason='synthetic repair' if retry else None,
+-                              allocation='reserve' if retry else 'normal')
+-                    return {'ok':True,'should_execute':a.should_execute}
++                    try:
++                        if kind=='configurations': return {'ok':True,'registered':b.register()}
++                        a=b.claim(kind,retry_of=retry,reason='synthetic repair' if retry else None,
++                                  allocation='reserve' if retry else 'normal')
++                        return {'ok':True,'should_execute':a.should_execute}
++                    except BudgetExceeded as exc:
++                        return {'ok':False,'type':type(exc).__name__,'message':str(exc)}
+                 with ThreadPoolExecutor(max_workers=2) as ex: answers=list(ex.map(work,zip(docs,retries)))
+             snap=r.snapshot(); count=snap['usage'][kind]['total']
+             OBSERVATIONS[self.id()]={'kind':kind,'processes':processes,'usage':snap['usage'],'responses':answers}
+-            self.assertTrue(all(a['ok'] for a in answers),answers)
++            winners=[a for a in answers if a['ok']]
++            rejected=[a for a in answers if not a['ok']]
++            self.assertEqual(len(winners),1,answers)
++            self.assertEqual(len(rejected),1,answers)
++            self.assertEqual(rejected[0]['type'],'BudgetExceeded',answers)
++            if kind!='configurations': self.assertTrue(winners[0]['should_execute'])
++            self.assertEqual(count,2,answers)
+             self.assertLessEqual(count,2,'WR-04: both contenders passed the stage-2 check and total became '+str(count))
+     def test_WR04_configuration_thread_race(self): self.race('configurations',False)
+     def test_WR04_configuration_process_race(self): self.race('configurations',True)

@@ -1,0 +1,138 @@
+{
+  "actual_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "adapted_suites": [
+    {
+      "suite": "main",
+      "methods": 6,
+      "subcases": 62,
+      "manual": 0,
+      "passed": null,
+      "failure_records": 0,
+      "error_records": 0,
+      "stats": {
+        "actual_CLI_processes": 60,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "actually_executed": true
+    },
+    {
+      "suite": "compat_boundaries",
+      "methods": 3,
+      "subcases": 28,
+      "manual": 0,
+      "passed": null,
+      "failure_records": 0,
+      "error_records": 0,
+      "stats": {
+        "actual_CLI_processes": 18,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "actually_executed": true
+    },
+    {
+      "suite": "compat_failure",
+      "methods": 0,
+      "subcases": 4,
+      "manual": 4,
+      "passed": 4,
+      "failure_records": 0,
+      "error_records": 0,
+      "stats": {
+        "actual_CLI_processes": 32,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 6,
+        "actual_worker_executions": 0
+      },
+      "actually_executed": true
+    },
+    {
+      "suite": "crash_addendum",
+      "methods": 0,
+      "subcases": null,
+      "manual": 4,
+      "passed": 4,
+      "failure_records": 0,
+      "error_records": 0,
+      "stats": {
+        "actual_CLI_processes": 7,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 0,
+        "actual_worker_executions": 0
+      },
+      "actually_executed": true
+    },
+    {
+      "suite": "recovery",
+      "methods": 5,
+      "subcases": 46,
+      "manual": 0,
+      "passed": null,
+      "failure_records": 0,
+      "error_records": 0,
+      "stats": {
+        "actual_CLI_processes": 76,
+        "direct_freeze_processes": 12,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "actually_executed": true
+    }
+  ],
+  "new_native_research_original_bytes": {
+    "methods": 6,
+    "subcases": 91,
+    "failure_records": 0,
+    "error_records": 0,
+    "stats": {
+      "actual_CLI_processes": 25,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 0,
+      "actual_worker_executions": 0
+    },
+    "actually_executed": true
+  },
+  "original_mre": [
+    {
+      "kind": "baseline",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\mre_baseline\\agent\\minimal_new_success_without_dispatch.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\mre_baseline",
+      "exit_code": 1,
+      "stdout_bytes": 5313,
+      "stderr_bytes": 574,
+      "stdout_sha256": "31efb130f83d139bd51a3a41809446cccf06e5b751413ea81b7f9ae6312a69f5",
+      "stderr_sha256": "46a75459f059b537c286c465a2fd0ea6914b4968f6b41ae74040b24d7ff0df60",
+      "script_sha256": "22e8b105fb413bd231b35284e9cb88f3f5a7aa016049429e74940203d2a7e4f4",
+      "actual_CLI_processes": 17,
+      "unbound_CLI_exit": 0,
+      "unbound_result": "completed"
+    },
+    {
+      "kind": "candidate",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\mre_candidate\\agent\\minimal_new_success_without_dispatch.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\dispatch_agent\\mre_candidate",
+      "exit_code": 0,
+      "stdout_bytes": 4979,
+      "stderr_bytes": 0,
+      "stdout_sha256": "7a853e87cea353352a10c470a656eaaeeae70438bbb403cff8b7f28272d251bf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "script_sha256": "22e8b105fb413bd231b35284e9cb88f3f5a7aa016049429e74940203d2a7e4f4",
+      "actual_CLI_processes": 17,
+      "unbound_CLI_exit": 1,
+      "unbound_result": null
+    }
+  ],
+  "fixture_adaptation": "Only reviewer setup_case pins matching fixed source/index4 after actualprepare; original test classes/assertion AST unchanged. First original lack-binding rejects/setup errors and dependent missing-template failures retained.",
+  "child_interruption": "Child turn ended at tool filter after background adapter executions were launched. Root inspected completed successful outputs and independently repeated WR23; no unexecuted extension is claimed."
+}

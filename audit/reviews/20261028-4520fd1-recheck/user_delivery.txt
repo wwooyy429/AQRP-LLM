@@ -1,0 +1,492 @@
+**已实际重新审核并测试。结论：已测试的局部软件范围通过，Phase 2整体验收仍未通过；未确认新的产品缺陷。**
+
+固定审核版本：`4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8`。PR #2仍为草稿、未合并，5,976份文件与上轮源码逐字节一致。
+
+[本轮正式报告](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-4520fd1-20261028-recheck/formal_report.txt>) · [JSON报告](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-4520fd1-20261028-recheck/formal_report.json>) · [完整审核包](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-4520fd1-20261028-recheck.zip>)
+
+本轮实际执行结果如下，计数存在重叠，不相加为独立测试总数：
+
+| 测试范围 | 实际执行 | 结果 |
+|---|---:|---|
+| 仓库离线测试 | 765项 | 通过 |
+| 两份开发辅助套件 | 8＋10项 | 通过 |
+| 新独立数据对抗测试 | 13方法／109命名场景 | 首次通过 |
+| 新独立预算、结算测试 | 7方法／32命名场景 | 首次通过 |
+| 新独立运行回执测试 | 10方法／57命名场景 | 审查器及预期修正后通过 |
+
+覆盖了跨批次重复观测、随机序列、缓存重哈希篡改、DST边界、只读复用、满配置后的原任务结算、并发与写入故障恢复、原结果替换拒绝等。运行套件首次的两条失败及修正原因完整保留，没有修改产品代码来取得通过。
+
+**尚未通过整体验收的具体原因：**
+
+- 新LEAN `3e68866a46ca88ff16481c31b3c2c822`只有提交回执和冻结的pending记录，缺少原生终态、日志及实际检查结果。冻结计划要求 **Research 13项、LEAN 7项**；上轮将LEAN写成13项的措辞已更正。
+- 完整历史US200、SID经济身份歧义、财务版本、公开时间及实际送达／摄入证据未认证。
+- 财务数值字段目录仍为0；**认证计算内核已有实现，但计费认证派发桥仍缺失**。
+
+Research归档原生回执中的13项工程检查得到独立离线核对支持，但这不是本轮重新执行Research，也不是完整数据认证。原生错误包本身不含完整attempt／source身份，仍依赖可信派发上下文，哈希不能独立证明远端来源。
+
+| 阶段 | 本轮结论 |
+|---|---|
+| 0 规范、登记、预算 | 保留既有有限通过范围；相关重测通过 |
+| 1 因子、标签、模型内核 | 保留既有有限通过范围 |
+| 2 QC接入与数据 | 局部通过，整体未验收 |
+| 3 Research评估 | 部分实现，未验收 |
+| 4 LEAN组合与交易 | 未验收 |
+| 5 GPT闭环 | 未验收 |
+| 6 搜索、消融 | 未验收 |
+| 7 最终测试、前向监控 | 未验收 |
+
+预算重放一致：**配置12/12、Research 15/20、LEAN 2/16**，无退款或预算增加。本轮审核没有新增QC、Research、LEAN或模型调用，没有读取待终态LEAN的结果／日志。正式研究、自动GPT、交易和最终测试继续关闭。
+
+审核包已通过6,139份文件哈希、完整固定源码、ZIP逐项哈希及CRC校验。ZIP SHA-256：
+
+```text
+3b2ab178256fff1ac49a049fb5a4659584cba57e1e2159368cfe5d0fd919189d
+```
+
+下面是实际运行通过的最小合成复现。保存为Python文件，使用`--source`传入审核包中的`source`目录。它验证观测保留、跨批次计数、缓存复用及非法序号拒绝，不证明真实数据或金融有效性。
+
+```python
+import argparse, json, sys
+from copy import deepcopy
+from pathlib import Path
+
+p = argparse.ArgumentParser()
+p.add_argument("--source", type=Path, required=True)
+a = p.parse_args()
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(a.source.resolve() / "cloud"))
+
+from qresearch.artifacts import MemoryArtifactStore
+from qresearch.collection import (
+    HistoricalCollectionPlan, HistoricalSnapshotCollector, CollectionError
+)
+
+catalog = {"dollar_volume": {
+    "kind": "number", "role": "synthetic_liquidity",
+    "unit": "USD", "period_accessor": None
+}}
+plan = HistoricalCollectionPlan.from_dict(dict(
+    schema_version=2, observation_policy="retain_source_occurrences",
+    plan_id="review-known-answer", scope="engineering",
+    source="quantconnect_fundamental_universe", data_version="synthetic-v1",
+    start="2018-01-03T00:00:00-05:00",
+    end_exclusive="2018-01-04T00:00:00-05:00",
+    timezone="America/New_York", fields=["dollar_volume"],
+    calendar_days_per_request=1, max_batch_records=2,
+    max_records_per_window=10, source_manifest_hash="1" * 64
+), field_catalog=catalog)
+
+rows = [
+    dict(sid=sid, snapshot_at="2018-01-03T09:00:00-05:00",
+         source_record_index=i, values={"dollar_volume": value})
+    for i, (sid, value) in enumerate(
+        [("A", 1), ("A", 1), ("B", 2), ("A", 3), ("A", 1)]
+    )
+]
+
+class Source:
+    calls = 0
+    def __init__(self, data):
+        self.data = data
+    def fetch(self, *args):
+        self.calls += 1
+        return iter(deepcopy(self.data))
+
+store, source = MemoryArtifactStore(), Source(rows)
+writer = HistoricalSnapshotCollector(store, source, plan, synthetic=True)
+first = writer.collect()
+assert (first["record_count"], first["duplicate_projection_records"],
+        first["conflicting_projection_records"]) == (5, 3, 1)
+assert writer.read_window(first["window_refs"][0]) == rows
+manifest = json.loads(store.read_bytes(first["window_refs"][0]["key"]))
+assert len(manifest["batches"]) == 3
+
+before = dict(store._data)
+reader = HistoricalSnapshotCollector(store, None, plan, synthetic=True)
+again = reader.collect()
+assert again["provider_calls"] == 0 and again["record_count"] == 5
+assert source.calls == 1 and store._data == before
+assert reader.read_window(again["window_refs"][0]) == rows
+
+bad = deepcopy(rows)
+bad[-1]["source_record_index"] = 6
+try:
+    HistoricalSnapshotCollector(
+        MemoryArtifactStore(), Source(bad), plan, synthetic=True
+    ).collect()
+except CollectionError:
+    pass
+else:
+    raise AssertionError("A source ordinal gap was accepted")
+
+assert first["full_historical_US200_certified"] is False
+assert first["research_certified"] is False
+print("PASS: retained=5, duplicates=3, conflicts=1, batches=3; cache calls=0")
+```
+
+完整机器报告如下。首次测试辅助代码错误、临时源码缓存污染及静态引用计数错误的原因、更正和原始输出均保留在包中，未覆盖旧结论。
+
+```json
+{
+  "review_id": "AQRP-20261028-4520FD1-RECHECK-22",
+  "review_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "baseline_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "prior_scoped_acceptance_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "evidence_commits": {
+    "diagnostic_runtime": "42b45c830aac691fe0763bfc6363997947625bc1",
+    "repaired_runtime": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "archive": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8"
+  },
+  "conclusion": "New bounded offline rechecks passed with disclosed reviewer corrections; no new product defect confirmed; overall phase2 NOT accepted.",
+  "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+  "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+  "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+  "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+  "economic_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "version_consistency": {
+    "raw_Git_files": 5976,
+    "managed_review_files": 169,
+    "cloud_files": 32,
+    "all_raw_bytes_equal_prior_review": true,
+    "runtime_to_review_cloud_tools_tests_changes": [],
+    "runtime_to_review_managed_difference": "budget usage projection; archive documents/evidence also changed",
+    "review_source_manifest_includes_usage": true,
+    "execution_identity_excludes_usage": true,
+    "deployment_normalizes_LF_preserving_EOF": true,
+    "evidence": "source_git_manifest.json; static_verification.json"
+  },
+  "PR": {
+    "number": 2,
+    "head": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+    "base": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "PR1_head_equals_PR2_base": true,
+    "CI_run": 40573653730,
+    "Python3.10": "success",
+    "Python3.11": "success",
+    "CI_independently_extracted_test_count": null
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "Git_GitHub_readonly": true,
+    "fresh_GitHub_reads": 5,
+    "offline_native_Windows_tests": true,
+    "QC_calls_this_round": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "LEAN_terminal_or_log_reads": 0,
+    "compile_calls": 0,
+    "model_API_calls": 0,
+    "market_row_exports": 0,
+    "production_original_Git_source_or_authoritative_budget_writes": 0,
+    "PR_push_approval_merge": 0,
+    "reviewer_scratch_extra_bytecode_files_created_then_preserved_outside_source": 8
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "StudySpec, source/config identity, event registry",
+      "implementation": "offline_components",
+      "evidence": "Fresh repository verification, full-capacity budget settlement and immutable identity checks.",
+      "verdict": "prior_scoped_acceptance_retained_and_relevant_rechecks_passed",
+      "missing": "No acceptance of downstream runtime or financial design."
+    },
+    {
+      "stage": 1,
+      "modules": "restricted factors, execution labels, fixed models",
+      "implementation": "offline_components",
+      "evidence": "Fresh repository regressions; prior fixed-SHA numeric suites retained, not rerun here.",
+      "verdict": "prior_scoped_acceptance_retained",
+      "missing": "No active registered factor/model/trading specification; generic partial-fill/short/noncash accounting incomplete."
+    },
+    {
+      "stage": 2,
+      "modules": "QC source/cache/collection/admission/native bridge",
+      "implementation": "partial",
+      "evidence": "New data13 methods/109 scenarios; budget7/32; runtime10/57; native archive35 static checks.",
+      "verdict": "not_accepted",
+      "missing": "New LEAN terminal; financial numeric catalog; charged certification dispatch bridge; complete historicalUS200/vintage/publication/actual-delivery evidence."
+    },
+    {
+      "stage": 3,
+      "modules": "Research evaluation and rolling folds",
+      "implementation": "partial_core",
+      "evidence": "Fresh repository regressions and unchanged static matrix.",
+      "verdict": "not_accepted",
+      "missing": "Stratified returns implementation and real registered six-fold factor report."
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN portfolio/fills/cash/cost/risk",
+      "implementation": "contracts_and_engineering_receiver",
+      "evidence": "Synthetic receiver checks only; no new real terminal.",
+      "verdict": "not_accepted",
+      "missing": "Generic portfolio execution adapter, transaction ledger, Research/LEAN reconciliation and real stress evidence."
+    },
+    {
+      "stage": 5,
+      "modules": "bounded GPT generation and workflow",
+      "implementation": "persistent_controller_primitives",
+      "evidence": "Current configured GPT provider; model/call/spend settings null.",
+      "verdict": "not_accepted",
+      "missing": "Configured and independently accepted real GPT/QC closed loop."
+    },
+    {
+      "stage": 6,
+      "modules": "search, ablation, selection bias",
+      "implementation": "similarity_correlation_primitives",
+      "evidence": "Unchanged static matrix; no real financial trials.",
+      "verdict": "not_accepted",
+      "missing": "Preregistered comparison/ablation and net incremental performance evidence."
+    },
+    {
+      "stage": 7,
+      "modules": "freeze, final executor, forward monitoring",
+      "implementation": "metadata_skeleton",
+      "evidence": "Final execution gates closed; exposure ledger retained.",
+      "verdict": "not_accepted",
+      "missing": "Independent final executor, full freeze, forward simulation/monitoring/rollback;2026 independence unverified."
+    }
+  ],
+  "phase2_acceptance_checklist": [
+    {
+      "requirement": "small_real_data_fixture",
+      "status": "bounded_archived_Research_engineering_scope_supported",
+      "limit": "2018 two-symbol cache plus40 calendar snapshot windows; no full coverage certification."
+    },
+    {
+      "requirement": "minimal_completed_backtest",
+      "status": "pending_not_accepted",
+      "limit": "Only newLEAN submission archived; terminal/logs and7 actual checks absent."
+    },
+    {
+      "requirement": "raw_and_adjustment_trace",
+      "status": "partial_not_full_certification",
+      "limit": "Raw-mode engineering metadata does not establish all vendor/corporate-action/history provenance."
+    },
+    {
+      "requirement": "failure_recovery",
+      "status": "tested_offline_scope_passed",
+      "limit": "Private synthetic terminal settlement and original Research replays; no OS kill or power-loss certification."
+    },
+    {
+      "requirement": "historical_universe_and_availability_audit",
+      "status": "incomplete",
+      "limit": "Audit computation kernel exists; financial numeric catalog0 and charged native certification dispatch missing; actual origin/availability evidence absent."
+    }
+  ],
+  "tests": [
+    {"name":"repository_verify","methods":765,"named_scenarios":null,"result":"passed","kind":"repository_suite_independently_rerun","actually_executed":true,"evidence":"repository_verification.json"},
+    {"name":"normal_gate_auxiliary","methods":8,"named_scenarios":null,"result":"passed","kind":"developer_auxiliary_independently_rerun","actually_executed":true,"evidence":"test_independent_normal_gate.py.stderr"},
+    {"name":"occurrence_auxiliary","methods":10,"named_scenarios":null,"result":"passed","kind":"developer_auxiliary_independently_rerun","actually_executed":true,"evidence":"test_independent_occurrences.py.stderr"},
+    {"name":"adversarial_occurrence","methods":10,"named_scenarios":105,"result":"passed_first_run","kind":"new_independent_synthetic","actually_executed":true,"evidence":"data_recheck/first/results.json"},
+    {"name":"additional_closed_contracts","methods":3,"named_scenarios":4,"result":"passed_first_run","kind":"new_independent_synthetic","actually_executed":true,"evidence":"data_recheck/additional_first/results.json"},
+    {"name":"full_capacity_settlement","methods":7,"named_scenarios":32,"result":"passed_first_run","kind":"new_independent_synthetic","actually_executed":true,"evidence":"budget_recheck/first_results.json"},
+    {"name":"native_parser_bridge","methods":10,"named_scenarios":57,"result":"passed_after_disclosed_reviewer_helper_and_scope_corrections","kind":"new_independent_synthetic","actually_executed":true,"evidence":"runtime_recheck/corrected/first_results.json"}
+  ],
+  "actually_executed": true,
+  "counting": "Methods, named scenarios, CLI/process/thread calls, parser calls and static checks overlap; never sum as unique tests. Historical results are separately identified, not new executions. Named scenarios are not measured unittest subTest counts.",
+  "additional_executions": {
+    "budget_native_Windows_processes": 4,
+    "budget_thread_tasks": 12,
+    "budget_clean_source_synthetic_chains": 2,
+    "budget_static_logical_checks": 8,
+    "data_capabilities_CLI": 1,
+    "native_archive_static_checks": 35,
+    "direct_Research_parser_calls": 13,
+    "Research_bridge_calls": 6,
+    "original_Research_replays": 4,
+    "original_terminal_replacement_rejections": 2,
+    "synthetic_LEAN_parser_calls": 34,
+    "synthetic_LEAN_private_Memory_completion": 1,
+    "synthetic_LEAN_usage_changed": false,
+    "minimum_occurrence_reproduction": {
+      "retained": 5,
+      "duplicates": 3,
+      "first_relative_conflicts": 1,
+      "batches": 3,
+      "cache_fetches": 0,
+      "ordinal_gap_rejected": true
+    },
+    "developer_evidence_checker_exit": 0,
+    "build_exit": 0,
+    "build_config_changed": false,
+    "static_matrix_unique_source_references": 105
+  },
+  "first_results_and_corrections": {
+    "runtime_first": {
+      "methods": 10,
+      "passed_methods": 8,
+      "failure_records": 2,
+      "error_records": 0,
+      "evidence": "runtime_recheck/first/first_results.json"
+    },
+    "runtime_helper": "Mutable native mirror references fixed by deepcopy; original outputs retained.",
+    "runtime_scope": "Original nbformat-error rejection oracle demanded attempt/source authentication absent from native error fields. Corrected test discloses trusted-dispatcher boundary; original oracle is NOT claimed to pass. Original completed/failed terminal replacement rejections tested separately.",
+    "scratch_source": "Reviewer inspection omitted-B, creating8 pyc files in exported scratch source. Original5976 Git files unchanged; caches preserved as raw.bin outside source; exact5976 source restored and guarded. Root initial raw-file-set assertion exit1 retained.",
+    "static_reference_scope": "Root initially compared88 stage-row reference entries to105 full-matrix unique references. Corrected checker verifies full top-level105 including controls; intermediate exit1/script/output retained.",
+    "prior_report_metadata": "Prior sealed report said newLEAN13 checks in unverified wording. Corrected: Research13, LEAN7. Prior sealed package unchanged. Earlier derived-summary SHA-label correction also remains preserved.",
+    "product_edits": false
+  },
+  "findings": [],
+  "historical_findings": {
+    "WR01_WR27": "Prior fixed-SHA scoped conclusions retained; no phase-wide promotion. Same5976 source bytes verified. Prior248 methods/2307 subcases, earlier independent data/budget/runtime suites and35 live source-only QC calls are historical references, not rerun counts.",
+    "prior_review_seal_verified_again": true,
+    "prior_review_zip_sha256": "bd32d23357f2c7a2478f57264e174bb0843e0219ef9c462d7c4e2fd21f345a56",
+    "prior_review_report_sha256": "6068a0fb1d7f17d1ab4f92079c56112e5e6e5b9a0eeff2fa6cd2c1e8a05e0424",
+    "new_WRs": []
+  },
+  "budget_replay": {
+    "events": 46,
+    "journal_raw_sha256": "f50d4cd8195428966484230adf0fd54ccf77f796159af61df748f37a7d1101b1",
+    "usage": {
+      "configurations": {"total":12,"normal":8,"reserve":4},
+      "research": {"total":15,"normal":8,"reserve":7},
+      "lean": {"total":2,"normal":2,"reserve":0}
+    },
+    "global_caps": {"configurations":12,"research":20,"lean":16},
+    "preserved_prefixes": {"eaf":34,"accepted446":17},
+    "normal004_actual": {"configurations":2,"research":2,"lean":1},
+    "normal004_recorded_limits": {"configurations":2,"research":4,"lean":2},
+    "configuration_capacity_remaining": 0,
+    "refunds": 0,
+    "budget_increase": false,
+    "round_status": "open",
+    "authority_boundary": "Latest direct user statement supports already executed2/2/1. Recorded2/4/2 ceiling is metadata; original external human message not independently obtained; no new authorization issued here.",
+    "real_terminal_settlement_this_round": false,
+    "synthetic_retries_do_not_authorize_real_executions": true
+  },
+  "platform_evidence_level": {
+    "archived_native": "Developer-archived packets independently decoded and source/input/cell/dispatch/evidence-bound offline; not reviewer live platform results or remote signatures.",
+    "diagnostic": {
+      "attempt_id": "b9f952c1de3a44f9b06e5c552f7d1af3",
+      "status": "failed/runtime_error",
+      "code": "native_sid_duplicate",
+      "partial_fetch_emitted_rows": 5124,
+      "whole_Research_completed": false
+    },
+    "Research": {
+      "attempt_id": "2d1095df62dc4222bffd8000c0737d38",
+      "source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "status": "completed_in_archived_native_metadata",
+      "checks_required": 13,
+      "checks_true": 13,
+      "price_field_records": 2510,
+      "formation_count": 250,
+      "price_History_first": 0,
+      "price_History_second": 0,
+      "calendar_windows": 40,
+      "retained_projections": 208223,
+      "duplicates": 27,
+      "selected_field_conflicts": 0,
+      "empty_windows": 13,
+      "cache_only_source_fetches": 0,
+      "selected_fields": 4,
+      "raw_cloud_rows_recounted": false,
+      "native_packet_sha256": "06005fd728017d457c2025c8d5ec1ce61f00f35d69e813f279d50bd138137d8d"
+    },
+    "LEAN": {
+      "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+      "backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+      "frozen_ledger_status": "pending",
+      "native_submission_verified": true,
+      "terminal_status": null,
+      "runtime_success": null,
+      "orders": null,
+      "required_checks": [
+        "source_snapshot_matches",
+        "raw_data_received",
+        "complete_expected_bars",
+        "no_orders",
+        "development_only",
+        "symbol_registry_resolved",
+        "corporate_action_received"
+      ],
+      "actual_runtime_check_results": null
+    },
+    "compile": "Developer success summary only; original native compile packet missing.",
+    "source_readback": "Prior independent35 source-only QC calls retained and rehashed; no new cloud read in this recheck. Present project inventory and historical worker packaging remain uncertified.",
+    "authenticity_boundary": "A native nbformat error contains no originating attempt/source identity. Trusted dispatcher actual I/O supplies context. Hashes detect inconsistency, not remote provenance or a self-consistent fabricated corpus."
+  },
+  "software_acceptance": {
+    "tested_data_and_budget_scope": "passed",
+    "tested_parser_bridge_scope": "passed_under_documented_contract_after_disclosed_reviewer_corrections",
+    "archived_Research_engineering": "supported_at_metadata_level",
+    "phase2_overall": "not_accepted",
+    "unattended_factor_research": false,
+    "formal_research_enabled": false,
+    "GPT_runtime_enabled": false,
+    "orders_enabled": false,
+    "final_test_enabled": false
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "permanent_SID_ambiguity_economically_resolved": false,
+    "financial_vintage": false,
+    "actual_delivery_and_ingestion": false,
+    "financial_numeric_catalog_count": 0,
+    "certification_computation_kernel": "implemented",
+    "charged_certification_native_dispatch_bridge": "not_implemented",
+    "canonical_commands": ["capabilities", "validate-plan"],
+    "ready_to_dispatch": false,
+    "budget_admission_performed": false,
+    "occurrences": "Every selected projection retained with ordered source ordinal and first-relative duplicate/conflict counts; no economic winner/deduplication/averaging; unique-liquidity converter rejects v2 rows.",
+    "exact_gap_references": [
+      "tools/data_certification.py:16",
+      "tools/data_certification.py:30",
+      "cloud/qresearch/data_certification.py:411",
+      "cloud/qresearch/data_certification.py:689",
+      "cloud/qresearch/data_certification.py:724"
+    ]
+  },
+  "financial_evidence": false,
+  "financial_metrics": {"IC":null,"returns":null,"costs":null,"risk":null,"NAV":null},
+  "research_constraints": {
+    "universe": "Historical point-in-time top200 US equities; no201st substitution",
+    "timezone": "America/New_York",
+    "rolling": "Six8-year/1-year folds2010-2017/2018 through2015-2022/2023; only frozen trainable parameters refit annually",
+    "final_window": "2024-01-01/2026-10-23; actual exits within final boundary",
+    "2024_2025_exposed": true,
+    "2026_independence": "unverified",
+    "independent_final_executor_configured": false
+  },
+  "unverified": [
+    "NewLEAN delivered terminal, native logs,7 actual engineering checks and0 actual orders; no polling or substitute new run.",
+    "Original native compile packet, complete project inventory and exact old failed worker source.",
+    "Full historicalUS200, source ambiguity, real exchange sessions, corporate actions, financial values/periods/units/vintages, publication and actual supplier delivery/ingestion.",
+    "External original human grant2/4/2 message; latest direct human statement supports already executed2/2/1 only. Audit grants no further execution.",
+    "Native packet provenance beyond trusted dispatcher; self-consistent fabricated corpus cannot be certified by hashes alone.",
+    "OS kill/power-loss durability, stages3-7, financial effectiveness and an untouched final holdout."
+  ],
+  "next_required_work": [
+    "Obtain platform-delivered newLEAN terminal and logs; reconcile original frozen attempt and7 checks/actual0 orders once without implicit resubmission.",
+    "Complete financial numeric catalog and charged native certification dispatch bridge; preserve observation ambiguity until resolved by source evidence.",
+    "Obtain full historical universe/vintage/publication/actual-delivery certification under explicit authorization and exhausted configuration constraints.",
+    "Keep formal research, autonomous GPT, orders and final test closed until corresponding independent acceptance."
+  ],
+  "artifacts": {
+    "commands_and_exits": "root_execution_records.json; root_evidence_execution.json; data_recheck/*execution.json; budget_recheck/execution.json; runtime_recheck/*execution.json",
+    "new_independent_tests": "data_recheck/adversarial_occurrence.py; data_recheck/additional_closed_checks.py; budget_recheck/settlement_frontier_tests.py; runtime_recheck/independent_runtime_recheck_corrected.py",
+    "minimum": "python -B minimal_occurrence_known_answer.py --source source",
+    "prior_reference": "prior_report_reference.json",
+    "full_matrix": "reused_stage_matrix.json",
+    "verification": "python -B verify_artifacts.py"
+  }
+}
+```

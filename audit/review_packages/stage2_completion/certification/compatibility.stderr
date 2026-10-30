@@ -1,0 +1,40 @@
+test_batch_reordering_is_idempotent_and_receipt_has_no_values (tests.test_ingestion.IngestionTests) ... ok
+test_date_only_publication_requires_explicit_later_exchange_gate (tests.test_ingestion.IngestionTests) ... ok
+test_financial_asof_keeps_late_revision_out_and_mature_revision_in (tests.test_ingestion.IngestionTests) ... ok
+test_future_missing_timezone_inconsistent_receipt_or_invalid_field_rejected (tests.test_ingestion.IngestionTests) ... ok
+test_hash_tampering_duplicate_vintage_and_bounded_stream (tests.test_ingestion.IngestionTests) ... ok
+test_liquidity_rank_uses_supplied_dollar_volume_and_keeps_ADR (tests.test_ingestion.IngestionTests) ... ok
+test_mapping_uses_effective_and_available_times_without_current_backfill (tests.test_ingestion.IngestionTests) ... ok
+test_real_rows_require_cloud_and_current_universe_is_rejected (tests.test_ingestion.IngestionTests) ... ok
+test_same_vintage_correction_conflicts_but_revision_is_retained (tests.test_ingestion.IngestionTests) ... ok
+test_streamed_vintages_combine_without_double_count_or_cross_partition_conflict (tests.test_ingestion.IngestionTests) ... ok
+test_symbol_identity_and_exact_QC_field_mapping_no_fallback (tests.test_ingestion.IngestionTests) ... ok
+test_unknown_timestamps_and_classification_preserved_not_backfilled (tests.test_ingestion.IngestionTests) ... ok
+test_each_historical_row_uses_own_vintage (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_empty_history_is_a_valid_cached_missing_panel (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_failed_fetch_is_not_retried_by_adding_a_field (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_holdout_and_labels_are_rejected (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_missing_session_not_compressed_and_no_financial_filter (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_new_field_fetches_only_missing_field (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_reader_miss_does_not_fetch (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_request_plan_merges_fields_symbols_and_periods (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_shared_batch_cache_and_concurrent_reuse (tests.test_data_pipeline.DataPipelineTests) ... ok
+test_bound_report_prevents_changed_plan_or_flipped_failed_check (tests.test_coverage.CoverageTests) ... ok
+test_complete_fixture_counts_are_not_production_certification_or_value_export (tests.test_coverage.CoverageTests) ... ok
+test_different_source_rows_or_absent_refs_cannot_back_supplied_records (tests.test_coverage.CoverageTests) ... ok
+test_duplicate_and_ambiguous_vintage_failures_are_observed (tests.test_coverage.CoverageTests) ... ok
+test_explicit_new_york_schedule_can_cross_dst_without_invented_sessions (tests.test_coverage.CoverageTests) ... ok
+test_forged_provenance_flags_cannot_escalate_engineering_scope (tests.test_coverage.CoverageTests) ... ok
+test_future_naive_or_invalid_timestamp_inputs_are_rejected_before_snapshot_storage (tests.test_coverage.CoverageTests) ... ok
+test_historical_membership_masks_that_rows_own_cross_section (tests.test_coverage.CoverageTests) ... ok
+test_late_availability_leaves_a_missing_cell_and_later_revision_does_not_rewrite_earlier (tests.test_coverage.CoverageTests) ... ok
+test_missing_active_cell_is_counted_and_rejected_without_backfill (tests.test_coverage.CoverageTests) ... ok
+test_nonfinite_and_boolean_records_cannot_pass_observed_coverage (tests.test_coverage.CoverageTests) ... ok
+test_real_store_boundary_and_explicit_synthetic_classification (tests.test_coverage.CoverageTests) ... ok
+test_registered_production_report_remains_failed_and_verifier_compatible (tests.test_coverage.CoverageTests) ... ok
+test_source_hash_mismatch_and_metadata_instead_of_raw_rows_are_rejected (tests.test_coverage.CoverageTests) ... ok
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.792s
+
+OK

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\recovery_agent\cases\base-v2\source\tools\stage2.py", line 267, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\recovery_agent\cases\base-v2\source\tools\stage2.py", line 216, in main
+    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == "preview")))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\recovery_agent\cases\base-v2\source\tools\stage2.py", line 71, in freeze
+    registry._enforce_engineering_project(registry._replay(), {"engineering_task_schema_version": 1, "plan": plan.to_dict()})
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\recovery_agent\cases\base-v2\source\cloud\qresearch\registry.py", line 353, in _enforce_engineering_project
+    raise RegistryError("Unresolved engineering work on this project requires reconciliation")
+qresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "kind": "developer_financial_observation_implementation_and_fix_record",
+  "field_path": "financial_statements.income_statement.total_revenue_as_reported.twelve_months",
+  "unit": "reported_currency",
+  "period_presence_call": "has_period_value('12M')",
+  "official_API_evidence": "audit/review_packages/phase2_repair011/financial_API_references.json",
+  "first_observed_diagnostic_runs": [
+    {
+      "command": "python -B -m unittest discover -s tests -p test_financial_fields.py -v",
+      "tool_chunk_id": "ed3015",
+      "test_count": 13,
+      "reported_seconds": 0.712,
+      "exit_code": 0,
+      "original_channel_bytes_not_in_this_packet": true
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_historical_source.py -q",
+      "tool_chunk_id": "f79ff8",
+      "test_count": 13,
+      "reported_seconds": 0.541,
+      "exit_code": 0,
+      "original_channel_bytes_not_in_this_packet": true
+    },
+    {
+      "command": "python -B -m unittest discover -s tests -p test_data_certification.py -q",
+      "tool_chunk_id": "7a6770",
+      "test_count": 48,
+      "reported_seconds": 189.833,
+      "exit_code": 0,
+      "original_channel_bytes_not_in_this_packet": true
+    }
+  ],
+  "review_fix": {
+    "origin": "Root source inspection before publication; not an independent GPT Work finding",
+    "observation": "Initial source hook stringified an apparent FinancialFieldError; native numeric conversion may throw a malicious subclass. No failing test or actual disclosure was observed in that initial implementation.",
+    "before_excerpt": "raise HistoricalSourceError(str(error)) from None",
+    "after": "Use fixed literals, inspect reason only when type(error) is exactly the owned class, and reconstruct owned numeric conversion errors without rendering them.",
+    "new_boundary_tests": [
+      "malicious FinancialFieldError subclass __str__ is never called or exported",
+      "misdeclared financial catalog rejected before native history"
+    ],
+    "additional_preflight": "Validate the one financial field definition at source construction before history; keep the same whitelist check at projection."
+  },
+  "native_class_boundary_fix": {
+    "origin": "Receipt agent probe relayed by root, then independently reproduced by the financial implementer with the retained synthetic script",
+    "first_failure": "native_class_first_failure.json",
+    "first_failure_exit_code": 1,
+    "observed_failure": "Numeric and native-period isinstance predicates could invoke a throwing __class__ outside a static error boundary, allowing the synthetic native RuntimeError to escape the public helper.",
+    "repair": "Move numeric and period type predicates into static catches, protect declaration comparison, and add a public wrapper that reconstructs only exact-owned allowlisted reasons without rendering exceptions.",
+    "fixed_probe": "native_class_repaired.json",
+    "fixed_probe_exit_code": 0,
+    "public_error_is_owned_and_private_argument_no_longer_escapes": true,
+    "new_tests": [
+      "native parent, period and numeric class predicates return static owned errors",
+      "mutated apparent owned error reasons cannot export private messages"
+    ],
+    "independent_WR_id_assigned": false
+  },
+  "retained_verification": "verification.json contains the final17/13/1 actual instrumented runs with original stdout/stderr base64 and SHA256. The earlier15/13/1 original streams were recovered after filename reuse; every recovered byte stream matches the earlier actual SHA256 exactly, as documented in prior_instrumented15/recovery_record.json.",
+  "test_counts_overlap_do_not_sum": true,
+  "catalog_change": {
+    "observation_fields_before": 15,
+    "observation_fields_after": 16,
+    "numeric_as_reported_fields_before": 0,
+    "numeric_as_reported_fields_after": 1,
+    "capability_test_change": "Expected declared count becomes1 and catalog-not-available gap disappears; actual provenance gaps and all certification flags remain unchanged."
+  },
+  "no_standardized_revenue_fallback": true,
+  "missing_period_is_none_and_present_zero_preserved": true,
+  "reporting_currency_identifier_certified": false,
+  "vendor_vintage_certified": false,
+  "actual_delivery_certified": false,
+  "full_historical_US200_certified": false,
+  "factor_fields_enabled": false,
+  "financial_certification": false,
+  "independent_acceptance": false,
+  "cloud_calls": 0,
+  "budget_mutations": 0,
+  "final_test_enabled": false
+}

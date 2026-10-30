@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-pending_no_pointer-v1\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-pending_no_pointer-v1\source\tools\stage2.py", line 287, in main
+    result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-pending_no_pointer-v1\source\cloud\qresearch\engineering_tasks.py", line 667, in record_rejection
+    raise EngineeringTaskError("Accepted submission identities cannot be overwritten by a rejection")
+qresearch.engineering_tasks.EngineeringTaskError: Accepted submission identities cannot be overwritten by a rejection

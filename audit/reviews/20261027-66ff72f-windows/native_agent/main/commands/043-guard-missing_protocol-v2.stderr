@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-missing_protocol-v2\source\cloud\qresearch\engineering_tasks.py", line 634, in record_rejection
+    protocol = self.store.read_bytes("engineering/submission-protocol/" + record["attempt_id"] + ".json")
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-missing_protocol-v2\source\cloud\qresearch\artifacts.py", line 240, in read_bytes
+    return self._path(key).read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1126, in read_bytes
+    with self.open(mode='rb') as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\native_agent\\main\\cases\\guard-missing_protocol-v2\\source\\audit\\runtime\\engineering\\submission-protocol\\5212b2959a744556bf75df5598c448f1.json'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-missing_protocol-v2\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-missing_protocol-v2\source\tools\stage2.py", line 287, in main
+    result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\guard-missing_protocol-v2\source\cloud\qresearch\engineering_tasks.py", line 658, in record_rejection
+    raise EngineeringTaskError("A rejection requires canonical original admitted-input evidence") from exc
+qresearch.engineering_tasks.EngineeringTaskError: A rejection requires canonical original admitted-input evidence

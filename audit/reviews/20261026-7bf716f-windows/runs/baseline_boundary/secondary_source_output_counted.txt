@@ -1,0 +1,39 @@
+test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) ... test_public_collector_fails_with_legal_native_endpoint (__main__.AdditionalSourceTests) ... FAIL
+test_valid_fallback_dates_and_zero_remain_values (__main__.AdditionalSourceTests) ... ok
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-otq3i9a_\source_agent\secondary_source_review_counted.py", line 52, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-otq3i9a_\source_agent\secondary_source_review_counted.py", line 52, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+======================================================================
+FAIL: test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-otq3i9a_\source_agent\secondary_source_review_counted.py", line 52, in test_native_endtime_contract_maps_exact_selection_window
+    self.assertIsNone(error,"Adapter rejects an official-contract endpoint before mapping its half-open selection window")
+AssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window
+
+======================================================================
+FAIL: test_public_collector_fails_with_legal_native_endpoint (__main__.AdditionalSourceTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-otq3i9a_\source_agent\secondary_source_review_counted.py", line 62, in test_public_collector_fails_with_legal_native_endpoint
+    self.assertIsNone(error,"A legal native endpoint prevents completion of the one-day collection window")
+AssertionError: 'Historical source iteration failed; unfinished intent retained' is not None : A legal native endpoint prevents completion of the one-day collection window
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.020s
+
+FAILED (failures=4)

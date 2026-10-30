@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "kind": "developer_synthetic_financial_projection_validation",
+  "runs": [
+    {
+      "name": "financial_fixed_boundaries",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_financial_fields.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6acbf543addd7b77a0ea92ac80f5c7ee83dec9c1809fbb7962059ed80711ce52",
+      "stdout_original_base64": "financial_fixed_boundaries.stdout.raw.base64",
+      "stderr_original_base64": "financial_fixed_boundaries.stderr.raw.base64",
+      "test_count": 17,
+      "reported_seconds": 0.564
+    },
+    {
+      "name": "historical_source_regression",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_historical_source.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7bbeaf6ef5ff9d0b547608537e9ad9d36ca09a3135b9e22042251dda90a2d2fc",
+      "stdout_original_base64": "historical_source_regression.stdout.raw.base64",
+      "stderr_original_base64": "historical_source_regression.stderr.raw.base64",
+      "test_count": 13,
+      "reported_seconds": 0.257
+    },
+    {
+      "name": "capability_catalog_regression",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-B",
+        "-m",
+        "unittest",
+        "test_data_certification.DataCertificationTests.test_capabilities_and_CLI_remain_metadata_only",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "febc88f40559bc0f4871a4092c7388089aad6f3c65d045ebdced9159bd8ac217",
+      "stdout_original_base64": "capability_catalog_regression.stdout.raw.base64",
+      "stderr_original_base64": "capability_catalog_regression.stderr.raw.base64",
+      "test_count": 1,
+      "reported_seconds": 6.019
+    }
+  ],
+  "source_files": [
+    {
+      "path": "cloud/qresearch/financial_fields.py",
+      "sha256": "f8c12f504b778705ae24d8e750d2d37fb38489079a63b2f255b43d92d1203959"
+    },
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "sha256": "ab38ce8046378de72630fb815773f3abd44489068d020afe6cc82d8491052dfd"
+    },
+    {
+      "path": "config/source_catalog.json",
+      "sha256": "6e9ac1f1e967aecc01dd765adb0e1cccfad9ac4851360023f9ca0bcad0aae6eb"
+    },
+    {
+      "path": "tests/test_financial_fields.py",
+      "sha256": "95981a9a5c659084bdf13beb9f94e266ef92b8e8f8f657368ec7b7838f44ae2c"
+    },
+    {
+      "path": "tests/test_data_certification.py",
+      "sha256": "353899d4427077b7d2b4777ba0f60bd2338aca00f6ef07924d860dbba89dbcc4"
+    },
+    {
+      "path": "docs/financial_fields.md",
+      "sha256": "3c22b60ffda9d2d7b270bac1c8d0635cd0d42d9bcf2135f2e2b8f5ba2d3cfe3a"
+    }
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "threads": 1,
+  "market_data_calls": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "budget_mutations": 0,
+  "financial_certification": false,
+  "actual_delivery_certified": false,
+  "vendor_vintage_certified": false,
+  "factor_fields_enabled": false,
+  "final_test_enabled": false,
+  "independent_acceptance": false,
+  "test_counts_overlap_prior_diagnostic_runs_and_full_repository_suite": true
+}

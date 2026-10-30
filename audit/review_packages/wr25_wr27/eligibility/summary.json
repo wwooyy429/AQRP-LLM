@@ -1,0 +1,56 @@
+{
+  "kind": "developer_WR25_WR26_repair_not_independent_acceptance",
+  "production_files": [
+    "cloud/qresearch/data_certification.py"
+  ],
+  "production_raw_sha256": "4944b95b339060a60533226184e7838632c7de2a40dfed42795d778d8a05ff2b",
+  "test_file": "tests/test_data_certification.py",
+  "test_file_raw_sha256": "7d8cf8402f1886e2723199f115944719dfed2d6b1f8336d217abe71a9080ee2d",
+  "new_repository_methods": 8,
+  "original_combined_MRE": {
+    "baseline_exit": 1,
+    "fixed_exit": 0,
+    "scenarios": 7,
+    "previous_bad_scenarios": [
+      "unmapped",
+      "future",
+      "missing"
+    ],
+    "original_script_unchanged": true
+  },
+  "targeted_methods": 8,
+  "targeted_seconds": 40.828,
+  "original_history_replay": {
+    "methods": 9,
+    "scenario_checks": 29,
+    "passed_methods": 9,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "network_attempts": 0,
+    "seconds": 80.078
+  },
+  "test_counts_overlap": true,
+  "classification_semantics": "Reuse ingestion registered classifications; only listed=False or a registered excluded type establishes an exclusion; other values stay unknown",
+  "coverage_semantics": "Then-known historical master SIDs plus then-known listing evidence need a current unambiguous record; an expired mapping/excluded interval does not imply permanent exclusion",
+  "new_boundary_controls": [
+    "unknown code/name typo/None cannot silently exclude",
+    "finite old listed/ETF/unlisted interval with no current stays unknown",
+    "future current ETF/unlisted cannot exclude early",
+    "available_at equality allowed, one microsecond late not allowed",
+    "future-only SID without earlier knowledge does not create historical obligations",
+    "explicit listed=False with unknown type and registered ETF with unrelated unknown fields remain exclusions",
+    "known source SID lacking all master coverage remains unknown"
+  ],
+  "source_batch_rows_refs_and_counts_preserved": true,
+  "ingestion_source_changed": false,
+  "source_projection_note": "Original history runner copies current cloud Python and required verification metadata into fresh ignored projection; original scripts and expectations unchanged; hardcoded ccad report label retained as historical, actual product hash recorded separately",
+  "new_QC_calls": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_model_calls": 0,
+  "authoritative_budget_writes": 0,
+  "new_deployments": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "archive_note": "Copy top-level evidence only, not independent_history/source projection or complete synthetic cases"
+}

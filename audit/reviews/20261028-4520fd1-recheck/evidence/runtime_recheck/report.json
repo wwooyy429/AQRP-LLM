@@ -1,0 +1,302 @@
+{
+  "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "scope": "Independent current-run native parser/bridge synthetic recheck and fresh offline archived native metadata inspection, under documented trusted dispatcher boundary.",
+  "verdict": "Tested current scope passed after disclosed reviewer oracle/helper corrections; actual newLEAN remains pending in fixed archive; no new product finding confirmed.",
+  "findings": [],
+  "current_executions": {
+    "corrected_independent_suite": {
+      "methods": 10,
+      "passed_methods": 10,
+      "failure_records": 0,
+      "error_records": 0,
+      "skipped": 0,
+      "named_scenario_records": 57,
+      "counts": {
+        "direct_research_parser_calls": 13,
+        "different_terminal_replacement_attempts": 2,
+        "lean_parser_calls": 34,
+        "synthetic_completion_calls": 1,
+        "original_research_replays": 4
+      },
+      "seconds": 6.219000000000051,
+      "source_raw_unchanged": true
+    },
+    "evidence": "corrected/first_results.json; corrected_execution.json; corrected.stdout; corrected.stderr",
+    "static_archived_checks": {
+      "checks": 35,
+      "passed": 35,
+      "methods": 0,
+      "records": 3,
+      "evidence": "archive_inspection.json; archive_inspection_execution.json"
+    },
+    "first_run": {
+      "methods": 10,
+      "passed_methods": 8,
+      "failure_records": 2,
+      "error_records": 0,
+      "skipped": 0,
+      "named_scenario_records": 46,
+      "success": false
+    },
+    "first_result_evidence": "first/first_results.json; first/first_unittest.txt; first_execution.json",
+    "actual_CLI_processes": 0,
+    "actual_QC_workers": 0,
+    "actual_QC_calls": 0,
+    "actual_LEAN_terminal_or_log_reads": 0,
+    "market_or_model_calls": 0,
+    "source_or_authoritative_budget_writes": 0
+  },
+  "first_results_explanation": {
+    "mutable_test_helper": "native() initially returned the packet structuredContent object itself. A negative-case mutation changed only that mirror, so the next helper call detected mirror mismatch before calling the product. Corrected by deepcopy; all original script/output bytes retained.",
+    "overstrong_remote_provenance_oracle": "The first test incorrectly required an nbformat error response with the same project/cell to independently identify its originating attempt/source. It carries no such field. Under the explicitly documented operational trust boundary, the supplied trusted dispatcher binding provides context; a pure parser cannot certify remote origin or detect an operator swapping such a response. This is now recorded as a limitation, not silently claimed to pass the original rejection expectation.",
+    "actual_guard_test": "The corrected suite separately demonstrates old/different error receipts cannot replace the original completed or failed Research terminal; original submission/evidence hashes reject both with no metadata writes.",
+    "artifacts": "independent_runtime_recheck_first.py; independent_runtime_recheck_corrected.py; reviewer_scope_correction.diff; reviewer_scope_correction.txt"
+  },
+  "covered_current_cases": [
+    "Three original frozen admissions, exact physical input byte/hash,32 managed files,13 Research vs7LEAN checks, fixed37dc task packet population.",
+    "Four exact original completed/failed Research replays after redirecting mutable current pointer to unrelated invalid content; all46-event Memory metadata bytes unchanged.",
+    "Success mirrored JSON semantics/key ordering; two exact native error texts plus matching structuredContent and supported fractional-time annotations; mismatched duplicate annotations rejected.",
+    "Fresh rehashed joint-probe window/fetch/reuse/empty/record arithmetic mutants rejected, legitimate mixed-cache window partition accepted.",
+    "Cross-attempt report/binding rejection; native-error provenance limitation explicitly demonstrated; changed original Research terminals refused.",
+    "Explicit synthetic deliveredLEAN terminal with7 checks,0 actual/synthetic-engine orders,dividend1 and native Decimal-zero representations; one privateMemory pending-to-completed transition46-to47 events with unchanged usage.",
+    "All7 requiredLEAN checks individually false and4 boundary count failures cannot pass the Bridge contract.",
+    "Complete reversed native log pages accepted; missing/duplicated/inconsistent pages,foreign attempt and duplicate chunks rejected.",
+    "Wrong external/project, running/unknown/incomplete/bool progress and nonzero/nonfinite/bool native order counts rejected.",
+    "Explicit synthetic runtime-error receipt accepted without logs; transport timeout rejected as nonterminal; separate pristine actual snapshot remains pending."
+  ],
+  "archived_evidence": {
+    "level": "Developer-archived native packets independently decoded and checked offline. Not reviewer live platform retrieval, remote signature, or cloud-row recount.",
+    "diagnostic": {
+      "kind": "diagnostic",
+      "attempt_id": "b9f952c1de3a44f9b06e5c552f7d1af3",
+      "runtime_source_commit": "42b45c830aac691fe0763bfc6363997947625bc1",
+      "ledger_status": "failed",
+      "plan_hash": "489e379522bb7109c367e7398416867a98e2ec70d2f7001bd4d04b6729fb944e",
+      "config_id": "9e8e49615584f6416c44eb6c9f6b61c58d8341aa1dbc1c83a9f9aeac02445f0c",
+      "deployment": {
+        "deployment_hash": "4eb3851506b51ebd6048a3351e1765af6ff9c2eae9aa2f0c00493dda19b839ed",
+        "input_hash": "23049dad8bf580b477cb427fc3b06481dc0303cdd60c42b5b3fb56c5fc877349",
+        "source_manifest_hash": "7010dd41cb3c2c05bb62b90c5d1381d91cb500215d78d455fd5322493b311ba5"
+      },
+      "frozen_Git_source_files": 32,
+      "native_packet_sha256": "4b399788d752ee9edc1074f83b942e3567a06988de098d35a55c009330e4aa96",
+      "cell_source_sha256": "039ea96875516caa99181c563e99b3bf1ffc77b0f7d08fd4f189cf4fb452e3c8",
+      "dispatch_binding_sha256": "37827e01e5116916fbb54a5e5c5b5d7895107c11d10acb94ec396c88c79bb77b",
+      "diagnostic": {
+        "exception_kind": "source_contract",
+        "failure_code": "native_sid_duplicate",
+        "index_kind": "multiindex",
+        "index_levels": 2,
+        "index_names": "expected",
+        "native_calls": 1,
+        "projection_kind": "text",
+        "projection_position": 4,
+        "response_kind": "series",
+        "response_rows": 1,
+        "rows_emitted": 5124,
+        "schema_version": 1,
+        "snapshot_kind": "list",
+        "snapshots_seen": 1,
+        "stage": "row_identity"
+      }
+    },
+    "repaired_Research": {
+      "kind": "repaired",
+      "attempt_id": "2d1095df62dc4222bffd8000c0737d38",
+      "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "ledger_status": "completed",
+      "plan_hash": "9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+      "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+      "deployment": {
+        "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+        "input_hash": "36b5197ca2fbf2cc50c40ee0e5e6004164950d2101a6564b8b02b73994a2ae9c",
+        "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820"
+      },
+      "frozen_Git_source_files": 32,
+      "native_packet_sha256": "06005fd728017d457c2025c8d5ec1ce61f00f35d69e813f279d50bd138137d8d",
+      "cell_source_sha256": "9ff3ef705aacf16d3c0c55ffb16ec88e499087922ad3a75b0d8e58c674557eb8",
+      "dispatch_binding_sha256": "d9adaff07778612d39c2425660e9f701950d45c0ad0c663d848e537ae3c7b3b9",
+      "checks": {
+        "cache_only_consumer": true,
+        "collection_cache_only_replay": true,
+        "collection_nonempty": true,
+        "collection_windows_completed": true,
+        "coverage_observed_complete": true,
+        "development_only": true,
+        "final_request_rejected": true,
+        "raw_data_received": true,
+        "read_only_write_rejected": true,
+        "same_partition_ids": true,
+        "second_prefetch_no_history": true,
+        "source_snapshot_matches": true,
+        "symbol_registry_resolved": true
+      },
+      "price_statistics": {
+        "expected_formation_count": 250,
+        "history_calls_first": 0,
+        "history_calls_second": 0,
+        "record_count": 2510
+      },
+      "collection_probe": {
+        "actual_availability_certified": false,
+        "cache_only_source_fetch_calls": 0,
+        "conflicting_projection_records": 0,
+        "duplicate_projection_records": 27,
+        "empty_windows": 13,
+        "financial_vintage_certified": false,
+        "full_historical_US200_certified": false,
+        "missing_values": {
+          "dollar_volume": 0,
+          "end_time": 0,
+          "has_fundamental_data": 0,
+          "time": 0
+        },
+        "observation_policy": "retain_source_occurrences",
+        "plan_hash": "81d0fd54805d746e7ef6b9099b25ab858d8156c23207cbd69d1be1aec377ebe0",
+        "receipt_ref": {
+          "key": "engineering/occurrence-retention-normal004-v2/collection-probes/9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5/2d1095df62dc4222bffd8000c0737d38.json",
+          "sha256": "7c84c526080e50f39acdcaf0b884520cba6c8675d54ac34e4c3a012a5d5853ea"
+        },
+        "record_count": 208223,
+        "research_certified": false,
+        "reused_windows": 0,
+        "row_values_exported": false,
+        "schema_version": 2,
+        "source_fetch_calls": 40,
+        "window_count": 40
+      }
+    },
+    "LEAN": {
+      "kind": "LEAN",
+      "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+      "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "ledger_status": "pending",
+      "plan_hash": "9e9dd479729c80df26805b19e09930df60960b0ad23bbad36ded257e5098acf5",
+      "config_id": "4785e506c51dca4bee4716ed26cc2d1749068124b77fd48f2eaab5a3b0f41f6c",
+      "deployment": {
+        "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+        "input_hash": "8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03",
+        "source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820"
+      },
+      "frozen_Git_source_files": 32,
+      "external_id": "3e68866a46ca88ff16481c31b3c2c822",
+      "required_checks": {
+        "lean": [
+          "source_snapshot_matches",
+          "raw_data_received",
+          "complete_expected_bars",
+          "no_orders",
+          "development_only",
+          "symbol_registry_resolved",
+          "corporate_action_received"
+        ],
+        "research": [
+          "source_snapshot_matches",
+          "raw_data_received",
+          "second_prefetch_no_history",
+          "same_partition_ids",
+          "cache_only_consumer",
+          "read_only_write_rejected",
+          "final_request_rejected",
+          "coverage_observed_complete",
+          "development_only",
+          "symbol_registry_resolved",
+          "collection_windows_completed",
+          "collection_cache_only_replay",
+          "collection_nonempty"
+        ]
+      },
+      "archived_task_packets": [
+        "37dc855045e14ca49c88fd9d75f40cf7-submission.json"
+      ],
+      "terminal_status": null,
+      "order_count": null,
+      "financial_evidence": false
+    },
+    "compile": "Only developer compile.success/updated-files summary in existing materials; original normal004 native compile packet not independently obtained.",
+    "source_at_execution": "32 files per frozen deployment independently matched local Git42b/662 normalized hashes. This does not certify exact historical worker packaging or a full current cloud inventory.",
+    "prior_cloud_readback": "Prior root review obtained35 live source-only QC calls (2list+32managed files+LEANinput); preserved historical evidence, not calls or fresh cloud state obtained in this recheck."
+  },
+  "reviewer_metadata_correction": {
+    "prior_review": "Previous sealed formal_report.unverified used13 when discussing the undelivered newLEAN engineering checks.",
+    "correct_value": "Frozen plan requires13 Research checks and7LEAN checks. NewLEAN7 remain unobserved at real runtime.",
+    "classification": "Reviewer reporting metadata correction, not a production software WR; prior sealed package unchanged."
+  },
+  "historical_reference_not_newly_executed": {
+    "prior_runtime_agent": "Previous35 native manual scenarios,18 collection bridge scenarios and protocol/recovery suites are historical references only; not recounted as new executions.",
+    "prior_full_scope": "Other earlier numeric/admission/source-worker tests are not represented as new current runtime executions."
+  },
+  "acceptance": {
+    "tested_parser_bridge_scope": "passed_under_declared_trusted_dispatcher_contract_with_disclosed_reviewer_scope_correction",
+    "real_Research_engineering": "archived native13-check result supported at metadata level",
+    "real_LEAN_terminal": "not_obtained_or_read; fixed ledger pending",
+    "phase2_overall": "not_accepted",
+    "data_certification": false,
+    "financial_evidence": false
+  },
+  "unverified": [
+    "A delivered original newLEAN terminal plus logs,7 fixed checks, actual0 orders and complete source/input identity reconciliation are absent from fixed source.",
+    "Native response provenance depends on trusted dispatcher actual I/O; hashes and context do not remotely authenticate an error originating from an exact attempt.",
+    "No live QC read,compile,Research,LEAN or model execution this recheck; synthetic completed/failedLEAN fixtures are not real platform terminal evidence.",
+    "Research aggregate counters208223/27/0/13 reflect selected4-field program metadata, not a fresh row recount or full historicalUS200/financial-vintage/actual availability certification.",
+    "No finance effectiveness or independent final test; configuration budget is full; no extra executions or quota changes authorized.",
+    "Fault injection and in-memory replay do not certify OS kill,power loss or all physical storage failures."
+  ],
+  "execution_records": [
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck\\independent_runtime_recheck.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck\\first"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck",
+      "exit_code": 1,
+      "seconds": 13.375,
+      "stdout_sha256": "5531138af5eeccf8dccb980cfb9eb955857ce9b66a4374fd40469bb9399fdf94",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "script_sha256": "4d3ec7bdce322c46ed3459072a61a77211dd135b4bdb42929b4ced885ea85a05"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck\\independent_runtime_recheck_corrected.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck\\corrected"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck",
+      "exit_code": 0,
+      "seconds": 13.188000000000102,
+      "stdout_sha256": "7543fb4c58e878cf16ca31293b16f1815e1d27396a61ed08fe05743a3a20f3e3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "script_sha256": "165544cc4578dbeaeac56dcd9a992a499d580c518ffc0bf0360ef956729f5adf"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck\\inspect_archived_native.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\source",
+        "--git",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-4520fd1-20261028-recheck\\runtime_recheck",
+      "exit_code": 0,
+      "seconds": 3.061999999999898,
+      "stdout_sha256": "a860d28e93599a684fd21e747031aae491bf7f4bc6de9565efcf6d98aad41d8c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "script_sha256": "db4ec9d3663c71f05cdfb47f9051a9e7bb776e04e602a5fa932efdb54337d449"
+    }
+  ],
+  "counts_overlap": true,
+  "source_raw_unchanged": true
+}

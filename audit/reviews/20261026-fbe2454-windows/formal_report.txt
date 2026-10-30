@@ -1,0 +1,79 @@
+AQRP-LLM 独立复审正式报告
+审核编号：AQRP-20261026-FBE2454-WINDOWS-05
+固定源码：fbe2454e6ea10aa59211c01f236c54bb251527be
+比较基线：d0b9c98ae9490b977d62f3e9742d854146d298b4
+
+总体结论：本轮新增阶段2源适配不通过，发现WR-09、WR-10（均P2）。既有d0生产计算内核未改，阶段0/1原验收范围回归通过，旧结论不撤销；整个系统未验收。采集计划/缓存/失败/只读部分在独立合成范围通过，不能覆盖源适配缺陷及未实现任务桥。未修改开发者源码，未新增市场/模型执行、部署、预算或PR变更。financial_evidence=false。
+证据：E1静态源码/哈希/事件链及官方固定SDK合同；E2审核者本轮实际离线合成测试；E3开发者归档原生平台JSON离线重解析；E4审核者当前只读QC项目源码及GitHub元数据；E5真实独立金融证据无。官方SDK静态合同加原生形状重放不是实际SDK或平台执行。
+
+全系统覆盖矩阵
+阶段0 | 规范、配置、身份、Registry、原子准入 | 既有工程核心保持，新目录/计划身份已纳清单 | 仓库322、准入19、适配56、95静态检查、两次稳定构建 | passed_after_fix | 阻断无新增 | 原已验离线范围及本轮身份/配置回归；不授予采集执行许可
+阶段1 | 因子、PIT、标签、模型、共享评价 | 原d0实现未改 | 322仓库及12/10/16/19/56、d0摘要11/兼容8回归通过 | passed_after_fix | 阻断无新增 | 原已验离线范围及数值精度限制保留
+阶段2 | 历史快照采集、缓存、源适配、QC任务桥 | 新增采集库/源适配/元数据CLI；预算任务桥尚未接入 | 采集19/19；源主套8方法7过1败；边界3方法1过2败；官方固定源码合同 | failed | 阻断WR-09,WR-10 | 新增源适配范围失败；预算桥、部署、LEAN终态及完整数据认证仍待完成
+阶段3 | 滚动Research评价 | 部分指标及六轮合成链已实现 | 既有12/10和d0摘要11/兼容8回归通过 | pending_acceptance | 阻断无新增 | 原已实现离线统计范围保持；完整Research未验收
+阶段4 | 订单、成交、成本、风险、账本 | 工程宿主/接口，完整交易验证未交付 | 既有离线回归，未新增真实交易链证据 | not_accepted | 阻断无新增 | 完整阶段仍未验收
+阶段5 | GPT提案、受限网关、控制器 | 部分接口已实现；模型及额度未配置 | 既有离线回归；真实GPT闭环未执行 | not_accepted | 阻断无新增 | 完整阶段仍未验收
+阶段6 | 去重、相关、搜索、组合增量 | 部分接口已实现，完整搜索/增量未交付 | 相关接口回归通过；无实际搜索证据 | not_accepted | 阻断无新增 | 完整阶段仍未验收
+阶段7 | 冻结、独立最终执行、前向、监控 | 门禁存在；完整执行/前向证据未交付 | 分区、暴露、关闭开关不变 | not_accepted | 阻断无新增 | 完整阶段仍未验收
+
+WR-09 / P2 / open
+固定fbe，cloud/qresearch/historical_source.py:84-86（date标量）及195-197（投影），默认目录包含file_date.value与period_ending_date.value。
+SDK全周期缺失的DateTime默认值在合成原生形状中为datetime.min；源投影将其序列化为0001-01-01。完整source→collector→read_window均保存两项0001-01-01，missing_values各0，后续缓存复用不纠正它。应是null，缺失各1。
+官方固定LEAN f3d841e60dfd010ee5fc293ea893e56952484108：MultiPeriodField.cs NoValue/Value在原字节31/56行；BaseFundamentalDataProvider.cs107-109把默认DateTime判作缺失；Generated/FinancialStatementsFileDate.cs75/89/100-102定义HasValue及备选周期fallback。
+实际影响：污染来源日期语义和缺失统计；未证明绕过PIT/数据认证门禁或影响真实因子。该新增功能不能通过。
+修复方向：规范化SDK NoValue/全周期缺失为null，保留合法日期、数值零和默认期缺失但备选期有效的Value。不能仅见HasValue=false就抹掉合法fallback。
+回归：两个日期字段全周期无值、合法fallback、None/NaT及正常日期，源到缓存读回、missing_values重算。旧错误缓存与失败证据保持不可变，新实现用新固定身份复审。
+最小转换复现：from datetime import datetime; from qresearch.historical_source import _scalar; assert _scalar(datetime.min,'date') is None。当前实际为0001-01-01。完整公开链见minimal_missing_date.py，根代理已独立执行退出1，并保存stdout/stderr。
+
+WR-10 / P2 / open
+固定fbe，cloud/qresearch/historical_source.py:160-162直接传请求端点，180-182用[start,end)验证响应。
+官方UniverseHistory→History→HistoryRequestFactory仅转换时区并保持请求端点，历史TimeBasedFilter接收start<EndTime<=end，Pandas以EndTime作索引；未提供dateRule时PerformSelection原样逐点选择。候选对同参数返回的合法end端点抛HistoricalSourceError。1/2/7日原生合同重放均失败，collector中断并留下意图，无法完成该窗。
+根代理另造2018-01-03到01-04的端点合同输入：SDK形状返回01-04，候选报Duplicate or out-of-window native universe snapshot，退出1；冻结计划实际应取得01-03快照。
+官方原字节行号：QuantBook.cs765/774/776、939/942/961、1132/1136；QCAlgorithm.History.cs337/342/344、1101/1111；HistoryRequestFactory.cs86-87；HistoryProvider.cs220/222；PandasData.cs175/180。根代理补查请求工厂没有隐藏端点偏移，20份固定源码字节及哈希均保存。浏览器提取会删除空行，不能直接把其展示行号当GitHub源码行号。
+实际影响：正常SDK合同响应可阻断采集；这是静态合同兼容加合成复现，未称已在真实平台观察到失败。
+修复方向：发起请求前显式适配SDK区间与冻结选择时钟，既完整包含start又排除end；不得仅放宽end检查，尤其不得让最终边界进入请求或结果。保留意图/失败和预算事实。
+回归：1/2/7日、连续窗拼接、两端覆盖、DST/空窗、end=2024-01-01最终隔离，以及source→collector→缓存复用的正常链。完整最小复现minimal_history_boundary.py已实际执行退出1。
+
+实际执行（方法数/子例分列，重叠不加总为独有测试）
+repository_verify: 方法322，通过322，失败0，错误0，跳过0，子例None，退出0。
+archived_compatibility: 方法12，通过12，失败0，错误0，跳过0，子例22，退出0。
+archived_pearson: 方法10，通过10，失败0，错误0，跳过0，子例896，退出0。
+archived_numeric: 方法16，通过16，失败0，错误0，跳过0，子例84，退出0。
+archived_atomic: 方法19，通过19，失败0，错误0，跳过0，子例9，退出0。
+previous_adapted: 方法56，通过56，失败0，错误0，跳过0，子例25，退出0。
+d0_summary_class: 方法11，通过11，失败0，错误0，跳过0，子例716，退出0。
+d0_compatibility_class: 方法8，通过8，失败0，错误0，跳过0，子例16，退出0。
+new_independent_collection: 方法19，通过19，失败0，错误0，跳过0，子例31，退出0。
+new_independent_source: 方法8，通过7，失败1，错误0，跳过0，子例73，退出1。
+new_independent_history_boundary: 方法3，通过1，失败2，错误0，跳过0，子例3，退出1。
+
+采集新增19方法31子例的首跑与独立目录复核均通过，只计同一19方法。证明同Memory的6线程、不同FS实例6线程、4个Windows spawn进程，以及模拟ObjectStore多实例只发生1次合成fetch；不证明跨节点云锁。流式中断/批次写成功后抛错保留intent不重取，完成manifest写成功后抛错可只读恢复；跨计划/损坏/伪认证引用被拒，合法只读完成缓存0写0新调用。
+源新增8方法7通过1失败，73子例、2失败记录；附加3方法1通过2失败，3子例、4失败记录。源子任务共11方法8通过3失败，76子例、6失败记录；不是6个失败方法。合法SID/类型/缺失/时区/来源/供应商DollarVolume及PIT拒绝路径通过。
+审核器附加套件最初只捕获子类，collector按设计包装为CollectionError，导致1个审核器异常；随后仅修正捕获。中间JSON漏计普通addFailure，错误写成2过1败；原日志实际1过2败。根代理发现后保留中间原件，按unittest failures/errors的父方法ID去重重跑，最终计数如上；未改生产断言、输入或预期。两个修正diff及首次/中间/最终输出均存档。
+322及12/10/16/19/56、d0摘要11/兼容8均实际重跑通过。归档类仅运行类方法，未冒称重跑原main机器专属辅助；原SHA字面量保持，实际源码由外层哈希和固定fbe认证。原样56历史50通过/3失败/3错误及认可适配差异保留。d0原审核器错误和纯相对探针失败/精度限制完整保留。
+95哈希/AST/JSON检查通过，另20官方源码哈希匹配；它们不是单元方法。两次本地构建exit0、313文件字节稳定，不是新增方法。开发者早期CLI测试KeyError仅按已有工具摘要归档，未虚构原始完整日志。
+
+主要命令及环境
+python -B tools/stages.py verify（独立副本runs/repository_source）
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_compatibility --suite compatibility
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_pearson --suite pearson
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_numeric --suite numeric
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_atomic --suite atomic
+python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/previous_adapted_56 --mode adapted
+d0的11/8类通过replay_public_class.py重放；完整实际参数见runs/execution_records.json。
+python -B collection_agent/independent_collection.py
+python -B source_agent/independent_source_review.py
+python -B source_agent/secondary_source_review_counted.py
+原生Windows-10-10.0.26300-SP0；Python3.10.11、numpy1.26.4、pandas2.3.3、longdouble尾数位52，主重放线程数1。解释器、cwd与完整命令见各原始记录；传递依赖见environment.json/requirements-audit.txt。审核者未在Linux执行，真实AlgorithmImports未执行。
+
+版本/预算/平台/数据
+313 Git文件与候选source逐字节一致；本轮无交付ZIP。94源码清单ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb；27py本地部署清单cb8e63f4d7e175c26d8e2c2cef0cbcc685a048de84bb112ba890b44cb26597a3。独立原始Git逐文件清单另存source_git_manifest.json。
+相对d0生产6路径变化：两个新库、采集CLI、catalog、未启用模板，以及生成research_config实现hash；原d0实现/测试未改。新catalog纳入总源码及采集计划身份，不纳入旧活动CONFIGURATION，配置hash仍272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94。未产生配置登记扣款。
+d0原29份原件逐字节吻合，更早147份审核证据不变。37既有受保护文件、12事件、暴露与四个关闭开关不变；6/12、9/20、1/16（正常/预留6/0、6/3、1/0）投影一致。本轮新增配置/Research/LEAN/模型调用均0，早期历史汇总不冒称逐项重建。
+根代理先list_projects，再read_project(38436695)，排除notebook，仅取得源码。当前25部署文件仍全部匹配75f24629，部署hash dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6；与fbe9路径不同，含缺失两个新库。任务输入SHA95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0仍匹配bfd00f2611fd4496b9498d4597618a8e。没有新部署、编译或运行证据。
+旧LEAN39cafa1e9b11f91b27e396b66d033a6d只有归档pending；当前终态null，未轮询/读日志/重交。PR1/2读取时草稿未合并，PR2以6a1edbf为base、head固定fbe；CI40317904243/40317898218同head成功，仅作元数据。
+已声明尚未实现的新采集预算任务桥，不单独伪报为新缺陷；元数据CLI没有派发权限，collector依赖可信外部producer，不能将旧2018两股工程计划或回执当全市场采集授权。正式源绑定与预算原子准入仍须在新协议补齐。
+完整历史股票池、财务数值/版本/实际送达、交易日映射和公司行动仍未认证。2024-2025暴露保留，2026独立性null；GPT模型/次数/费用额度null；正式研究、模型、最终和交易开关均关闭。无金融评价证据。
+
+下一步任务
+修复WR-09/WR-10并提交新固定SHA，保留本轮失败和旧缓存，重跑独立负例、合法正向链与既有回归。再补齐采集远端协议、现有Registry原子预算准入、新版云端运行、旧LEAN终态及完整历史数据认证。阶段3-7各自缺失交付仍需独立验收，不用软件测试替代金融证据。

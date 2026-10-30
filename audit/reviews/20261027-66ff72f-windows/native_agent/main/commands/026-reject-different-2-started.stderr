@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-started-v2\source\tools\stage2.py", line 299, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-started-v2\source\tools\stage2.py", line 287, in main
+    result = vars(bridge.record_rejection(args.attempt, backtest_rejection(payload, deployment, native)))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\native_agent\main\cases\reject-started-v2\source\cloud\qresearch\engineering_tasks.py", line 674, in record_rejection
+    raise EngineeringTaskError("Only the identical recorded rejection may be read idempotently")
+qresearch.engineering_tasks.EngineeringTaskError: Only the identical recorded rejection may be read idempotently

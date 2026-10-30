@@ -1,0 +1,95 @@
+{
+  "reviewed_source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "baseline_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+  "review_scope": "Independent legal-domain IC summary numerical audit, no developer fixtures",
+  "WR-08": {
+    "status": "passed_after_fix_in_tested_scope",
+    "locations": [{"file": "cloud/qresearch/evaluation.py", "lines": [276,289,294,295,296,297,298,300,306,310]}],
+    "baseline_control": {
+      "input": "six identical positive or negative binary64 0.7 IC values",
+      "expected": "mean is exactly the input binary64 value, sample std=0, ICIR=NaN",
+      "old_7b_positive_actual": {"mean_ic": 0.7000000000000001, "sample_std_ic": 1.2161883888976234e-16, "icir": 5755687247059590.0},
+      "fixed_positive_actual": {"mean_ic": 0.7, "sample_std_ic": 0.0, "icir": null, "icir_representation": "NaN"},
+      "old_negative_same_problem": true,
+      "fixed_negative_passed": true,
+      "baseline_exit_code": 1,
+      "candidate_exit_code": 0
+    },
+    "independent_oracle": "Exact Fraction moments of actual finite binary64 IC inputs; sample ddof=1; 180-significant-digit Decimal square root and mean/std ratio",
+    "positive_coverage": [
+      "Constant nonperfect positive and negative IC at 2,3,6,9,17,31,252 days; exact zero sample std and undefined ICIR",
+      "0/1 valid days, NaN/inf filtering, original valid/total/common-observation count behavior",
+      "Hand sample-variance answers, no annualization",
+      "Representable real adjacent-ULP and tiny nonzero standard deviations preserved without a zero threshold",
+      "Smallest subnormal and tiny scales with finite representable ICIR despite rounded public means/std",
+      "Legal IC-domain translations, permutations, strong mean cancellation and independent exact-input expectations",
+      "480 deterministic random general, near-constant and tiny-scale cases",
+      "Independent daily_rank_ic to summarize_ic nonperfect constant 23/35 rank pattern"
+    ],
+    "verified_new_blocking_findings": [],
+    "scope_limitations": [
+      "Shifted mean reconstruction is not guaranteed correctly rounded under strong cancellation, and can lose relative accuracy near zero",
+      "This is disclosed as an ordinary absolute-rounding limitation, not misreported as a large ICIR or phantom near-zero variance defect",
+      "No platform, financial data or real performance certification"
+    ]
+  },
+  "tolerances": {
+    "mean": "max(16*eps*max(abs(valid_IC)), 2*ulp(correctly rounded mean))",
+    "sample_std_normal": "32*eps relative; subnormal public-output quantization permits 2 ULP",
+    "positive_std_guard": "Every correctly rounded representable positive oracle std must remain strictly positive",
+    "ICIR_near_constant_large": "32*eps relative, not a broad absolute allowance",
+    "ICIR_near_zero": "32*eps absolute; prevents invalid relative-error alarms for highly cancelled means",
+    "max_observed_normal_std_relative_error": 2.8107271145275333e-16,
+    "max_mean_error_in_eps_times_max_abs_input": 0.7142857142857143,
+    "max_icir_error_in_eps_times_max_one_abs_expected": 1.6868995801715694
+  },
+  "cancellation_limitation": {
+    "input": [0.7,-0.7,1e-200],
+    "exact_mean_rounded": 3.3333333333333335e-201,
+    "candidate_mean": 1.1102230246251565e-16,
+    "exact_icir_rounded": 4.761904761904762e-201,
+    "candidate_icir": 1.5860328923216522e-16,
+    "mean_absolute_error": 1.1102230246251565e-16,
+    "relative_accuracy_near_zero_certified": false,
+    "new_blocking_issue": false,
+    "reason": "Absolute error remains below a single eps times the input scale, while variance is of ordinary size. Baseline/candidate permutation comparisons preserved separately. No preregistered downstream sign-threshold error was demonstrated."
+  },
+  "tests": {
+    "actually_executed": true,
+    "command": "C:/Users/11638/.codex/tmp/aqrp-review-20261026/venv/Scripts/python.exe -B exact_ic_summary_review.py",
+    "cwd": "C:/Users/11638/.codex/tmp/aqrp-review-d0b9c98-20261026/numeric_agent",
+    "methods": 11,
+    "passed_methods": 11,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "skipped": 0,
+    "subcases": 716,
+    "summary_comparisons": 719,
+    "exit_code": 0,
+    "warnings": [],
+    "source_unchanged": true,
+    "first_production_assertion_failure": null
+  },
+  "reviewer_harness_history": {
+    "first_run": {"methods":11,"passed_methods":9,"failed_methods":0,"error_methods":2,"error_records":8,"cause":"Audit diagnostic EPS*subnormal scale underflowed to zero in an error-normalization denominator; all reached production mathematical assertions passed."},
+    "final_correction": "Changed diagnostic to (error/scale)/eps; strengthened positive representable std assertion; original oracle expectations and tolerance values preserved. First script/log/results and complete diff retained.",
+    "strict_relative_experiment": {
+      "methods":11,"passed_methods":9,"failed_methods":2,"error_methods":0,
+      "failure_records":4,"skipped":0,"subcases":716,"exit_code":1,
+      "max_failed_absolute_difference":8.847089727481716e-17,
+      "criterion": "Exploratory 32eps pure relative bound for every nonzero ICIR, including small strongly cancelled ratios",
+      "conclusion": "Precision limitation retained, not a new blocking source defect: observed absolute differences remain ordinary input-scale rounding; applying a pure relative metric to small cancelled means overstates significance.",
+      "history_integrity": "Experiment script/results/output and first difference preserved in relative_tolerance_*; not classified as final production assertion failures and not silently substituted for the initial tolerance policy."
+    }
+  },
+  "environment": {"platform":"Windows-10-10.0.26300-SP0","python":"3.10.11","numpy":"1.26.4","pandas":"2.3.3"},
+  "platform_calls": 0,
+  "financial_evidence": false,
+  "artifacts": [
+    "exact_ic_summary_review.py","exact_summary_results.json","exact_summary_output.txt",
+    "exact_ic_summary_review_first.py","exact_summary_results_first.json","exact_summary_output_first.txt",
+    "reviewer_harness_correction.diff","relative_tolerance_experiment.py","relative_tolerance_results.json",
+    "relative_tolerance_output.txt","relative_tolerance_first_difference.json",
+    "minimal_constant_summary.py","wr08_baseline_candidate.json","cancellation_baseline_candidate.json"
+  ]
+}

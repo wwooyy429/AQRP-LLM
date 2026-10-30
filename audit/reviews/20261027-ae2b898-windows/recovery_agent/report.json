@@ -1,0 +1,158 @@
+{
+  "reviewer": "recovery_agent independent WR-17 repair review",
+  "commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "date": "2026-10-27",
+  "verdict": "WR-17原冻结/按attempt恢复问题在本次独立离线范围修复后通过；本代理未新增确认缺陷。不覆盖其他代理确认的WR-18或完整系统验收。",
+  "findings": [],
+  "first_run": {
+    "methods": 5,
+    "passed_methods": 5,
+    "subcases": 46,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0,
+    "seconds": 77.452,
+    "actual_CLI_processes": 72,
+    "direct_freeze_processes": 12,
+    "synthetic_metadata_finish_calls": 4,
+    "actual_worker_executions": 0
+  },
+  "additional_failure_settlement": {
+    "programs": 1,
+    "subcases": 4,
+    "passed": 4,
+    "failure_records": 0,
+    "exit_code": 0,
+    "actual_CLI_processes": 28,
+    "synthetic_metadata_finish_calls": 6,
+    "actual_worker_executions": 0,
+    "scope": "v1/v2 synthetic fixed-check failed Research report and synthetic LEAN Runtime Error delivered envelope; never actual remote failure evidence"
+  },
+  "original_MRE": {
+    "script": "original_minimal_pending_freeze.py",
+    "byte_identical": true,
+    "raw_sha256": "c2771ab9fdf7b90f971b988491ab95d1d1eb35da69da058c2cba9d45e1aead8c",
+    "exit_code": 0,
+    "joint_freeze_refused": true,
+    "legacy_freeze_refused": true,
+    "pointer_changed": false,
+    "original_pending_prepare_exit": 0,
+    "ledger_unchanged": true,
+    "subprocesses": 4,
+    "scope": "Original pending ledger copied into isolated full source; 2 production freeze CLI calls refuse, direct old-context inspection and original pending prepare succeed."
+  },
+  "counting": "Methods, parameterized probes, metadata writer calls and CLI processes are separate. The first suite contains 46 cases; four supplemental failure probes and the original MRE overlap and are not added as unique method counts.",
+  "method_subcases": {
+    "test_freeze_all_versions_states_entrypoints_no_write": 24,
+    "test_missing_tampered_foreign_admission_and_input_rejected_no_write": 14,
+    "test_original_attempt_research_and_lean_settlement_after_drift": 2,
+    "test_two_process_mixed_freeze_cannot_change_pointer": 2,
+    "test_unknown_attempt_rejected_without_pointer_dependency_or_write": 4
+  },
+  "freeze_coverage": {
+    "original_plan_versions": [
+      1,
+      2
+    ],
+    "states": [
+      "started",
+      "pending",
+      "ambiguous"
+    ],
+    "target_plan_versions": [
+      1,
+      2
+    ],
+    "entrypoints": [
+      "production stage2.py CLI in new subprocess",
+      "production stage2.freeze function in new subprocess"
+    ],
+    "serial_refusal_subcases": 24,
+    "concurrent_refusal_subcases": 2,
+    "concurrent_processes_each": 2,
+    "no_write_check": "Before/after all persisted source-case file hashes equal, including journal, plans/listing proof, budget and engineering_current pointer. Explicit policy error text checked, not timeout failures."
+  },
+  "recovery_coverage": [
+    "Fresh independent v1/v2 plans freeze/register/claim/prepare through actual copied production CLI and Filesystem Registry.",
+    "After original admission: delete current pointer, current deployment manifest, current source catalog and local input; change a current cloud source file. Original prepare/status/Research result then restore and LEAN prepare/submission/result recover by original attempt, with no new charges.",
+    "After Research terminal, a real zero-charge plan-B freeze changes current pointer; old finalized A admission is still readable without rebuilding its missing input file.",
+    "Copied prepared LEAN input survives the same pointer/catalog/deployment deletion and code drift, then accepted submission and terminal completed result use original Research resolution.",
+    "Canonical admission/input-hash/source-attempt/cloud-path/extra-field/noncanonical/local-byte tampering rejects with no additional file or usage mutation. Unknown canonical attempt IDs reject for prepare/status.",
+    "Missing admission rejects at admitted-input read before missing tool file is considered; raw stderr was checked for that exact cause.",
+    "After finalized LEAN, removing its original admission cannot create a fresh remote input. Existing original admission idempotent read is separately allowed and does not grant dispatch.",
+    "Supplemental v1/v2 Research check-failed reports and LEAN Runtime Error shapes settle to failed under drift without refund/additional debit; synthetic error text is not copied into Registry."
+  ],
+  "missing_admission_failure_source_QA": [
+    {
+      "label": "reject-v1-missing",
+      "stderr": "commands\\032-reject-v1-missing.stderr",
+      "failure_is_missing_admission_before_tool_read": true
+    },
+    {
+      "label": "reject-v2-missing",
+      "stderr": "commands\\039-reject-v2-missing.stderr",
+      "failure_is_missing_admission_before_tool_read": true
+    }
+  ],
+  "source_locations": {
+    "freeze_guard_and_writes": "tools/stage2.py:70-74",
+    "immutable_attempt_lookup": "tools/stage2.py:91-117",
+    "admission_byte_manifest_hash_check": "tools/stage2.py:120-149",
+    "prepare_reuse_and_finalized_guard": "tools/stage2.py:152-157",
+    "CLI_attempt_routing": "tools/stage2.py:224-247"
+  },
+  "actual_execution_limits": {
+    "actual_worker_executions": 0,
+    "SDK_executions": 0,
+    "actual_metadata_finish_calls_total": 10,
+    "first_plus_supplement_CLI_processes": 100,
+    "direct_freeze_processes": 12,
+    "original_MRE_additional_processes": 4,
+    "receipt_construction": "Independent bounded JSON counts/checks/references are passed through actual _finish, then native-shaped parser/Bridge/Registry via actual CLI. These are self-built trusted test observations, not proof the market worker ran.",
+    "case_copy": "Execution source/config tree copied unchanged; unrelated historical audit archives omitted in new synthetic fixtures. Original MRE separately copied the whole source/old ledger unchanged. Fresh synthetic Registry baseline preserves original aggregate usage, not a claim to recreate all historical engineering events."
+  },
+  "raw_evidence": {
+    "first_stdout": "first_run.stdout",
+    "first_stderr": "first_run.stderr",
+    "first_execution": "first_execution.json",
+    "per_command_stdout_stderr": "commands/ and command_log.json",
+    "failure_stdout": "failure_settlement.stdout",
+    "failure_stderr": "failure_settlement.stderr",
+    "failure_execution": "failure_execution.json",
+    "failure_commands": "failure_command_log.json",
+    "original_MRE_stdout": "original_mre.stdout",
+    "original_MRE_stderr": "original_mre.stderr",
+    "original_execution": "original_mre_execution.json"
+  },
+  "regression_inputs": "first_run_summary.json:inputs",
+  "first_run_preserved": true,
+  "reviewer_measurement_corrections": [],
+  "source_and_authority_hashes_before_after_equal": true,
+  "source_and_authority_hashes": {
+    "tools/stage2.py": "cdd8e5b302bf51f439bc4f698298f1114cd1db36f2bf52b89dbf4a10d61f9161",
+    "cloud/qresearch/engineering_tasks.py": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32",
+    "cloud/qresearch/registry.py": "0eff8ba966022d75663dd16c233b361f2b48427078ed02db1001c03cc07843c7",
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "audit/runtime/registry/events.jsonl": "caeab4328922974e448de2027cb6a24104faae758604674801c67f92cd26c0ed"
+  },
+  "actions": {
+    "network": 0,
+    "QC": 0,
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deployment": 0,
+    "production_source_edits": 0,
+    "authoritative_budget_changes": 0,
+    "actual_final_market_data_opened": 0
+  },
+  "remaining_unverified": [
+    "Real deployment/input readback, actual successful and full failed native executions, old LEAN delivered terminal and data certification.",
+    "A check-failed report in a successful synthetic cell is not an actually failed Research execution; Runtime Error envelope is also fabricated.",
+    "New identity preparation/Registry-completion admission is independently reviewed by other agents. This WR17 pass does not close their findings."
+  ]
+}

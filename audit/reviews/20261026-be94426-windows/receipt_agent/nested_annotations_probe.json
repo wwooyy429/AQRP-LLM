@@ -1,0 +1,253 @@
+{
+  "commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "command_argv": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\receipt_agent\\nested_annotations_probe.py",
+    "--source",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\source",
+    "--out",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\receipt_agent\\nested_annotations_probe.json"
+  ],
+  "script_sha256": "01c45d73f2a4bcd47ef2d1dc848bae7718c1fb85b3d61014881a3d32cc0edff3",
+  "method": "synthetic full-chain parameterized probe",
+  "subcases": 5,
+  "negative_false_acceptances": 3,
+  "positive_controls": 2,
+  "cases": [
+    {
+      "case": "no_annotation_control",
+      "native_shape": "content_wrapper",
+      "expected": "completed",
+      "actual_status": "completed",
+      "passes_expected_gate": true,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "row_sentinel_persisted_in_registry": false,
+      "native_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99791,
+          "index": 2
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "content": [
+              {
+                "type": "text",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy85YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZS5qc29uIiwic2hhMjU2IjoiZWZjY2Q5MmE5OWE5MDM5MDg0OGZhYzUzNTI3MmJmZDExZjVkZjBkNGVlYzA0NjhhOWE0MWM0NmI0NWI4NTc4ZSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI5YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZSIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC85YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZS5qc29uIiwic2hhMjU2IjoiYjQ3ZWY3NjY1Y2ZiZjJlZjIyY2NjMWYzZmMyN2YyZDM0OWY0YTYzMjllOTk3YmI3ODhkOTRkZGU5ZjQ3ZDI2OCJ9fQ=="
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"content\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy85YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZS5qc29uIiwic2hhMjU2IjoiZWZjY2Q5MmE5OWE5MDM5MDg0OGZhYzUzNTI3MmJmZDExZjVkZjBkNGVlYzA0NjhhOWE0MWM0NmI0NWI4NTc4ZSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI5YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZSIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC85YzUzZmM1YWNkOTk0YzI0OWM4ODZiYzk2OTQ0Y2Q2ZS5qc29uIiwic2hhMjU2IjoiYjQ3ZWY3NjY1Y2ZiZjJlZjIyY2NjMWYzZmMyN2YyZDM0OWY0YTYzMjllOTk3YmI3ODhkOTRkZGU5ZjQ3ZDI2OCJ9fQ==\"\n    }\n  ],\n  \"status\": \"ok\",\n  \"success\": true\n}",
+              "annotations": {}
+            }
+          ]
+        }
+      },
+      "source_fetch_calls": 1,
+      "research_usage": 10
+    },
+    {
+      "case": "standard_annotation_control",
+      "native_shape": "content_wrapper",
+      "expected": "completed",
+      "actual_status": "completed",
+      "passes_expected_gate": true,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "row_sentinel_persisted_in_registry": false,
+      "native_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99791,
+          "index": 2
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "content": [
+              {
+                "type": "text",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy8yNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNC5qc29uIiwic2hhMjU2IjoiZGYwNTU4YzNlNmUyMGE4NWI3OTZkMGViZDVlYjI0NTczNGY2Nzg3MGQ3NDA2NGIxMzQ2YTFlNDVkZmYxOTc5OSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiIyNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNCIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC8yNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNC5qc29uIiwic2hhMjU2IjoiMmEwNzVjYjZiZDZlNzQxYjQwYmFhOGMxYTc5OGU0NWRiYTA2M2U0ZDU0MDE1MjQ2ZGYzNThkZjE5MmViZGQ3MCJ9fQ==",
+                "annotations": {
+                  "audience": [
+                    "assistant"
+                  ],
+                  "priority": 0.25,
+                  "lastModified": "2026-10-26T00:00:00Z"
+                }
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"content\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy8yNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNC5qc29uIiwic2hhMjU2IjoiZGYwNTU4YzNlNmUyMGE4NWI3OTZkMGViZDVlYjI0NTczNGY2Nzg3MGQ3NDA2NGIxMzQ2YTFlNDVkZmYxOTc5OSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiIyNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNCIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC8yNzllOGVlNmY5NTY0ZWVkODA0NGU3ZTY0YjU1NTlkNC5qc29uIiwic2hhMjU2IjoiMmEwNzVjYjZiZDZlNzQxYjQwYmFhOGMxYTc5OGU0NWRiYTA2M2U0ZDU0MDE1MjQ2ZGYzNThkZjE5MmViZGQ3MCJ9fQ==\",\n      \"annotations\": {\n        \"audience\": [\n          \"assistant\"\n        ],\n        \"priority\": 0.25,\n        \"lastModified\": \"2026-10-26T00:00:00Z\"\n      }\n    }\n  ],\n  \"status\": \"ok\",\n  \"success\": true\n}",
+              "annotations": {}
+            }
+          ]
+        }
+      },
+      "source_fetch_calls": 1,
+      "research_usage": 10
+    },
+    {
+      "case": "hidden_rows_in_content_wrapper",
+      "native_shape": "content_wrapper",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "row_sentinel_persisted_in_registry": false,
+      "native_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99791,
+          "index": 2
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "content": [
+              {
+                "type": "text",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy83MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4Ny5qc29uIiwic2hhMjU2IjoiOWIxMzFiNTExODgxNzk4NTE3ODE2NDhlZTE0MWJhOTk0MmVhNmVmM2M4NDMxNjNjYzg4MDQ0ZWFlMzFiMTM2YyJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI3MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4NyIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC83MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4Ny5qc29uIiwic2hhMjU2IjoiYzU1MTUwNWFjZGI2NTZjNzMxN2M0MDRiNGIxODI2OWM1OWE2NzAxYTI5OGUyNzY1ZmYxNDBkNzg3ZDI4MDAyZCJ9fQ==",
+                "annotations": {
+                  "rows": [
+                    {
+                      "sid": "INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW",
+                      "dollar_volume": 123456.75
+                    }
+                  ]
+                }
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"content\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy83MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4Ny5qc29uIiwic2hhMjU2IjoiOWIxMzFiNTExODgxNzk4NTE3ODE2NDhlZTE0MWJhOTk0MmVhNmVmM2M4NDMxNjNjYzg4MDQ0ZWFlMzFiMTM2YyJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI3MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4NyIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC83MjJmYjMyMTRjMDY0ZDdjYjk5MTExNWZjMDE3Njk4Ny5qc29uIiwic2hhMjU2IjoiYzU1MTUwNWFjZGI2NTZjNzMxN2M0MDRiNGIxODI2OWM1OWE2NzAxYTI5OGUyNzY1ZmYxNDBkNzg3ZDI4MDAyZCJ9fQ==\",\n      \"annotations\": {\n        \"rows\": [\n          {\n            \"sid\": \"INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW\",\n            \"dollar_volume\": 123456.75\n          }\n        ]\n      }\n    }\n  ],\n  \"status\": \"ok\",\n  \"success\": true\n}",
+              "annotations": {}
+            }
+          ]
+        }
+      },
+      "source_fetch_calls": 1,
+      "research_usage": 10
+    },
+    {
+      "case": "hidden_rows_in_outputs_wrapper",
+      "native_shape": "outputs_wrapper",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "row_sentinel_persisted_in_registry": false,
+      "native_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99791,
+          "index": 2
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "type": "text",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy9lYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNS5qc29uIiwic2hhMjU2IjoiNmI4ZjhmZWZjMzc2OWM4ZmViZTZiYjM4YzUwNzg4ZjRmOWY0YzRiZDQyMTQxZjkyODdjNmY0MTdhZWZmODg5NCJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiJlYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNSIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC9lYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNS5qc29uIiwic2hhMjU2IjoiMGNlYTI3NzhiZGM1YmQ2MzRkNzFjNjdiZjI4MTJiNmMzNjgyYmM1ZDVkZmQ5YzcwMzdiYmJkMjJhN2E0ZDFiMCJ9fQ==",
+                "annotations": {
+                  "rows": [
+                    {
+                      "sid": "INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW",
+                      "dollar_volume": 123456.75
+                    }
+                  ]
+                }
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"outputs\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy9lYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNS5qc29uIiwic2hhMjU2IjoiNmI4ZjhmZWZjMzc2OWM4ZmViZTZiYjM4YzUwNzg4ZjRmOWY0YzRiZDQyMTQxZjkyODdjNmY0MTdhZWZmODg5NCJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiJlYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNSIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC9lYWJlNDVmMzQ5YjU0MWE3YWVlZThiYWI2OGJkNjZlNS5qc29uIiwic2hhMjU2IjoiMGNlYTI3NzhiZGM1YmQ2MzRkNzFjNjdiZjI4MTJiNmMzNjgyYmM1ZDVkZmQ5YzcwMzdiYmJkMjJhN2E0ZDFiMCJ9fQ==\",\n      \"annotations\": {\n        \"rows\": [\n          {\n            \"sid\": \"INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW\",\n            \"dollar_volume\": 123456.75\n          }\n        ]\n      }\n    }\n  ],\n  \"status\": \"ok\",\n  \"success\": true\n}",
+              "annotations": {}
+            }
+          ]
+        }
+      },
+      "source_fetch_calls": 1,
+      "research_usage": 10
+    },
+    {
+      "case": "hidden_rows_at_native_text_root",
+      "native_shape": "text_root",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "row_sentinel_persisted_in_registry": false,
+      "native_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99791,
+          "index": 2
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "type": "text",
+            "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy80NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYy5qc29uIiwic2hhMjU2IjoiYjgxOWVhMDk4MzkzMDcyYTc5ODA5NmM5MDJjYTFjODIyMmEzODhhNDgwZDNkYTc5MzAzNWVmNWE0M2Q2NmJiYSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI0NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYyIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC80NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYy5qc29uIiwic2hhMjU2IjoiNzBhMmYwNzkxOTRhNjYxODc0MmJkODVmNTAwMTRiZjYwMGYzMWFhMWEzNzE3YjRkNzliODhmYjQ3MmE2OTJkZCJ9fQ==",
+            "annotations": {
+              "rows": [
+                {
+                  "sid": "INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW",
+                  "dollar_volume": 123456.75
+                }
+              ]
+            }
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"type\": \"text\",\n  \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW5lc3RlZC9yZWNlaXB0cy80NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYy5qc29uIiwic2hhMjU2IjoiYjgxOWVhMDk4MzkzMDcyYTc5ODA5NmM5MDJjYTFjODIyMmEzODhhNDgwZDNkYTc5MzAzNWVmNWE0M2Q2NmJiYSJ9LCJtaXNzaW5nX3ZhbHVlcyI6eyJkb2xsYXJfdm9sdW1lIjowfX0sImZpbmFsX2RhdGFfYWNjZXNzZWQiOmZhbHNlLCJmdWxsX1VTMjAwX2NvdmVyYWdlX2NlcnRpZmllZCI6ZmFsc2UsImlkZW50aXR5Ijp7ImF0dGVtcHRfaWQiOiI0NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYyIsImNvbmZpZ19pZCI6ImM3ODhhNDEwMWVmMDg2YzRjNWNkYTMyMDhhN2ViYmY2NTBhOGY5MGUzOTg3YWZjNDU4YmNjMDAxNjU3ODhlZWUiLCJkYXRhX3JlcXVlc3RfaGFzaCI6ImNlMzI2ZmRjYzQ3MTc3NmQ1YjJjNTAzMzkxZDJiMjNlYjc3OGFjYTcwZmIxOGI2MTE0OTE1YjRjN2VkNzEyYTAiLCJkZXBsb3ltZW50X2hhc2giOiI5NGY3NDc4YzgxZTk3NWMwNTMwZjQ1MTM3MjU2MTVhZDlmYmQ5OWI5ZjZhYzUzMTFkOTM1MjM3YzA4Njc3MTUzIiwicGxhbl9oYXNoIjoiYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1NiIsInByb2plY3RfaWQiOjk5NzkxLCJzb3VyY2VfbWFuaWZlc3RfaGFzaCI6IjI1ZDA1MmU3ZmUzZDE1NmFlMTA3MTBiMTM3ZTFlODM3ZDNjZWI0OTZkNmE4MTkxMjZjZWEyNDNiZDM1NDI4NjUiLCJzdGFnZSI6InJlc2VhcmNoIn0sIm1hcmtldF92YWx1ZXNfZXhwb3J0ZWQiOmZhbHNlLCJzY2hlbWFfdmVyc2lvbiI6MSwic3RhdGlzdGljcyI6eyJjYWNoZV9vbmx5X3NvdXJjZV9mZXRjaF9jYWxscyI6MCwiZW1wdHlfd2luZG93cyI6MCwicmVjb3JkX2NvdW50IjoxLCJyZXVzZWRfd2luZG93cyI6MCwic291cmNlX2ZldGNoX2NhbGxzIjoxLCJ3aW5kb3dfY291bnQiOjF9LCJzdGF0dXMiOiJjb21wbGV0ZWQiLCJ0ZXJtaW5hbCI6dHJ1ZX0sInJlcG9ydF9yZWYiOnsia2V5IjoiaW5kZXBlbmRlbnQtbmVzdGVkL3JlcG9ydHMvYmYzNzNhZjQ3ODdiYmViYTljYzYzNDcyZjg3MDM4OGNkYjIyYzNkZDg2Y2JjOTExYWRiNmQ3MDQxMTAzN2Y1Ni9yZXNlYXJjaC80NzE0NzVhMTAxOTU0YTk2OWNhNzgwOGE3NGJiNmRkYy5qc29uIiwic2hhMjU2IjoiNzBhMmYwNzkxOTRhNjYxODc0MmJkODVmNTAwMTRiZjYwMGYzMWFhMWEzNzE3YjRkNzliODhmYjQ3MmE2OTJkZCJ9fQ==\",\n  \"annotations\": {\n    \"rows\": [\n      {\n        \"sid\": \"INDEPENDENT-NESTED-ANNOTATION-SYNTHETIC-ROW\",\n        \"dollar_volume\": 123456.75\n      }\n    ]\n  }\n}",
+              "annotations": {}
+            }
+          ]
+        }
+      },
+      "source_fetch_calls": 1,
+      "research_usage": 10
+    }
+  ],
+  "limits": "parser-supported nested text shapes only; no claim actual QC SDK emits arbitrary annotation row keys",
+  "real_actions": {
+    "SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deploy": 0,
+    "real_budget_changes": 0,
+    "source_edits": 0
+  }
+}

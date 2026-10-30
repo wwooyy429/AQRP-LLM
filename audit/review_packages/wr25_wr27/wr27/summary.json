@@ -1,0 +1,71 @@
+{
+  "kind": "developer_WR27_repair_not_independent_acceptance",
+  "production_files": [
+    "tools/stages.py",
+    "tools/review_metadata.py"
+  ],
+  "test_files": [
+    "tests/test_review_metadata.py"
+  ],
+  "final_raw_sha256": {
+    "tools/stages.py": "5d7060bcecd4aa2bc2b7037dd602498c82b8d15cef6e2ebb6f8c7d5cf578fd37",
+    "tools/review_metadata.py": "d3869616fe5ec28bb8c8b243a753672fc0ce7af63dc4fdf3b8047d9ec19c34c4",
+    "tests/test_review_metadata.py": "f7ab75b8d4c3dfd86b9c2ae01cec9d2e2bef198ba73eaa2dc95ddf0ee0032d24"
+  },
+  "targeted_methods": 12,
+  "new_methods": 6,
+  "targeted_all_passed": true,
+  "baseline_original_MRE": {
+    "default_exit": 0,
+    "foreign_hash_exit": 0,
+    "target_hash_exit": 1,
+    "MRE_exit": 1,
+    "scripts_unchanged": true
+  },
+  "fixed_scoped_MRE": {
+    "default_exit": 0,
+    "foreign_hash_exit": 1,
+    "target_hash_exit": 0,
+    "MRE_exit": 0,
+    "original_script_unchanged": true,
+    "separate_adapted_scope_script": true,
+    "all_original_assertion_ASTs_unchanged": true
+  },
+  "actual_extra_relative_CLI": {
+    "processes": 3,
+    "correct_relative_target_exit": 0,
+    "wrong_foreign_hash_exit": 1,
+    "default_tool_from_unrelated_cwd_exit": 0,
+    "actual_repository_index_unchanged": true
+  },
+  "default_ROOT_not_mutated": true,
+  "normalization_policy_unchanged": true,
+  "explicit_root_is_same_for_manifest_metadata_Git_budget_journal_and_history": true,
+  "first_result": {
+    "kind": "harness_encoding_error_before_probe",
+    "source": "baseline.stderr",
+    "reason": "Git UTF-8 Chinese directory decoded by Windows GBK in original text=True; raw kept; retry sets PYTHONUTF8=1 without changing original script"
+  },
+  "test_environment": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "scope_adaptation_notes": [
+    "Raw ccad source manifest snapshot plus two audit metadata files materialized; actual repository source/index untouched",
+    "Fixed MRE overlays only owned three changed files and updates isolated metadata to actual hash/diff",
+    "Old hardcoded ccad/ea labels describe snapshot base/history; final product bytes identified by explicit hashes",
+    "Separate script replaces pinned B..C path-list calculation with B..isolated working-tree under original private index; assertions unchanged"
+  ],
+  "new_QC_calls": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_model_calls": 0,
+  "new_deployments": 0,
+  "new_authoritative_budget_writes": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "archive_note": "Copy top-level evidence files only; omit baseline_source, baseline_utf8_source, fixed_source, baseline_mre, baseline_utf8_mre and fixed_mre cloned source trees. baseline/fixed execution JSON and stdout/stderr preserve results."
+}

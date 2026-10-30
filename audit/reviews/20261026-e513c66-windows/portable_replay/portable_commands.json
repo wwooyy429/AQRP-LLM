@@ -1,0 +1,99 @@
+[
+  {
+    "label": "historical_and_repository",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "run_main_checks.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0
+  },
+  {
+    "label": "admission",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "admission_agent/independent_admission.py"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0
+  },
+  {
+    "label": "receipts",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "receipt_agent/independent_receipts.py",
+      "--source",
+      "source",
+      "--out",
+      "receipt_agent"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1
+  },
+  {
+    "label": "parallel_full",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "receipt_agent/minimal_parallel_output.py",
+      "--source",
+      "source",
+      "--out",
+      "parallel_full.json"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1
+  },
+  {
+    "label": "adapter_recovery",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "receipt_agent/adapter_recovery.py",
+      "--source",
+      "source",
+      "--out",
+      "adapter_recovery.json"
+    ],
+    "exit_code": 0,
+    "expected_exit": 0
+  },
+  {
+    "label": "CLI_pointer",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "minimal_cli_switch.py",
+      "source",
+      "pointer"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1
+  },
+  {
+    "label": "CLI_catalog",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "minimal_cli_switch.py",
+      "source",
+      "catalog"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1
+  },
+  {
+    "label": "parallel_boundary",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "minimal_parallel_carrier.py",
+      "source"
+    ],
+    "exit_code": 1,
+    "expected_exit": 1
+  }
+]

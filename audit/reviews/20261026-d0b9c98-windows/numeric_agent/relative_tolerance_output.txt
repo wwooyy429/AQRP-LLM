@@ -1,0 +1,54 @@
+test_cancellation_small_true_means_assessed_by_absolute_error (__main__.SummaryTests) ... ok
+test_constants_nonperfect_positive_negative_and_signed_zero (__main__.SummaryTests) ... ok
+test_deterministic_general_legal_ic_values (__main__.SummaryTests) ... test_deterministic_micro_variance_around_nonperfect_ic (__main__.SummaryTests) ... ok
+test_deterministic_tiny_dynamic_ranges (__main__.SummaryTests) ... test_hand_sample_variance_and_nonannualized_ratio (__main__.SummaryTests) ... ok
+test_independent_daily_rank_to_constant_nonperfect_ic_summary (__main__.SummaryTests) ... ok
+test_real_adjacent_ulp_variance_is_not_treated_as_constant (__main__.SummaryTests) ... ok
+test_subnormal_and_small_scale_have_representable_ratio (__main__.SummaryTests) ... ok
+test_translations_and_reordering_use_actual_float_input_oracle (__main__.SummaryTests) ... ok
+test_zero_one_valid_day_and_nan_inf_filter_counts (__main__.SummaryTests) ... ok
+
+======================================================================
+FAIL: test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=6)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 117, in test_deterministic_general_legal_ic_values
+    with self.subTest(case=case):self.check(values,f'random-{case}')
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 55, in check
+    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)
+AssertionError: 4.466912950640278e-17 not less than or equal to 1.3274783686723241e-17 : random-6-icir
+
+======================================================================
+FAIL: test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=52)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 117, in test_deterministic_general_legal_ic_values
+    with self.subTest(case=case):self.check(values,f'random-{case}')
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 55, in check
+    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)
+AssertionError: 5.421010862427522e-17 not less than or equal to 2.3625166484834644e-17 : random-52-icir
+
+======================================================================
+FAIL: test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=75)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 117, in test_deterministic_general_legal_ic_values
+    with self.subTest(case=case):self.check(values,f'random-{case}')
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 55, in check
+    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)
+AssertionError: 7.37257477290143e-17 not less than or equal to 1.5333030425279962e-17 : random-75-icir
+
+======================================================================
+FAIL: test_deterministic_tiny_dynamic_ranges (__main__.SummaryTests) (case=79)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 129, in test_deterministic_tiny_dynamic_ranges
+    with self.subTest(case=case):self.check(values,f'random-tiny-{case}')
+  File "C:\Users\11638\.codex\tmp\aqrp-review-d0b9c98-20261026\numeric_agent\exact_ic_summary_review.py", line 55, in check
+    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)
+AssertionError: 8.847089727481716e-17 not less than or equal to 6.985153976249459e-17 : random-tiny-79-icir
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.390s
+
+FAILED (failures=4)

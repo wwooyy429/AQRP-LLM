@@ -1,0 +1,71 @@
+{
+  "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\source",
+  "case": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source",
+  "original_pending_attempt": "bfd00f2611fd4496b9498d4597618a8e",
+  "original_context_accepts_attempt": true,
+  "joint_freeze_refused": true,
+  "legacy_freeze_returncode": 0,
+  "pointer_changed": true,
+  "prepare_old_attempt_returncode": 1,
+  "prepare_error": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 187, in main\n    result = prepare(bridge, args.attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 96, in prepare\n    payload = bridge.payload(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\cloud\\qresearch\\engineering_tasks.py\", line 413, in payload\n    record = self._record(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\cloud\\qresearch\\engineering_tasks.py\", line 377, in _record\n    raise EngineeringTaskError(\"Attempt does not belong to this exact registered task plan\")\nqresearch.engineering_tasks.EngineeringTaskError: Attempt does not belong to this exact registered task plan\n",
+  "ledger_unchanged": true,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\admission_agent\\minimal_pending_freeze.py",
+        "--inspect",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source",
+        "bfd00f2611fd4496b9498d4597618a8e"
+      ],
+      "returncode": 0,
+      "stdout": "{\"allocation\": \"normal\", \"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"kind\": \"pending\", \"operation_key\": \"engineering-plan:f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489:lean\", \"reason\": null, \"recorded_at\": \"2026-10-26T04:31:21.333068+00:00\", \"result_key\": \"results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/lean/710c72c60d209eef90b8f5872bbb82201ee0636fc1056be737845eb5d98de88c.json\", \"retry_of\": null, \"stage\": \"lean\", \"status\": \"pending\", \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"details\": {\"deployment\": {\"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"input_hash\": \"95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0\", \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\"}, \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"identity\": {\"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"data_request_hash\": \"db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85\", \"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"plan_hash\": \"f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489\", \"project_id\": 38436695, \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\", \"stage\": \"lean\"}, \"identity_kind\": \"quantconnect_backtest_id\", \"receipt_ref\": {\"key\": \"engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/submission/56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f.json\", \"sha256\": \"56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f\"}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py",
+        "freeze",
+        "--plan-file",
+        "config/engineering_joint_pilot.json",
+        "--projects-file",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\synthetic-projects.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 172, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 71, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py",
+        "freeze",
+        "--plan-file",
+        "config/engineering.json",
+        "--projects-file",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\synthetic-projects.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"schema_version\": 1, \"plan_key\": \"engineering/frozen-plans/fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2.json\", \"plan_hash\": \"fe5c6e8a7bff746cc288f8746d0113b68ce0c13dc93a352dfd0c0d35d7e944c2\", \"project_listing_ref\": {\"key\": \"engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json\", \"sha256\": \"498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6\"}, \"configuration_registered\": false, \"execution_started\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py",
+        "prepare",
+        "--attempt",
+        "bfd00f2611fd4496b9498d4597618a8e"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 214, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 187, in main\n    result = prepare(bridge, args.attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\tools\\stage2.py\", line 96, in prepare\n    payload = bridge.payload(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\cloud\\qresearch\\engineering_tasks.py\", line 413, in payload\n    record = self._record(attempt)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\root_confirmation_complete\\wr17_case\\source\\cloud\\qresearch\\engineering_tasks.py\", line 377, in _record\n    raise EngineeringTaskError(\"Attempt does not belong to this exact registered task plan\")\nqresearch.engineering_tasks.EngineeringTaskError: Attempt does not belong to this exact registered task plan\n"
+    }
+  ],
+  "actual_QC_calls": 0
+}

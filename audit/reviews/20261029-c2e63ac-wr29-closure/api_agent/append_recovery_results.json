@@ -1,0 +1,123 @@
+{
+  "methods": 3,
+  "scenarios": [
+    "injected_preappend_zero_bytes",
+    "preappend_inspect_unknown_no_request",
+    "preappend_prepare_unknown_no_request",
+    "original_response_recovered",
+    "original_response_idempotent",
+    "one_next_history_after_recovery",
+    "no_discovery_or_budget_reexecution",
+    "post_full_append_event_is_durable",
+    "postappend_original_response_idempotent",
+    "controller_observation_durable_before_host_ack",
+    "gap_no_redispatch",
+    "original_history_response_recovered_idempotently",
+    "read_grant_still_required_and_no_settlement",
+    "all_response_faults_budget_unchanged",
+    "actual_Win32_write_open_reports_ERROR_SHARING_VIOLATION32",
+    "actual_Python_CRT_errno13_winerrorNone_at_exact_host_stream",
+    "actual_native_denial_left_zero_response_bytes",
+    "native_denial_unknown_no_dispatch",
+    "actual_CLI_redacts_native_append_refusal_and_stops",
+    "actual_CLI_append_trace_captured",
+    "failed_CLI_no_host_response_or_budget_change",
+    "recover_canonical_same_original_response_accepted",
+    "recover_canonical_only_first_wake_permits_history",
+    "recover_script_same_original_response_accepted",
+    "recover_script_only_first_wake_permits_history",
+    "recover_module_same_original_response_accepted",
+    "recover_module_only_first_wake_permits_history",
+    "cross_entry_recovery_one_discovery_one_history_no_budget_change"
+  ],
+  "named_scenarios": 28,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "observations": [
+    {
+      "actual_native_mechanism": "CreateFileW GENERIC_READ FILE_SHARE_READ (no FILE_SHARE_WRITE) denies write-open with native error32; Python CRT append reports errno13 and winerrorNone, child CLI captures PermissionError.",
+      "original_developer_store_used": false,
+      "new_independent_equivalent_private_case_only": true,
+      "developer_first_two_untraced_failures_cause_proven": false
+    }
+  ],
+  "subprocesses": [
+    {
+      "label": "native_cli_denied",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source\\tools\\followup_host.py",
+        "serve",
+        "--enable-dispatch",
+        "--host-factory",
+        "io_factory:build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source",
+      "exit_code": 0,
+      "stdin": "native_cli_denied.stdin",
+      "stdout": "native_cli_denied.stdout",
+      "stderr": "native_cli_denied.stderr",
+      "trace": "native_cli_denied.trace"
+    },
+    {
+      "label": "recover_canonical",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-c",
+        "import followup_host; raise SystemExit(followup_host.main())",
+        "serve",
+        "--enable-dispatch",
+        "--host-factory",
+        "io_factory:build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source",
+      "exit_code": 0,
+      "stdin": "recover_canonical.stdin",
+      "stdout": "recover_canonical.stdout",
+      "stderr": "recover_canonical.stderr",
+      "trace": null
+    },
+    {
+      "label": "recover_script",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source\\tools\\followup_host.py",
+        "serve",
+        "--enable-dispatch",
+        "--host-factory",
+        "io_factory:build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source",
+      "exit_code": 0,
+      "stdin": "recover_script.stdin",
+      "stdout": "recover_script.stdout",
+      "stderr": "recover_script.stderr",
+      "trace": null
+    },
+    {
+      "label": "recover_module",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "followup_host",
+        "serve",
+        "--enable-dispatch",
+        "--host-factory",
+        "io_factory:build"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\replay_context\\source",
+      "exit_code": 0,
+      "stdin": "recover_module.stdin",
+      "stdout": "recover_module.stdout",
+      "stderr": "recover_module.stderr",
+      "trace": null
+    }
+  ],
+  "actually_executed": true,
+  "kind": "reviewer_independent_injected_and_actual_Win32_private_append_denial"
+}

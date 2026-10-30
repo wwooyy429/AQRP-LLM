@@ -1,0 +1,20 @@
+{
+  "kind": "auxiliary_metadata_verifier_failure_due_to_sync_transients",
+  "actual_default_verifier_exit_code": 1,
+  "failure_step": "manifest equality after budget/history/identity checks passed",
+  "prior_manifest_raw_sha256": "19c4aee6b62a8871eaea69c9d99d383d57e6e3ceb8848b084619c80bc038df00",
+  "prior_manifest_snapshot": "first_seal.snapshot.json",
+  "only_missing_paths": [
+    "audit/review_packages/storage-repair008/followup/validation_development.json.baiduyun.uploading.cfg",
+    "audit/review_packages/storage-repair008/followup/verify_followup.py.baiduyun.uploading.cfg"
+  ],
+  "actual_existing_artifact_hashes_changed": false,
+  "reason": "Baidu synchronization created transient upload config files while the packet was being sealed",
+  "repair": "Exclude only known *.baiduyun.uploading.cfg sync metadata and __pycache__ from packet inventory; preserve prior failed seal and do not delete user files",
+  "new_configuration_charges": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "product_runtime_source_unchanged": true,
+  "independent_GPT_Work_acceptance": false,
+  "final_test_enabled": false
+}

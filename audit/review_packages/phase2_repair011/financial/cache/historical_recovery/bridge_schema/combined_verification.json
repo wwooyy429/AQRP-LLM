@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "kind": "actual_combined_closed_bridge_schema_integration_regression",
+  "argv": [
+    "python",
+    "-X",
+    "utf8",
+    "-B",
+    "-m",
+    "unittest",
+    "test_certification_tasks",
+    "test_collection_tasks",
+    "test_historical_task_recovery",
+    "-q"
+  ],
+  "exit_code": 0,
+  "test_count": 43,
+  "reported_seconds": 39.3,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "2584f6b67d53f642ad2398df1b84de79486761779f20ba0923d2e25565ae0487",
+  "stdout_original": "combined.stdout.raw.base64",
+  "stderr_original": "combined.stderr.raw.base64",
+  "source_files": [
+    {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "sha256": "e727681c58e346e8ae6db2157bf1ab7919e6ff168a40596c880512414b875166"
+    },
+    {
+      "path": "tests/test_historical_task_recovery.py",
+      "sha256": "424a6706b09cb92902346bf909864f9053ed892f1f48acc524598a146e66336c"
+    }
+  ],
+  "no_global_TestCase_class_import_added": true,
+  "cloud_calls": 0,
+  "real_budget_mutations": 0,
+  "independent_acceptance": false,
+  "financial_certification": false,
+  "final_test_enabled": false
+}

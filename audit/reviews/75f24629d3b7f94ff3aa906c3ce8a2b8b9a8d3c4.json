@@ -1,0 +1,292 @@
+{
+  "reviewer": "ChatGPT Work",
+  "review_date": "2026-10-26",
+  "review_kind": "stage2_software_foundation_and_stage0_1_regression",
+  "reviewed_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "source_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+  "evidence_commit": "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+  "cloud_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+  "environment": {
+    "platform": "Linux x86_64; glibc 2.39",
+    "python": "3.12.14",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "requirements_test_actually_checked": true
+  },
+  "stage_results": {
+    "0": {
+      "status": "passed",
+      "kind": "offline regression"
+    },
+    "1": {
+      "status": "passed",
+      "kind": "offline regression"
+    },
+    "2": {
+      "software_foundation": "failed",
+      "overall_acceptance": "pending",
+      "blocking_findings": [
+        "WR-04"
+      ],
+      "pending_evidence": [
+        "Delivered LEAN terminal completion or failure",
+        "Independent platform verification not performed"
+      ]
+    },
+    "3-7": {
+      "status": "not_accepted"
+    }
+  },
+  "historical_reports_preserved": true,
+  "commands": {
+    "source_fetch": "git -C review-repo fetch origin 75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "source_checkout": "git -C review-fixed-75f246 checkout --detach 75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "source_export": "git -C review-fixed-75f246 archive 75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4 | tar -x -C review-run-75f246",
+    "requirements": "review-venv/bin/python -m pip install -r review-fixed-75f246/requirements-test.txt",
+    "repository_verify": {
+      "cwd": "review-run-75f246",
+      "command": "../review-venv/bin/python -B tools/stages.py verify"
+    },
+    "independent_cwd": "independent-75f246",
+    "independent": [
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_work_review.py",
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_work_p1_minimal.py",
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_work_recheck.py",
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_work_precision.py",
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_work_stage2.py",
+      "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B test_wr04_minimal.py"
+    ],
+    "evidence_fetch": "git -C review-repo fetch origin 1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "evidence_replay": "PYTHONPATH=/workspace/scratch/bf2edba5c62c/review-fixed-75f246/cloud ../review-venv/bin/python -B replay_evidence.py ../review-evidence-1f7"
+  },
+  "tests": {
+    "repository_verify": {
+      "run": 217,
+      "passed": 217,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 4.453
+    },
+    "original_32": {
+      "run": 32,
+      "passed": 32,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 1.078
+    },
+    "original_2": {
+      "run": 2,
+      "passed": 2,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 0.169
+    },
+    "previous_16": {
+      "run": 16,
+      "passed": 16,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 2.632
+    },
+    "previous_14": {
+      "run": 14,
+      "passed": 14,
+      "failed": 0,
+      "exit_code": 0,
+      "seconds": 1.22
+    },
+    "stage2_independent": {
+      "run": 26,
+      "passed": 22,
+      "failed": 4,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 1,
+      "seconds": 3.329,
+      "failed_tests": [
+        "StopLimits.test_10_concurrent_configuration_admission_must_not_exceed_two",
+        "StopLimits.test_11_concurrent_research_admission_must_not_exceed_two",
+        "StopLimits.test_12_concurrent_lean_admission_must_not_exceed_two",
+        "StopLimits.test_22_filesystem_ledger_also_exceeds_research_stop_cap"
+      ],
+      "author_fixtures_imported": false
+    },
+    "wr04_minimal": {
+      "run": 1,
+      "passed": 0,
+      "failed": 1,
+      "exit_code": 1,
+      "seconds": 0.069
+    },
+    "prior_64_test_scripts_byte_identical": true,
+    "synthetic_full_chain": {
+      "producer": "Actual run_research_task, initialize_receiver, receive_slice and finish_receiver with independently written toy SDK/calendar/Object Store",
+      "parser_and_bridge": "Actual research_observation/backtest_submission/backtest_observation, EngineeringTaskBridge and Registry",
+      "research": {
+        "record_count": 30,
+        "expected_formation_count": 2,
+        "history_calls_first": 1,
+        "history_calls_second": 0
+      },
+      "lean": {
+        "data_event_count": 4,
+        "dividend_event_count": 1,
+        "orders_submitted": 0
+      },
+      "final_usage": {
+        "configurations": 1,
+        "research": 1,
+        "lean": 1
+      },
+      "financial_evidence": false
+    },
+    "positive_boundaries": [
+      "Extra stdout/display data and row-bearing completion metadata rejected before local storage",
+      "Native financial panels reduced to digest metadata; sentinel absent from local ledger",
+      "Source/plan/project/attempt/external/input and Research-to-LEAN SID bindings enforced",
+      "Compile/submission/running states cannot finish a task; missing counts and malformed/foreign chunks rejected",
+      "Sequential 2/2/2 caps count failures across renamed plans/projects",
+      "Unknown submissions do not resubmit; same-project renaming blocked",
+      "Engineering coverage cannot certify production; caller certified flags cannot establish actual historical availability",
+      "Unknown financial timing/classification remains unknown; original/restated vintages mature at actual required receipt maxima",
+      "Regular/missing delete-pending leaf not resolved; escaping ancestor/symlink/reparse rejected; lstat EIO preserved; old locks preserved"
+    ],
+    "path_stress": {
+      "concurrent_write_once_calls": 400,
+      "workers": 8,
+      "successful_publications": 1,
+      "operation_failures": 0,
+      "native_windows": false
+    }
+  },
+  "findings": [
+    {
+      "id": "WR-04",
+      "priority": "P1",
+      "status": "open",
+      "title": "Stage2 stop-budget check and admission are not atomic",
+      "locations": [
+        {
+          "file": "tools/stage2.py",
+          "lines": [
+            83,
+            86,
+            100,
+            105,
+            128,
+            129,
+            133,
+            134
+          ]
+        },
+        {
+          "file": "cloud/qresearch/engineering_tasks.py",
+          "lines": [
+            273,
+            274,
+            303,
+            308,
+            321
+          ]
+        }
+      ],
+      "trigger": "One stage slot already consumed; two distinct project/plan callers both pass _limits before either performs register/claim; then both mutate the same authoritative ledger.",
+      "expected": {
+        "configurations_max": 2,
+        "research_max": 2,
+        "lean_max": 2
+      },
+      "actual": {
+        "configurations": 3,
+        "research": 3,
+        "lean": 3,
+        "new_execution_permissions": [
+          true,
+          true
+        ],
+        "filesystem_research": 3
+      },
+      "impact": "A third engineering task may receive should_execute=true beyond the authorized 2/2/2 stop limits. Global 12/20/16 Registry caps remain enforced. No extra real platform job was run in this review.",
+      "minimal_fix": "Make the stage2 stop check and configuration/attempt debit one atomic admission under a shared cross-plan/project lock or Registry transaction; cover all engineering register/claim/submit entry points and preserve reuse and failure charges.",
+      "reproducer": "test_wr04_minimal.py; four failing cases in test_work_stage2.py"
+    }
+  ],
+  "prior_findings": {
+    "WR01": "resolved; regression passed",
+    "WR02": "resolved; regression passed",
+    "WR03": "resolved; regression passed"
+  },
+  "evidence_review": {
+    "level": "Developer-archived native observations reviewed and reparsed offline; not independent QC platform retrieval",
+    "parser_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "runtime_code_unchanged_in_evidence_commit": true,
+    "source_lineage": "Source hash identifies pre-execution commit75. Later config/budget usage projection is bookkeeping and is not a new deployed source identity.",
+    "deployment": {
+      "local_25_file_manifest_matches": true,
+      "hash_matches": true,
+      "remote_readback_claim_independently_repeated": false
+    },
+    "task_inputs": {
+      "count": 2,
+      "byte_hashes_match_admitted_input": true,
+      "inert_JSON_payloads_match": true
+    },
+    "research": {
+      "archived_status": "completed",
+      "native_receipt_reparse_matches_archived_completion": true,
+      "reparse_matches_Registry_result": true,
+      "counts": {
+        "record_count": 2510,
+        "expected_formation_count": 250,
+        "history_calls_first": 1,
+        "history_calls_second": 0
+      },
+      "scope": "2018 fixed AAPL/MSFT engineering; not historical US200"
+    },
+    "lean": {
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+      "archived_status": "pending",
+      "submission_parser_matches_ledger": true,
+      "terminal_evidence_present": false,
+      "read_backtest_called": false,
+      "polled": false
+    },
+    "archived_usage": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "independent_platform_read": false
+  },
+  "repository_checks": {
+    "source_manifest_files": 66,
+    "source_tracked_files": 91,
+    "evidence_tracked_files": 111,
+    "source_hash_independently_recomputed": true,
+    "deployment_files": 25,
+    "source_and_evidence_market_containers_or_notebooks_found": 0,
+    "known_credential_pattern_matches": 0,
+    "prior_2024_2025_exposure_preserved": true,
+    "checkouts_unchanged": true
+  },
+  "external_calls": {
+    "QC": 0,
+    "Research": 0,
+    "backtest_submissions": 0,
+    "market_data": 0,
+    "model_API": 0,
+    "financial_final_test": 0,
+    "live_trading": 0
+  },
+  "financial_evidence": false,
+  "not_verified": [
+    "Real LEAN terminal outcome; pending task was not read or polled",
+    "Independent QC platform/account retrieval; no QC-specific tool exposed this turn",
+    "Cloud raw records, referenced SID registry/data payloads, actual exchange-calendar coverage, vendor availability and full historical US200",
+    "Native Windows NTFS behavior; delete-pending/reparse cases simulated on Linux",
+    "Python3.10/3.11 and GitHub Actions were not used as substitutes for local independent execution",
+    "Stages3-7, production research, real financial vintage coverage, cost/risk stress, financial final sample and live trading",
+    "Any later or moving source HEAD; only commit75 code executed",
+    "Unknown/encoded credentials beyond the stated repository content and pattern scan"
+  ]
+}

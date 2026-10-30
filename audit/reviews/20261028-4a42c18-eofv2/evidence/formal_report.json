@@ -1,0 +1,513 @@
+{
+  "review_id": "AQRP-20261028-4A42C18-EOFV2-23",
+  "review_date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "reviewed_source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+  "baseline_commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+  "evidence_commits": {
+    "archive": "1cf26578da59eebd37e138ca5d6d076991386470",
+    "original_failed_runtime": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+    "prior_reviewed_runtime_archive": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8"
+  },
+  "conclusion": "Tested EOF-v2 core/bridge scopes passed with disclosed reviewer fixture corrections. Candidate delivery validation FAILED with confirmed WR28/P2. Overall phase2 remains NOT accepted; new candidate has no cloud-run proof.",
+  "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+  "deployment_hash": "8eb1e822e2b857356fb975d60cbfc0d37053600f777e21ee79fe96da5a020243",
+  "implementation_hash": "49eee02be86520d87dfbb8505da4c382ef9e4e0d73809c388bcea1dc7d6628ba",
+  "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+  "version_consistency": {
+    "identities": {
+      "candidate": {
+        "commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+        "raw_files": 6179,
+        "managed_source_files": 177,
+        "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+        "cloud_files": 34,
+        "deployment_hash": "8eb1e822e2b857356fb975d60cbfc0d37053600f777e21ee79fe96da5a020243",
+        "implementation_hash": "49eee02be86520d87dfbb8505da4c382ef9e4e0d73809c388bcea1dc7d6628ba",
+        "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+        "manifest_schema_version": 2
+      },
+      "baseline": {
+        "commit": "8d65c290773547c83549c098172f1eb8c3376cd7",
+        "raw_files": 6158,
+        "managed_source_files": 169,
+        "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+        "cloud_files": 32,
+        "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+        "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+        "configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+        "manifest_schema_version": 1
+      },
+      "archive": {
+        "commit": "1cf26578da59eebd37e138ca5d6d076991386470",
+        "raw_files": 6180,
+        "managed_source_files": 177,
+        "source_manifest_hash": "bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a",
+        "cloud_files": 34,
+        "deployment_hash": "8eb1e822e2b857356fb975d60cbfc0d37053600f777e21ee79fe96da5a020243",
+        "implementation_hash": "49eee02be86520d87dfbb8505da4c382ef9e4e0d73809c388bcea1dc7d6628ba",
+        "configuration_hash": "3dd0b9832dff6ce1afdee616054f93dbdbdb3de5dbcb4f7c3545c560da0ab695",
+        "manifest_schema_version": 2
+      }
+    },
+    "archive_changes_only": [
+      "audit/review_packages/deployment-eof-v2/GPT_WORK_REVIEW.txt",
+      "audit/review_packages/deployment-eof-v2/artifact_manifest.json",
+      "audit/review_tracking.json",
+      "audit/stage2_current_readiness.json",
+      "audit/stage2_deployment_source_fix.json"
+    ],
+    "archive_cloud_tools_config_tests_diff": [],
+    "new_manifest_schema": 2,
+    "new_policy": "utf8_sig_universal_newlines_terminal_lf_v1",
+    "legacy_manifest_schema": 1,
+    "source_manifest_matches_expected": true,
+    "candidate_generated_configuration_registered_or_deployed": false,
+    "raw_original_Git_bytes_unchanged_by_reviewer": true
+  },
+  "PR": {
+    "number": 2,
+    "head": "1cf26578da59eebd37e138ca5d6d076991386470",
+    "fixed_reviewed_code": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+    "base": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "draft": true,
+    "state": "open",
+    "merged": false,
+    "fixed_code_CI_run": 40665699556,
+    "Python3.10": "success",
+    "Python3.11": "success",
+    "independently_extracted_CI_test_count": null
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "readonly_Git_GitHub": true,
+    "fresh_GitHub_reads": 4,
+    "readonly_Git_fetch_fixed_commits": true,
+    "offline_Python_and_native_Windows_processes": true,
+    "QC_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "platform_compile_calls": 0,
+    "terminal_or_log_live_reads": 0,
+    "market_provider_calls": 0,
+    "model_API_calls": 0,
+    "market_rows_exported": 0,
+    "new_configuration_registration": 0,
+    "authoritative_budget_or_product_edits": 0,
+    "PR_push_approval_merge": 0
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "contracts, identities, registry and budgets",
+      "status": "prior_finite_scope_retained; new_delivery_verification_failed_WR28",
+      "implemented": "Shared source/config registry and budget authority.",
+      "tested": "Fresh repository/regression tests;48-event budget and closed-round audit; frozen/admission identity tests.",
+      "gap": "New protected-hash declaration fails clean Git reproduction; no new candidate-wide acceptance."
+    },
+    {
+      "stage": 1,
+      "modules": "factor, label and fixed-model calculation core",
+      "status": "prior_finite_scope_retained; relevant_regressions_passed",
+      "implemented": "Restricted expression, execution labels and fixed model primitives.",
+      "tested": "Repository825 and compatibility12/Pearson10/numeric16/atomic19/prior-adapted56, with overlapping scope.",
+      "gap": "No new registered economic factor/model/trading specification or financial validation."
+    },
+    {
+      "stage": 2,
+      "modules": "QC deployment identity, collection, task bridge and data audit",
+      "status": "not_accepted",
+      "implemented": "New explicit versioned EOF source identity; strict local/project gate; legacy recovery; native evidence bridges.",
+      "tested": "Core13/509 plus3/20; bridge10/45; archived failure/native metadata; checker failedWR28.",
+      "gap": "Delivery checksum defect; candidate not cloud-run; original3e688failed; no configuration capacity; historical universe/vintage/actual delivery and certification dispatch incomplete."
+    },
+    {
+      "stage": 3,
+      "modules": "Research evaluation and rolling folds",
+      "status": "partial_not_accepted",
+      "implemented": "IC/RankIC, rolling folds and matched comparison primitives.",
+      "tested": "Generic repository/regression tests only.",
+      "gap": "Stratified-return implementation and real registered six-fold factor evaluation absent."
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN portfolio/fills/cash/cost/risk",
+      "status": "not_accepted",
+      "implemented": "Contracts and bounded engineering receiver.",
+      "tested": "Synthetic source/receiver/parser paths; real original initialization failed.",
+      "gap": "Generic trading adapter, transaction ledger, Research/LEAN financial reconciliation and stress evidence absent."
+    },
+    {
+      "stage": 5,
+      "modules": "bounded GPT workflow",
+      "status": "not_accepted",
+      "implemented": "Persistent controller and restricted proposal primitives.",
+      "tested": "Repository synthetic checks; declared execution remains disabled.",
+      "gap": "Model/call/spend settings null; actual accepted GPT/QC loop missing."
+    },
+    {
+      "stage": 6,
+      "modules": "search, ablation and selection bias",
+      "status": "partial_not_accepted",
+      "implemented": "Similarity/correlation primitives.",
+      "tested": "No real financial trial or ablation executed.",
+      "gap": "Frozen comparison/ablation and net incremental performance evidence missing."
+    },
+    {
+      "stage": 7,
+      "modules": "freeze, independent final test and forward monitoring",
+      "status": "not_accepted",
+      "implemented": "Freeze metadata and disabled execution gates.",
+      "tested": "Protected actual exposure files unchanged; no final sample read.",
+      "gap": "Independent final executor/forward monitoring not accepted;2024-2025 exposed and2026 independence unverified."
+    }
+  ],
+  "tests": [
+    {
+      "name": "repository_verification",
+      "methods": 825,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "repository_tests_independently_executed",
+      "evidence": "repository_verification.json",
+      "actually_executed": true
+    },
+    {
+      "name": "developer_auxiliary",
+      "methods": 35,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "developer_auxiliary_independently_executed",
+      "evidence": "developer_auxiliary_result.json",
+      "actually_executed": true
+    },
+    {
+      "name": "legacy_compatibility",
+      "methods": 12,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "prior_scoped_regression_replay",
+      "evidence": "legacy_compatibility/test_results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "legacy_pearson",
+      "methods": 10,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "prior_scoped_regression_replay",
+      "evidence": "legacy_pearson/test_results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "legacy_numeric",
+      "methods": 16,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "prior_scoped_regression_replay",
+      "evidence": "legacy_numeric/test_results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "legacy_atomic",
+      "methods": 19,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "prior_scoped_regression_replay",
+      "evidence": "legacy_atomic/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "legacy_adapted56",
+      "methods": 56,
+      "named_scenarios": null,
+      "result": "passed",
+      "kind": "prior_scoped_regression_replay_recognized_adapted_mode",
+      "evidence": "legacy_adapted56/independent_test_results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "independent_policy_core",
+      "methods": 13,
+      "named_scenarios": 509,
+      "result": "passed_first_run",
+      "kind": "new_independent_synthetic",
+      "evidence": "policy_agent/first/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "strict_digest_and_legacy_diagnostics_supplement",
+      "methods": 3,
+      "named_scenarios": 20,
+      "result": "passed_after_reviewer_fixture_label_correction",
+      "kind": "new_independent_synthetic",
+      "evidence": "policy_agent/supplement_corrected/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "cross_module_bridge",
+      "methods": 10,
+      "named_scenarios": 45,
+      "result": "passed_after_reviewer_helper_correction",
+      "kind": "new_independent_synthetic",
+      "evidence": "bridge_agent/corrected/results.json",
+      "actually_executed": true
+    },
+    {
+      "name": "published_candidate_reconciliation",
+      "methods": 0,
+      "named_scenarios": null,
+      "result": "failed_WR28",
+      "kind": "required_delivery_metadata_command",
+      "evidence": "developer_candidate_checker.stderr",
+      "exit_code": 1,
+      "actually_executed": true
+    }
+  ],
+  "actually_executed": true,
+  "counting": "Methods, named scenarios, static checks, direct API calls and processes are overlapping populations, not a unique grand total. Named scenario counts are not measured unittest-subTest counts. The prior-adapted56 suite remains explicitly adapted; no new silent acceptance changes.",
+  "first_results": {
+    "policy_core": "13 methods/509 scenarios passed first run.",
+    "policy_supplement": "Initial3 methods:2 passed/1 reviewer error from Windows reserved fixture directory nul, before that case entered product. Corrected directory label only; NUL input/assertions retained. Final3/20 passed.",
+    "bridge": "Initial10 methods:9 passed/1 reviewer helper error (collection plan misrouted through engineering helper). Corrected actual legacy collection path only. Final10/45 passed.",
+    "evidence": "First protected-hash failure is real WR28. Continued inspection preserved3 false protected checks; reviewer initially compared response_sha to decoded structuredContent instead of full canonical MCP result. Corrected only that independent expectation, with all original files/output retained. Continuation exit0 still reports3 failures.",
+    "root_static": "Initial reviewer script had else1 syntax typo; product never executed. First script/tool transcript kept; corrected independent source/manifest recomputation passed.",
+    "product_source_or_expected_protected_hashes_changed": false
+  },
+  "manual_and_static_checks": {
+    "core_same_manifest_baseline_candidate_MRE_processes": 2,
+    "bridge_baseline_candidate_control_processes": 2,
+    "actual_Windows_junction_processes": 1,
+    "evidence_logical_static": {
+      "total": 40,
+      "passed": 37,
+      "failed": 3,
+      "failure_population": "One protected-hash aggregate per tree, same3 unique paths."
+    },
+    "evidence_dynamic_metadata": 8,
+    "evidence_synthetic": 5,
+    "protected_declared_count": 122,
+    "protected_declared_hashes_match": 119,
+    "protected_actual_files_equal_baseline": 122,
+    "compact_developer_artifact_hashes_passed": 10,
+    "minimal_WR28_processes_by_root": 1,
+    "minimal_WR28_exit": 1,
+    "minimal_WR28_processes_by_evidence_agent": 2,
+    "minimal_WR28_candidate_and_archive_exits": [
+      1,
+      1
+    ],
+    "build_exit": 0,
+    "build_all6179_raw_files_unchanged": true
+  },
+  "findings": [
+    {
+      "id": "WR-28",
+      "status": "confirmed_open",
+      "priority": "P2",
+      "title": "Protected evidence hashes freeze working-tree CRLF, so clean fixed Git reconciliation fails",
+      "source_commit": "4a42c18f0b78bea2068d589bc12f1615712354c6",
+      "primary_file": "audit/review_packages/deployment-eof-v2/protected_before.json",
+      "primary_line": 2,
+      "other_lines": [
+        122,
+        123
+      ],
+      "consumer": "audit/review_packages/deployment-eof-v2/verify_candidate.py:29",
+      "secondary_consumer": "audit/review_packages/deployment-eof-v2/verify_candidate.py:80",
+      "Git_policy": ".gitattributes:1 and .gitattributes:3 require LF",
+      "trigger": "Export or freshly check out exact4a42c18 Git bytes and run the mandated verification or the independent minimal protected-hash verifier.",
+      "expected": "All122 declared raw protected hashes match the immutable Git source, and original-input reconciliation executes without altering source or expected hashes.",
+      "actual": "Only119/122 match. All3 wrong expected values equal a hypotheticalLF-to-CRLF conversion, while Git/raw candidate/baseline/archive useLF. The mandated checker stops at audit/data_exposure.json before reconciliation.",
+      "mismatches": [
+        {
+          "path": "audit/data_exposure.json",
+          "declared": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95",
+          "raw_Git_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+          "Git_bytes": 1217,
+          "Git_CRLF_count": 0,
+          "hypothetical_CRLF_sha256": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95",
+          "candidate_equals_baseline_equals_archive": true
+        },
+        {
+          "path": "config/research.json",
+          "declared": "a200a8bf889f9559e56b34bfc4b237138048b01bed5b20ab0687d0572c3449df",
+          "raw_Git_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+          "Git_bytes": 9686,
+          "Git_CRLF_count": 0,
+          "hypothetical_CRLF_sha256": "a200a8bf889f9559e56b34bfc4b237138048b01bed5b20ab0687d0572c3449df",
+          "candidate_equals_baseline_equals_archive": true
+        },
+        {
+          "path": "config/workflow.json",
+          "declared": "838c2b05ce4983f7b649e26400a25bc0e1118075a967cd042a6dddef494769a7",
+          "raw_Git_sha256": "bc40a6857d59d9cf43490306f471b9b5b8a922e4ab790c4ec337749e0b361302",
+          "Git_bytes": 2065,
+          "Git_CRLF_count": 0,
+          "hypothetical_CRLF_sha256": "838c2b05ce4983f7b649e26400a25bc0e1118075a967cd042a6dddef494769a7",
+          "candidate_equals_baseline_equals_archive": true
+        }
+      ],
+      "minimal_reproduction": "python -B evidence_agent/minimal_protected_manifest.py --source source",
+      "actual_minimal_exits": {
+        "candidate4a42c18": 1,
+        "archive1cf2657": 1
+      },
+      "impact": "The clean Git delivery cannot reproduce its mandated protected-evidence verification. The defect blocks that verification claim; it does not prove actual historical/budget/exposure bytes changed, nor invalidate every independently tested EOF-core path.",
+      "minimal_fix": "In a new audit-only commit, freeze raw expected hashes from the actual immutable Git baseline/export for these3 paths, explicitly record correction and retain original manifest/failed logs. Regenerate dependent compact artifact manifest and fresh reconciliation result, then rerun from a second fresh export. Do not rewrite protected source bytes, relax raw protection, or silently replace old evidence.",
+      "required_regression": "Fresh Git export and normal eol=lf checkout both verify122 hashes and execute original failure reconciliation. Preserve a deliberately changed protected byte rejection.",
+      "production_source_modified_by_reviewer": false,
+      "independent_root_confirmation": "root_confirmed_protected_hash_mismatch.json; minimal_wr28_execution.json; developer_candidate_checker.stderr",
+      "blocks_delivery_validation": true,
+      "invalidates_all_tested_EOF_core_paths": false
+    }
+  ],
+  "historical_findings": {
+    "WR01_WR27": "Preserved at their original fixed versions and finite tested scopes. No automatic extension to new configuration3dd0b9 or whole phase2. Existing numeric/admission regressions explicitly replayed as listed.",
+    "WR28": "New confirmed P2 delivery-reproducibility finding; no source fix applied by reviewer."
+  },
+  "budget_replay": {
+    "events": 48,
+    "journal_sha256": "ff0440eb196fc5e79be54ab0d6113630510a058313251be667fae6d064a4c71d",
+    "prior46_exact_sha256": "f50d4cd8195428966484230adf0fd54ccf77f796159af61df748f37a7d1101b1",
+    "prior46_bytes_preserved": true,
+    "only_new_events": [
+      "failed_original37dc_runtime_error",
+      "normal004_round_closed"
+    ],
+    "usage": {
+      "configurations": 12,
+      "research": 15,
+      "lean": 2
+    },
+    "round_status": "closed",
+    "refunds": 0,
+    "new_debits_during_offline_fix": 0,
+    "new_configuration_registered": false,
+    "candidate_requires_valid_new_configuration_capacity": true,
+    "latest_original_input_hash": "8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03",
+    "old_admission_is_not_reinterpreted_as_v2": true,
+    "private_Memory_replay_unchanged": true
+  },
+  "platform_evidence_level": {
+    "level": "Developer-archived original MCP native packets independently decoded/hash-bound offline; not live QC retrieval or remote signature. Empty searched logs are not proof of actual order count0.",
+    "original_LEAN": {
+      "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+      "backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+      "runtime_source": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "actual_original_LEAN_status": "runtime_error",
+      "actual_original_ledger_status": "failed",
+      "actual_seven_success_checks": null,
+      "actual_orders": null,
+      "original_manifest_version": 1,
+      "old_runtime_source": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "native_result_packet_sha256": "61d3578b184d8667e73a53b2cdbfabc5c83570b6a652b17c554a9f076b92d497",
+      "native_logs_packet_sha256": "056c07438969fbfd462317c9500aa5ae7bed8f071aca0b1ed5fbe783ae2bff60",
+      "native_reported_source_format": {
+        "byte_count": 3562,
+        "raw_sha256": "5b7111b3806c2f4a8f93b85ffb8a54fa63cebdefb126bcc449c6020b95d3c4e5",
+        "utf8_bom": false,
+        "crlf_count": 0,
+        "standalone_cr_count": 0,
+        "lf_count": 60,
+        "normalized_trailing_lf_count": 2,
+        "syntax_status": "parsed",
+        "future_import_count": 0,
+        "algorithm_import_count": 0,
+        "algorithm_from_import_count": 1,
+        "algorithm_star_import_count": 1
+      },
+      "one_added_LF_exactly_reproduces_observation": true,
+      "platform_packaging_step_proven": false,
+      "other_worker_files_certified": false,
+      "old39cafa_specific_cause_proven": false
+    },
+    "Research": "Existing662ccd 2018 two-symbol13-check engineering report retained; not rerun, not full data certification.",
+    "new_candidate": {
+      "cloud_run_performed": false,
+      "native_success_report": null,
+      "actual_orders": null,
+      "same_plan_Research_LEAN_completed": false
+    },
+    "compile": "Original normal004 native compile packet still absent; unrelated earlier compilation cannot certify candidate.",
+    "source_provenance": "One appended LF reproduces the original controlled source-format observation exactly. Platform conversion step, all other worker files and specific39cafa cause remain unproven.",
+    "no_live_QC_this_review": true
+  },
+  "software_acceptance": {
+    "tested_EOF_v2_core_scope": "passed",
+    "tested_bridge_scope": "passed_after_disclosed_reviewer_helper_correction",
+    "candidate_delivery_validation": "failed_WR28",
+    "candidate_wide_accepted": false,
+    "phase2_overall": "not_accepted",
+    "cloud_initialization_fix_verified": false,
+    "new_configuration_capacity_required": true,
+    "old_admission_reinterpreted": false,
+    "formal_research_enabled": false,
+    "GPT_runtime_enabled": false,
+    "orders_enabled": false,
+    "final_test_enabled": false
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "SID_economic_ambiguity_resolved": false,
+    "financial_numeric_catalog_count": 0,
+    "financial_vintage": false,
+    "publication_actual_delivery_ingestion": false,
+    "certification_computation_kernel": "implemented",
+    "charged_certification_native_dispatch_bridge": "not_implemented",
+    "EOF_policy_success_is_data_certification": false
+  },
+  "financial_evidence": false,
+  "financial_metrics": {
+    "IC": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "NAV": null
+  },
+  "research_constraints": {
+    "universe": "Historical point-in-time top200 US equities; no201st substitution",
+    "timezone": "America/New_York",
+    "validation": "Six fixed8-year/1-year folds2010-2017/2018 through2015-2022/2023",
+    "final_window": "2024-01-01/2026-10-23; actual exits within boundary",
+    "annual_refit": "Only frozen trainable parameters using most recent8years",
+    "2024_2025_exposed": true,
+    "2026_independence": "unverified",
+    "independent_final_executor_configured": false
+  },
+  "unverified": [
+    "Real new v2 deployment/Research/LEAN success is absent; configuration capacity is exhausted and this audit authorizes no extra execution.",
+    "Original7 successfulLEAN checks and actual orders remain null because original task failed during initialization.",
+    "Exact platform conversion layer, other packaged worker files, old39cafa cause and original normal004 native compile packet.",
+    "Complete historicalUS200, SID economic meaning, financial values/periods/units/vintages/publication and actual vendor delivery/ingestion evidence.",
+    "Source hashes and trusted dispatch context are not remote signatures or authentication of a self-consistent fabricated corpus.",
+    "OS-kill/power-loss/all filesystem-race durability and financial effectiveness; stages3-7 remain unaccepted."
+  ],
+  "next_required_work": [
+    "Correct WR28 in a new auditable materials commit using raw hashes anchored to the immutable Git baseline/export; retain original erroneous declarations and failure logs. Do not rewrite protected files or silently relax byte checks.",
+    "Regenerate dependent manifests/results and execute unmodified candidate reconciliation on a second clean Git export and LF-policy checkout; include protected-byte tamper rejection.",
+    "Keep new v2 configuration unregistered/undeployed until valid new capacity and explicit admission exist; never reinterpret old failed v1 attempt.",
+    "Only after authorized bounded real execution and independent terminal review assess cloud initialization; separately finish historical/financial certification and charged dispatch bridge."
+  ],
+  "artifacts": {
+    "execution_records": "root_execution_records.json; policy_agent/*execution.json; bridge_agent/*execution.json; evidence_agent/*execution.json",
+    "source_hash_maps": "source_git_manifest.json; static_identity.json",
+    "WR28_root_confirmation": "root_confirmed_protected_hash_mismatch.json; minimal_wr28_execution.json",
+    "minimum_reproduction": "python -B minimal_wr28.py source; expected current exit1 with3 mismatches",
+    "original_failed_checker": "developer_candidate_checker.stderr",
+    "stage0_7_scope": "formal_report.txt and evidence_agent/system_boundaries.json",
+    "sealed_verifier": "python -B verify_artifacts.py"
+  }
+}

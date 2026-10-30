@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "purpose": "collection_budget_task_bridge_developer_verification_only",
+  "date": "2026-10-26",
+  "parent_commit": "47b5f715d88d22252a3a47f1dc418039b8b2f0d2",
+  "prior_independently_accepted_source": "7bf716f45fd6183951a492f0201012af717070f0",
+  "candidate_source_manifest_hash": "78eb6e757ebdf83c4a0641c8874b7c82b45371989370a400b2a41b5354240104",
+  "candidate_source_files": 105,
+  "deployment_python_files": 29,
+  "implementation_hash": "45914304f93f7a417b7a6f64610c5eff18ac80a5239d79d4c679c2cfd795f2fe",
+  "execution_source_manifest_hash": "320e835d143ae3fd6e5da4a040e8fb64a0f96669a3d0ade5dbf3ae27a4574645",
+  "execution_source_hash_policy": "Full source/config files; budget document usage projection excluded while budget policy remains bound; full review manifest unchanged",
+  "configuration_hash_unchanged": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "os": "nativeWindows",
+    "BLAS_threads": 1
+  },
+  "repository_methods": 376,
+  "new_methods": 40,
+  "new_method_breakdown": {
+    "atomic_admission": 23,
+    "worker_parser_bridge": 11,
+    "metadata_CLI": 6
+  },
+  "full_verification": {
+    "chunk_id": "f299e8",
+    "wall_time_seconds": 0.0000086,
+    "exit_code": 0,
+    "original_token_count": 71,
+    "output": "{\"local_tests_passed\": true, \"source_hash\": \"78eb6e757ebdf83c4a0641c8874b7c82b45371989370a400b2a41b5354240104\", \"external_review_status\": \"pending_GPT_Work\", \"test_output\": \"----------------------------------------------------------------------\\nRan 376 tests in 22.430s\\n\\nOK\\n\"}\r\n"
+  },
+  "targeted_runs": [
+    {
+      "suite": "initial_collection_tasks",
+      "chunk_id": "bd3cf6",
+      "wall_time_seconds": 2.6291052,
+      "exit_code": 0,
+      "original_token_count": 316,
+      "output": "test_absent_adapter_does_not_debit_and_lean_is_rejected (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_foreign_native_tool_project_marker_and_stdout_rejected (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_free_result_dictionary_cannot_finalize_and_wrong_attempt_cannot_be_read (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_full_chain_debits_before_dispatch_waits_for_completion_and_reuses (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_invalid_plan_fields_project_source_and_catalog_fail_closed (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_plan_and_collection_catalog_are_immutable (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_rejected_and_unknown_submissions_do_not_refund_or_leak_error_values (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_report_cannot_add_rows_claim_coverage_or_change_counts (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_worker_completed_cache_read_has_zero_new_source_calls (test_collection_tasks.CollectionTasksTests) ... ok\r\ntest_worker_requires_real_cloud_residency_and_pinned_source (test_collection_tasks.CollectionTasksTests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 10 tests in 0.191s\r\n\r\nOK\r\n"
+    },
+    {
+      "suite": "test_collection_task_cli.py",
+      "chunk_id": "cc43ec",
+      "wall_time_seconds": 1.3611094000000001,
+      "exit_code": 1,
+      "original_token_count": 312,
+      "output": "test_collection_task_cli (unittest.loader._FailedTest) ... ERROR\r\n\r\n======================================================================\r\nERROR: test_collection_task_cli (unittest.loader._FailedTest)\r\n----------------------------------------------------------------------\r\nImportError: Failed to import test module: test_collection_task_cli\r\nTraceback (most recent call last):\r\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\loader.py\", line 436, in _find_test_path\r\n    module = self._get_module_from_name(name)\r\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\unittest\\loader.py\", line 377, in _get_module_from_name\r\n    __import__(name)\r\n  File \"B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\tests\\test_collection_task_cli.py\", line 14, in <module>\r\n    import collection_task_cli as cli\r\n  File \"B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\tools\\collection_task_cli.py\", line 6, in <module>\r\n    from qresearch.artifacts import canonical_json, content_hash\r\nModuleNotFoundError: No module named 'qresearch'\r\n\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.000s\r\n\r\nFAILED (errors=1)\r\n"
+    },
+    {
+      "suite": "test_collection_admission.py",
+      "chunk_id": "258341",
+      "wall_time_seconds": 6.5869645,
+      "exit_code": 0,
+      "original_token_count": 729,
+      "output": "test_both_pre_registered_task_types_share_same_project_open_guard (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_collection_unresolved_work_blocks_old_bridge_and_direct_begin (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_completed_and_ambiguous_collection_reuse_remains_free (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_different_projects_may_claim_but_remain_under_shared_domain_limit (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_direct_begin_rejects_collection_stage_and_operation_overrides_without_charge (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_direct_registry_rejects_unfrozen_plan_before_charging_its_unusable_identity (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_direct_retry_bound_cannot_be_bypassed_with_a_new_operation (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_explicit_retry_is_charged_once_and_restart_does_not_refund (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_frozen_collection_shape_validation_runs_in_direct_registry_entry (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_global_budget_still_applies_before_second_engineering_research (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_legacy_and_collection_configuration_charge_share_domain_cap (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_configuration_native_process_race (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_configuration_race_memory (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_configuration_race_separate_filesystem_instances (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_execution_cap_counts_failures_across_allocations_and_projects (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_research_native_process_race (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_research_race_memory (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_research_race_separate_filesystem_instances (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_same_project_claim_race_memory (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_same_project_claim_race_separate_filesystem_instances (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_mixed_same_project_native_process_race (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_old_unresolved_work_blocks_collection_registration_before_configuration_charge (test_collection_admission.CollectionAdmissionTests) ... ok\r\ntest_reserved_collection_shape_cannot_drop_or_change_marker_kind_or_scope (test_collection_admission.CollectionAdmissionTests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 23 tests in 4.984s\r\n\r\nOK\r\n"
+    },
+    {
+      "suite": "test_collection_task_cli_after_import_fix",
+      "chunk_id": "d13e36",
+      "wall_time_seconds": 2.6768143,
+      "exit_code": 0,
+      "original_token_count": 177,
+      "output": "test_completed_attempt_cannot_prepare_new_input (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_freeze_does_not_debit_and_current_plan_is_bound_to_listing (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_prepare_requires_precharged_attempt_and_is_immutable_and_separate (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_stale_source_rejected_before_new_debit_but_status_read_allowed (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_undiscovered_project_or_catalog_override_is_not_persisted (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 5 tests in 0.095s\r\n\r\nOK\r\n"
+    },
+    {
+      "suite": "real_usage_export_cli_lifecycle",
+      "chunk_id": "6cf37a",
+      "wall_time_seconds": 2.4507877000000002,
+      "exit_code": 0,
+      "original_token_count": 209,
+      "output": "test_completed_attempt_cannot_prepare_new_input (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_freeze_does_not_debit_and_current_plan_is_bound_to_listing (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_prepare_requires_precharged_attempt_and_is_immutable_and_separate (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_real_usage_export_does_not_break_freeze_register_claim_prepare (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_stale_source_rejected_before_new_debit_but_status_read_allowed (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\ntest_undiscovered_project_or_catalog_override_is_not_persisted (test_collection_task_cli.CollectionTaskCLITests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 6 tests in 0.139s\r\n\r\nOK\r\n"
+    }
+  ],
+  "failures_and_repairs": [
+    {
+      "kind": "developer_test_harness_import_error",
+      "original_result": "FailedTest1error: ModuleNotFoundError qresearch",
+      "repair": "Added explicit cloud directory to standalone test import path",
+      "record": "targeted_runs"
+    },
+    {
+      "kind": "developer_peer_receipt_binding_probe",
+      "original_result": "Validator accepted unrelated receipt key",
+      "repair": "Bind collection_receipt_ref to exact report namespace and attempt; regression included",
+      "market_calls": 0
+    },
+    {
+      "kind": "developer_peer_actual_export_lifecycle_probe",
+      "original_result": "Config charge changed usage projection in full source hash; subsequent claim refused before Research debit",
+      "repair": "Separate execution source identity from mutable usage; actual export positive lifecycle plus policy-change rejection",
+      "record": "probe_manifest.json",
+      "actual_registry_changed": false
+    }
+  ],
+  "compatibility": {
+    "existing_registry_events_replayed_in_readonly_Memory_copy": 12,
+    "existing_attempt_states": [
+      "failed",
+      "completed",
+      "completed",
+      "pending"
+    ],
+    "native_windows_mixed_process_races": 3,
+    "legacy_bridge_targeted_methods": 21,
+    "legacy_atomic_targeted_methods": 15,
+    "counts_overlap": true
+  },
+  "second_build_config_changed": false,
+  "authoritative_budget_and_previous_review_artifacts_unchanged": true,
+  "budget": {
+    "used": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "engineering_used_each": 1,
+    "engineering_limit_each": 2,
+    "extra_resource_purchases": 0
+  },
+  "cloud": {
+    "new_project_operations": 0,
+    "deployed": false,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "old_pending_backtest": "39cafa1e9b11f91b27e396b66d033a6d",
+    "old_input_or_source_changed": false,
+    "polled": false,
+    "terminal_delivered": false
+  },
+  "limitations": [
+    "new Registry and bridge require fixed-source independent review",
+    "CLI successful Research marker parser only; native failed cells remain unresolved pending trusted failure evidence/reconciliation",
+    "trusted adapter/deployment/input provenance is operational not cryptographic",
+    "real SDK and cloud runtime not exercised",
+    "full historical US200/financial actual timing/vintages/corporate action coverage unverified"
+  ],
+  "new_candidate_independently_accepted": false,
+  "stage2": "pending_acceptance",
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "documentation": "docs/stage2-collection-task-bridge.md"
+}

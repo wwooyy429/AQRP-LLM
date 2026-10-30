@@ -1,0 +1,80 @@
+{
+  "LEAN_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+  "real_SDK_executed": false,
+  "files": [
+    {
+      "path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\source_agent\\official_sdk_static\\Engine__HistoricalData__SubscriptionDataReaderHistoryProvider.cs",
+      "raw_sha256": "a700f85a0448fe3a2516955f5a9a98ad27b695128f48538aad17259611492842",
+      "excerpts": [
+        {
+          "line": 220,
+          "text": "if (data.EndTime > EndTimeLocal) return false;"
+        },
+        {
+          "line": 222,
+          "text": "return data.EndTime > StartTimeLocal;"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\source_agent\\official_sdk_static\\Common__Python__PandasData.cs",
+      "raw_sha256": "ddbfbd559684f5ba409fb9d4a2ea07324d9fe50c41d1cb770b6c57510cc847a2",
+      "excerpts": [
+        {
+          "line": 175,
+          "text": "var endTime = _isBaseData ? ((IBaseData)data).EndTime : default;"
+        },
+        {
+          "line": 180,
+          "text": "_rowTimes.Add(endTime);"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\source_agent\\official_sdk_static\\Common__Data__Fundamental__FineFundamental.cs",
+      "raw_sha256": "dd9d2723064ab5f985a5882acb341312a9add1a695227d5c7aee72c7ec5867f8",
+      "excerpts": [
+        {
+          "line": 33,
+          "text": "get { return Time + QuantConnect.Time.OneDay; }"
+        },
+        {
+          "line": 34,
+          "text": "set { Time = value - QuantConnect.Time.OneDay; }"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\source_agent\\official_sdk_static\\Research__QuantBook.cs",
+      "raw_sha256": "deff384e1e5e06aa7710ae392f28aa098903e854efaa5c8c2539e7491826a0b6",
+      "excerpts": [
+        {
+          "line": 774,
+          "text": "var filteredUniverseSelectionData = RunUniverseSelection(convertedUniverse, start, end, dateRule);"
+        },
+        {
+          "line": 942,
+          "text": "var history = History(universe, start, endDate);"
+        },
+        {
+          "line": 1132,
+          "text": "if (dateRule == null)"
+        }
+      ]
+    },
+    {
+      "path": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\upstream_history_factory.cs",
+      "raw_sha256": "44bff6b758e1874bf602cdfa418e00cd946cd2c1496fcbc0eb1cc31b2a80a5b1",
+      "excerpts": [
+        {
+          "line": 86,
+          "text": "startAlgoTz.ConvertToUtc(_algorithm.TimeZone),"
+        },
+        {
+          "line": 87,
+          "text": "endAlgoTz.ConvertToUtc(_algorithm.TimeZone))"
+        }
+      ]
+    }
+  ]
+}

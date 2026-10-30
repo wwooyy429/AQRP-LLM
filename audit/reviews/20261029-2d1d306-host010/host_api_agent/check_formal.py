@@ -1,0 +1,63 @@
+from pathlib import Path
+from hashlib import sha256
+import json,re
+O=Path(__file__).resolve().parent;R=O.parent
+read=lambda n:json.loads((R/n).read_text(encoding='utf-8'))
+raw=(R/'formal_report.json').read_bytes();formal=json.loads(raw);own=read('host_api_agent/report.json')
+checks=[]
+def check(name,truth):checks.append({'name':name,'passed':bool(truth)})
+expected='224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14'
+check('frozen_formal_hash',sha256(raw).hexdigest()==expected)
+check('source_exact',formal['reviewed_source_commit']==own['source_commit'])
+check('materials_exact',formal['evidence_commits']['materials']==own['materials_commit'])
+api=next(x for x in formal['tests'] if x['name']=='independent_Python_API')
+check('API_methods_18',api['methods']==own['distinct_methods']==18)
+check('API_scenarios_89',api['scenarios']==own['named_scenarios']==89)
+check('API_passed18_no_errors',api['passed']==18 and api['failures']==api['errors']==api['skips']==0)
+check('API_actually_executed',api['actually_executed'] is True)
+check('API_scope_finite',formal['software_acceptance']['new_host_Python_API']=='已测合成范围通过')
+check('API_local_scope_matches',formal['local_host_scope']['Python_API']=='18方法/89场景已测合成范围通过')
+check('reviewer_first_signature_error_disclosed','首跑1个审核夹具签名错误' in formal['reviewer_corrections']['API'])
+check('corrected_main_and_first_supplement_disclosed','主12/63重跑通过，补6/26首次通过' in formal['reviewer_corrections']['API'])
+check('our_first_error_retained',own['first_run_preserved']['errors']==1 and (O/'first_script.py').is_file() and (O/'first.stderr').is_file())
+check('our_current_no_product_findings',own['findings']==[])
+check('no_changed_product_or_assertions',formal['reviewer_corrections']['product_source_or_assertions_changed_to_force_pass'] is False)
+check('raw_source_counts_match',formal['version_consistency']['source_raw_files']==own['source_guard']['source']['files']==7080 and formal['version_consistency']['materials_raw_files']==own['source_guard']['materials']['files']==7445)
+check('our_fixed_trees_unchanged',all(not x['changed'] for x in own['source_guard'].values()))
+check('factory_authority_separate_trusted_boundary','可信Python factory/TransportAuthority' in formal['local_host_scope']['authority_boundary'])
+check('stdin_does_not_grant','stdin不授读取权限' in formal['local_host_scope']['authority_boundary'])
+check('awaiting_requires_fixed_parser','awaiting_native_receipt' in formal['local_host_scope']['automatic_native_receipt_collection_and_settlement'] and '原parser/日志/零订单/Bridge/Registry' in formal['local_host_scope']['automatic_native_receipt_collection_and_settlement'])
+check('real_host_unverified',formal['local_host_scope']['real_factory_transport_scheduler']=='未部署/未验证')
+wr=next(x for x in formal['findings'] if x['id']=='WR-29')
+check('WR29_scope_CLI_not_API','Default off and canonical Python API remain usable' in wr['impact'])
+check('WR29_P1_line469',wr['priority']=='P1' and wr['file']=='tools/followup_host.py' and wr['line']==469)
+check('WR29_exact_type_gate_at_line',"type(host) is not FollowupHost" in (R/'source/tools/followup_host.py').read_text().splitlines()[468])
+check('CLI_failed',formal['software_acceptance']['new_host_enabled_CLI_stdio']=='失败_WR29')
+check('new_component_not_passed',formal['software_acceptance']['new_host_component_overall']=='不通过')
+check('phase2_not_passed',formal['software_acceptance']['stage2_overall']=='未通过')
+check('prior975_scope_preserved',formal['software_acceptance']['prior975_scope']=='原有限通过保留')
+check('new_live_run_null',formal['platform_evidence_level']['new_source_cloud_run'] is None)
+check('new_live_orders_null',formal['platform_evidence_level']['new_source_orders'] is None)
+check('financial_false',formal['financial_evidence'] is False)
+check('all_financial_metrics_null',all(v is None for v in formal['financial_metrics'].values()))
+check('execution_gates_closed',all(formal['software_acceptance'][k] is False for k in ['formal_research_enabled','GPT_runtime_enabled','orders_enabled','final_test_enabled']))
+records=read('root_execution_records.json');labels={x['label']:x for x in records}
+for label in ['repository_verify','host_specific_19','verify_materials','verify_scope_7']:
+    check('root_command_exit0_'+label,labels[label]['exit_code']==0)
+repo=read('repository_verification.json')
+check('actual_root_output_1006',bool(re.search(r'Ran 1006 tests.*?OK',repo['test_output'],re.S)))
+for name,count in [('repository',1006),('developer_host_subset',19),('developer_scope_metadata',7)]:
+    value=next(x for x in formal['tests'] if x['name']==name)
+    check('formal_root_test_'+name,value['methods']==value['passed']==count and value['failures']==value['errors']==value['skips']==0 and value['actually_executed'] is True)
+check('no_unique_total', '不累加独有总数' in formal['counting'])
+check('cloud_writes_zero',all(formal['tool_capabilities'][k]==0 for k in ['QC_calls','Research_executions','LEAN_submissions','compile_calls','market_or_model_calls','production_automation','authoritative_budget_or_production_writes','PR_push_approval_merge']))
+text=(R/'formal_report.txt').read_text(encoding='utf-8')
+tail=text.split('完整机器报告：',1)[1].lstrip();embedded,end=json.JSONDecoder().raw_decode(tail)
+check('text_embedded_report_semantically_equal',embedded==formal)
+check('text_contains_real_CLI_failure','实际exit2，应0' in text)
+check('text_maintains_API_pass','新独立API18/89通过' in text)
+check('report_original_unchanged',sha256((O/'report.json').read_bytes()).hexdigest()=='1b5194b55db2cc22d9502babc5b0b249b12ccdda7712b53cda62ca8c100891ef')
+issues=[c['name'] for c in checks if not c['passed']]
+result={'formal_report_sha256':expected,'scope':'Read-only static consistency QA; no product tests rerun and no report edits','static_checks':len(checks),'passed':len(checks)-len(issues),'issues':issues,'checks':checks,'financial_evidence':False}
+(O/'formal_QA.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps({'checks':len(checks),'issues':issues,'hash':expected}));raise SystemExit(bool(issues))

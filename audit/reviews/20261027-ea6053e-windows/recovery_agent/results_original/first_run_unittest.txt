@@ -1,0 +1,49 @@
+test_freeze_all_versions_states_entrypoints_no_write (__main__.RecoveryTests) ... ok
+test_missing_tampered_foreign_admission_and_input_rejected_no_write (__main__.RecoveryTests) ... ok
+test_original_attempt_research_and_lean_settlement_after_drift (__main__.RecoveryTests) ... test_two_process_mixed_freeze_cannot_change_pointer (__main__.RecoveryTests) ... ok
+test_unknown_attempt_rejected_without_pointer_dependency_or_write (__main__.RecoveryTests) ... ok
+
+======================================================================
+FAIL: test_original_attempt_research_and_lean_settlement_after_drift (__main__.RecoveryTests) (version=1, chain='actual-CLI-Research-and-LEAN')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\independent_recovery.py", line 192, in test_original_attempt_research_and_lean_settlement_after_drift
+    finished=okay(invoke(case,['research-result','--attempt',attempt,'--tool-file',native['result']],f'old-v{version}-research-drift'))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\independent_recovery.py", line 47, in okay
+    if result.returncode:raise AssertionError(result.stderr.decode('utf-8',errors='replace'))
+AssertionError: Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v1\source\tools\stage2.py", line 424, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v1\source\tools\stage2.py", line 407, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v1\source\tools\stage2.py", line 318, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v1\source\tools\stage2.py", line 251, in _read_research_dispatch
+    raise EngineeringTaskError("New Research entries require their original dispatch binding before settlement")
+qresearch.engineering_tasks.EngineeringTaskError: New Research entries require their original dispatch binding before settlement
+
+
+======================================================================
+FAIL: test_original_attempt_research_and_lean_settlement_after_drift (__main__.RecoveryTests) (version=2, chain='actual-CLI-Research-and-LEAN')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\independent_recovery.py", line 192, in test_original_attempt_research_and_lean_settlement_after_drift
+    finished=okay(invoke(case,['research-result','--attempt',attempt,'--tool-file',native['result']],f'old-v{version}-research-drift'))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\independent_recovery.py", line 47, in okay
+    if result.returncode:raise AssertionError(result.stderr.decode('utf-8',errors='replace'))
+AssertionError: Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v2\source\tools\stage2.py", line 424, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v2\source\tools\stage2.py", line 407, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v2\source\tools\stage2.py", line 318, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ea6053e-20261027\recovery_agent\results_original\cases\settle-v2\source\tools\stage2.py", line 251, in _read_research_dispatch
+    raise EngineeringTaskError("New Research entries require their original dispatch binding before settlement")
+qresearch.engineering_tasks.EngineeringTaskError: New Research entries require their original dispatch binding before settlement
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 90.967s
+
+FAILED (failures=2)

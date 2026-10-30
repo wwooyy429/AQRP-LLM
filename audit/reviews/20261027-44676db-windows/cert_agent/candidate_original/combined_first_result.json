@@ -1,0 +1,895 @@
+{
+  "expected": {
+    "stock": "insufficient_evidence",
+    "null": "insufficient_evidence",
+    "unmapped": "insufficient_evidence",
+    "future": "insufficient_evidence",
+    "missing": "insufficient_evidence",
+    "etf": "observations_passed",
+    "delisted": "observations_passed"
+  },
+  "actual": {
+    "stock": "insufficient_evidence",
+    "null": "insufficient_evidence",
+    "unmapped": "insufficient_evidence",
+    "future": "insufficient_evidence",
+    "missing": "insufficient_evidence",
+    "etf": "observations_passed",
+    "delisted": "observations_passed"
+  },
+  "reports": {
+    "stock": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "insufficient_evidence",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": false,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": true,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 2,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 0,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8040,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 40,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/f8a0df77f79a300968544366bd805dfe753fde742cb637db60cbc5f9fbe09787.json",
+            "sha256": "f8a0df77f79a300968544366bd805dfe753fde742cb637db60cbc5f9fbe09787"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "observed_all_known_eligible_candidate_histories_complete_failed"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/5751225f00d525c0c17143ac6808382c89bf91ff423c80386337d5ca10d3b351.json",
+        "sha256": "5751225f00d525c0c17143ac6808382c89bf91ff423c80386337d5ca10d3b351"
+      }
+    },
+    "null": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "insufficient_evidence",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": false,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 2,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/a518a0ef9a0d6a2009f296e3ca5d179e2f017d44e990918153cf906006115f6e.json",
+            "sha256": "a518a0ef9a0d6a2009f296e3ca5d179e2f017d44e990918153cf906006115f6e"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "observed_historical_classification_and_mapping_consistent_failed"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/b4b6dbd239a45d05a302dfdb99d6e4dec3b6db32bec5d4f456e6eb8684d59f93.json",
+        "sha256": "b4b6dbd239a45d05a302dfdb99d6e4dec3b6db32bec5d4f456e6eb8684d59f93"
+      }
+    },
+    "unmapped": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "insufficient_evidence",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": false,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 2,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/8481d242e817ea6b5c2d69c9eaf6330e110ba58a8bb226102a0b87a6fa27ddfb.json",
+            "sha256": "8481d242e817ea6b5c2d69c9eaf6330e110ba58a8bb226102a0b87a6fa27ddfb"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "observed_historical_classification_and_mapping_consistent_failed"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/9f4c85b50b7b790b6a16af739387dbff2f66dff1b845f576a8988657af43d1ac.json",
+        "sha256": "9f4c85b50b7b790b6a16af739387dbff2f66dff1b845f576a8988657af43d1ac"
+      }
+    },
+    "future": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "insufficient_evidence",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": false,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 2,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/fc2b19ecd43cbc2cbea2208e1db435013e8e683547fef7e7dd5c0511f3090218.json",
+            "sha256": "fc2b19ecd43cbc2cbea2208e1db435013e8e683547fef7e7dd5c0511f3090218"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "observed_historical_classification_and_mapping_consistent_failed"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/bb2ad35da29ea35495db64dc346841100a2d6888b141e3f0c45c1f087a14c1e2.json",
+        "sha256": "bb2ad35da29ea35495db64dc346841100a2d6888b141e3f0c45c1f087a14c1e2"
+      }
+    },
+    "missing": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "insufficient_evidence",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": false,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 2,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 201,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/9868849f1095e9f8edc7c69d59634efd4e002eb7d58ed2d6a71dde22283e0fc9.json",
+            "sha256": "9868849f1095e9f8edc7c69d59634efd4e002eb7d58ed2d6a71dde22283e0fc9"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported",
+        "observed_historical_classification_and_mapping_consistent_failed"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/ac7c38de7ab66deaa49526b4d505d32e5611a370d589d1897e4423e43ff9b58c.json",
+        "sha256": "ac7c38de7ab66deaa49526b4d505d32e5611a370d589d1897e4423e43ff9b58c"
+      }
+    },
+    "etf": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "observations_passed",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": true,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 0,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/c96c38b8ff7c736dc67c6170ef0fc49c5eeb798264c6317cd315e4deafd06fd6.json",
+            "sha256": "c96c38b8ff7c736dc67c6170ef0fc49c5eeb798264c6317cd315e4deafd06fd6"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/80bd10c7f1fd8cc40176626b4ba094ff1b8683d438477c1dee676ca139db56b1.json",
+        "sha256": "80bd10c7f1fd8cc40176626b4ba094ff1b8683d438477c1dee676ca139db56b1"
+      }
+    },
+    "delisted": {
+      "schema_version": 1,
+      "kind": "data_certification_observed_scope",
+      "plan_hash": "fcb49f9c790715bb90c019a17e355c19aa3700191382d14791f391b50252bac7",
+      "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+      "ingestion_namespace": "8acb68f55a25ef167a74c10123a272d6535ca99fd764e06542917580ce41289f",
+      "data_version_hash": "fe357dd229cbeb16b1ee1eaade7cabf752815f5542b6adde6ce02446239ebee0",
+      "financial_catalog_hash": "5fa5db4f55353a372047080df743d7626414330ab48ca97e5e6755b972c68639",
+      "scope_start": "2018-02-01T00:00:00-05:00",
+      "scope_end_exclusive": "2018-02-03T00:00:00-05:00",
+      "warmup_start": "2018-01-03T00:00:00-05:00",
+      "universe_size": 200,
+      "liquidity_lookback_sessions": 20,
+      "status": "observations_passed",
+      "checks": {
+        "all_required_input_components_present": true,
+        "complete_calendar_formations": true,
+        "complete_twenty_session_warmup": true,
+        "all_known_eligible_candidate_histories_complete": true,
+        "ranked_membership_matches": true,
+        "historical_classification_and_mapping_consistent": true,
+        "raw_price_scope_complete": true,
+        "financial_fields_declared": true,
+        "financial_scope_coverage_complete": true,
+        "declared_actual_timing_complete": true,
+        "historical_all_market_origin_declared": true,
+        "corporate_action_sids_known": true
+      },
+      "counts": {
+        "ambiguous_financial_cells": 0,
+        "ambiguous_mapping_cells": 0,
+        "corporate_action_record_count": 0,
+        "delisting_event_count": 0,
+        "dividend_event_count": 0,
+        "expected_member_cells": 400,
+        "financial_available_cells": 400,
+        "financial_expected_cells": 400,
+        "financial_missing_cells": 0,
+        "financial_record_count": 201,
+        "formation_count": 2,
+        "incomplete_candidate_histories": 0,
+        "incomplete_warmup_formations": 0,
+        "inconsistent_classification_cells": 0,
+        "ipo_event_count": 0,
+        "known_eligible_candidate_expected_cells": 8000,
+        "liquidity_record_count": 4200,
+        "mapping_event_count": 0,
+        "membership_mismatch_formations": 0,
+        "missing_actual_timing_rows": 0,
+        "missing_candidate_session_cells": 0,
+        "missing_or_ambiguous_security_master_cells": 0,
+        "observed_member_cells": 400,
+        "price_expected_cells": 400,
+        "price_missing_cells": 0,
+        "price_observed_cells": 400,
+        "price_record_count": 402,
+        "security_master_record_count": 202,
+        "split_event_count": 0,
+        "unavailable_financial_formations": 0,
+        "unavailable_liquidity_formations": 0
+      },
+      "evidence_refs": {
+        "liquidity": [
+          {
+            "key": "ingestion/v1/batches/5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7.json",
+            "sha256": "5c3bb587be3ef500ceb787b778d1ac70ef0e1b8509f4cae09d3d98014a3f55b7"
+          }
+        ],
+        "financial": [
+          {
+            "key": "ingestion/v1/batches/d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1.json",
+            "sha256": "d24f4f1e4faa9afc2111da3be9d39e217c1fab8b7fc700b842373a47c6a484b1"
+          }
+        ],
+        "membership": [
+          {
+            "key": "data-certification/v1/inputs/f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a.json",
+            "sha256": "f1ab23c0b44d643e07802964c34bacb957ffe1d9a46efdca4b84c5d5ca29eb8a"
+          }
+        ],
+        "prices": [
+          {
+            "key": "data-certification/v1/inputs/44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5.json",
+            "sha256": "44be1433b5423de1dee658a0ee0122bb5febe3e377b7186c54c9afab78a0d5c5"
+          }
+        ],
+        "security_master": [
+          {
+            "key": "data-certification/v1/inputs/416bf7c3d2b39dccd106461f816831a49d18d63ab60ac8670d12e6a57f478775.json",
+            "sha256": "416bf7c3d2b39dccd106461f816831a49d18d63ab60ac8670d12e6a57f478775"
+          }
+        ],
+        "corporate_actions": [
+          {
+            "key": "data-certification/v1/inputs/eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905.json",
+            "sha256": "eb1555ea8afaa6d128791bf23ca96502b4cd2b8445ac1aab96b661401650f905"
+          }
+        ]
+      },
+      "context_ref": {
+        "key": "data-certification/v1/contexts/c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2.json",
+        "sha256": "c59f430d765bdb2f575410dcc30d467d197b46fbd0fab1f4a8cd640cce38a4f2"
+      },
+      "calendar_hash": "29fefdf6a4284c068441199b702d9ec56093c1364258b75d6e04930f5b1eb932",
+      "ranked_membership_hash": "31f342b8ed67d63847e5d9559ba32c3df3fd067dd99595b4ae7546902f254052",
+      "gap_codes": [
+        "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+        "authenticated_vendor_revision_receipt_not_supported",
+        "authoritative_all_market_inventory_receipt_not_supported",
+        "authoritative_security_master_and_action_coverage_receipt_not_supported"
+      ],
+      "vendor_provenance_authenticated": false,
+      "full_historical_US200_certified": false,
+      "actual_availability_certified": false,
+      "financial_vintage_certified": false,
+      "research_certified": false,
+      "row_values_exported": false,
+      "financial_evidence": false,
+      "synthetic": true,
+      "report_ref": {
+        "key": "data-certification/v1/reports/c75f107ce0f86c887040b10afb1f0aee3db263bca8b020817a56a052ad41d0dd.json",
+        "sha256": "c75f107ce0f86c887040b10afb1f0aee3db263bca8b020817a56a052ad41d0dd"
+      }
+    }
+  }
+}

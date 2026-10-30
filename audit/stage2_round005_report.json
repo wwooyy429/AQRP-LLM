@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "kind": "approved_stage2_round005_actual_execution_result",
+  "round_id": "stage2-source-policy-v2-rerun-005",
+  "status": "closed_after_native_Research_failure_no_retry",
+  "parent_commit": "2af0ced1baade64541ad9c7cbbdcad88e36f4af5",
+  "human_approval": "audit/review_packages/cloud-v2-rerun/approved_round005/human_approval.json",
+  "budget_revision_applied": true,
+  "budget_revision_proof": "audit/review_packages/cloud-v2-rerun/approved_round005/budget_revision_application.json",
+  "immutable_initialization_and_original48_events_preserved": true,
+  "journal_events": 55,
+  "effective_limits": {
+    "configurations": 13,
+    "research": 20,
+    "lean": 16
+  },
+  "current_usage": {
+    "configurations": 13,
+    "research": 16,
+    "lean": 2
+  },
+  "round_caps": {
+    "configurations": 1,
+    "research": 1,
+    "lean": 1
+  },
+  "allocation": "reserve",
+  "automatic_retries": 0,
+  "extra_spend_USD": 0,
+  "software_test_count": 844,
+  "software_tests_passed": true,
+  "source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
+  "source_identity": {
+    "kind": "frozen_source_before_round_registration",
+    "software_test_source_manifest_hash": "813c501e586a3da763bc510ffe5ec7dc06bf300f7df354fb78e73f2575f89cc4",
+    "execution_source_manifest_hash": "f7b508bcf77ac036cee03b8d6278863c807f6e4c910176045460c27f834a02d0",
+    "deployment_hash": "e0fad7cb25d69da8cd3741ed456d4016d72ed2602398fa9c01c46d0d527109cd",
+    "configuration_hash": "e6cad0d847e45f402e0ecfab333272af01bcc7dfdaf3e511b97e17762f78a655",
+    "plan_hash": "7f8ebfe274a9dfba1d2293e7d4b27a9b6d248c6a513d45af74a20b096cfb21c8",
+    "cloud_source_count": 35,
+    "registered": true,
+    "Research_executed": true,
+    "LEAN_submitted": false,
+    "runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a"
+  },
+  "auxiliary_budget_boundary_methods": 15,
+  "auxiliary_review_is_independent_GPT_Work_approval": false,
+  "new_configuration_registrations": 1,
+  "new_Research_executions": 1,
+  "new_LEAN_submissions": 0,
+  "runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+  "project_id": 38436695,
+  "managed_source_count": 35,
+  "source_metadata_precheck": "audit/review_packages/cloud-v2-rerun/approved_round005/source_precheck.json",
+  "historical_preserved": {
+    "WR28_closed_at2f_in_original_scope": true,
+    "old_failed_v1_37dc_unchanged": true,
+    "old_2024_2025_exposure_preserved": true
+  },
+  "acceptance": {
+    "new_budget_code_independently_accepted": false,
+    "stage2_accepted": false,
+    "cloud_runtime_succeeded": false,
+    "full_historical_US200_certified": false,
+    "financial_vintage_delivery_ingestion_certified": false,
+    "financial_evidence": false,
+    "final_test_enabled": false,
+    "market_research_enabled": false,
+    "LLM_runtime_enabled": false,
+    "live_trading_enabled": false
+  },
+  "research_attempt_id": "020326aa00434b639e5a73a405168a97",
+  "research_ledger_status": "failed",
+  "research_platform_status": "runtime_error",
+  "research_native_error": {
+    "ename": "CollectionError",
+    "evalue": "Historical source collection failed; unfinished intent retained",
+    "error_output_representations": 2,
+    "logical_error_outputs": 1,
+    "actual_execute_cell_calls": 1
+  },
+  "research_observation": "audit/review_packages/cloud-v2-rerun/approved_round005/research_execute_cell_observation.json",
+  "research_dispatch_binding": "audit/runtime/engineering/research-dispatch/020326aa00434b639e5a73a405168a97.json",
+  "round_status": "closed",
+  "round_usage": {
+    "configurations": 1,
+    "lean": 0,
+    "research": 1
+  },
+  "round_stop_reason": "One approved Research execution returned native CollectionError; no retries permitted; dependent LEAN not submitted.",
+  "LEAN_submission_status": "not_submitted_Research_success_prerequisite_absent",
+  "new_backtest_id": null,
+  "unknown_or_pending_submissions": 0,
+  "automatic_retries_used": 0,
+  "refunds": 0,
+  "approval_snapshot_note": "human_approval.json is the pre-registration human authorization snapshot; this report and journal describe the later actual execution.",
+  "current_raw_journal_sha256": "b7ea9c1a46416b68b05110a1cb2452502e983c8d18a449ae3b673f780124d7b5",
+  "original48_journal_sha256": "ff0440eb196fc5e79be54ab0d6113630510a058313251be667fae6d064a4c71d",
+  "cloud_source_metadata": {
+    "declared_files_read_back_after_upload": 35,
+    "changed_declared_source_writes": 10,
+    "declared_sources_match_frozen_original_identity": true,
+    "input_uploaded_and_exact_readback": true,
+    "all_project_unlisted_files_or_worker_inventory_certified": false
+  },
+  "pre_dispatch_setup_correction": {
+    "first_selected_cell_was_markdown": true,
+    "first_dispatch_precheck_rejected": true,
+    "original_markdown_restored": true,
+    "actual_executed_code_cell_index": 1,
+    "new_claims_or_executions_for_correction": 0,
+    "parser_or_plan_changed": false
+  },
+  "root_cause": {
+    "proven_location": "collection.py480 generic non-CollectionError handler during _collect_window",
+    "specific_underlying_exception": "not_observed",
+    "provider_or_entitlement_or_duplicate_SID_cause_proven": false,
+    "failure_analysis": "audit/review_packages/cloud-v2-rerun/approved_round005/actual_failure_analysis.json"
+  },
+  "economic_metrics": {
+    "IC": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "explanation": "No completed Research report or new LEAN run; no financial claims."
+  },
+  "software_review": "Developer official offline verification passed844 tests on frozen runtime source; new budget-revision code and this delivery remain pending independent review."
+}

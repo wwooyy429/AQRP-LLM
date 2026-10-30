@@ -1,0 +1,55 @@
+from pathlib import Path
+import hashlib,json,os,shutil,subprocess,sys,zipfile
+R=Path(__file__).resolve().parent
+OUT=Path('B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-2f5591e-20261028')
+report=json.loads((R/'formal_report.json').read_bytes());report_hash=hashlib.sha256((R/'formal_report.json').read_bytes()).hexdigest()
+assert report['findings']==[]and report['WR28_resolution']['status']=='fixed_verified_closed'
+assert report['software_acceptance']['phase2_overall']=='not_accepted'and report['financial_evidence']is False
+for name in ['provenance_agent','repro_agent','archive_agent']:
+ p=R/name/'qa.txt';assert p.is_file()and report_hash in p.read_text(encoding='utf-8'),name
+assert not OUT.exists()and not OUT.with_suffix('.zip').exists();OUT.mkdir()
+skip={'__pycache__','.git','git_worktree','work','cases','private_context'}
+for folder,dirs,files in os.walk(R):
+ folder=Path(folder);rel=folder.relative_to(R)
+ immutable=bool(rel.parts and(rel.parts[0]in{'source','archive_source'}or rel.parts[:3]==('baselines','1cf2657','source')))
+ if not immutable:dirs[:]=[d for d in dirs if d not in skip and not(folder/d).is_symlink()and(folder/d).resolve().is_relative_to(R)]
+ for name in files:
+  if not immutable and(name.endswith(('.pyc','.tar'))or name in{'package_result.json','package_smoke_execution.json'}):continue
+  src=folder/name;assert src.resolve().is_relative_to(R);dest=OUT/rel/name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,dest)
+sources=json.loads((OUT/'source_git_manifest.json').read_bytes())
+for name,item in sources.items():
+ S=OUT/item['directory'];actual={p.relative_to(S).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()for p in S.rglob('*')if p.is_file()};assert actual==item['files'],name
+print('All3 complete fixed Git trees copied and verified',flush=True)
+(OUT/'requirements-audit.txt').write_text(''.join(n+'=='+v+'\n'for n,v in report['environment']['dependencies'].items()),encoding='utf-8')
+readme='''AQRP-LLM independent WR-28 correction review,2026-10-28 Asia/Shanghai.
+WR-28/P2 is FIXED, VERIFIED AND CLOSED only for audit-delivery/rawGit-protection scope at2f5591e28c0748ac42caeae7bbf3977141d031cb. No new confirmed defect. Production EOF-v2 remains4a42c18 with its prior finite scoped acceptance. Full phase2 is NOT accepted; no new cloud initialization/runtime success.
+Full fixed trees: source candidate6379,baselines/1cf2657/source old erroneous materials6180,archive_source laterfc0ba0a6414. Production cloud/config/tools/tests/docs/README and main287-file history/budget/exposure union unchanged. Source manifestbf19.../deployment8eb1.../implementation49ee.../configuration3dd0... unchanged. All new helper changes are underaudit and are pinned by the full reviewed Git commit/raw maps.
+Verify the independent seal: python -B verify_artifacts.py
+Standard-library reproduction: python -B minimal_wr28_fixed.py source
+Expected122 new rawSHA256/Git blobOID/bytecounts verified and3 original wrong legacy declarations explicitly retained. This trusts the manifest pinned to the reviewed Git source; it is not standalone remote-origin proof.
+Direct complete checker, without.git: python -B source/audit/review_packages/deployment-eof-v2/verify_candidate.py
+Expected exit0 on pristine source; legacy baseline originalchecker still fails at its raw declaration. Do not rewrite old failure evidence or convert protected bytes. The original old list still mismatches119/122 by design as immutable provenance; protection uses the separate corrected rawGit manifest.
+All122 records were independently reconstructed from rawGit archive,3fixed ls-tree maps, exact tree IDs and source path-list bytes. SHA256/GitSHA1blob(header+raw)/bytecount/original declaration all match. Literal manifest rawSHA1e0ddb39688b767bc798964c75598a254aa92a6b90ad2afc2290d17759839155; original pathlist rawSHA26308901ada1f73a1fa9064bc76d4a55ec9ed53b820ab1dc9bcd2f529ad28677/OID2988aa67d03d862d4544abfad98145f355d2cccb. Full origin reconstruction needs local readonly Git objects for frozen8d65c29/4a42c18/1cf2657; the private Git database is not bundled. The no.git checker is deliberately portable and does not need Git at execution.
+Actual root replays:11developer audit methods; full end-to-end with2clean no.git exports+1normalLF checkout all accepted,10tamper cases all rejected (13checker processes),2production builds idempotent/rawbytes unchanged,825repository tests actually run in disposable LF checkout and passed. Build_git_protection repeated the exact existing manifest without overwriting. Default compact-import verification passed; sibling independently verified full oldZIP and Git maps.
+New independent suites: provenance8methods328named scenarios plus3/13,CLI7methods34named scenarios,all first run passed. Provenance covers each of122 one-byte mutations,original3CRLF/BOM,closed schema/types/JSON/source anchors,16MiB bounds,builder output conflict and actualWindows junction. CLI runs28checkers:2positive no.git (one disables allsubprocess/Popen),1expected oldbaseline failure,24isolated mutations rejected,1self-consistent manifest+file replacement accepted as declared authenticity boundary. Those are overlapping populations, not a unique test sum; the latter is NOT counted as a rejection or remote proof. Git rebuild exposes an invented table, while original published manifest rejects the same changed file.
+Old source-only fixture is exactly Git662ccd engineering_smoke.py3561bytes/SHA33ffa365...;1appendedLF yields5b7111...; v1extraLF rejection,explicitv2worker equality,strictlocal rejection,body rejection retained. Fixture is not newly observed worker bytes and cannot certify a platform transformation layer/all workers/39cafa rootcause.
+Historical preservation: all167non-source files700596bytes from prior independentZIP retained raw,plus1separateuser_delivery. Compact copied-index168,seal173,actual174. Original18,685entryhashes/CRC and18,517source blobs across3fixed trees independently verified. Only duplicate source trees and2large maps omitted from compactcopy; they remain in the separately retained original sealedZIP. Its SHAe7f32eba7ccebcd6f833a9954b5ca13f50ec1a762497c59ae5f8a7a93fcc1910 and formalreport78a615a1... preserved. OriginalopenWR28 report,first failures/reviewer corrections/reruns/QA and9originals remain unchanged. Current new closure never retroactively rewrites the old failedSHA.
+58independent logical static/archive checks+5privateMemory metadata checks passed,0unit methods. Three reviewer-stopped archive attempts are retained:250vs287population mismatch,prefix misselection of supplementaluser_delivery,wrong readinessfieldkey. Only reviewer scopes/key were corrected; product/originalhashes/oldZIP untouched.
+Budget48events/ff0440...,original46prefixf50d...,usage12/12configurations,15/20Research,2/16LEAN,roundclosed,no newevents/debits/refunds/configregistration. Old37dc/3e688 remainsv1/RuntimeError/failed,input8c9de804... unchanged,actual7successchecks/ordersnull. New3ddconfiguration remains unregistered/undeployed withcapacity0. No newQC/Research/LEAN/platformcompile/marketprovider/modelAPI or production/authoritative writes. No terminal/log live reads or polling.
+Full historicalUS200/SIDeconomic ambiguity/financial numericcatalog0/vintages/publication/actualdelivery/ingestion and chargedcertificationnative dispatch remain incomplete. Certification computation kernel exists. Formal research/autonomousGPT/trading/finaltest closed;2024-2025 exposure retained,2026independence unverified. Financial evidencefalse and metricsnull. Stages3-7 remain unaccepted.
+For full test rerun use an unsealed scratch checkout withrequirements-audit.txt/Python3.10.11 and fixedGit objects. Root/agent execution records preserve actual argv/cwd/exits/stdout/stderr hashes. Official end-to-end outputs underend_to_end are fresh reviewer executions, not merely copied developer logs. Never run writers inside this sealed bundle; use new output paths. Only redundant private Git/source/store/case trees and bytecode outside immutable fixed source omitted. ZIP hash is a companion outside the self-seal.
+'''
+(OUT/'README.txt').write_text(readme,encoding='utf-8')
+manifest={p.relative_to(OUT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest()for p in OUT.rglob('*')if p.is_file()}
+(OUT/'artifact_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
+verified=subprocess.run([sys.executable,'-B',str(OUT/'verify_artifacts.py')],capture_output=True);assert verified.returncode==0,verified.stderr;print(verified.stdout.decode(),flush=True)
+archive=OUT.with_suffix('.zip')
+with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6)as z:
+ for p in OUT.rglob('*'):
+  if p.is_file():z.write(p,OUT.name+'/'+p.relative_to(OUT).as_posix())
+with zipfile.ZipFile(archive)as z:
+ assert z.testzip()is None
+ assert set(z.namelist())=={OUT.name+'/'+n for n in set(manifest)|{'artifact_manifest.json'}}
+ for name,digest in manifest.items():assert hashlib.sha256(z.read(OUT.name+'/'+name)).hexdigest()==digest,name
+result={'directory':str(OUT),'zip':str(archive),'zip_bytes':archive.stat().st_size,'zip_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'manifest_entries':len(manifest),'source_counts':{k:v['count']for k,v in sources.items()},'portable_verifier_exit':verified.returncode,'formal_report_sha256':hashlib.sha256((OUT/'formal_report.json').read_bytes()).hexdigest(),'WR28':'fixed_verified_closed_for_new_delivery','phase2_accepted':False}
+(R/'package_result.json').write_text(json.dumps(result,ensure_ascii=True,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=True),flush=True)

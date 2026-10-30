@@ -1,0 +1,37 @@
+{
+  "kind": "auxiliary_developer_boundary_review_not_independent_GPT_Work_acceptance",
+  "no_QC_calls": true,
+  "no_real_registry_access_in_this_supplement": true,
+  "shared_sources_modified": false,
+  "source_hash_policy": "UTF-8 normalized LF",
+  "source_hashes": {
+    "cloud/qresearch/engineering_rounds.py": "cf3188fb47ec8789b5e270695e0c31daa705157d5545de1b6c16b816f9c59320",
+    "cloud/qresearch/registry.py": "800da58e46e1615ce94e1f6b0207a8c68e5c91c7c991e2e9bc32111722dcbe87",
+    "tests/test_normal_engineering_round.py": "7485e1afa86fe000c9ea067db1fdaf802c362cb402bec0f84ae444eac6c4db84",
+    ".git/repair-work/sid-normal-round/gates-review/test_independent_normal_gate.py": "3ebb34ff8ffd58dff1d9fec8c2e0fb2b9f3fddfbf22c23c2c3a9a5f897a9d706"
+  },
+  "actual_test_runs": [
+    {
+      "test": "private IndependentNormalGateTests",
+      "count": 8,
+      "seconds": 0.096,
+      "result": "OK"
+    },
+    {
+      "test": "tests/test_normal_engineering_round.py",
+      "count": 8,
+      "seconds": 0.274,
+      "result": "OK"
+    },
+    {
+      "test": "tests/test_engineering_rounds.py",
+      "count": 12,
+      "seconds": 0.849,
+      "result": "OK"
+    }
+  ],
+  "covered_conclusion": "Normal grant stays scoped, per-resource/global bucket limits and legacy engineering stop remain effective; original reserve schema retains compatibility.",
+  "trust_boundary": "Human approval is trusted operator transcription, not cryptographic human identity. No program can infer that free-text question semantically matches limits. Freeze actual 2/4/2 metadata and verbatim human exchange; do not let proposals author grants.",
+  "final_test_enabled_by_this_review": false,
+  "financial_evidence": false
+}

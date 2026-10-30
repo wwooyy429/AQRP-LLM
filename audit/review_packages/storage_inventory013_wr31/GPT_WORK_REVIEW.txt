@@ -1,0 +1,21 @@
+WR-31 / P2 修复候选013独立复审指令
+
+请固定本包实际Git资料SHA；以PR2固定链接及审核聊天明确给出的SHA为准。产品源码仍dee26eec9481e8c75c09c2b97c680707d1814452，full source hash 397c9cfe2130a0c36d7c8b8bd7cd0051a93c1556562dc03a9575139ba54c099c。本次修复仅属于新增离线审计分析器；不授予阶段2整体、数据、计费或金融有效性通过。
+
+012资料5955ca8与后续delivery31ddda8全部保持原字节。012独立结论是：实际归档UI元数据及保守保留范围通过，通用分析器因WR31失败。WR31尚未独立关闭。原审核选取18份文件以原字节压缩保存，含正式报告、MRE、原失败及分页首probe/修正probe记录；不是完整21MB封存包，未恢复开发旧轮丢失stderr。
+
+先运行 python -B audit/review_packages/storage_inventory013_wr31/verify_packet.py。再运行 reviewer_minimal_wr31.py 分别指向旧012与新013分析器；同一原审核脚本、原三项字面预期不改，旧应退出1，新应退出0。原控制中的负起点和同label矛盾范围必须拒绝，所有对象deletion_authorized仍false。请自行构造独立边界，不仅运行开发脚本。
+
+修复语法：每个观察的paging必须list[str]，恰好一份完整range和一份完整Page标签；大小写不敏感，只接受ASCII数字、空格/Tab、既有紧凑Page1of2形式。完整fullmatch，拒绝负号/前后垃圾/同label多claim/额外未知label/非文本/缺失或重复Page。range数字最多7位且总数≤1000000，Page数字最多6位且总页数≤100000，转int前限宽；超限数字保留既有invalid_UI_page_count诊断。Page总数仍只是布局元数据，完整性继续由位置↔key双向一致、单一总数、全位置覆盖、实际行数、唯一key和冲突检查决定。
+
+20项旧字面fixture由check_legacy_known_answers.py指向新分析器重放；check_boundaries.py为协作开发测试，12方法、96 subtest，不是独立验收，也不能将其与20、1085产品套件或重复轮数相加当独有测试总数。首次候选MRE/新边界通过，但旧20中1项诊断reason不兼容，first_candidate_analyzer.py及首失败保留；仅修诊断分类，不改旧断言，最终全部通过。setup导入时将用户报告JSON哈希误配TXT的辅助脚本失败单独披露，未伪造原报告或恢复未存helper源码。
+
+check_actual_parity.py在内存重算63观察/126标签，要求结果与旧fixed assessment整个结构相等，456叶子、31完整已访目录、10未展开历史子树、96身份组及保留结论不变。不复制或重采集真实云端数据，也不复制另一份1MB实际结果。输入读取复用不可变012，默认输出路径仅013；请复验输出不能覆盖012、路径穿越及其他目录输入拒绝。
+
+本轮实际完整离线运行 python -B tools/stages.py verify，1085项产品合成回归通过；源码及配置未改。所有原始测试stdout/stderr和运行元数据已留档，阶段verify报告raw原件与LF可读镜像区别见报告。原软件/009固定资料保持历史结论；本轮没有QC、Research/LEAN、模型、编译、购买、对象读取或删除。
+
+预算Registry仍80事件；配置周期4/13（累计17）、Research18/20、LEAN4/16，原预算/事件字节不变。13复核对象不是删除清单，确认0B表示证明不足，潜在总量未知。CLOUD_REFERENCE_PLAN.txt只是有权限云内闭包与精确容量核验的准备，不构成执行或删除授权。
+
+复审禁止QC调用、真实对象访问或导出、Research/LEAN、预算修改、删除、购买、正式研究、自动GPT、交易或最终测试。保留2024–2025暴露和2026独立性未认证。请分别报告WR31软件范围、012原件保留、当前清单结论及其他阶段2缺口；独立结果未送达前仍标候选待复验。
+
+交付首版69b3be6从全新Git检出真实退出1：配置原字节校验把历史工作区CRLF误要求为Git LF，首个断言config/data.json。首败完整结果与原固定提交保留。修正仅在新审计包逐文件记录工作区/Git两种既有原字节hash并要求规范化文本hash相等，第三种字节表示仍拒绝；预算及Registry仍要求唯一原字节hash，未规范化任何配置或产品文件。实际差异清单见configuration_representation_repair.json；本包应采用后续修正固定SHA，不能把69首败改称通过。

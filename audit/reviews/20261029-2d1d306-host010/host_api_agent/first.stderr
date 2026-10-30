@@ -1,0 +1,25 @@
+test_01_default_off_and_metadata_no_permissions (__main__.Tests) ... ok
+test_02_original_deadline_and_discovery_once (__main__.Tests) ... ok
+test_03_authority_is_explicit_and_exact_task (__main__.Tests) ... ok
+test_04_binding_conflicts_and_duplicate_idempotence (__main__.Tests) ... ok
+test_05_bad_discovery_is_not_authority (__main__.Tests) ... ok
+test_06_directory_terminal_never_overrides_connector (__main__.Tests) ... ok
+test_07_three_pages_read_and_original_parser_settlement (__main__.Tests) ... ERROR
+test_08_running_missing_pagination_and_page_cap_stop (__main__.Tests) ... ok
+test_09_run_once_unknown_response_never_reissues (__main__.Tests) ... ok
+test_10_crash_between_controller_and_host_reservations (__main__.Tests) ... ok
+test_11_threads_and_completed_read_only_once (__main__.Tests) ... ok
+test_12_six_native_processes_one_discovery (__main__.Tests) ... ok
+
+======================================================================
+ERROR: test_07_three_pages_read_and_original_parser_settlement (__main__.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2d1d306-20261029\host_api_agent\independent_host_api.py", line 153, in test_07_three_pages_read_and_original_parser_settlement
+    observed=backtest_observation(payload,{'tool_name':H.READ,'arguments':q['arguments'],'result':result},native_logs(payload),orders_envelope={'tool_name':'mcp__quantconnect__read_backtest_orders','arguments':{'projectId':PROJECT,'backtestId':BACKTEST,'page':1},'result':native({'success':True,'orders':[],'totalOrders':0,'totalPages':1})})
+TypeError: backtest_observation() got an unexpected keyword argument 'orders_envelope'
+
+----------------------------------------------------------------------
+Ran 12 tests in 4.826s
+
+FAILED (errors=1)

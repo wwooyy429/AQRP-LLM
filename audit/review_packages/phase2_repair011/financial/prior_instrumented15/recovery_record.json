@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "prior_actual_run_output_byte_reconstruction",
+  "runs": [
+    {
+      "name": "financial_fixed_boundaries",
+      "test_count": 15,
+      "reported_seconds": 0.299,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "48d4de3174bbc74c9570f523353678823165368137579844f8de50c89f26ac88"
+    },
+    {
+      "name": "historical_source_regression",
+      "test_count": 13,
+      "reported_seconds": 0.348,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b7a3f093a39612997ff3c8992a706d76fe5ae46b158cfc76aebb6f17bc3466ca"
+    },
+    {
+      "name": "capability_catalog_regression",
+      "test_count": 1,
+      "reported_seconds": 4.941,
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d245e7f8bf0b39f06110761801d95621fa266f827b0c4f7df499f24076499513"
+    }
+  ],
+  "recovery": "The rerun used the same output filenames. Previous stderr bytes were reconstructed from the retained later unittest output and earlier actual times/counts; each recovered original matches the SHA256 recorded in the earlier actual tool output exactly. Empty stdout matches its earlier hash.",
+  "sha256_checks_all_matched": true,
+  "actual_original_source_hash_financial_module": "d0ab71d7c3b644aed71e60867a65ef8fee477d1a610b20baf36daf62e899facf",
+  "counts_overlap_later_runs_do_not_sum": true,
+  "financial_certification": false,
+  "cloud_calls": 0,
+  "budget_mutations": 0,
+  "original_files_not_continuously_retained": true,
+  "reconstructed_bytes_not_primary_final_verification": true,
+  "primary_final_original_outputs": "../verification.json and its referenced final17/13/1 original streams"
+}

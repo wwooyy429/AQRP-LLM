@@ -1,0 +1,474 @@
+test_absent_empty_none_and_standard_annotation_controls (test_wr13_annotations.WR13AnnotationTests) ... ok
+test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) ... test_annotations_inside_recursive_wrapper_and_json_text_are_checked (test_wr13_annotations.WR13AnnotationTests) ... test_nonfinite_priority_is_rejected_even_in_direct_extractor (test_wr13_annotations.WR13AnnotationTests) ... test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) ... test_standard_annotations_on_outer_text_carrier_are_preserved (test_wr13_annotations.WR13AnnotationTests) ... test_text_content_is_string_not_a_recursive_object_or_array (test_wr13_annotations.WR13AnnotationTests) ... test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) ... test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) ... test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) ... 
+======================================================================
+ERROR: test_standard_annotations_on_outer_text_carrier_are_preserved (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': ['assistant'], 'priority': 0.25, 'lastModified': '2026-10-26T00:00:00Z'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 150, in test_standard_annotations_on_outer_text_carrier_are_preserved
+    self.assertEqual(self.extract(STANDARD, outer=value), "e30=")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 136, in extract
+    return _research_stdout(_native(envelope(shape(text_node(annotations=annotations), wrapper), outer=outer)))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_receipts.py", line 112, in _native
+    _fail("Only text native observations are permitted")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_receipts.py", line 39, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Only text native observations are permitted
+
+======================================================================
+ERROR: test_standard_annotations_on_outer_text_carrier_are_preserved (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': [], 'priority': 0.0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 150, in test_standard_annotations_on_outer_text_carrier_are_preserved
+    self.assertEqual(self.extract(STANDARD, outer=value), "e30=")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 136, in extract
+    return _research_stdout(_native(envelope(shape(text_node(annotations=annotations), wrapper), outer=outer)))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_receipts.py", line 112, in _native
+    _fail("Only text native observations are permitted")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_receipts.py", line 39, in _fail
+    raise ReceiptParseError(message)
+qresearch.engineering_receipts.ReceiptParseError: Only text native observations are permitted
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations='annotation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': 'assistant'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': ['system']})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': [True]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'audience': [{'role': 'assistant', 'rows': ['WR13-SYNTHETIC-ANNOTATION-ROW']}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'priority': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'priority': '0.25'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'priority': -0.01})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'priority': 1.01})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'priority': {'value': 0.25, 'rows': ['WR13-SYNTHETIC-ANNOTATION-ROW']}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'lastModified': None})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'lastModified': 123})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotation_container_and_field_types_are_not_ignored (test_wr13_annotations.WR13AnnotationTests) (annotations={'lastModified': {'text': 'WR13-SYNTHETIC-ANNOTATION-ROW'}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 171, in test_annotation_container_and_field_types_are_not_ignored
+    with self.subTest(annotations=annotation), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotations_inside_recursive_wrapper_and_json_text_are_checked (test_wr13_annotations.WR13AnnotationTests) (shape=['results'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 189, in test_annotations_inside_recursive_wrapper_and_json_text_are_checked
+    with self.subTest(shape=list(value)), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_annotations_inside_recursive_wrapper_and_json_text_are_checked (test_wr13_annotations.WR13AnnotationTests) (shape=['type', 'text', 'annotations'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 189, in test_annotations_inside_recursive_wrapper_and_json_text_are_checked
+    with self.subTest(shape=list(value)), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonfinite_priority_is_rejected_even_in_direct_extractor (test_wr13_annotations.WR13AnnotationTests) (value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 176, in test_nonfinite_priority_is_rejected_even_in_direct_extractor
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonfinite_priority_is_rejected_even_in_direct_extractor (test_wr13_annotations.WR13AnnotationTests) (value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 176, in test_nonfinite_priority_is_rejected_even_in_direct_extractor
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_nonfinite_priority_is_rejected_even_in_direct_extractor (test_wr13_annotations.WR13AnnotationTests) (value=-inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 176, in test_nonfinite_priority_is_rejected_even_in_direct_extractor
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) (value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 181, in test_obviously_invalid_modification_dates_are_rejected
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) (value='not-a-date')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 181, in test_obviously_invalid_modification_dates_are_rejected
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) (value='2026-13-01T00:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 181, in test_obviously_invalid_modification_dates_are_rejected
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) (value='2023-02-29T00:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 181, in test_obviously_invalid_modification_dates_are_rejected
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_obviously_invalid_modification_dates_are_rejected (test_wr13_annotations.WR13AnnotationTests) (value='2026-10-26T25:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 181, in test_obviously_invalid_modification_dates_are_rejected
+    with self.subTest(value=value), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_text_content_is_string_not_a_recursive_object_or_array (test_wr13_annotations.WR13AnnotationTests) (value_type='dict')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 194, in test_text_content_is_string_not_a_recursive_object_or_array
+    with self.subTest(value_type=type(value).__name__), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_text_content_is_string_not_a_recursive_object_or_array (test_wr13_annotations.WR13AnnotationTests) (value_type='list')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 194, in test_text_content_is_string_not_a_recursive_object_or_array
+    with self.subTest(value_type=type(value).__name__), self.assertRaises(ReceiptParseError):
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='content', keys=['rows'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='content', keys=['error'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='content', keys=['outputs'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='content', keys=['_meta'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='content', keys=['audience', 'unexpected'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='outputs', keys=['rows'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='outputs', keys=['error'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='outputs', keys=['outputs'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='outputs', keys=['_meta'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='outputs', keys=['audience', 'unexpected'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='root', keys=['rows'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='root', keys=['error'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='root', keys=['outputs'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='root', keys=['_meta'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_unknown_row_error_and_output_annotations_rejected_at_every_entry (test_wr13_annotations.WR13AnnotationTests) (wrapper='root', keys=['audience', 'unexpected'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 159, in test_unknown_row_error_and_output_annotations_rejected_at_every_entry
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='content', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='content', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='outputs', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='outputs', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='root', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_new_collection_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='collection', entry='root', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='content', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='content', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='outputs', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='outputs', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='root', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+======================================================================
+FAIL: test_old_research_worker_to_registry_chain (test_wr13_annotations.WR13ReceiptChainTests) (kind='legacy', entry='root', accepted=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr13_annotations.py", line 257, in exercise
+    with self.assertRaises(ReceiptParseError) as caught:
+AssertionError: ReceiptParseError not raised
+
+----------------------------------------------------------------------
+Ran 10 tests in 6.025s
+
+FAILED (failures=55, errors=2)

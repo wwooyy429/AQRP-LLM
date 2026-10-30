@@ -1,0 +1,461 @@
+{
+  "reviewed_source_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "methods": 9,
+  "passed_methods": 9,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "subcases": 4,
+  "skipped": 0,
+  "failure_records": 0,
+  "error_records": 0,
+  "failures": [],
+  "errors": [],
+  "observations": {
+    "empty_raw": {
+      "research_attempt": "f47fca8ec027450cac331d098ec11842",
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "refusal": "Joint LEAN requires the verified same-plan Research result",
+      "lean": null,
+      "stored_result": {
+        "scope": "engineering",
+        "identity": {
+          "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+          "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+          "attempt_id": "f47fca8ec027450cac331d098ec11842",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+        },
+        "external_id": "qc-research:931001:f47fca8ec027450cac331d098ec11842",
+        "cloud_report": {
+          "schema_version": 1,
+          "identity": {
+            "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+            "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+            "attempt_id": "f47fca8ec027450cac331d098ec11842",
+            "stage": "research",
+            "project_id": 931001,
+            "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+          },
+          "status": "completed",
+          "terminal": true,
+          "checks": {
+            "raw_data_received": true,
+            "collection_windows_completed": true,
+            "collection_cache_only_replay": true,
+            "collection_nonempty": true
+          },
+          "statistics": {
+            "record_count": 2,
+            "history_calls_first": 1,
+            "history_calls_second": 0,
+            "expected_formation_count": 1
+          },
+          "resolution": {
+            "resolved_request_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+            "resolved_registry_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+            "resolution_artifact_hash": "0e56e4ce76bac5a72547237038582d098f74f4cfd8aceb039c08c1dd6c263a6a",
+            "tickers": [
+              "AAPL",
+              "MSFT"
+            ],
+            "ticker_count": 2,
+            "permanent_sid_count": 2,
+            "method": "QuantBook.add_equity/as-of fixed fixture",
+            "resolved_registry_ref": {
+              "key": "independent/resolution/registry.json",
+              "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+            },
+            "resolved_request_ref": {
+              "key": "independent/resolution/request.json",
+              "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+            }
+          },
+          "evidence": {
+            "collection_probe": {
+              "schema_version": 1,
+              "plan_hash": "228a35720ef89cf7dea45c2c82ca02dbf2d69b28c3dcfcc3621dfc02594f6cd9",
+              "receipt_ref": {
+                "key": "independent/joint/collection-probes/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/f47fca8ec027450cac331d098ec11842.json",
+                "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+              },
+              "window_count": 40,
+              "record_count": 40,
+              "source_fetch_calls": 40,
+              "reused_windows": 0,
+              "empty_windows": 0,
+              "cache_only_source_fetch_calls": 0,
+              "missing_values": {
+                "dollar_volume": 0,
+                "has_fundamental_data": 0,
+                "time": 0,
+                "end_time": 0
+              },
+              "full_historical_US200_certified": false,
+              "actual_availability_certified": false,
+              "research_certified": false,
+              "row_values_exported": false,
+              "financial_vintage_certified": false
+            }
+          },
+          "market_values_exported": false,
+          "economic_factor_tested": false,
+          "final_data_accessed": false,
+          "full_US200_coverage_certified": false,
+          "actual_availability_verified": false
+        },
+        "report_ref": {
+          "key": "independent/joint/reports/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/research/f47fca8ec027450cac331d098ec11842.json",
+          "sha256": "9c0ae502fdb86b3f9b48f54afffd924652f0965fde3f0f1e27dce6e77180c5a8"
+        },
+        "platform_evidence_ref": {
+          "key": "engineering/evidence/f47fca8ec027450cac331d098ec11842/completion/68b510f4dff777b88e2925e72a799ab1ff2b674494b72acd83cec5e8e316a5f9.json",
+          "sha256": "68b510f4dff777b88e2925e72a799ab1ff2b674494b72acd83cec5e8e316a5f9"
+        },
+        "financial_evidence": false
+      }
+    },
+    "input_hash_conflict": {
+      "research_attempt": "a1f1560c1c4b4e3ca9ce31dc90290989",
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "refusal": "Joint LEAN requires the verified same-plan Research result",
+      "lean": null,
+      "stored_result": {
+        "scope": "engineering",
+        "identity": {
+          "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+          "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+          "attempt_id": "a1f1560c1c4b4e3ca9ce31dc90290989",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+        },
+        "external_id": "qc-research:931001:a1f1560c1c4b4e3ca9ce31dc90290989",
+        "cloud_report": {
+          "schema_version": 1,
+          "identity": {
+            "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+            "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+            "attempt_id": "a1f1560c1c4b4e3ca9ce31dc90290989",
+            "stage": "research",
+            "project_id": 931001,
+            "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+          },
+          "status": "completed",
+          "terminal": true,
+          "checks": {
+            "raw_data_received": true,
+            "collection_windows_completed": true,
+            "collection_cache_only_replay": true,
+            "collection_nonempty": true
+          },
+          "statistics": {
+            "record_count": 2,
+            "history_calls_first": 1,
+            "history_calls_second": 0,
+            "expected_formation_count": 1
+          },
+          "resolution": {
+            "resolved_request_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+            "resolved_registry_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+            "resolution_artifact_hash": "0e56e4ce76bac5a72547237038582d098f74f4cfd8aceb039c08c1dd6c263a6a",
+            "tickers": [
+              "AAPL",
+              "MSFT"
+            ],
+            "ticker_count": 2,
+            "permanent_sid_count": 2,
+            "method": "QuantBook.add_equity/as-of fixed fixture",
+            "resolved_registry_ref": {
+              "key": "independent/resolution/registry.json",
+              "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+            },
+            "resolved_request_ref": {
+              "key": "independent/resolution/request.json",
+              "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+            }
+          },
+          "evidence": {
+            "collection_probe": {
+              "schema_version": 1,
+              "plan_hash": "228a35720ef89cf7dea45c2c82ca02dbf2d69b28c3dcfcc3621dfc02594f6cd9",
+              "receipt_ref": {
+                "key": "independent/joint/collection-probes/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/a1f1560c1c4b4e3ca9ce31dc90290989.json",
+                "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+              },
+              "window_count": 40,
+              "record_count": 40,
+              "source_fetch_calls": 40,
+              "reused_windows": 0,
+              "empty_windows": 0,
+              "cache_only_source_fetch_calls": 0,
+              "missing_values": {
+                "dollar_volume": 0,
+                "has_fundamental_data": 0,
+                "time": 0,
+                "end_time": 0
+              },
+              "full_historical_US200_certified": false,
+              "actual_availability_certified": false,
+              "research_certified": false,
+              "row_values_exported": false,
+              "financial_vintage_certified": false
+            }
+          },
+          "market_values_exported": false,
+          "economic_factor_tested": false,
+          "final_data_accessed": false,
+          "full_US200_coverage_certified": false,
+          "actual_availability_verified": false
+        },
+        "report_ref": {
+          "key": "independent/joint/reports/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/research/a1f1560c1c4b4e3ca9ce31dc90290989.json",
+          "sha256": "f41958129c533e65a3dab9f15b0272cbf5e2b709d7c33e61da0a0e0ca81955c8"
+        },
+        "platform_evidence_ref": {
+          "key": "engineering/evidence/a1f1560c1c4b4e3ca9ce31dc90290989/completion/79957df4d943c33be87a6e4af084e171077b1039f441247ad96074ec7576038e.json",
+          "sha256": "79957df4d943c33be87a6e4af084e171077b1039f441247ad96074ec7576038e"
+        },
+        "financial_evidence": false
+      }
+    },
+    "missing_submission": {
+      "research_attempt": "98d689baad034fbe8140248bd694726f",
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "refusal": "Joint LEAN requires the verified same-plan Research result",
+      "lean": null,
+      "stored_result": {
+        "scope": "engineering",
+        "identity": {
+          "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+          "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+          "attempt_id": "98d689baad034fbe8140248bd694726f",
+          "stage": "research",
+          "project_id": 931001,
+          "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+        },
+        "external_id": "qc-research:931001:98d689baad034fbe8140248bd694726f",
+        "cloud_report": {
+          "schema_version": 1,
+          "identity": {
+            "plan_hash": "31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589",
+            "config_id": "27268004a62aeafcd516519750c4a08d9165b0465fbaf4abd0f0dd0377ccd2f1",
+            "attempt_id": "98d689baad034fbe8140248bd694726f",
+            "stage": "research",
+            "project_id": 931001,
+            "source_manifest_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "deployment_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "data_request_hash": "27c5e326afd64d0bdd381466e7410d219b324d5b94cfb2bc01576365f0e7b6ba"
+          },
+          "status": "completed",
+          "terminal": true,
+          "checks": {
+            "raw_data_received": true,
+            "collection_windows_completed": true,
+            "collection_cache_only_replay": true,
+            "collection_nonempty": true
+          },
+          "statistics": {
+            "record_count": 2,
+            "history_calls_first": 1,
+            "history_calls_second": 0,
+            "expected_formation_count": 1
+          },
+          "resolution": {
+            "resolved_request_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+            "resolved_registry_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+            "resolution_artifact_hash": "0e56e4ce76bac5a72547237038582d098f74f4cfd8aceb039c08c1dd6c263a6a",
+            "tickers": [
+              "AAPL",
+              "MSFT"
+            ],
+            "ticker_count": 2,
+            "permanent_sid_count": 2,
+            "method": "QuantBook.add_equity/as-of fixed fixture",
+            "resolved_registry_ref": {
+              "key": "independent/resolution/registry.json",
+              "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+            },
+            "resolved_request_ref": {
+              "key": "independent/resolution/request.json",
+              "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+            }
+          },
+          "evidence": {
+            "collection_probe": {
+              "schema_version": 1,
+              "plan_hash": "228a35720ef89cf7dea45c2c82ca02dbf2d69b28c3dcfcc3621dfc02594f6cd9",
+              "receipt_ref": {
+                "key": "independent/joint/collection-probes/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/98d689baad034fbe8140248bd694726f.json",
+                "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+              },
+              "window_count": 40,
+              "record_count": 40,
+              "source_fetch_calls": 40,
+              "reused_windows": 0,
+              "empty_windows": 0,
+              "cache_only_source_fetch_calls": 0,
+              "missing_values": {
+                "dollar_volume": 0,
+                "has_fundamental_data": 0,
+                "time": 0,
+                "end_time": 0
+              },
+              "full_historical_US200_certified": false,
+              "actual_availability_certified": false,
+              "research_certified": false,
+              "row_values_exported": false,
+              "financial_vintage_certified": false
+            }
+          },
+          "market_values_exported": false,
+          "economic_factor_tested": false,
+          "final_data_accessed": false,
+          "full_US200_coverage_certified": false,
+          "actual_availability_verified": false
+        },
+        "report_ref": {
+          "key": "independent/joint/reports/31abb7dc4d7b3fc6554412642557da7caf33ead68949739877da89de98d39589/research/98d689baad034fbe8140248bd694726f.json",
+          "sha256": "7943c74e22f6c0a1cfbc69e3a765ccd3dee577359ac8869beaf0846574b81bc7"
+        },
+        "platform_evidence_ref": {
+          "key": "engineering/evidence/98d689baad034fbe8140248bd694726f/completion/5eaf2955d0145d3f03227430feae5bd041f9ed236a21f509c2ad82a949e2ee4c.json",
+          "sha256": "5eaf2955d0145d3f03227430feae5bd041f9ed236a21f509c2ad82a949e2ee4c"
+        },
+        "financial_evidence": false
+      }
+    },
+    "process_last_slot": [
+      {
+        "kind": "outcome",
+        "claimant": "joint",
+        "permit": true,
+        "attempt": "3fa03dae079246ba879dc1db6a47c102"
+      },
+      {
+        "kind": "outcome",
+        "claimant": "old",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for research"
+      }
+    ]
+  },
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\admission_agent\\independent_wr16_boundaries.py"
+  ],
+  "script_sha256": "e20ee355f0e35ee4a655e59c7d7cad554f2e58a6e7ee4b9111da11b4f4cb5bc2",
+  "actual_external_calls": 0,
+  "author_fixture_imports": false,
+  "exit_code": 0
+}

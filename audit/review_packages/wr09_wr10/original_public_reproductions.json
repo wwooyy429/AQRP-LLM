@@ -1,0 +1,24 @@
+{
+  "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "purpose": "developer_reproduced_user_supplied_public_probes_before_fix",
+  "real_SDK_executed": false,
+  "market_calls": 0,
+  "runs": [
+    {
+      "script": "minimal_missing_date.py",
+      "chunk_id": "3c7687",
+      "wall_time_seconds": 4.6976909,
+      "exit_code": 1,
+      "original_token_count": 353,
+      "output": "{\r\n  \"source_commit\": \"fbe2454e6ea10aa59211c01f236c54bb251527be\",\r\n  \"evidence\": \"offline synthetic native shape, not actual SDK\",\r\n  \"rows\": [\r\n    {\r\n      \"sid\": \"AUDIT-SID-NO-FUNDAMENTALS\",\r\n      \"snapshot_at\": \"2018-01-03T00:00:00-05:00\",\r\n      \"values\": {\r\n        \"financial_statements.file_date.value\": \"0001-01-01\",\r\n        \"financial_statements.period_ending_date.value\": \"0001-01-01\"\r\n      }\r\n    }\r\n  ],\r\n  \"missing_values\": {\r\n    \"financial_statements.file_date.value\": 0,\r\n    \"financial_statements.period_ending_date.value\": 0\r\n  },\r\n  \"provider_calls_total\": 1,\r\n  \"second_new_calls\": 0,\r\n  \"certification\": {\r\n    \"full_historical_US200_certified\": false,\r\n    \"actual_availability_certified\": false,\r\n    \"research_certified\": false\r\n  },\r\n  \"expected_values\": {\r\n    \"financial_statements.file_date.value\": null,\r\n    \"financial_statements.period_ending_date.value\": null\r\n  },\r\n  \"expected_missing_values\": {\r\n    \"financial_statements.file_date.value\": 1,\r\n    \"financial_statements.period_ending_date.value\": 1\r\n  }\r\n}\r\nTraceback (most recent call last):\r\n  File \"B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\minimal_missing_date.py\", line 48, in <module>\r\n    assert all(rows[0]['values'][f] is None for f in fields), 'Native missing-date sentinel must remain missing'\r\nAssertionError: Native missing-date sentinel must remain missing\r\n"
+    },
+    {
+      "script": "minimal_history_boundary.py",
+      "chunk_id": "796397",
+      "wall_time_seconds": 1.9429425,
+      "exit_code": 1,
+      "original_token_count": 265,
+      "output": "{\r\n  \"source_commit\": \"fbe2454e6ea10aa59211c01f236c54bb251527be\",\r\n  \"real_SDK_executed\": false,\r\n  \"upstream_contract\": \"history accepts EndTime > start and EndTime <= end; pandas index=EndTime\",\r\n  \"requested_plan_interval\": \"[2018-01-03T00:00:00-05:00,2018-01-04T00:00:00-05:00)\",\r\n  \"actual_history_arguments\": [\r\n    [\r\n      \"2018-01-03T00:00:00\",\r\n      \"2018-01-04T00:00:00\"\r\n    ]\r\n  ],\r\n  \"SDK_contract_returned\": [\r\n    \"2018-01-04T00:00:00\"\r\n  ],\r\n  \"rows\": null,\r\n  \"error\": {\r\n    \"type\": \"HistoricalSourceError\",\r\n    \"message\": \"Duplicate or out-of-window native universe snapshot\"\r\n  },\r\n  \"expected_snapshot_times\": [\r\n    \"2018-01-03T00:00:00-05:00\"\r\n  ]\r\n}\r\nTraceback (most recent call last):\r\n  File \"B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-fbe2454-20261026\\minimal_history_boundary.py\", line 39, in <module>\r\n    assert error is None,'Map the SDK history interval to the frozen half-open plan before fetching'\r\nAssertionError: Map the SDK history interval to the frozen half-open plan before fetching\r\n"
+    }
+  ]
+}

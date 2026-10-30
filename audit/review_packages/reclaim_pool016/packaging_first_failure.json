@@ -1,0 +1,16 @@
+{
+  "kind": "developer_report_packaging_failure_not_cloud_or_product_runtime",
+  "command": ".git/repair-work/venv/Scripts/python.exe -X utf8 -B .git/repair-work/reclaim016_finalize.py finalize",
+  "exit_code": 1,
+  "actual_tool_traceback": "Traceback (most recent call last):\n  File \"B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\reclaim016_finalize.py\", line 99, in <module>\n    assert digest == meta.split()[2].decode(), name\nAssertionError: audit/7bf_acceptance_archive_check.json\n",
+  "original_output_file_saved": false,
+  "traceback_transcribed_from_actual_tool_output": true,
+  "what_had_happened": "Current report, three current metadata additions, one experimental audit line and README paragraph had been written. No Registry/budget/cloud state changed.",
+  "cause": "The helper tried to prove all preexisting working-copy raw bytes equal Git blobs. Git-clean files may already have different checkout line endings; that is a different claim from preserving historical raw Git blob identities.",
+  "correction": "Preserve and verify every unchanged historical Git blob ID in the published child tree, retain old blobs through the base commit, verify changed metadata by the new packet raw hashes, and verify budget/Registry by their own raw SHA. Do not normalize or rewrite historical files.",
+  "recovery": "Append operations were made idempotent; no duplicate experiment event or README paragraph is permitted. The first partially written outputs were not represented as a completed verified package.",
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "budget_changes": 0,
+  "Object_Store_deletions": 0
+}

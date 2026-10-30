@@ -1,0 +1,31 @@
+{
+  "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "controller_repair_after_native_failure": true,
+  "runs": [
+    {
+      "label": "postnative_build",
+      "command": [
+        "tools/research.py",
+        "build"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "postnative_verify",
+      "command": [
+        "tools/stages.py",
+        "verify"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "local_tests_passed": true,
+  "test_output": "----------------------------------------------------------------------\nRan 612 tests in 75.908s\n\nOK\n",
+  "source_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
+  "protected_files_count": 37,
+  "all_protected_bytes_unchanged": true,
+  "new_QC_calls": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "financial_evidence": false
+}

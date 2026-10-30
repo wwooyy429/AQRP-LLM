@@ -1,0 +1,17 @@
+--- first
++++ corrected
+@@ -193,11 +193,12 @@
+   for collection in [False,True]:
+    scene('legacy-original-recovery-%s'%collection)
+    with Fixture(collection=collection,version=1)as f:
+-    f.start();original=deepcopy(f.admission);before=dict(f.store._data);use=f.registry.snapshot()['usage']
++    f.start();self.assertIsNone(f.summary(False));original=deepcopy(f.admission);before=dict(f.store._data);use=f.registry.snapshot()['usage']
+     f.dump('audit/deployment.json',{'source_files':wrapper(version=1),'deployment_manifest':wrapper()});(f.root/'cloud/receiver.py').write_bytes(SOURCES['receiver.py']+b'\n')
+     recovered=(cc.prepare_task if collection else stage2.prepare)(f.bridge,f.attempt.attempt_id);self.assertEqual(recovered,original);self.assertEqual(f.store._data,before);self.assertEqual(f.registry.snapshot()['usage'],use)
+     with self.assertRaises(DeploymentVerificationError):verify_deployment_observation(f.m,content_hash(f.m),source_root=f.root/'cloud')
+-    self.assertNotIn('deployment_verification',report(original['payload'])['cloud_report']['evidence'])
++    validate_observation_binding({},f.m,content_hash(f.m))
++    with self.assertRaises(ValueError):validate_observation_binding({'deployment_verification':{}},f.m,content_hash(f.m))
+  def test_v2_native_rejection_uses_records_not_manifest_wrapper_keys(self):
+   scene('native-rejection-v2-records')
+   with Fixture(resolved=True)as f:

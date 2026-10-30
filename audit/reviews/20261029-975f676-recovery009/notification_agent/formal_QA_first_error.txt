@@ -1,0 +1,3 @@
+QA helper initial run exited1 at check_formal.py:51:
+json.decoder.JSONDecodeError: Extra data: line436 column1 (char13748).
+Reason: formal_report.txt intentionally contains the runnable minimum after its complete JSON. The QA helper incorrectly parsed the entire remaining suffix as JSON. Correct only QA reader to JSONDecoder.raw_decode followed by checking the expected minimum heading. No report file or production source changed. check_formal_first.py preserves initial helper.

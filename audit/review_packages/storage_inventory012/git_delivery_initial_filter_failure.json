@@ -1,0 +1,17 @@
+{
+  "kind": "actual_initial_materials_local_Git_cleanliness_check_failure",
+  "initial_materials_commit": "3314f751100d6fa09146d9509817ef80a7f17eeb",
+  "actual_command": "python -B .git/repair-work/host010_accept_publication.py 3314f751100d6fa09146d9509817ef80a7f17eeb",
+  "exit_code": 1,
+  "raw_delta_file_hash_checks_completed_before_failure": 54,
+  "failure_stage": "git status assertion after mixed reset",
+  "Git_reported_modified_CRLF_metadata_files": 14,
+  "cause": "Root *.json text eol=lf clean filtering disagreed with newly preserved raw CRLF audit blobs; original bytes themselves matched the published blob IDs and SHA256",
+  "repair": "Add a directory-local .gitattributes with * -text only inside storage_inventory012; preserve every original evidence byte and product source",
+  "evidence_normalization_performed": false,
+  "product_source_changed": false,
+  "Registry_or_budget_changes": 0,
+  "cloud_object_writes_or_deletions": 0,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

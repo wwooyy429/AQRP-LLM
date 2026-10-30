@@ -1,0 +1,19 @@
+--- first-auditor-input
++++ corrected-auditor-input
+@@ -46,7 +46,7 @@
+                 manifest={'app.py':sha256(b'first\n').hexdigest(),bad:'a'*64};reads=[]
+                 with patch.object(Path,'read_bytes',lambda p:reads.append(str(p)) or b'first\n'):
+                     with self.assertRaises(DeploymentVerificationError) as error:
+-                        verify_deployment(manifest,content_hash(manifest),source_root=RUN)
++                        verify_deployment(manifest,'0'*64,source_root=RUN)
+                 self.assertEqual(reads,[]);self.assertEqual(error.exception.diagnostics['failure_kind'],'invalid_path')
+                 self.assertNotIn(bad,str(error.exception))
+                 self.assertNotIn(str(RUN),str(error.exception))
+@@ -137,6 +137,6 @@
+     d={'source_commit':'66ff72ffaaff8c91c008898e6527c91131176c2a','methods':r.testsRun,'passed_methods':r.testsRun-len(failed|errors),'failed_methods':len(failed),'error_methods':len(errors),
+        'subcases':r.subcases,'skips':len(r.skipped),'failures':[{'method':ident(t),'traceback':tb} for t,tb in r.failures],'errors':[{'method':ident(t),'traceback':tb} for t,tb in r.errors],
+        'observations':OBS,'actual_QC_market_model_worker_calls':0,'script_sha256':sha256(Path(__file__).read_bytes()).hexdigest(),'exit_code':0 if r.wasSuccessful() else 1}
+-    (ROOT/'pure_first_results.json').write_text(json.dumps(d,indent=2)+'\n',encoding='utf-8')
++    (ROOT/'pure_corrected_results.json').write_text(json.dumps(d,indent=2)+'\n',encoding='utf-8')
+     print(stream.getvalue());print(json.dumps({k:d[k] for k in ['methods','passed_methods','failed_methods','error_methods','subcases','exit_code']}));return d['exit_code']
+ if __name__=='__main__':raise SystemExit(main())

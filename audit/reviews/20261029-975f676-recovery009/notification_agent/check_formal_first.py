@@ -1,0 +1,56 @@
+from pathlib import Path
+from hashlib import sha256
+import json
+R=Path(__file__).resolve().parent.parent
+read=lambda p:json.loads((R/p).read_text(encoding='utf-8'))
+raw=(R/'formal_report.json').read_bytes(); report=json.loads(raw); text=(R/'formal_report.txt').read_text(encoding='utf-8')
+Q=[];issues=[]
+def check(name,value):
+    Q.append({'check':name,'passed':bool(value)})
+    if not value:issues.append(name)
+check('requested_report_hash',sha256(raw).hexdigest()=='aad0c66f970efe90f53e1877028ab4dbda07778651de66868f4774266b9e82ad')
+check('fixed_source',report['reviewed_source_commit']=='975f676d62b561689909744f9e7236290e3f5fcb')
+check('fixed_materials',report['evidence_commits']['materials']=='a6a5a165d87c172535cdea6cf495e3c1a850e6e4')
+own=read('notification_agent/report.json')
+check('own_sealed_report_unchanged',sha256((R/'notification_agent/report.json').read_bytes()).hexdigest()=='bb9b909746905a930901efa0aee21b3884860d122aed3d3b1c56c4cf3ec5cb42')
+notice=next(t for t in report['tests'] if t['name']=='independent_notification')
+check('notification_method_count',notice['methods']==own['distinct_method_total']==18)
+check('notification_scenario_count',notice['scenarios']==own['named_scenario_total']==106)
+check('notification_final_no_fail_error_skip',notice['failures']==notice['errors']==notice['skips']==0)
+check('notification_actually_executed',notice['actually_executed'] is True)
+check('notification_corrected_status',notice['result']=='passed_after_reviewer_fixture_correction')
+first=report['reviewer_corrections']['notification_first_run']
+check('first_reviewer_error_disclosed',first['methods']==12 and first['errors']==1 and first['failures']==0)
+check('correction_exact_protocol_disclosed','400' in first['cause'] and '1基' in first['cause'] and '500' in first['cause'] and '0基' in first['cause'] and '产品未改' in first['cause'])
+check('corrected_and_supplement_counts','12方法/79场景' in first['corrected'] and '6方法/27场景' in first['corrected'])
+check('first_failure_artifacts_preserved',all((R/'notification_agent'/p).exists() for p in ['first_script.py','first.stderr','first_results_preserved.json','corrected_results.json','supplement_results.json']))
+follow=report['notification_recovery']
+check('full_synthetic_production_parser_chain',follow['parser_Bridge_Registry_full_synthetic_chain'] is True and 'production backtest_observation parser' in own['cross_module_chain'])
+check('notification_policy_boundary',follow['original_pending_1800_seconds_boundary'] is True and follow['max_pages']==3)
+check('persist_before_request',follow['durable_reservations_before_requests'] is True and follow['unknown_outcome_no_redispatch'] is True)
+check('summary_no_settlement',follow['terminal_summary_does_not_settle'] is True)
+check('one_permission_concurrency',follow['six_process_18_requests_permissions']==follow['thread_history_permissions']==follow['thread_completed_read_permissions']==1)
+check('real_host_explicitly_unverified',follow['real_host_and_push_verified'] is False and any('真实MCP宿主' in s for s in report['unverified']))
+check('no_live_cloud_claim',report['tool_capabilities']['QC_cloud_calls']==0 and report['platform_evidence_level']['new_candidate_cloud_run'] is None)
+check('stage2_overall_not_accepted',report['software_acceptance']['stage2_overall']=='未通过' and report['software_acceptance']['stage2_notification_lock_local_scope']=='通过')
+check('financial_closed',report['financial_evidence'] is False and report['software_acceptance']['final_test_enabled'] is False)
+root=next(t for t in report['tests'] if t['name']=='independent_storage_identity')
+check('root_5_26',root['methods']==5 and root['scenarios']==26 and root['actually_executed'] is True)
+check('root_0_fail_error_skip',root['failures']==root['errors']==root['skips']==0)
+repo=next(t for t in report['tests'] if t['name']=='repository')
+check('repository_987',repo['methods']==987 and repo['actually_executed'] is True)
+check('repository_0_fail_error_skip',repo['failures']==repo['errors']==repo['skips']==0)
+identity=read('independent_identity.json')
+check('identity_d5a5',report['source_manifest_hash']==identity['source_manifest_hash']=='d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01')
+check('deployment_current_44_not_old43',report['version_consistency']['current_deployment_files']==44 and report['version_consistency']['historical_cloud_files']==43)
+check('managed_identity_213',report['version_consistency']['managed_identity_files']==213)
+check('deployment_and_config_identity',report['deployment_hash']==identity['deployment_hash'] and report['configuration_hash']==identity['configuration_hash'])
+check('two_builds_idempotent',report['version_consistency']['builds']==2 and report['version_consistency']['both_config_changed'] is False)
+check('root_materials_verifier_exit',report['version_consistency']['materials_git_verifier_exit']==0)
+check('source_materials_original_unchanged',report['version_consistency']['source_materials_managed_raw_equal'] is True and report['version_consistency']['immutable_source_or_materials_changed'] is False)
+check('full_JSON_embedded_in_text',json.loads(text.split('完整机器报告：',1)[1])==report)
+check('counting_overlap_explicit','重叠' in report['counting'] and '不相加' in report['counting'])
+out={'checked_formal_json_sha256':sha256(raw).hexdigest(),'checked_formal_text_sha256':sha256((R/'formal_report.txt').read_bytes()).hexdigest(),
+     'kind':'Static final report QA, no unit or live platform execution','checks':Q,'check_count':len(Q),'passed':sum(q['passed'] for q in Q),'issues':issues}
+(R/'notification_agent/formal_QA.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
+print(json.dumps({k:out[k] for k in ['checked_formal_json_sha256','check_count','passed','issues']},ensure_ascii=False))

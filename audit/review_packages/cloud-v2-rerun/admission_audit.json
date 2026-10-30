@@ -1,0 +1,97 @@
+{
+  "kind": "readonly_cloud_v2_rerun_admission_audit",
+  "status": "blocked_pending_explicit_budget_increase_and_append_only_revision_support",
+  "scope": "engineering_only_not_financial_validation",
+  "reviewed_repository_version": "87c458b",
+  "current_global_usage": {
+    "configurations": 12,
+    "research": 15,
+    "lean": 2
+  },
+  "current_global_limits": {
+    "configurations": 12,
+    "research": 20,
+    "lean": 16
+  },
+  "current_allocation_usage": {
+    "configurations": {
+      "normal": 8,
+      "reserve": 4
+    },
+    "research": {
+      "normal": 8,
+      "reserve": 7
+    },
+    "lean": {
+      "normal": 2,
+      "reserve": 0
+    }
+  },
+  "authority": "The original audit/runtime/registry/baseline.json and its one append-only events.jsonl",
+  "last_existing_event_sequence": 48,
+  "closed_round": "stage2-normal-repair-round-004",
+  "existing_budget_revision_api": false,
+  "existing_round_api": "Registry.authorize_engineering_round(grant, full_configs, authorization_document)",
+  "round_authorization_increases_global_budget": false,
+  "do_not": [
+    "change or regenerate the immutable baseline or its initialized journal event",
+    "reopen round004 or reuse its failed v1 deployment with a new manifest",
+    "create a second Registry in an execution checkout",
+    "declare an authorization before an explicit human approval of the extra configuration",
+    "claim, register, freeze or dispatch under the exhausted 12 configuration limit"
+  ],
+  "conditional_minimum_proposal": {
+    "human_confirmation_required": true,
+    "global_limits": {
+      "configurations": 13,
+      "research": 20,
+      "lean": 16
+    },
+    "configuration_allocations": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "research_allocations_unchanged": {
+      "normal": 12,
+      "reserve": 8,
+      "total": 20
+    },
+    "lean_allocations_unchanged": {
+      "normal": 8,
+      "reserve": 8,
+      "total": 16
+    },
+    "new_round_allocation": "reserve",
+    "new_round_limits": {
+      "configurations": 1,
+      "research": 1,
+      "lean": 1
+    },
+    "max_retries": {
+      "research": 0,
+      "lean": 0
+    },
+    "extra_spend_usd": 0,
+    "orders_enabled": false,
+    "final_test_enabled": false,
+    "project_id": "must come from a fresh QuantConnect list_projects result"
+  },
+  "revision_implementation_requirements": [
+    "Append a closed-schema user-authorization reference and an explicit budget revision event after the original 48 events",
+    "Retain original initialized limits and original initial_usage; do not seed current usage again",
+    "Replay every historical event and old round authorization under the limits in effect at that event; old global_limits_hash values stay unchanged",
+    "Switch to effective revised limits only after the authorized revision event",
+    "Make revision identity idempotent, reject changed duplicates, stale previous-limit hashes, malformed counters and unauthorized dimension changes",
+    "Use the same Registry transaction lock and preserve all usage, attempts, grants, results, data exposure and final-test gates"
+  ],
+  "operations_performed_by_this_audit": {
+    "source_and_metadata_reads": true,
+    "private_audit_notes_written": true,
+    "production_changes": false,
+    "registry_initialization_or_lock_calls": false,
+    "register_freeze_or_claim_calls": false,
+    "cloud_calls": 0,
+    "budget_charges": 0
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "scope": "Independent data-certification known answers and boundary suite plus metadata CLI; not developer test replay",
+  "verdict": {
+    "data_certification_software": "failed_WR20_P2",
+    "whole_stage2_accepted": false,
+    "vendor_data_certified": false,
+    "financial_evidence": false
+  },
+  "actually_executed": {
+    "methods": 13,
+    "passed_methods": 12,
+    "failed_methods": 1,
+    "error_methods": 0,
+    "failure_records": 2,
+    "scenario_checks": 43,
+    "scenario_checks_not_added_to_methods": true,
+    "CLI_processes": 4,
+    "first_IPO_probe_scripts": 1,
+    "minimal_script_created_for_root_independent_confirmation": true
+  },
+  "findings": [
+    {
+      "id": "WR-20",
+      "priority": "P2",
+      "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "title": "上市前流动性被计入IPO的20期窗口，错误报告observations_passed",
+      "locations": [
+        {
+          "file": "cloud/qresearch/data_certification.py",
+          "line": 374,
+          "end_line": 390
+        },
+        {
+          "file": "cloud/qresearch/ingestion.py",
+          "line": 367,
+          "end_line": 380
+        },
+        {
+          "file": "config/universe.json",
+          "line": 31
+        }
+      ],
+      "trigger": "独立201名称/21session/两形成时点合成输入，SID200明确listing_effective_at与security master effective_from=2018-01-25；只有5/6个上市后完成session，却提供15条上市前liquidity rows并将SID200列为DollarVolume第一。",
+      "expected": "拒绝自相矛盾的上市前历史，或将其排除出有效排名窗口；不足20个真实上市后session的IPO不能进入US200且不能获得全部观测检查通过。",
+      "actual": "audit_data_certification返回observations_passed，全部12项checks=true，observed_member_cells=400；新上市SID被排到首位。Jan04上市的19→20边界也误过首个19session形成时点。",
+      "cause": "expected_candidates只把在trailing首日前已上市的名称纳入缺历史计数，却将未按listing_effective_at过滤的rank_input整体交给ranker。liquidity_rows_asof只将listing等时钟并入可用时间max；ranker只数20个日期和最后一行listed，不排除这些日期早于已知上市日。",
+      "positive_controls": [
+        "合法201个老名称基线通过：400成员单元、8040已知候选session单元。",
+        "IPO晚上市且移除上市前行，只有5/6session时被正确排除，原200老名称观测通过。",
+        "Jan04上市、只留上市后行：首形成19session被排除，次形成20session进入，正确换仓通过。",
+        "将上市日设为2017-12-01且20个真实历史session完整，排名通过。"
+      ],
+      "scope_and_severity": "新数据观测合规审计的P2软件缺陷。所有vendor/full-US200/actual-availability/research认证及financial_evidence标志仍固定false；没有真实市场调用、预算改变或实际因子选择证据，不把它扩大成供应商真实性绕过或真实Research失败原因。",
+      "reproduction": "python -B cert_agent/minimal_wr20.py --output wr20_confirmation/result.json（当前exit1；仅旁边原创cert_fixture.py及生产模块）。first_ipo_probe.py和13方法首套件的原件保持。",
+      "minimal_fix": "在观测私有输入和rank窗口上复用明确的历史上市资格：上市前行不贡献有效20期，显式IPO不足20期不得成为排名候选；同时保持已知老eligible缺历史不能靠rank201填洞的检查。不能仅放宽report状态或取消反例断言。",
+      "regression_tasks": [
+        "Jan25 IPO有15条上市前行时拒绝/观测不通过；无该假行时合法排除。",
+        "Jan04 IPO分别19与20个上市后完整session：前者排除、后者允许。",
+        "早上市且记录完备可排名；非IPO的历史classification版本更新不得误当新上市。",
+        "保持老eligible丢单session/全历史时不能rank201补位掩盖；保留unknown/PIT/日期/RAW/summary重算及false认证标志。"
+      ]
+    }
+  ],
+  "known_answer": {
+    "names": 201,
+    "calendar_liquidity_sessions": 21,
+    "formations": 2,
+    "expected_members": 400,
+    "known_eligible_candidate_session_cells": 8040
+  },
+  "passed_boundaries": [
+    "old eligible gaps including rank201 spare-name compensation",
+    "unknown classification/missing master/ambiguous mapping",
+    "legal young IPO exclusion and19→20 turnover",
+    "date-only next exchange close and exact one-cell miss",
+    "financial later vintage does not backfill, modeled/missing actual receipt fails",
+    "RAW/OHLC/action schema and causality",
+    "fixed200/20 and calendar/formation requirements",
+    "summary reopens private input and refuses altered rows, fake counts, empty refs/free true, overlapping partitions and false approval claims",
+    "missing partitions and two-day to full-history expansion remain insufficient",
+    "real rows local store refused; capabilities/validate-plan CLI never dispatches/approves and rejects duplicate JSON/unknown override"
+  ],
+  "source_files_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/universe.py": "e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1"
+  },
+  "input_origin": "Original independent synthetic rows in cert_fixture.py; no author fixtures imported; in-memory store only",
+  "source_unchanged": true,
+  "actual_QC_market_model_calls": 0,
+  "actual_registry_writes": 0,
+  "first_results_preserved": {
+    "no_assertions_or_production_edited": true,
+    "suite_exit": 1,
+    "first_ipo_exit": 1,
+    "auditor_fixture_or_runner_errors": 0
+  },
+  "counting_limit": "43 hand-named scenario checks are grouped within13 unittest methods;2 failure records are the same WR20 method at2 listing boundaries. First MRE and root replay overlap suite scenarios, not extra unique methods.",
+  "evidence_files": [
+    "cert_fixture.py",
+    "first_ipo_probe.py",
+    "first_ipo_result.json",
+    "first_ipo_execution.json",
+    "first_ipo.stdout",
+    "first_ipo.stderr",
+    "minimal_wr20.py",
+    "independent_certification.py",
+    "first_unittest.txt",
+    "first_results.json",
+    "suite_execution.json",
+    "suite_first.stdout",
+    "suite_first.stderr",
+    "cli_command_log.json"
+  ],
+  "evidence_hashes": {
+    "cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "first_ipo_probe.py": "92d5dd1326d645e4242b1c87c4e2ed627b5f12d6338efc64c6637cd9fbe137d1",
+    "first_ipo_result.json": "b12e89d20d7d380a61724dbd62efdfe5e9899cd52be0197bac7127e53234ff5f",
+    "first_ipo_execution.json": "c58cbb692acbd38820f5d2b4afcd9fbb045efec584fd560774a216fc7dcb673f",
+    "first_ipo.stdout": "b12e89d20d7d380a61724dbd62efdfe5e9899cd52be0197bac7127e53234ff5f",
+    "first_ipo.stderr": "60fc72e88b7f18cbc499efd9e370b265f1ca302607820f30f804fa942319efba",
+    "minimal_wr20.py": "6df5ee5ba52f69ba6310ed6a5290d75e02d977bd57fcfe4fa53cfa4d6dfc638b",
+    "independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "first_unittest.txt": "4da406b0d545ade9e82983f8a7b3a50a891d95d811e16f6cb72bd802efbabcb2",
+    "first_results.json": "6b1c7d84a48d1246d4e80b14993a98efd80a868fa78f3166eacbffbaafb4e37a",
+    "suite_execution.json": "81c54b50e0ff252c177a9f6c70fb6f2bf96a4e53d22b2b25168b393d6aa250bf",
+    "suite_first.stdout": "ce9a988477662e3094ce4e68c27be32698dfd2a55b67b6673bd6ff1b4088df95",
+    "suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cli_command_log.json": "6fcad952bdf9e636916a6fd99f63355b762ea03f76e45b3253ad4336b28c337a"
+  }
+}

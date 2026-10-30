@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "现有独立EngineeringTask与CollectionTask各需一个配置，无法同时装入阶段2剩余的1配置/1Research/1LEAN门槛。本候选新增严格schema_version2联合工程计划：一个父配置和一次预扣Research内执行原2018两股缓存检查及固定40日快照观察，随后同父计划最多一次零订单LEAN。子观察不登记新任务或绕过执行计数，v1协议和已扣费任务身份保留。\n\n固定开发候选 `8f7236ecbafcb514f07a6af4150a5afdbc1fd474`，117份源码清单 `a4f6a9fae042f15675b43e3ad024cd3ea8592de71246a50e4a46d9a05d763217`。\n[执行及认证边界](https://github.com/wwooyy429/AQRP-LLM/blob/8f7236ecbafcb514f07a6af4150a5afdbc1fd474/docs/stage2-live-pilot.md) · [开发验证](https://github.com/wwooyy429/AQRP-LLM/blob/8f7236ecbafcb514f07a6af4150a5afdbc1fd474/audit/review_packages/phase2_joint/developer_verification.json) · [只读云端预检](https://github.com/wwooyy429/AQRP-LLM/blob/8f7236ecbafcb514f07a6af4150a5afdbc1fd474/audit/stage2_live_preflight.json) · [未登记预览](https://github.com/wwooyy429/AQRP-LLM/blob/8f7236ecbafcb514f07a6af4150a5afdbc1fd474/audit/stage2_joint_preview.json)。\n\n实现：\n- v2父子计划绑定源代码、字段目录、数据版本、日期及资源限制；四观察字段固定为DollarVolume/HasFundamentalData/Time/EndTime，NY [2018-01-01,2018-02-10)，40日、每日请求、批1000、窗50000。无财务覆盖过滤；实际行及逐行衍生值仅留QCCloud。\n- 回执仅输出受限计数、缺失数、哈希及父attempt绑定的云端引用；所有US200、财务版本和实际送达认证标志维持false。缓存重放不得新增取数，未知异常保留意图而非伪装缺失/原生失败。\n- v2冻结和新配置登记均在Registry事务锁内先检查同项目未结算任务，不覆盖旧指针、不提前扣最后配置槽。真实新收费前复核当前执行源码、部署和可信目录；预览只读。\n- v1严格字段与哈希、原任务恢复保持；新LEAN仍依赖同父计划已完成Research的SID及引用。工程2/2/2及全局预算未改。\n\n验证：\n- 原生Windows固定依赖执行规定入口 `python -B tools/stages.py verify`，423项通过；新增4个假SDK完整worker方法、12个边界方法/40子例。80条发明快照、40窗口及完整collector/cache/receipt/Bridge/Registry链属合成证据，不是实际市场覆盖。\n- 边界覆盖源/目录/日期/资源篡改、原生形状回执、未知行/认证旁载荷拒绝、父预算一次扣费及LEAN依赖、原项目pending时冻结/登记无写入，以及只读预览。\n- 开发侧4方法首次有1项测试快照键名错误，修正断言后通过；仅保存子代理报告的工具输出块标识，未捕获原始子进程文件，不将整理摘要称为原始字节。边界原始记录与最终完整验证报告保存。\n- 构建二次无变化；远端30份变更文件与本地预期逐字节一致，工作区干净。实际权威12事件、累计用量、旧计划指针、已准入输入和最终关闭开关未变。\n\n真实状态：\n- 本轮已实际list_projects、读取项目文件列表、主入口及原输入、查询官方迁移/API文档；只读证据已保存。仅核对main.py和旧输入按约定换行/末尾空白一致，不能称为全25文件逐字节部署认证。\n- 本轮未冻结或登记实际新配置，未上传候选代码、执行Research、提交LEAN或调用模型；累计配置6/12、Research9/20、LEAN1/16保持。阶段2各已用1/2，名义剩余各1，不增加或重置额度。\n- 原回测 `39cafa1e9b11f91b27e396b66d033a6d` 尚无已交付终态。已向用户请求完成/失败状态确认；未收到前不主动查询、轮询、读日志、改旧源码/输入或重复提交。新真实运行仍受此门槛限制。\n- 近期基本面迁移重建全部历史；观察时钟/近似申报日期/当前摄入不能证明历史供应商送达或全部vintage。40日四字段观察不足以认证完整历史US200、财务或全部公司行动。原生失败回执也不能由成功cell内捕获异常或早期失败摘要代替，相关真实证据继续缺失。\n\n此候选尚未独立验收。既有WR-01～14在原测试范围通过及WR-15非阻断更正记录保留；阶段2整体、阶段3–7与完整系统未验收。最终测试、正式研究、自动GPT与交易关闭，2024–2025暴露及2026独立性未知保留，financial_evidence=false。保持草稿，不合并。\n\n发布后CI：[Actions run 40385525081](https://github.com/wwooyy429/AQRP-LLM/actions/runs/40385525081) completed/success，Python3.10和3.11合成检查任务均通过。最终只读重放权威账本仍为配置6、Research9、LEAN1，旧LEAN attempt仍pending。CI和账本核对不构成新真实执行或独立验收。",
+    "title": "阶段2：新增有界联合云端验收协议，等待原任务终态",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "b7c852bf468c840096e66bde6603ea79f9b60fa8",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-26T19:20:20Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 17,
+    "changed_files": 1504,
+    "additions": 208395,
+    "deletions": 154,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "阶段2：新增有界联合云端验收协议，等待原任务终态"
+  },
+  "isError": false
+}

@@ -1,0 +1,244 @@
+[
+  {
+    "tag": "7b",
+    "exit": 0,
+    "cases": [
+      {
+        "values": [
+          1.0,
+          -1.0,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 3.3333333333333335e-201,
+          "sample_std_ic": 1.0,
+          "icir": 3.3333333333333335e-201,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 0.0,
+        "icir_abs_error": 0.0
+      },
+      {
+        "values": [
+          1.0,
+          -1.0,
+          2.220446049250313e-16
+        ],
+        "expected": {
+          "mean": 7.401486830834377e-17,
+          "std": 1.0,
+          "icir": 7.401486830834377e-17
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 7.401486830834377e-17,
+          "sample_std_ic": 0.9999999999999999,
+          "icir": 7.401486830834378e-17,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 0.0,
+        "icir_abs_error": 1.232595164407831e-32
+      },
+      {
+        "values": [
+          1e-200,
+          1.0,
+          -1.0
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 0.0,
+          "sample_std_ic": 1.0,
+          "icir": 0.0,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 3.3333333333333335e-201,
+        "icir_abs_error": 3.3333333333333335e-201
+      },
+      {
+        "values": [
+          -1.0,
+          1.0,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 3.3333333333333335e-201,
+          "sample_std_ic": 1.0,
+          "icir": 3.3333333333333335e-201,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 0.0,
+        "icir_abs_error": 0.0
+      },
+      {
+        "values": [
+          0.7,
+          -0.7,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 0.7,
+          "icir": 4.761904761904762e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 3.3333333333333335e-201,
+          "sample_std_ic": 0.7,
+          "icir": 4.761904761904762e-201,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 0.0,
+        "icir_abs_error": 0.0
+      }
+    ]
+  },
+  {
+    "tag": "d0",
+    "exit": 0,
+    "cases": [
+      {
+        "values": [
+          1.0,
+          -1.0,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 0.0,
+          "sample_std_ic": 1.0,
+          "icir": 0.0,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 3.3333333333333335e-201,
+        "icir_abs_error": 3.3333333333333335e-201
+      },
+      {
+        "values": [
+          1.0,
+          -1.0,
+          2.220446049250313e-16
+        ],
+        "expected": {
+          "mean": 7.401486830834377e-17,
+          "std": 1.0,
+          "icir": 7.401486830834377e-17
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 0.0,
+          "sample_std_ic": 1.0,
+          "icir": 0.0,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 7.401486830834377e-17,
+        "icir_abs_error": 7.401486830834377e-17
+      },
+      {
+        "values": [
+          1e-200,
+          1.0,
+          -1.0
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 1e-200,
+          "sample_std_ic": 1.0,
+          "icir": 1e-200,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 6.666666666666666e-201,
+        "icir_abs_error": 6.666666666666666e-201
+      },
+      {
+        "values": [
+          -1.0,
+          1.0,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 1.0,
+          "icir": 3.3333333333333335e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 0.0,
+          "sample_std_ic": 1.0,
+          "icir": 0.0,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 3.3333333333333335e-201,
+        "icir_abs_error": 3.3333333333333335e-201
+      },
+      {
+        "values": [
+          0.7,
+          -0.7,
+          1e-200
+        ],
+        "expected": {
+          "mean": 3.3333333333333335e-201,
+          "std": 0.7,
+          "icir": 4.761904761904762e-201
+        },
+        "actual": {
+          "valid_days": 3,
+          "total_days": 3,
+          "mean_ic": 1.1102230246251565e-16,
+          "sample_std_ic": 0.7,
+          "icir": 1.5860328923216522e-16,
+          "icir_annualized": false,
+          "common_observations": 15
+        },
+        "mean_abs_error": 1.1102230246251565e-16,
+        "icir_abs_error": 1.5860328923216522e-16
+      }
+    ]
+  }
+]

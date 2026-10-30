@@ -1,0 +1,134 @@
+{
+  "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "boundary": "actual first prepare admission-write then entry-marker-write exception",
+  "write_order": [
+    "engineering/admitted-inputs/605e1c9b171b469498c1afb46fca4d9a.json",
+    "engineering/research-entry-protocol/605e1c9b171b469498c1afb46fca4d9a.json"
+  ],
+  "admission_persisted": true,
+  "entry_after_recovery": false,
+  "dispatch_exists": false,
+  "unbound_result_exit": 1,
+  "unbound_status": null,
+  "ledger_usage_before": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 8,
+        "normal": 7,
+        "reserve": 1
+      },
+      "research": {
+        "total": 11,
+        "normal": 7,
+        "reserve": 4
+      },
+      "lean": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "605e1c9b171b469498c1afb46fca4d9a",
+        "config_id": "ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003",
+        "kind": "attempt_started",
+        "operation_key": "engineering-plan:f01bd6fe586f4827f1384ab4c12ddfb39550309ccc862a794339f193fbe6f91b:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T15:13:14.165457+00:00",
+        "result_key": "results/ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003/research/fd07a6a24802ce706f2d82a412827d4ce855f90af40d1098174fbf47dfc0a9a0.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "started",
+        "external_id": null
+      }
+    ]
+  },
+  "ledger_after_result": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 8,
+        "normal": 7,
+        "reserve": 1
+      },
+      "research": {
+        "total": 11,
+        "normal": 7,
+        "reserve": 4
+      },
+      "lean": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "605e1c9b171b469498c1afb46fca4d9a",
+        "config_id": "ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003",
+        "kind": "attempt_started",
+        "operation_key": "engineering-plan:f01bd6fe586f4827f1384ab4c12ddfb39550309ccc862a794339f193fbe6f91b:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T15:13:14.165457+00:00",
+        "result_key": "results/ab787654697cc6a6993ac599f60ad2574502cf6c724bc01a53b9e7479dbdf003/research/fd07a6a24802ce706f2d82a412827d4ce855f90af40d1098174fbf47dfc0a9a0.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "started",
+        "external_id": null
+      }
+    ]
+  },
+  "files_changed_by_result": false,
+  "downstream_lean_exit": null,
+  "downstream_lean": null,
+  "stats": {
+    "actual_CLI_processes": 5,
+    "direct_freeze_processes": 0,
+    "synthetic_metadata_finish_calls": 1,
+    "actual_worker_executions": 0
+  },
+  "actual_provider_calls": 0,
+  "authoritative_ledger_writes": 0
+}

@@ -1,0 +1,96 @@
+{
+  "kind": "read_only_archived_comparison_recomputation_not_platform_evidence",
+  "mode": "after",
+  "fixed_reported_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "summary_raw_sha256": "aeac5840c908963af32174446e4ce200af5e8fe2fadce763c8490ad2f4125720",
+  "candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+  "reference_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "candidate_file_count": 29,
+  "known_reference_file_count": 25,
+  "equal_paths": [
+    "engineering_smoke.py",
+    "main.py",
+    "qresearch/__init__.py",
+    "qresearch/artifacts.py",
+    "qresearch/audits.py",
+    "qresearch/cache.py",
+    "qresearch/coverage.py",
+    "qresearch/factors.py",
+    "qresearch/ingestion.py",
+    "qresearch/labels.py",
+    "qresearch/models.py",
+    "qresearch/pipeline.py",
+    "qresearch/quantconnect.py",
+    "qresearch/study.py",
+    "qresearch/universe.py",
+    "qresearch/workflow.py"
+  ],
+  "different_paths": [
+    "qresearch/contracts.py",
+    "qresearch/engineering_data.py",
+    "qresearch/engineering_receipts.py",
+    "qresearch/engineering_tasks.py",
+    "qresearch/evaluation.py",
+    "qresearch/point_in_time.py",
+    "qresearch/registry.py",
+    "qresearch/runtime.py",
+    "research_config.py"
+  ],
+  "outside_known_reference_paths": [
+    "qresearch/collection.py",
+    "qresearch/collection_execution.py",
+    "qresearch/collection_tasks.py",
+    "qresearch/historical_source.py"
+  ],
+  "different_count": 9,
+  "outside_known_reference_count": 4,
+  "computed_total": 13,
+  "declared_total": 13,
+  "declaration_matches": true,
+  "references": {
+    "candidate_manifest": {
+      "path": "audit/reviews/20261027-ae2b898-windows/source_git_manifest.json",
+      "raw_sha256": "5b0a0a698b005d8ba1bdf378935cefa82809786b83650e340d6fb44f4fe22bdb"
+    },
+    "comparison": {
+      "path": "audit/reviews/20261027-ae2b898-windows/cloud_comparison.json",
+      "raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46"
+    }
+  },
+  "historical_dc49": {
+    "candidate_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+    "candidate_file_count": 29,
+    "different_paths": [
+      "qresearch/contracts.py",
+      "qresearch/engineering_receipts.py",
+      "qresearch/engineering_tasks.py",
+      "qresearch/evaluation.py",
+      "qresearch/point_in_time.py",
+      "qresearch/registry.py",
+      "qresearch/runtime.py",
+      "research_config.py"
+    ],
+    "outside_known_reference_paths": [
+      "qresearch/collection.py",
+      "qresearch/collection_execution.py",
+      "qresearch/collection_tasks.py",
+      "qresearch/historical_source.py"
+    ],
+    "computed_total": 12,
+    "declared_total": 12,
+    "reference_source_same_old75": true,
+    "historical_declaration_is_consistent_and_must_not_be_rewritten": true
+  },
+  "current_cloud_missing_files_proven": false,
+  "current_cloud_inventory_certified": false,
+  "actual_cloud_or_market_or_model_calls": 0,
+  "post_fix_metadata_checks": {
+    "declared_components_and_lists_match_recomputation": true,
+    "source_ids_and_raw_hash_references_match": true,
+    "original_Git_record_preserved_byte_exact": true,
+    "original_Git_record_raw_sha256": "c5546b0ca12b7556b727f43e9cc36b348b352cffa92da9d08dcc5cbcd6972095",
+    "original_claim_12_retained_and_corrected_13_explicit": true,
+    "historical_dc49_archive_files_checked_byte_exact": 189,
+    "historical_dc49_archive_unchanged_vs_fixed81f": true
+  }
+}

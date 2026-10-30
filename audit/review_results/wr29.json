@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "kind": "registered_independent_WR29_scoped_closure",
+  "review_id": "AQRP-20261029-C2E63AC-WR29-27",
+  "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+  "materials_commit": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
+  "report": "audit/reviews/20261029-c2e63ac-wr29-closure/formal_report.json",
+  "report_is_readable_mirror": true,
+  "original_report_reference": "audit/reviews/20261029-c2e63ac-wr29-closure/formal_report.json.raw.base64",
+  "original_report_encoding": "base64",
+  "original_report_sha256": "3e8f605973c618ba9aa1761ade0a9901b9fb7003fb609492664621d99c517470",
+  "archive_index": "audit/reviews/20261029-c2e63ac-wr29-closure/import_index.json",
+  "original_bundle_sha256": "aa3255bf18d19c397a3b50bcbdca7533c72d6ad4736776d970233e431fb332f6",
+  "selected_archive_not_complete_original_bundle": true,
+  "actual_review_task": {
+    "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
+    "host_id": "local",
+    "kind": "codex",
+    "title": "更新 GPT 审核与验收状态",
+    "completed_turn_id": "01a1879e-1025-7ce2-bfef-06fea9080a7c"
+  },
+  "WR29_resolution": {
+    "id": "WR-29",
+    "original_priority": "P1",
+    "status": "fixed_verified_closed",
+    "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+    "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+    "original_file": "tools/followup_host.py",
+    "original_line": 469,
+    "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+    "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+    "original_expected_exits": [
+      0,
+      0,
+      0
+    ],
+    "original_actual_exits": [
+      0,
+      2,
+      2
+    ],
+    "fixed_actual_exits": [
+      0,
+      0,
+      0
+    ],
+    "original_MRE_assertion_exit": 1,
+    "fixed_MRE_assertion_exit": 0,
+    "original_script_and_success_expectations_unchanged": true,
+    "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+    "normal_path_and_strict_negative_paths_verified": true,
+    "not_granted": [
+      "倒改2d1d306原失败",
+      "生产factory/MCP调度/平台通知成功",
+      "完整回执收集或计费认证派发",
+      "完整阶段2、数据认证或金融有效性"
+    ]
+  },
+  "WR29_independently_closed": true,
+  "new_findings": [],
+  "acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范、身份、Registry、预算、归档",
+      "implementation": "已有组件",
+      "evidence": "1012回归、218身份、161原件恢复、71事件重放",
+      "verdict": "已测离线回归范围通过",
+      "missing": "不涵盖生产调度或远端真实性"
+    },
+    {
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型、滚动内核",
+      "implementation": "共享内核未改",
+      "evidence": "仓库及既往相关回归重放",
+      "verdict": "已测回归范围通过",
+      "missing": "无金融有效性验收"
+    },
+    {
+      "stage": 2,
+      "modules": "QC、任务桥、通知与本地宿主",
+      "implementation": "部分实现",
+      "evidence": "WR29原范围关闭；本地CLI/stdio/API及故障恢复有限测试通过",
+      "verdict": "局部软件通过；整体未通过",
+      "missing": "真实factory/transport/通知/新云端工程、完整回执、数据认证及计费认证派发"
+    },
+    {
+      "stage": 3,
+      "modules": "评价、共同样本与滚动",
+      "implementation": "局部内核",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整分层收益/风险及真实固定六轮研究"
+    },
+    {
+      "stage": 4,
+      "modules": "工程接收器、标签成交/成本",
+      "implementation": "局部组件",
+      "evidence": "无新真实执行，旧b1a有限证据保留",
+      "verdict": "未验收",
+      "missing": "完整组合交易/账本/风险/压力与对账"
+    },
+    {
+      "stage": 5,
+      "modules": "受限提案与持久化状态机",
+      "implementation": "局部组件",
+      "evidence": "默认关闭及权限边界测试",
+      "verdict": "未验收",
+      "missing": "实际GPT客户端、模型/调用/费用及真实研究闭环"
+    },
+    {
+      "stage": 6,
+      "modules": "相似性、相关性及复杂度",
+      "implementation": "局部组件",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整搜索/消融/净增量/选择偏差实证"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、暴露与关闭闸门",
+      "implementation": "元数据骨架",
+      "evidence": "既往暴露保留，最终测试关闭",
+      "verdict": "未验收",
+      "missing": "独立最终执行器/前向监控回滚及2026独立性"
+    }
+  ],
+  "independent_tests": [
+    {
+      "name": "repository",
+      "methods": 1012,
+      "scenarios": null,
+      "passed": 1012,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "repository_synthetic_suite",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_host_subset",
+      "methods": 19,
+      "scenarios": null,
+      "passed": 19,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "overlapping_repository_subset",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_entrypoint_subset",
+      "methods": 6,
+      "scenarios": null,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "overlapping_repository_subset",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "metadata_scope_self_test",
+      "methods": 7,
+      "scenarios": null,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "developer_scope_suite",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_stdio",
+      "methods": 15,
+      "scenarios": 61,
+      "passed": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_stdio_supplement",
+      "methods": 4,
+      "scenarios": 12,
+      "passed": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_independent_entrypoints",
+      "methods": 8,
+      "scenarios": 51,
+      "passed": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "new_actual_subprocess_and_synthetic",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_API",
+      "methods": 12,
+      "scenarios": 63,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_API_supplement",
+      "methods": 6,
+      "scenarios": 26,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_independent_append_recovery",
+      "methods": 3,
+      "scenarios": 28,
+      "passed": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "actual_Win32_fault_and_synthetic",
+      "first_run": "one_reviewer_OS_field_expectation_corrected_then_passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_Windows_lock",
+      "methods": 18,
+      "scenarios": 37,
+      "passed": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_main",
+      "methods": 12,
+      "scenarios": 79,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_supplement",
+      "methods": 6,
+      "scenarios": 27,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_cycles_rounds",
+      "methods": 7,
+      "scenarios": 28,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    }
+  ],
+  "test_counts_overlap_do_not_sum": true,
+  "tests_repeated_this_registration": false,
+  "product_code_changed_this_registration": false,
+  "original_failed_result": "audit/review_results/host010.json",
+  "prior975_finite_result": "audit/review_results/recovery009.json",
+  "metadata_archive_independently_accepted": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "new_budget_events": 0,
+  "new_cloud_calls": 0
+}

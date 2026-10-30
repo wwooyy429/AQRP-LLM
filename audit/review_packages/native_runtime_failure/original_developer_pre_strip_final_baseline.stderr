@@ -1,0 +1,495 @@
+test_backtest_observation_routes_native_terminal_error_without_logs (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_content_only_structured_only_and_semantically_equal_mirrors (test_native_runtime_failure.NativeRuntimeFailureTests) ... test_default_native_and_other_parser_error_denies_remain_closed (test_native_runtime_failure.NativeRuntimeFailureTests) ... ok
+test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) ... test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) ... test_exact_observed_shape_yields_only_bounded_failure_metadata (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_existing_success_and_success_flag_runtime_failure_paths_are_unchanged (test_native_runtime_failure.NativeRuntimeFailureTests) ... ok
+test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) ... test_mirror_conflicts_extra_text_and_unregistered_envelope_metadata_reject (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_original_accepted_binding_settles_failed_once_without_refund (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_payload_and_deployment_shape_validation_remains_mandatory (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_registered_annotations_do_not_expand_failure_or_time_certification (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_tool_project_external_id_and_stage_are_exactly_bound (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) ... test_valid_but_different_input_hash_is_rejected_by_original_bridge_binding (test_native_runtime_failure.NativeRuntimeFailureTests) ... FAIL
+
+======================================================================
+FAIL: test_backtest_observation_routes_native_terminal_error_without_logs (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 59, in test_backtest_observation_routes_native_terminal_error_without_logs
+    expected = self.parse(payload, deployment)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_content_only_structured_only_and_semantically_equal_mirrors (test_native_runtime_failure.NativeRuntimeFailureTests) (shape='content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 73, in test_content_only_structured_only_and_semantically_equal_mirrors
+    self.assertEqual(self.parse(tool=tool)['platform']['status'], 'runtime_error')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_content_only_structured_only_and_semantically_equal_mirrors (test_native_runtime_failure.NativeRuntimeFailureTests) (shape='structured')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 73, in test_content_only_structured_only_and_semantically_equal_mirrors
+    self.assertEqual(self.parse(tool=tool)['platform']['status'], 'runtime_error')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_content_only_structured_only_and_semantically_equal_mirrors (test_native_runtime_failure.NativeRuntimeFailureTests) (shape='mirrored')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 73, in test_content_only_structured_only_and_semantically_equal_mirrors
+    self.assertEqual(self.parse(tool=tool)['platform']['status'], 'runtime_error')
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', ''])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', ' \n\t'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', 'The backtest ended with a runtime error.'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', 'The backtest ended with a runtime error.', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', False])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', ['rows']])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', {'rows': [1]}])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', 1])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.', None])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 95, in test_errors_are_nonempty_strings_with_at_least_one_actual_diagnostic
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'success': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'success': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'success': 'false'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'backtest': {}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'backtestId': 'native-backtest-id'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'status': 'Runtime Error'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'statistics': {'Total Orders': '0'}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_failure_boolean_and_only_registered_native_fields (test_native_runtime_failure.NativeRuntimeFailureTests) (update={'rows': [[1, 2]]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 107, in test_exact_failure_boolean_and_only_registered_native_fields
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_exact_observed_shape_yields_only_bounded_failure_metadata (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 39, in test_exact_observed_shape_yields_only_bounded_failure_metadata
+    result = self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 118, in test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) (value=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 118, in test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) (value=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 118, in test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) (value=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 118, in test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias (test_native_runtime_failure.NativeRuntimeFailureTests) (value='true')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 118, in test_explicit_mcp_error_flag_is_required_and_cannot_be_truthy_alias
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_mirror_conflicts_extra_text_and_unregistered_envelope_metadata_reject (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 131, in test_mirror_conflicts_extra_text_and_unregistered_envelope_metadata_reject
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_original_accepted_binding_settles_failed_once_without_refund (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 201, in test_original_accepted_binding_settles_failed_once_without_refund
+    observed = self.parse(admission['payload'], admission['deployment'])
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_payload_and_deployment_shape_validation_remains_mandatory (test_native_runtime_failure.NativeRuntimeFailureTests) (field='source_manifest_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 165, in test_payload_and_deployment_shape_validation_remains_mandatory
+    self.parse(payload, bad)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_payload_and_deployment_shape_validation_remains_mandatory (test_native_runtime_failure.NativeRuntimeFailureTests) (field='deployment_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 165, in test_payload_and_deployment_shape_validation_remains_mandatory
+    self.parse(payload, bad)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_payload_and_deployment_shape_validation_remains_mandatory (test_native_runtime_failure.NativeRuntimeFailureTests) (field='input_hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 165, in test_payload_and_deployment_shape_validation_remains_mandatory
+    self.parse(payload, bad)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_payload_and_deployment_shape_validation_remains_mandatory (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 169, in test_payload_and_deployment_shape_validation_remains_mandatory
+    self.parse(changed, deployment)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_registered_annotations_do_not_expand_failure_or_time_certification (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 137, in test_registered_annotations_do_not_expand_failure_or_time_certification
+    result = self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_tool_project_external_id_and_stage_are_exactly_bound (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 153, in test_tool_project_external_id_and_stage_are_exactly_bound
+    self.parse(tool=tool)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error.'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['Request timed out', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['Network unavailable', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['Internal server error', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest is still in progress.', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=[' The backtest ended with a runtime error.', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['The backtest ended with a runtime error. unknown', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_transport_timeout_and_missing_terminal_marker_are_not_failures (test_native_runtime_failure.NativeRuntimeFailureTests) (errors=['', 'SYNTHETIC_PRIVATE_DIAGNOSTIC_123.45'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 82, in test_transport_timeout_and_missing_terminal_marker_are_not_failures
+    self.parse(tool=native_failure(errors))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+======================================================================
+FAIL: test_valid_but_different_input_hash_is_rejected_by_original_bridge_binding (test_native_runtime_failure.NativeRuntimeFailureTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 219, in test_valid_but_different_input_hash_is_rejected_by_original_bridge_binding
+    observed = self.parse(admission['payload'], deployment)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\native-runtime-failure\baseline168-final\tests\test_native_runtime_failure.py", line 34, in parse
+    self.assertTrue(callable(method), 'Missing fixed native terminal runtime-error parser')
+AssertionError: False is not true : Missing fixed native terminal runtime-error parser
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.086s
+
+FAILED (failures=48)

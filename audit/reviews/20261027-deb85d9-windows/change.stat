@@ -1,0 +1,1105 @@
+ README.md                                          |   12 +-
+ audit/66ff72f_review_archive_check.json            |  127 +
+ audit/deployment.json                              |   10 +-
+ audit/engineering_current.json                     |   13 +-
+ .../stage2_completion/.gitattributes               |    1 +
+ audit/review_packages/stage2_completion/README.md  |   23 +
+ .../certification/API_CONTRACT.md                  |   21 +
+ .../certification/capabilities.stderr              |    0
+ .../certification/capabilities.stdout              |    1 +
+ .../certification/compatibility.stderr             |   40 +
+ .../certification/compatibility.stdout             |    0
+ .../certification/corrected.stderr                 |   24 +
+ .../certification/corrected.stdout                 |    0
+ .../certification/corrected_execution.json         |   18 +
+ .../certification/final_baseline.stderr            |   20 +
+ .../certification/final_baseline.stdout            |    0
+ .../certification/final_candidate.stderr           |   27 +
+ .../certification/final_candidate.stdout           |    0
+ .../certification/final_replay.py                  |   18 +
+ .../stage2_completion/certification/final_tests.py |  375 +
+ .../stage2_completion/certification/initial.stderr |   48 +
+ .../stage2_completion/certification/initial.stdout |    0
+ .../certification/initial_data_certification.py    |   41 +
+ .../certification/initial_execution.json           |   18 +
+ .../initial_test_data_certification.py             |  303 +
+ .../certification/pre_peer_compatibility.stderr    |   41 +
+ .../certification/pre_peer_compatibility.stdout    |    0
+ .../certification/pre_peer_final_baseline.stderr   |   20 +
+ .../certification/pre_peer_final_baseline.stdout   |    0
+ .../certification/pre_peer_final_candidate.stderr  |   26 +
+ .../certification/pre_peer_final_candidate.stdout  |    0
+ .../certification/pre_peer_final_replay.py         |   17 +
+ .../certification/pre_peer_final_tests.py          |  355 +
+ .../pre_peer_reconstructed_data_certification.py   |  577 ++
+ .../certification/pre_peer_reconstruction.json     |    7 +
+ .../certification/reconstruct_pre_peer.py          |   25 +
+ .../stage2_completion/certification/run_initial.py |   11 +
+ .../stage2_completion/certification/summary.json   |  109 +
+ .../developer_outputs_manifest.json                |  748 ++
+ .../peer-certification-worker/first.stderr         |   14 +
+ .../peer-certification-worker/first.stdout         |    0
+ .../peer-certification-worker/first_execution.json |   15 +
+ .../peer-certification-worker/probe.py             |   77 +
+ .../peer-certification-worker/summary.json         |   33 +
+ .../peer-certification/additional_first.stderr     |   41 +
+ .../peer-certification/additional_first.stdout     |    0
+ .../additional_first_execution.json                |   16 +
+ .../peer-certification/after_findings.json         |   22 +
+ .../peer-certification/initial_findings.json       |   28 +
+ .../peer-certification/initial_probes.py           |   31 +
+ .../peer-certification/initial_probes_new_api.diff |   19 +
+ .../peer-certification/initial_probes_new_api.py   |   34 +
+ .../native_agent_additional_probe.py               |   83 +
+ .../peer-certification/native_agent_capture.py     |    3 +
+ .../peer-certification/native_agent_final.stderr   |   19 +
+ .../peer-certification/native_agent_final.stdout   |    0
+ .../native_agent_final_execution.json              |   18 +
+ .../peer-certification/native_agent_summary.json   |   95 +
+ .../original_replay_after.stderr                   |    0
+ .../original_replay_after.stdout                   |    1 +
+ .../original_replay_after_execution.json           |    9 +
+ .../stage2_completion/peer-research/first.stderr   |   13 +
+ .../stage2_completion/peer-research/first.stdout   |    0
+ .../peer-research/first_execution.json             |   15 +
+ .../stage2_completion/peer-research/probe.py       |  141 +
+ .../stage2_completion/peer-research/summary.json   |   35 +
+ .../research-failure/baseline.stderr               |  751 ++
+ .../research-failure/baseline.stdout               |    0
+ .../research-failure/baseline_execution.json       |   19 +
+ .../research-failure/baseline_final.stderr         |  833 ++
+ .../research-failure/baseline_final.stdout         |    0
+ .../research-failure/baseline_root_final.stderr    |  851 ++
+ .../research-failure/baseline_root_final.stdout    |    0
+ .../research-failure/baseline_tests.py             |  282 +
+ .../research-failure/candidate_final.stderr        |   27 +
+ .../research-failure/candidate_final.stdout        |    0
+ .../candidate_final_execution.json                 |   18 +
+ .../research-failure/candidate_first.stderr        |   30 +
+ .../research-failure/candidate_first.stdout        |    0
+ .../candidate_first_execution.json                 |   18 +
+ .../research-failure/candidate_first_tests.py      |  338 +
+ .../research-failure/candidate_root_final.stderr   |   29 +
+ .../research-failure/candidate_root_final.stdout   |    0
+ .../candidate_root_final_execution.json            |   18 +
+ .../research-failure/candidate_second.stderr       |   24 +
+ .../research-failure/candidate_second.stdout       |    0
+ .../candidate_second_execution.json                |   18 +
+ .../research-failure/compatibility.stderr          |  105 +
+ .../research-failure/compatibility.stdout          |    0
+ .../research-failure/compatibility_execution.json  |   20 +
+ .../research-failure/compatibility_final.stderr    |  105 +
+ .../research-failure/compatibility_final.stdout    |    0
+ .../compatibility_final_execution.json             |   20 +
+ .../compatibility_root_final.stderr                |  105 +
+ .../compatibility_root_final.stdout                |    0
+ .../compatibility_root_final_execution.json        |   20 +
+ .../research-failure/final_root_tests.py           |  428 +
+ .../research-failure/final_tests.py                |  388 +
+ .../research-failure/replay_final.py               |   14 +
+ .../research-failure/summary.json                  |   46 +
+ .../summary_before_root_location_fix.json          |   45 +
+ .../verification/capabilities.stderr               |    0
+ .../verification/capabilities.stdout               |    1 +
+ .../verification/developer_verification.json       |   34 +
+ .../verification/full_build.stderr                 |    0
+ .../verification/full_build.stdout                 |    1 +
+ .../verification/full_verify.stderr                |    0
+ .../verification/full_verify.stdout                |    1 +
+ .../verification/protected_before_execution.json   |   31 +
+ .../stage2_completion/verification/run_verify.py   |   16 +
+ .../baseline_exact_final_test.stderr               |   20 +
+ .../baseline_exact_final_test.stdout               |    0
+ .../candidate_exact_final_test.stderr              |   30 +
+ .../candidate_exact_final_test.stdout              |    0
+ .../stage2_completion/worker-identity/expanded.txt |   22 +
+ .../worker-identity/extractor_first.txt            |   30 +
+ .../worker-identity/final_tests.py                 |  360 +
+ .../stage2_completion/worker-identity/first.txt    |   18 +
+ .../worker-identity/legacy_compatibility.stderr    |   49 +
+ .../worker-identity/legacy_compatibility.stdout    |    0
+ .../pre_extractor_baseline_exact_final_test.stderr |   20 +
+ .../pre_extractor_baseline_exact_final_test.stdout |    0
+ ...pre_extractor_candidate_exact_final_test.stderr |   22 +
+ ...pre_extractor_candidate_exact_final_test.stdout |    0
+ .../worker-identity/pre_extractor_final_tests.py   |  250 +
+ .../pre_extractor_legacy_compatibility.stderr      |   49 +
+ .../pre_extractor_legacy_compatibility.stdout      |    0
+ .../worker-identity/pre_extractor_summary.json     |   84 +
+ .../worker-identity/run_evidence.py                |   24 +
+ .../stage2_completion/worker-identity/summary.json |  101 +
+ .../stage2_completion_runtime/.gitattributes       |    1 +
+ .../stage2_completion_runtime/README.md            |   31 +
+ .../REVIEW_INSTRUCTIONS.md                         |   20 +
+ .../developer_outputs_manifest.json                |  249 +
+ .../peer-native-mirrors/first.stderr               |   13 +
+ .../peer-native-mirrors/first.stdout               |    0
+ .../peer-native-mirrors/first_execution.json       |   15 +
+ .../peer-native-mirrors/probe.py                   |   90 +
+ .../peer-native-mirrors/summary.json               |   40 +
+ .../research-representation/actual_after.json      |   78 +
+ .../research-representation/actual_before.json     |   12 +
+ .../research-representation/baseline.stderr        |  120 +
+ .../research-representation/baseline.stdout        |    0
+ .../baseline_execution.json                        |   18 +
+ .../research-representation/baseline_final.stderr  |  120 +
+ .../research-representation/baseline_final.stdout  |    0
+ .../research-representation/baseline_tests.py      |  160 +
+ .../before_engineering_receipts.py                 |  730 ++
+ .../research-representation/candidate_final.stderr |   16 +
+ .../research-representation/candidate_final.stdout |    0
+ .../research-representation/candidate_first.stderr |   16 +
+ .../research-representation/candidate_first.stdout |    0
+ .../candidate_first_execution.json                 |   18 +
+ .../compatibility_final.stderr                     |  129 +
+ .../compatibility_final.stdout                     |    0
+ .../research-representation/replay_final.py        |   20 +
+ .../research-representation/summary.json           |   96 +
+ .../verification/actual_native_before_parse.json   |   12 +
+ .../verification/admit_real_run.py                 |   22 +
+ .../verification/claim_research.stderr             |    0
+ .../verification/claim_research.stdout             |    1 +
+ .../verification/freeze.stderr                     |    0
+ .../verification/freeze.stdout                     |    1 +
+ .../verification/postnative_build.stderr           |    0
+ .../verification/postnative_build.stdout           |    1 +
+ .../verification/postnative_verification.json      |   31 +
+ .../verification/postnative_verify.stderr          |    0
+ .../verification/postnative_verify.stdout          |    1 +
+ .../verification/prepare_research.stderr           |    0
+ .../verification/prepare_research.stdout           |    1 +
+ .../verification/register.stderr                   |    0
+ .../verification/register.stdout                   |    1 +
+ .../verification/run_postnative_verify.py          |   11 +
+ .../verification/settle_native_failure.py          |   29 +
+ audit/review_tracking.json                         |  851 +-
+ .../20261027-66ff72f-windows/.gitattributes        |    1 +
+ .../20261027-66ff72f-windows/ARCHIVE_README.md     |   31 +
+ .../PR_base_merge_base.stderr                      |    0
+ .../PR_base_merge_base.stdout                      |    1 +
+ .../PR_complete_name_status.stderr                 |    0
+ .../PR_complete_name_status.stdout                 | 3119 +++++++
+ .../PR_complete_patch.stderr                       |    0
+ audit/reviews/20261027-66ff72f-windows/README.txt  |   17 +
+ .../additional_regression_records.json             |  119 +
+ .../additional_script_bindings.json                |   62 +
+ .../admission_agent/independent_wr16_boundaries.py |  164 +
+ .../independent_wr18_contract_corrected.py         |  203 +
+ .../new_contract_corrected_results.json            |  323 +
+ .../admission_agent/new_first.stdout               |   14 +
+ .../admission_agent/new_first_results.json         |  461 +
+ .../admission_agent/quick_joint_probes.py          |  118 +
+ .../artifact_manifest.json                         | 9363 ++++++++++++++++++++
+ .../artifact_verification.json                     |    8 +
+ .../baseline_merge_base.stderr                     |    0
+ .../baseline_merge_base.stdout                     |    1 +
+ .../20261027-66ff72f-windows/bounded_probe.stderr  |    0
+ .../20261027-66ff72f-windows/bounded_probe.stdout  |    1 +
+ .../bounded_probe_execution.json                   |   17 +
+ .../build_formal_report.py                         |  112 +
+ .../build_formal_report_first.py                   |  108 +
+ .../build_formal_report_second.py                  |  109 +
+ .../capture_bounded_probe.py                       |   15 +
+ .../capture_git_context.py                         |   17 +
+ audit/reviews/20261027-66ff72f-windows/ci.json     |   23 +
+ .../reviews/20261027-66ff72f-windows/ci_jobs.json  |  129 +
+ .../20261027-66ff72f-windows/cloud_comparison.json |  312 +
+ .../collect_regression_counts.py                   |   36 +
+ .../collection_recovery.stderr.txt                 |    0
+ .../collection_recovery.stdout.txt                 |   19 +
+ .../collection_recovery_replay/command_log.json    |    1 +
+ .../collection_recovery_replay/first_output.txt    |   17 +
+ .../collection_recovery_replay/first_results.json  |    1 +
+ .../independent_recovery.py                        |  282 +
+ .../compare_cloud_sources.py                       |   46 +
+ .../current_complete_name_status.stderr            |    0
+ .../current_complete_name_status.stdout            |  304 +
+ .../developer_archive_selection.json               | 4674 ++++++++++
+ .../developer_inventory_result.json                |   34 +
+ .../developer_metadata_peer.json                   |   52 +
+ .../engineering_recovery.stderr.txt                |    0
+ .../engineering_recovery.stdout.txt                |  107 +
+ .../20261027-66ff72f-windows/environment.json      |   18 +
+ .../evidence_agent/build_system_matrix.py          |   94 +
+ .../evidence_agent/capture_confirmation.py         |    7 +
+ .../evidence_agent/capture_replays.py              |   10 +
+ .../evidence_agent/capture_static.py               |    7 +
+ .../evidence_agent/capture_static_corrected.py     |    7 +
+ .../evidence_agent/capture_static_final.py         |    7 +
+ .../evidence_agent/confirm_native.py               |   19 +
+ .../confirmation_execution_record.json             |   13 +
+ .../evidence_agent/confirmation_first.stderr.txt   |    0
+ .../evidence_agent/confirmation_first.stdout.txt   |   13 +
+ .../evidence_agent/evidence_verification.json      | 5597 ++++++++++++
+ .../evidence_verification.json.sha256              |    1 +
+ .../evidence_verification_second.json              | 5579 ++++++++++++
+ .../evidence_agent/native_confirmation_parser.json |   13 +
+ .../evidence_agent/old_bridge_first.stderr.txt     |    0
+ .../evidence_agent/old_bridge_first.stdout.txt     |   82 +
+ .../evidence_agent/old_bridge_replay.json          |   82 +
+ .../evidence_agent/parse_original.py               |   30 +
+ .../evidence_agent/parsed_observation.json         |    1 +
+ .../evidence_agent/parser_first.stderr.txt         |    0
+ .../evidence_agent/parser_first.stdout.txt         |   48 +
+ .../evidence_agent/parser_replay.json              |   48 +
+ .../20261027-66ff72f-windows/evidence_agent/qa.txt |   30 +
+ .../evidence_agent/qa_report.py                    |   33 +
+ .../evidence_agent/replay_command_log.json         |   30 +
+ .../evidence_agent/replay_old_bridge.py            |   52 +
+ .../evidence_agent/static_corrected.stderr.txt     |    0
+ .../evidence_agent/static_corrected.stdout.txt     |   79 +
+ .../static_corrected_execution_record.json         |   13 +
+ .../evidence_agent/static_execution_record.json    |   13 +
+ .../evidence_agent/static_final.stderr.txt         |    0
+ .../evidence_agent/static_final.stdout.txt         |   80 +
+ .../static_final_execution_record.json             |   13 +
+ .../evidence_agent/static_first.stderr.txt         |    4 +
+ .../evidence_agent/static_first.stdout.txt         |    0
+ .../evidence_agent/system_matrix.json              | 1151 +++
+ .../evidence_agent/system_matrix.json.sha256       |    1 +
+ .../evidence_agent/system_matrix.txt               |  121 +
+ .../evidence_agent/verify_evidence.py              |  122 +
+ .../evidence_agent/verify_evidence_first.py        |  117 +
+ .../evidence_agent/verify_evidence_second.py       |  118 +
+ .../reviews/20261027-66ff72f-windows/findings.json |    1 +
+ .../formal_build_first_error.txt                   |    6 +
+ .../formal_build_second_error.txt                  |    6 +
+ .../20261027-66ff72f-windows/formal_report.json    |  544 ++
+ .../20261027-66ff72f-windows/formal_report.txt     |   49 +
+ .../20261027-66ff72f-windows/fraction.stderr.txt   |    0
+ .../20261027-66ff72f-windows/fraction.stdout.txt   |   17 +
+ .../independent_fraction_boundaries.py             |  210 +
+ .../independent_fractional_harness.py              |  159 +
+ .../fraction_replay/results/first_run_summary.json | 4566 ++++++++++
+ .../fraction_replay/results/first_run_unittest.txt |   15 +
+ .../results/independent_fractional_harness.py      |  159 +
+ .../results/official_mcp_schema_2025-11-25.json    | 4058 +++++++++
+ .../20261027-66ff72f-windows/git_context.json      |   80 +
+ .../joint_worker.stderr.txt                        |    0
+ .../joint_worker.stdout.txt                        |   16 +
+ .../independent_joint_worker.py                    |  331 +
+ .../independent_market_helper.py                   |  159 +
+ .../results/first_run_summary.json                 |  386 +
+ .../results/first_run_unittest.txt                 |   14 +
+ .../native_agent/capture_compat.py                 |   15 +
+ .../native_agent/capture_crash.py                  |   11 +
+ .../native_agent/capture_native.py                 |   11 +
+ .../compat_boundaries/command_log.json             |  314 +
+ .../commands/000-loader-v1-freeze.stderr           |    0
+ .../commands/000-loader-v1-freeze.stdout           |    1 +
+ .../commands/001-loader-v1-register.stderr         |    0
+ .../commands/001-loader-v1-register.stdout         |    1 +
+ .../commands/002-loader-v1-claim.stderr            |    0
+ .../commands/002-loader-v1-claim.stdout            |    1 +
+ .../commands/003-loader-v1-prepare.stderr          |    0
+ .../commands/003-loader-v1-prepare.stdout          |    1 +
+ .../004-loader-research-complete-v1.stderr         |    0
+ .../004-loader-research-complete-v1.stdout         |    1 +
+ .../commands/005-loader-lean-claim-v1.stderr       |    0
+ .../commands/005-loader-lean-claim-v1.stdout       |    1 +
+ .../commands/006-loader-lean-prepare-v1.stderr     |    0
+ .../commands/006-loader-lean-prepare-v1.stdout     |    1 +
+ .../commands/007-loader-lean-submission-v1.stderr  |    0
+ .../commands/007-loader-lean-submission-v1.stdout  |    1 +
+ .../commands/008-loader-v2-freeze.stderr           |    0
+ .../commands/008-loader-v2-freeze.stdout           |    1 +
+ .../commands/009-loader-v2-register.stderr         |    0
+ .../commands/009-loader-v2-register.stdout         |    1 +
+ .../commands/010-loader-v2-claim.stderr            |    0
+ .../commands/010-loader-v2-claim.stdout            |    1 +
+ .../commands/011-loader-v2-prepare.stderr          |    0
+ .../commands/011-loader-v2-prepare.stdout          |    1 +
+ .../012-loader-research-complete-v2.stderr         |    0
+ .../012-loader-research-complete-v2.stdout         |    1 +
+ .../commands/013-loader-lean-claim-v2.stderr       |    0
+ .../commands/013-loader-lean-claim-v2.stdout       |    1 +
+ .../commands/014-loader-lean-prepare-v2.stderr     |    0
+ .../commands/014-loader-lean-prepare-v2.stdout     |    1 +
+ .../commands/015-loader-lean-submission-v2.stderr  |    0
+ .../commands/015-loader-lean-submission-v2.stdout  |    1 +
+ .../native_agent/compat_boundaries/execution.json  |   17 +
+ .../native_agent/compat_boundaries/first.stderr    |    0
+ .../native_agent/compat_boundaries/first.stdout    |  212 +
+ .../native_agent/compat_boundaries/result.json     |  203 +
+ .../native_agent/compat_boundaries/unittest.txt    |    8 +
+ .../native_agent/compat_execution.json             |   36 +
+ .../commands/000-failed-research-v1-freeze.stderr  |    0
+ .../commands/000-failed-research-v1-freeze.stdout  |    1 +
+ .../001-failed-research-v1-register.stderr         |    0
+ .../001-failed-research-v1-register.stdout         |    1 +
+ .../commands/002-failed-research-v1-claim.stderr   |    0
+ .../commands/002-failed-research-v1-claim.stdout   |    1 +
+ .../commands/003-failed-research-v1-prepare.stderr |    0
+ .../commands/003-failed-research-v1-prepare.stdout |    1 +
+ .../commands/004-failed-research-v1.stderr         |    0
+ .../commands/004-failed-research-v1.stdout         |    1 +
+ .../commands/005-failed-lean-v1-freeze.stderr      |    0
+ .../commands/005-failed-lean-v1-freeze.stdout      |    1 +
+ .../commands/006-failed-lean-v1-register.stderr    |    0
+ .../commands/006-failed-lean-v1-register.stdout    |    1 +
+ .../commands/007-failed-lean-v1-claim.stderr       |    0
+ .../commands/007-failed-lean-v1-claim.stdout       |    1 +
+ .../commands/008-failed-lean-v1-prepare.stderr     |    0
+ .../commands/008-failed-lean-v1-prepare.stdout     |    1 +
+ .../commands/009-pre-lean-research-v1.stderr       |    0
+ .../commands/009-pre-lean-research-v1.stdout       |    1 +
+ .../commands/010-failed-lean-claim-v1.stderr       |    0
+ .../commands/010-failed-lean-claim-v1.stdout       |    1 +
+ .../commands/011-failed-lean-prepare-v1.stderr     |    0
+ .../commands/011-failed-lean-prepare-v1.stdout     |    1 +
+ .../commands/012-failed-lean-sub-v1.stderr         |    0
+ .../commands/012-failed-lean-sub-v1.stdout         |    1 +
+ .../commands/013-failed-lean-result-v1.stderr      |    0
+ .../commands/013-failed-lean-result-v1.stdout      |    1 +
+ .../commands/014-failed-research-v2-freeze.stderr  |    0
+ .../commands/014-failed-research-v2-freeze.stdout  |    1 +
+ .../015-failed-research-v2-register.stderr         |    0
+ .../015-failed-research-v2-register.stdout         |    1 +
+ .../commands/016-failed-research-v2-claim.stderr   |    0
+ .../commands/016-failed-research-v2-claim.stdout   |    1 +
+ .../commands/017-failed-research-v2-prepare.stderr |    0
+ .../commands/017-failed-research-v2-prepare.stdout |    1 +
+ .../commands/018-failed-research-v2.stderr         |    0
+ .../commands/018-failed-research-v2.stdout         |    1 +
+ .../commands/019-failed-lean-v2-freeze.stderr      |    0
+ .../commands/019-failed-lean-v2-freeze.stdout      |    1 +
+ .../commands/020-failed-lean-v2-register.stderr    |    0
+ .../commands/020-failed-lean-v2-register.stdout    |    1 +
+ .../commands/021-failed-lean-v2-claim.stderr       |    0
+ .../commands/021-failed-lean-v2-claim.stdout       |    1 +
+ .../commands/022-failed-lean-v2-prepare.stderr     |    0
+ .../commands/022-failed-lean-v2-prepare.stdout     |    1 +
+ .../commands/023-pre-lean-research-v2.stderr       |    0
+ .../commands/023-pre-lean-research-v2.stdout       |    1 +
+ .../commands/024-failed-lean-claim-v2.stderr       |    0
+ .../commands/024-failed-lean-claim-v2.stdout       |    1 +
+ .../commands/025-failed-lean-prepare-v2.stderr     |    0
+ .../commands/025-failed-lean-prepare-v2.stdout     |    1 +
+ .../commands/026-failed-lean-sub-v2.stderr         |    0
+ .../commands/026-failed-lean-sub-v2.stdout         |    1 +
+ .../commands/027-failed-lean-result-v2.stderr      |    0
+ .../commands/027-failed-lean-result-v2.stdout      |    1 +
+ .../native_agent/compat_failure/execution.json     |   17 +
+ .../compat_failure/failure_command_log.json        |  554 ++
+ .../compat_failure/failure_settlement_result.json  |   55 +
+ .../native_agent/compat_failure/first.stderr       |    0
+ .../native_agent/compat_failure/first.stdout       |   55 +
+ .../native_agent/compat_script_hashes.json         |   17 +
+ .../compat_scripts/completion_boundaries.py        |  161 +
+ .../compat_scripts/failure_settlement.py           |   42 +
+ .../compat_scripts/independent_recovery_support.py |  149 +
+ .../native_agent/crash_addendum/command_log.json   |  145 +
+ ...ointer_before_original-rejection-refused.stderr |    8 +
+ ...ointer_before_original-rejection-refused.stdout |    0
+ ...-accepted_pointer_before_original-repair.stderr |    0
+ ...-accepted_pointer_before_original-repair.stdout |    1 +
+ ...riginal_before_pending-rejection-refused.stderr |    8 +
+ ...riginal_before_pending-rejection-refused.stdout |    0
+ ...-accepted_original_before_pending-repair.stderr |    0
+ ...-accepted_original_before_pending-repair.stdout |    1 +
+ ...4-prepare_input_before_admission-recover.stderr |    0
+ ...4-prepare_input_before_admission-recover.stdout |    1 +
+ ...repare_admission_before_protocol-recover.stderr |    0
+ ...repare_admission_before_protocol-recover.stdout |    1 +
+ ...ission_before_protocol-rejection-refused.stderr |   21 +
+ ...ission_before_protocol-rejection-refused.stdout |    0
+ .../native_agent/crash_addendum/execution.json     |   17 +
+ .../native_agent/crash_addendum/first.stderr       |    0
+ .../native_agent/crash_addendum/first.stdout       |  105 +
+ .../native_agent/crash_addendum/results.json       |  105 +
+ .../native_agent/crash_boundaries.py               |  114 +
+ .../native_agent/independent_recovery_support.py   |  149 +
+ .../native_agent/main/command_log.json             | 1212 +++
+ .../main/commands/000-native-base-v1-freeze.stderr |    0
+ .../main/commands/000-native-base-v1-freeze.stdout |    1 +
+ .../commands/001-native-base-v1-register.stderr    |    0
+ .../commands/001-native-base-v1-register.stdout    |    1 +
+ .../main/commands/002-native-base-v1-claim.stderr  |    0
+ .../main/commands/002-native-base-v1-claim.stdout  |    1 +
+ .../commands/003-native-base-v1-prepare.stderr     |    0
+ .../commands/003-native-base-v1-prepare.stdout     |    1 +
+ .../main/commands/004-parent-research-v1.stderr    |    0
+ .../main/commands/004-parent-research-v1.stdout    |    1 +
+ .../main/commands/005-native-lean-claim-v1.stderr  |    0
+ .../main/commands/005-native-lean-claim-v1.stdout  |    1 +
+ .../commands/006-native-lean-prepare-v1.stderr     |    0
+ .../commands/006-native-lean-prepare-v1.stdout     |    1 +
+ .../main/commands/007-native-accepted-v1.stderr    |    0
+ .../main/commands/007-native-accepted-v1.stdout    |    1 +
+ .../main/commands/008-native-base-v2-freeze.stderr |    0
+ .../main/commands/008-native-base-v2-freeze.stdout |    1 +
+ .../commands/009-native-base-v2-register.stderr    |    0
+ .../commands/009-native-base-v2-register.stdout    |    1 +
+ .../main/commands/010-native-base-v2-claim.stderr  |    0
+ .../main/commands/010-native-base-v2-claim.stdout  |    1 +
+ .../commands/011-native-base-v2-prepare.stderr     |    0
+ .../commands/011-native-base-v2-prepare.stdout     |    1 +
+ .../main/commands/012-parent-research-v2.stderr    |    0
+ .../main/commands/012-parent-research-v2.stdout    |    1 +
+ .../main/commands/013-native-lean-claim-v2.stderr  |    0
+ .../main/commands/013-native-lean-claim-v2.stdout  |    1 +
+ .../commands/014-native-lean-prepare-v2.stderr     |    0
+ .../commands/014-native-lean-prepare-v2.stdout     |    1 +
+ .../main/commands/015-native-accepted-v2.stderr    |    0
+ .../main/commands/015-native-accepted-v2.stdout    |    1 +
+ .../main/commands/016-reject-1-started.stderr      |    0
+ .../main/commands/016-reject-1-started.stdout      |    1 +
+ .../commands/017-reject-repeat-1-started.stderr    |    0
+ .../commands/017-reject-repeat-1-started.stdout    |    1 +
+ .../commands/018-reject-different-1-started.stderr |    8 +
+ .../commands/018-reject-different-1-started.stdout |    0
+ .../019-reject-cannot-accept-1-started.stderr      |    8 +
+ .../019-reject-cannot-accept-1-started.stdout      |    0
+ .../main/commands/020-reject-1-ambiguous.stderr    |    0
+ .../main/commands/020-reject-1-ambiguous.stdout    |    1 +
+ .../commands/021-reject-repeat-1-ambiguous.stderr  |    0
+ .../commands/021-reject-repeat-1-ambiguous.stdout  |    1 +
+ .../022-reject-different-1-ambiguous.stderr        |    8 +
+ .../022-reject-different-1-ambiguous.stdout        |    0
+ .../023-reject-cannot-accept-1-ambiguous.stderr    |    8 +
+ .../023-reject-cannot-accept-1-ambiguous.stdout    |    0
+ .../main/commands/024-reject-2-started.stderr      |    0
+ .../main/commands/024-reject-2-started.stdout      |    1 +
+ .../commands/025-reject-repeat-2-started.stderr    |    0
+ .../commands/025-reject-repeat-2-started.stdout    |    1 +
+ .../commands/026-reject-different-2-started.stderr |    8 +
+ .../commands/026-reject-different-2-started.stdout |    0
+ .../027-reject-cannot-accept-2-started.stderr      |    8 +
+ .../027-reject-cannot-accept-2-started.stdout      |    0
+ .../main/commands/028-reject-2-ambiguous.stderr    |    0
+ .../main/commands/028-reject-2-ambiguous.stdout    |    1 +
+ .../commands/029-reject-repeat-2-ambiguous.stderr  |    0
+ .../commands/029-reject-repeat-2-ambiguous.stdout  |    1 +
+ .../030-reject-different-2-ambiguous.stderr        |    8 +
+ .../030-reject-different-2-ambiguous.stdout        |    0
+ .../031-reject-cannot-accept-2-ambiguous.stderr    |    8 +
+ .../031-reject-cannot-accept-2-ambiguous.stdout    |    0
+ .../032-guard-pending_no_pointer-v1.stderr         |    8 +
+ .../032-guard-pending_no_pointer-v1.stdout         |    0
+ .../033-guard-accepted_pointer_only-v1.stderr      |    8 +
+ .../033-guard-accepted_pointer_only-v1.stdout      |    0
+ .../main/commands/034-old-no-backfill-v1.stderr    |    0
+ .../main/commands/034-old-no-backfill-v1.stdout    |    1 +
+ .../commands/035-guard-missing_protocol-v1.stderr  |   21 +
+ .../commands/035-guard-missing_protocol-v1.stdout  |    0
+ .../036-guard-foreign_protocol_attempt-v1.stderr   |   15 +
+ .../036-guard-foreign_protocol_attempt-v1.stdout   |    0
+ .../037-guard-foreign_protocol_input-v1.stderr     |   15 +
+ .../037-guard-foreign_protocol_input-v1.stdout     |    0
+ .../commands/038-guard-missing_admission-v1.stderr |   14 +
+ .../commands/038-guard-missing_admission-v1.stdout |    0
+ .../commands/039-guard-tampered_input-v1.stderr    |    8 +
+ .../commands/039-guard-tampered_input-v1.stdout    |    0
+ .../040-guard-pending_no_pointer-v2.stderr         |    8 +
+ .../040-guard-pending_no_pointer-v2.stdout         |    0
+ .../041-guard-accepted_pointer_only-v2.stderr      |    8 +
+ .../041-guard-accepted_pointer_only-v2.stdout      |    0
+ .../main/commands/042-old-no-backfill-v2.stderr    |    0
+ .../main/commands/042-old-no-backfill-v2.stdout    |    1 +
+ .../commands/043-guard-missing_protocol-v2.stderr  |   21 +
+ .../commands/043-guard-missing_protocol-v2.stdout  |    0
+ .../044-guard-foreign_protocol_attempt-v2.stderr   |   15 +
+ .../044-guard-foreign_protocol_attempt-v2.stdout   |    0
+ .../045-guard-foreign_protocol_input-v2.stderr     |   15 +
+ .../045-guard-foreign_protocol_input-v2.stdout     |    0
+ .../commands/046-guard-missing_admission-v2.stderr |   14 +
+ .../commands/046-guard-missing_admission-v2.stdout |    0
+ .../commands/047-guard-tampered_input-v2.stderr    |    8 +
+ .../commands/047-guard-tampered_input-v2.stdout    |    0
+ .../main/commands/048-runtime-transport-v1.stderr  |   12 +
+ .../main/commands/048-runtime-transport-v1.stdout  |    0
+ .../main/commands/049-runtime-wrong_id-v1.stderr   |   14 +
+ .../main/commands/049-runtime-wrong_id-v1.stdout   |    0
+ .../main/commands/050-runtime-failed-v1.stderr     |    0
+ .../main/commands/050-runtime-failed-v1.stdout     |    1 +
+ .../main/commands/051-runtime-repeat-v1.stderr     |    0
+ .../main/commands/051-runtime-repeat-v1.stdout     |    1 +
+ .../main/commands/052-runtime-transport-v2.stderr  |   12 +
+ .../main/commands/052-runtime-transport-v2.stdout  |    0
+ .../main/commands/053-runtime-wrong_id-v2.stderr   |   14 +
+ .../main/commands/053-runtime-wrong_id-v2.stdout   |    0
+ .../main/commands/054-runtime-failed-v2.stderr     |    0
+ .../main/commands/054-runtime-failed-v2.stdout     |    1 +
+ .../main/commands/055-runtime-repeat-v2.stderr     |    0
+ .../main/commands/055-runtime-repeat-v2.stdout     |    1 +
+ .../main/commands/056-success-lean-v1.stderr       |    0
+ .../main/commands/056-success-lean-v1.stdout       |    1 +
+ .../main/commands/057-success-lean-v2.stderr       |    0
+ .../main/commands/057-success-lean-v2.stdout       |    1 +
+ .../native_agent/main/execution.json               |   17 +
+ .../native_agent/main/first.stderr                 |    0
+ .../native_agent/main/first.stdout                 |  357 +
+ .../native_agent/main/results.json                 |  345 +
+ .../native_agent/main/unittest.txt                 |   11 +
+ .../native_agent/manifest.json                     | 1291 +++
+ .../native_agent/native_boundaries.py              |  234 +
+ .../20261027-66ff72f-windows/native_agent/qa.txt   |   14 +
+ .../native_agent/report.json                       |  359 +
+ .../native_agent/report.md                         |   17 +
+ .../native_agent/report_before_crash.json          |  233 +
+ .../native_agent/report_before_crash.md            |   13 +
+ .../native_agent/write_crash_addendum.py           |   44 +
+ .../native_agent/write_report.py                   |  107 +
+ .../original_quick.stderr.txt                      |    0
+ .../original_quick.stdout.txt                      |   23 +
+ .../original_quick_full/quick_command_log.json     |   17 +
+ .../original_quick_full/quick_first_output.txt     |   21 +
+ .../original_quick_full/quick_first_results.json   |  142 +
+ .../original_quick_full/quick_joint_probes.py      |  118 +
+ .../20261027-66ff72f-windows/package_review.py     |   71 +
+ audit/reviews/20261027-66ff72f-windows/pr2.json    |   47 +
+ .../preflight_agent/cli_command_log.json           |  838 ++
+ .../preflight_agent/cli_first.stderr               |    0
+ .../preflight_agent/cli_first.stdout               |   11 +
+ .../preflight_agent/cli_first_execution.json       |   13 +
+ .../preflight_agent/cli_first_results.json         |   30 +
+ .../e513_adapted_replay/first_output.txt           |   29 +
+ .../e513_adapted_replay/first_results.json         |  722 ++
+ .../e513_adapted_replay/replay.json                |   61 +
+ .../preflight_agent/e513_adapted_replay/stderr.txt |    0
+ .../preflight_agent/e513_adapted_replay/stdout.txt |   31 +
+ .../preflight_agent/e513_adapter.stderr            |    0
+ .../preflight_agent/e513_adapter.stdout            |    1 +
+ .../e513_adapter/admission_agent/adapter.json      |   10 +
+ .../admission_agent/fixture_adapter.diff           |   11 +
+ .../admission_agent/independent_admission.py       |  352 +
+ .../preflight_agent/e513_adapter_execution.json    |   21 +
+ .../e513_ledger_fixture_diagnosis.json             |  144 +
+ .../preflight_agent/independent_cli_gates.py       |  111 +
+ .../preflight_agent/independent_preflight.py       |  142 +
+ .../preflight_agent/independent_preflight_cli.py   |   42 +
+ .../independent_preflight_corrected.py             |  142 +
+ .../preflight_agent/preflight_cli_command_log.json |   94 +
+ .../preflight_agent/preflight_cli_first.stderr     |    0
+ .../preflight_agent/preflight_cli_first.stdout     |    8 +
+ .../preflight_cli_first_execution.json             |   13 +
+ .../preflight_cli_first_results.json               |   11 +
+ .../preflight_agent/pure_corrected.stderr          |    0
+ .../preflight_agent/pure_corrected.stdout          |   14 +
+ .../preflight_agent/pure_corrected_execution.json  |   13 +
+ .../preflight_agent/pure_corrected_results.json    |   35 +
+ .../preflight_agent/pure_first.stderr              |    0
+ .../preflight_agent/pure_first.stdout              |   25 +
+ .../preflight_agent/pure_first_execution.json      |   13 +
+ .../preflight_agent/pure_first_results.json        |   40 +
+ .../preflight_agent/pure_fixture_correction.diff   |   19 +
+ .../preflight_agent/pure_fixture_correction.json   |    8 +
+ .../preflight_agent/qa.txt                         |   40 +
+ .../preflight_agent/quick_fixture_adapter.stderr   |    0
+ .../preflight_agent/quick_fixture_adapter.stdout   |   14 +
+ .../quick_fixture_adapter_execution.json           |   22 +
+ .../admission_agent/quick_command_log.json         |   32 +
+ .../admission_agent/quick_first_output.txt         |   12 +
+ .../admission_agent/quick_first_results.json       |  167 +
+ .../admission_agent/quick_joint_probes.py          |  118 +
+ .../quick_fixture_workspace/sitecustomize.py       |    3 +
+ .../preflight_agent/quick_joint_probes.py          |  118 +
+ .../preflight_agent/review_files_manifest.json     | 2116 +++++
+ .../preflight_agent/review_report.json             |  337 +
+ .../preflight_agent/review_report.txt              |    8 +
+ .../20261027-66ff72f-windows/qc_open_project.json  |   47 +
+ .../qc_project_listing.json                        |   42 +
+ .../qc_terminal_native.json                        |   24 +
+ .../recovery_agent/direct_freeze_entry.py          |    9 +
+ .../recovery_agent/helper_corrected.stderr         |    0
+ .../recovery_agent/helper_corrected.stdout         |   12 +
+ .../recovery_agent/helper_corrected_execution.json |   23 +
+ .../recovery_agent/independent_recovery.py         |  270 +
+ .../recovery_agent/independent_recovery_support.py |  149 +
+ .../recovery_agent/results/command_log.json        | 1642 ++++
+ .../results/commands/000-base-v1-freeze.stderr     |    0
+ .../results/commands/000-base-v1-freeze.stdout     |    1 +
+ .../results/commands/001-base-v1-register.stderr   |    0
+ .../results/commands/001-base-v1-register.stdout   |    1 +
+ .../results/commands/002-base-v1-claim.stderr      |    0
+ .../results/commands/002-base-v1-claim.stdout      |    1 +
+ .../results/commands/003-base-v1-prepare.stderr    |    0
+ .../results/commands/003-base-v1-prepare.stdout    |    1 +
+ .../results/commands/004-base-v2-freeze.stderr     |    0
+ .../results/commands/004-base-v2-freeze.stdout     |    1 +
+ .../results/commands/005-base-v2-register.stderr   |    0
+ .../results/commands/005-base-v2-register.stdout   |    1 +
+ .../results/commands/006-base-v2-claim.stderr      |    0
+ .../results/commands/006-base-v2-claim.stdout      |    1 +
+ .../results/commands/007-base-v2-prepare.stderr    |    0
+ .../results/commands/007-base-v2-prepare.stdout    |    1 +
+ .../commands/008-freeze-v1-started-to1.stderr      |   10 +
+ .../commands/008-freeze-v1-started-to1.stdout      |    0
+ .../commands/009-direct-v1-started-to1.stderr      |    1 +
+ .../commands/009-direct-v1-started-to1.stdout      |    0
+ .../commands/010-freeze-v1-started-to2.stderr      |   10 +
+ .../commands/010-freeze-v1-started-to2.stdout      |    0
+ .../commands/011-direct-v1-started-to2.stderr      |    1 +
+ .../commands/011-direct-v1-started-to2.stdout      |    0
+ .../commands/012-freeze-v1-pending-to1.stderr      |   10 +
+ .../commands/012-freeze-v1-pending-to1.stdout      |    0
+ .../commands/013-direct-v1-pending-to1.stderr      |    1 +
+ .../commands/013-direct-v1-pending-to1.stdout      |    0
+ .../commands/014-freeze-v1-pending-to2.stderr      |   10 +
+ .../commands/014-freeze-v1-pending-to2.stdout      |    0
+ .../commands/015-direct-v1-pending-to2.stderr      |    1 +
+ .../commands/015-direct-v1-pending-to2.stdout      |    0
+ .../commands/016-freeze-v1-ambiguous-to1.stderr    |   10 +
+ .../commands/016-freeze-v1-ambiguous-to1.stdout    |    0
+ .../commands/017-direct-v1-ambiguous-to1.stderr    |    1 +
+ .../commands/017-direct-v1-ambiguous-to1.stdout    |    0
+ .../commands/018-freeze-v1-ambiguous-to2.stderr    |   10 +
+ .../commands/018-freeze-v1-ambiguous-to2.stdout    |    0
+ .../commands/019-direct-v1-ambiguous-to2.stderr    |    1 +
+ .../commands/019-direct-v1-ambiguous-to2.stdout    |    0
+ .../commands/020-freeze-v2-started-to1.stderr      |   10 +
+ .../commands/020-freeze-v2-started-to1.stdout      |    0
+ .../commands/021-direct-v2-started-to1.stderr      |    1 +
+ .../commands/021-direct-v2-started-to1.stdout      |    0
+ .../commands/022-freeze-v2-started-to2.stderr      |   10 +
+ .../commands/022-freeze-v2-started-to2.stdout      |    0
+ .../commands/023-direct-v2-started-to2.stderr      |    1 +
+ .../commands/023-direct-v2-started-to2.stdout      |    0
+ .../commands/024-freeze-v2-pending-to1.stderr      |   10 +
+ .../commands/024-freeze-v2-pending-to1.stdout      |    0
+ .../commands/025-direct-v2-pending-to1.stderr      |    1 +
+ .../commands/025-direct-v2-pending-to1.stdout      |    0
+ .../commands/026-freeze-v2-pending-to2.stderr      |   10 +
+ .../commands/026-freeze-v2-pending-to2.stdout      |    0
+ .../commands/027-direct-v2-pending-to2.stderr      |    1 +
+ .../commands/027-direct-v2-pending-to2.stdout      |    0
+ .../commands/028-freeze-v2-ambiguous-to1.stderr    |   10 +
+ .../commands/028-freeze-v2-ambiguous-to1.stdout    |    0
+ .../commands/029-direct-v2-ambiguous-to1.stderr    |    1 +
+ .../commands/029-direct-v2-ambiguous-to1.stdout    |    0
+ .../commands/030-freeze-v2-ambiguous-to2.stderr    |   10 +
+ .../commands/030-freeze-v2-ambiguous-to2.stdout    |    0
+ .../commands/031-direct-v2-ambiguous-to2.stderr    |    1 +
+ .../commands/031-direct-v2-ambiguous-to2.stdout    |    0
+ .../results/commands/032-reject-v1-missing.stderr  |   14 +
+ .../results/commands/032-reject-v1-missing.stdout  |    0
+ .../commands/033-reject-v1-input_hash.stderr       |   10 +
+ .../commands/033-reject-v1-input_hash.stdout       |    0
+ .../commands/034-reject-v1-foreign_attempt.stderr  |   10 +
+ .../commands/034-reject-v1-foreign_attempt.stdout  |    0
+ .../commands/035-reject-v1-cloud_path.stderr       |   10 +
+ .../commands/035-reject-v1-cloud_path.stdout       |    0
+ .../commands/036-reject-v1-extra_field.stderr      |   10 +
+ .../commands/036-reject-v1-extra_field.stdout      |    0
+ .../commands/037-reject-v1-noncanonical.stderr     |   10 +
+ .../commands/037-reject-v1-noncanonical.stdout     |    0
+ .../038-reject-v1-local_input_bytes.stderr         |   10 +
+ .../038-reject-v1-local_input_bytes.stdout         |    0
+ .../results/commands/039-reject-v2-missing.stderr  |   14 +
+ .../results/commands/039-reject-v2-missing.stdout  |    0
+ .../commands/040-reject-v2-input_hash.stderr       |   10 +
+ .../commands/040-reject-v2-input_hash.stdout       |    0
+ .../commands/041-reject-v2-foreign_attempt.stderr  |   10 +
+ .../commands/041-reject-v2-foreign_attempt.stdout  |    0
+ .../commands/042-reject-v2-cloud_path.stderr       |   10 +
+ .../commands/042-reject-v2-cloud_path.stdout       |    0
+ .../commands/043-reject-v2-extra_field.stderr      |   10 +
+ .../commands/043-reject-v2-extra_field.stdout      |    0
+ .../commands/044-reject-v2-noncanonical.stderr     |   10 +
+ .../commands/044-reject-v2-noncanonical.stdout     |    0
+ .../045-reject-v2-local_input_bytes.stderr         |   10 +
+ .../045-reject-v2-local_input_bytes.stdout         |    0
+ .../results/commands/046-settle-v1-freeze.stderr   |    0
+ .../results/commands/046-settle-v1-freeze.stdout   |    1 +
+ .../results/commands/047-settle-v1-register.stderr |    0
+ .../results/commands/047-settle-v1-register.stdout |    1 +
+ .../results/commands/048-settle-v1-claim.stderr    |    0
+ .../results/commands/048-settle-v1-claim.stdout    |    1 +
+ .../results/commands/049-settle-v1-prepare.stderr  |    0
+ .../results/commands/049-settle-v1-prepare.stdout  |    1 +
+ .../commands/050-old-v1-prepare-drift.stderr       |    0
+ .../commands/050-old-v1-prepare-drift.stdout       |    1 +
+ .../commands/051-old-v1-status-drift.stderr        |    0
+ .../commands/051-old-v1-status-drift.stdout        |    1 +
+ .../commands/052-old-v1-research-drift.stderr      |    0
+ .../commands/052-old-v1-research-drift.stdout      |    1 +
+ .../results/commands/053-old-v1-freeze-B.stderr    |    0
+ .../results/commands/053-old-v1-freeze-B.stdout    |    1 +
+ .../commands/054-old-v1-read-final-A.stderr        |    0
+ .../commands/054-old-v1-read-final-A.stdout        |    1 +
+ .../results/commands/055-old-v1-lean-claim.stderr  |    0
+ .../results/commands/055-old-v1-lean-claim.stdout  |    1 +
+ .../commands/056-old-v1-lean-prepare.stderr        |    0
+ .../commands/056-old-v1-lean-prepare.stdout        |    1 +
+ .../commands/057-old-v1-lean-prepare-drift.stderr  |    0
+ .../commands/057-old-v1-lean-prepare-drift.stdout  |    1 +
+ .../commands/058-old-v1-lean-submission.stderr     |    0
+ .../commands/058-old-v1-lean-submission.stdout     |    1 +
+ .../results/commands/059-old-v1-lean-result.stderr |    0
+ .../results/commands/059-old-v1-lean-result.stdout |    1 +
+ .../commands/060-old-v1-final-fresh-input.stderr   |    8 +
+ .../commands/060-old-v1-final-fresh-input.stdout   |    0
+ .../results/commands/061-settle-v2-freeze.stderr   |    0
+ .../results/commands/061-settle-v2-freeze.stdout   |    1 +
+ .../results/commands/062-settle-v2-register.stderr |    0
+ .../results/commands/062-settle-v2-register.stdout |    1 +
+ .../results/commands/063-settle-v2-claim.stderr    |    0
+ .../results/commands/063-settle-v2-claim.stdout    |    1 +
+ .../results/commands/064-settle-v2-prepare.stderr  |    0
+ .../results/commands/064-settle-v2-prepare.stdout  |    1 +
+ .../commands/065-old-v2-prepare-drift.stderr       |    0
+ .../commands/065-old-v2-prepare-drift.stdout       |    1 +
+ .../commands/066-old-v2-status-drift.stderr        |    0
+ .../commands/066-old-v2-status-drift.stdout        |    1 +
+ .../commands/067-old-v2-research-drift.stderr      |    0
+ .../commands/067-old-v2-research-drift.stdout      |    1 +
+ .../results/commands/068-old-v2-freeze-B.stderr    |    0
+ .../results/commands/068-old-v2-freeze-B.stdout    |    1 +
+ .../commands/069-old-v2-read-final-A.stderr        |    0
+ .../commands/069-old-v2-read-final-A.stdout        |    1 +
+ .../results/commands/070-old-v2-lean-claim.stderr  |    0
+ .../results/commands/070-old-v2-lean-claim.stdout  |    1 +
+ .../commands/071-old-v2-lean-prepare.stderr        |    0
+ .../commands/071-old-v2-lean-prepare.stdout        |    1 +
+ .../commands/072-old-v2-lean-prepare-drift.stderr  |    0
+ .../commands/072-old-v2-lean-prepare-drift.stdout  |    1 +
+ .../commands/073-old-v2-lean-submission.stderr     |    0
+ .../commands/073-old-v2-lean-submission.stdout     |    1 +
+ .../results/commands/074-old-v2-lean-result.stderr |    0
+ .../results/commands/074-old-v2-lean-result.stdout |    1 +
+ .../commands/075-old-v2-final-fresh-input.stderr   |    8 +
+ .../commands/075-old-v2-final-fresh-input.stdout   |    0
+ .../results/commands/076-parallel.stderr           |   10 +
+ .../results/commands/076-parallel.stdout           |    0
+ .../results/commands/077-parallel.stderr           |   10 +
+ .../results/commands/077-parallel.stdout           |    0
+ .../results/commands/078-parallel.stderr           |   10 +
+ .../results/commands/078-parallel.stdout           |    0
+ .../results/commands/079-parallel.stderr           |   10 +
+ .../results/commands/079-parallel.stdout           |    0
+ .../results/commands/080-unknown-1-prepare.stderr  |    8 +
+ .../results/commands/080-unknown-1-prepare.stdout  |    0
+ .../results/commands/081-unknown-1-status.stderr   |    8 +
+ .../results/commands/081-unknown-1-status.stdout   |    0
+ .../results/commands/082-unknown-2-prepare.stderr  |    8 +
+ .../results/commands/082-unknown-2-prepare.stdout  |    0
+ .../results/commands/083-unknown-2-status.stderr   |    8 +
+ .../results/commands/083-unknown-2-status.stdout   |    0
+ .../recovery_agent/results/first_run_summary.json  |  334 +
+ .../recovery_agent/results/first_run_unittest.txt  |  105 +
+ .../results_helper_corrected/command_log.json      | 1642 ++++
+ .../commands/000-base-v1-freeze.stderr             |    0
+ .../commands/000-base-v1-freeze.stdout             |    1 +
+ .../commands/001-base-v1-register.stderr           |    0
+ .../commands/001-base-v1-register.stdout           |    1 +
+ .../commands/002-base-v1-claim.stderr              |    0
+ .../commands/002-base-v1-claim.stdout              |    1 +
+ .../commands/003-base-v1-prepare.stderr            |    0
+ .../commands/003-base-v1-prepare.stdout            |    1 +
+ .../commands/004-base-v2-freeze.stderr             |    0
+ .../commands/004-base-v2-freeze.stdout             |    1 +
+ .../commands/005-base-v2-register.stderr           |    0
+ .../commands/005-base-v2-register.stdout           |    1 +
+ .../commands/006-base-v2-claim.stderr              |    0
+ .../commands/006-base-v2-claim.stdout              |    1 +
+ .../commands/007-base-v2-prepare.stderr            |    0
+ .../commands/007-base-v2-prepare.stdout            |    1 +
+ .../commands/008-freeze-v1-started-to1.stderr      |   10 +
+ .../commands/008-freeze-v1-started-to1.stdout      |    0
+ .../commands/009-direct-v1-started-to1.stderr      |    8 +
+ .../commands/009-direct-v1-started-to1.stdout      |    0
+ .../commands/010-freeze-v1-started-to2.stderr      |   10 +
+ .../commands/010-freeze-v1-started-to2.stdout      |    0
+ .../commands/011-direct-v1-started-to2.stderr      |    8 +
+ .../commands/011-direct-v1-started-to2.stdout      |    0
+ .../commands/012-freeze-v1-pending-to1.stderr      |   10 +
+ .../commands/012-freeze-v1-pending-to1.stdout      |    0
+ .../commands/013-direct-v1-pending-to1.stderr      |    8 +
+ .../commands/013-direct-v1-pending-to1.stdout      |    0
+ .../commands/014-freeze-v1-pending-to2.stderr      |   10 +
+ .../commands/014-freeze-v1-pending-to2.stdout      |    0
+ .../commands/015-direct-v1-pending-to2.stderr      |    8 +
+ .../commands/015-direct-v1-pending-to2.stdout      |    0
+ .../commands/016-freeze-v1-ambiguous-to1.stderr    |   10 +
+ .../commands/016-freeze-v1-ambiguous-to1.stdout    |    0
+ .../commands/017-direct-v1-ambiguous-to1.stderr    |    8 +
+ .../commands/017-direct-v1-ambiguous-to1.stdout    |    0
+ .../commands/018-freeze-v1-ambiguous-to2.stderr    |   10 +
+ .../commands/018-freeze-v1-ambiguous-to2.stdout    |    0
+ .../commands/019-direct-v1-ambiguous-to2.stderr    |    8 +
+ .../commands/019-direct-v1-ambiguous-to2.stdout    |    0
+ .../commands/020-freeze-v2-started-to1.stderr      |   10 +
+ .../commands/020-freeze-v2-started-to1.stdout      |    0
+ .../commands/021-direct-v2-started-to1.stderr      |    8 +
+ .../commands/021-direct-v2-started-to1.stdout      |    0
+ .../commands/022-freeze-v2-started-to2.stderr      |   10 +
+ .../commands/022-freeze-v2-started-to2.stdout      |    0
+ .../commands/023-direct-v2-started-to2.stderr      |    8 +
+ .../commands/023-direct-v2-started-to2.stdout      |    0
+ .../commands/024-freeze-v2-pending-to1.stderr      |   10 +
+ .../commands/024-freeze-v2-pending-to1.stdout      |    0
+ .../commands/025-direct-v2-pending-to1.stderr      |    8 +
+ .../commands/025-direct-v2-pending-to1.stdout      |    0
+ .../commands/026-freeze-v2-pending-to2.stderr      |   10 +
+ .../commands/026-freeze-v2-pending-to2.stdout      |    0
+ .../commands/027-direct-v2-pending-to2.stderr      |    8 +
+ .../commands/027-direct-v2-pending-to2.stdout      |    0
+ .../commands/028-freeze-v2-ambiguous-to1.stderr    |   10 +
+ .../commands/028-freeze-v2-ambiguous-to1.stdout    |    0
+ .../commands/029-direct-v2-ambiguous-to1.stderr    |    8 +
+ .../commands/029-direct-v2-ambiguous-to1.stdout    |    0
+ .../commands/030-freeze-v2-ambiguous-to2.stderr    |   10 +
+ .../commands/030-freeze-v2-ambiguous-to2.stdout    |    0
+ .../commands/031-direct-v2-ambiguous-to2.stderr    |    8 +
+ .../commands/031-direct-v2-ambiguous-to2.stdout    |    0
+ .../commands/032-reject-v1-missing.stderr          |   14 +
+ .../commands/032-reject-v1-missing.stdout          |    0
+ .../commands/033-reject-v1-input_hash.stderr       |   10 +
+ .../commands/033-reject-v1-input_hash.stdout       |    0
+ .../commands/034-reject-v1-foreign_attempt.stderr  |   10 +
+ .../commands/034-reject-v1-foreign_attempt.stdout  |    0
+ .../commands/035-reject-v1-cloud_path.stderr       |   10 +
+ .../commands/035-reject-v1-cloud_path.stdout       |    0
+ .../commands/036-reject-v1-extra_field.stderr      |   10 +
+ .../commands/036-reject-v1-extra_field.stdout      |    0
+ .../commands/037-reject-v1-noncanonical.stderr     |   10 +
+ .../commands/037-reject-v1-noncanonical.stdout     |    0
+ .../038-reject-v1-local_input_bytes.stderr         |   10 +
+ .../038-reject-v1-local_input_bytes.stdout         |    0
+ .../commands/039-reject-v2-missing.stderr          |   14 +
+ .../commands/039-reject-v2-missing.stdout          |    0
+ .../commands/040-reject-v2-input_hash.stderr       |   10 +
+ .../commands/040-reject-v2-input_hash.stdout       |    0
+ .../commands/041-reject-v2-foreign_attempt.stderr  |   10 +
+ .../commands/041-reject-v2-foreign_attempt.stdout  |    0
+ .../commands/042-reject-v2-cloud_path.stderr       |   10 +
+ .../commands/042-reject-v2-cloud_path.stdout       |    0
+ .../commands/043-reject-v2-extra_field.stderr      |   10 +
+ .../commands/043-reject-v2-extra_field.stdout      |    0
+ .../commands/044-reject-v2-noncanonical.stderr     |   10 +
+ .../commands/044-reject-v2-noncanonical.stdout     |    0
+ .../045-reject-v2-local_input_bytes.stderr         |   10 +
+ .../045-reject-v2-local_input_bytes.stdout         |    0
+ .../commands/046-settle-v1-freeze.stderr           |    0
+ .../commands/046-settle-v1-freeze.stdout           |    1 +
+ .../commands/047-settle-v1-register.stderr         |    0
+ .../commands/047-settle-v1-register.stdout         |    1 +
+ .../commands/048-settle-v1-claim.stderr            |    0
+ .../commands/048-settle-v1-claim.stdout            |    1 +
+ .../commands/049-settle-v1-prepare.stderr          |    0
+ .../commands/049-settle-v1-prepare.stdout          |    1 +
+ .../commands/050-old-v1-prepare-drift.stderr       |    0
+ .../commands/050-old-v1-prepare-drift.stdout       |    1 +
+ .../commands/051-old-v1-status-drift.stderr        |    0
+ .../commands/051-old-v1-status-drift.stdout        |    1 +
+ .../commands/052-old-v1-research-drift.stderr      |    0
+ .../commands/052-old-v1-research-drift.stdout      |    1 +
+ .../commands/053-old-v1-freeze-B.stderr            |    0
+ .../commands/053-old-v1-freeze-B.stdout            |    1 +
+ .../commands/054-old-v1-read-final-A.stderr        |    0
+ .../commands/054-old-v1-read-final-A.stdout        |    1 +
+ .../commands/055-old-v1-lean-claim.stderr          |    0
+ .../commands/055-old-v1-lean-claim.stdout          |    1 +
+ .../commands/056-old-v1-lean-prepare.stderr        |    0
+ .../commands/056-old-v1-lean-prepare.stdout        |    1 +
+ .../commands/057-old-v1-lean-prepare-drift.stderr  |    0
+ .../commands/057-old-v1-lean-prepare-drift.stdout  |    1 +
+ .../commands/058-old-v1-lean-submission.stderr     |    0
+ .../commands/058-old-v1-lean-submission.stdout     |    1 +
+ .../commands/059-old-v1-lean-result.stderr         |    0
+ .../commands/059-old-v1-lean-result.stdout         |    1 +
+ .../commands/060-old-v1-final-fresh-input.stderr   |    8 +
+ .../commands/060-old-v1-final-fresh-input.stdout   |    0
+ .../commands/061-settle-v2-freeze.stderr           |    0
+ .../commands/061-settle-v2-freeze.stdout           |    1 +
+ .../commands/062-settle-v2-register.stderr         |    0
+ .../commands/062-settle-v2-register.stdout         |    1 +
+ .../commands/063-settle-v2-claim.stderr            |    0
+ .../commands/063-settle-v2-claim.stdout            |    1 +
+ .../commands/064-settle-v2-prepare.stderr          |    0
+ .../commands/064-settle-v2-prepare.stdout          |    1 +
+ .../commands/065-old-v2-prepare-drift.stderr       |    0
+ .../commands/065-old-v2-prepare-drift.stdout       |    1 +
+ .../commands/066-old-v2-status-drift.stderr        |    0
+ .../commands/066-old-v2-status-drift.stdout        |    1 +
+ .../commands/067-old-v2-research-drift.stderr      |    0
+ .../commands/067-old-v2-research-drift.stdout      |    1 +
+ .../commands/068-old-v2-freeze-B.stderr            |    0
+ .../commands/068-old-v2-freeze-B.stdout            |    1 +
+ .../commands/069-old-v2-read-final-A.stderr        |    0
+ .../commands/069-old-v2-read-final-A.stdout        |    1 +
+ .../commands/070-old-v2-lean-claim.stderr          |    0
+ .../commands/070-old-v2-lean-claim.stdout          |    1 +
+ .../commands/071-old-v2-lean-prepare.stderr        |    0
+ .../commands/071-old-v2-lean-prepare.stdout        |    1 +
+ .../commands/072-old-v2-lean-prepare-drift.stderr  |    0
+ .../commands/072-old-v2-lean-prepare-drift.stdout  |    1 +
+ .../commands/073-old-v2-lean-submission.stderr     |    0
+ .../commands/073-old-v2-lean-submission.stdout     |    1 +
+ .../commands/074-old-v2-lean-result.stderr         |    0
+ .../commands/074-old-v2-lean-result.stdout         |    1 +
+ .../commands/075-old-v2-final-fresh-input.stderr   |    8 +
+ .../commands/075-old-v2-final-fresh-input.stdout   |    0
+ .../commands/076-parallel.stderr                   |   10 +
+ .../commands/076-parallel.stdout                   |    0
+ .../commands/077-parallel.stderr                   |   10 +
+ .../commands/077-parallel.stdout                   |    0
+ .../commands/078-parallel.stderr                   |   10 +
+ .../commands/078-parallel.stdout                   |    0
+ .../commands/079-parallel.stderr                   |   10 +
+ .../commands/079-parallel.stdout                   |    0
+ .../commands/080-unknown-1-prepare.stderr          |    8 +
+ .../commands/080-unknown-1-prepare.stdout          |    0
+ .../commands/081-unknown-1-status.stderr           |    8 +
+ .../commands/081-unknown-1-status.stdout           |    0
+ .../commands/082-unknown-2-prepare.stderr          |    8 +
+ .../commands/082-unknown-2-prepare.stdout          |    0
+ .../commands/083-unknown-2-status.stderr           |    8 +
+ .../commands/083-unknown-2-status.stdout           |    0
+ .../direct_freeze_entry.py                         |    9 +
+ .../first_run_summary.json                         |  330 +
+ .../first_run_unittest.txt                         |   10 +
+ .../replay_archived_script.py                      |   27 +
+ .../replay_public_class.py                         |   32 +
+ .../requirements-audit.txt                         |    6 +
+ .../run_additional_regressions.py                  |   47 +
+ .../20261027-66ff72f-windows/run_main_checks.py    |   53 +
+ .../runs/7bf_dates.stderr.txt                      |    0
+ .../runs/7bf_dates.stdout.txt                      |    1 +
+ .../runs/7bf_dates/bad-baseline-command.json       |   13 +
+ .../runs/7bf_dates/collection-baseline.diff        |   16 +
+ .../runs/7bf_dates/first_output.txt                |   14 +
+ .../runs/7bf_dates/first_results.json              |  253 +
+ .../runs/7bf_dates/good-baseline-command.json      |   13 +
+ .../runs/7bf_dates/historical_source-baseline.diff |   48 +
+ .../runs/7bf_dates/replay.json                     |   65 +
+ .../runs/7bf_dates/stderr.txt                      |    0
+ .../runs/7bf_dates/stdout.txt                      |   16 +
+ .../runs/7bf_intervals.stderr.txt                  |    0
+ .../runs/7bf_intervals.stdout.txt                  |   19 +
+ .../runs/7bf_intervals/candidate_summary.json      |  407 +
+ .../runs/7bf_intervals/candidate_unittest.txt      |   17 +
+ .../runs/archived_atomic.stderr.txt                |    0
+ .../runs/archived_atomic.stdout.txt                |    1 +
+ .../runs/archived_atomic/output.txt                |   24 +
+ .../runs/archived_atomic/process_output.txt        |   26 +
+ .../runs/archived_atomic/replay.json               |  381 +
+ .../runs/archived_atomic/results.json              |  320 +
+ .../runs/archived_compatibility.stderr.txt         |    0
+ .../runs/archived_compatibility.stdout.txt         |    1 +
+ .../runs/archived_compatibility/process_output.txt |    1 +
+ .../runs/archived_compatibility/replay.json        |   78 +
+ .../runs/archived_compatibility/test_output.txt    |   17 +
+ .../runs/archived_compatibility/test_results.json  |   15 +
+ .../runs/archived_numeric.stderr.txt               |    0
+ .../runs/archived_numeric.stdout.txt               |    1 +
+ .../runs/archived_numeric/process_output.txt       |   23 +
+ .../runs/archived_numeric/replay.json              |  120 +
+ .../runs/archived_numeric/test_output.txt          |   21 +
+ .../runs/archived_numeric/test_results.json        |   59 +
+ .../runs/archived_pearson.stderr.txt               |    0
+ .../runs/archived_pearson.stdout.txt               |    1 +
+ .../runs/archived_pearson/process_output.txt       |    1 +
+ .../runs/archived_pearson/replay.json              |   96 +
+ .../runs/archived_pearson/test_output.txt          |   15 +
+ .../runs/archived_pearson/test_results.json        |   33 +
+ .../runs/be_carriers_corrected.stderr.txt          |    0
+ .../runs/be_carriers_corrected.stdout.txt          |   22 +
+ .../corrected_run_summary.json                     |  383 +
+ .../corrected_run_unittest.txt                     |   20 +
+ .../runs/d0_compatibility.stderr.txt               |    0
+ .../runs/d0_compatibility.stdout.txt               |    1 +
+ .../runs/d0_compatibility/output.txt               |   13 +
+ .../runs/d0_compatibility/results.json             |  118 +
+ .../runs/d0_summary.stderr.txt                     |    0
+ .../runs/d0_summary.stdout.txt                     |    1 +
+ .../runs/d0_summary/output.txt                     |   16 +
+ .../runs/d0_summary/results.json                   |   85 +
+ .../runs/dc_annotations_role_corrected.stderr.txt  |    0
+ .../runs/dc_annotations_role_corrected.stdout.txt  |   19 +
+ .../official_mcp_schema_2025-11-25.json            | 4058 +++++++++
+ .../role_corrected_summary.json                    |  812 ++
+ .../role_corrected_unittest.txt                    |   17 +
+ .../runs/e513_admission.stderr.txt                 |    0
+ .../runs/e513_admission.stdout.txt                 |    1 +
+ .../runs/e513_admission/first_output.txt           |   37 +
+ .../runs/e513_admission/first_results.json         |  690 ++
+ .../runs/e513_admission/replay.json                |   61 +
+ .../runs/e513_admission/stderr.txt                 |    0
+ .../runs/e513_admission/stdout.txt                 |   39 +
+ .../runs/e513_receipts.stderr.txt                  |    0
+ .../runs/e513_receipts.stdout.txt                  |   21 +
+ .../runs/e513_receipts/first_run_summary.json      |  261 +
+ .../runs/e513_receipts/first_run_unittest.txt      |   19 +
+ .../runs/execution_records.json                    |  318 +
+ .../runs/fbe_boundary.stderr.txt                   |    0
+ .../runs/fbe_boundary.stdout.txt                   |    1 +
+ .../runs/fbe_boundary/replay.json                  |   61 +
+ .../secondary_source_output_counted.txt            |    8 +
+ .../secondary_source_results_counted.json          |  116 +
+ .../runs/fbe_boundary/stderr.txt                   |    0
+ .../runs/fbe_boundary/stdout.txt                   |    8 +
+ .../runs/fbe_collection.stderr.txt                 |    0
+ .../runs/fbe_collection.stdout.txt                 |    1 +
+ .../runs/fbe_collection/replay.json                |   61 +
+ .../runs/fbe_collection/stderr.txt                 |    0
+ .../runs/fbe_collection/stdout.txt                 |   26 +
+ .../runs/fbe_collection/verification_output.txt    |   24 +
+ .../runs/fbe_collection/verification_results.json  |   68 +
+ .../runs/fbe_source.stderr.txt                     |    0
+ .../runs/fbe_source.stdout.txt                     |    1 +
+ .../runs/fbe_source/replay.json                    |   61 +
+ .../runs/fbe_source/source_review_output_first.txt |   13 +
+ .../fbe_source/source_review_results_first.json    |   83 +
+ .../runs/fbe_source/stderr.txt                     |    0
+ .../runs/fbe_source/stdout.txt                     |   13 +
+ .../runs/previous_adapted_56.stderr.txt            |    0
+ .../runs/previous_adapted_56.stdout.txt            |    1 +
+ .../adapted_independent_review.py                  |  638 ++
+ .../runs/previous_adapted_56/harness.diff          |   31 +
+ .../independent_test_output.txt                    |   61 +
+ .../independent_test_results.json                  |  222 +
+ .../runs/previous_adapted_56/process_output.txt    |   63 +
+ .../runs/previous_adapted_56/replay.json           |  282 +
+ .../runs/repository_verify.stderr.txt              |    0
+ .../runs/repository_verify.stdout.txt              |    1 +
+ .../20261027-66ff72f-windows/summarize_checks.py   |   49 +
+ .../test_execution_summary.json                    |  458 +
+ .../20261027-66ff72f-windows/verify_artifacts.py   |   16 +
+ .../verify_phase2_scope.py                         |   45 +
+ .../wr16_boundaries.stderr.txt                     |    0
+ .../wr16_boundaries.stdout.txt                     |   16 +
+ .../wr18_contract.stderr.txt                       |    0
+ .../wr18_contract.stdout.txt                       |   16 +
+ ...5c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1.json |    1 +
+ .../f5d05f5b964b4a1d924e4b70cd207386.json          |    1 +
+ ...0d8e100bfe6faef4c6fe10aa23be759118508f592e.json |    1 +
+ ...319ce80cea00ec65b92725f52688f236e73d6467b8.json |    1 +
+ ...48756aa7277b6f076adfaab5e1fbc14470ec599da7.json |    1 +
+ ...48f2c3abfbdeef5f1c05e325ad6b6c51507eb64348.json |    1 +
+ .../f5d05f5b964b4a1d924e4b70cd207386.json          |    1 +
+ .../f5d05f5b964b4a1d924e4b70cd207386.json          |    1 +
+ .../f5d05f5b964b4a1d924e4b70cd207386.json          |    1 +
+ audit/runtime/registry/events.jsonl                |    4 +
+ audit/stage2_completion_admission.json             |   73 +
+ audit/stage2_completion_data_capabilities.json     |   45 +
+ audit/stage2_completion_deployment.json            |  210 +
+ audit/stage2_completion_final_integrity.json       |   23 +
+ .../stage2_completion_final_source_comparison.json |  195 +
+ audit/stage2_completion_project_listing.json       |   46 +
+ audit/stage2_completion_projects.json              |   33 +
+ audit/stage2_completion_reconciliation.json        |   58 +
+ audit/stage2_completion_round_report.json          |   66 +
+ audit/stage2_completion_run_plan.json              |   36 +
+ audit/stage2_current_readiness.json                |  273 +-
+ audit/stage_verification.json                      |   22 +-
+ .../f5d05f5b964b4a1d924e4b70cd207386.py            |    1 +
+ ...d05f5b964b4a1d924e4b70cd207386-cell-source.json |   58 +
+ .../f5d05f5b964b4a1d924e4b70cd207386-research.json |   20 +
+ .../stage2-completion-compile.json                 |   44 +
+ .../stage2-completion-open-project.json            |   59 +
+ .../stage2-completion-original-research-cell.json  |   30 +
+ cloud/qresearch/data_certification.py              |  632 ++
+ cloud/qresearch/engineering_data.py                |   55 +-
+ cloud/qresearch/engineering_receipts.py            |  225 +-
+ cloud/qresearch/worker_identity.py                 |  241 +
+ cloud/research_config.py                           |    2 +-
+ config/budget.json                                 |    8 +-
+ docs/stage2-completion.md                          |   31 +
+ tests/test_data_certification.py                   |  375 +
+ tests/test_native_research_failure.py              |  428 +
+ tests/test_research_error_representations.py       |  160 +
+ tests/test_worker_identity.py                      |  360 +
+ tools/data_certification.py                        |   41 +
+ tools/stage2.py                                    |  130 +-
+ 1104 files changed, 92017 insertions(+), 217 deletions(-)

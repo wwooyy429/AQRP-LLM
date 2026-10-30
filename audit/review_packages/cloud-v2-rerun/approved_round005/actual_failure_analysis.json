@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "actual_round005_failure_evidence_and_bounded_interpretation",
+  "runtime_source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+  "attempt_id": "020326aa00434b639e5a73a405168a97",
+  "observed": {
+    "actual_Research_execute_calls": 1,
+    "native_error_representations": 2,
+    "logical_error_outputs": 1,
+    "ledger_status": "failed",
+    "ename": "CollectionError",
+    "evalue": "Historical source collection failed; unfinished intent retained",
+    "trace": [
+      "cloud/qresearch/engineering_data.py:544",
+      "cloud/qresearch/engineering_data.py:450",
+      "cloud/qresearch/collection.py:490",
+      "cloud/qresearch/collection.py:480"
+    ],
+    "final_success_report_obtained": false,
+    "actual_LEAN_submissions": 0
+  },
+  "code_based_interpretation": {
+    "generic_non_CollectionError_inside_window_collection": true,
+    "ordinary_source_fetch_or_iteration_errors_have_different_wrapped_messages": true,
+    "bounded_failure_region": "collection.py460-474: iteration body, row processing, batches and final manifest write",
+    "possible_not_proven": [
+      "unexpected row-processing exception",
+      "batch/manifest serialization",
+      "Object Store write/read or immutable-object conflict"
+    ],
+    "underlying_exception_type": "unavailable",
+    "specific_operation_or_window": "unavailable",
+    "provider_failure_proven": false,
+    "missing_data_proven": false,
+    "permission_or_resource_limit_proven": false,
+    "duplicate_SID_cause_proven": false,
+    "new_economic_or_financial_result": false
+  },
+  "next_fix_scope": "Before another authorized execution, add closed-vocabulary internal diagnostic step/error class; do not export provider exception strings, rows, values or locals.",
+  "stop": {
+    "round_closed": true,
+    "automatic_retries": 0,
+    "retry_submitted": false,
+    "refund": false,
+    "dependent_LEAN_submitted": false
+  },
+  "evidence": "audit/review_packages/cloud-v2-rerun/approved_round005/research_execute_cell_observation.json",
+  "review_classification": "developer interpretation and internal peer read-only check, not independent GPT Work acceptance"
+}

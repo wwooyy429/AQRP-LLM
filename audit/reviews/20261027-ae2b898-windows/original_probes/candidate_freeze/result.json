@@ -1,0 +1,71 @@
+{
+  "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\source",
+  "case": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source",
+  "original_pending_attempt": "bfd00f2611fd4496b9498d4597618a8e",
+  "original_context_accepts_attempt": true,
+  "joint_freeze_refused": true,
+  "legacy_freeze_returncode": 1,
+  "pointer_changed": false,
+  "prepare_old_attempt_returncode": 0,
+  "prepare_error": "",
+  "ledger_unchanged": true,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\minimal_pending_freeze.py",
+        "--inspect",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source",
+        "bfd00f2611fd4496b9498d4597618a8e"
+      ],
+      "returncode": 0,
+      "stdout": "{\"allocation\": \"normal\", \"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"kind\": \"pending\", \"operation_key\": \"engineering-plan:f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489:lean\", \"reason\": null, \"recorded_at\": \"2026-10-26T04:31:21.333068+00:00\", \"result_key\": \"results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/lean/710c72c60d209eef90b8f5872bbb82201ee0636fc1056be737845eb5d98de88c.json\", \"retry_of\": null, \"stage\": \"lean\", \"status\": \"pending\", \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"details\": {\"deployment\": {\"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"input_hash\": \"95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0\", \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\"}, \"external_id\": \"39cafa1e9b11f91b27e396b66d033a6d\", \"identity\": {\"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"data_request_hash\": \"db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85\", \"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"plan_hash\": \"f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489\", \"project_id\": 38436695, \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\", \"stage\": \"lean\"}, \"identity_kind\": \"quantconnect_backtest_id\", \"receipt_ref\": {\"key\": \"engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/submission/56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f.json\", \"sha256\": \"56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f\"}}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py",
+        "freeze",
+        "--plan-file",
+        "config/engineering_joint_pilot.json",
+        "--projects-file",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\synthetic-projects.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 267, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 216, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 71, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py",
+        "freeze",
+        "--plan-file",
+        "config/engineering.json",
+        "--projects-file",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\synthetic-projects.json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 267, in <module>\n    main()\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 216, in main\n    print(json.dumps(freeze(read_json(args.projects_file), plan_file=args.plan_file, preview=args.command == \"preview\")))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py\", line 71, in freeze\n    registry._enforce_engineering_project(registry._replay(), {\"engineering_task_schema_version\": 1, \"plan\": plan.to_dict()})\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\cloud\\qresearch\\registry.py\", line 353, in _enforce_engineering_project\n    raise RegistryError(\"Unresolved engineering work on this project requires reconciliation\")\nqresearch.registry.RegistryError: Unresolved engineering work on this project requires reconciliation\n"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ae2b898-20261027\\original_probes\\candidate_freeze\\source\\tools\\stage2.py",
+        "prepare",
+        "--attempt",
+        "bfd00f2611fd4496b9498d4597618a8e"
+      ],
+      "returncode": 0,
+      "stdout": "{\"cloud_input_path\": \"_engineering_task_input.py\", \"deployment\": {\"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"input_hash\": \"95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0\", \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\"}, \"input_path\": \"audit/task_inputs/bfd00f2611fd4496b9498d4597618a8e.py\", \"payload\": {\"deployment_manifest\": {\"engineering_smoke.py\": \"33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90\", \"main.py\": \"032d6dd00486cd2daf4141427e7fcc6336bb4b93c22f2f542b5c58bd85976b21\", \"qresearch/__init__.py\": \"ea9d6cb9ddea0bbcad7e4372388cc9de054a3966a7fbea50abb326476ab68509\", \"qresearch/artifacts.py\": \"8d7eaf550891af9aa9493595c5ebc1a7b9eb92df4e80ded1912d304698e810b7\", \"qresearch/audits.py\": \"9a88ed0136ea784a4cea44f9140650fc9519a247e59231b80527385af2215ff8\", \"qresearch/cache.py\": \"b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9\", \"qresearch/contracts.py\": \"83e4d28ca9df9508af8ac7080b9506ef9fc01e03293f40093ac73dfe212aa9c0\", \"qresearch/coverage.py\": \"f47b21013e3e18068063980e3f64999098f78ed336f7fd5b41bc209beb34ee11\", \"qresearch/engineering_data.py\": \"e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca\", \"qresearch/engineering_receipts.py\": \"69326601a5180487695a66e7dc5d7f858efdfac691c49f72b85958948680491d\", \"qresearch/engineering_tasks.py\": \"96d5ca4c72e35edf11e19da72cee84b9611d834b2f3a06b89c66a1e4e35d75cf\", \"qresearch/evaluation.py\": \"dee48d3b57417f91125f7820b0b4e0615dc71ea55afa85c6980fb3c25f7b96a7\", \"qresearch/factors.py\": \"d43afbbd99ddb29b6843dbacdfa2b475192a0814147e963dc81f2465c7123ed9\", \"qresearch/ingestion.py\": \"dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f\", \"qresearch/labels.py\": \"7da022b68a05eaf1ce2b833481a7209ac859deca637040ec74c42b6519504552\", \"qresearch/models.py\": \"b4eaa254da9e353c7c7332f7b13463e6757bf7cda5935ba8239b6bcfc432d92c\", \"qresearch/pipeline.py\": \"82e0d00cce38d57a31fc3976fede01f3923b914df7023790238c12790f7e617c\", \"qresearch/point_in_time.py\": \"db16e080ae6a3aefc66acd182ac5a2cb253a5024de9735dedffef29019be3501\", \"qresearch/quantconnect.py\": \"fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319\", \"qresearch/registry.py\": \"37eea2754dc1fce3578581228ba2bbf232b2fde1f5bb78aeb2a9adffc0d372ac\", \"qresearch/runtime.py\": \"88149bf342d040bdf0448d91cf17788936bb3c377e62033b9742c4a063854384\", \"qresearch/study.py\": \"7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16\", \"qresearch/universe.py\": \"e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6\", \"qresearch/workflow.py\": \"925422b251b9834715e231b38e72cb2849c8bf4698d1ab01231c192f5a684168\", \"research_config.py\": \"563b63a6b87cfd68a837c3e071d8bfff2bce7b8f535138b56136068dfce8faaa\"}, \"external_identity_kind\": \"quantconnect_backtest_id\", \"identity\": {\"attempt_id\": \"bfd00f2611fd4496b9498d4597618a8e\", \"config_id\": \"dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f\", \"data_request_hash\": \"db3c2c818f79dc2d725bbe8d308782b7f3b550c271069ad77208192c9f093f85\", \"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"plan_hash\": \"f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489\", \"project_id\": 38436695, \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\", \"stage\": \"lean\"}, \"plan\": {\"deployment_hash\": \"dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6\", \"economic_factor\": null, \"economic_model\": null, \"financial_metrics_enabled\": false, \"max_retries\": {\"lean\": 1, \"research\": 1}, \"observation_window\": {\"end_exclusive\": \"2019-01-01T00:00:00-05:00\", \"start\": \"2018-01-03T00:00:00-05:00\"}, \"orders_enabled\": false, \"plan_id\": \"stage2-engineering-data-v1\", \"project_id\": 38436695, \"report_namespace\": \"engineering/v2\", \"request_mode\": \"symbol_resolution\", \"request_template\": {\"data_version\": \"qc-engineering-2018-raw-snapshot-v1\", \"dataset\": \"US Equities\", \"end\": \"2019-01-01T00:00:00-05:00\", \"fields\": [\"open\", \"high\", \"low\", \"close\", \"volume\"], \"normalization\": \"raw\", \"start\": \"2018-01-01T00:00:00-05:00\", \"timezone\": \"America/New_York\", \"universe_hash\": \"42a0b96634957a3dd7a379ca458da8604d0979ac2011daca57ec3cfa01474182\"}, \"required_checks\": {\"lean\": [\"source_snapshot_matches\", \"raw_data_received\", \"complete_expected_bars\", \"no_orders\", \"development_only\", \"symbol_registry_resolved\", \"corporate_action_received\"], \"research\": [\"source_snapshot_matches\", \"raw_data_received\", \"second_prefetch_no_history\", \"same_partition_ids\", \"cache_only_consumer\", \"read_only_write_rejected\", \"final_request_rejected\", \"coverage_observed_complete\", \"development_only\", \"symbol_registry_resolved\"]}, \"schema_version\": 1, \"scope\": \"engineering\", \"source_manifest_hash\": \"566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06\", \"symbol_resolution\": {\"as_of\": \"2019-01-01T00:00:00-05:00\", \"method\": \"QuantBook.add_equity/as-of fixed fixture\", \"tickers\": [\"AAPL\", \"MSFT\"]}}, \"report_key\": \"engineering/v2/reports/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/lean/bfd00f2611fd4496b9498d4597618a8e.json\", \"research_resolution\": {\"method\": \"QuantBook.add_equity/as-of fixed fixture\", \"permanent_sid_count\": 2, \"resolution_artifact_hash\": \"817ec0fbdaf451ca0c1a35c5a683a4b8534571d148640f7cb645dea5a58fb474\", \"resolved_registry_hash\": \"ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d\", \"resolved_registry_ref\": {\"key\": \"engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d.json\", \"sha256\": \"ff18daa3803f9ddd9970909936692f6275fce064ec07740a3b9ce8210d7fc38d\"}, \"resolved_request_hash\": \"9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb\", \"resolved_request_ref\": {\"key\": \"engineering/v2/resolutions/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489/9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb.json\", \"sha256\": \"9535ad68edad1ad02547bcbe10e0cff147eca4bb3a24ade0550f5fd28bce83eb\"}, \"ticker_count\": 2, \"tickers\": [\"AAPL\", \"MSFT\"]}}}\n",
+      "stderr": ""
+    }
+  ],
+  "actual_QC_calls": 0
+}

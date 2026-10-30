@@ -1,0 +1,138 @@
+{
+  "reviewed_source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "actually_executed": true,
+  "methods": 8,
+  "passed_methods": 8,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "skipped_methods": 0,
+  "subcases": 16,
+  "failure_records_including_subcases": 0,
+  "error_records_including_subcases": 0,
+  "failure_details": [],
+  "error_details": [],
+  "observations": {
+    "adjacent_ic": {
+      "low": 0.7,
+      "high": 0.7000000000000001,
+      "delta": 1.1102230246251565e-16,
+      "summary": {
+        "valid_days": 2,
+        "total_days": 2,
+        "mean_ic": 0.7,
+        "sample_std_ic": 7.850462293418876e-17,
+        "icir": 8916672341536080.0,
+        "icir_annualized": false,
+        "common_observations": 10
+      }
+    },
+    "registered_chain": {
+      "train_n": [
+        80,
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "validation_n": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "predictions": 60,
+      "artifacts": 6,
+      "daily_ic": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ],
+      "sample_std_ic": 0.0,
+      "icir": null
+    }
+  },
+  "static_checks": {
+    "protected_hashes_equal": {
+      "config/budget.json": true,
+      "config/data.json": true,
+      "config/development.json": true,
+      "config/engineering.json": true,
+      "config/quantconnect.json": true,
+      "config/research.json": true,
+      "config/universe.json": true,
+      "config/workflow.json": true,
+      "templates/factor_spec.json": true,
+      "templates/model_spec.json": true,
+      "templates/trading_spec.json": true,
+      "AGENTS.md": true,
+      "docs/research_charter.md": true,
+      "audit/data_exposure.json": true,
+      "audit/runtime/registry/baseline.json": true,
+      "audit/runtime/registry/events.jsonl": true,
+      "tools/research.py": true,
+      "tools/stages.py": true,
+      "tools/stage2.py": true,
+      "cloud/engineering_smoke.py": true,
+      "cloud/main.py": true,
+      "cloud/qresearch/artifacts.py": true,
+      "cloud/qresearch/audits.py": true,
+      "cloud/qresearch/cache.py": true,
+      "cloud/qresearch/contracts.py": true,
+      "cloud/qresearch/coverage.py": true,
+      "cloud/qresearch/engineering_data.py": true,
+      "cloud/qresearch/engineering_receipts.py": true,
+      "cloud/qresearch/engineering_tasks.py": true,
+      "cloud/qresearch/factors.py": true,
+      "cloud/qresearch/ingestion.py": true,
+      "cloud/qresearch/labels.py": true,
+      "cloud/qresearch/models.py": true,
+      "cloud/qresearch/pipeline.py": true,
+      "cloud/qresearch/point_in_time.py": true,
+      "cloud/qresearch/quantconnect.py": true,
+      "cloud/qresearch/registry.py": true,
+      "cloud/qresearch/runtime.py": true,
+      "cloud/qresearch/study.py": true,
+      "cloud/qresearch/universe.py": true,
+      "cloud/qresearch/workflow.py": true,
+      "cloud/qresearch/__init__.py": true
+    },
+    "production_changed_paths": [
+      "cloud/research_config.py",
+      "cloud/qresearch/evaluation.py"
+    ],
+    "public_and_upstream_functions_source_equal": {
+      "_centered_unit": true,
+      "_correlation": true,
+      "daily_rank_ic": true,
+      "paired_factor_correlation": true,
+      "pairwise_factor_correlations": true,
+      "walk_forward_evaluate": true
+    },
+    "generated_configuration_equal": true,
+    "generated_source_sha_equal": true,
+    "generated_implementation_sha_changed": true,
+    "existing_test_files_unchanged": true
+  },
+  "developer_fixtures_imported": false,
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "external_calls": 0,
+  "financial_evidence": false,
+  "exit_code": 0
+}

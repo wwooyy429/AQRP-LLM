@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "kind": "storage_repair006_pre_dispatch_release",
+  "status": "fixed_source_offline_passed_new_configuration_cycle_applied_not_dispatched",
+  "parent_commit": "29afa1f002838c85487347c2e592a85a23708cf2",
+  "runtime_source_commit": null,
+  "source_manifest_hash": "59f6fd4beecfffeb9f46c348237c1dbc9b8f3dc9e2bc3a33686a81a78bbd86f7",
+  "execution_source_manifest_hash": "c79312f5e91ed91b2234fc88e6c7ddebbdd4bce061525c5df280a8a31cc57599",
+  "deployment_hash": "8122cd99d954b93ead2b4b8b90373744b514d5bdf36d56a8faeee9081143b059",
+  "plan_hash": "90bdfc4879959f9c57885ecc76cd6d80591fe86da0f6d16ae02cd50a04624466",
+  "configuration_hash": "671677c555800edd18adbd5f47c41e8c9734e189ace9bc14b2cef0d594ccc4cf",
+  "managed_source_count": 39,
+  "software_test_count": 909,
+  "software_test_command": "python -B tools/stages.py verify",
+  "software_verification": "audit/review_packages/storage-repair006/post_admission_fix_validation/result.json",
+  "earlier_verification": {
+    "tests": 906,
+    "passed": true,
+    "scope": "Before native-key fix; not the final source used for dispatch."
+  },
+  "configuration_cycle": {
+    "authorization_ref": {
+      "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+      "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+    },
+    "capacity": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "cycle_id": "configuration-cycle-20261029-002",
+    "cycle_ref": {
+      "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+      "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+    },
+    "lifetime_usage": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "remaining": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "schema_version": 1,
+    "sequence": 1,
+    "starting_lifetime_usage": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "state_hash": "f846475c96f13d89fdc2f7376c86ce09a7147ae8fd901ea0077b5b553e86bde8",
+    "usage": {
+      "normal": 0,
+      "reserve": 0,
+      "total": 0
+    }
+  },
+  "cumulative_usage": {
+    "configurations": 13,
+    "research": 16,
+    "lean": 2
+  },
+  "journal_events": 56,
+  "prior55_journal_sha256": "b7ea9c1a46416b68b05110a1cb2452502e983c8d18a449ae3b673f780124d7b5",
+  "current_journal_sha256": "0bd2e128fa0391113f4d6a5540ca52249ff5cbfb2ba27694755776169b37a323",
+  "prior55_prefix_unchanged": true,
+  "round_id": "stage2-storage-repair-round-006",
+  "round_caps": {
+    "configurations": 1,
+    "research": 1,
+    "lean": 1
+  },
+  "normal_allocation_direct_human_request": true,
+  "automatic_retries": 0,
+  "extra_spend_usd": 0,
+  "new_configuration_registrations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "changes": [
+    "Stable data cache identity and explicitly verified legacy origin without row-object copies.",
+    "Capacity and file-count preflight before cloud writes/fetch; fail closed on unavailable metadata.",
+    "Fixed-enum internal error diagnostics; no original SDK/provider strings or row values.",
+    "Append-only configuration cycle preserving lifetime usage and old grants; Research/LEAN unchanged.",
+    "Schema3 fixed cache-only worker and bounded compressed receiver artifact with verified readback."
+  ],
+  "repairs_during_development": [
+    "Bound cache evidence hashes/counts and compressed payload refs to exact plan.",
+    "Require pre-existing coverage row snapshot on cache-only path.",
+    "Bind schema3 collection to data_request_hash.",
+    "Use single-extension .zlib key per public SDK path contract; initial .json.zlib candidate never uploaded.",
+    "Registry recognizes strict schema3 on its full grant/register/fixed-operation/dependency path; new concurrency regression added. Initial preregistration refusal retained with zero debits/executions."
+  ],
+  "independent_review_status": "pending_GPT_Work_exact_version",
+  "stage2_accepted": false,
+  "full_historical_US200_certified": false,
+  "financial_vintage_delivery_ingestion_certified": false,
+  "financial_evidence": false,
+  "market_research_enabled": false,
+  "llm_runtime_enabled": false,
+  "live_trading_enabled": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified",
+  "previous_907_source_commit": "f1713b86b3aa802368d21a8f48eb77a7657702e3",
+  "previous_907_verification": "audit/review_packages/storage-repair006/post_sdk_key_fix_validation/result.json",
+  "pre_dispatch_admission_failure": "audit/review_packages/storage-repair006/pre_admission_failure/result.json",
+  "actual_execution_update": {
+    "runtime_source_commit": "e89fae78ea563b2b4079d8770c3d9ee248c40ac8",
+    "configuration_registered": true,
+    "configuration_charge": 1,
+    "new_Research_executions": 0,
+    "new_LEAN_submissions": 0,
+    "cloud_source_writes_completed": 4,
+    "cloud_source_write_rejected": 1,
+    "deployment_complete": false,
+    "round_status": "closed",
+    "configuration_refunded": false,
+    "reason": "Native QC source-write guard rejected compression-package import before execution",
+    "native_evidence": "audit/review_packages/storage-repair006/cloud_write_rejection.json",
+    "superseded_by_plain_reference_candidate": "audit/stage2_storage_repair007_report.json"
+  }
+}

@@ -1,0 +1,1007 @@
+{
+  "schema_version": 1,
+  "kind": "read_only_code_derived_Object_Store_reference_and_retention_rules",
+  "created_at_utc": "2026-10-30T08:27:26.709267+00:00",
+  "code_head_at_inspection": "14c82c5027f88106557b4bf048eda4de1014ecf5",
+  "scope": "Metadata rule design only. No Object Store listing, real payload access, deletion, Registry replay or budget operation was performed by this subtask.",
+  "authorization_scope_from_parent": "Read-only Object Store reclamation inventory; no deletion; budget unchanged; final testing closed",
+  "actions_performed": {
+    "source_reads": true,
+    "historical_Git_source_reads": true,
+    "new_metadata_file": "audit/review_packages/storage_inventory012/reference_rules.json",
+    "product_code_edits": 0,
+    "QC_calls": 0,
+    "real_Registry_reads": 0,
+    "real_Registry_mutations": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "deletions": 0,
+    "budget_resets": 0
+  },
+  "not_an_actual_cloud_inventory": true,
+  "verified_reclaimable_object_count": 0,
+  "verified_reclaimable_bytes": 0,
+  "zero_release_interpretation": "No release is confirmed from source inspection or a filename/metadata-only listing; zero is a decision boundary, not a measurement of possible future recoverable storage.",
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "namespace_rules": [
+    {
+      "id": "physical_prefix",
+      "code": "quantconnect.ObjectStoreArtifactStore._key",
+      "rule": "Physical SDK key is store.prefix + slash + validated relative key. Scope every reference to its originating physical prefix; never resolve a relative ref in another project/prefix by basename.",
+      "known_fixed_prefixes": [
+        "aqrp/engineering/v2",
+        "aqrp/collection-tasks/v1"
+      ],
+      "other_prefixes": "Certification/other producers may use explicit frozen store_prefix. Unknown or non-AQRP prefixes are protected/unclassified, not owned garbage."
+    },
+    {
+      "id": "cloud_locks",
+      "code": "quantconnect.ObjectStoreArtifactStore.locked",
+      "rule": "locks/... names select in-process RLock entries and do not call save_bytes. Do not invent physical reclaimable lock files from these strings. Unknown SDK lock/temp objects require their actual producer and object metadata."
+    },
+    {
+      "id": "single_producer",
+      "code": "quantconnect.ObjectStoreArtifactStore",
+      "rule": "Process locks are not distributed CAS. Inventory consistency must reconcile every active/unknown producer; local absence of activity is not global orphan proof."
+    }
+  ],
+  "reference_formats": [
+    {
+      "id": "feature_cache_v1_manifest",
+      "relative_key": "feature-cache/v1/manifests/<DataRequest.key>.json",
+      "key_digest_role": "Request identity digest, not manifest content SHA",
+      "body_edges": [
+        "payload -> exact relative feature-cache/v1/objects/<sha256>.json"
+      ],
+      "required_identity": [
+        "dataset",
+        "single field",
+        "permanent SIDs",
+        "calendar-year interval",
+        "data_version",
+        "universe_hash",
+        "normalization",
+        "timezone"
+      ],
+      "body_content_proof": "Manifest request must equal the field unit identity. Read raw payload bytes in QC Cloud and compare SHA256 to manifest.sha256; manifest rows/provenance/status alone do not prove bytes.",
+      "retention": "All current and historical manifests plus reachable payloads protected."
+    },
+    {
+      "id": "feature_cache_v1_payload",
+      "relative_key": "feature-cache/v1/objects/<sha256>.json",
+      "key_digest_role": "Expected SHA256 of exact serialized record-array bytes",
+      "content": "One field per immutable object; rows carry SID,field,event_time,available_time,value,revision. Real rows remain QC Cloud. Do not use decoded/canonicalized data to claim raw-byte identity.",
+      "dedup_note": "Content addressing already reuses an identical payload at one key; multiple references do not multiply storage. Different payload envelopes/values/revisions are not duplicates by field/year alone."
+    },
+    {
+      "id": "feature_cache_intent_and_stream",
+      "relative_keys": [
+        "feature-cache/v1/intents/<DataRequest.key>.json",
+        "cache"
+      ],
+      "key_digest_role": "Intent basename is request identity; cache is a hash-chained event stream, not a content-addressed payload.",
+      "retention": "Protect fetched/fetch_failed event history and intents. Successful writes do not delete intents. An intent without a completed manifest blocks automatic refetch; it is not temporary garbage.",
+      "failure_note": "A failed or interrupted fetch can already have written some field payloads/manifests before a later save failed. Failure status cannot establish that no objects or references exist."
+    },
+    {
+      "id": "historical_snapshots_v1_v2_windows",
+      "relative_keys": [
+        "historical-snapshots/v1/windows/<identity_hash>.json",
+        "historical-snapshots/v2/windows/<identity_hash>.json"
+      ],
+      "key_digest_role": "Window basename hashes {plan_hash,synthetic,window}; it is NOT SHA256 of the completed manifest body.",
+      "body_edges": [
+        "batches[*].key+sha256 -> same-version objects/<payload_sha256>.json",
+        "plan_identity -> original complete plan and selected field catalog"
+      ],
+      "required_closure": "Verify canonical manifest bytes by reference SHA, exact version/plan/window/synthetic/flags, all ordered batches, all rows and declared counts/missing/occurrence counters against the ORIGINAL plan.",
+      "retention": "All complete historical window manifests and their closure protected, including empty complete windows."
+    },
+    {
+      "id": "historical_snapshots_batches",
+      "relative_keys": [
+        "historical-snapshots/v1/objects/<payload_sha256>.json",
+        "historical-snapshots/v2/objects/<payload_sha256>.json"
+      ],
+      "key_digest_role": "Expected exact canonical-JSON payload SHA, verified by actual bytes; not inferred from name.",
+      "content_identity": [
+        "schema_version",
+        "plan_hash",
+        "synthetic",
+        "window",
+        "batch_index",
+        "records"
+      ],
+      "dedup_note": "Identical projected row values under different plans/windows/batch indexes/source occurrences can have different legitimate payloads. v2 preserves duplicate source_record_index occurrences; never remove duplicate SIDs or collapse the 27 observed duplicate projections as storage garbage."
+    },
+    {
+      "id": "historical_snapshot_intents",
+      "relative_keys": [
+        "historical-snapshots/v1/intents/<identity_hash>.json",
+        "historical-snapshots/v2/intents/<identity_hash>.json"
+      ],
+      "key_digest_role": "Same logical window-identity basename as windows, different body and folder; not a byte duplicate.",
+      "retention": "Protect source-request reservations, incomplete intents and related partial batches/failure evidence. No age, failed attempt, empty day or presence of a later completed window alone authorizes removal."
+    },
+    {
+      "id": "engineering_reports_and_resolution",
+      "relative_patterns": [
+        "<report_namespace>/reports/<plan_hash>/<stage>/<attempt>.json",
+        "<report_namespace>/resolutions/<plan_hash>/<content_hash>.json",
+        "<report_namespace>/collection-probes/<plan_hash>/<attempt>.json",
+        "<collection_report_namespace>/receipts/<attempt>.json"
+      ],
+      "key_digest_role": "Reports/receipts identify plan and attempt, not content; _save returns a separate SHA256 of exact canonical document bytes.",
+      "body_edges": [
+        "resolved_registry_ref",
+        "resolved_request_ref",
+        "coverage_report_ref",
+        "cache_payload_refs",
+        "collection_probe.receipt_ref",
+        "collection_storage.origin_receipt_ref",
+        "received_bar_ref",
+        "corporate_action_ref",
+        "collection first/cache_only_replay.window_refs"
+      ],
+      "retention": "Protect success, failure, repair, admitted provenance and original receipt identities; preserve all transitive references from every historical version, not just current mutable pointers."
+    },
+    {
+      "id": "coverage_evidence_and_snapshot",
+      "relative_patterns": [
+        "audit-evidence/<content_hash>.json",
+        "coverage-inputs/v1/<snapshot_content_hash>.json",
+        "coverage-inputs/v1/provenance/<content_hash>.json"
+      ],
+      "body_edges": [
+        "report.raw_snapshot_ref",
+        "report.source_payload_refs[*]",
+        "report.provenance_ref"
+      ],
+      "dedup_note": "A coverage row wrapper can overlap cached rows but has different bytes/identity and audit purpose. Schema4 snapshot_cache_only explicitly requires the old exact full snapshot to exist; deleting it because the field cache also exists breaks the pipeline.",
+      "retention": "All historical coverage manifests, raw snapshots, provenance and their field payload closure protected."
+    },
+    {
+      "id": "received_cached_row_reference_v1",
+      "relative_pattern": "<report_namespace>/received/<attempt>/<manifest_sha256>.json",
+      "key_digest_role": "manifest_sha256 is SHA256 of exact reference-manifest JSON bytes; actual/cached rowset SHA is a DIFFERENT digest domain.",
+      "body_edges": [
+        "source_refs[*] -> exactly5 original feature-cache/v1/objects/<sha>.json"
+      ],
+      "required_identity": [
+        "request_hash",
+        "window",
+        "record_count",
+        "actual_rowset_sha256",
+        "cached_rowset_sha256",
+        "row_values_stored=false"
+      ],
+      "required_closure": "Original5 field payloads must be verified and the exact frozen-window received/cache rowsets equal. The received manifest stores references and hashes rather than new row objects.",
+      "retention": "Protect the manifest AND all5 source payloads. A small reference object does not make its large referenced cache data releasable."
+    },
+    {
+      "id": "received_legacy_JSON",
+      "relative_pattern": "<report_namespace>/received/<attempt>/<content_hash>.json",
+      "content": "Older schema1/2 stores rows wrapper and separate corporate actions as full canonical JSON.",
+      "dedup_note": "Values may overlap other caches, but whole raw-byte equality and frozen metadata compatibility are separate proofs. Keep all historical received evidence and row/action closure."
+    },
+    {
+      "id": "received_retired_zlib",
+      "relative_pattern": "<report_namespace>/received/<attempt>/<stored_sha256>.zlib",
+      "version_source": "f1713b86b3aa802368d21a8f48eb77a7657702e3",
+      "hash_domains": {
+        "stored_sha256": "SHA256 of compressed object bytes",
+        "raw_sha256": "SHA256 of uncompressed canonical JSON; NOT the stored-file SHA"
+      },
+      "required_verification": [
+        "actual compressed size and stored SHA",
+        "bounded historical decoder with no extra tail data",
+        "uncompressed size and raw SHA",
+        "canonical JSON and declared original identity"
+      ],
+      "retention": "Retired runtime/schema does not make existing objects garbage. No real decoding was performed in this audit; preserve historical metadata and compressed objects until separately authorized verified migration."
+    },
+    {
+      "id": "ingestion_and_certification",
+      "relative_patterns": [
+        "ingestion/v1/batches/<content_hash>.json",
+        "ingestion/v1/index/<namespace>/<kind>/<partition>.jsonl",
+        "data-certification/v1/inputs/<content_hash>.json",
+        "data-certification/v1/contexts/<content_hash>.json",
+        "data-certification/v1/reports/<content_hash>.json"
+      ],
+      "body_edges": [
+        "index event.batch_key/batch_hash",
+        "report.evidence_refs[*]",
+        "report.context_ref",
+        "summary.report_refs[*]"
+      ],
+      "retention": "Protect ingestor source binding, source revisions/vintages, index event history, certification context/plan and all supporting batches/tables. A partition or vintage identity digest is not a raw object SHA."
+    }
+  ],
+  "verified_legacy_linkage": {
+    "required_metadata": [
+      "storage_policy.collection_cache.legacy.plan_identity",
+      "plan_hash",
+      "source_manifest_hash",
+      "processing_contract_sha256",
+      "receipt_ref",
+      "receipt_identity"
+    ],
+    "required_proof": "Match requested and original data_identity under the SAME admitted processing contract, verify original receipt canonical bytes+SHA+attempt identity, then verify every completed original window and batch and both first/cache-only replay summaries. No missing object may fall through to new fetch or relabeling.",
+    "stable_identity_semantics": "data_identity excludes only research plan_id and deployment/source_manifest_hash from collection semantics; it still binds processing contract, data_version, fields/catalog, interval/timezone, window/batch bounds and observation policy. stable_collection_plan derives a deterministic data-cache plan from that identity.",
+    "current_vs_historical_contract": "Current closure includes financial_fields.py; old5e09 four-source processing contract5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219 remains historical. historical_decode can preserve old identity, but it does not grant current cache compatibility or permit old-cache removal.",
+    "protection_rule": "An old payload referenced only through a legacy receipt is still live for audit/replay. Protect legacy receipt -> both window_ref lists -> all old version manifests -> all batches; do not inspect only latest requested plan or stable namespace."
+  },
+  "conservative_candidate_rules": [
+    "Inventory must be complete across every page/cursor and relevant organization prefix, with unique keys, authoritative byte lengths, observation time, and consistent repeated listing. An incomplete/truncated/erroring list cannot prove unreferenced objects.",
+    "Identify every actual producer/consumer and every current/historical/frozen manifest, receipt, admitted input, report, coverage object, index/event stream, unresolved intent, failure/repair record and legacy linkage as roots. Close all explicit and schema-derived edges transitively. Unknown schema, ambiguous reference scope, cross-project consumer or absent metadata is protected/unclassified.",
+    "All historical manifests/receipts, event streams, intents and their required closures are protected under this inventory. Failed/retired status, age or a later similarly named object is not a deletion predicate.",
+    "Potential non-authoritative duplicates require actual QC-resident byte hashing and complete metadata identity comparison; filename hashes, ETag/version tokens, reported SHA fields, same size, same year/SID or same rowset alone are not raw-original proof.",
+    "Before even proposing a payload as reclaimable, prove it is outside all protected/current/historical closure and unresolved work, that ownership permits review, and that an independently verified retained QC-resident copy and evidence chain satisfy retention and recovery requirements. Immutable historical keys may not be silently redirected or rewritten.",
+    "Byte-equal copies at different physical keys can still be required by immutable references; sharing one key among many manifests is already deduplicated. Semantic duplicates with different availability, revision, original occurrence or serialization stay distinct unless an explicitly reviewed migration preserves every original obligation.",
+    "Current metadata-only/readonly inventory cannot delete or claim confirmed released bytes. Unverified object bytes or incomplete reference closure must never enter confirmed-release sums; any potential-byte total must be labelled conditional and avoid counting shared payloads more than once.",
+    "Any future removal needs a separate concrete user-approved manifest and fresh pre-delete inventory/closure checks. This task grants no deletion, refetch, source/config change, new Research/backtest, quota reset, purchase or final-period access."
+  ],
+  "hash_domain_rules": [
+    "Distinguish key identity digest, actual object raw-byte SHA, canonical JSON digest, source_manifest text identity, semantic processing contract, decoded rowset digest and event envelope hash. Never use one as another.",
+    "Feature-cache manifests/intents and historical window manifests/intents are identity-keyed, not generally content-named. Engineering attempt reports/receipts are also identity-keyed. Their actual content requires its own verified raw SHA.",
+    "Even for content-named objects, basename is only an assertion until bytes are hashed in QC Cloud. Do not export real payloads or row-derived values to Git/local disk for this comparison.",
+    "Event envelope hashes authenticate only the canonical unsigned envelope chain inside the artifact; whole stream raw SHA changes after append. It is not a payload-object digest or externally signed/tamperproof provenance."
+  ],
+  "side_effect_limits": {
+    "metadata_listing": "Prefer actual platform metadata endpoints. If using SDK get_file_path, only pass existing keys from a complete observed listing; never guessed missing keys. SDK can flush its existing dirty cache internally, so zero explicit save/delete does not establish absence of every SDK-internal effect.",
+    "real_data_residency": "Any future payload validation stays QC Cloud and exports only permitted counts/hashes/metadata. No real rows were read in this code audit.",
+    "retention_priority": "When completeness, ownership, raw bytes or reference status is unknown, protect first and report evidence insufficient."
+  },
+  "actual_source_basis": [
+    {
+      "path": "cloud/qresearch/cache.py",
+      "raw_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+      "source_manifest_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "_encode": {
+          "line": 14,
+          "end_line": 20
+        },
+        "SharedDataCache.partitions": {
+          "line": 40,
+          "end_line": 47
+        },
+        "SharedDataCache._load": {
+          "line": 49,
+          "end_line": 93
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/contracts.py",
+      "raw_sha256": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+      "source_manifest_sha256": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "digest": {
+          "line": 47,
+          "end_line": 49
+        },
+        "DataRequest.identity": {
+          "line": 78,
+          "end_line": 82
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/collection.py",
+      "raw_sha256": "565f12872113ddee16ed5360655dd72ffea054039f2262ceb5d579351d9c6f8f",
+      "source_manifest_sha256": "565f12872113ddee16ed5360655dd72ffea054039f2262ceb5d579351d9c6f8f",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "HistoricalCollectionPlan.identity": {
+          "line": 269,
+          "end_line": 270
+        },
+        "HistoricalSnapshotCollector._key": {
+          "line": 334,
+          "end_line": 335
+        },
+        "HistoricalSnapshotCollector._write_batch": {
+          "line": 431,
+          "end_line": 437
+        },
+        "HistoricalSnapshotCollector._load_window": {
+          "line": 458,
+          "end_line": 508
+        },
+        "HistoricalSnapshotCollector._collect_window": {
+          "line": 531,
+          "end_line": 572
+        },
+        "HistoricalSnapshotCollector.collect": {
+          "line": 574,
+          "end_line": 592
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/collection_storage.py",
+      "raw_sha256": "3f6ab1289fd83d404492439ca9ae5fe221ff3cfb27a22390b96b9f176215f769",
+      "source_manifest_sha256": "3f6ab1289fd83d404492439ca9ae5fe221ff3cfb27a22390b96b9f176215f769",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "processing_contract_sha256": {
+          "line": 129,
+          "end_line": 191
+        },
+        "data_identity": {
+          "line": 194,
+          "end_line": 202
+        },
+        "stable_collection_plan": {
+          "line": 205,
+          "end_line": 209
+        },
+        "validate_storage_policy_structure": {
+          "line": 235,
+          "end_line": 275
+        },
+        "StableCollectionCache._legacy": {
+          "line": 311,
+          "end_line": 348
+        },
+        "StableCollectionCache.collect": {
+          "line": 350,
+          "end_line": 380
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/received_manifest.py",
+      "raw_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+      "source_manifest_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "_references": {
+          "line": 79,
+          "end_line": 92
+        },
+        "build_received_manifest": {
+          "line": 95,
+          "end_line": 164
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/engineering_data.py",
+      "raw_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+      "source_manifest_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "_save": {
+          "line": 121,
+          "end_line": 124
+        },
+        "_load": {
+          "line": 127,
+          "end_line": 131
+        },
+        "_resolution": {
+          "line": 351,
+          "end_line": 371
+        },
+        "_read_resolution": {
+          "line": 374,
+          "end_line": 391
+        },
+        "_run_collection_probe": {
+          "line": 435,
+          "end_line": 474
+        },
+        "_run_stored_collection_probe": {
+          "line": 477,
+          "end_line": 501
+        },
+        "finish_receiver": {
+          "line": 684,
+          "end_line": 740
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/engineering_storage.py",
+      "raw_sha256": "38548b1399277337945bb77b86783fc23f2c7168b99880a312815fe9d86fb4c4",
+      "source_manifest_sha256": "38548b1399277337945bb77b86783fc23f2c7168b99880a312815fe9d86fb4c4",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "validate_collection_evidence": {
+          "line": 73,
+          "end_line": 92
+        },
+        "validate_encoding_metadata": {
+          "line": 95,
+          "end_line": 105
+        },
+        "validate_reference_metadata": {
+          "line": 108,
+          "end_line": 118
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/coverage.py",
+      "raw_sha256": "03ff4060afb7ad68a911c586d3dfca048ad72a00a878bd1b5b09177711248843",
+      "source_manifest_sha256": "03ff4060afb7ad68a911c586d3dfca048ad72a00a878bd1b5b09177711248843",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "_source_payloads": {
+          "line": 89,
+          "end_line": 112
+        },
+        "_envelope": {
+          "line": 115,
+          "end_line": 128
+        },
+        "_produce": {
+          "line": 131,
+          "end_line": 236
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/quantconnect.py",
+      "raw_sha256": "53cd8ee6ae5d71956d7aacb35f27e7a4079801ff79539755e4d70cefdfda98fd",
+      "source_manifest_sha256": "53cd8ee6ae5d71956d7aacb35f27e7a4079801ff79539755e4d70cefdfda98fd",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "ObjectStoreArtifactStore._key": {
+          "line": 44,
+          "end_line": 45
+        },
+        "ObjectStoreArtifactStore.locked": {
+          "line": 61,
+          "end_line": 72
+        },
+        "ObjectStoreArtifactStore.write_once": {
+          "line": 94,
+          "end_line": 109
+        },
+        "ObjectStoreArtifactStore.append_event": {
+          "line": 111,
+          "end_line": 121
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/ingestion.py",
+      "raw_sha256": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+      "source_manifest_sha256": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "HistoricalBatchIngestor.ingest": {
+          "line": 271,
+          "end_line": 314
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/data_certification.py",
+      "raw_sha256": "4944b95b339060a60533226184e7838632c7de2a40dfed42795d778d8a05ff2b",
+      "source_manifest_sha256": "4944b95b339060a60533226184e7838632c7de2a40dfed42795d778d8a05ff2b",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "store_certification_table": {
+          "line": 156,
+          "end_line": 171
+        },
+        "audit_data_certification": {
+          "line": 411,
+          "end_line": 581
+        },
+        "summarize_certification_scope": {
+          "line": 584,
+          "end_line": 721
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/collection_execution.py",
+      "raw_sha256": "721f0b370b6473c7e23a74ad68f54ba44391d99d7f8abea28ea16567f0b9d880",
+      "source_manifest_sha256": "721f0b370b6473c7e23a74ad68f54ba44391d99d7f8abea28ea16567f0b9d880",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "run_collection_task": {
+          "line": 40,
+          "end_line": 111
+        }
+      },
+      "requested_anchors_not_found": []
+    },
+    {
+      "path": "cloud/qresearch/storage_capacity.py",
+      "raw_sha256": "880eb4d42659be287288322a43050508106043e1e34ad5efde7e65224d60af47",
+      "source_manifest_sha256": "880eb4d42659be287288322a43050508106043e1e34ad5efde7e65224d60af47",
+      "source_manifest_policy": "UTF-8-sig/universal-newlines preserving terminal LF count",
+      "anchors": {
+        "_keys": {
+          "line": 103,
+          "end_line": 112
+        },
+        "_sizes": {
+          "line": 115,
+          "end_line": 130
+        },
+        "_metadata_snapshot": {
+          "line": 133,
+          "end_line": 147
+        },
+        "inspect_object_store_capacity": {
+          "line": 150,
+          "end_line": 177
+        },
+        "preflight_object_store": {
+          "line": 180,
+          "end_line": 187
+        }
+      },
+      "requested_anchors_not_found": []
+    }
+  ],
+  "historical_source_basis": [
+    {
+      "commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
+      "reason_examined": "Initial shared year/SID-chunk, field-independent price cache",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/cache.py",
+          "Git_blob_content_raw_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+          "source_manifest_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+          "anchors": {
+            "_encode": {
+              "line": 14,
+              "end_line": 20
+            },
+            "SharedDataCache.partitions": {
+              "line": 40,
+              "end_line": 47
+            },
+            "SharedDataCache._load": {
+              "line": 49,
+              "end_line": 93
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/contracts.py",
+          "Git_blob_content_raw_sha256": "83e4d28ca9df9508af8ac7080b9506ef9fc01e03293f40093ac73dfe212aa9c0",
+          "source_manifest_sha256": "83e4d28ca9df9508af8ac7080b9506ef9fc01e03293f40093ac73dfe212aa9c0",
+          "anchors": {
+            "digest": {
+              "line": 23,
+              "end_line": 25
+            },
+            "DataRequest.identity": {
+              "line": 54,
+              "end_line": 58
+            }
+          }
+        }
+      ]
+    },
+    {
+      "commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+      "reason_examined": "Collection v2 retains all source occurrences; duplicate SID projections are not garbage",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/collection.py",
+          "Git_blob_content_raw_sha256": "c7ff2d2852a40706a036feaba3488bee6552cfd564be75c16622ede38adba213",
+          "source_manifest_sha256": "c7ff2d2852a40706a036feaba3488bee6552cfd564be75c16622ede38adba213",
+          "anchors": {
+            "HistoricalCollectionPlan.identity": {
+              "line": 196,
+              "end_line": 197
+            },
+            "HistoricalSnapshotCollector._key": {
+              "line": 249,
+              "end_line": 250
+            },
+            "HistoricalSnapshotCollector._write_batch": {
+              "line": 346,
+              "end_line": 351
+            },
+            "HistoricalSnapshotCollector._load_window": {
+              "line": 372,
+              "end_line": 422
+            },
+            "HistoricalSnapshotCollector._collect_window": {
+              "line": 445,
+              "end_line": 482
+            },
+            "HistoricalSnapshotCollector.collect": {
+              "line": 484,
+              "end_line": 502
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/historical_source.py",
+          "Git_blob_content_raw_sha256": "f6e0d78c4aa841010c00682884333f9e8c45fd3f023a31f6286c123d305ea46b",
+          "source_manifest_sha256": "f6e0d78c4aa841010c00682884333f9e8c45fd3f023a31f6286c123d305ea46b",
+          "anchors": {}
+        }
+      ]
+    },
+    {
+      "commit": "f1713b86b3aa802368d21a8f48eb77a7657702e3",
+      "reason_examined": "Retired schema3 zlib_json_v1 stores compressed bytes under stored SHA; raw SHA is not file SHA",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/engineering_data.py",
+          "Git_blob_content_raw_sha256": "b9b864cefd8c6ef23d62b94c911212e5a1bd20dcc60cd9d362c14ddf005dbac8",
+          "source_manifest_sha256": "b9b864cefd8c6ef23d62b94c911212e5a1bd20dcc60cd9d362c14ddf005dbac8",
+          "anchors": {
+            "_save": {
+              "line": 121,
+              "end_line": 124
+            },
+            "_load": {
+              "line": 127,
+              "end_line": 131
+            },
+            "_resolution": {
+              "line": 349,
+              "end_line": 369
+            },
+            "_read_resolution": {
+              "line": 372,
+              "end_line": 389
+            },
+            "_run_collection_probe": {
+              "line": 433,
+              "end_line": 472
+            },
+            "_run_stored_collection_probe": {
+              "line": 475,
+              "end_line": 499
+            },
+            "finish_receiver": {
+              "line": 682,
+              "end_line": 732
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/engineering_storage.py",
+          "Git_blob_content_raw_sha256": "01b0fbd98b6475819e732c5bc76c2ae56cf8dbc68b05a135294abf7263152e5c",
+          "source_manifest_sha256": "01b0fbd98b6475819e732c5bc76c2ae56cf8dbc68b05a135294abf7263152e5c",
+          "anchors": {
+            "validate_collection_evidence": {
+              "line": 69,
+              "end_line": 88
+            },
+            "encode_compressed_json": {
+              "line": 91,
+              "end_line": 99
+            },
+            "decode_compressed_json": {
+              "line": 102,
+              "end_line": 119
+            },
+            "validate_encoding_metadata": {
+              "line": 122,
+              "end_line": 130
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/collection_storage.py",
+          "Git_blob_content_raw_sha256": "f6aade16bbb8d72da664a9f040b1ed47b095bd35414403b013483b1c1f357d71",
+          "source_manifest_sha256": "f6aade16bbb8d72da664a9f040b1ed47b095bd35414403b013483b1c1f357d71",
+          "anchors": {
+            "processing_contract_sha256": {
+              "line": 100,
+              "end_line": 152
+            },
+            "data_identity": {
+              "line": 155,
+              "end_line": 163
+            },
+            "stable_collection_plan": {
+              "line": 166,
+              "end_line": 170
+            },
+            "StableCollectionCache._legacy": {
+              "line": 261,
+              "end_line": 298
+            },
+            "StableCollectionCache.collect": {
+              "line": 300,
+              "end_line": 330
+            }
+          }
+        }
+      ]
+    },
+    {
+      "commit": "1e5cb6217639f763b194324f80e3cf18c2f74b2c",
+      "reason_examined": "Schema4 cached_row_reference_v1 replaces copied received-row payloads with checked cache references",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/received_manifest.py",
+          "Git_blob_content_raw_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+          "source_manifest_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+          "anchors": {
+            "_references": {
+              "line": 79,
+              "end_line": 92
+            },
+            "build_received_manifest": {
+              "line": 95,
+              "end_line": 164
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/engineering_data.py",
+          "Git_blob_content_raw_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+          "source_manifest_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+          "anchors": {
+            "_save": {
+              "line": 121,
+              "end_line": 124
+            },
+            "_load": {
+              "line": 127,
+              "end_line": 131
+            },
+            "_resolution": {
+              "line": 351,
+              "end_line": 371
+            },
+            "_read_resolution": {
+              "line": 374,
+              "end_line": 391
+            },
+            "_run_collection_probe": {
+              "line": 435,
+              "end_line": 474
+            },
+            "_run_stored_collection_probe": {
+              "line": 477,
+              "end_line": 501
+            },
+            "finish_receiver": {
+              "line": 684,
+              "end_line": 740
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/coverage.py",
+          "Git_blob_content_raw_sha256": "03ff4060afb7ad68a911c586d3dfca048ad72a00a878bd1b5b09177711248843",
+          "source_manifest_sha256": "03ff4060afb7ad68a911c586d3dfca048ad72a00a878bd1b5b09177711248843",
+          "anchors": {
+            "_source_payloads": {
+              "line": 89,
+              "end_line": 112
+            },
+            "_envelope": {
+              "line": 115,
+              "end_line": 128
+            },
+            "_produce": {
+              "line": 131,
+              "end_line": 236
+            }
+          }
+        }
+      ]
+    },
+    {
+      "commit": "5e09e63d87a42a07a448e27da6aedbe4e8210a6f",
+      "reason_examined": "Original round009 runtime with verified legacy linkage and four-source processing contract",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/cache.py",
+          "Git_blob_content_raw_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+          "source_manifest_sha256": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+          "anchors": {
+            "_encode": {
+              "line": 14,
+              "end_line": 20
+            },
+            "SharedDataCache.partitions": {
+              "line": 40,
+              "end_line": 47
+            },
+            "SharedDataCache._load": {
+              "line": 49,
+              "end_line": 93
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/collection.py",
+          "Git_blob_content_raw_sha256": "565f12872113ddee16ed5360655dd72ffea054039f2262ceb5d579351d9c6f8f",
+          "source_manifest_sha256": "565f12872113ddee16ed5360655dd72ffea054039f2262ceb5d579351d9c6f8f",
+          "anchors": {
+            "HistoricalCollectionPlan.identity": {
+              "line": 269,
+              "end_line": 270
+            },
+            "HistoricalSnapshotCollector._key": {
+              "line": 334,
+              "end_line": 335
+            },
+            "HistoricalSnapshotCollector._write_batch": {
+              "line": 431,
+              "end_line": 437
+            },
+            "HistoricalSnapshotCollector._load_window": {
+              "line": 458,
+              "end_line": 508
+            },
+            "HistoricalSnapshotCollector._collect_window": {
+              "line": 531,
+              "end_line": 572
+            },
+            "HistoricalSnapshotCollector.collect": {
+              "line": 574,
+              "end_line": 592
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/collection_storage.py",
+          "Git_blob_content_raw_sha256": "f6aade16bbb8d72da664a9f040b1ed47b095bd35414403b013483b1c1f357d71",
+          "source_manifest_sha256": "f6aade16bbb8d72da664a9f040b1ed47b095bd35414403b013483b1c1f357d71",
+          "anchors": {
+            "processing_contract_sha256": {
+              "line": 100,
+              "end_line": 152
+            },
+            "data_identity": {
+              "line": 155,
+              "end_line": 163
+            },
+            "stable_collection_plan": {
+              "line": 166,
+              "end_line": 170
+            },
+            "StableCollectionCache._legacy": {
+              "line": 261,
+              "end_line": 298
+            },
+            "StableCollectionCache.collect": {
+              "line": 300,
+              "end_line": 330
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/engineering_data.py",
+          "Git_blob_content_raw_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+          "source_manifest_sha256": "6cfc92a1df84566f5105a6759678a16bf7068f946083634d86caf97dd6f86d4a",
+          "anchors": {
+            "_save": {
+              "line": 121,
+              "end_line": 124
+            },
+            "_load": {
+              "line": 127,
+              "end_line": 131
+            },
+            "_resolution": {
+              "line": 351,
+              "end_line": 371
+            },
+            "_read_resolution": {
+              "line": 374,
+              "end_line": 391
+            },
+            "_run_collection_probe": {
+              "line": 435,
+              "end_line": 474
+            },
+            "_run_stored_collection_probe": {
+              "line": 477,
+              "end_line": 501
+            },
+            "finish_receiver": {
+              "line": 684,
+              "end_line": 740
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/received_manifest.py",
+          "Git_blob_content_raw_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+          "source_manifest_sha256": "d59f8dbee9cbfe1c56e9082e0cad9714c222dd78f1353434fd1de944903f2140",
+          "anchors": {
+            "_references": {
+              "line": 79,
+              "end_line": 92
+            },
+            "build_received_manifest": {
+              "line": 95,
+              "end_line": 164
+            }
+          }
+        }
+      ]
+    },
+    {
+      "commit": "dee26eec9481e8c75c09c2b97c680707d1814452",
+      "reason_examined": "Current financial-helper processing closure; historical decoder does not grant current cache compatibility",
+      "source_files": [
+        {
+          "path": "cloud/qresearch/collection_storage.py",
+          "Git_blob_content_raw_sha256": "3f6ab1289fd83d404492439ca9ae5fe221ff3cfb27a22390b96b9f176215f769",
+          "source_manifest_sha256": "3f6ab1289fd83d404492439ca9ae5fe221ff3cfb27a22390b96b9f176215f769",
+          "anchors": {
+            "processing_contract_sha256": {
+              "line": 129,
+              "end_line": 191
+            },
+            "data_identity": {
+              "line": 194,
+              "end_line": 202
+            },
+            "stable_collection_plan": {
+              "line": 205,
+              "end_line": 209
+            },
+            "validate_storage_policy_structure": {
+              "line": 235,
+              "end_line": 275
+            },
+            "StableCollectionCache._legacy": {
+              "line": 311,
+              "end_line": 348
+            },
+            "StableCollectionCache.collect": {
+              "line": 350,
+              "end_line": 380
+            }
+          }
+        },
+        {
+          "path": "cloud/qresearch/financial_fields.py",
+          "Git_blob_content_raw_sha256": "f8c12f504b778705ae24d8e750d2d37fb38489079a63b2f255b43d92d1203959",
+          "source_manifest_sha256": "f8c12f504b778705ae24d8e750d2d37fb38489079a63b2f255b43d92d1203959",
+          "anchors": {}
+        },
+        {
+          "path": "cloud/qresearch/engineering_storage.py",
+          "Git_blob_content_raw_sha256": "38548b1399277337945bb77b86783fc23f2c7168b99880a312815fe9d86fb4c4",
+          "source_manifest_sha256": "38548b1399277337945bb77b86783fc23f2c7168b99880a312815fe9d86fb4c4",
+          "anchors": {
+            "validate_collection_evidence": {
+              "line": 73,
+              "end_line": 92
+            },
+            "validate_encoding_metadata": {
+              "line": 95,
+              "end_line": 105
+            },
+            "validate_reference_metadata": {
+              "line": 108,
+              "end_line": 118
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,678 @@
+{
+  "commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "methods": 24,
+  "passed_methods": 24,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "subcases": 36,
+  "skipped": 0,
+  "failure_records": 0,
+  "error_records": 0,
+  "failures": [],
+  "errors": [],
+  "observations": {
+    "cli_mixed_race": [
+      {
+        "kind": "permit",
+        "attempt_id": "83984f13d44a4cea8041bfa639c89dd0",
+        "status": "started"
+      },
+      {
+        "kind": "rejected",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for research"
+      }
+    ],
+    "original_copy": {
+      "initial_usage": {
+        "configurations": {
+          "total": 6,
+          "normal": 6,
+          "reserve": 0
+        },
+        "research": {
+          "total": 9,
+          "normal": 6,
+          "reserve": 3
+        },
+        "lean": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        }
+      },
+      "final_usage": {
+        "configurations": {
+          "total": 7,
+          "normal": 7,
+          "reserve": 0
+        },
+        "research": {
+          "total": 10,
+          "normal": 7,
+          "reserve": 3
+        },
+        "lean": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        }
+      },
+      "source_files_untouched": true
+    },
+    "thread_configurations_False": [
+      {
+        "kind": "rejected",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for configurations"
+      },
+      {
+        "kind": "registered",
+        "config_id": "548da04731de5fb2720c429ef40c4e9e4ba37f1be0f1bb952de56db7913fa2eb"
+      }
+    ],
+    "thread_configurations_True": [
+      {
+        "kind": "rejected",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for configurations"
+      },
+      {
+        "kind": "registered",
+        "config_id": "548da04731de5fb2720c429ef40c4e9e4ba37f1be0f1bb952de56db7913fa2eb"
+      }
+    ],
+    "thread_research_False": [
+      {
+        "kind": "rejected",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for research"
+      },
+      {
+        "kind": "permit",
+        "attempt_id": "d8e88760aa894ddabc0760bbc01b246d",
+        "status": "started"
+      }
+    ],
+    "thread_research_True": [
+      {
+        "kind": "rejected",
+        "error": "BudgetExceeded",
+        "message": "Stage2 engineering stop condition reached for research"
+      },
+      {
+        "kind": "permit",
+        "attempt_id": "6b101d5b11074de7a4dc048279bd790c",
+        "status": "started"
+      }
+    ],
+    "thread_project_False": [
+      {
+        "kind": "rejected",
+        "error": "EngineeringTaskError",
+        "message": "Unresolved engineering work on this project must be reconciled before another plan"
+      },
+      {
+        "kind": "permit",
+        "attempt_id": "db95406d1b6c438cb92c6ed95b4f7627",
+        "status": "started"
+      }
+    ],
+    "thread_project_True": [
+      {
+        "kind": "rejected",
+        "error": "EngineeringTaskError",
+        "message": "Unresolved engineering work on this project must be reconciled before another plan"
+      },
+      {
+        "kind": "permit",
+        "attempt_id": "4be4bce32088467eb0b3b2af47c258d3",
+        "status": "started"
+      }
+    ],
+    "process_configurations": {
+      "ready": [
+        {
+          "kind": "ready",
+          "pid": 101080
+        },
+        {
+          "kind": "ready",
+          "pid": 75656
+        }
+      ],
+      "answers": [
+        {
+          "kind": "result",
+          "which": "new",
+          "pid": 75656,
+          "outcome": {
+            "kind": "registered",
+            "config_id": "548da04731de5fb2720c429ef40c4e9e4ba37f1be0f1bb952de56db7913fa2eb"
+          }
+        },
+        {
+          "kind": "result",
+          "which": "old",
+          "pid": 101080,
+          "outcome": {
+            "kind": "rejected",
+            "error": "BudgetExceeded",
+            "message": "Stage2 engineering stop condition reached for configurations"
+          }
+        }
+      ],
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    "process_research": {
+      "ready": [
+        {
+          "kind": "ready",
+          "pid": 97700
+        },
+        {
+          "kind": "ready",
+          "pid": 91800
+        }
+      ],
+      "answers": [
+        {
+          "kind": "result",
+          "which": "new",
+          "pid": 97700,
+          "outcome": {
+            "kind": "permit",
+            "attempt_id": "05026c312c3a428c8f105f91f54381f6",
+            "status": "started"
+          }
+        },
+        {
+          "kind": "result",
+          "which": "old",
+          "pid": 91800,
+          "outcome": {
+            "kind": "rejected",
+            "error": "BudgetExceeded",
+            "message": "Stage2 engineering stop condition reached for research"
+          }
+        }
+      ],
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    },
+    "process_project": {
+      "ready": [
+        {
+          "kind": "ready",
+          "pid": 82488
+        },
+        {
+          "kind": "ready",
+          "pid": 101548
+        }
+      ],
+      "answers": [
+        {
+          "kind": "result",
+          "which": "new",
+          "pid": 101548,
+          "outcome": {
+            "kind": "permit",
+            "attempt_id": "70f682645c2d444db61e58c0d4cab28b",
+            "status": "started"
+          }
+        },
+        {
+          "kind": "result",
+          "which": "old",
+          "pid": 82488,
+          "outcome": {
+            "kind": "rejected",
+            "error": "RegistryError",
+            "message": "Unresolved engineering work on this project requires reconciliation"
+          }
+        }
+      ],
+      "usage": {
+        "configurations": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      }
+    }
+  },
+  "source_locations": {
+    "cloud/qresearch/registry.py:RegistryError": [
+      26,
+      27
+    ],
+    "cloud/qresearch/registry.py:BudgetExceeded": [
+      30,
+      31
+    ],
+    "cloud/qresearch/registry.py:CorruptRegistry": [
+      34,
+      35
+    ],
+    "cloud/qresearch/registry.py:Attempt": [
+      39,
+      48
+    ],
+    "cloud/qresearch/registry.py:_counter": [
+      64,
+      67
+    ],
+    "cloud/qresearch/registry.py:_normalize_limits": [
+      70,
+      86
+    ],
+    "cloud/qresearch/registry.py:_normalize_usage": [
+      89,
+      105
+    ],
+    "cloud/qresearch/registry.py:Registry": [
+      108,
+      591
+    ],
+    "cloud/qresearch/registry.py:__init__": [
+      126,
+      142
+    ],
+    "cloud/qresearch/registry.py:_validate_usage": [
+      144,
+      148
+    ],
+    "cloud/qresearch/registry.py:_charge": [
+      150,
+      157
+    ],
+    "cloud/qresearch/registry.py:_append": [
+      159,
+      161
+    ],
+    "cloud/qresearch/registry.py:_operation_id": [
+      164,
+      167
+    ],
+    "cloud/qresearch/registry.py:result_key": [
+      170,
+      172
+    ],
+    "cloud/qresearch/registry.py:_validate_identity": [
+      175,
+      179
+    ],
+    "cloud/qresearch/registry.py:_replay": [
+      181,
+      258
+    ],
+    "cloud/qresearch/registry.py:_attempt": [
+      261,
+      266
+    ],
+    "cloud/qresearch/registry.py:register_config": [
+      268,
+      282
+    ],
+    "cloud/qresearch/registry.py:_is_engineering_package": [
+      285,
+      301
+    ],
+    "cloud/qresearch/registry.py:_collection_candidate": [
+      304,
+      308
+    ],
+    "cloud/qresearch/registry.py:_collection_plan": [
+      311,
+      326
+    ],
+    "cloud/qresearch/registry.py:_enforce_engineering_project": [
+      328,
+      344
+    ],
+    "cloud/qresearch/registry.py:_collection_operation": [
+      347,
+      350
+    ],
+    "cloud/qresearch/registry.py:_engineering_config_ids": [
+      352,
+      355
+    ],
+    "cloud/qresearch/registry.py:_enforce_engineering_limit": [
+      357,
+      372
+    ],
+    "cloud/qresearch/registry.py:check_engineering_admission": [
+      374,
+      398
+    ],
+    "cloud/qresearch/registry.py:_verify_import": [
+      400,
+      426
+    ],
+    "cloud/qresearch/registry.py:import_existing_config": [
+      428,
+      459
+    ],
+    "cloud/qresearch/registry.py:begin_attempt": [
+      461,
+      505
+    ],
+    "cloud/qresearch/registry.py:_attempt_id": [
+      508,
+      509
+    ],
+    "cloud/qresearch/registry.py:_transition": [
+      511,
+      530
+    ],
+    "cloud/qresearch/registry.py:pending": [
+      532,
+      536
+    ],
+    "cloud/qresearch/registry.py:ambiguous": [
+      538,
+      542
+    ],
+    "cloud/qresearch/registry.py:fail": [
+      544,
+      547
+    ],
+    "cloud/qresearch/registry.py:complete": [
+      549,
+      574
+    ],
+    "cloud/qresearch/registry.py:read_result": [
+      576,
+      583
+    ],
+    "cloud/qresearch/registry.py:snapshot": [
+      585,
+      591
+    ],
+    "cloud/qresearch/collection_tasks.py:CollectionTaskPlan": [
+      25,
+      77
+    ],
+    "cloud/qresearch/collection_tasks.py:validate_report": [
+      80,
+      115
+    ],
+    "cloud/qresearch/collection_tasks.py:CollectionTaskBridge": [
+      118,
+      166
+    ],
+    "cloud/qresearch/collection_tasks.py:__init__": [
+      124,
+      130
+    ],
+    "cloud/qresearch/collection_tasks.py:from_dict": [
+      32,
+      61
+    ],
+    "cloud/qresearch/collection_tasks.py:to_dict": [
+      63,
+      64
+    ],
+    "cloud/qresearch/collection_tasks.py:hash": [
+      67,
+      68
+    ],
+    "cloud/qresearch/collection_tasks.py:collection_plan": [
+      71,
+      73
+    ],
+    "cloud/qresearch/collection_tasks.py:request_hash": [
+      76,
+      77
+    ],
+    "cloud/qresearch/collection_tasks.py:_operation": [
+      132,
+      135
+    ],
+    "cloud/qresearch/collection_tasks.py:claim": [
+      137,
+      139
+    ],
+    "cloud/qresearch/collection_tasks.py:_report_metadata": [
+      141,
+      143
+    ],
+    "cloud/qresearch/collection_tasks.py:_cloud_report": [
+      145,
+      146
+    ],
+    "cloud/qresearch/collection_tasks.py:submit": [
+      148,
+      166
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskError": [
+      19,
+      20
+    ],
+    "cloud/qresearch/engineering_tasks.py:_hash": [
+      23,
+      26
+    ],
+    "cloud/qresearch/engineering_tasks.py:_mapping": [
+      29,
+      32
+    ],
+    "cloud/qresearch/engineering_tasks.py:_string": [
+      35,
+      38
+    ],
+    "cloud/qresearch/engineering_tasks.py:_time": [
+      41,
+      45
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_raw_metadata": [
+      63,
+      93
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_reference": [
+      96,
+      101
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_identity": [
+      104,
+      116
+    ],
+    "cloud/qresearch/engineering_tasks.py:_safe_evidence": [
+      119,
+      148
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskPlan": [
+      152,
+      253
+    ],
+    "cloud/qresearch/engineering_tasks.py:EngineeringTaskBridge": [
+      256,
+      576
+    ],
+    "cloud/qresearch/engineering_tasks.py:__init__": [
+      268,
+      274
+    ],
+    "cloud/qresearch/engineering_tasks.py:from_dict": [
+      166,
+      237
+    ],
+    "cloud/qresearch/engineering_tasks.py:to_dict": [
+      239,
+      240
+    ],
+    "cloud/qresearch/engineering_tasks.py:hash": [
+      243,
+      244
+    ],
+    "cloud/qresearch/engineering_tasks.py:request_hash": [
+      249,
+      253
+    ],
+    "cloud/qresearch/engineering_tasks.py:register": [
+      276,
+      277
+    ],
+    "cloud/qresearch/engineering_tasks.py:_operation": [
+      279,
+      282
+    ],
+    "cloud/qresearch/engineering_tasks.py:_records": [
+      284,
+      285
+    ],
+    "cloud/qresearch/engineering_tasks.py:_record": [
+      287,
+      293
+    ],
+    "cloud/qresearch/engineering_tasks.py:_attempt": [
+      296,
+      298
+    ],
+    "cloud/qresearch/engineering_tasks.py:_research_result": [
+      300,
+      304
+    ],
+    "cloud/qresearch/engineering_tasks.py:claim": [
+      306,
+      325
+    ],
+    "cloud/qresearch/engineering_tasks.py:payload": [
+      327,
+      339
+    ],
+    "cloud/qresearch/engineering_tasks.py:_save": [
+      341,
+      346
+    ],
+    "cloud/qresearch/engineering_tasks.py:_submission_key": [
+      348,
+      349
+    ],
+    "cloud/qresearch/engineering_tasks.py:_deployment": [
+      351,
+      359
+    ],
+    "cloud/qresearch/engineering_tasks.py:_submission_metadata": [
+      361,
+      377
+    ],
+    "cloud/qresearch/engineering_tasks.py:_report_metadata": [
+      379,
+      398
+    ],
+    "cloud/qresearch/engineering_tasks.py:_completion_metadata": [
+      400,
+      416
+    ],
+    "cloud/qresearch/engineering_tasks.py:record_submission": [
+      418,
+      450
+    ],
+    "cloud/qresearch/engineering_tasks.py:submit": [
+      452,
+      469
+    ],
+    "cloud/qresearch/engineering_tasks.py:_resolution": [
+      471,
+      499
+    ],
+    "cloud/qresearch/engineering_tasks.py:_cloud_report": [
+      501,
+      529
+    ],
+    "cloud/qresearch/engineering_tasks.py:consume_completion": [
+      531,
+      572
+    ],
+    "cloud/qresearch/engineering_tasks.py:read_result": [
+      574,
+      576
+    ],
+    "tools/collection_task_cli.py:execution_source_manifest": [
+      14,
+      25
+    ],
+    "tools/collection_task_cli.py:freeze_task": [
+      28,
+      54
+    ],
+    "tools/collection_task_cli.py:current_bridge": [
+      57,
+      65
+    ],
+    "tools/collection_task_cli.py:bridge_for_attempt": [
+      68,
+      94
+    ],
+    "tools/collection_task_cli.py:admitted_input": [
+      97,
+      126
+    ],
+    "tools/collection_task_cli.py:prepare_task": [
+      129,
+      152
+    ],
+    "tools/collection_task_cli.py:verify_current_source": [
+      155,
+      158
+    ],
+    "tools/collection_task_cli.py:execute_metadata_command": [
+      161,
+      198
+    ]
+  },
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "actual_external_calls": 0,
+  "developer_fixture_imports": false,
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\AppData\\Local\\Temp\\aqrp-unchanged-review-script-1ax_f3ny\\admission_agent\\independent_admission.py"
+  ],
+  "script_sha256": "54d0a6a14392607ef2bb11ee3e3958e90cedb4be52ca2f0222219bcd0ac0c8e5",
+  "exit_code": 0
+}

@@ -1,0 +1,105 @@
+{
+  "kind": "synthetic_nonidentifiable_collection_failure_MRE",
+  "source_commit": "0f6d8c0606d1e3253632b167cab73dd04d03658a",
+  "cases": [
+    {
+      "mode": "normal",
+      "success": true,
+      "record_count": 1002,
+      "cache_replay_provider_calls": 0,
+      "save_attempts": [
+        {
+          "category": "intents",
+          "bytes": 207
+        },
+        {
+          "category": "objects",
+          "bytes": 214908
+        },
+        {
+          "category": "objects",
+          "bytes": 671
+        },
+        {
+          "category": "windows",
+          "bytes": 1977
+        }
+      ],
+      "intent_exists": true,
+      "completed_manifest_exists": true
+    },
+    {
+      "mode": "batch_save_rejected",
+      "success": false,
+      "outer_type": "CollectionError",
+      "outer_message": "Historical source collection failed; unfinished intent retained",
+      "hidden_context_type": "OSError",
+      "context_suppressed": true,
+      "save_attempts": [
+        {
+          "category": "intents",
+          "bytes": 207
+        },
+        {
+          "category": "objects",
+          "bytes": 214908
+        }
+      ],
+      "intent_exists": true,
+      "completed_manifest_exists": false
+    },
+    {
+      "mode": "batch_readback_mismatch",
+      "success": false,
+      "outer_type": "CollectionError",
+      "outer_message": "Historical source collection failed; unfinished intent retained",
+      "hidden_context_type": "ArtifactConflict",
+      "context_suppressed": true,
+      "save_attempts": [
+        {
+          "category": "intents",
+          "bytes": 207
+        },
+        {
+          "category": "objects",
+          "bytes": 214908
+        }
+      ],
+      "intent_exists": true,
+      "completed_manifest_exists": false
+    },
+    {
+      "mode": "manifest_save_rejected",
+      "success": false,
+      "outer_type": "CollectionError",
+      "outer_message": "Historical source collection failed; unfinished intent retained",
+      "hidden_context_type": "OSError",
+      "context_suppressed": true,
+      "save_attempts": [
+        {
+          "category": "intents",
+          "bytes": 207
+        },
+        {
+          "category": "objects",
+          "bytes": 214908
+        },
+        {
+          "category": "objects",
+          "bytes": 671
+        },
+        {
+          "category": "windows",
+          "bytes": 1977
+        }
+      ],
+      "intent_exists": true,
+      "completed_manifest_exists": false
+    }
+  ],
+  "real_market_data_used": false,
+  "cloud_calls": 0,
+  "research_executions": 0,
+  "LEAN_submissions": 0,
+  "conclusion": "Normal four-field native-scalar conversion/batching passes; at least two distinct hidden exception types at three storage steps yield identical observed generic error. This does not prove which occurred in actual round005."
+}

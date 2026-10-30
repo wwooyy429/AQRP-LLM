@@ -1,0 +1,15 @@
+{
+  "kind": "local_audit_verifier_development_failure_and_correction",
+  "initial_failure": "exposure physical-byte equality against prior Git blob",
+  "actual_reason": "Existing unchanged worktree has CRLF; published prior Git has LF",
+  "physical_crlf_count": 35,
+  "git_crlf_count": 0,
+  "original_checkout_raw_sha256": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95",
+  "prior_git_blob_sha256": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+  "normalized_utf8_LF_preserving_terminal_count_matches_prior_git": true,
+  "corrected_policy": "Only audit/data_exposure.json has explicit UTF8-sig/universal-newline identity; all other packet artifacts use raw-byte SHA256. Original physical pre/post hash is separately retained. No exposure facts edited.",
+  "new_configurations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "final_test_enabled": false
+}

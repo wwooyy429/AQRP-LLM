@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\registry.py", line 420, in _joint_research_complete
+    status, passed = bridge._completion_contract(payload, submission, observed)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_tasks.py", line 676, in _completion_contract
+    raise EngineeringTaskError("Terminal platform evidence does not match the recorded task and input")
+qresearch.engineering_tasks.EngineeringTaskError: Terminal platform evidence does not match the recorded task and input
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-ae2b898-20261027\minimal_wr18.py", line 72, in <module>
+    lean = r.begin_attempt(b.config_id,'lean',operation_key=b._operation('lean'))
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\registry.py", line 584, in begin_attempt
+    self._joint_admission(state, config_id, stage, joint)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\registry.py", line 438, in _joint_admission
+    self._joint_research_complete(state, config_id, plan)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\registry.py", line 428, in _joint_research_complete
+    raise RegistryError("Joint LEAN requires the verified same-plan Research result") from exc
+qresearch.registry.RegistryError: Joint LEAN requires the verified same-plan Research result

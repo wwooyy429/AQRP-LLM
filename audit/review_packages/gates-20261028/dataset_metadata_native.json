@@ -1,0 +1,251 @@
+[
+  {
+    "tool_name": "mcp__quantconnect__list_projects",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"projects\":[{\"projectId\":38436695,\"name\":\"Research\\/GenericResearch\",\"language\":\"Py\"},{\"projectId\":38437839,\"name\":\"Research\\/GenericSandbox\",\"language\":\"Py\"},{\"projectId\":38433336,\"name\":\"LLMQuantPlatform\\/FiveModuleEngineering20261026\",\"language\":\"Py\"},{\"projectId\":38433216,\"name\":\"LLMQuantPlatform\\/Engineering20261026\",\"language\":\"Py\"},{\"projectId\":38432534,\"name\":\"AlphaPlatform\\/EngineeringSmoke20261026\",\"language\":\"Py\"}],\"page\":1,\"totalPages\":1,\"nextPage\":null}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "projects": [
+          {
+            "projectId": 38436695,
+            "name": "Research/GenericResearch",
+            "language": "Py"
+          },
+          {
+            "projectId": 38437839,
+            "name": "Research/GenericSandbox",
+            "language": "Py"
+          },
+          {
+            "projectId": 38433336,
+            "name": "LLMQuantPlatform/FiveModuleEngineering20261026",
+            "language": "Py"
+          },
+          {
+            "projectId": 38433216,
+            "name": "LLMQuantPlatform/Engineering20261026",
+            "language": "Py"
+          },
+          {
+            "projectId": 38432534,
+            "name": "AlphaPlatform/EngineeringSmoke20261026",
+            "language": "Py"
+          }
+        ],
+        "page": 1,
+        "totalPages": 1,
+        "nextPage": null
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool_name": "mcp__quantconnect__list_datasets",
+    "arguments": {
+      "projectId": 38436695
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"datasets\":[\"US Equity Security Master\",\"Fama French\",\"Surveys\",\"Macro Indicators\",\"US Futures Security Master\",\"Spectral Tick Flow Signal\",\"US Equity Coarse Universe\",\"US ETF Constituents\",\"International Future Universe\",\"US Future Option Universe\",\"US Future Universe\",\"US Equity Option Universe\",\"US Index Option Universe\",\"US Equities Short Availability\",\"US Fundamental Data\",\"US Equities\",\"US Equity Options\",\"US Futures\",\"US Future Options\",\"US Index Options\",\"International Futures\",\"Benzinga News Feed\",\"Tiingo News Feed\",\"Upcoming Earnings\",\"Upcoming IPOs\",\"Upcoming Splits\",\"Economic Events\",\"US Congress Trading\",\"Corporate Buybacks\",\"US Regulatory Alerts - Financial Sector\",\"Brain Sentiment Indicator\",\"Brain ML Stock Ranking\",\"Brain Language Metrics on Company Filings\",\"Estimize\",\"True Beats\",\"Tactical\",\"Cross Asset Model\",\"Composite Factor Bundle\",\"CNBC Trading\",\"US Government Contracts\",\"Corporate Lobbying\",\"Insider Trading\",\"Brain Wikipedia Page Views\",\"US SEC Filings\",\"US Federal Reserve (FRED)\",\"Data Link\",\"Bybit Crypto Price Data\",\"Bybit Crypto Future Price Data\",\"Bybit Crypto Future Margin Rate Data\",\"Fear and Greed\",\"FOREX Data\",\"CFD Data\",\"Coinbase Crypto Price Data\",\"Bitfinex Crypto Price Data\",\"Binance Crypto Price Data\",\"Kraken Crypto Price Data\",\"Binance US Crypto Price Data\",\"Binance Crypto Future Price Data\",\"Binance Crypto Future Margin Rate Data\",\"US Interest Rate\",\"Macroeconomics Indicators\",\"Upcoming Dividends\",\"Commitments of Traders\",\"Regulation SHO\",\"OTC Transparency\",\"GDP by Industry\",\"US Electricity\",\"Factors\",\"Euro Yield Curve\",\"Policy Rates\",\"Systemic Stress\",\"Patent Maintenance\",\"US SEC 13F Whales\",\"US Bank Financials\",\"US Bank Failures\",\"US Energy Information Administration (EIA)\",\"US Treasury Yield Curve\",\"VIX Central Contango\",\"Cash Indices\",\"Bitcoin Metadata\",\"Crypto Market Cap\",\"USDA Fruit And Vegetables\",\"US Bureau of Labor Statistics (BLS)\"]}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "datasets": [
+          "US Equity Security Master",
+          "Fama French",
+          "Surveys",
+          "Macro Indicators",
+          "US Futures Security Master",
+          "Spectral Tick Flow Signal",
+          "US Equity Coarse Universe",
+          "US ETF Constituents",
+          "International Future Universe",
+          "US Future Option Universe",
+          "US Future Universe",
+          "US Equity Option Universe",
+          "US Index Option Universe",
+          "US Equities Short Availability",
+          "US Fundamental Data",
+          "US Equities",
+          "US Equity Options",
+          "US Futures",
+          "US Future Options",
+          "US Index Options",
+          "International Futures",
+          "Benzinga News Feed",
+          "Tiingo News Feed",
+          "Upcoming Earnings",
+          "Upcoming IPOs",
+          "Upcoming Splits",
+          "Economic Events",
+          "US Congress Trading",
+          "Corporate Buybacks",
+          "US Regulatory Alerts - Financial Sector",
+          "Brain Sentiment Indicator",
+          "Brain ML Stock Ranking",
+          "Brain Language Metrics on Company Filings",
+          "Estimize",
+          "True Beats",
+          "Tactical",
+          "Cross Asset Model",
+          "Composite Factor Bundle",
+          "CNBC Trading",
+          "US Government Contracts",
+          "Corporate Lobbying",
+          "Insider Trading",
+          "Brain Wikipedia Page Views",
+          "US SEC Filings",
+          "US Federal Reserve (FRED)",
+          "Data Link",
+          "Bybit Crypto Price Data",
+          "Bybit Crypto Future Price Data",
+          "Bybit Crypto Future Margin Rate Data",
+          "Fear and Greed",
+          "FOREX Data",
+          "CFD Data",
+          "Coinbase Crypto Price Data",
+          "Bitfinex Crypto Price Data",
+          "Binance Crypto Price Data",
+          "Kraken Crypto Price Data",
+          "Binance US Crypto Price Data",
+          "Binance Crypto Future Price Data",
+          "Binance Crypto Future Margin Rate Data",
+          "US Interest Rate",
+          "Macroeconomics Indicators",
+          "Upcoming Dividends",
+          "Commitments of Traders",
+          "Regulation SHO",
+          "OTC Transparency",
+          "GDP by Industry",
+          "US Electricity",
+          "Factors",
+          "Euro Yield Curve",
+          "Policy Rates",
+          "Systemic Stress",
+          "Patent Maintenance",
+          "US SEC 13F Whales",
+          "US Bank Financials",
+          "US Bank Failures",
+          "US Energy Information Administration (EIA)",
+          "US Treasury Yield Curve",
+          "VIX Central Contango",
+          "Cash Indices",
+          "Bitcoin Metadata",
+          "Crypto Market Cap",
+          "USDA Fruit And Vegetables",
+          "US Bureau of Labor Statistics (BLS)"
+        ]
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool_name": "mcp__quantconnect__get_dataset_details",
+    "arguments": {
+      "projectId": 38436695,
+      "name": "US Fundamental Data"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"dataset\":{\"name\":\"US Fundamental Data\",\"description\":\"Corporate Fundamental data for fine universe selection based on industry classification and underlying company performance indicators.\",\"startDate\":\"January 1998\",\"reach\":\"8,000 US Equities\",\"url\":\"https://www.quantconnect.com/datasets/morning-star-us-fundamentals\",\"examples\":{\"init\":\"self._equity = self.add_equity('IBM')\",\"history\":\"fundamental_history = self.history[Fundamental](self._equity.symbol, timedelta(30))\",\"universe-init\":\"self._universe = self.add_universe(self._select_assets)\",\"universe-history\":\"history = self.history(self._universe, 30, Resolution.DAILY, flatten=True)\",\"universe-filter\":\"def _select_assets(self, fundamental: List[Fundamental]) -> List[Symbol]:\\n    return [f.symbol for f in fundamental if f.price > 10 and f.valuation_ratios.pe_ratio > 30]\",\"research-history\":\"history = qb.get_fundamental(equity.symbol, 'ValuationRatios.pe_ratios', datetime(2021, 1, 1), datetime(2021, 7, 1))\",\"research-universe-history\":\"history = qb.universe_history(universe, qb.time-timedelta(30), qb.time, flatten=True)\",\"usage\":\"fundamentals = self.securities[self._equity.symbol].fundamentals\"}}}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "dataset": {
+          "name": "US Fundamental Data",
+          "description": "Corporate Fundamental data for fine universe selection based on industry classification and underlying company performance indicators.",
+          "startDate": "January 1998",
+          "reach": "8,000 US Equities",
+          "url": "https://www.quantconnect.com/datasets/morning-star-us-fundamentals",
+          "examples": {
+            "init": "self._equity = self.add_equity('IBM')",
+            "history": "fundamental_history = self.history[Fundamental](self._equity.symbol, timedelta(30))",
+            "universe-init": "self._universe = self.add_universe(self._select_assets)",
+            "universe-history": "history = self.history(self._universe, 30, Resolution.DAILY, flatten=True)",
+            "universe-filter": "def _select_assets(self, fundamental: List[Fundamental]) -> List[Symbol]:\n    return [f.symbol for f in fundamental if f.price > 10 and f.valuation_ratios.pe_ratio > 30]",
+            "research-history": "history = qb.get_fundamental(equity.symbol, 'ValuationRatios.pe_ratios', datetime(2021, 1, 1), datetime(2021, 7, 1))",
+            "research-universe-history": "history = qb.universe_history(universe, qb.time-timedelta(30), qb.time, flatten=True)",
+            "usage": "fundamentals = self.securities[self._equity.symbol].fundamentals"
+          }
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool_name": "mcp__quantconnect__get_dataset_details",
+    "arguments": {
+      "projectId": 38436695,
+      "name": "US SEC Filings"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"dataset\":{\"name\":\"US SEC Filings\",\"description\":\"Semi-parsed Quarterly Financial Reports (10-Q) and Annual Financial Report (8-K) filings of companies for US Equities.\",\"startDate\":\"January 1998\",\"reach\":\"15,000 US Equities\",\"url\":\"https://www.quantconnect.com/datasets/us-security-exchange-commission-filings\",\"examples\":{\"init\":\"equity.report_8k_symbol = self.add_data(SECReport8K, equity.symbol).symbol\",\"history\":\"history = self.history(equity.report_8k_symbol, 100, Resolution.DAILY)\",\"research-history\":\"history = qb.history(report_8k_symbol, 100, Resolution.DAILY)\",\"usage\":\"def on_data(self, slice: Slice) -> None:\\n    if slice.contains_key(equity.report_8k_symbol):\\n        data_point = slice[equity.report_8k_symbol]\\n        self.log(f'{equity.report_8k_symbol} report count at {slice.time}: {len(data_point.report.documents)}')\"}}}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "dataset": {
+          "name": "US SEC Filings",
+          "description": "Semi-parsed Quarterly Financial Reports (10-Q) and Annual Financial Report (8-K) filings of companies for US Equities.",
+          "startDate": "January 1998",
+          "reach": "15,000 US Equities",
+          "url": "https://www.quantconnect.com/datasets/us-security-exchange-commission-filings",
+          "examples": {
+            "init": "equity.report_8k_symbol = self.add_data(SECReport8K, equity.symbol).symbol",
+            "history": "history = self.history(equity.report_8k_symbol, 100, Resolution.DAILY)",
+            "research-history": "history = qb.history(report_8k_symbol, 100, Resolution.DAILY)",
+            "usage": "def on_data(self, slice: Slice) -> None:\n    if slice.contains_key(equity.report_8k_symbol):\n        data_point = slice[equity.report_8k_symbol]\n        self.log(f'{equity.report_8k_symbol} report count at {slice.time}: {len(data_point.report.documents)}')"
+          }
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool_name": "mcp__quantconnect__get_dataset_details",
+    "arguments": {
+      "projectId": 38436695,
+      "name": "US Equity Security Master"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"success\":true,\"dataset\":{\"name\":\"US Equity Security Master\",\"description\":\"Corporate action data source for splits, dividends, mergers, acquisitions, IPOs, and delistings.\",\"startDate\":\"January 1998\",\"reach\":\"27,500 US Equities\",\"url\":\"https://www.quantconnect.com/datasets/quantconnect-us-equity-security-master\",\"examples\":{\"init\":\"self._equity = self.add_equity('AAPL', Resolution.DAILY)\",\"history\":\"split_history = self.history[Split](self._equity, timedelta(5*365))\",\"research-history\":\"split_history = qb.history(Split, equity, timedelta(5*365))\",\"usage\":\"def on_data(self, slice: Slice) -> None:\\n    if slice.splits.contains_key(self._equity.symbol):\\n        split = slice.splits[self._equity.symbol]\\n        self.log(f'Split: {split.symbol}\\\\t{split.split_factor}\\\\t{split.reference_price}')\"}}}"
+        }
+      ],
+      "structuredContent": {
+        "success": true,
+        "dataset": {
+          "name": "US Equity Security Master",
+          "description": "Corporate action data source for splits, dividends, mergers, acquisitions, IPOs, and delistings.",
+          "startDate": "January 1998",
+          "reach": "27,500 US Equities",
+          "url": "https://www.quantconnect.com/datasets/quantconnect-us-equity-security-master",
+          "examples": {
+            "init": "self._equity = self.add_equity('AAPL', Resolution.DAILY)",
+            "history": "split_history = self.history[Split](self._equity, timedelta(5*365))",
+            "research-history": "split_history = qb.history(Split, equity, timedelta(5*365))",
+            "usage": "def on_data(self, slice: Slice) -> None:\n    if slice.splits.contains_key(self._equity.symbol):\n        split = slice.splits[self._equity.symbol]\n        self.log(f'Split: {split.symbol}\\t{split.split_factor}\\t{split.reference_price}')"
+          }
+        }
+      },
+      "isError": false
+    }
+  }
+]

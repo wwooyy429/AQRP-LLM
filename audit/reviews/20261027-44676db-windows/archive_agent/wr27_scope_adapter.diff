@@ -1,0 +1,13 @@
+--- original byte MRE
++++ same assertions; exact baseline/current binding only
+@@ -5,8 +5,8 @@
+ """
+ from pathlib import Path
+ import argparse,copy,hashlib,json,os,shutil,subprocess,sys,time
+-C='ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6'
+-B='ea6053e3e9ef4be17db246daf18a4cf9b2e5be58'
++C='44676db609b3b7c2175fa7fa4f19c8ccf8165458'
++B='ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+ def canonical(v):return json.dumps(v,sort_keys=True,ensure_ascii=False,separators=(',',':'),allow_nan=False).encode()
+ def manifest(root):

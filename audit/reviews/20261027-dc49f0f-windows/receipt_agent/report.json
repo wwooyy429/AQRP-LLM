@@ -1,0 +1,148 @@
+{
+  "reviewer": "receipt_agent independent WR-13 repair review",
+  "commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "date": "2026-10-27",
+  "verdict": "WR-13原未知注解/非字符串text旁路在本范围修复后通过；新增WR-14/P2普通fraction兼容回归，回执边界整体仍不通过。",
+  "WR13_result": {
+    "status": "修复后通过（原旁路和本次已测试范围）",
+    "adapted_original_variants": 5,
+    "positive_completed": 2,
+    "negative_correctly_rejected": 3,
+    "negative_registry_state": "started",
+    "negative_no_new_registry_bytes": true,
+    "negative_no_budget_change": true
+  },
+  "first_run": {
+    "methods": 12,
+    "passed_methods": 10,
+    "failed_methods": 1,
+    "error_methods": 1,
+    "subcases": 160,
+    "failure_records": 1,
+    "error_records": 2,
+    "skipped": 0,
+    "first_failure": {
+      "method": "test_annotation_registered_positive_subset (__main__.IndependentAnnotationTests)",
+      "subtest": "test_annotation_registered_positive_subset (__main__.IndependentAnnotationTests) (positive_annotation=16, value=\"{'lastModified': '2018-01-03T00:00:00.123456789+05:45'}\")",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 76, in _annotations\n    datetime.fromisoformat(parsed)\nValueError: Invalid isoformat string: '2018-01-03T00:00:00.123456789+05:45'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\receipt_agent\\independent_annotations.py\", line 178, in test_annotation_registered_positive_subset\n    with self.case(positive_annotation=number,value=str(value)):_annotations(value)\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 78, in _annotations\n    _fail(\"Annotation lastModified is not a valid calendar clock\")\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-dc49f0f-20261027\\source\\cloud\\qresearch\\engineering_receipts.py\", line 40, in _fail\n    raise ReceiptParseError(message)\nqresearch.engineering_receipts.ReceiptParseError: Annotation lastModified is not a valid calendar clock\n"
+    }
+  },
+  "role_corrected_run": {
+    "methods": 12,
+    "passed_methods": 11,
+    "failed_methods": 0,
+    "error_methods": 1,
+    "subcases": 160,
+    "failure_records": 0,
+    "error_records": 2,
+    "skipped": 0
+  },
+  "reviewer_measurement_correction": "官方Role enum顺序与我首跑预期数组相反；角色允许集合相同，只有该比较改为集合。Role错误不是产品缺陷；两条时间ReceiptParseError原样保持，未吞掉。首跑和修正代码/输出均分别保留，diff另存。",
+  "time_error_scope": "首矩阵含9位小数秒和1位comma/offset两个错误记录。前者单列兼容观察，不作为主判断；14例后续用dot/Z、1/2/4/5位微秒内格式独立证实WR14。",
+  "additional_fractional_probe": {
+    "programs": 1,
+    "variants_each_source": 14,
+    "candidate_completed": 6,
+    "candidate_false_rejections": 8,
+    "baseline_completed": 14,
+    "baseline_false_rejections": 0
+  },
+  "counts_overlap_do_not_add": true,
+  "method_subcases": {
+    "test_annotation_invalid_calendar_registered_clock_rejected": 23,
+    "test_annotation_registered_positive_subset": 20,
+    "test_annotation_unknown_keys_types_priorities_rejected": 22,
+    "test_deep_json_text_malformed_duplicate_annotation_keys_rejected": 4,
+    "test_full_workers_nonstring_text_cannot_extract_valid_marker": 6,
+    "test_lean_receipts_shared_outer_standard_annotations_and_rejections": 4,
+    "test_new_and_old_actual_synthetic_workers_complete": 8,
+    "test_new_old_full_worker_negative_annotation_gate_no_mutation": 16,
+    "test_official_schema_registered_field_contract": 4,
+    "test_outer_nested_and_deep_json_positive_paths": 21,
+    "test_recursive_unknown_side_loads_rejected": 20,
+    "test_text_node_nonstring_or_unknown_fields_rejected": 12
+  },
+  "findings": [
+    {
+      "id": "WR-14",
+      "priority": "P2",
+      "title": "新注解校验器在固定Python3.10误拒绝普通小数秒，合法完成回执无法结算",
+      "file": "cloud/qresearch/engineering_receipts.py",
+      "start_line": 73,
+      "end_line": 78,
+      "related_locations": [
+        {
+          "file": "cloud/qresearch/engineering_receipts.py",
+          "start_line": 69,
+          "end_line": 70
+        },
+        {
+          "file": "docs/review/wr13.md",
+          "start_line": 11,
+          "end_line": 11
+        }
+      ],
+      "trigger": "lastModified为普通ISO提示时钟2018-01-03T00:00:00.5Z、.12Z、.1234Z或.12345Z；均在普通秒级/微秒内fraction形式，文档声明支持且前置正则接受。",
+      "actual": "固定Python3.10.11的datetime.fromisoformat在此调用下只接受0/3/6位fraction；1/2/4/5位被报“not a valid calendar clock”。合法worker报告已completed，新采集和旧Research共8个完整链例被拒绝，Registry保持started。",
+      "expected": "已登记的普通fraction提示应与其等值的毫秒/微秒拼写同样通过日历校验并结算；未知旁载荷和非法时钟仍拒绝。",
+      "proof": "同脚本14例（2家族×全秒及1–6位）：候选仅6完成、8误拒绝；旧be94426同14例全完成。外层annotations为空，只有受支持嵌套标准lastModified，避免旧outer行为混淆。",
+      "impact": "这是提示注解兼容回归，阻止已完成合法回执结算；不是金融日期计算错误，也不证明真实QC发生此事件。拒绝不新增扣费、不退款、无行写入Registry。",
+      "introduced_by_current_validator": true,
+      "fix_direction": "保持原hint字符串/marker身份，只对日历验证副本规范化普通fraction（例如在微秒内补齐），或显式逐分量校验；保持offset/日历/未知字段拒绝。不能把这些合法正例改成预期拒绝以使测试变绿。",
+      "not_basis": "首矩阵9位fraction观察单独留存，不作为本问题唯一或核心依据；不要求全部ISO异体。",
+      "reproduction": "fractional_clock_probe.py",
+      "candidate_evidence": "candidate_fractional_clock.json",
+      "baseline_evidence": "baseline_be94426_fractional_clock.json"
+    }
+  ],
+  "coverage": [
+    "共用_annotations/_text_node覆盖outer、text根、content/outputs、嵌套wrapper与四层JSON文本。未知rows/errors/outputs/_meta、非字符串text、错误audience、非有限/布尔/越界priority及无效日历/offset拒绝。",
+    "新采集真实纯Pythonworker用独立SyntheticSource；旧run_research_task真实纯Pythonworker用新造FakeQB/ObjectStore、发明的weekday日历和常量数值，实际调用共享cache/coverage/报告。均不是真SDK执行或市场证据。",
+    "有效6位fraction标准注解及合法outer/nested路径保留；新旧worker→marker→parser→Bridge/Registry完成，无合成行sentinel进入台账。",
+    "新旧完整worker未知rows/errors负例拒绝且保持未终结、usage/字节不变。旧LEAN的提交/读回/logs带合法外层标准注解路径保持，未知外层注解三阶段均拒绝。"
+  ],
+  "official_contract": "official_schema_contract.json",
+  "official_schema_file_sha256": "268a5f82ba70fd7e4b6dc4aa1e64f116f74b4d0edcb69dc046829c79dd4e97e7",
+  "source_hashes_before_after_equal": true,
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "6e1a7a46626aa6edd9a95131e3cd1c9d0239bc4ff261421fc2913a52e716a4dd",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57",
+    "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875",
+    "cloud/qresearch/quantconnect.py": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319",
+    "cloud/qresearch/registry.py": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894"
+  },
+  "commands": "command_log.json",
+  "original_adaptation": {
+    "original_file": "original_nested_annotations_probe.py",
+    "original_byte_equal_to_be_probe": true,
+    "original_sha256": "01c45d73f2a4bcd47ef2d1dc848bae7718c1fb85b3d61014881a3d32cc0edff3",
+    "adapted_file": "adapted_nested_annotations_probe.py",
+    "diff": "adapted_nested_annotations.diff",
+    "explanation": "原脚本负例直接执行故障路径。适配只捕获预期ReceiptParseError并测量拒绝状态/字节/usage，改当前身份元数据；原5个输入及源行为未改，原件不覆盖。"
+  },
+  "regression_inputs": "role_corrected_summary.json:inputs",
+  "first_run_preserved": [
+    "first_run_summary.json",
+    "first_run_unittest.txt",
+    "independent_annotations.py"
+  ],
+  "limits": [
+    "官方schema静态合同与声明子集，不认证任意MCP扩展或真实QC包装。",
+    "真实云端部署/输入读回、真实成功/完整失败回执、旧LEAN终态及市场数据覆盖仍未完成。",
+    "全部调用SDK形状均为本地新造对象，原在途任务未读/轮询/重交。"
+  ],
+  "actions": {
+    "official_primary_readonly_fetch": "仅官方GitHub schema/API/raw静态取证",
+    "real_SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "deployment": 0,
+    "real_budget_changes": 0,
+    "candidate_source_edits": 0,
+    "actual_final_market_data_opened": 0
+  }
+}

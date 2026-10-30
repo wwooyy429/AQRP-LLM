@@ -1,0 +1,188 @@
+{
+  "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "WR27_acceptance": "修复后通过（原反例及当前默认/绝对/相对/不同root源码身份、同root原件拒绝和globalROOT隔离范围）",
+  "checks": [
+    {
+      "name": "original_byte_MRE_ccad_negative",
+      "passed": true,
+      "detail": {
+        "raw_sha256": "915a642e63991ebe0971bdbb120721605ff334c9309c204dc60b73eb18d97d23",
+        "exit_code": 1,
+        "case_results": {
+          "finding": "WR-27",
+          "priority": "P3",
+          "blocking": false,
+          "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+          "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+          "scope": "Only explicit --root pointing at a distinct valid synthetic source tree; default path remains correct.",
+          "default_legal_control_exit": 0,
+          "default_source_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
+          "alternate_actual_source_hash": "19dc830d43a9234845992a2a05d2f2435f2c7a55b639e667cb043a22a97b3713",
+          "foreign_hash_expected_exit": "nonzero",
+          "foreign_hash_actual_exit": 0,
+          "foreign_hash_stdout": "{\"status\": \"metadata_consistent\", \"baseline_commit\": \"ea6053e3e9ef4be17db246daf18a4cf9b2e5be58\", \"changed_source_files\": 10, \"budget_and_journal_raw_unchanged\": true, \"external_activity_authenticated\": false, \"independent_acceptance\": false, \"financial_evidence\": false}\r\n",
+          "own_hash_expected_exit": 0,
+          "own_hash_actual_exit": 1,
+          "own_hash_stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 84, in check_repository\r\n    raise ValueError(\"Current metadata does not identify the actual local source manifest\")\r\nValueError: Current metadata does not identify the actual local source manifest\r\n",
+          "source_original_raw_unchanged": true,
+          "actual_repository_index_unchanged": true,
+          "independent_product_unit_methods": 0,
+          "QC_Research_LEAN_model_deployment_authoritative_budget_calls": 0,
+          "financial_evidence": false
+        }
+      }
+    },
+    {
+      "name": "unchanged_MRE_new_fixed_literal_baseline_incompatibility_saved",
+      "passed": true,
+      "detail": {
+        "reason": "Old byte MRE asserts its fixed ea baseline before executing any product CLI. This is a harness scope mismatch, not a new product defect.",
+        "product_CLI_run": false
+      }
+    },
+    {
+      "name": "adapted_new_fixed_default_absolute_T_wrongS_correctT",
+      "passed": true,
+      "detail": {
+        "finding": "WR-27",
+        "priority": "P3",
+        "blocking": false,
+        "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+        "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+        "scope": "Only explicit --root pointing at a distinct valid synthetic source tree; default path remains correct.",
+        "default_legal_control_exit": 0,
+        "default_source_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+        "alternate_actual_source_hash": "bed321a3ecf5e40fef572bd8087e55e9a6fc1423b89d76e96a9f607d7f9b6045",
+        "foreign_hash_expected_exit": "nonzero",
+        "foreign_hash_actual_exit": 1,
+        "foreign_hash_stdout": "",
+        "own_hash_expected_exit": 0,
+        "own_hash_actual_exit": 0,
+        "own_hash_stderr": "",
+        "source_original_raw_unchanged": true,
+        "actual_repository_index_unchanged": true,
+        "independent_product_unit_methods": 0,
+        "QC_Research_LEAN_model_deployment_authoritative_budget_calls": 0,
+        "financial_evidence": false
+      }
+    },
+    {
+      "name": "relative_T_CLI_legal_positive",
+      "passed": true,
+      "detail": {
+        "exit_code": 0,
+        "stdout": "{\"status\": \"metadata_consistent\", \"baseline_commit\": \"ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6\", \"changed_source_files\": 7, \"budget_and_journal_raw_unchanged\": true, \"external_activity_authenticated\": false, \"independent_acceptance\": false, \"financial_evidence\": false}\r\n"
+      }
+    },
+    {
+      "name": "stages_default_absolute_relative_independent_known_hashes",
+      "passed": true,
+      "detail": {
+        "S": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+        "T": "bed321a3ecf5e40fef572bd8087e55e9a6fc1423b89d76e96a9f607d7f9b6045",
+        "S_files": 145,
+        "T_files": 145
+      }
+    },
+    {
+      "name": "target_calls_do_not_pollute_global_ROOT_or_default_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "same_target_hash_Git_diff_history_budget_journal7_rejections",
+      "passed": true,
+      "detail": [
+        {
+          "case": "wrong_target_random_source_hash",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 84, in check_repository\r\n    raise ValueError(\"Current metadata does not identify the actual local source manifest\")\r\nValueError: Current metadata does not identify the actual local source manifest\r\n"
+        },
+        {
+          "case": "target_diff_missing_changed_file",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 79, in check_repository\r\n    result = validate_current(document, changed, previous, baseline_commit=baseline,\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 48, in validate_current\r\n    raise ValueError(\"Current source list differs from the pinned Git change set\")\r\nValueError: Current source list differs from the pinned Git change set\r\n"
+        },
+        {
+          "case": "target_history_wrong_prior_text",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 79, in check_repository\r\n    result = validate_current(document, changed, previous, baseline_commit=baseline,\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 56, in validate_current\r\n    raise ValueError(\"Prior activity descriptions must be preserved with their exact source identities\")\r\nValueError: Prior activity descriptions must be preserved with their exact source identities\r\n"
+        },
+        {
+          "case": "target_Git_missing_baseline_object",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "fatal: path 'audit/stage2_current_readiness.json' exists on disk, but not in '0000000000000000000000000000000000000000'\nTraceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 75, in check_repository\r\n    previous = json.loads(git(\"show\", baseline + \":audit/stage2_current_readiness.json\"))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 73, in git\r\n    return subprocess.check_output([\"git\", *args], cwd=root)\r\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py\", line 421, in check_output\r\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\r\n  File \"C:\\Users\\11638\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py\", line 526, in run\r\n    raise CalledProcessError(retcode, process.args,\r\nsubprocess.CalledProcessError: Command '['git', 'show', '0000000000000000000000000000000000000000:audit/stage2_current_readiness.json']' returned non-zero exit status 128.\r\n"
+        },
+        {
+          "case": "target_Git_baseline_diff_mismatch",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 79, in check_repository\r\n    result = validate_current(document, changed, previous, baseline_commit=baseline,\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 48, in validate_current\r\n    raise ValueError(\"Current source list differs from the pinned Git change set\")\r\nValueError: Current source list differs from the pinned Git change set\r\n"
+        },
+        {
+          "case": "target_budget_raw_changed",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 79, in check_repository\r\n    result = validate_current(document, changed, previous, baseline_commit=baseline,\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 58, in validate_current\r\n    raise ValueError(\"Offline metadata cannot claim an unchanged budget or journal when bytes differ\")\r\nValueError: Offline metadata cannot claim an unchanged budget or journal when bytes differ\r\n"
+        },
+        {
+          "case": "target_journal_raw_changed",
+          "exit_code": 1,
+          "correctly_rejected": true,
+          "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 79, in check_repository\r\n    result = validate_current(document, changed, previous, baseline_commit=baseline,\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source\\tools\\review_metadata.py\", line 58, in validate_current\r\n    raise ValueError(\"Offline metadata cannot claim an unchanged budget or journal when bytes differ\")\r\nValueError: Offline metadata cannot claim an unchanged budget or journal when bytes differ\r\n"
+        }
+      ]
+    },
+    {
+      "name": "target_mutations_restored_default_S_stays_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current6_source_paths_and_historical_exact_ccad_text_preserved",
+      "passed": true,
+      "detail": {
+        "source_changes": [
+          "cloud/qresearch/data_certification.py",
+          "cloud/research_config.py",
+          "tests/test_data_certification.py",
+          "tests/test_review_metadata.py",
+          "tools/review_metadata.py",
+          "tools/stages.py"
+        ],
+        "historical_fields": [
+          "source_changed_this_round",
+          "source_configuration_budget_changed_scope",
+          "read_or_polled_this_turn_scope",
+          "completed_result_read_count",
+          "terminal_read_scope",
+          "market_calls_scope",
+          "candidate_additions",
+          "new_candidate_acceptance_scope",
+          "latest_independent_platform_observation"
+        ]
+      }
+    }
+  ],
+  "metadata_check_groups": 9,
+  "groups_passed": 9,
+  "negative_target_CLI_scenarios": 7,
+  "original_byte_MRE_negative_exit": 1,
+  "unchanged_original_new_scope_exit": 1,
+  "unchanged_original_new_scope_product_CLI": 0,
+  "adapted_MRE_positive_exit": 0,
+  "MRE_runs": 3,
+  "MRE_internal_metadata_CLI": 6,
+  "additional_metadata_CLI": 8,
+  "metadata_CLI_total": 14,
+  "stages_manifest_calls_are_static_checks_not_unit_tests": true,
+  "independent_product_unit_methods": 0,
+  "production_Git_source_or_authoritative_registry_writes": 0,
+  "current_QC_Research_LEAN_model_deployment_calls": 0,
+  "financial_evidence": false
+}

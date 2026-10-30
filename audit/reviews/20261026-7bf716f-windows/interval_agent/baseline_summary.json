@@ -1,0 +1,157 @@
+{
+  "label": "baseline",
+  "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source",
+  "fixed_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "command_argv": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\independent_intervals.py",
+    "--source",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source",
+    "--label",
+    "baseline",
+    "--out",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent",
+    "--methods",
+    "test_reference_contract_dense_microsecond_edges",
+    "test_public_chain_source_to_collector"
+  ],
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "numpy": "1.26.4",
+  "pandas": "2.3.3",
+  "hashes_raw_sha256": {
+    "cloud/qresearch/historical_source.py": "503c83b7e2af4213b2c262fe9c786e28ebc042a2ac1149c31ede98ccd0805887",
+    "cloud/qresearch/collection.py": "84a1af8801f98a4c254151f3aee0ffed18ee5031fcc072e46254e5ec1c2e891e",
+    "cloud/qresearch/contracts.py": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+    "cloud/qresearch/artifacts.py": "8d7eaf550891af9aa9493595c5ebc1a7b9eb92df4e80ded1912d304698e810b7"
+  },
+  "script_sha256": "2bf4d7e4206535852c7c0a3be9842f5d8db19ad57acfc28808e8dc9eb130b58f",
+  "methods": 2,
+  "subcases": 21,
+  "failure_records": 0,
+  "error_records": 21,
+  "skipped": 0,
+  "success": false,
+  "first_failure": {
+    "test": "test_reference_contract_dense_microsecond_edges (__main__.IndependentIntervals)",
+    "subtest": "test_reference_contract_dense_microsecond_edges (__main__.IndependentIntervals) (initial='2016-02-28', days=1)",
+    "error": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\independent_intervals.py\", line 145, in test_reference_contract_dense_microsecond_edges\n    rows = list(self.source(qb).fetch(left, right, CATALOG))\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source\\cloud\\qresearch\\historical_source.py\", line 182, in fetch\n    raise HistoricalSourceError(\"Duplicate or out-of-window native universe snapshot\")\nqresearch.historical_source.HistoricalSourceError: Duplicate or out-of-window native universe snapshot\n"
+  },
+  "inputs": [
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2016-02-28",
+      "days": 1
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2016-02-28",
+      "days": 2
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2016-02-28",
+      "days": 7
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-03-10",
+      "days": 1
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-03-10",
+      "days": 2
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-03-10",
+      "days": 7
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-11-03",
+      "days": 1
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-11-03",
+      "days": 2
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2018-11-03",
+      "days": 7
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2023-12-25",
+      "days": 1
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2023-12-25",
+      "days": 2
+    },
+    {
+      "method": "test_reference_contract_dense_microsecond_edges",
+      "initial": "2023-12-25",
+      "days": 7
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-03-07",
+      "days": 1
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-03-07",
+      "days": 2
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-03-07",
+      "days": 7
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-10-31",
+      "days": 1
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-10-31",
+      "days": 2
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2018-10-31",
+      "days": 7
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2023-12-12",
+      "days": 1
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2023-12-12",
+      "days": 2
+    },
+    {
+      "method": "test_public_chain_source_to_collector",
+      "initial": "2023-12-12",
+      "days": 7
+    }
+  ],
+  "raw_log": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\baseline_unittest.txt",
+  "prohibited_actions": {
+    "real_SDK": 0,
+    "market": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "models": 0,
+    "deploy": 0,
+    "budget_changes": 0
+  },
+  "claim_scope": "fixed official static contract replay with synthetic objects, not actual SDK execution or financial evidence"
+}

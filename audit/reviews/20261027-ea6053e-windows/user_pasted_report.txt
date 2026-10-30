@@ -1,0 +1,681 @@
+已完成固定版本 **`ea6053e3e9ef4be17db246daf18a4cf9b2e5be58`** 的独立复验。
+
+**原WR-20、WR-21触发场景修复后通过；但新增WR-23/P1、WR-22/P2仍阻断模块整体验收。阶段2整体未通过。**
+
+| 问题 | 独立复现结果 | 修复方向 |
+|---|---|---|
+| **WR-23／P1** | 首次prepare已保存admission，随后entry协议写入故障。恢复后新任务被误当旧协议，接受无dispatch成功，并让同父LEAN取得许可。 | 将协议身份与准入成功状态可靠绑定，不能仅凭marker缺失判断为旧任务。 |
+| **WR-22／P2** | 老SID更新映射后，全部流动性记录缺失，却被第201名补位掩盖，12项检查仍全部通过。 | 用完整历史主表判断连续上市资格，完整性检查不能依赖该SID是否还有流动性行。 |
+| **WR-24／P3** | readiness当前字段残留上一轮新增配置、Research及源码变更描述。 | 明确归入历史版本，更新当前字段。**非阻断，真实预算没有增加。** |
+
+位置：[stage2.py:193](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027/source/tools/stage2.py:193>)、[data_certification.py:383](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027/source/cloud/qresearch/data_certification.py:383>)、[readiness:242](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027/source/audit/stage2_current_readiness.json:242>)。
+
+WR-23没有人为删除已存在的协议文件：反例在实际生产`write_once`调用点注入同步写异常。WR-22也保留了完整老上市区间，SID没有发生IPO。两项均由根审核再次复现，所有变化只发生于隔离合成账本，没有提交真实LEAN。
+
+实际测试结果：
+
+- 仓库规定入口：**630项通过**。
+- 原WR-20套件：旧版13方法12过1失败，新版**13方法全部通过**，各43场景。
+- 原WR-21未改反例：旧版退出1，新版退出0；各17个CLI进程，合法绑定及旧任务兼容正控保留。
+- 新组合边界：**9方法8过1失败**，23场景、2条失败记录，均为WR-22。
+- 历史16套件248方法／2307子例，以及数值、采集、缓存、准入、诊断和恢复回归通过。
+- 旧恢复套件按新协议补上合法派发前置条件后通过，原断言和首次拒绝记录保留。
+- 两个实际Windows进程竞争派发许可时，只产生一个许可。
+
+这些计数存在重叠，没有累计为独有测试总数。
+
+| 阶段 | 本轮结论 |
+|---|---|
+| 0 | 既有已测工程范围通过；WR-24元数据待更正 |
+| 1 | 既有离线计算范围通过 |
+| 2 | 原反例通过；**模块整体软件验收失败，阶段整体未通过** |
+| 3 | 通用评价组件存在，分层收益等未完成；未验收 |
+| 4 | 完整交易、成本、风险和对账链未实现／未验收 |
+| 5 | GPT模型、额度和实际闭环未配置；未实现／未验收 |
+| 6 | 无实际搜索、消融及增量产物；未验收 |
+| 7 | 独立最终执行器未配置；未实现／未验收 |
+
+本轮保持离线：**QC、Research、LEAN提交、模型调用、部署均为0**。17事件账本与`deb85d9`逐字节一致，预算仍为 **7/12、10/20、1/16**，工程2／2／1停止门保持。
+
+实际云端执行版本仍按归档记录为`7fc5ef2`；本地候选与其归档31份源码相比28份相同、3份不同，**这不是本轮平台读回或新版本运行证明**。真实成功联合链、旧worker差异、完整US200及财务时点认证仍缺证据。最终测试继续关闭，`financial_evidence=false`。
+
+[正式报告](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027/formal_report.txt>) · [JSON报告](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027/formal_report.json>) · [完整复验包](<B:/BaiduSyncdisk/学习/投资/量化/量化交易比赛/LLM审核/review-ea6053e-20261027.zip>)
+
+复验包14165项文件哈希及ZIP内容校验通过。SHA-256：
+
+```text
+3eb0d548f2667c83c24e62f88495ae02fa2c8942440ce0c4aa665bb06b054753
+```
+
+下一步应先离线修复WR-23、WR-22并更正WR-24，再提供新固定SHA复审；保持当前停止条件，不自动重交云端。
+
+以下为已执行反例的核心可运行路径。请先把固定`source`及审核包内独立夹具复制到新目录，使用锁定依赖，避免向封包原件写入输出。
+
+WR-22使用相邻的`cert_fixture.py`：
+
+```python
+from copy import deepcopy
+from cert_fixture import make, run
+
+def update_mapping(raw):
+    old = raw["tables"]["security_master"][0]
+    old["effective_to"] = "2018-01-25T00:00:00-05:00"
+    new = deepcopy(old)
+    new.update(
+        ticker="RENAMED000",
+        effective_from="2018-01-25T00:00:00-05:00",
+        effective_to=None,
+        available_at="2018-01-25T00:00:00-05:00",
+    )
+    raw["tables"]["security_master"].append(new)
+
+def remove_history(raw):
+    raw["liquid"] = [r for r in raw["liquid"] if r["sid"] != "SID000"]
+    for row in raw["tables"]["membership"]:
+        row["sids"] = raw["sids"][1:201]
+
+assert run(make(update_mapping))["status"] == "observations_passed"
+assert run(make(remove_history))["status"] == "insufficient_evidence"
+
+def combined(raw):
+    update_mapping(raw)
+    remove_history(raw)
+
+report = run(make(combined))
+print(report["status"], report["checks"])
+assert report["status"] == "insufficient_evidence"
+# ea6053e实际返回observations_passed，此断言失败。
+```
+
+WR-23完整脚本为`dispatch_agent/minimal_prepare_entry_crash.py`。其关键故障与恢复路径如下；`h`是包内独立的`independent_recovery_support.py`，准备过程只创建本地合成case：
+
+```python
+from unittest.mock import patch
+import importlib.util, json, sys
+import independent_recovery_support as h
+
+case, listing = h.fresh("prepare-entry-write-gap")
+h.okay(h.invoke(case, [
+    "freeze", "--plan-file", "config/independent-v2.json",
+    "--projects-file", listing
+], "freeze"))
+h.okay(h.invoke(case, ["register"], "register"))
+attempt = h.okay(h.invoke(case, ["claim", "--stage", "research"], "claim"))["attempt_id"]
+
+registry = h.registry(case)
+record = next(r for r in registry.snapshot()["attempts"]
+              if r["attempt_id"] == attempt)
+package = json.loads(registry.store.read_bytes(
+    "configurations/" + record["config_id"] + ".json"
+))
+plan = h.EngineeringTaskPlan.from_dict(
+    package["plan"], discovered_project_ids=(package["plan"]["project_id"],)
+)
+bridge = h.EngineeringTaskBridge(registry, plan)
+sys.path.insert(0, str(case / "tools"))
+spec = importlib.util.spec_from_file_location("review_case_stage2", case / "tools/stage2.py")
+stage = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(stage)
+
+entry = "engineering/research-entry-protocol/" + attempt + ".json"
+original_write = registry.store.write_once
+
+class InjectedWriteFailure(RuntimeError):
+    pass
+
+def write(key, data):
+    if key == entry:
+        raise InjectedWriteFailure("entry write failed")
+    return original_write(key, data)
+
+try:
+    with patch.object(registry.store, "write_once", side_effect=write):
+        stage.prepare(bridge, attempt)
+except InjectedWriteFailure:
+    pass
+
+assert registry.store.exists(h.admission_key(attempt))
+assert not registry.store.exists(entry)
+
+admission = h.okay(h.invoke(case, ["prepare", "--attempt", attempt], "recover"))
+native = h.envelopes(
+    {"case": case, "attempt": attempt, "admission": admission},
+    admission, "research"
+)
+response = h.invoke(case, [
+    "research-result", "--attempt", attempt, "--tool-file", native["result"]
+], "unbound-success")
+print(response.returncode, response.stdout)
+assert response.returncode != 0
+# ea6053e实际返回0/completed，此断言失败；无平台调用。
+```
+
+WR-24只读核心复现：
+
+```python
+import json
+from pathlib import Path
+
+d = json.loads(Path("source/audit/stage2_current_readiness.json").read_bytes())
+assert d["new_configuration_count"] == d["new_Research_execution_count"] == 0
+assert not d["source_configuration_budget_changed_scope"].startswith("One new")
+# 当前第二个断言失败；真实账本和用量并未增加。
+```
+
+完整机器可读报告：
+
+```json
+{
+  "review_id": "AQRP-20261027-EA6053E-WINDOWS-18",
+  "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "evidence_commits": {
+    "actual_cloud_execution": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "failed_original_review": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+    "last_passed_old_offline_scope": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+    "current_archive": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58"
+  },
+  "verdict": "原WR20、WR21触发场景修复后通过；新增WR23/P1、WR22/P2阻断本轮模块整体软件验收。WR24/P3非阻断。阶段2整体未通过。",
+  "repair_acceptance": {
+    "WR20_original_counterexample": "修复后通过；IPO已测边界通过",
+    "WR21_explicit_entry_without_dispatch_counterexample": "修复后通过；合法绑定及旧任务正控保留",
+    "data_audit_module": "失败WR22",
+    "new_entry_protocol_overall": "失败WR23",
+    "old_failure_records_preserved": true
+  },
+  "PR": {
+    "number": 2,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "head": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "metadata_source": "official GitHub read-only REST after connector transport failure"
+  },
+  "source_manifest_hash": "e82ee1cce13b020738e37d66b597616f3067e77bdefea99af653d76becf1ee13",
+  "execution_source_manifest_hash": "faf825ceb25092a14a5864839624a257b297b19f3ab4cd3030c758da21dcaf44",
+  "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+  "implementation_hash": "712ffda1823796f08ac4db281fc97e1a7e6798f938c22701ab4b0f524e1324bb",
+  "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "source_counts": {
+    "raw_git": 4541,
+    "review_manifest": 140,
+    "local_deployment": 31,
+    "developer_raw_manifest_entries": 43,
+    "prior_archived_files_unchanged": 4047,
+    "protected_runtime_input_observation_files": 38
+  },
+  "archive_boundary": {
+    "previous_complete_review_ZIP": {
+      "bytes": 33811222,
+      "sha256": "19d2614008caf209c18b79e16220826de0394ee9a86f585f32ccce5a9bfd6b49",
+      "registered_manifest_files": 12474,
+      "including_manifest_itself": 12475
+    },
+    "selected_into_current_Git": {
+      "files": 216,
+      "bytes": 3361243,
+      "omitted_from_complete_package": 12259
+    },
+    "prior_Git_archive_files_unchanged_4047": "All historical review/package files already inbaseline Git, a different population from the216 selected files and the complete12475-file reviewZIP."
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "native_Windows": true,
+    "numpy_longdouble_mantissa_bits": 52
+  },
+  "tool_capabilities": {
+    "offline_Python": true,
+    "GitHub_metadata_read": true,
+    "current_QC_calls": 0,
+    "current_Research_executions": 0,
+    "current_LEAN_submissions": 0,
+    "current_model_calls": 0,
+    "cloud_writes": 0,
+    "authoritative_registry_writes": 0,
+    "production_changes": 0,
+    "PR_approval_or_merge": 0,
+    "final_data_opened": false
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "implementation": "配置、身份、Registry、预算及归档骨架",
+      "evidence": "630仓库、历史回归、55+44字节/元数据检查",
+      "gaps": ["WR24/P3当前元数据范围歧义"],
+      "status": "既有已测工程范围通过；元数据待更正"
+    },
+    {
+      "stage": 1,
+      "implementation": "数值、因子表达、PIT、标签和通用模型核",
+      "evidence": "独立数值、时间、缓存、合同回归",
+      "gaps": [],
+      "status": "既有离线范围通过"
+    },
+    {
+      "stage": 2,
+      "implementation": "新增IPO和派发修复；源码诊断、采集缓存及任务桥",
+      "evidence": "原WR20/21反例通过；WR22/23独立新反例",
+      "gaps": ["WR23/P1","WR22/P2","真实成功联合链","旧worker差异及完整数据认证"],
+      "status": "本轮模块整体软件验收失败；阶段2整体未通过"
+    },
+    {
+      "stage": 3,
+      "implementation": "IC、匹配及六轮通用组件；分层收益未实现",
+      "evidence": "合成及数值回归",
+      "gaps": ["分层收益、冻结实际研究设计及真实六轮结果"],
+      "status": "未验收"
+    },
+    {
+      "stage": 4,
+      "implementation": "工程接收宿主；完整组合/交易/成本/风险适配未实现",
+      "evidence": "合成工程链；无真实成功交易链",
+      "gaps": ["订单成交现金对账、成本风险及Research-LEAN一致性"],
+      "status": "未实现／未验收"
+    },
+    {
+      "stage": 5,
+      "implementation": "注入adapter的状态机；GPT模型和额度未配且关闭",
+      "evidence": "离线工作流组件",
+      "gaps": ["实际GPT客户端及有限闭环"],
+      "status": "未实现／未验收"
+    },
+    {
+      "stage": 6,
+      "implementation": "去重、相关辅助组件；无实际搜索/消融产物",
+      "evidence": "离线组件测试",
+      "gaps": ["实际搜索、成本后增量和选择偏差证据"],
+      "status": "未验收"
+    },
+    {
+      "stage": 7,
+      "implementation": "冻结元数据和关闭闸门；独立最终执行器未配置",
+      "evidence": "配置/暴露静态核对",
+      "gaps": ["完整冻结及独立执行器、前向监控","2026独立性未知"],
+      "status": "未实现／未验收"
+    }
+  ],
+  "tests": [
+    {"suite":"repository verify","methods":630,"passed":630,"failed":0,"errors":0,"skipped":0,"subcases":null,"actually_executed":true},
+    {"suite":"16 historical suites with explicit recognized fixtures","methods":248,"passed":248,"failed":0,"errors":0,"skipped":0,"subcases":2307,"actually_executed":true},
+    {"suite":"Collection historical fixture","methods":12,"passed":12,"failed":0,"errors":0,"skipped":0,"subcases":36,"actually_executed":true},
+    {"suite":"joint worker historical budget","methods":9,"passed":9,"failed":0,"errors":0,"skipped":0,"subcases":81,"actually_executed":true},
+    {"suite":"fraction grammar","methods":10,"passed":10,"failed":0,"errors":0,"skipped":0,"subcases":803,"actually_executed":true},
+    {"suite":"WR16 admission","methods":9,"passed":9,"failed":0,"errors":0,"skipped":0,"subcases":4,"actually_executed":true},
+    {"suite":"WR18 contract","methods":9,"passed":9,"failed":0,"errors":0,"skipped":0,"subcases":39,"actually_executed":true},
+    {"suite":"worker identity","methods":6,"passed":6,"failed":0,"errors":0,"skipped":0,"subcases":51,"actually_executed":true},
+    {"suite":"preflight pure","methods":7,"passed":7,"failed":0,"errors":0,"skipped":0,"subcases":42,"actually_executed":true},
+    {"suite":"preflight CLI","methods":4,"passed":4,"failed":0,"errors":0,"skipped":0,"subcases":24,"actually_executed":true},
+    {"suite":"readback preflight CLI","methods":1,"passed":1,"failed":0,"errors":0,"skipped":0,"subcases":4,"actually_executed":true},
+    {"suite":"engineering recovery legal binding adapter","methods":5,"passed":5,"failed":0,"errors":0,"skipped":0,"subcases":46,"actually_executed":true},
+    {"suite":"native runtime rejection compatibility","methods":6,"passed":6,"failed":0,"errors":0,"skipped":0,"subcases":62,"actually_executed":true},
+    {"suite":"completion contract compatibility","methods":3,"passed":3,"failed":0,"errors":0,"skipped":0,"subcases":28,"actually_executed":true},
+    {"suite":"native Research failure original","methods":6,"passed":6,"failed":0,"errors":0,"skipped":0,"subcases":91,"actually_executed":true},
+    {"suite":"WR20 baseline","methods":13,"passed":12,"failed":1,"errors":0,"skipped":0,"subcases":null,"scenario_checks":43,"failure_records":2,"actually_executed":true,"source_version":"baseline"},
+    {"suite":"WR20 candidate","methods":13,"passed":13,"failed":0,"errors":0,"skipped":0,"subcases":null,"scenario_checks":43,"failure_records":0,"actually_executed":true,"source_version":"candidate"},
+    {"suite":"new data combinations","methods":9,"passed":8,"failed":1,"errors":0,"skipped":0,"subcases":null,"scenario_checks":23,"failure_records":2,"actually_executed":true,"source_version":"candidate"}
+  ],
+  "test_counts_unique": false,
+  "other_execution": {
+    "static_main": {"checks":55,"passed":55,"unit_methods":0},
+    "static_supplement": {"checks":44,"passed":44,"unit_methods":0},
+    "WR21_original_unchanged_MRE": {
+      "baseline_exit": 1,
+      "candidate_exit": 0,
+      "CLI_per_version": 17,
+      "original_script_sha256": "22e8b105fb413bd231b35284e9cb88f3f5a7aa016049429e74940203d2a7e4f4"
+    },
+    "WR20_original_unchanged_MRE": {
+      "baseline_exit": 1,
+      "candidate_exit": 0,
+      "baseline_suite": [13,12,1],
+      "candidate_suite": [13,13,0],
+      "scenarios_per_suite": 43
+    },
+    "entry_concurrent_controls": {
+      "manual_chains": 3,
+      "passed": 3,
+      "CLI": 21,
+      "actual_parallel_Windows_processes": 2,
+      "single_permission": true
+    },
+    "native_and_recovery_adapters": {
+      "native_methods": 9,
+      "native_subcases": 90,
+      "native_CLI": 117,
+      "native_synthetic_finish": 14,
+      "manual_probes": 8,
+      "recovery_methods": 5,
+      "recovery_subcases": 46,
+      "recovery_CLI": 76,
+      "recovery_direct_processes": 12,
+      "recovery_synthetic_finish": 4,
+      "assertion_class_AST_unchanged": true
+    },
+    "native_Research_failure_original_bytes": {
+      "methods": 6,
+      "subcases": 91,
+      "passed": 6,
+      "CLI": 25,
+      "worker_or_SDK": 0
+    },
+    "root_new_finding_confirmations": [
+      {
+        "finding": "WR22",
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\minimal_wr22.py",
+          "--output",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\wr22_confirmation\\result.json"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027",
+        "exit_code": 1,
+        "expected_defect_exit": 1,
+        "seconds": 10.218999999997322,
+        "stdout_sha256": "d710d087b316621c944eb01f59ad52b04088dfa925e6cf1cca9218663817c50d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "script_sha256": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+        "actual_provider_calls": 0,
+        "actual_authoritative_budget_writes": 0,
+        "actually_executed": true
+      },
+      {
+        "finding": "WR23",
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\wr23_confirmation\\minimal_prepare_entry_crash.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\wr23_confirmation\\results"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027",
+        "exit_code": 1,
+        "expected_defect_exit": 1,
+        "seconds": 9.156000000002678,
+        "stdout_sha256": "28ef9159952017e19aa873ddddba3b2151d04c4ae64d4a69048c226c0d608a81",
+        "stderr_sha256": "3f6c236d8a74daecfb430bad980d153a7b6492af6cdf74b3f5f573066f95d3c9",
+        "script_sha256": "caeae09aa2f724398c081e14eed3c8d79272d59d08e757b66573d96082e6dcff",
+        "actual_provider_calls": 0,
+        "actual_authoritative_budget_writes": 0,
+        "actually_executed": true
+      }
+    ],
+    "WR23_CLI_per_MRE": 6,
+    "WR23_synthetic_finish_per_MRE": 1,
+    "WR24_readonly_MRE_exit": 1,
+    "CI": {
+      "run": 40504444358,
+      "Python310_job": 122190039456,
+      "Python311_job": 122190038731,
+      "both_success": true,
+      "independently_counted_CI_tests": null
+    },
+    "counts_are_overlapping": true,
+    "archived_script_literals": "Old fixed_commit literals and SID200_ranked_first target label remain raw-identical; actual version/status/ranking is determined by outer execution bindings and computed result hashes."
+  },
+  "findings": [
+    {
+      "id": "WR-23",
+      "priority": "P1",
+      "blocking": true,
+      "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "title": "首次entry协议写失败后，新准入在恢复时被误当旧协议并结算成功",
+      "locations": [
+        {"file":"tools/stage2.py","line":193},
+        {"file":"tools/stage2.py","line":206},
+        {"file":"tools/stage2.py","line":176},
+        {"file":"tools/stage2.py","line":317}
+      ],
+      "trigger": "首次生产prepare已落盘admitted-input，紧接着research-entry-protocol的真实write_once调用被注入同步写异常；没有删除任何已存在marker。恢复CLI prepare返回原admission但entry和dispatch均无。",
+      "expected": "该新准入必须保留其新协议身份，未完整发布的准备状态或缺dispatch不能作为旧成功协议结算；失败关闭且不准入同父LEAN。",
+      "actual": "原prepare异常后，恢复prepare返回admission；未经dispatch的合法形状合成成功回执经实际CLI返回0/completed，同父LEAN claim返回started/should_execute=true。根独立原字节脚本重放亦复现；仅隔离合成账本变化，真实17事件及7/10/1未改。",
+      "cause": "prepare按admission在先、entry marker在后的顺序发布；旧准入恢复直接返回既有admission且不补marker；settle以entry文件是否存在决定require_dispatch，缺失被自动等同历史协议。准入原件未包含足以区分此写故障状态与真正旧任务的协议身份。",
+      "scope_and_severity": "P1新旧任务身份及崩溃恢复完整性问题，是继承旧发布顺序的残余缺陷；不是宣称ea新引入。WR21显式entry存在而dispatch缺失的原反例已修复，但此自然写故障路径使新协议整体仍不通过。没有实际新LEAN提交、真实预算上限突破或金融泄漏。",
+      "positive_controls": [
+        "原WR21未改MRE在deb退出1、ea退出0，合法已绑定成功与明确旧无marker兼容均保留。",
+        "正常首次entry发布、绑定后成功和真实f5d原生失败恢复属独立专项覆盖，不因本缺陷否认其局部通过。"
+      ],
+      "reproduction": "python -B dispatch_agent/minimal_prepare_entry_crash.py --source source --out <fresh-output-dir>，同目录需independent_recovery_support.py；当前exit1。根wr23_confirmation保存独立重复。",
+      "minimal_fix": "把新协议身份与准入成功状态绑定于同一不可变记录或可靠发布顺序；写失败后的恢复不得仅以marker缺失推断legacy。只有明确历史协议的旧任务可走旧成功路径。缺完整协议/dispatch保持未决，不得盲补标记或直接关闭全部成功路径。",
+      "regression_tasks": [
+        "逐一注入local input、admission、entry协议发布边界的写异常，恢复后都不能把新任务降为legacy。",
+        "entry写失败后，恢复prepare及成功/失败结算不得写成功结果或解锁LEAN。",
+        "合法新绑定成功、真正旧准入兼容和f5d失败15→17→17均保持。",
+        "并发首次prepare/dispatch只获一次执行许可；未知派发不得自动重跑，费用不退款。"
+      ],
+      "root_confirmation": {
+        "exit_code": 1,
+        "actual_CLI_processes": 6,
+        "synthetic_finish_calls": 1,
+        "actual_worker_or_provider_calls": 0,
+        "authoritative_budget_writes": 0
+      }
+    },
+    {
+      "id": "WR-22",
+      "priority": "P2",
+      "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "title": "老SID近期更新映射后，全量流动性缺失被误当作不足期IPO并由第201名补位",
+      "locations": [
+        {"file":"cloud/qresearch/data_certification.py","line":383,"end_line":398}
+      ],
+      "trigger": "原创201-SID合成输入中，SID000保留2017-12-01至2018-01-25的listed=true老security-master区间，同一SID自Jan25起更新ticker映射（同ticker新区间也复现）。删除该SID全部21条liquidity行，并在两形成时点以SID001至SID200补位。旧区间及新映射均在形成前已知，SID没有发生IPO。",
+      "expected": "完整历史security-master仍证明这是老eligible SID；全量流动性历史缺失必须使观测审计不足，不能由rank201补位掩盖，也不能因为最近mapping/classification区间的起始时间重置上市历史。合法年轻IPO仍应正确排除。",
+      "actual": "返回observations_passed，全部12项checks=true，known_eligible_candidate_expected_cells由8040降为8000，missing_candidate_session_cells=0，observed_member_cells=400；原202条master记录中老listed区间仍存在。",
+      "cause": "active只保留形成时点新区间，expected_candidates再要求新区间effective_from不晚于trailing首日，或者SID存在于known_old_listings。后者又来自liquidity本身；当全部liquidity缺失时该SID同时失去老上市身份和完整性检查资格。保留的旧listed master区间没有用于连续上市资格判断，ranker因而可用201名替补并获得全部checks通过。",
+      "positive_controls": [
+        "相同完整老区间及新映射，liquidity齐全：observations_passed，expected cells8040。",
+        "相同SID和映射，仅缺最早1session：insufficient_evidence，missing candidate cells1，且声明成员与真实重排一致。",
+        "老SID全部liquidity缺失但未更新mapping：insufficient_evidence。",
+        "真实Jan25年轻IPO移除上市前行，只有5/6期：合法排除，原200老SID observations_passed。",
+        "原WR20 IPO修复：byte-identical旧13方法/43场景在candidate13方法全通过；同日盘中/收盘相等/close后一微秒额外边界亦通过。"
+      ],
+      "scope_and_severity": "P2数据观测合规完整性缺陷，阻断当前data-certification模块软件验收。它不同于已修复的WR20上市前行补足IPO20期问题；相关expected_candidates逻辑原已存在，不能称为本轮IPO过滤修复新引入的回归。所有vendor/full-US200/actual-availability/financial-vintage/research/export/financial标志仍false，无实际市场调用、预算变化、生产因子选择或供应商真实性认证。",
+      "reproduction": "固定旧venv的python -B cert_agent/minimal_wr22.py --output NEW_DIRECTORY/result.json。依赖相邻byte-identical原创cert_fixture.py及本候选生产模块；三合法控制先通过，当前缺陷exit1。first_mapping_history_probe.py及原9方法/23场景首跑保留。",
+      "minimal_fix": "用可在形成时点获知的完整security-master历史确定同一永久SID的连续上市资格，不能把ticker/mapping/classification区间更新当作IPO；候选完整性检查须独立于该SID是否仍有liquidity行。缺全历史的老eligible仍须记缺口并拒绝观测通过，同时保留IPO20期过滤、未知历史拒绝、原refs/count/raw证据和私有重算。",
+      "regression_tasks": [
+        "完整旧listed区间+新ticker，老SID全部liquidity缺失：不足且rank201不能掩盖。",
+        "同ticker新区间也不能重置连续上市历史。",
+        "同SID缺1session、全部缺失、齐全分别得到不足/不足/通过。",
+        "真实年轻IPO仍排除；19/20期、盘中、close相等及close+1微秒边界保持。",
+        "旧13/43、summary私有重核、原refs/raw/count保留及全部认证false保持。"
+      ]
+    },
+    {
+      "id": "WR-24",
+      "priority": "P3",
+      "blocking": false,
+      "title": "当前readiness残留旧轮新增配置与源码变更范围",
+      "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+      "file": "audit/stage2_current_readiness.json",
+      "line": 242,
+      "additional_locations": [
+        {"file":"audit/stage2_current_readiness.json","line":124,"end_line":134},
+        {"file":"audit/stage2_current_readiness.json","line":264}
+      ],
+      "trigger": "将audit/stage2_current_readiness.json作为本轮ea6053e WR-20/WR-21离线修复的当前状态读取。",
+      "expected": "当前轮次的新增配置/Research消耗、源码变更列表和平台读取说明应与固定deb85d9..ea6053e差异、17事件原账本及当前零新增字段一致；旧轮事实须显式绑定旧SHA并放入historical范围。",
+      "actual": "第242行仍宣称One new engineering configuration and one Research precharge；第124–134行当前源码列表误列4个本轮未改文件并漏2个本轮测试文件；第264行read_or_polled_this_turn_scope仍沿用上一轮read_project/旧终态列表读取说明。",
+      "impact": "当前机器可读元数据将历史动作标为当前轮次，造成变更范围与证据来源歧义。实际原账本、预算、当前哈希、未上云/未验收标志均正确；未发现因此新增真实执行或预算消耗。",
+      "severity_rationale": "P3说明与可维护性问题；不影响WR-20/WR-21修复代码的动态行为判定，不构成新的预算或平台失控，不单独阻断软件验收。",
+      "minimal_fix": "保留旧描述原文并移入带baseline/actual-cloud SHA的historical对象；将当前source_configuration_budget_changed_scope和read_or_polled_this_turn_scope改为本轮零新增/零平台读取说明，按实际固定差异更新source_changed_this_round。不要修改原17事件或退还历史预算。",
+      "regression_test": "加入只读元数据一致性检查：当前0新增字段不能同时配未标historical的新增配置/Research描述，current source列表应等于明确基线到交付SHA的实现/测试/工具变更集合；历史记录保持原文与SHA。",
+      "minimal_reproduction": {
+        "script": "archive_agent/minimal_wr24_metadata.py",
+        "command": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\archive_agent\\minimal_wr24_metadata.py"
+        ],
+        "exit_code": 1,
+        "execution_record": "archive_agent/wr24_first_execution.json",
+        "stdout": "archive_agent/wr24_first.stdout",
+        "stderr": "archive_agent/wr24_first.stderr",
+        "expected_metadata_assertions": {
+          "current_new_config_and_Research_scope": false,
+          "current_source_changed_this_round_matches_pinned_diff": false
+        }
+      }
+    }
+  ],
+  "first_results_preserved": [
+    {
+      "scope": "original engineering recovery",
+      "methods": 5,
+      "failed_methods": 1,
+      "failure_records": 2,
+      "subcases": 46,
+      "errors": 0,
+      "reason": "New prepared task legitimately requires a dispatch; old fixture emitted success without it. Class assertions unchanged; separate setup pins matching index4 then restores source-drift tests."
+    },
+    {
+      "scope": "original native setup",
+      "methods": 0,
+      "setup_errors": 1,
+      "reason": "Main andcompletion-contract original runners both stopped in new-entry prerequisites; dependent failure/crash probes could not run or lacked template. Original outputs retained; separate legal setup adapter passes all9/90 plus8manual."
+    },
+    {
+      "scope": "archive first reader",
+      "checks": 55,
+      "passed": 54,
+      "failed_reader_checks": 1,
+      "reason": "Reviewer initially used wrong engineering schema field. First script/report/raw kept; corrected55/55 and separate44/44."
+    },
+    {
+      "scope": "root summary first reader",
+      "reason": "Inline reader had else0 token SyntaxError before executing. Fragment/trace retained; corrected file runs successfully; not a product/test failure."
+    },
+    {
+      "scope": "uncompleted delegated extension",
+      "reason": "A child turn stopped at tool filter after launching adapter processes. Root verified successful process outputs and independently repeated new finding. No unrun extension counted."
+    },
+    {
+      "scope": "reviewer matrix checksum",
+      "reason": "A derived .sha256 sidecar originally used pre-write LF text while saved reviewer JSON used CRLF. Original sidecar retained; separate raw checksum and QA correction provided. Product/source hashes and root report values were not affected."
+    }
+  ],
+  "budget_replay": {
+    "events": 17,
+    "raw_equal_baseline_deb": true,
+    "old_13_prefix_unchanged": true,
+    "journal_raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1",
+    "configurations": {"used":7,"limit":12,"normal":6,"reserve":1},
+    "Research": {"used":10,"limit":20,"normal":6,"reserve":4},
+    "LEAN": {"used":1,"limit":16,"normal":1,"reserve":0},
+    "engineering_used": {"configurations":2,"Research":2,"LEAN":1},
+    "engineering_caps": {"configurations":2,"Research":2,"LEAN":2},
+    "stopped": true,
+    "current_real_charges": 0,
+    "refund": false,
+    "authoritative_writes": 0,
+    "original_Research_status": "failed",
+    "old_LEAN_status": "failed"
+  },
+  "platform_evidence_level": {
+    "current_review": "offline source/evidence/test review only; no current QC access",
+    "archived_source_readback": "Prior auditor read32 Python files andcell1 source at7fc; this round reparses saved bytes only",
+    "archived_failure": "Developer saved native Research failure independently replayed offline, not a fresh live failure read"
+  },
+  "platform": {
+    "actual_cloud_source": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+    "current_candidate_cloud_executed": false,
+    "candidate31_vs_archived_executed31": {
+      "same": 28,
+      "different": 3,
+      "scope": "archived reference comparison, not current platform inventory"
+    },
+    "original_Research_attempt": "f5d05f5b964b4a1d924e4b70cd207386",
+    "status": "failed",
+    "error_class": "CollectionError",
+    "underlying_cause_known": false,
+    "native_packet_sha256": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3",
+    "native_result_hash": "6a5371b3ff243998baded6dc2f9627b110af793a94907a4a73859ced3d5f4f0b",
+    "representations": 2,
+    "logical_failures": 1,
+    "traceback_entries": 9,
+    "traceback_physical_lines": 43,
+    "normal_failure_replay": [15,17,17],
+    "write_failure_replay": [15,16,18,18],
+    "extra_pending_is_new_charge": false,
+    "success_engineering_report": false,
+    "new_LEAN_submitted": false,
+    "history_calls": null,
+    "received_records": null,
+    "orders": null,
+    "financial_statistics": null,
+    "old_worker_source_verified": false,
+    "full_inventory_certified": false
+  },
+  "historical_findings": {
+    "WR01_WR19": "保持原SHA及有限范围结论；本轮既有回归通过。",
+    "WR20_WR21": "原反例在本SHA修复后通过；不推导新模块整体通过。",
+    "new_blocking": ["WR23/P1","WR22/P2"],
+    "new_nonblocking": ["WR24/P3"]
+  },
+  "unverified": [
+    "修复WR22/23/24后的新固定SHA",
+    "真实新版Research-采集缓存-LEAN成功联合链",
+    "旧worker具体源码差异和源迭代底层原因",
+    "全历史US200、财务版本、实际送达及摄入认证",
+    "阶段3–7完整运行和金融效果",
+    "其他OS独立运行及OS kill/断电持久性",
+    "2026独立性；2024–2025既往暴露已知"
+  ],
+  "software_acceptance": {
+    "original_fix_scope": "修复后通过",
+    "overall_status": "失败",
+    "blocking": ["WR23","WR22"],
+    "nonblocking": ["WR24"],
+    "full_phase2_accepted": false
+  },
+  "data_certification": {
+    "status": "证据不足且观测审计存在WR22",
+    "accepted": false,
+    "vendor_authentication": false,
+    "full_historical_US200": false,
+    "financial_vintage": false,
+    "actual_availability": false
+  },
+  "financial_evidence": false,
+  "financial_metrics": null,
+  "closed_gates": {
+    "formal_research": true,
+    "automatic_GPT": true,
+    "trading": true,
+    "final_test": true,
+    "GPT_model": null,
+    "GPT_call_limit": null,
+    "GPT_spend_limit": null,
+    "active_factor": null,
+    "active_model": null,
+    "active_trading": null
+  },
+  "reproduction": {
+    "WR23": "python -B dispatch_agent/minimal_prepare_entry_crash.py --source source --out <fresh-output>; helper in same directory; current exit1",
+    "WR22": "python -B cert_agent/minimal_wr22.py --output <fresh-result.json>; current exit1",
+    "WR24": "python -B archive_agent/minimal_wr24_metadata.py; current exit1",
+    "records": [
+      "test_execution_summary.json",
+      "archive_agent/report.json",
+      "archive_agent/supplement_report.json",
+      "cert_agent/report.json",
+      "dispatch_agent/root_verified_summary.json",
+      "root_confirmation_records.json",
+      "entry_controls_execution.json"
+    ]
+  }
+}
+```

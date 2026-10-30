@@ -1,0 +1,568 @@
+{
+  "review_id": "AQRP-20261029-C2E63AC-WR29-27",
+  "review_date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "reviewed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "baseline_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+  "evidence_commits": {
+    "materials": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
+    "original_failed_materials": "fe088461e84586d7feb73f20be54a22d09706942",
+    "prior_finite_pass": "975f676d62b561689909744f9e7236290e3f5fcb",
+    "historical_runtime": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+    "historical_terminal": "ca5e4f3f68a58297cf02d97629346e10306ebcf0"
+  },
+  "conclusion": "WR29/P1在固定c2e63ac原CLI/stdio合法factory缺陷范围修复后通过、独立关闭；未确认新产品缺陷。阶段2整体仍未通过。",
+  "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+  "deployment_hash": "f89de8960ab68d1e18dc2003a7b4a9e3517100e4daf9c12a6eda2b95b378fdc6",
+  "implementation_hash": "72572cfda77588e333741d986be3ab278947536c2700442dc0d18fce6e800d66",
+  "configuration_hash": "a06709495845911c33d21e077c771793ea68c33c0691fefd711702739a1d5536",
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "readonly_Git_GitHub": true,
+    "native_Windows_private_subprocess_and_synthetic_tests": true,
+    "QC_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "compile_calls": 0,
+    "market_or_model_calls": 0,
+    "production_automation": 0,
+    "authoritative_budget_or_production_writes": 0,
+    "PR_push_approval_merge": 0
+  },
+  "version_consistency": {
+    "source_raw_files": 7448,
+    "materials_raw_files": 7766,
+    "managed_identity_files": 218,
+    "baseline_managed_files": 216,
+    "changed_managed": [
+      "docs/followup_host.md",
+      "tools/followup_host.py"
+    ],
+    "added_managed": [
+      "docs/review/wr29.md",
+      "tests/test_followup_host_entrypoints.py"
+    ],
+    "source_materials_managed_equal": true,
+    "top_level_function_class_ASTs_unchanged": 10,
+    "canonical_delegation_precedes_types": true,
+    "deployment_files": 44,
+    "deployment_raw_unchanged_from2d": true,
+    "two_builds_config_changed": false,
+    "materials_git_verifier_exit": 0,
+    "packet_raw_files": 77,
+    "immutable_source_materials_changed": false,
+    "scratch_changes": [
+      "audit/stage_verification.json"
+    ]
+  },
+  "PR": {
+    "number": 2,
+    "draft": true,
+    "merged": false,
+    "source_CI_run": 40870978944,
+    "Python3.10": "success",
+    "Python3.11": "success",
+    "independently_extracted_CI_test_count": null
+  },
+  "WR29_resolution": {
+    "id": "WR-29",
+    "original_priority": "P1",
+    "status": "fixed_verified_closed",
+    "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+    "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+    "original_file": "tools/followup_host.py",
+    "original_line": 469,
+    "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+    "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+    "original_expected_exits": [
+      0,
+      0,
+      0
+    ],
+    "original_actual_exits": [
+      0,
+      2,
+      2
+    ],
+    "fixed_actual_exits": [
+      0,
+      0,
+      0
+    ],
+    "original_MRE_assertion_exit": 1,
+    "fixed_MRE_assertion_exit": 0,
+    "original_script_and_success_expectations_unchanged": true,
+    "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+    "normal_path_and_strict_negative_paths_verified": true,
+    "not_granted": [
+      "倒改2d1d306原失败",
+      "生产factory/MCP调度/平台通知成功",
+      "完整回执收集或计费认证派发",
+      "完整阶段2、数据认证或金融有效性"
+    ]
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范、身份、Registry、预算、归档",
+      "implementation": "已有组件",
+      "evidence": "1012回归、218身份、161原件恢复、71事件重放",
+      "verdict": "已测离线回归范围通过",
+      "missing": "不涵盖生产调度或远端真实性"
+    },
+    {
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型、滚动内核",
+      "implementation": "共享内核未改",
+      "evidence": "仓库及既往相关回归重放",
+      "verdict": "已测回归范围通过",
+      "missing": "无金融有效性验收"
+    },
+    {
+      "stage": 2,
+      "modules": "QC、任务桥、通知与本地宿主",
+      "implementation": "部分实现",
+      "evidence": "WR29原范围关闭；本地CLI/stdio/API及故障恢复有限测试通过",
+      "verdict": "局部软件通过；整体未通过",
+      "missing": "真实factory/transport/通知/新云端工程、完整回执、数据认证及计费认证派发"
+    },
+    {
+      "stage": 3,
+      "modules": "评价、共同样本与滚动",
+      "implementation": "局部内核",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整分层收益/风险及真实固定六轮研究"
+    },
+    {
+      "stage": 4,
+      "modules": "工程接收器、标签成交/成本",
+      "implementation": "局部组件",
+      "evidence": "无新真实执行，旧b1a有限证据保留",
+      "verdict": "未验收",
+      "missing": "完整组合交易/账本/风险/压力与对账"
+    },
+    {
+      "stage": 5,
+      "modules": "受限提案与持久化状态机",
+      "implementation": "局部组件",
+      "evidence": "默认关闭及权限边界测试",
+      "verdict": "未验收",
+      "missing": "实际GPT客户端、模型/调用/费用及真实研究闭环"
+    },
+    {
+      "stage": 6,
+      "modules": "相似性、相关性及复杂度",
+      "implementation": "局部组件",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整搜索/消融/净增量/选择偏差实证"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、暴露与关闭闸门",
+      "implementation": "元数据骨架",
+      "evidence": "既往暴露保留，最终测试关闭",
+      "verdict": "未验收",
+      "missing": "独立最终执行器/前向监控回滚及2026独立性"
+    }
+  ],
+  "tests": [
+    {
+      "name": "repository",
+      "methods": 1012,
+      "scenarios": null,
+      "passed": 1012,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "repository_synthetic_suite",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_host_subset",
+      "methods": 19,
+      "scenarios": null,
+      "passed": 19,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "overlapping_repository_subset",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_entrypoint_subset",
+      "methods": 6,
+      "scenarios": null,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "overlapping_repository_subset",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "metadata_scope_self_test",
+      "methods": 7,
+      "scenarios": null,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "developer_scope_suite",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_stdio",
+      "methods": 15,
+      "scenarios": 61,
+      "passed": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_stdio_supplement",
+      "methods": 4,
+      "scenarios": 12,
+      "passed": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_independent_entrypoints",
+      "methods": 8,
+      "scenarios": 51,
+      "passed": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "new_actual_subprocess_and_synthetic",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_API",
+      "methods": 12,
+      "scenarios": 63,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "original_independent_API_supplement",
+      "methods": 6,
+      "scenarios": 26,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "new_independent_append_recovery",
+      "methods": 3,
+      "scenarios": 28,
+      "passed": 3,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "actual_Win32_fault_and_synthetic",
+      "first_run": "one_reviewer_OS_field_expectation_corrected_then_passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_Windows_lock",
+      "methods": 18,
+      "scenarios": 37,
+      "passed": 18,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_main",
+      "methods": 12,
+      "scenarios": 79,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_notification_supplement",
+      "methods": 6,
+      "scenarios": 27,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    },
+    {
+      "name": "prior_cycles_rounds",
+      "methods": 7,
+      "scenarios": 28,
+      "passed": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "kind": "original_script_replayed_on_fixed_source",
+      "first_run": "passed",
+      "actually_executed": true
+    }
+  ],
+  "actually_executed": true,
+  "counting": "方法、命名场景、进程请求、原脚本重放、专项子集、旧负对照和静态检查重叠，不合计独有总数；旧1006与本轮1012不相加。",
+  "native_append_recovery": {
+    "new_methods": 3,
+    "named_scenarios": 28,
+    "actual_CLI_processes": 4,
+    "actual_Win32_share_denial_error": 32,
+    "Python_CRT_errno": 13,
+    "Python_CRT_winerror": null,
+    "observed": "拒写时安全attention/unknown，无重派；解除后同原response跨canonical/script/-m恢复，一次发现+一次历史许可，Registry账本不变",
+    "synthetic_cases": [
+      "写前拒绝",
+      "完整落盘后ack丢失",
+      "controller已观察而host确认失败"
+    ],
+    "does_not_authenticate_original_developer_incident_cause": true
+  },
+  "findings": [],
+  "historical_findings": {
+    "WR01_WR28": "原精确SHA及有限范围保留",
+    "WR29_original": "2d1d306原报告confirmed_open/P1与原0/2/2失败保留，未重写",
+    "WR29_new_resolution": {
+      "id": "WR-29",
+      "original_priority": "P1",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "original_file": "tools/followup_host.py",
+      "original_line": 469,
+      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+      "original_expected_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_actual_exits": [
+        0,
+        2,
+        2
+      ],
+      "fixed_actual_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_MRE_assertion_exit": 1,
+      "fixed_MRE_assertion_exit": 0,
+      "original_script_and_success_expectations_unchanged": true,
+      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+      "normal_path_and_strict_negative_paths_verified": true,
+      "not_granted": [
+        "倒改2d1d306原失败",
+        "生产factory/MCP调度/平台通知成功",
+        "完整回执收集或计费认证派发",
+        "完整阶段2、数据认证或金融有效性"
+      ]
+    },
+    "prior975_and2d_API_scopes": "各自原范围保留，不继承全部新版本通过",
+    "all_original_independent_WR_suites_rerun": false
+  },
+  "archive_verification": {
+    "static_file_blob_metadata_checks": 45370,
+    "additional_representation_checks": 4,
+    "static_checks_are_not_unit_methods": true,
+    "old_complete_ZIP": {
+      "raw_sha256": "feffb44a08485c0ac7dd87b46f47b53e810964c270ae41a9446ae6980aba4723",
+      "CRC": true,
+      "manifest_entries": 14691,
+      "ZIP_entries": 14692,
+      "old_Git_blob_counts": {
+        "source": 7080,
+        "materials": 7445
+      }
+    },
+    "selected_archive": {
+      "originals": 161,
+      "original_bytes": 614188,
+      "direct_raw": 77,
+      "mirrors_with_raw_base64": 84,
+      "representation_files": 246,
+      "actual_files": 247,
+      "not_complete_bundle": true
+    },
+    "developer_guard": {
+      "records": 348,
+      "before_after_exact_equal": true,
+      "worktree_CRLF_vs_Git": [
+        "audit/data_exposure.json",
+        "cloud/main.py",
+        "config/data.json",
+        "config/research.json",
+        "docs/review/phase0-phase1/manifest.json"
+      ],
+      "developer_live_worktree_independently_read": false
+    },
+    "original_formal_sha256": "224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14",
+    "old_failure_and_first_scripts_outputs_preserved": true,
+    "selected_archive_is_complete_original_bundle": false
+  },
+  "developer_auxiliary_history": {
+    "initial": "79/84：3项夹具预期错误，2项晚响应失败无trace",
+    "corrected": "89/90：1次有确切私有store append EACCES trace，安全停止",
+    "recorded_recovery": "原store8/8，原输入克隆10/10，原记录分别保留",
+    "original_store_recovery_and_clone_independently_replayed": false,
+    "reason": "历史原私有store未归档；本轮只读核对所存原件/trace/摘要，不伪造初始状态",
+    "two_untraced_failures_same_cause_proven": false,
+    "all_auxiliary_runs_retroactively_passed": false,
+    "new_equivalent_fault_tests_are_separate": true
+  },
+  "reviewer_corrections": {
+    "new_append_probe": "首跑误预期Python Path.open(ab)的winerror=32；实际CRT为errno13/winerrorNone，独立Win32写打开确认错误32。仅修正OS字段预期，首脚本/trace保留，3/28通过",
+    "archive_helper": "首跑误将focused JSON object.records当顶层list，修正审核读取形状后通过；原脚本/失败输出及探索读取记录保留",
+    "entry_and_original_API_replays": "本轮首次通过，原脚本和成功预期未改",
+    "product_changed_by_reviewer": false,
+    "formal_QA_wording": "10个顶层定义包含3个私有helper，不称10个公开接口；旧草稿formal_report_pre_QA.json及首QA问题保留。首次shell措辞编辑因引号失败未改报告，另存记录后用独立脚本更正。"
+  },
+  "budget_replay": {
+    "events": 71,
+    "journal_sha256": "cea800e0fe5a0facc5f2aed238d105a6f3d1c80db40c1dc4b674efd3026cd48a",
+    "prior69_prefix_sha256": "2d3131a32864434d22635f058ec3de8062e9b1b610a90185bf6ba6cf9c637934",
+    "prior69_prefix_raw_preserved": true,
+    "configuration_cycle": {
+      "used": 3,
+      "limit": 13
+    },
+    "lifetime_configurations": 16,
+    "Research": {
+      "used": 17,
+      "limit": 20
+    },
+    "LEAN": {
+      "used": 3,
+      "limit": 16
+    },
+    "round008": "closed",
+    "new_events": 0,
+    "new_debits": 0,
+    "refunds": 0,
+    "original_human_authorization_dialogue_independently_obtained": false,
+    "future_1_1_1": "仍未授权/未准入/无真实任务ID"
+  },
+  "platform_evidence_level": {
+    "current_review": "本地原生Windows合成/子进程及Git/ZIP/原件离线核验，无QC访问",
+    "historical_b1a": "只保留原975审查的2018有限归档工程证据；不继承为新候选运行",
+    "historical_Research_checks": 13,
+    "historical_LEAN_checks": 7,
+    "historical_orders": 0,
+    "historical_PROJECT_files": 43,
+    "historical_Research_EOF_normalized": 0,
+    "historical_LEAN_EOF_normalized": 43,
+    "historical_LEAN_original_source_identity_match": false,
+    "historical_automatic_push_observed": false,
+    "new_source_cloud_run": null,
+    "new_source_orders": null
+  },
+  "software_acceptance": {
+    "WR29_original_CLI_stdio_defect": "修复后通过并关闭于c2e63ac",
+    "local_CLI_stdio_API": "已测有限合成范围通过",
+    "stage0_1_regression": "已测范围通过",
+    "real_factory_transport_scheduler": "未验收",
+    "complete_native_receipt_collection_and_charged_certification": "未完成",
+    "stage2_overall": "未通过",
+    "stages3_to7": "未验收",
+    "formal_research_enabled": false,
+    "GPT_runtime_enabled": false,
+    "orders_enabled": false,
+    "final_test_enabled": false
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "SID_economic_ambiguity_resolved": false,
+    "financial_statement_numeric_catalog_count": 0,
+    "financial_vintage_publication_actual_delivery_ingestion": false,
+    "complete_charged_native_dispatch": "未完成"
+  },
+  "financial_evidence": false,
+  "financial_metrics": {
+    "IC": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "NAV": null
+  },
+  "research_constraints": {
+    "historical_top200_US_equities": true,
+    "no_rank201_substitution": true,
+    "timezone": "America/New_York",
+    "rolling": "六个固定八年训练/一年验证窗，2010-2017/2018至2015-2022/2023",
+    "final_window": "2024-01-01至2026-10-23",
+    "2024_2025_exposed": true,
+    "2026_independence": "未认证",
+    "independent_final_executor_configured": false
+  },
+  "unverified": [
+    "真实生产factory/MCP transport、调度、平台通知与新候选云端工程链",
+    "完整原生回执/日志/订单收集、自动结算关轮及完整计费认证派发",
+    "完整US200/SID、价格/公司行动、财务数值和历史版本/公开/实际送达/摄入认证",
+    "开发初两次无trace晚响应失败根因；未归档历史私有store的8/8及10/10未独立重放",
+    "任意文件系统竞争、硬终止/断电耐久性、原人类额度授权对话及远端真实性",
+    "阶段3–7、2026样本独立性和金融有效性"
+  ],
+  "next_required_work": [
+    "以新SHA追加归档WR29关闭，保留原2d失败报告及所有辅助失败，不倒改历史",
+    "维持真实派发关闭，按原S2清单准备受限宿主/transport及完整回执收集，另行授权后才能真实联调",
+    "补齐历史数据与完整计费认证证据，分项独立验收后再申请完整阶段2",
+    "正式研究、自动GPT、交易及最终测试继续关闭"
+  ],
+  "artifacts": {
+    "root_commands": "root_execution_records.json",
+    "independent_commands": "entry_agent/execution_records.json; api_agent/execution_records.json; archive_agent/replay_execution.json",
+    "identity": "source_git_manifest.json; identity_verification.json; root_guard.json",
+    "original_MRE": "original_minimal_wr29.py; original_MRE_replay.json; old_failed_minimum.*; new_fixed_minimum.*",
+    "minimum_command": "python -B original_minimal_wr29.py source",
+    "seal": "python -B verify_artifacts.py"
+  }
+}

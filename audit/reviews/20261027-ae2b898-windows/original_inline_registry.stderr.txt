@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\original_probes\minimal_boundaries.py", line 30, in <module>
+    retry = reg.begin_attempt(bridge.config_id, 'research', operation_key=first.operation_key,
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\source\cloud\qresearch\registry.py", line 584, in begin_attempt
+    self._joint_admission(state, config_id, stage, joint)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ae2b898-20261027\source\cloud\qresearch\registry.py", line 436, in _joint_admission
+    raise RegistryError("Preregistered joint engineering retry bound reached")
+qresearch.registry.RegistryError: Preregistered joint engineering retry bound reached

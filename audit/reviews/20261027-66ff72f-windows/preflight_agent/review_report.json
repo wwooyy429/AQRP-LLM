@@ -1,0 +1,337 @@
+{
+  "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "scope": "Deployment diagnostics, read_project MCP readback-reference pure preflight, stage2 new-charge/first-prepare gates and original-input recovery",
+  "conclusion": "All newly tested boundaries pass; no product finding identified in this child scope. This is offline software behavior, not proof of repaired cloud worker initialization or phase2/data/financial acceptance.",
+  "new_suites": [
+    {
+      "name": "independent pure diagnostics and MCP reference preflight",
+      "methods": 7,
+      "subcases": 42,
+      "passed_methods": 7,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "skips": 0
+    },
+    {
+      "name": "actual stage2 CLI gates and original input recovery",
+      "methods": 4,
+      "subcases": 24,
+      "passed_methods": 4,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "skips": 0
+    },
+    {
+      "name": "deployment_preflight CLI exit codes and notebook redaction",
+      "methods": 1,
+      "subcases": 4,
+      "passed_methods": 1,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "skips": 0
+    }
+  ],
+  "new_counts": {
+    "methods": 12,
+    "passed_methods": 12,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "subcases": 70,
+    "skips": 0,
+    "actual_stage2_CLI_processes": 58,
+    "actual_preflight_CLI_processes": 4,
+    "total_CLI_processes": 62,
+    "successful_stage2_CLI_commands": 36,
+    "expected_rejected_stage2_CLI_commands": 22,
+    "stage2_command_counts": {
+      "freeze": 22,
+      "register": 14,
+      "claim": 10,
+      "prepare": 8,
+      "preview": 4
+    },
+    "build_calls": 0,
+    "actual_worker_QC_market_model_calls": 0
+  },
+  "pure_first_auditor_error": {
+    "methods": 7,
+    "passed_methods": 6,
+    "failed_methods": 0,
+    "error_methods": 1,
+    "subcases": 42,
+    "product_failure": false,
+    "reason": "The reviewer attempted to content_hash a manifest containing an isolated surrogate before invoking verify_deployment. UTF-8 construction failed before product execution.",
+    "correction": "Pass a fixed syntactically valid expected SHA in invalid-path cases to exercise complete path validation before hash comparison. Same exception and unchanged state/read assertions; original script/results/raw retained.",
+    "all_assert_and_unittest_assert_calls_AST_unchanged": true,
+    "diff": "pure_fixture_correction.diff"
+  },
+  "coverage": {
+    "source_identity": [
+      "UTF8 BOM/CRLF/CR normalize as before",
+      "EOF newline count preserved",
+      "nonbytes/invalid UTF8 reject"
+    ],
+    "diagnostics": [
+      "all10 invalid manifest paths reject before any source read",
+      "single-read mismatch/unreadable/decode classifications",
+      "observed mismatch hash comes from the exact single returned bytes",
+      "absolute OS error strings and source contents omitted",
+      "valid Unicode path passes; Unicode mismatch emits path hash"
+    ],
+    "MCP": [
+      "native/structured/text/mirrored positives",
+      "all dispatch/worker/full-inventory/financial flags remain false",
+      "notebook sentinel never output or included in source digest",
+      "notebook-only contradictory mirrors rejected",
+      "case aliases, unsafe paths, duplicate JSON, unknown annotations/metadata/image carrier reject",
+      "missing/extra/EOF/source and raw input mismatch yield preflight false",
+      "CLI exit0match/1mismatch/2invalid and no notebook text output"
+    ],
+    "actual_CLI": [
+      "v1 and v2 preview/freeze/register/claim/first prepare positive",
+      "unbuilt physical source drift blocks preview/freeze/register/claim/first prepare before any artifact/config/ledger byte change",
+      "physically coherent changed source+manifest cannot reuse frozen old plan in register/claim/first prepare",
+      "missing/extra/lower-or-upper-suffix Python file set blocks freeze",
+      "already admitted original input recovers after source+manifest drift, current pointer deletion and catalog drift, with identical metadata and no new byte changes"
+    ],
+    "version_limit": "v1 intentionally rechecks physical frozen deployment only after its full source identity included mutable usage. v2 additionally pins stable execution source/catalog. No v1 controller guarantee inferred."
+  },
+  "source_evidence": [
+    {
+      "file": "cloud/qresearch/engineering_data.py",
+      "ranges": {
+        "safe_path": [
+          39,
+          48
+        ],
+        "safe_diagnostic": [
+          51,
+          73
+        ],
+        "byte_identity": [
+          76,
+          89
+        ],
+        "verify_deployment": [
+          128,
+          175
+        ]
+      }
+    },
+    {
+      "file": "tools/deployment_preflight.py",
+      "ranges": {
+        "safe_path": [
+          36,
+          44
+        ],
+        "frozen_manifest": [
+          47,
+          60
+        ],
+        "listed_ids": [
+          63,
+          97
+        ],
+        "pure_preflight": [
+          100,
+          160
+        ],
+        "CLI": [
+          163,
+          183
+        ]
+      }
+    },
+    {
+      "file": "tools/stage2.py",
+      "ranges": {
+        "local_physical_manifest_and_full_set": [
+          28,
+          46
+        ],
+        "freeze_preview": [
+          49,
+          97
+        ],
+        "original_attempt_bridge": [
+          113,
+          139
+        ],
+        "admitted_input": [
+          142,
+          171
+        ],
+        "first_prepare_and_existing_recovery": [
+          174,
+          200
+        ],
+        "new_charge_plan_binding": [
+          203,
+          218
+        ],
+        "CLI_preflight_before_register_claim": [
+          260,
+          268
+        ]
+      }
+    }
+  ],
+  "historical_replays": {
+    "e513_first_current13": {
+      "methods": 24,
+      "passed_methods": 23,
+      "failed_methods": 1,
+      "errors": 0,
+      "subcases": 36,
+      "classification": "Historical pending-ledger assumption invalid after actual13th failed settlement; not a product admission defect.",
+      "preserved": "runs/e513_admission"
+    },
+    "e513_historical_fixture_adapted": {
+      "methods": 24,
+      "passed_methods": 24,
+      "failed_methods": 0,
+      "errors": 0,
+      "subcases": 36,
+      "only_edit": "Historical pending-specific method reads byte-equal81 original12-event ledger via env. All current66 production code and every assertion unchanged.",
+      "diff": "e513_adapter/admission_agent/fixture_adapter.diff",
+      "result": "e513_adapted_replay/first_results.json",
+      "all_bare_and_unittest_assert_nodes_unchanged": true
+    },
+    "quick_first_current13": {
+      "methods": 7,
+      "passed_methods": 6,
+      "failed_methods": 1,
+      "errors": 0,
+      "subcases": 0,
+      "classification": "Same now-failed vs assumed-pending history; valid current freeze is expected.",
+      "preserved": "original_quick_full"
+    },
+    "quick_historical_fixture": {
+      "methods": 7,
+      "passed_methods": 7,
+      "failed_methods": 0,
+      "errors": 0,
+      "subcases": 0,
+      "original_script_bytes_unchanged": true,
+      "only_fixture_change": "Disposable SOURCE/audit/runtime is81 original12-event pending copy;96 production source/config/template/test files raw equal current66.",
+      "result": "quick_fixture_workspace/admission_agent/quick_first_results.json"
+    },
+    "old5_recovery_missing_helper_first": {
+      "methods": 5,
+      "subcases": 46,
+      "failed_methods": 1,
+      "failure_records": 12,
+      "error_records": 0,
+      "classification": "Helper was copied to parent but original script resolves OUT/direct_freeze_entry.py.12 function-process child launches failed before product. Other4methods pass.",
+      "preserved": "recovery_agent/results",
+      "first_child_interpreter_note": "Original first-run missing-helper stderr named globally installed Python310. Corrected replay explicitly uses fixed review venv; original first metadata/raw not rewritten."
+    },
+    "old5_recovery_helper_corrected_execution": {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\recovery_agent\\independent_recovery.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\recovery_agent\\results_helper_corrected"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027",
+      "script_sha256": "bc1e5946407c4b3eb73188bef835901f754d5456ddb67b44b0023232aa450857",
+      "helper_sha256": "268ba0f68dff5f7b046464ab4f5d7a8100343bc9862a412f96179fc99c4a2d2b",
+      "helper_bytes_equal": true,
+      "only_fixture_change": "Original direct_freeze_entry.py bytes copied into requested OUT; script/assertions/production code unchanged.",
+      "source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+      "first_outputs_preserved": "recovery_agent/results",
+      "exit_code": 0,
+      "seconds": 145.8590000000113,
+      "stdout": "helper_corrected.stdout",
+      "stderr": "helper_corrected.stderr",
+      "status": "complete"
+    },
+    "counting": "Historical suites and repeat corrected runs are separate from new12/70 and must not be summed as new unique tests.",
+    "old5_recovery_helper_corrected_result": {
+      "methods": 5,
+      "passed_methods": 5,
+      "failed_methods": 0,
+      "failure_records": 0,
+      "error_records": 0,
+      "subcases": 46,
+      "skips": 0,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 72,
+        "direct_freeze_processes": 12,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true,
+      "original_script_hash": "bc1e5946407c4b3eb73188bef835901f754d5456ddb67b44b0023232aa450857",
+      "helper_placement_only": true,
+      "assertions_changed": false,
+      "result": "recovery_agent/results_helper_corrected/first_run_summary.json",
+      "legacy_commit_literal": "ae2b8985f3799c246e90341370f86d80483f63ed",
+      "actual_source_commit_from_command": "66ff72ffaaff8c91c008898e6527c91131176c2a"
+    }
+  },
+  "operational_limits": {
+    "all_sources_and_authority_read_only": true,
+    "actual_new_budget_charges": 0,
+    "real_Research_LEAN_calls": 0,
+    "source_edits": 0,
+    "platform_calls": 0,
+    "full_phase2_acceptance_claimed": false
+  },
+  "commands_and_raw": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\pure_first_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\pure_corrected_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\cli_first_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_first_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\cli_command_log.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\preflight_cli_command_log.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\e513_adapter_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\preflight_agent\\quick_fixture_adapter_execution.json",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\recovery_agent\\helper_corrected_execution.json"
+  ],
+  "artifacts_sha256": {
+    "cli_command_log.json": "9c7fc8c16df11c4954f756eff7ef071dd29dffe5eed019c9391e7685cf5c7899",
+    "cli_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cli_first.stdout": "aa45be57c1a3ae44bbc1a022b93836431e35d63780f514e9854f9fcfe18e74db",
+    "cli_first_execution.json": "1baef109f9b44bd48e6cd97c874c546edb62171d2a4001ecda1ed72600809e44",
+    "cli_first_results.json": "de3764289bb3dd7513992c5f872d825e600e158c7297e795a0948853433fdf2f",
+    "e513_adapter.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "e513_adapter.stdout": "177f7285ad4c27901171d9ac6be85dd49b6d32af606dc0b6e29bcace606383e0",
+    "e513_adapter_execution.json": "e369ccc1497a7a063dc86d4cdc151d56c120d1389aab0958b01721a86844bc77",
+    "e513_ledger_fixture_diagnosis.json": "f5e8cb715b48f70dca856b0a016bae8badfdaa3b467ed6db72f70dd8d0c92992",
+    "independent_cli_gates.py": "c6746d64d84e88e8d8a4965e249589028efc4ae4f9b6ee8a954024d4decdcec2",
+    "independent_preflight.py": "b085acebb479165626d45f88b511eed2725c401257a9cec81621770e522059d9",
+    "independent_preflight_cli.py": "adcc9e1f8874999457168f67906dac575fe8f8e3d9666b5bcaff779e30d7f1ed",
+    "independent_preflight_corrected.py": "0199712277950a8af2afeb2b3bc257d476819ec6f62a79d090ecb2a6cfc7696f",
+    "preflight_cli_command_log.json": "65531519797a287def234ef02a81dab141e068278a6df0d9b246c879290f9698",
+    "preflight_cli_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "preflight_cli_first.stdout": "ecd438e013f33401fe2bc3a007caece9d7561bf55faf74cac14a69c02f2ac895",
+    "preflight_cli_first_execution.json": "efcf73e93005641172ac14246d45ce68cb8d96dfe4e1a3779b31a4cd48a51d78",
+    "preflight_cli_first_results.json": "a31296af49e946273f27dfa36efbb26333635d57d5921758846226e590122acb",
+    "pure_corrected.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pure_corrected.stdout": "0d4c0808612115158d4b2d18b9e14e2903431743f2dcc2e432e9be978730f77f",
+    "pure_corrected_execution.json": "2a972a9919ca5badd836b6e360e0e0040bf9a3fcea8178426b43e5939d31861e",
+    "pure_corrected_results.json": "6cf1b101caca6592e4313f82b34c92faf3c605732b5ef1169a9cfe033af8e103",
+    "pure_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pure_first.stdout": "c403fcbcaa454f19b274bc9a86099f1c4b88026c4f3f8fe355b059ce642c18f1",
+    "pure_first_execution.json": "0c64d79b82b6158f21183cb6f6fa3987c851a7547b5f7794d3e465e364503afb",
+    "pure_first_results.json": "7c3e22e905f9c292770950bfe70a2ae4c4ec9cadbba5a0a0b33e55a3fe922583",
+    "pure_fixture_correction.diff": "ba9b893d4113b8577dc07cb92a2f295267272d04f157ea1a912ab3316291dc5c",
+    "pure_fixture_correction.json": "ca3f8404dd3049c5b0511e37119e27bbcc5c19bcfa8bc80dd28d6de56ff18cc2",
+    "quick_fixture_adapter.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "quick_fixture_adapter.stdout": "ea5f246d4a7d4b5172f3ea15e48a33e82bc43e651142ab20a1e50decc8f5eb4a",
+    "quick_fixture_adapter_execution.json": "59826cd5fa51a4da1e22f30854b09fa348666bd371c109fa2b652496adc75744",
+    "quick_joint_probes.py": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7"
+  },
+  "production_file_sha256": {
+    "cloud/qresearch/engineering_data.py": "1354978d7529ecab8506c3bee97982f06c6b369692cd4d8e77895a5bede1f277",
+    "tools/deployment_preflight.py": "b9945fd1cbd702ba70f76d4a6437203f69ea1728b4176c3da2c61082831627f6",
+    "tools/stage2.py": "a59c9ecdf615b3cc59c0d47058c7555763d63d4bb2ee8f2ccd885220db7716d3"
+  },
+  "report_status": "final"
+}

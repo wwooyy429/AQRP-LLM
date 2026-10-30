@@ -1,0 +1,14 @@
+ae2b898独立复验：WR-16、WR-17在原及本轮已测范围修复后通过；新增WR-18/P2，当前阶段2候选软件失败，阶段2整体仍待验收。
+固定SHA：ae2b8985f3799c246e90341370f86d80483f63ed
+WR18：共享Registry的已验证Research依赖校验弱于Bridge。提交input_hash=d而completion=e、空raw_receipt、无submission这3类同观测均被Bridge拒绝；经公开Registry.complete形成canonical/hash自洽结果后，LEAN却获should_execute=true且预算0→1。合法匹配完成仍能准入。无原journal篡改、远程签名攻击或真实LEAN执行，总预算及2/2/2 cap仍有效。
+修复应在同一LOCK内核对原提交及引用、完整deployment含input_hash和非空原回执，复用不重入锁的纯完成合同校验；保留合法链/重试/幂等。
+原2完整MRE原字节：old8f各exit1，ae各exit0。原7方法全过。旧短inline Registry仍exit1，原因是新增RegistryError安全早拒绝未被旧脚本捕获，不是原非法准入断言失败；原输出未改。
+本地442通过；16组历史248方法/2307子例、旧Collection12/36、注解10/803、联合worker9/81全部通过。
+新共享准入9方法6过3失败/4子例；WR17新5方法46子例全过，72实际隔离CLI+12函数子进程；追加原6方法与完整原7重叠，不合计独有测试。完整WR18 MRE由主代理重放3负1正并另写短主例/合法正控，两次exit1不算通过方法。
+补充4个失败结算手工场景通过，28隔离CLI、6次合成metadata_finish、worker0，不是4个额外单元方法，也不是真实原生失败证据。
+350+14=364元数据/哈希/ZIP/身份检查通过，0unit方法；两build/两preview通过，1843源码与权威账本未改。65份开发原始输出和旧8f完整归档/最终3328清单及ZIP核验。开发WR17基线错误不冒称审核器错误。
+主代理本轮实际读取25份已知云端实现raw等Git75/cloud，另1任务输入raw等已准入归档；26份匹配各自历史基线。目录只列18py，其余8份虽能逐个读，不认证全集。未读notebook/任何回测状态、结果、日志，未编译、更新、部署或派发。
+旧LEAN39cafa...仍只有pending归档，当前完成/失败未知，不能称现在仍在运行。新候选尚无真实运行验收证据。
+12事件重放预算配置6/12、Research9/20、LEAN1/16，工程各用1/2；本轮真实执行/模型/预算变更0。2024–2025暴露保留、2026独立性未知，正式研究/GPT自动/最终测试/交易关闭。
+完整矩阵、环境、命令、问题触发/实际/预期/范围/修复/回归及缺口见formal_report.json。阶段0/1原离线范围保持；阶段3–7未验收；数据认证false、financial_evidence=false。
+可运行短主例：python -B minimal_wr18.py source（当前exit1）；完整自包含三负一正：python -B root_confirmation/minimal_checked_dependency.py source（当前exit1）。仅内存合成，未修改/批准/合并开发成果。

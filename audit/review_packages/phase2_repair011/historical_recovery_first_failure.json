@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "actual_read_only_historical_plan_compatibility_failure",
+  "source_manifest_hash_at_observation": "8bd52ade70be0efbda6e60a54078bce85424959e89cad5b538229c74ccd9750d",
+  "full_suite_at_that_source": {"tests": 1074, "passed": true},
+  "input": "audit/runtime/engineering/frozen-plans/6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b.json",
+  "operation": "EngineeringTaskPlan.from_dict(original_frozen_plan, discovered_project_ids=[38436695])",
+  "exit_code": 1,
+  "actual_exception": "qresearch.collection.CollectionError: Invalid explicit stable collection storage policy",
+  "failure_path": [
+    "EngineeringTaskPlan.from_dict",
+    "engineering_storage.validate_storage_policy",
+    "StableCollectionCache.__init__",
+    "collection_storage.validate_storage_policy"
+  ],
+  "explanation": "Historical metadata parsing incorrectly compares the original5ef contract to the current0f01 contract, preventing recovery rather than only preventing a new cache execution",
+  "desired_boundary": "Recover and settle original immutable task metadata under its admitted contract; reject new admission, fetch and cache reuse under an obsolete runtime contract",
+  "original_terminal_status_not_inferred": true,
+  "real_registry_mutations": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "cloud_calls": 0,
+  "financial_evidence": false,
+  "independent_WR_number": null,
+  "original_traceback_reference": "actual exec_command output in this turn; no fabricated raw stream"
+}

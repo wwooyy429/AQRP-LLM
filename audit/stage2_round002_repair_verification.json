@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "kind": "developer_pre_dispatch_repair_synthetic_verification",
+  "runs": [
+    {
+      "command": "python -B tools/research.py build",
+      "exit_code": 0,
+      "seconds": 0.297,
+      "stdout": "repair_build.stdout",
+      "stderr": "repair_build.stderr"
+    },
+    {
+      "command": "python -B tools/stages.py verify",
+      "exit_code": 0,
+      "seconds": 169.64,
+      "stdout": "repair_verify.stdout",
+      "stderr": "repair_verify.stderr"
+    }
+  ],
+  "source_hash": "7e6f6afee9cd169018525bdd00ba1ea647753175ab3d124c7f7dcf7e30f09d37",
+  "test_output": "----------------------------------------------------------------------\nRan 703 tests in 167.664s\n\nOK\n",
+  "all_existing_runtime_bytes_unchanged_during_check": true,
+  "usage_during_check": {
+    "configurations": {
+      "total": 8,
+      "normal": 6,
+      "reserve": 2
+    },
+    "research": {
+      "total": 11,
+      "normal": 6,
+      "reserve": 5
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "independent_acceptance": false,
+  "real_Research_executions_in_this_check": 0,
+  "real_LEAN_submissions_in_this_check": 0,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

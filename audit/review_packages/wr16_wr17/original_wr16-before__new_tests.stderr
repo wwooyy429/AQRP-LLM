@@ -1,0 +1,110 @@
+test_completed_native_shaped_result_enables_one_direct_lean (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... ok
+test_direct_lean_requires_verified_same_plan_research (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... test_direct_wrong_operation_cannot_charge_or_return_another_claim (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... FAIL
+test_lean_zero_retry_bound_is_stage_specific_and_not_a_second_charge (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... FAIL
+test_legal_single_retry_and_concurrent_idempotent_reuse (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... ok
+test_zero_retries_rejected_at_direct_transaction_before_debit (test_wr16_registry_admission.WR16RegistryAdmissionTests) ... FAIL
+
+======================================================================
+FAIL: test_direct_lean_requires_verified_same_plan_research (test_wr16_registry_admission.WR16RegistryAdmissionTests) (state='absent')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 73, in test_direct_lean_requires_verified_same_plan_research
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_lean_requires_verified_same_plan_research (test_wr16_registry_admission.WR16RegistryAdmissionTests) (state='failed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 73, in test_direct_lean_requires_verified_same_plan_research
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_lean_requires_verified_same_plan_research (test_wr16_registry_admission.WR16RegistryAdmissionTests) (state='generic_completed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 73, in test_direct_lean_requires_verified_same_plan_research
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_lean_requires_verified_same_plan_research (test_wr16_registry_admission.WR16RegistryAdmissionTests) (state='wrong_identity_completed')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 73, in test_direct_lean_requires_verified_same_plan_research
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_wrong_operation_cannot_charge_or_return_another_claim (test_wr16_registry_admission.WR16RegistryAdmissionTests) (stage='research', operation='default')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 51, in test_direct_wrong_operation_cannot_charge_or_return_another_claim
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_wrong_operation_cannot_charge_or_return_another_claim (test_wr16_registry_admission.WR16RegistryAdmissionTests) (stage='research', operation='unregistered')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 51, in test_direct_wrong_operation_cannot_charge_or_return_another_claim
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_wrong_operation_cannot_charge_or_return_another_claim (test_wr16_registry_admission.WR16RegistryAdmissionTests) (stage='lean', operation='unregistered')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 51, in test_direct_wrong_operation_cannot_charge_or_return_another_claim
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_direct_wrong_operation_cannot_charge_or_return_another_claim (test_wr16_registry_admission.WR16RegistryAdmissionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 55, in test_direct_wrong_operation_cannot_charge_or_return_another_claim
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_lean_zero_retry_bound_is_stage_specific_and_not_a_second_charge (test_wr16_registry_admission.WR16RegistryAdmissionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 126, in test_lean_zero_retry_bound_is_stage_specific_and_not_a_second_charge
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+======================================================================
+FAIL: test_zero_retries_rejected_at_direct_transaction_before_debit (test_wr16_registry_admission.WR16RegistryAdmissionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 82, in test_zero_retries_rejected_at_direct_transaction_before_debit
+    self.reject_without_write(store, registry, lambda: registry.begin_attempt(
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr16_registry_admission.py", line 41, in reject_without_write
+    with self.assertRaises(RegistryError):
+AssertionError: RegistryError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.074s
+
+FAILED (failures=10)

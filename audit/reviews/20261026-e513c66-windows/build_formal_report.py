@@ -1,0 +1,146 @@
+from pathlib import Path
+import hashlib, importlib.metadata as metadata, json, platform, sys
+import numpy as np
+R=Path(__file__).parent
+def read(name): return json.loads((R/name).read_text(encoding='utf-8'))
+def write(name,data): (R/name).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ev=read('evidence_agent/delivery_evidence_report.json')
+sha='e513c66e5965133fbe83fb0ab987eae853f96260'
+environment={'os':platform.platform(),'python':platform.python_version(),'python_executable':sys.executable,
+    'dependencies':{x:metadata.version(x) for x in ['numpy','pandas','python-dateutil','pytz','six','tzdata']},
+    'longdouble_nmant':int(np.finfo(np.longdouble).nmant),'blas_threads_for_main_replays':1,'real_AlgorithmImports_executed':False}
+write('environment.json',environment)
+rows=[('repository_verify',376,376,0,0,0,None),('archived_compatibility',12,12,0,0,0,22),
+    ('archived_pearson',10,10,0,0,0,896),('archived_numeric',16,16,0,0,0,84),
+    ('archived_atomic',19,19,0,0,0,9),('previous_adapted_56',56,56,0,0,0,25),
+    ('d0_summary',11,11,0,0,0,716),('d0_compatibility',8,8,0,0,0,16),
+    ('fbe_source',8,8,0,0,0,73),('fbe_boundary',3,3,0,0,0,3),('fbe_collection',19,19,0,0,0,31),
+    ('7bf_dates',9,9,0,0,0,27),('7bf_intervals',12,12,0,0,0,75),
+    ('new_admission',24,24,0,0,0,36),('new_receipts_first',14,13,1,0,0,54)]
+tests=[dict(zip(['id','methods','passed','failed','errors','skipped','subcases'],row),actually_executed=True) for row in rows]
+stages=[
+ {'stage':0,'modules':'章程、身份、源码清单、Registry预算及状态','implementation':'原范围已实现；新增共享额度路径已实现','evidence':'376仓库、既有回归、24/36准入及381项审计检查','blockers':[],'status':'通过','scope':'原验收范围和本轮共享准入范围；不扩大到阶段2回执'},
+ {'stage':1,'modules':'字段/算子、标签、模型、数值与时间','implementation':'原范围已实现','evidence':'既有12/10/16/19/56及d0回归实际通过','blockers':[],'status':'修复后通过','scope':'既有离线范围与既有数值精度边界'},
+ {'stage':2,'modules':'历史源、缓存、采集任务、输入、worker、回执、CLI','implementation':'离线路径已实现；新版实际平台运行和数据认证未完成','evidence':'新增24/36通过；回执14/54有1失败方法、2失败记录；完整链和CLI复现','blockers':['WR-11','WR-12','新版真实运行与失败回执证据缺失','旧LEAN无已交付终态','历史US200及财务时点未认证'],'status':'失败','scope':'新增已实现任务桥失败；整阶段仍未验收'},
+ {'stage':3,'modules':'Research评价、滚动验证、风险与增量','implementation':'部分离线统计基础','evidence':'基础数值回归；无完整真实研究链','blockers':['真实Research评价及滚动证据缺失'],'status':'未验收','scope':'接口或局部计算不构成整阶段通过'},
+ {'stage':4,'modules':'LEAN组合、订单、成交、现金、净值和成本','implementation':'工程宿主/提交基础','evidence':'旧无订单工程任务归档pending','blockers':['完整组合交易对账和终态证据缺失'],'status':'未验收','scope':'工程宿主不等于交易验证'},
+ {'stage':5,'modules':'GPT受限生成和调用闭环','implementation':'受限协议基础；自动调用关闭','evidence':'静态配置与安全拒绝路径','blockers':['具体模型、次数与费用上限未配置；闭环未验收'],'status':'未验收','scope':'本轮模型调用0'},
+ {'stage':6,'modules':'受限搜索、消融、组合增量','implementation':'完整链未交付','evidence':'无实际搜索和金融增量证据','blockers':['完整研究交付缺失'],'status':'未实现/未验收','scope':'不由前置接口自动通过'},
+ {'stage':7,'modules':'冻结、独立最终测试、前向运行','implementation':'最终测试关闭','evidence':'暴露记录及关闭门槛保持','blockers':['完整冻结与独立执行器缺失','2024–2025已暴露；2026独立性未知'],'status':'未验收','scope':'不打开最终数据'}]
+findings=[
+ {'id':'WR-11','priority':'P2','source_commit':sha,'file':'cloud/qresearch/engineering_receipts.py','lines':[92,93],
+  'title':'structuredContent优先返回，忽略并存content中的额外输出或错误',
+  'trigger':'同一原生形状回执含合法structuredContent及冲突content；新采集解析器调用共享_native',
+  'expected':'检查所有返回载体；等价双表示可接受，额外行、display或错误应拒绝完成认证',
+  'actual':'完整prepare→worker→CLI→Registry链中3种冲突均completed，并认证stdout_only=true、marker_count=1、market_values_exported=false；2种合法对照completed',
+  'impact':'回执认证和终态不可信；属继承共享函数，在本轮新路径复现。合成行sentinel未写入Registry，未发现实际市场行泄漏',
+  'minimal_reproduction':'python -B minimal_parallel_carrier.py source；完整链：receipt_agent/minimal_parallel_output.py --source source --out result.json；均exit1',
+  'fix':'对全部载体解码并核对语义、输出和错误；保留合法等价双表示，拒绝冲突；不要只丢弃另一载体',
+  'regression':'单载体、等价双载体、额外text/display/error、顶层错误；完整链不得错误completed',
+  'evidence_level':['E1','E2'],'introduced_by_this_commit':False},
+ {'id':'WR-12','priority':'P2','source_commit':sha,'file':'tools/collection_task_cli.py','lines':[52,57,63,102,119,123],
+  'title':'旧attempt回执结算依赖当前计划指针和当前字段目录',
+  'trigger':'A已register/claim/prepare后冻结B，或只改变当前字段目录，再用research-result消费A的有效已交付回执',
+  'expected':'按attempt持久化的原始冻结计划、目录和admitted-input结算，不要求当前计划仍为A',
+  'actual':'两种场景分别抛Attempt does not belong...或Source identity and selected trusted catalog...；旧attempt仍started。相同回执在保留的原冻结Bridge完成',
+  'impact':'标准CLI恢复路径失效并保留项目占用；API原冻结上下文可恢复，不能宣称永久丢失或全局死锁。合成账本始终7/10/1，真实6/9/1未变',
+  'minimal_reproduction':'python -B minimal_cli_switch.py source pointer；python -B minimal_cli_switch.py source catalog；均exit1，正向对照completed',
+  'fix':'结果/旧状态/已准入输入按attempt解析持久化冻结上下文；新register/claim继续校验当前源码；不退款、不清除旧占用或历史',
+  'regression':'A→冻结B→A结算、目录变更→旧回执、重启、错误attempt/输入/回执拒绝、无新增扣费',
+  'evidence_level':['E1','E2'],'introduced_by_this_commit':True}]
+D={'review_id':'AQRP-20261026-E513C66-WINDOWS-07','reviewed_source_commit':sha,
+ 'baseline_commit':'7bf716f45fd6183951a492f0201012af717070f0',
+ 'evidence_commits':{'historical_runtime':'75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4','historical_execution_archive':'1f7c0c0ab4640a825fd317684f854158ad5d2193','current_delivery':sha},
+ 'source_manifest_hash':ev['source_manifest']['hash'],'source_manifest_files':105,'git_files_verified':608,
+ 'execution_source_manifest_hash':ev['execution_source_manifest']['hash'],
+ 'deployment_hash':ev['deployment']['local_candidate_hash'],'deployment_hash_scope':'本地29份源码候选；未部署运行',
+ 'environment':environment,'tool_capabilities':{'GitHub':'只读PR/CI/固定Git源码','QuantConnect':'先list_projects，再只读38436695源码；不读取notebook或待终态任务','offline':'原生Windows合成、并发、独立进程和故障注入','write_scope':'独立审核临时区和新报告；无开发/生产修改'},
+ 'stage_results':stages,
+ 'tests':{'actually_executed':True,'suites':tests,'counts_are_overlapping_not_unique':True,'receipt_first_failure_records':2,
+   'additional_probes':{'receipt_full_chain':{'variants':5,'positive_passed':2,'false_acceptances':3,'root_replay_same_result':True},'adapter_recovery':{'probes':3,'passed':3},'CLI_reconciliation':{'cases':2,'CLI_rejected_valid_old_receipt':2,'original_context_completed':2,'compact_replays_same_result':True},'carrier_boundary_MRE':{'cases':1,'incorrectly_accepted':1}},
+   'audit_checks':{'checks':381,'passed':381,'failed':0,'unit_methods':0},'isolated_builds':{'executed':2,'exit_codes':[0,0],'all_608_raw_files_unchanged':True},
+   'command_logs':['runs/execution_records.json','admission_agent/review_report.json','receipt_agent/command_log.json','cli_agent/command_log.json','root_probe_execution.json'],
+   'harness_notes':'首次CLI测量脚本有2个list索引TypeError，原件保留；仅改为真实_record读取后复现WR-12。原样56历史50/3/3不冒称通过；认可适配56单列。归档脚本的历史SHA字面量不作为本轮执行身份'},
+ 'findings':findings,
+ 'budget_replay':dict(ev['budget_replay'],new_real_configurations=0,new_real_Research=0,new_real_LEAN=0,new_model_calls=0,authoritative_files_unchanged=True),
+ 'platform_evidence_level':{'E1':'静态、哈希、AST和固定SDK合同','E2':'审核者实际合成执行；无真实AlgorithmImports','E3':'既有开发归档原生证据离线重解析','E4':'本轮只读QC源码和GitHub元数据','E5':None},
+ 'platform_state':{'current_cloud_source_commit':'75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4','cloud_deployment_hash':'dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6','cloud_py_files':25,'candidate_differing_paths':11,'candidate_actual_runtime_verified':False,'old_lean_external_id':'39cafa1e9b11f91b27e396b66d033a6d','old_lean_archived_status':'pending','old_lean_current_terminal':None,'polled_pending_lean':False,'PR2_draft':True,'CI_success_run_ids':[40336438915,40336424884]},
+ 'historical_findings':{'WR-01_to_WR-10':'既有记录和各自通过范围保留；本轮对应离线回归通过；不覆盖原失败','WR-04':'24/36含混合任务与独立进程竞争通过','WR-08_precision_limit':'保留原普通精度/取消误差边界，不泛化纯相对误差','WR-09_WR-10':'9/27与12/75通过；Daily/Python微秒合同范围'},
+ 'unverified':['新版云端真实部署/输入读回/运行','真实成功与完整失败回执','旧LEAN已交付终态','完整历史US200、SID/分类/公司行动、财务修订及公开/实际送达/摄入时点','完整阶段3–7','2026独立性','具体GPT模型及调用次数/费用上限','Linux原生执行'],
+ 'software_acceptance':{'overall':'failed','new_collection_bridge':'failed','blocking_findings':['WR-11','WR-12'],'shared_budget_tested_scope':'passed','stage0_1_prior_scope':'retained','whole_system':'not_accepted'},
+ 'data_certification':{'historical_US200':False,'financial_vintages':False,'actual_availability':False,'final_2024_2025_previously_exposed':True,'independence_2026':None,'final_test_enabled':False},
+ 'financial_evidence':False}
+if (R/'portable_summary.json').exists():
+    D['tests']['portable_package_replay']={'actually_executed':True,'unexpected_exit_records':read('portable_summary.json')['unexpected_exit_records'],'software_result':'failed_WR11_WR12','counts_are_replays':True}
+write('formal_report.json',D)
+root_commands=[{'command':[sys.executable,'-B','receipt_agent/minimal_parallel_output.py','--source','source','--out','root_parallel_output.json'],'exit_code':1,'tool_chunk_id':'28210b','purpose':'root独立重放5变体，3误接受'},
+ {'command':[sys.executable,'-B','minimal_parallel_carrier.py','source'],'exit_code':1,'tool_chunk_id':'f31c6c'},
+ *[{'command':[sys.executable,'-B','minimal_cli_switch.py','source',case],'exit_code':1,'tool_chunk_id':'0c4165'} for case in ['pointer','catalog']]]
+write('root_probe_execution.json',root_commands)
+text=f'''AQRP-LLM 独立审核正式报告
+审核编号：{D['review_id']}
+固定源码：{sha}
+比较基线：{D['baseline_commit']}
+
+总体结论：新增采集预算/调度桥的软件验收失败，确认WR-11/P2和WR-12/P2；阶段2不能通过。共享预算/项目占用准入本轮测试通过，阶段0/1既有验收范围及WR-01～10既有结论保留。全系统未验收，financial_evidence=false。
+证据范围：E1静态/哈希/AST；E2审核者本轮原生Windows实际合成执行；E3开发者归档平台JSON离线重解析；E4审核者只读QC源码及GitHub PR/CI元数据；无E5独立金融证据。没有修改开发者源码、生产配置、预算或既有档案；未提交/推送/批准/合并PR，无新增Research、LEAN、模型、交易、部署，不读待终态LEAN日志、不打开最终数据。
+
+全系统覆盖矩阵
+'''
+for s in stages:text+=f"阶段{s['stage']} | {s['modules']} | {s['implementation']} | {s['evidence']} | 阻断：{s['blockers']} | {s['status']}；范围：{s['scope']}\n"
+text+='\n按优先级排列的问题\n'
+for f in findings:
+ text+=f"\n{f['id']} / {f['priority']} {f['title']}\n源码：{sha}；{f['file']} 行{f['lines']}。\n触发：{f['trigger']}。\n预期：{f['expected']}。\n实际：{f['actual']}。\n影响和定级：{f['impact']}。\n复现：{f['minimal_reproduction']}\n最小修复：{f['fix']}。\n回归：{f['regression']}。证据：{f['evidence_level']}。\n"
+text+='''
+WR-11在collection_execution.py:140被认证stdout_only，根因engineering_receipts.py:92–93共享逻辑与7bf字节相同，不能声称本提交首次引入。错误内容只保存原生response摘要；全部测试行合成，sentinel不在Registry。
+WR-12在collection_task_cli.py:52覆盖单一current指针，57–63用当前catalog重建，102与119–123用其结算旧attempt。两个独立场景均在标准CLI拒绝旧有效回执，原冻结上下文同回执完成且无新扣费；不能夸大为所有API永久死锁。
+
+实际执行记录（重叠重放，不累计成独有测试；方法/子例分开）
+'''
+for t in tests:text+=f"{t['id']}: 方法{t['methods']}，通过{t['passed']}，失败{t['failed']}，错误{t['errors']}，跳过{t['skipped']}，子例{t['subcases']}。\n"
+text+='''
+新增回执首次失败归属1个方法、2条子例失败；14方法不是54方法。完整链5变体中2正例通过、3负例错误接受，root逐字节重放同结果，不加为10个独有变体。adapter真实合成callback恢复3/3通过。CLI两个完整独立场景均exit1，原冻结上下文均completed；精简脚本再重放结论相同。计数脚本中首次list索引TypeError共2次，完整原件与单行测量修正保留，不计作产品缺陷。381项哈希/AST/JSON检查全部通过，单元方法0。两次隔离build exit0，608文件无变，不计单元测试。
+认可适配56只捕获预期BudgetExceeded并要求一赢一拒绝，原样历史56的50通过/3失败/3错误及旧修复记录保留。既有原类或main重放范围、源码路径与历史SHA字面量见原始执行记录，不冒称在旧机器或Linux执行。
+
+实际命令
+python -B tools/stages.py verify（只在runs/repository_source独立副本）
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_compatibility --suite compatibility
+python -B source/docs/review/wr08/replay.py --source-dir source --output-dir runs/archived_pearson --suite pearson
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_numeric --suite numeric
+python -B source/docs/review/wr07/replay.py --source-dir source --output-dir runs/archived_atomic --suite atomic
+python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/previous_adapted_56 --mode adapted
+历史d0类用replay_public_class.py；fbe与7bf日期原main用replay_archived_script.py；7bf区间原main指定--source。所有全参数/解释器/cwd/退出码在runs/execution_records.json，13条全部exit0。
+python -B admission_agent/independent_admission.py
+python -B receipt_agent/independent_receipts.py --source source --out receipt_agent
+python -B receipt_agent/minimal_parallel_output.py --source source --out root_parallel_output.json
+python -B receipt_agent/adapter_recovery.py --source source --out receipt_agent/adapter_recovery.json
+python -B root_cli_reconciliation.py pointer / catalog（两次命令分别执行，详cli_agent/command_log.json）
+python -B minimal_cli_switch.py source pointer
+python -B minimal_cli_switch.py source catalog
+python -B minimal_parallel_carrier.py source
+主回放和子代理原始命令/输出已归档。审计环境Windows-10-10.0.26300-SP0、Python3.10.11、numpy1.26.4、pandas2.3.3、python-dateutil2.9.0.post0、pytz2026.1.post1、six1.17.0、tzdata2026.2；具体以environment.json实际查询为准。longdouble尾数52位；未执行真实AlgorithmImports。独立测试不依赖开发者测试夹具作唯一数据来源。
+
+版本、部署、预算和数据核对
+'''
+text+=f"608份Git文件逐字节匹配；105源码审核hash {D['source_manifest_hash']}。执行身份hash {D['execution_source_manifest_hash']}，仅排除budget.usage；104其他文件、45策略叶变更/删除及新增策略键都会改变执行身份，3次仅usage变更不改变执行身份但改变完整审核身份。两者不混淆。\n29份本地候选部署hash {D['deployment_hash']}；配置hash {ev['deployment']['configuration_hash']}；本地构建不是云端编译/部署/运行。\n"
+text+='''
+本轮先list_projects再只读38436695项目.py，排除notebook。25份云端源码仍匹配75f24629，云部署hash dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6；相对候选11路径不同。旧input SHA95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0仍绑定bfd00f2611fd4496b9498d4597618a8e，不能作为新版实际输入读回证据。
+12个事件和37个保护文件、历史139+4原件、更早312证据文件及20份固定官方SDK合同不变。预算配置6/12（正常6预留0）、Research9/20（正常6预留3）、LEAN1/16（正常1预留0）。本轮实际新增三类预算和模型调用均0；测试副本7/10/1及失败重试计数均是合成，不写真实账本。早期汇总起点只按历史aggregate重放，不冒称所有早期行为逐项核验。
+旧LEAN39cafa1e9b11f91b27e396b66d033a6d只归档pending，当前终态null；未轮询或读日志。PR1/2读取时均open、draft、unmerged；PR2 base6a1edbf、head固定e513；CI40336438915/40336424884同提交success，不替代独立验收。
+2024–2025已有暴露；2026独立性null。具体GPT模型、调用次数和费用限额未配置，自动市场/模型/最终测试/交易门槛保持关闭。历史US200、财务版本及公开/实际送达/摄入时点未认证。LEAN end_time不被解释为真实供应商送达。
+
+未验证和下一步修复
+先修WR-11所有载体一致性、WR-12旧attempt冻结上下文恢复，交付新SHA并保留本轮失败，独立复审时同时验证合法路径、上下游和无新扣费。其后依原授权取得新版真实部署/输入、成功及完整失败回执、旧LEAN已交付终态和完整数据认证；本报告不授权新增真实执行。阶段3–7各自仍需完整交付验收。不能由376项仓库或共享预算通过推断无人值守真实研究能力或金融有效性。
+
+可运行最小复现（先安装requirements-audit.txt，Python3.10；源目录为本包source）
+WR-11载体边界：
+'''
+text+=(R/'minimal_parallel_carrier.py').read_text(encoding='utf-8')
+text+='\nWR-12完整合成CLI链：\n'+(R/'minimal_cli_switch.py').read_text(encoding='utf-8')
+text+='\n完整机器可读JSON\n'+json.dumps(D,ensure_ascii=False,indent=2)+'\n'
+# Avoid any stale hand-typed package version: the measured environment is authoritative.
+start=text.index('审计环境Windows-10-10.0.26300-SP0、')
+end=text.index('longdouble尾数52位；',start)
+text=text[:start]+'审计环境：'+json.dumps(environment,ensure_ascii=False)+'。'+text[end:]
+(R/'formal_report.txt').write_text(text,encoding='utf-8')
+print(json.dumps({'report':D['review_id'],'findings':[f['id'] for f in findings],'tests':len(tests),'overall':D['software_acceptance']['overall']},ensure_ascii=False))

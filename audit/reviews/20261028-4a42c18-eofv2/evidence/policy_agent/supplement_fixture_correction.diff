@@ -1,0 +1,10 @@
+--- diagnostic_supplement.py
++++ diagnostic_supplement_corrected.py
+@@ -34,6 +34,6 @@
+      fmt=d['worker_observation']['source_format'];self.assertEqual(fmt['raw_sha256'],H(actual));self.assertEqual(fmt['byte_count'],len(actual));self.assertIs(d['worker_observation']['strict_identity_relaxed'],False)
+      self.assertEqual(fmt['normalized_trailing_lf_count'],2 if label=='lf'else None)
+  def test_legacy_worker_adds_no_v2_AST_size_or_EOF_constraints(self):
+-  for label,raw in [('invalidsyntax',b'VALUE ='),('nul',b'\x00'),('EOF65',b'VALUE=7'+b'\n'*65),('bytesover2MiB',b'#'+b'x'*(2*1024*1024))]:
++  for label,raw in [('invalidsyntax',b'VALUE ='),('zero-byte-source',b'\x00'),('EOF65',b'VALUE=7'+b'\n'*65),('bytesover2MiB',b'#'+b'x'*(2*1024*1024))]:
+    cases.append('legacy-unrestricted/'+label);root=self.root(label,raw);manifest={'a.py':H(raw)};digest=content_hash(manifest);self.assertEqual(verify_deployment(manifest,digest,source_root=root),digest);self.assertIsNone(verify_deployment_observation(manifest,digest,source_root=root))
+ stream=io.StringIO();t=time.monotonic();result=unittest.TextTestRunner(stream=stream,verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Tests));doc={'methods':result.testsRun,'named_scenarios':len(cases),'scenario_labels':cases,'failure_records':len(result.failures),'error_records':len(result.errors),'skipped':len(result.skipped),'success':result.wasSuccessful(),'source_raw_unchanged':before==snap(),'source_files':len(before),'seconds':time.monotonic()-t,'failures':[{'test':str(t),'traceback':s}for t,s in result.failures],'errors':[{'test':str(t),'traceback':s}for t,s in result.errors]};(O/'unittest.txt').write_text(stream.getvalue(),encoding='utf-8');(O/'results.json').write_text(json.dumps(doc,indent=2)+'\n',encoding='utf-8');print(json.dumps({k:v for k,v in doc.items()if k not in ['scenario_labels','failures','errors']}));print(stream.getvalue());raise SystemExit(int(not result.wasSuccessful()or not doc['source_raw_unchanged']))

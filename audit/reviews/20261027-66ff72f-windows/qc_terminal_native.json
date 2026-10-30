@@ -1,0 +1,24 @@
+{
+  "tool_name": "mcp__quantconnect__read_backtest",
+  "arguments": {
+    "projectId": 38436695,
+    "backtestId": "39cafa1e9b11f91b27e396b66d033a6d"
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":false,\"errors\":[\"The backtest ended with a runtime error.\",\"1998-01-01 00:00:00 During the algorithm initialization, the following exception has occurred: Cloud implementation differs from the frozen deployment\\n  at verify_deployment\\n    raise ValueError(&quot;Cloud implementation differs from the frozen deployment&quot;)\\n in engineering_data.py: line 84\\n  at _context\\n    verify_deployment(payload.get(&quot;deployment_manifest&quot;), document[&quot;deployment_hash&quot;], source_root=source_root)\\n in engineering_data.py: line 110\\n  at initialize_receiver\\n    plan, document, identity = _context(payload, &quot;lean&quot;)\\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^\\n in engineering_data.py: line 324\\n  at initialize\\n    initialize_receiver(self, payload)\\n in main.py: line 21\\n Cloud implementation differs from the frozen deployment\",\"Cloud implementation differs from the frozen deployment\\n  at verify_deployment\\n    raise ValueError(\\\"Cloud implementation differs from the frozen deployment\\\")\\n in engineering_data.py: line 84\\n  at _context\\n    verify_deployment(payload.get(\\\"deployment_manifest\\\"), document[\\\"deployment_hash\\\"], source_root=source_root)\\n in engineering_data.py: line 110\\n  at initialize_receiver\\n    plan, document, identity = _context(payload, \\\"lean\\\")\\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^\\n in engineering_data.py: line 324\\n  at initialize\\n    initialize_receiver(self, payload)\\n in main.py: line 21\\n Cloud implementation differs from the frozen deployment\"]}"
+      }
+    ],
+    "structuredContent": {
+      "success": false,
+      "errors": [
+        "The backtest ended with a runtime error.",
+        "1998-01-01 00:00:00 During the algorithm initialization, the following exception has occurred: Cloud implementation differs from the frozen deployment\n  at verify_deployment\n    raise ValueError(&quot;Cloud implementation differs from the frozen deployment&quot;)\n in engineering_data.py: line 84\n  at _context\n    verify_deployment(payload.get(&quot;deployment_manifest&quot;), document[&quot;deployment_hash&quot;], source_root=source_root)\n in engineering_data.py: line 110\n  at initialize_receiver\n    plan, document, identity = _context(payload, &quot;lean&quot;)\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^\n in engineering_data.py: line 324\n  at initialize\n    initialize_receiver(self, payload)\n in main.py: line 21\n Cloud implementation differs from the frozen deployment",
+        "Cloud implementation differs from the frozen deployment\n  at verify_deployment\n    raise ValueError(\"Cloud implementation differs from the frozen deployment\")\n in engineering_data.py: line 84\n  at _context\n    verify_deployment(payload.get(\"deployment_manifest\"), document[\"deployment_hash\"], source_root=source_root)\n in engineering_data.py: line 110\n  at initialize_receiver\n    plan, document, identity = _context(payload, \"lean\")\n                               ^^^^^^^^^^^^^^^^^^^^^^^^^\n in engineering_data.py: line 324\n  at initialize\n    initialize_receiver(self, payload)\n in main.py: line 21\n Cloud implementation differs from the frozen deployment"
+      ]
+    },
+    "isError": true
+  }
+}

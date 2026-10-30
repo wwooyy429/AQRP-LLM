@@ -1,0 +1,72 @@
+{
+  "catalog_fields": 15,
+  "financial_numeric_catalog_count": 0,
+  "capabilities_cli": {
+    "schema_version": 1,
+    "kind": "data_certification_capabilities",
+    "catalog_hash": "3e731b5fb815e23002aa3a8d6b7fb14feba8c8a1e8ed3b23d1cc7219bedcffcb",
+    "observed_source_field_count": 15,
+    "declared_financial_value_field_count": 0,
+    "required_components": [
+      "exchange_calendar",
+      "historical_inventory_and_security_master",
+      "liquidity_20_session_US200",
+      "frozen_membership",
+      "raw_prices",
+      "corporate_actions",
+      "financial_vintages_and_publication",
+      "actual_delivery_and_ingestion"
+    ],
+    "gap_codes": [
+      "authoritative_all_market_inventory_receipt_not_supported",
+      "authenticated_vendor_revision_receipt_not_supported",
+      "authenticated_historical_delivery_and_ingestion_receipt_not_supported",
+      "authoritative_security_master_and_action_coverage_receipt_not_supported",
+      "financial_value_catalog_not_available"
+    ],
+    "full_historical_US200_certified": false,
+    "actual_availability_certified": false,
+    "financial_vintage_certified": false,
+    "research_certified": false,
+    "ready_to_dispatch": false,
+    "budget_admission_performed": false,
+    "financial_evidence": false
+  },
+  "canonical_cli_commands": [
+    "capabilities",
+    "validate-plan"
+  ],
+  "certification_computation_kernel": "Implemented bounded audit_data_certification and summarize_certification_scope; this is distinct from charged native-worker dispatch integration.",
+  "charged_certification_worker_native_bridge": "No canonical dispatch command; capabilities ready_to_dispatch=false and budget_admission_performed=false. Existing internal audit call only from scope-summary replay. Phase2 native certification task bridge remains missing.",
+  "direct_audit_calls_in_cloud_tools": [
+    {
+      "path": "cloud/qresearch/data_certification.py",
+      "line": 689
+    }
+  ],
+  "source_exact_line_evidence": {
+    "collection_occurrences_and_sequence": "cloud/qresearch/collection.py:303-331",
+    "collection_cache_revalidation": "cloud/qresearch/collection.py:372-421",
+    "collection_no_auto_retry": "cloud/qresearch/collection.py:445-482",
+    "native_DST_crop_and_retention": "cloud/qresearch/historical_source.py:273-318",
+    "native_physical_request_window": "cloud/qresearch/historical_source.py:131-151",
+    "v2_unique_converter_refusal": "cloud/qresearch/historical_source.py:340-343",
+    "unknown_actual_receipts_preserved": "cloud/qresearch/historical_source.py:365-370",
+    "unknown_PIT_refusal": "cloud/qresearch/ingestion.py:358-371",
+    "catalog_capability_numeric_role": "cloud/qresearch/data_certification.py:724-738",
+    "canonical_metadata_only_CLI": "tools/data_certification.py:14-33",
+    "ambiguity_documented": "docs/collection_observations.md:33-43"
+  },
+  "cited_source_raw_sha256": {
+    "cloud/qresearch/collection.py": "c7ff2d2852a40706a036feaba3488bee6552cfd564be75c16622ede38adba213",
+    "cloud/qresearch/historical_source.py": "f6e0d78c4aa841010c00682884333f9e8c45fd3f023a31f6286c123d305ea46b",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/data_certification.py": "4944b95b339060a60533226184e7838632c7de2a40dfed42795d778d8a05ff2b",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1",
+    "config/source_catalog.json": "209dd8cc968d5c8f87bdd7124c198eb61048dd8dbac9d48f205555302cd6479e",
+    "docs/collection_observations.md": "04b6d595ffc50ca8dd3e42a7a22f9ea590472299614552ed3615a3a9e2ab7b57"
+  },
+  "full_fixed_source_unchanged": true,
+  "full_fixed_source_files_checked": 5976,
+  "static_matrix_adds_unit_methods": 0
+}

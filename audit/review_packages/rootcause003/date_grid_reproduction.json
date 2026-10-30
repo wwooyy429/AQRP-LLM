@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "scope": "source_equivalent_synthetic_reproduction_only",
+  "SDK_executed": false,
+  "host_net10_runtime_or_SDK_available": false,
+  "market_data_requested": false,
+  "QC_tasks_submitted": 0,
+  "budget_ledger_modified": false,
+  "public_image": "quantconnect/research:18207",
+  "public_image_sourcelink_commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+  "cloud_binary_identity_not_certified": true,
+  "tests": 14,
+  "failures": 0,
+  "errors": 0,
+  "all_passed": true,
+  "frozen_window_count": 40,
+  "buggy_empty_windows_despite_permitted_synthetic_source_records": 40,
+  "representative_workday": {
+    "logical_window": [
+      "2018-01-09T00:00:00-05:00",
+      "2018-01-10T00:00:00-05:00"
+    ],
+    "request": [
+      "2018-01-08T23:59:59.999999",
+      "2018-01-09T23:59:59.999999"
+    ],
+    "enumerated_source_dates": [
+      "2018-01-09"
+    ],
+    "source_date_EndTime": "2018-01-10T00:00:00",
+    "accepted_EndTimes": []
+  },
+  "conclusion": "The one-day endpoint transformation is sufficient to produce empty results under standard US-equity hours and the documented Fundamental date+1 EndTime path, even when synthetic source files exist.",
+  "limits": [
+    "Equivalent algorithm, not loaded SDK execution.",
+    "No cloud request/header, exchange-hour override or binary-byte equality was certified.",
+    "No repaired cloud run or historical source delivery was tested.",
+    "Raw modeled EndTime is not a historical actual availability receipt."
+  ],
+  "verified_upstream_source_paths": [
+    "Common/Time.cs",
+    "Common/Data/HistoryRequest.cs",
+    "Common/Extensions.cs",
+    "Common/Securities/MarketHoursDatabase.cs",
+    "Common/Data/Fundamental/FundamentalUniverse.cs",
+    "Common/Data/Fundamental/Fundamental.cs",
+    "Common/Data/Fundamental/FineFundamental.cs",
+    "Common/Data/UniverseSelection/CoarseFundamental.cs",
+    "Common/Data/UniverseSelection/FundamentalUniverseFactory.cs",
+    "Common/Data/HistoryRequestFactory.cs",
+    "Algorithm/QCAlgorithm.History.cs",
+    "Research/QuantBook.cs",
+    "Engine/HistoricalData/SubscriptionDataReaderHistoryProvider.cs"
+  ],
+  "evidence_sha256": "7c56fc2623cd8a676e78d9a5b3cae17e390e1062ca1702840ca50f4646104a95",
+  "program_sha256": "e41b975bdae93a37cf8ad4876f183efa4222cfd1c43ef4b2badf8d60d0b35f7d",
+  "global_usage_preserved": {
+    "configurations": 9,
+    "research": 12,
+    "lean": 1
+  },
+  "final_test_enabled": false
+}

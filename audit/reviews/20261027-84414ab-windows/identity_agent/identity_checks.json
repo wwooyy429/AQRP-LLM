@@ -1,0 +1,975 @@
+{
+  "baseline_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "candidate_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+  "unit_methods": 0,
+  "builds": 0,
+  "software_suite_runs": 0,
+  "QC_calls": 0,
+  "protected_groups": {
+    "cloud": {
+      "baseline_files": 29,
+      "candidate_files": 29,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "tools": {
+      "baseline_files": 5,
+      "candidate_files": 5,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "config": {
+      "baseline_files": 10,
+      "candidate_files": 10,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "templates": {
+      "baseline_files": 5,
+      "candidate_files": 5,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "tests": {
+      "baseline_files": 42,
+      "candidate_files": 42,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "requirements": {
+      "baseline_files": 1,
+      "candidate_files": 1,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "AGENTS": {
+      "baseline_files": 1,
+      "candidate_files": 1,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "authoritative_runtime": {
+      "baseline_files": 16,
+      "candidate_files": 16,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "deployment_manifest": {
+      "baseline_files": 1,
+      "candidate_files": 1,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "task_inputs": {
+      "baseline_files": 2,
+      "candidate_files": 2,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "cloud_deployment_evidence": {
+      "baseline_files": 1,
+      "candidate_files": 1,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    },
+    "existing_execution_evidence": {
+      "baseline_files": 2,
+      "candidate_files": 2,
+      "same_paths": true,
+      "all_bytes_equal": true,
+      "new_removed_changed": []
+    }
+  },
+  "identities": {
+    "baseline81": {
+      "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+      "source_manifest_hash": "1ab1923793d6d6507377d3676f7ccfc5c36ce3ca1fcc5708e68277f0f324cd4f",
+      "execution_manifest_hash": "461934d9a5d2e4e74dd7e1add47aba4170275f78f59383aa9c6dcf02a816b972",
+      "implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+      "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+      "deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+      "cloud_computed_deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+      "deployment_manifest_matches_cloud": true,
+      "archived_implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+      "archived_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+      "unit_methods": 0,
+      "build_invocations": 0,
+      "verify_invocations": 0,
+      "Registry_opens": 0,
+      "QC_calls": 0
+    },
+    "candidate844": {
+      "source_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source",
+      "source_manifest_hash": "3d6a236f3d492114a1178da5fe9d9e0b09788580344e2be9fd6df2eb65716a94",
+      "execution_manifest_hash": "432d7f42258336041c8f521addd4918294e89997bc2b00a89b8a7d03cb461926",
+      "implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+      "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+      "deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+      "cloud_computed_deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+      "deployment_manifest_matches_cloud": true,
+      "archived_implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+      "archived_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+      "unit_methods": 0,
+      "build_invocations": 0,
+      "verify_invocations": 0,
+      "Registry_opens": 0,
+      "QC_calls": 0
+    }
+  },
+  "source_manifest_changed_paths": [
+    ".gitattributes",
+    "docs/review/wr18.md",
+    "docs/review/wr19.md"
+  ],
+  "execution_manifest_changed_paths": [
+    ".gitattributes",
+    "docs/review/wr18.md",
+    "docs/review/wr19.md"
+  ],
+  "full_diff_summary": {
+    "baseline_files": 2374,
+    "candidate_files": 2890,
+    "added_nonarchive": [
+      "audit/81fbe52_review_archive_check.json",
+      "docs/review/wr19.md"
+    ],
+    "removed_nonarchive": [],
+    "changed_nonarchive": [
+      ".gitattributes",
+      "README.md",
+      "audit/review_tracking.json",
+      "audit/stage2_current_readiness.json",
+      "audit/stage_verification.json",
+      "docs/review/wr18.md"
+    ]
+  },
+  "all_changed_existing_files": [
+    ".gitattributes",
+    "README.md",
+    "audit/review_tracking.json",
+    "audit/stage2_current_readiness.json",
+    "audit/stage_verification.json",
+    "docs/review/wr18.md"
+  ],
+  "removed_files": [],
+  "archive_added_files": 514,
+  "metadata_checks": 148,
+  "passed_checks": 148,
+  "failed_checks": 0,
+  "checks": [
+    {
+      "name": "cloud_path_set_unchanged",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/engineering_smoke.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/main.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/__init__.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/artifacts.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/audits.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/cache.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/collection.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/collection_execution.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/collection_tasks.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/contracts.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/coverage.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/engineering_data.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/engineering_receipts.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/engineering_tasks.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/evaluation.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/factors.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/historical_source.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/ingestion.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/labels.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/models.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/pipeline.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/point_in_time.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/quantconnect.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/registry.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/runtime.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/study.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/universe.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/qresearch/workflow.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "rawbytes:cloud/research_config.py",
+      "passed": true,
+      "scope": "cloud"
+    },
+    {
+      "name": "tools_path_set_unchanged",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "rawbytes:tools/collection_task_cli.py",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "rawbytes:tools/research.py",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "rawbytes:tools/stage2.py",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "rawbytes:tools/stage2_collection.py",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "rawbytes:tools/stages.py",
+      "passed": true,
+      "scope": "tools"
+    },
+    {
+      "name": "config_path_set_unchanged",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/budget.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/data.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/development.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/engineering.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/engineering_joint_pilot.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/quantconnect.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/research.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/source_catalog.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/universe.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "rawbytes:config/workflow.json",
+      "passed": true,
+      "scope": "config"
+    },
+    {
+      "name": "templates_path_set_unchanged",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "rawbytes:templates/collection_task.json",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "rawbytes:templates/factor_spec.json",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "rawbytes:templates/historical_collection.json",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "rawbytes:templates/model_spec.json",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "rawbytes:templates/trading_spec.json",
+      "passed": true,
+      "scope": "templates"
+    },
+    {
+      "name": "tests_path_set_unchanged",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_audit_bridge.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_collection.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_collection_admission.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_collection_cli.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_collection_task_cli.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_collection_tasks.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_coverage.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_data_pipeline.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_engineering_data.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_engineering_receipts.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_engineering_tasks.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_factors.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_historical_source.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_ingestion.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_known_answers.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_labels_models.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_persistence.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_phase2_joint_boundaries.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_phase2_joint_plan.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_pipeline.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_quantconnect_adapter.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_runtime.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_runtime_binding.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_stage2_cli.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_study.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_p1_minimal.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr03_minimal.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr04_regression.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr05_regression.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr06_regression.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr07_regression.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_work_wr08_regression.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_workflow.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr09_missing_dates.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr10_history_intervals.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr11_carriers.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr12_attempt_recovery.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr13_annotations.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr14_fractional_annotations.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr16_registry_admission.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr17_engineering_recovery.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "rawbytes:tests/test_wr18_completion_dependency.py",
+      "passed": true,
+      "scope": "tests"
+    },
+    {
+      "name": "requirements_path_set_unchanged",
+      "passed": true,
+      "scope": "requirements"
+    },
+    {
+      "name": "rawbytes:requirements-test.txt",
+      "passed": true,
+      "scope": "requirements"
+    },
+    {
+      "name": "AGENTS_path_set_unchanged",
+      "passed": true,
+      "scope": "AGENTS"
+    },
+    {
+      "name": "rawbytes:AGENTS.md",
+      "passed": true,
+      "scope": "AGENTS"
+    },
+    {
+      "name": "authoritative_runtime_path_set_unchanged",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/configurations/272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/configurations/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/admitted-inputs/746bb41966c04fbcbe036148fa849f6e.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/admitted-inputs/bfd00f2611fd4496b9498d4597618a8e.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/evidence/746bb41966c04fbcbe036148fa849f6e/completion/c4376b45fc8f0979ca7c75af2ec616684d152d9ee101d6d8a3575b7ec03a87e3.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/evidence/746bb41966c04fbcbe036148fa849f6e/submission/7bbf464b2539abb00fa448308e67573ddcc79c3a494567dac8dd15dbcb3e6e1f.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/evidence/bfd00f2611fd4496b9498d4597618a8e/submission/56c2a5bce6a2b10f6fbf48a44ff7e1a25e50413ce8dc3029a6dc3d456f6efd1f.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/frozen-plans/f5c08d0b0a04427b1117f2cb47e9fbfabecaee5afcfa2cf361fdf41ef11e5489.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/project-listings/900fde744ff211527d114ff8453b5bf86d4f7aad7bc0af291c6387d1678f6428.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/submissions/746bb41966c04fbcbe036148fa849f6e.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/engineering/submissions/bfd00f2611fd4496b9498d4597618a8e.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/migration/authorized-configurations.jsonl",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/registry/baseline.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/registry/events.jsonl",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/results/272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94/research/b10d29a729b3e855696242f08ccfea8c2cab27093f4fa4e7f32d3dc16e94a42f.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "rawbytes:audit/runtime/results/dbef1bee88f59a64b0eb0597a68ad6dd1bbe20bd845918c65a2bac1cc1ddbd3f/research/ef44f8f739cb3f03793689753b77ebaf3329b87374955347cc5500d7f5f03622.json",
+      "passed": true,
+      "scope": "authoritative_runtime"
+    },
+    {
+      "name": "deployment_manifest_path_set_unchanged",
+      "passed": true,
+      "scope": "deployment_manifest"
+    },
+    {
+      "name": "rawbytes:audit/deployment.json",
+      "passed": true,
+      "scope": "deployment_manifest"
+    },
+    {
+      "name": "task_inputs_path_set_unchanged",
+      "passed": true,
+      "scope": "task_inputs"
+    },
+    {
+      "name": "rawbytes:audit/task_inputs/746bb41966c04fbcbe036148fa849f6e.py",
+      "passed": true,
+      "scope": "task_inputs"
+    },
+    {
+      "name": "rawbytes:audit/task_inputs/bfd00f2611fd4496b9498d4597618a8e.py",
+      "passed": true,
+      "scope": "task_inputs"
+    },
+    {
+      "name": "cloud_deployment_evidence_path_set_unchanged",
+      "passed": true,
+      "scope": "cloud_deployment_evidence"
+    },
+    {
+      "name": "rawbytes:audit/stage2_cloud_deployment.json",
+      "passed": true,
+      "scope": "cloud_deployment_evidence"
+    },
+    {
+      "name": "existing_execution_evidence_path_set_unchanged",
+      "passed": true,
+      "scope": "existing_execution_evidence"
+    },
+    {
+      "name": "rawbytes:audit/stage2_real_execution.json",
+      "passed": true,
+      "scope": "existing_execution_evidence"
+    },
+    {
+      "name": "rawbytes:audit/stage2_research_invocation.json",
+      "passed": true,
+      "scope": "existing_execution_evidence"
+    },
+    {
+      "name": "implementation_hash_unchanged",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "deployment_hash_unchanged",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "active_configuration_hash_unchanged",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "source_manifest_hash_changed_as_expected",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "execution_manifest_hash_changed_as_expected",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "baseline81_deployment_matches_cloud",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "baseline81_implementation_matches_deployment",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "baseline81_configuration_matches_deployment",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "candidate844_deployment_matches_cloud",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "candidate844_implementation_matches_deployment",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "candidate844_configuration_matches_deployment",
+      "passed": true,
+      "scope": "identity"
+    },
+    {
+      "name": "baseline_source_tree_unchanged_after_reads",
+      "passed": true,
+      "scope": "read_only"
+    },
+    {
+      "name": "candidate_source_tree_unchanged_after_reads",
+      "passed": true,
+      "scope": "read_only"
+    },
+    {
+      "name": "scope:gitattributes_only_adds_two_archive_preservation_rules",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:source_manifest_change_only_docs_and_gitattributes",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:execution_manifest_change_only_docs_and_gitattributes",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:latest_report_binds81",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:new_metadata_does_not_claim_new_software_acceptance",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:WR18_WR19_docs_keep_software_SHA81",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:README_retains_stage2_pending",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    },
+    {
+      "name": "scope:archive_acceptance_retains81_and_system_not_accepted",
+      "passed": true,
+      "scope": "metadata_policy_scope"
+    }
+  ],
+  "commands": [
+    {
+      "label": "baseline81",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent\\read_identity.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent",
+      "exit_code": 0,
+      "seconds": 1.437999999994645,
+      "stdout": "baseline81.stdout.json",
+      "stderr": "baseline81.stderr",
+      "script_sha256": "f3f28dd3294967a4e9eb9483bd63319f799fbd67f53d00430a9fc1d4083be571"
+    },
+    {
+      "label": "candidate844",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent\\read_identity.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent",
+      "exit_code": 0,
+      "seconds": 0.9370000000053551,
+      "stdout": "candidate844.stdout.json",
+      "stderr": "candidate844.stderr",
+      "script_sha256": "f3f28dd3294967a4e9eb9483bd63319f799fbd67f53d00430a9fc1d4083be571"
+    },
+    {
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent\\scope_check.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027\\identity_agent",
+      "exit_code": 0,
+      "seconds": 0.17100000000209548,
+      "stdout": "scope_check.stdout",
+      "stderr": "scope_check.stderr",
+      "script_sha256": "ffc4293b003ae7acef44edf3d19818e63e277924e430311e16890f7629969833"
+    }
+  ],
+  "policy_static_assessment": "Source/execution selection algorithms are byte identical; new .gitattributes rules only preserve raw bytes in newly archived 81 review and WR19 package. Docs and .gitattributes are included in source/execution identities, so these two hashes change; runtime implementation/deployment/config identity unchanged. New current execution source identity is not a new independently software-tested SHA.",
+  "software_pass_identity_retained": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "read_only_lookup_notes": [
+    "Initial rg guessed nonexistent tools/source_manifest.py and execution_identity.py, then resolved actual functions using rg; another read-only rg guessed engineering_task_cli.py. No program/tests/platform executed by those failed lookups."
+  ],
+  "policy_impact_note": "Only archive byte-preservation attributes are extended; no production selection or execution-identity policy function changes. Because docs/attributes participate in execution_source_manifest, a new dispatch plan must bind the current execution identity; preserving software acceptance at81 does not authorize new dispatch. Existing frozen evidence/input bytes stay unchanged.",
+  "production_or_runtime_semantic_changes_detected": 0,
+  "protected_unique_files": 115,
+  "manifest_file_counts": {
+    "baseline81": {
+      "source_files": 122,
+      "execution_files": 122
+    },
+    "candidate844": {
+      "source_files": 123,
+      "execution_files": 123
+    }
+  }
+}

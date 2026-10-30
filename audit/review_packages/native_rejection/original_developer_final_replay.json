@@ -1,0 +1,48 @@
+{
+  "baseline_commit": "268f420e9d066e7e7859566a65c0ce65523bec82",
+  "test_sha256": "dc8afa89ed5b19f569242189a8250eec7b94ef1322d4f724354119cbbc57baf5",
+  "same_final_test_bytes": true,
+  "runs": [
+    {
+      "name": "final_baseline",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_native_backtest_rejection.py",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\phase2-native-rejection\\baseline268f-final",
+      "exit_code": 1,
+      "methods": 25,
+      "failed_assertions": 67,
+      "error_methods": 6
+    },
+    {
+      "name": "final_candidate",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_native_backtest_rejection.py",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "methods": 25,
+      "failed_assertions": 0,
+      "error_methods": 0
+    }
+  ],
+  "scope": "Synthetic software only; baseline includes the new test file as a test overlay, no QC or market access"
+}

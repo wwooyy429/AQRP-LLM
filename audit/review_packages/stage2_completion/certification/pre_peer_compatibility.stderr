@@ -1,0 +1,41 @@
+test_batch_reordering_is_idempotent_and_receipt_has_no_values (tests.test_ingestion.IngestionTests) ... ok
+test_date_only_publication_requires_explicit_later_exchange_gate (tests.test_ingestion.IngestionTests) ... ok
+test_financial_asof_keeps_late_revision_out_and_mature_revision_in (tests.test_ingestion.IngestionTests) ... ok
+test_future_missing_timezone_inconsistent_receipt_or_invalid_field_rejected (tests.test_ingestion.IngestionTests) ... ok
+test_hash_tampering_duplicate_vintage_and_bounded_stream (tests.test_ingestion.IngestionTests) ... ok
+test_liquidity_rank_uses_supplied_dollar_volume_and_keeps_ADR (tests.test_ingestion.IngestionTests) ... ok
+test_mapping_uses_effective_and_available_times_without_current_backfill (tests.test_ingestion.IngestionTests) ... ok
+test_real_rows_require_cloud_and_current_universe_is_rejected (tests.test_ingestion.IngestionTests) ... ok
+test_same_vintage_correction_conflicts_but_revision_is_retained (tests.test_ingestion.IngestionTests) ... ok
+test_streamed_vintages_combine_without_double_count_or_cross_partition_conflict (tests.test_ingestion.IngestionTests) ... ok
+test_symbol_identity_and_exact_QC_field_mapping_no_fallback (tests.test_ingestion.IngestionTests) ... ok
+test_unknown_timestamps_and_classification_preserved_not_backfilled (tests.test_ingestion.IngestionTests) ... ok
+test_universe (unittest.loader._FailedTest) ... ERROR
+test_coverage (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_universe (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_universe
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+ModuleNotFoundError: No module named 'tests.test_universe'
+
+
+======================================================================
+ERROR: test_coverage (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_coverage
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_coverage.py", line 19, in <module>
+    from test_pipeline import complete_study, registered_package
+ModuleNotFoundError: No module named 'test_pipeline'
+
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.219s
+
+FAILED (errors=2)

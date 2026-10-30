@@ -1,0 +1,10 @@
+{
+  "original_sha256": "54d0a6a14392607ef2bb11ee3e3958e90cedb4be52ca2f0222219bcd0ac0c8e5",
+  "adapted_sha256": "763e6105ffacde55943ffbcc3c5a9467475d4b9836ade928863d00720ee5731d",
+  "assert_AST_unchanged": true,
+  "only_behavioral_edit": "Historical pending test reads AQRP_REVIEW_HISTORICAL_RUNTIME (byte-identical81 pending ledger copy); every tested production module remains current66.",
+  "baseline_fixture_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "production_source_commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "original_first_failure": "runs/e513_admission/first_results.json retained,23pass1failed/24methods36subcases",
+  "reason": "Original test assumed current real attempt pending. Authorized terminal reconciliation legitimately made current state failed at event13; changing that assumption is a fixture adaptation, not a production bug repair."
+}

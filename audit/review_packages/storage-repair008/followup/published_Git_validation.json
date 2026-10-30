@@ -1,0 +1,43 @@
+{
+  "kind": "actual_published_Git_delivery_verification",
+  "observed_commit": "5f699b653d65c545a093e27115c7126db7db457e",
+  "first_environment_result": {
+    "status": "failed",
+    "scope": "deep temporary checkout under workspace .git",
+    "error_type": "FileNotFoundError_during_Registry_metadata_replay",
+    "raw_stderr_sha256": "88a8b81ee2f62e343dca40f5c9103127a383ec6743be94674dad480739219ba2",
+    "raw_stderr_retained_private": ".git/repair-work/round008-followup/fixed_git_verification.stderr",
+    "specific_reported_result_blob_exists_in_same_Git_commit": true
+  },
+  "second_environment_result": {
+    "status": "passed",
+    "scope": "short_path_clean_Git_LF_checkout",
+    "checkout_root_characters": 39,
+    "raw_stdout_sha256": "96987bb345d8fa61a1b88cb60d95a3b1dda830bf8d2d4118b334e065cbb06d30",
+    "result": {
+      "metadata_consistent": true,
+      "runtime_source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+      "same_attempt_status": "pending",
+      "usage": {
+        "configurations": 16,
+        "research": 17,
+        "lean": 3
+      },
+      "journal_events": 69,
+      "packet_files": 78,
+      "remote_calls": 0,
+      "new_executions": 0,
+      "independent_acceptance": false,
+      "financial_evidence": false,
+      "final_test_enabled": false
+    }
+  },
+  "conclusion": "Same published commit verifies in a short checkout. Do not infer missing Git evidence from a failed deep-path checkout; use a short Windows path. Exact OS/internal cause of the long-path read failure was not separately instrumented.",
+  "software_tests_repeated": false,
+  "new_configurations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "budget_unchanged": true,
+  "independent_GPT_Work_acceptance": false,
+  "final_test_enabled": false
+}

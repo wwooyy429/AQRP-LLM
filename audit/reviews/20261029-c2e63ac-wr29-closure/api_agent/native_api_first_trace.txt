@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-c2e63ac-20261029\api_agent\independent_append_recovery.py", line 65, in test_03_actual_Win32_append_denial_real_CLI_and_cross_entry_recovery
+    try:h.accept_response(m)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-c2e63ac-20261029\api_agent\replay_context\source\tools\followup_host.py", line 397, in accept_response
+    self._append(attempt, {"kind": "response", "correlation_id": correlation,
+  File "C:\Users\11638\.codex\tmp\aqrp-review-c2e63ac-20261029\api_agent\replay_context\source\tools\followup_host.py", line 240, in _append
+    self.store.append_event(self._stream(attempt), event)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-c2e63ac-20261029\api_agent\replay_context\source\cloud\qresearch\artifacts.py", line 386, in append_event
+    with path.open("ab") as output:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-c2e63ac-20261029\\api_agent\\native-append-pm7xp3ql\\engineering\\followup-host\\1823a17a982341feb6311d214f4f67c1\\events.jsonl'

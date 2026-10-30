@@ -1,0 +1,66 @@
+结论：原WR20、WR21触发场景修复后通过；新增WR23/P1、WR22/P2阻断本轮模块整体软件验收。WR24/P3非阻断。阶段2整体未通过。
+固定SHA：ea6053e3e9ef4be17db246daf18a4cf9b2e5be58
+失败基线：deb85d9f27441b275ab8b108f0232ecd2707a1e8
+实际云端执行仍为7fc5ef2，当前ea仅离线修补。
+630仓库通过，独立原WR20/21反例均由baseline exit1变candidate exit0；不能代替新增组合/故障边界。当前P1/P2均根独立再次复现。
+
+全系统覆盖：
+阶段0：既有已测工程范围通过；元数据待更正；配置、身份、Registry、预算及归档骨架；证据630仓库、历史回归、55+44字节/元数据检查；缺口WR24/P3当前元数据范围歧义。
+阶段1：既有离线范围通过；数值、因子表达、PIT、标签和通用模型核；证据独立数值、时间、缓存、合同回归；缺口已测范围无新增缺口。
+阶段2：本轮模块整体软件验收失败；阶段2整体未通过；新增IPO和派发修复；源码诊断、采集缓存及任务桥；证据原WR20/21反例通过；WR22/23独立新反例；缺口WR23/P1、WR22/P2、真实成功联合链、旧worker差异及完整数据认证。
+阶段3：未验收；IC、匹配及六轮通用组件；分层收益未实现；证据合成及数值回归；缺口分层收益、冻结实际研究设计及真实六轮结果。
+阶段4：未实现／未验收；工程接收宿主；完整组合/交易/成本/风险适配未实现；证据合成工程链；无真实成功交易链；缺口订单成交现金对账、成本风险及Research-LEAN一致性。
+阶段5：未实现／未验收；注入adapter的状态机；GPT模型和额度未配且关闭；证据离线工作流组件；缺口实际GPT客户端及有限闭环。
+阶段6：未验收；去重、相关辅助组件；无实际搜索/消融产物；证据离线组件测试；缺口实际搜索、成本后增量和选择偏差证据。
+阶段7：未实现／未验收；冻结元数据和关闭闸门；独立最终执行器未配置；证据配置/暴露静态核对；缺口完整冻结及独立执行器、前向监控、2026独立性未知。
+
+按优先级的问题：
+WR-23/P1 首次entry协议写失败后，新准入在恢复时被误当旧协议并结算成功
+位置：tools/stage2.py:193,tools/stage2.py:206,tools/stage2.py:176,tools/stage2.py:317
+触发：首次生产prepare已落盘admitted-input，紧接着research-entry-protocol的真实write_once调用被注入同步写异常；没有删除任何已存在marker。恢复CLI prepare返回原admission但entry和dispatch均无。
+预期：该新准入必须保留其新协议身份，未完整发布的准备状态或缺dispatch不能作为旧成功协议结算；失败关闭且不准入同父LEAN。
+实际：原prepare异常后，恢复prepare返回admission；未经dispatch的合法形状合成成功回执经实际CLI返回0/completed，同父LEAN claim返回started/should_execute=true。根独立原字节脚本重放亦复现；仅隔离合成账本变化，真实17事件及7/10/1未改。
+最小修复：把新协议身份与准入成功状态绑定于同一不可变记录或可靠发布顺序；写失败后的恢复不得仅以marker缺失推断legacy。只有明确历史协议的旧任务可走旧成功路径。缺完整协议/dispatch保持未决，不得盲补标记或直接关闭全部成功路径。
+WR-22/P2 老SID近期更新映射后，全量流动性缺失被误当作不足期IPO并由第201名补位
+位置：cloud/qresearch/data_certification.py:383
+触发：原创201-SID合成输入中，SID000保留2017-12-01至2018-01-25的listed=true老security-master区间，同一SID自Jan25起更新ticker映射（同ticker新区间也复现）。删除该SID全部21条liquidity行，并在两形成时点以SID001至SID200补位。旧区间及新映射均在形成前已知，SID没有发生IPO。
+预期：完整历史security-master仍证明这是老eligible SID；全量流动性历史缺失必须使观测审计不足，不能由rank201补位掩盖，也不能因为最近mapping/classification区间的起始时间重置上市历史。合法年轻IPO仍应正确排除。
+实际：返回observations_passed，全部12项checks=true，known_eligible_candidate_expected_cells由8040降为8000，missing_candidate_session_cells=0，observed_member_cells=400；原202条master记录中老listed区间仍存在。
+最小修复：用可在形成时点获知的完整security-master历史确定同一永久SID的连续上市资格，不能把ticker/mapping/classification区间更新当作IPO；候选完整性检查须独立于该SID是否仍有liquidity行。缺全历史的老eligible仍须记缺口并拒绝观测通过，同时保留IPO20期过滤、未知历史拒绝、原refs/count/raw证据和私有重算。
+WR-24/P3 当前readiness残留旧轮新增配置与源码变更范围
+位置：audit/stage2_current_readiness.json:242
+触发：将audit/stage2_current_readiness.json作为本轮ea6053e WR-20/WR-21离线修复的当前状态读取。
+预期：当前轮次的新增配置/Research消耗、源码变更列表和平台读取说明应与固定deb85d9..ea6053e差异、17事件原账本及当前零新增字段一致；旧轮事实须显式绑定旧SHA并放入historical范围。
+实际：第242行仍宣称One new engineering configuration and one Research precharge；第124–134行当前源码列表误列4个本轮未改文件并漏2个本轮测试文件；第264行read_or_polled_this_turn_scope仍沿用上一轮read_project/旧终态列表读取说明。
+最小修复：保留旧描述原文并移入带baseline/actual-cloud SHA的historical对象；将当前source_configuration_budget_changed_scope和read_or_polled_this_turn_scope改为本轮零新增/零平台读取说明，按实际固定差异更新source_changed_this_round。不要修改原17事件或退还历史预算。
+
+实际执行（方法/子例/场景不加成独有总数）：
+repository verify：630/630；失败0、错误0、跳过0；子例None
+16 historical suites with explicit recognized fixtures：248/248；失败0、错误0、跳过0；子例2307
+Collection historical fixture：12/12；失败0、错误0、跳过0；子例36
+joint worker historical budget：9/9；失败0、错误0、跳过0；子例81
+fraction grammar：10/10；失败0、错误0、跳过0；子例803
+WR16 admission：9/9；失败0、错误0、跳过0；子例4
+WR18 contract：9/9；失败0、错误0、跳过0；子例39
+worker identity：6/6；失败0、错误0、跳过0；子例51
+preflight pure：7/7；失败0、错误0、跳过0；子例42
+preflight CLI：4/4；失败0、错误0、跳过0；子例24
+readback preflight CLI：1/1；失败0、错误0、跳过0；子例4
+engineering recovery legal binding adapter：5/5；失败0、错误0、跳过0；子例46
+native runtime rejection compatibility：6/6；失败0、错误0、跳过0；子例62
+completion contract compatibility：3/3；失败0、错误0、跳过0；子例28
+native Research failure original：6/6；失败0、错误0、跳过0；子例91
+WR20 baseline：12/13；失败1、错误0、跳过0；子例None；场景43
+WR20 candidate：13/13；失败0、错误0、跳过0；子例None；场景43
+new data combinations：8/9；失败1、错误0、跳过0；子例None；场景23
+旧6/62+3/28+8manual在合法index4派发前置适配后过；原6/91原字节过；恢复5/46原首1方法/2子例因新guard拒绝，保留原件，适配只在setup pin绑定且类/断言AST不变。依赖原setup失败的manual未运行/缺template不计通过。
+worker6/51、预检12/70、实际Windows双进程只1许可等3链21CLI通过；原WR21两版本各17CLI，WR23每次6CLI+1合成_finish、0worker/provider。静态55/55+44/44不计软件方法。
+原测试旧literalSHA与SID200_ranked_first静态标签原字节保留；新版本结论只用外层实际SOURCE、状态/哈希。首次审查器schema错误54/55、root inline else0语法错误及中断子审均保留；未执行扩展未计通过。
+
+身份/预算/平台：4541Git原字节，140review，31本地部署；43开发原件、4047旧归档raw不改。经济配置272e…不变。真实17事件原字节与deb相同，旧13前缀，7/12、10/20、1/16；工程2/2/1保持停止，无退款或本轮真实扣费。
+旧完整deb审核ZIP33811222 bytes/19d261…含12474清单项+清单自身=12475文件；本次Git仅选择216原件/3361243bytes，遗漏12259项。4047不变旧Git归档是另一历史总体，不冒称完整旧包。本包保留此边界。
+本轮QC0，未读notebook数据/最终测试，未执行Research/LEAN/模型/部署/交易，未修改生产或批准合并PR。28同3异是本地候选与前轮归档7fc31源码比较，不是本轮平台读回或完整inventory认证。
+原f5d是1个真实失败/2载体、9traceback条目/43物理行；底层cause未知。正常15→17→17，写故障15→16→18→18的重复pending不是重复扣费。成功报告/History次数/收到记录/订单/金融统计无证据，null保留。
+
+下一步：仅离线修复WR23协议发布/身份和WR22连续历史资格后，以新固定SHA重审；WR24将旧描述显式归档并更新current字段。继续保持已触发工程停止门，不自动重交云端、不改预算/暴露/最终日期。实际成功链、旧worker和完整数据认证继续单列。
+正式研究、自动GPT、交易、最终测试关闭；2024–2025已暴露、2026独立性未知。financial_evidence=false，未给出因子/模型/组合金融有效性结论。

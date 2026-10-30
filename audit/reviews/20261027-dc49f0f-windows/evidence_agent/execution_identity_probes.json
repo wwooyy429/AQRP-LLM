@@ -1,0 +1,738 @@
+{
+  "probe_type": "Exact extracted pure candidate function executed with in-memory readers; no unittest methods or source writes",
+  "execution_source_hash": "ac553a61ffea177e656e0a972582140573063294fe36fb2ed6ad65ffd701944a",
+  "full_review_source_hash": "be91de99b0bed096f99103375435e69e47a31baa6c4406092b8dcdba9618775c",
+  "file_count": 110,
+  "source_hash_sensitivity_cases": [
+    {
+      "path": ".gitattributes",
+      "changed": true
+    },
+    {
+      "path": ".github/workflows/offline-tests.yml",
+      "changed": true
+    },
+    {
+      "path": ".gitignore",
+      "changed": true
+    },
+    {
+      "path": "AGENTS.md",
+      "changed": true
+    },
+    {
+      "path": "cloud/engineering_smoke.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/main.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/__init__.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/artifacts.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/audits.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/cache.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/collection.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/collection_execution.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/collection_tasks.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/contracts.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/coverage.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/engineering_data.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/engineering_receipts.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/evaluation.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/factors.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/historical_source.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/ingestion.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/labels.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/models.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/pipeline.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/point_in_time.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/quantconnect.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/registry.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/runtime.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/study.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/universe.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/qresearch/workflow.py",
+      "changed": true
+    },
+    {
+      "path": "cloud/research_config.py",
+      "changed": true
+    },
+    {
+      "path": "config/data.json",
+      "changed": true
+    },
+    {
+      "path": "config/development.json",
+      "changed": true
+    },
+    {
+      "path": "config/engineering.json",
+      "changed": true
+    },
+    {
+      "path": "config/quantconnect.json",
+      "changed": true
+    },
+    {
+      "path": "config/research.json",
+      "changed": true
+    },
+    {
+      "path": "config/source_catalog.json",
+      "changed": true
+    },
+    {
+      "path": "config/universe.json",
+      "changed": true
+    },
+    {
+      "path": "config/workflow.json",
+      "changed": true
+    },
+    {
+      "path": "docs/research_charter.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/README.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/evidence.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/manifest.json",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/phase0.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/phase1.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/reviewer_instructions.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/phase0-phase1/run_checks.py",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr04-wr06/README.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr04-wr06/replay.py",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr07/README.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr07/replay.py",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr08/README.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr08/replay.py",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr09-wr10.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr11-wr12.md",
+      "changed": true
+    },
+    {
+      "path": "docs/review/wr13.md",
+      "changed": true
+    },
+    {
+      "path": "docs/stage2-collection-task-bridge.md",
+      "changed": true
+    },
+    {
+      "path": "docs/stage2-continuation.md",
+      "changed": true
+    },
+    {
+      "path": "docs/stage2-snapshot-collection.md",
+      "changed": true
+    },
+    {
+      "path": "docs/stage2.md",
+      "changed": true
+    },
+    {
+      "path": "requirements-test.txt",
+      "changed": true
+    },
+    {
+      "path": "templates/collection_task.json",
+      "changed": true
+    },
+    {
+      "path": "templates/factor_spec.json",
+      "changed": true
+    },
+    {
+      "path": "templates/historical_collection.json",
+      "changed": true
+    },
+    {
+      "path": "templates/model_spec.json",
+      "changed": true
+    },
+    {
+      "path": "templates/trading_spec.json",
+      "changed": true
+    },
+    {
+      "path": "tests/test_audit_bridge.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_collection.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_collection_admission.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_collection_cli.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_collection_task_cli.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_collection_tasks.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_coverage.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_data_pipeline.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_engineering_data.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_engineering_receipts.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_engineering_tasks.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_factors.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_historical_source.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_ingestion.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_known_answers.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_labels_models.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_persistence.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_quantconnect_adapter.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_runtime.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_runtime_binding.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_stage2_cli.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_study.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_p1_minimal.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr03_minimal.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr04_regression.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr05_regression.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr06_regression.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr07_regression.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_work_wr08_regression.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_workflow.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_wr09_missing_dates.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_wr10_history_intervals.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_wr11_carriers.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_wr12_attempt_recovery.py",
+      "changed": true
+    },
+    {
+      "path": "tests/test_wr13_annotations.py",
+      "changed": true
+    },
+    {
+      "path": "tools/collection_task_cli.py",
+      "changed": true
+    },
+    {
+      "path": "tools/research.py",
+      "changed": true
+    },
+    {
+      "path": "tools/stage2.py",
+      "changed": true
+    },
+    {
+      "path": "tools/stage2_collection.py",
+      "changed": true
+    },
+    {
+      "path": "tools/stages.py",
+      "changed": true
+    }
+  ],
+  "usage_only_cases": [
+    {
+      "case": "all_usage_counters_incremented",
+      "execution_hash_unchanged": true,
+      "full_review_hash_changes": true
+    },
+    {
+      "case": "usage_projection_removed",
+      "execution_hash_unchanged": true,
+      "full_review_hash_changes": true
+    },
+    {
+      "case": "usage_projection_replaced",
+      "execution_hash_unchanged": true,
+      "full_review_hash_changes": true
+    }
+  ],
+  "policy_mutation_cases": [
+    {
+      "path": [
+        "schema_version"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "status"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "configuration_id"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "resources",
+        "backtest"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "resources",
+        "research"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "resources",
+        "agent"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "research_execution_attempts",
+        "reserve"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "research_execution_attempts",
+        "normal"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "research_execution_attempts",
+        "total"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "full_configurations",
+        "reserve"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "full_configurations",
+        "normal"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "full_configurations",
+        "total"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "lean_submission_attempts",
+        "reserve"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "lean_submission_attempts",
+        "normal"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "allocations",
+        "lean_submission_attempts",
+        "total"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "full_configurations"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "research_execution_attempts"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "lean_submission_attempts"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "optimization_jobs"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "extra_resource_purchases"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "limits",
+        "extra_spend_USD"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "historical_usage_preserved"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "migration_charge",
+        "configurations"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "migration_charge",
+        "allocation"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "migration_charge",
+        "reason"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "counting"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "reserve_policy"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "deletion_does_not_reset_usage"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "old_round_records_removed_at_user_request"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "hypothesis_policy"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "path": [
+        "final_evaluation_execution_enabled"
+      ],
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "schema_version",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "status",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "configuration_id",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "resources",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "allocations",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "limits",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "historical_usage_preserved",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "migration_charge",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "counting",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "reserve_policy",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "deletion_does_not_reset_usage",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "old_round_records_removed_at_user_request",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "hypothesis_policy",
+      "execution_hash_changes": true
+    },
+    {
+      "deleted_top_level_key": "final_evaluation_execution_enabled",
+      "execution_hash_changes": true
+    }
+  ],
+  "new_unknown_budget_policy_also_bound": true,
+  "independent_function_AST_sha256": "ed514f4768cf8e5d666b50aee94208ac76eec5e186717d6bdc3117ddb6338ec8",
+  "no_ledger_or_config_modified": true
+}

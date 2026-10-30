@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "root_cause_investigation_offline_regression",
+  "command": "python -B tools/stages.py verify",
+  "exit_code": 0,
+  "seconds": 173.843,
+  "source_hash": "c315f866fedc1541f42df6be7ec228893cf8aa0203349cdc883f5bae2ad70382",
+  "test_output": "----------------------------------------------------------------------\nRan 703 tests in 171.748s\n\nOK\n",
+  "production_source_unchanged": true,
+  "all_existing_config_runtime_and_exposure_bytes_unchanged": true,
+  "journal_events": 28,
+  "journal_sha256": "7064c029f1ef887526dafb834d8f74c6984e2bf17a006312f973081dc67adac7",
+  "global_usage": {
+    "configurations": {
+      "total": 9,
+      "normal": 6,
+      "reserve": 3
+    },
+    "research": {
+      "total": 12,
+      "normal": 6,
+      "reserve": 6
+    },
+    "lean": {
+      "total": 1,
+      "normal": 1,
+      "reserve": 0
+    }
+  },
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_configuration_debits": 0,
+  "final_test_enabled": false,
+  "financial_evidence": false,
+  "independent_acceptance": false,
+  "prior_stage_verification_ref": {
+    "commit": "fbb24d3150bbf9d7a549f75d14cecd6063c43f22",
+    "path": "audit/stage_verification.json",
+    "raw_sha256": "c1a6c8dc06803693bade11dab64f116ce9de7463437ecf5cf522ee5e80e813f3"
+  }
+}

@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "review_id": "AQRP-20261026-FBE2454-WINDOWS-05",
+  "reviewed_source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "baseline_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "evidence_commits": [
+    "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "34de67eef2ef70544ea513865d40e1cbfe73adfc",
+    "fe4374cee054fb8053706074be913ad7068c4484",
+    "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+    "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+    "f88efaf63fb1436a904957c00ac8a1d351d30474",
+    "fbe2454e6ea10aa59211c01f236c54bb251527be"
+  ],
+  "source_manifest_hash": "ccdd21bafb51f75c089a9089636b18389613446cf69dfa4ca7f029ded0f012bb",
+  "source_manifest_file_count": 94,
+  "git_files_verified": 313,
+  "delivery_zip_supplied": false,
+  "delivery_zip_sha256": null,
+  "deployment_hash": "cb8e63f4d7e175c26d8e2c2cef0cbcc685a048de84bb112ba890b44cb26597a3",
+  "deployment_hash_scope": "27份本地候选Python文件；未部署",
+  "runtime_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "runtime_source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+  "runtime_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+  "upstream_contract": {
+    "repository": "QuantConnect/Lean",
+    "commit": "f3d841e60dfd010ee5fc293ea893e56952484108",
+    "static_files_saved_and_hash_verified": 20,
+    "manifest": "source_agent/official_sdk_static_manifest.json",
+    "actual_runtime_SDK_version": null,
+    "real_SDK_executed": false,
+    "additional_root_manifest": "upstream_factory_extension.json"
+  },
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "python_executable": "C:/Users/11638/.codex/tmp/aqrp-review-20261026/venv/Scripts/python.exe",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "numpy_longdouble_nmant": 52,
+    "main_replay_BLAS_threads": 1,
+    "linux_independently_executed": false
+  },
+  "tool_capabilities": {
+    "GitHub_read": true,
+    "official_documentation_and_source_read": true,
+    "offline_native_Windows_execution": true,
+    "QC_readonly_calls": [
+      "list_projects",
+      "read_project"
+    ],
+    "QC_project_id": 38436695,
+    "pending_task_or_logs_read": false,
+    "market_or_model_execution": false,
+    "production_or_PR_write": false
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范、配置、身份、Registry、原子准入",
+      "implementation": "既有工程核心保持，新目录/计划身份已纳清单",
+      "evidence": "仓库322、准入19、适配56、95静态检查、两次稳定构建",
+      "status": "passed_after_fix",
+      "scope": "原已验离线范围及本轮身份/配置回归；不授予采集执行许可",
+      "blocking_findings": []
+    },
+    {
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型、共享评价",
+      "implementation": "原d0实现未改",
+      "evidence": "322仓库及12/10/16/19/56、d0摘要11/兼容8回归通过",
+      "status": "passed_after_fix",
+      "scope": "原已验离线范围及数值精度限制保留",
+      "blocking_findings": []
+    },
+    {
+      "stage": 2,
+      "modules": "历史快照采集、缓存、源适配、QC任务桥",
+      "implementation": "新增采集库/源适配/元数据CLI；预算任务桥尚未接入",
+      "evidence": "采集19/19；源主套8方法7过1败；边界3方法1过2败；官方固定源码合同",
+      "status": "failed",
+      "scope": "新增源适配范围失败；预算桥、部署、LEAN终态及完整数据认证仍待完成",
+      "blocking_findings": [
+        "WR-09",
+        "WR-10"
+      ]
+    },
+    {
+      "stage": 3,
+      "modules": "滚动Research评价",
+      "implementation": "部分指标及六轮合成链已实现",
+      "evidence": "既有12/10和d0摘要11/兼容8回归通过",
+      "status": "pending_acceptance",
+      "scope": "原已实现离线统计范围保持；完整Research未验收",
+      "blocking_findings": []
+    },
+    {
+      "stage": 4,
+      "modules": "订单、成交、成本、风险、账本",
+      "implementation": "工程宿主/接口，完整交易验证未交付",
+      "evidence": "既有离线回归，未新增真实交易链证据",
+      "status": "not_accepted",
+      "blocking_findings": []
+    },
+    {
+      "stage": 5,
+      "modules": "GPT提案、受限网关、控制器",
+      "implementation": "部分接口已实现；模型及额度未配置",
+      "evidence": "既有离线回归；真实GPT闭环未执行",
+      "status": "not_accepted",
+      "blocking_findings": []
+    },
+    {
+      "stage": 6,
+      "modules": "去重、相关、搜索、组合增量",
+      "implementation": "部分接口已实现，完整搜索/增量未交付",
+      "evidence": "相关接口回归通过；无实际搜索证据",
+      "status": "not_accepted",
+      "blocking_findings": []
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、独立最终执行、前向、监控",
+      "implementation": "门禁存在；完整执行/前向证据未交付",
+      "evidence": "分区、暴露、关闭开关不变",
+      "status": "not_accepted",
+      "blocking_findings": []
+    }
+  ],
+  "tests": {
+    "actually_executed": true,
+    "counts_are_overlapping_not_unique": true,
+    "execution_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026",
+    "command_records": [
+      "runs/execution_records.json",
+      "collection_agent/review_report.json",
+      "source_agent/review_summary.json",
+      "root_execution_records.json",
+      "root_boundary_execution.json",
+      "evidence_agent/build_stability.json"
+    ],
+    "suites": [
+      {
+        "id": "repository_verify",
+        "methods": 322,
+        "passed": 322,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": null,
+        "exit_code": 0,
+        "command": "python -B tools/stages.py verify",
+        "cwd": "runs/repository_source"
+      },
+      {
+        "id": "archived_compatibility",
+        "methods": 12,
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 22,
+        "exit_code": 0
+      },
+      {
+        "id": "archived_pearson",
+        "methods": 10,
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 896,
+        "exit_code": 0
+      },
+      {
+        "id": "archived_numeric",
+        "methods": 16,
+        "passed": 16,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 84,
+        "exit_code": 0
+      },
+      {
+        "id": "archived_atomic",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 9,
+        "exit_code": 0
+      },
+      {
+        "id": "previous_adapted",
+        "methods": 56,
+        "passed": 56,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 25,
+        "exit_code": 0
+      },
+      {
+        "id": "d0_summary_class",
+        "methods": 11,
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 716,
+        "exit_code": 0
+      },
+      {
+        "id": "d0_compatibility_class",
+        "methods": 8,
+        "passed": 8,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 16,
+        "exit_code": 0
+      },
+      {
+        "id": "new_independent_collection",
+        "methods": 19,
+        "passed": 19,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 31,
+        "exit_code": 0,
+        "command": "python -B collection_agent/independent_collection.py",
+        "repeated_same_methods": true
+      },
+      {
+        "id": "new_independent_source",
+        "methods": 8,
+        "passed": 7,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 73,
+        "failure_records": 2,
+        "exit_code": 1,
+        "command": "python -B source_agent/independent_source_review.py",
+        "finding": "WR-09"
+      },
+      {
+        "id": "new_independent_history_boundary",
+        "methods": 3,
+        "passed": 1,
+        "failed": 2,
+        "errors": 0,
+        "skipped": 0,
+        "subtests": 3,
+        "failure_records": 4,
+        "exit_code": 1,
+        "command": "python -B source_agent/secondary_source_review_counted.py",
+        "finding": "WR-10"
+      }
+    ],
+    "other_executions": {
+      "static_delivery_checks": {
+        "checks": 95,
+        "passed": 95,
+        "failed": 0,
+        "unit_methods": null
+      },
+      "stable_builds": {
+        "commands": 2,
+        "exit_codes": [
+          0,
+          0
+        ],
+        "changed_files": []
+      },
+      "root_public_reproductions": {
+        "WR09_exit": 1,
+        "WR10_exit": 1,
+        "unit_methods": null,
+        "real_SDK_executed": false
+      },
+      "upstream_source_hash_checks": {
+        "files": 20,
+        "mismatches": 0
+      }
+    },
+    "reviewer_harness_records": {
+      "collection": "首跑及改用每轮独立测试目录的同套复核19/19保留，不计38方法。",
+      "source_boundary_first": {
+        "methods": 3,
+        "passed": 1,
+        "failed": 1,
+        "errors": 1,
+        "subtests": 3,
+        "reason": "仅捕获HistoricalSourceError而collector包装为CollectionError；修正捕获，不改输入/断言"
+      },
+      "source_boundary_interim_count": "中间统计漏计普通addFailure，错误报告2过1败；原日志实际1过2败。中间原件保留，按标准unittest结果去重并实际重跑，最终1过2败/4记录。"
+    },
+    "notes": [
+      "12/10及d0的11/8仅重放测试类，原main机器专属静态/历史辅助不冒称重跑。",
+      "原脚本历史SHA字面量保持，实际执行源码由外层文件哈希及固定fbe认证。",
+      "原样56历史50通过/3失败/3错误保留，本轮只重跑认可适配版。",
+      "d0首次审核器错误及纯相对精度探针失败归档完整，原精度限制不变。",
+      "开发者CLI早期KeyError仅有工具摘要，不虚构完整日志或冒称本轮重跑。",
+      "线程/Windows进程及内存模拟ObjectStore不证明跨节点云锁或真实SDK行为。"
+    ]
+  },
+  "findings": [
+    {
+      "id": "WR-09",
+      "priority": "P2",
+      "status": "open",
+      "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+      "file": "cloud/qresearch/historical_source.py",
+      "lines": [
+        84,
+        85,
+        86,
+        195,
+        196,
+        197
+      ],
+      "title": "SDK缺失财务日期哨兵被保存为已知日期并少计缺失",
+      "trigger": "两个默认财务日期字段均无可用周期，Value为DateTime默认值；原生形状输入以datetime.min表示。",
+      "expected": {
+        "file_date": null,
+        "period_ending_date": null,
+        "each_missing_count": 1
+      },
+      "actual": {
+        "file_date": "0001-01-01",
+        "period_ending_date": "0001-01-01",
+        "each_missing_count": 0,
+        "completed_and_reusable": true
+      },
+      "impact": "错误元数据和缺失计数进入不可变快照缓存。未证明绕过PIT/认证门禁或产生真实金融结果。",
+      "severity_reason": "已实现源投影的数据语义及缺失统计错误，阻断该新增范围验收。",
+      "evidence_level": [
+        "E1",
+        "E2"
+      ],
+      "real_SDK_executed": false,
+      "minimal_reproduction": "python -B minimal_missing_date.py source",
+      "fix_direction": "按SDK NoValue/全周期缺失语义规范化为null，重新正确计数；不能单凭默认期HasValue=false删除有效备选周期日期。保留真实零值、合法日期及旧错误证据。",
+      "regressions": [
+        "两个日期字段全周期缺失",
+        "默认期缺失但备选期有效",
+        "None/NaT及合法日期",
+        "源投影到缓存读回及missing_values计数"
+      ]
+    },
+    {
+      "id": "WR-10",
+      "priority": "P2",
+      "status": "open",
+      "source_commit": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+      "file": "cloud/qresearch/historical_source.py",
+      "lines": [
+        160,
+        161,
+        162,
+        180,
+        181,
+        182
+      ],
+      "title": "SDK历史请求区间与冻结窗口区间不兼容",
+      "trigger": "按原样start/end调用UniverseHistory，SDK合同返回start<EndTime<=end的索引；适配器却要求start<=snapshot<end。",
+      "expected": "显式适配SDK请求区间，完整取得冻结窗口[start,end)内的快照并完成窗口。",
+      "actual": "合法end端点触发HistoricalSourceError；公共collector中止并保留未完成意图；1/2/7日合成合同复现均失败。",
+      "impact": "正常历史响应可令采集窗口无法完成；缺失start端点和final边界还需同时正确处理。",
+      "severity_reason": "实际可复现的SDK合同兼容/可靠性问题，阻断新增采集源验收。",
+      "evidence_level": [
+        "E1",
+        "E2"
+      ],
+      "real_SDK_executed": false,
+      "minimal_reproduction": "python -B minimal_history_boundary.py source",
+      "fix_direction": "在发起请求前映射SDK区间与冻结选择时钟，保证不遗漏start、不包含end且请求不越最终边界；不能仅放宽end检查。保留失败意图及预算事实。",
+      "regressions": [
+        "1/2/7日窗口与连续窗拼接",
+        "start与end端点完整性",
+        "DST及空窗",
+        "end=2024-01-01保持最终隔离",
+        "源到collector成功、缓存复用和失败保留"
+      ]
+    }
+  ],
+  "budget_replay": {
+    "actually_reparsed": true,
+    "events_verified": 12,
+    "configuration": {
+      "used": 6,
+      "normal": 6,
+      "reserve": 0,
+      "limit": 12
+    },
+    "Research": {
+      "used": 9,
+      "normal": 6,
+      "reserve": 3,
+      "limit": 20
+    },
+    "LEAN": {
+      "used": 1,
+      "normal": 1,
+      "reserve": 0,
+      "limit": 16
+    },
+    "new_calls_this_review": {
+      "configuration": 0,
+      "Research": 0,
+      "LEAN": 0,
+      "model_API": 0
+    },
+    "historical_aggregate_prior_operations_individually_reconstructed": false
+  },
+  "platform_evidence_level": {
+    "E1": "源码/哈希/事件链及官方固定SDK源码合同",
+    "E2": "审核者本轮实际离线合成测试",
+    "E3": "开发者归档原生平台JSON离线重解析",
+    "E4": "审核者本轮只读取得QC项目源码和GitHub元数据",
+    "E5": null
+  },
+  "platform_checks": {
+    "QC_source_files_matching_old75": 25,
+    "candidate_different_or_missing_files": 9,
+    "candidate_deployed": false,
+    "task_input_sha256": "95092b4de264c961895655f0853de639981143ad8cdb41e2c0d22b0adc7136b0",
+    "LEAN_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "archived_LEAN_status": "pending",
+    "current_terminal_status": null,
+    "terminal_or_logs_read": false,
+    "PR1_draft": true,
+    "PR2_draft": true,
+    "PRs_merged": false,
+    "CI_head": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+    "CI_success_ids": [
+      40317904243,
+      40317898218
+    ]
+  },
+  "historical_findings": {
+    "WR-01_WR-08": "原提交通过/失败及修复范围保留；当前既有内核回归通过，不因新增阶段2缺陷撤销d0原验收范围。",
+    "WR-09_WR-10": "本轮新源模块开放问题，尚无修复提交。"
+  },
+  "declared_incomplete_work": [
+    "采集远端任务协议及现有Registry原子预算准入",
+    "新版部署/读回/编译/真实运行",
+    "既有LEAN交付终态及核对入账",
+    "历史全市场SID/分类/上市映射与预期交易日",
+    "完整财务数值/修订/公开及实际送达证据",
+    "公司行动及完整数据认证"
+  ],
+  "unverified": [
+    "实际SDK/云端响应及资源占用；官方源码合同不等于真实平台执行",
+    "云端跨节点多生产者一致性",
+    "fbe候选部署和实际市场运行",
+    "既有LEAN终态",
+    "完整历史US200、财务版本/实际送达/公司行动认证",
+    "2026独立性及独立最终/前向金融测试",
+    "完整组合成本风险账本、受限搜索增量、真实GPT闭环"
+  ],
+  "software_acceptance": {
+    "overall": "failed",
+    "scope": "fbe新增历史快照源适配",
+    "blocking_findings": [
+      "WR-09",
+      "WR-10"
+    ],
+    "existing_stage0_stage1": "原已验范围回归通过",
+    "snapshot_collector": "通过已覆盖的独立合成范围",
+    "snapshot_source": "failed",
+    "whole_system": "not_accepted"
+  },
+  "execution_flags": {
+    "market_research_enabled": false,
+    "llm_runtime_enabled": false,
+    "final_test_enabled": false,
+    "live_trading_enabled": false,
+    "llm_provider": "GPT",
+    "llm_model": null,
+    "llm_call_limit": null,
+    "llm_spend_limit_usd": null
+  },
+  "data_certification": {
+    "status": "not_certified",
+    "historical_US200": false,
+    "financial_vintages": false,
+    "actual_vendor_delivery": false,
+    "prior_exposure_2024_2025": true,
+    "independence_2026": null
+  },
+  "financial_evidence": false
+}

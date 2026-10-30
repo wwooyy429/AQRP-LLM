@@ -1,0 +1,14 @@
+只读QA结论：本代理负责的native/兼容/故障注入计数及验收边界未发现实质错误，无需修改root报告。
+
+核对文件：root/formal_report.json、formal_report.txt，对照native_agent/report.json及已完成首跑记录；本次未重跑测试、未修改root报告或生产，仅写本qa.txt。
+
+1. 新native6方法/62子例、compat3方法/28子例均全过；另原失败4及新同步写失败4合计8个manual探针（2程序），没有混作unittest方法。新增范围18方法/132子例中仅计native6/62，compat另列，范围准确。
+2. native_agent实际CLI109、synthetic metadata_finish14、worker0与最终report一致。原62例的102CLI前置报告已保留；补4故障探针增加7CLI、0finish/worker，最终总数未漏计。
+3. 原失败探针是成功合成cell中的检查失败及合成LEAN对象，不能代替真实失败Research执行；G3明确要求专用Research原生异常解析/恢复和真实失败cell原件，与本代理限制一致。
+4. 旧LEAN Runtime Error被明确当作失败、不是成功；其completed/progress/orders/financial_statistics均null，没有补造订单或工程成功观察。old_terminal=true来自显式失败终态，未与缺席的completed字段混淆。
+5. 共享锁及同步write_once/_append故障恢复属于本轮软件范围；OS kill/断电及任意封装语法仍未认证。原协议缺失不补标记、接受指针阻断拒绝、同拒绝幂等/异拒绝拒绝等未被扩为任意旧任务可改判失败。
+6. 本代理没有真实SDK/worker/QC调用；root独立QC只读取得旧终态与源码另列。真实旧终态、原13事件账本与合成新测试没有混为新部署成功或新扣费；权威账本未由本轮审核写入/重置。
+7. 软件通过仅限本轮明确离线范围；新版未部署/未成功运行，失败worker具体差异未证明修复；G1/G2/G3/G4及阶段2/数据/金融待验收均保留。
+8. root报告汇总前两稿schema读取错误被单列为报告生成错误，未计作测试或产品失败；最终成功汇总与测试结果不冲突。
+
+本次不重新认证其他代理的远程来源、平台读取次数或全系统矩阵，仅确认其在总报告中的native相关结论与本代理已测范围没有冲突。

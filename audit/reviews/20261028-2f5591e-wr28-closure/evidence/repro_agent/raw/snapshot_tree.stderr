@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 97, in <module>
+    print(json.dumps(verify(), sort_keys=True))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 28, in verify
+    protected = load_manifest((PACKAGE / "protected_git_baseline.json").read_bytes(), protected_raw)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\git_protection.py", line 141, in load_manifest
+    return validate_manifest(_json(raw), protected_before_raw)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\git_protection.py", line 126, in validate_manifest
+    _fail()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\git_protection.py", line 42, in _fail
+    raise ProtectionError("Git raw-byte protection check failed") from None
+git_protection.ProtectionError: Git raw-byte protection check failed

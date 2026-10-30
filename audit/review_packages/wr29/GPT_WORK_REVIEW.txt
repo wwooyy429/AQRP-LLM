@@ -1,0 +1,15 @@
+请独立复验AQRP-LLM WR-29/P1，不得只复述开发测试。新源码固定c2e63ac5f19901bd95e127069b5998452f7f9864，source hash9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f。资料取此次实际交接消息的固定Git提交，再读取audit/current_review_package.json；禁止以漂移HEAD代替。
+
+先读AGENTS.md、本目录README、docs/review/wr29.md、docs/followup_host.md以及audit/review_results/host010.json。原报告固定2d1d306/fe08846，WR29正式状态open。原最小复现canonical0/script2/module2，保持原成功预期0；新开发重放0/0/0不能自行关闭WR29。原975f676有限通过、2d1d306 API有限通过及CLI失败分别保留，不把任一旧SHA直接授予新源码。
+
+修复使脚本和-m在定义类型/加载factory之前委派canonical followup_host.main。必须实际运行真实subprocess，而不是只导入main：普通from followup_host import FollowupHost的合法factory，脚本serve和-m serve空stdin均退出0；canonical控制也0。请逐项验证正常pending任务plan/serve、future factory clock被真实UTC覆盖、项目发现/原响应/重启未知不重派；非法/disabled/incompatible/duck/subclass及错误authority/controller仍拒绝；默认off不import factory、不打开真实store；stdin不能授权限。不能通过删除/放宽精确类型、enabled/controller/authority、让factory引用__main__或更改失败用例成功预期取得通过。
+
+请实际重放原最小脚本、独立stdio/API套件并自建边界，运行python -B tools/stages.py verify、新entrypoints测试、原host19专项、本目录verify_review.py及--self-test。新增6真实子进程与原19、全量套件重叠，旧1006不与本轮相加。开发新夹具首次未来submitted非法及更正、原产品0/2/2、修后0/0/0、开发辅助的所有初败/修正/未解决项都须审阅，不把辅助检查当外部验收。
+
+原独审161原件选择归档于audit/reviews/20261029-2d1d306-host010，CRLF等提供明确LF镜像及raw.base64原字节恢复；原报告SHA224a7b8a0e7667b6759e685f71dae0fd54ba0eb6c914ced1c9c1332deb009e14，原ZIP feffb44a08485c0ac7dd87b46f47b53e810964c270ae41a9446ae6980aba4723。选取包省略source/materials及大逐项映射，不能称完整原包；旧WR1–28及975有限结论仍按各自版本和原覆盖范围。开发guard只证明本次worktree before/after字节未变，五份既有CRLF表示与Git blob不同，不能笼统称原Git字节一致。
+
+所有执行限私有合成store及独立临时固定Git检出，禁止任何QC/Research/LEAN/编译/市场/模型/资源购买/生产automation调用，禁止写真实Registry/预算/生产代码、重开008或开启最终测试。当前配置周期3/13、累计16，Research17/20、LEAN3/16，71事件及原失败/周期历史不变，未来1/1/1方案不构成当前授权。2024–2025已暴露，2026未认证；正式研究、自动GPT、交易和最终测试保持关闭。
+
+结果须分别判断WR29新SHA、CLI/stdio、本地API、原0/1回归、真实宿主/云端工程链、完整数据认证及完整阶段2；阶段3–7和金融证据不能从此升级。read_backtest connector权限仍独立，目录Completed不能覆盖尚未实际送达结果的读取限制；新host仍awaiting_native_receipt，不能宣称完整回执收集和计费认证派发完成。完整US200/SID、财务数值目录/历史版本/公开/实际送达/摄入、真实factory/transport及监控均未认证。
+
+提交固定版本/环境、实际命令与退出码、独立方法/场景和未执行项、WR29可否原范围关闭、新发现最小复现/源行/级别、原字节/预算/暴露核对和全部失败修复记录。无法执行或未取得真实证据时标未执行/证据不足。不要代改生产代码或合并PR。

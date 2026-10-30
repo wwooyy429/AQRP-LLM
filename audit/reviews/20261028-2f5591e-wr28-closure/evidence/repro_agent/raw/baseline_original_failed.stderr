@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\baselines\1cf2657\source\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 93, in <module>
+    print(json.dumps(verify(), sort_keys=True))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\baselines\1cf2657\source\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 29, in verify
+    assert sha256((ROOT / name).read_bytes()).hexdigest() == digest, name
+AssertionError: audit/data_exposure.json

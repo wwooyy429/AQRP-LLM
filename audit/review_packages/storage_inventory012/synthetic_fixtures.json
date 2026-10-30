@@ -1,0 +1,1348 @@
+{
+  "synthetic": true,
+  "financial_or_cloud_evidence": false,
+  "cases": [
+    {
+      "id": "overlap_is_one_physical_key",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 2",
+              "Page 1 of 2"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 2",
+              "Page 1 of 2"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "b",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "2 to 2 of 2",
+              "Page 2 of 2"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 2,
+        "directories.0.repeated_row_observations_are_not_extra_copies": 1,
+        "directories.0.all_entries_observed_at_UI_metadata_level": true,
+        "same_digest_basename_review_groups": []
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "missing_page_stays_incomplete",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 2",
+              "Page1of2"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 1,
+        "directories.0.missing_pages": [
+          2
+        ],
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "UI_tree_listing_complete_within_declared_scope": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "unknown_reference_preserved",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "unknown.bin",
+                "type": "JSON",
+                "display_size": "2 MB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "objects.0.classification": "reference_status_unknown_preserve",
+        "objects.0.actual_bytes_verified": false,
+        "display_size_summary.unique_leaf_nominal_SI_sum_bytes": "2000000",
+        "confirmed_reclaimable_objects": []
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "identity_names_are_not_content_duplicates",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "p/intents",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 2,
+        "same_digest_basename_review_groups.0.classification": "identity_name_repetition_not_content_duplicate",
+        "same_digest_basename_review_groups.0.actual_byte_equality_verified": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "content_names_are_only_claims",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/feature-cache/v1/objects",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "q/feature-cache/v1/objects",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "same_digest_basename_review_groups.0.classification": "expected_content_digest_name_candidate_unverified",
+        "same_digest_basename_review_groups.0.distinct_UI_physical_paths": 2,
+        "same_digest_basename_review_groups.0.confirmed_reclaimable_bytes": 0
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "reported_bytes_never_grant_deletion",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "opaque.bin",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": 1234
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "objects.0.exact_bytes_reported": 1234,
+        "objects.0.actual_bytes_verified": false,
+        "objects.0.deletion_authorized": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "unvisited_folder_explicit",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "p",
+                "type": "Folder",
+                "display_size": "47 MB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 0,
+        "unique_UI_folder_entries": 1,
+        "unvisited_child_directories": [
+          "p"
+        ],
+        "UI_tree_listing_complete_within_declared_scope": false,
+        "display_size_summary.unique_leaf_nominal_SI_sum_bytes": "0"
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "changed_metadata_invalidates_stability",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "2 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 1,
+        "directories.0.count_matches_UI_total": true,
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "directories.0.conflicting_observations.0.later.display_size": "2 KB"
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "unresolved_intent_has_no_mtime_association",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/historical-snapshots/v2/intents",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "same-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "p/historical-snapshots/v2/windows",
+            "rows": [],
+            "paging": [
+              "0 to 0 of 0",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "p/historical-snapshots/v2/objects",
+            "rows": [
+              {
+                "name": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "same-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "v2_intents_without_observed_matching_window_name.0.window_directory_fully_observed": true,
+        "v2_intents_without_observed_matching_window_name.0.status": "no_matching_window_name_in_complete_UI_listing",
+        "v2_intents_without_observed_matching_window_name.0.specific_partial_batch_associations": [],
+        "v2_intents_without_observed_matching_window_name.0.mtime_used_to_infer_association": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "matching_window_does_not_retire_intent",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/historical-snapshots/v2/intents",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "p/historical-snapshots/v2/windows",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "v2_intents_without_observed_matching_window_name": [],
+        "objects.0.classification": "historical_manifest_intent_receipt_or_event_metadata",
+        "objects.0.deletion_authorized": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "invalid_row_cannot_complete_listing",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "../escape",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 0,
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "directories.0.invalid_rows.0.reason": "invalid_UI_row_metadata"
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "local_roots_do_not_rebase_by_basename",
+      "UI": {
+        "observations": [
+          {
+            "path": "p",
+            "rows": [
+              {
+                "name": "x.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          },
+          {
+            "path": "q",
+            "rows": [
+              {
+                "name": "x.json",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "objects.0.classification": "direct_local_reference_claim",
+        "objects.1.classification": "reference_status_unknown_preserve"
+      },
+      "local_roots": {
+        "reference_roots": [
+          {
+            "object_store_key": "p/x.json",
+            "expected_sha256_claims": [
+              "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            ],
+            "source_examples": []
+          }
+        ]
+      },
+      "rules": {}
+    },
+    {
+      "id": "v1_batch_is_review_item_not_reclaim",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/historical-snapshots/v1/objects",
+            "rows": [
+              {
+                "name": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+                "type": "JSON",
+                "display_size": "196 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic fixture only"
+          }
+        ]
+      },
+      "expected": {
+        "v1_raw_objects_require_cloud_reference_and_header_review": [
+          "p/historical-snapshots/v1/objects/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json"
+        ],
+        "objects.0.digest_name_analysis.role": "expected_payload_content_digest_name_unverified",
+        "objects.0.deletion_authorized": false
+      },
+      "local_roots": {},
+      "rules": {}
+    },
+    {
+      "id": "unbounded_page_claim_rejected",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [],
+            "paging": [
+              "0 to 0 of 0",
+              "Page 1 of 999999999999"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "directories.0.invalid_paging.0.reason": "invalid_UI_page_count",
+        "directories.0.missing_pages": null
+      }
+    },
+    {
+      "id": "boolean_exact_bytes_not_an_integer",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic",
+                "exact_bytes": true
+              }
+            ],
+            "paging": [
+              "1 to 1 of 1",
+              "Page 1 of 1"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 0,
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "directories.0.invalid_rows.0.reason": "invalid_UI_row_metadata"
+      }
+    },
+    {
+      "id": "mixed_viewport_ranges_complete_without_double_count",
+      "UI": {
+        "scope_root": "p/windows",
+        "observations": [
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "w01",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w02",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w03",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w04",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w05",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w06",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w07",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w08",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w09",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w10",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w11",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w12",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w13",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w14",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w15",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w16",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w17",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w18",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w19",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w20",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w21",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 21 of 43",
+              "Page 1 of 3"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "w01",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w02",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w03",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w04",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w05",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w06",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w07",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w08",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w09",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w10",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w11",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w12",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w13",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w14",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w15",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w16",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w17",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w18",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w19",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w20",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w21",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 21 of 43",
+              "Page 1 of 3"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "w13",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w14",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w15",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w16",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w17",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w18",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w19",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w20",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w21",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w22",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w23",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w24",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "13 to 24 of 43",
+              "Page 2 of 4"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "w25",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w26",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w27",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w28",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w29",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w30",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w31",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w32",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w33",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w34",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w35",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w36",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "25 to 36 of 43",
+              "Page 3 of 4"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "w37",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w38",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w39",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w40",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w41",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w42",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "w43",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "37 to 43 of 43",
+              "Page 4 of 4"
+            ],
+            "provenance": "synthetic literal metadata"
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 43,
+        "directories.0.all_entries_observed_at_UI_metadata_level": true,
+        "directories.0.repeated_row_observations_are_not_extra_copies": 30,
+        "UI_tree_listing_complete_within_declared_scope": true
+      }
+    },
+    {
+      "id": "position_to_key_conflict_is_incomplete",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "b",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 2 of 2",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "b",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              },
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 2 of 2",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic literal metadata"
+          }
+        ]
+      },
+      "expected": {
+        "directories.0.all_entries_observed_at_UI_metadata_level": false
+      }
+    },
+    {
+      "id": "range_row_count_mismatch_is_incomplete",
+      "UI": {
+        "observations": [
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 2 of 2",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic literal metadata"
+          },
+          {
+            "path": "p/windows",
+            "rows": [
+              {
+                "name": "b",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic-clock",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "1 to 2 of 2",
+              "Page 1 of 1"
+            ],
+            "provenance": "synthetic literal metadata"
+          }
+        ]
+      },
+      "expected": {
+        "directories.0.all_entries_observed_at_UI_metadata_level": false
+      }
+    },
+    {
+      "id": "realistic_empty_page_zero_is_complete",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [],
+            "paging": [
+              "0 to 0 of 0",
+              "Page 0 of 0"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "unique_UI_leaf_objects": 0,
+        "directories.0.all_entries_observed_at_UI_metadata_level": true,
+        "directories.0.invalid_paging": []
+      }
+    },
+    {
+      "id": "nonempty_page_zero_never_complete",
+      "UI": {
+        "observations": [
+          {
+            "path": "",
+            "rows": [
+              {
+                "name": "a",
+                "type": "JSON",
+                "display_size": "1 KB",
+                "last_modified": "synthetic",
+                "exact_bytes": null
+              }
+            ],
+            "paging": [
+              "0 to 0 of 0",
+              "Page 0 of 0"
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "directories.0.all_entries_observed_at_UI_metadata_level": false,
+        "directories.0.invalid_paging.0.reason": "empty_page_requires_empty_listing"
+      }
+    }
+  ]
+}

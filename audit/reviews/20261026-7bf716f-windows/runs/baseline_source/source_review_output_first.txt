@@ -1,0 +1,28 @@
+test_bridge_ingestion_preserves_unknown_and_rejects_pit (__main__.IndependentSourceTests) ... ok
+test_classification_primary_contract (__main__.IndependentSourceTests) ... ok
+test_clocks_dst_utc_and_window_boundaries (__main__.IndependentSourceTests) ... ok
+test_complete_projection_and_no_coverage_screen (__main__.IndependentSourceTests) ... ok
+test_date_no_value_sentinel_remains_missing (__main__.IndependentSourceTests) ... test_scalar_types_missing_and_zero (__main__.IndependentSourceTests) ... ok
+test_sid_universe_shape_and_duplicate_rejection (__main__.IndependentSourceTests) ... ok
+test_subset_frozen_definitions (__main__.IndependentSourceTests) ... ok
+
+======================================================================
+FAIL: test_date_no_value_sentinel_remains_missing (__main__.IndependentSourceTests) (path='financial_statements.period_ending_date.value')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-dd4d1o7j\source_agent\independent_source_review.py", line 231, in test_date_no_value_sentinel_remains_missing
+    with self.subTest(path=path): self.assertIsNone(row["values"][path])
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_date_no_value_sentinel_remains_missing (__main__.IndependentSourceTests) (path='financial_statements.file_date.value')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\AppData\Local\Temp\aqrp-unchanged-review-script-dd4d1o7j\source_agent\independent_source_review.py", line 231, in test_date_no_value_sentinel_remains_missing
+    with self.subTest(path=path): self.assertIsNone(row["values"][path])
+AssertionError: '0001-01-01' is not None
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.039s
+
+FAILED (failures=2)

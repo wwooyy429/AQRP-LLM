@@ -1,0 +1,295 @@
+{
+  "comparison": "7b0dccebef2d3582e1b07ada05211863c3cba0d8..d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "comparison_method": "SHA256/raw bytes; union of paths catches additions/deletions",
+  "production_changes": [
+    {
+      "path": "cloud/qresearch/evaluation.py",
+      "kind": "changed"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "changed"
+    }
+  ],
+  "protected_count": 42,
+  "protected_byte_equal": {
+    "config/budget.json": true,
+    "config/data.json": true,
+    "config/development.json": true,
+    "config/engineering.json": true,
+    "config/quantconnect.json": true,
+    "config/research.json": true,
+    "config/universe.json": true,
+    "config/workflow.json": true,
+    "templates/factor_spec.json": true,
+    "templates/model_spec.json": true,
+    "templates/trading_spec.json": true,
+    "AGENTS.md": true,
+    "docs/research_charter.md": true,
+    "audit/data_exposure.json": true,
+    "audit/runtime/registry/baseline.json": true,
+    "audit/runtime/registry/events.jsonl": true,
+    "tools/research.py": true,
+    "tools/stages.py": true,
+    "tools/stage2.py": true,
+    "cloud/engineering_smoke.py": true,
+    "cloud/main.py": true,
+    "cloud/qresearch/artifacts.py": true,
+    "cloud/qresearch/audits.py": true,
+    "cloud/qresearch/cache.py": true,
+    "cloud/qresearch/contracts.py": true,
+    "cloud/qresearch/coverage.py": true,
+    "cloud/qresearch/engineering_data.py": true,
+    "cloud/qresearch/engineering_receipts.py": true,
+    "cloud/qresearch/engineering_tasks.py": true,
+    "cloud/qresearch/factors.py": true,
+    "cloud/qresearch/ingestion.py": true,
+    "cloud/qresearch/labels.py": true,
+    "cloud/qresearch/models.py": true,
+    "cloud/qresearch/pipeline.py": true,
+    "cloud/qresearch/point_in_time.py": true,
+    "cloud/qresearch/quantconnect.py": true,
+    "cloud/qresearch/registry.py": true,
+    "cloud/qresearch/runtime.py": true,
+    "cloud/qresearch/study.py": true,
+    "cloud/qresearch/universe.py": true,
+    "cloud/qresearch/workflow.py": true,
+    "cloud/qresearch/__init__.py": true
+  },
+  "test_differences": [
+    {
+      "path": "tests/test_work_wr08_regression.py",
+      "kind": "added"
+    }
+  ],
+  "source_locations": {
+    "cloud/qresearch/evaluation.py:EvaluationError": {
+      "start": 23,
+      "end": 24
+    },
+    "cloud/qresearch/evaluation.py:RollingFold": {
+      "start": 28,
+      "end": 33
+    },
+    "cloud/qresearch/evaluation.py:six_rolling_folds": {
+      "start": 36,
+      "end": 41
+    },
+    "cloud/qresearch/evaluation.py:FoldSplit": {
+      "start": 48,
+      "end": 53
+    },
+    "cloud/qresearch/evaluation.py:_aware_series": {
+      "start": 56,
+      "end": 64
+    },
+    "cloud/qresearch/evaluation.py:_validate_records": {
+      "start": 67,
+      "end": 85
+    },
+    "cloud/qresearch/evaluation.py:_validate_fold": {
+      "start": 88,
+      "end": 90
+    },
+    "cloud/qresearch/evaluation.py:build_fold_splits": {
+      "start": 93,
+      "end": 111
+    },
+    "cloud/qresearch/evaluation.py:_numeric_rows": {
+      "start": 114,
+      "end": 121
+    },
+    "cloud/qresearch/evaluation.py:WalkForwardResult": {
+      "start": 125,
+      "end": 130
+    },
+    "cloud/qresearch/evaluation.py:walk_forward_evaluate": {
+      "start": 133,
+      "end": 197
+    },
+    "cloud/qresearch/evaluation.py:_centered_unit": {
+      "start": 200,
+      "end": 223
+    },
+    "cloud/qresearch/evaluation.py:_correlation": {
+      "start": 226,
+      "end": 248
+    },
+    "cloud/qresearch/evaluation.py:daily_rank_ic": {
+      "start": 251,
+      "end": 273
+    },
+    "cloud/qresearch/evaluation.py:_ic_moments": {
+      "start": 276,
+      "end": 307
+    },
+    "cloud/qresearch/evaluation.py:summarize_ic": {
+      "start": 310,
+      "end": 316
+    },
+    "cloud/qresearch/evaluation.py:paired_factor_correlation": {
+      "start": 319,
+      "end": 328
+    },
+    "cloud/qresearch/evaluation.py:pairwise_factor_correlations": {
+      "start": 331,
+      "end": 343
+    },
+    "cloud/qresearch/pipeline.py:PipelineValidationError": {
+      "start": 25,
+      "end": 26
+    },
+    "cloud/qresearch/pipeline.py:RegisteredStudyResult": {
+      "start": 30,
+      "end": 59
+    },
+    "cloud/qresearch/pipeline.py:_registered_subject": {
+      "start": 62,
+      "end": 93
+    },
+    "cloud/qresearch/pipeline.py:_market_gate": {
+      "start": 96,
+      "end": 125
+    },
+    "cloud/qresearch/pipeline.py:_features": {
+      "start": 128,
+      "end": 152
+    },
+    "cloud/qresearch/pipeline.py:_record_hash": {
+      "start": 155,
+      "end": 162
+    },
+    "cloud/qresearch/pipeline.py:evaluate_registered_study": {
+      "start": 165,
+      "end": 231
+    },
+    "cloud/qresearch/pipeline.py:predictions": {
+      "start": 42,
+      "end": 43
+    },
+    "cloud/qresearch/pipeline.py:folds": {
+      "start": 46,
+      "end": 47
+    },
+    "cloud/qresearch/pipeline.py:daily_ic": {
+      "start": 50,
+      "end": 51
+    },
+    "cloud/qresearch/pipeline.py:ic_statistics": {
+      "start": 54,
+      "end": 55
+    },
+    "cloud/qresearch/pipeline.py:model_artifacts": {
+      "start": 58,
+      "end": 59
+    },
+    "cloud/qresearch/pipeline.py:capture": {
+      "start": 211,
+      "end": 218
+    },
+    "cloud/qresearch/models.py:ModelValidationError": {
+      "start": 21,
+      "end": 22
+    },
+    "cloud/qresearch/models.py:_finite_number": {
+      "start": 25,
+      "end": 28
+    },
+    "cloud/qresearch/models.py:ModelSpec": {
+      "start": 32,
+      "end": 97
+    },
+    "cloud/qresearch/models.py:_frame_identity": {
+      "start": 100,
+      "end": 103
+    },
+    "cloud/qresearch/models.py:FrozenModel": {
+      "start": 106,
+      "end": 200
+    },
+    "cloud/qresearch/models.py:create_model": {
+      "start": 203,
+      "end": 204
+    },
+    "cloud/qresearch/models.py:restore_model": {
+      "start": 207,
+      "end": 243
+    },
+    "cloud/qresearch/models.py:from_dict": {
+      "start": 37,
+      "end": 90
+    },
+    "cloud/qresearch/models.py:to_dict": {
+      "start": 92,
+      "end": 93
+    },
+    "cloud/qresearch/models.py:features": {
+      "start": 96,
+      "end": 97
+    },
+    "cloud/qresearch/models.py:__init__": {
+      "start": 108,
+      "end": 114
+    },
+    "cloud/qresearch/models.py:_features": {
+      "start": 116,
+      "end": 126
+    },
+    "cloud/qresearch/models.py:fit": {
+      "start": 128,
+      "end": 161
+    },
+    "cloud/qresearch/models.py:predict": {
+      "start": 163,
+      "end": 170
+    },
+    "cloud/qresearch/models.py:artifact": {
+      "start": 172,
+      "end": 200
+    }
+  },
+  "checked_file_sha256": {
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "config/data.json": "ee7aacfd24589e4fe2c6090f27550ca61b587e87ba5e135cb85611b5f98a32e3",
+    "config/development.json": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08",
+    "config/engineering.json": "3c2e3308e03632fd8746f2affcc50c07c257bd5f772bb5a5ee9b9d8def4d9f5b",
+    "config/quantconnect.json": "b292f10c2e2902e5decbf07b7c040c6e59d7f16f5f5d2a521f0468e047631a3e",
+    "config/research.json": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+    "config/universe.json": "7a2507112bc467583a7622e89f57ddc349a6121dd0b1c5e1c1e7ab445409f82f",
+    "config/workflow.json": "bc40a6857d59d9cf43490306f471b9b5b8a922e4ab790c4ec337749e0b361302",
+    "templates/factor_spec.json": "870fcb7bb99f1d11fb73c5dc0d589af688e3acfc4165cf01b3f4334971feb188",
+    "templates/model_spec.json": "f70f62fb1e43b325163aef4466e23ef4542cd30121f4e305b5b369a84b6776c2",
+    "templates/trading_spec.json": "2f0ab93e3ef62e202d92f64f61530acf81280ed6ebd5c5c481f48d3ca40a91e9",
+    "AGENTS.md": "1b387b8e1c507fcef8f21ac1569fffb34e76cae7f9d8e3068014a3a31b6bdfbc",
+    "docs/research_charter.md": "fb79280b241bcfab92cba85d2a4aec762feab236d89829042769e72dae182150",
+    "audit/data_exposure.json": "1062bafd5b42dfef047a12333c05998c7d6744d94bc087682b2497bd738483bc",
+    "audit/runtime/registry/baseline.json": "2b2bf6fa52287ef27bfe171fd5c5400f35f7a321c6387d011f9dbcc896e7e81e",
+    "audit/runtime/registry/events.jsonl": "caeab4328922974e448de2027cb6a24104faae758604674801c67f92cd26c0ed",
+    "tools/research.py": "59729dfdebb7b705ba0344a41e26791c44f12796dd646ba85504821bcf862c8a",
+    "tools/stages.py": "bd29e9dd11586e7f7a22e16dae8ba272bceb41e2a9193683fae9021209dfa495",
+    "tools/stage2.py": "a03289fb0b2792bc5b0ef7937061373e746e016c328e4d1e62bdd7535c468d65",
+    "cloud/engineering_smoke.py": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+    "cloud/main.py": "032d6dd00486cd2daf4141427e7fcc6336bb4b93c22f2f542b5c58bd85976b21",
+    "cloud/qresearch/artifacts.py": "8d7eaf550891af9aa9493595c5ebc1a7b9eb92df4e80ded1912d304698e810b7",
+    "cloud/qresearch/audits.py": "9a88ed0136ea784a4cea44f9140650fc9519a247e59231b80527385af2215ff8",
+    "cloud/qresearch/cache.py": "b7f600a1a2828966ee7f4ddc118616fad8c72fe4a09375c5751be591cd12f0c9",
+    "cloud/qresearch/contracts.py": "bb3ca5fed09a255052d5d2ff150cc5fd0131390aba92dd0b6b414e1156b89652",
+    "cloud/qresearch/coverage.py": "f47b21013e3e18068063980e3f64999098f78ed336f7fd5b41bc209beb34ee11",
+    "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+    "cloud/qresearch/engineering_receipts.py": "69326601a5180487695a66e7dc5d7f858efdfac691c49f72b85958948680491d",
+    "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+    "cloud/qresearch/factors.py": "d43afbbd99ddb29b6843dbacdfa2b475192a0814147e963dc81f2465c7123ed9",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/labels.py": "7da022b68a05eaf1ce2b833481a7209ac859deca637040ec74c42b6519504552",
+    "cloud/qresearch/models.py": "b4eaa254da9e353c7c7332f7b13463e6757bf7cda5935ba8239b6bcfc432d92c",
+    "cloud/qresearch/pipeline.py": "82e0d00cce38d57a31fc3976fede01f3923b914df7023790238c12790f7e617c",
+    "cloud/qresearch/point_in_time.py": "e9a4ece0970df03f65e6f46b2e645716db67831f656af027ea2c2dcc748ba1e6",
+    "cloud/qresearch/quantconnect.py": "fbd21019bbe4bc10571a0b2cec1c13a7e3afe54df43ebac94a6a2f1da9aef319",
+    "cloud/qresearch/registry.py": "5d312a5ab192fbe0cef5150f32a8ab5f90bf1b654dc97a15ba7c8bf5924866b7",
+    "cloud/qresearch/runtime.py": "488592714f509fd0451bf14241929316def76f251bbb6877b0d49b7e0a631303",
+    "cloud/qresearch/study.py": "7cf5e4c87971cec902d88e985745b69f8e9d1fb106e1a0a18e2b52726fb0fb16",
+    "cloud/qresearch/universe.py": "e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6",
+    "cloud/qresearch/workflow.py": "925422b251b9834715e231b38e72cb2849c8bf4698d1ab01231c192f5a684168",
+    "cloud/qresearch/__init__.py": "ea9d6cb9ddea0bbcad7e4372388cc9de054a3966a7fbea50abb326476ab68509"
+  }
+}

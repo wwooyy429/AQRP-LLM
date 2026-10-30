@@ -1,0 +1,50 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+      "number": 2,
+      "state": "open",
+      "merged": false,
+      "mergeable": true,
+      "draft": true,
+      "body": "阶段2修复已接受LEAN任务在漏收通知后永久等待的问题，并将Windows WinError32锁释放重试移入共享库。提交和终态回执入口已接入watch登记/同步；PR保持草稿，独立验收待定，阶段2整体尚未通过。\n\n固定源码：[975f676](https://github.com/wwooyy429/AQRP-LLM/commit/975f676d62b561689909744f9e7236290e3f5fcb)；固定审核资料：[a6a5a16](https://github.com/wwooyy429/AQRP-LLM/commit/a6a5a165d87c172535cdea6cf495e3c1a850e6e4)。当前候选没有部署到QC，没有新增Research或LEAN。开发侧规定命令 `python -B tools/stages.py verify` 在独立LF临时副本通过987项合成测试，213份source identity一致；343份守卫原文件字节不变。首轮运行进程中止、夹具修复及交付预检CRLF更正均保留，测试数量不与旧版累加。\n\n通知恢复采用固定30分钟宽限期，从原始pending时间计起，随后最多一次历史对账、最多3页。实际list_projects确认项目编号后，每次查询/完成读取先持久预留；未知响应、仍运行、缺页或目标缺失转attention，不无限轮询、不重提、不退款。历史目录终态摘要只允许一次读取，结算仍须原固定parser核对同attempt终态、日志和零订单。生产MCP宿主调度和推送传输尚未做新候选真实联调，不宣称自动推送修复或无人值守研究完成。\n\n共享锁仅重试本进程原捕获的完整canonical owner/key/token、精确路径及WinError32，受6秒/120次及lock_timeout约束。开发辅助检查覆盖真实Windows共享占用，以及6进程18请求只派发一次；这不是外部GPT Work验收。\n\n[统一复审入口](https://github.com/wwooyy429/AQRP-LLM/blob/a6a5a165d87c172535cdea6cf495e3c1a850e6e4/docs/review/current/README.md)、[全部开发与审核指令](https://github.com/wwooyy429/AQRP-LLM/blob/a6a5a165d87c172535cdea6cf495e3c1a850e6e4/docs/review/current/GPT_WORK_REVIEW.txt)、[WR01–28原范围索引](https://github.com/wwooyy429/AQRP-LLM/blob/a6a5a165d87c172535cdea6cf495e3c1a850e6e4/docs/review/current/history.json)、[本轮报告](https://github.com/wwooyy429/AQRP-LLM/blob/a6a5a165d87c172535cdea6cf495e3c1a850e6e4/audit/software_recovery009_report.json)。审核要覆盖全部已存在代码及各阶段缺口，不能只看PR新增行；选择性归档明确保留范围限制。资料身份核对：`python -B audit/review_packages/recovery009/verify_review.py`。\n\n旧b1a4041源码的Research13/13、LEAN7/7、0订单及ca5e4f3终态资料保持为历史2018工程证据，不继承给新源码。终态来自一次历史目录对账，自动push未在聊天送达，具体失败环节仍缺证据。PROJECT43原始读回、Research0 EOF归一化，与LEAN43份worker全部EOF归一化且original_source_identity_match=false分开保留。008已结算关轮、旧空转监控已删除。\n\n权威用量不变：配置周期3/13、累计16，Research17/20、LEAN3/16；71条Registry、baseline、预算及原历史保留，无新登记/执行/费用/退款。完整历史US200、财务数值/版本/公开/实际送达及摄入认证、完整计费认证派发仍缺。阶段3–7仅有局部组件，完整组合交易、实际GPT客户端、独立最终执行器和前向运营未完成。正式研究、自动GPT、交易及最终测试继续关闭；2024–2025已暴露，2026独立性未认证。\n\n已实际交接给现有ChatGPT审核聊天“AQRP-LLM 分阶段独立验收”，回读状态为active，独立结论待返回。固定审核资料仍为a6a5a16、源码975f676；后续仅追加[实际审核交接记录](https://github.com/wwooyy429/AQRP-LLM/blob/338bd6ea211d287396836752509d828c156ec442/audit/review_handoffs/recovery009.json)，未改变审核对象或授予验收。",
+      "title": "Stage 2: bounded terminal reconciliation, lock recovery, and unified review",
+      "base": "feat/staged-research-workflow",
+      "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+      "head": "feat/stage2-data-task-bridge",
+      "head_sha": "338bd6ea211d287396836752509d828c156ec442",
+      "head_repo_id": 1433665311,
+      "head_repo_full_name": "wwooyy429/AQRP-LLM",
+      "merge_commit_sha": "f877d2373787025e44e29d36eef8fdaec255ef5e",
+      "user": {
+        "login": "wwooyy429",
+        "name": "wwooyy429",
+        "email": null,
+        "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+        "id": 80371541
+      },
+      "requested_reviewers": null,
+      "requested_team_reviewers": null,
+      "diff": null,
+      "comments": null,
+      "created_at": "2026-10-26T04:02:16Z",
+      "updated_at": "2026-10-29T06:34:49Z",
+      "closed_at": null,
+      "merged_at": null,
+      "commits": 67,
+      "changed_files": 7023,
+      "additions": 735165,
+      "deletions": 269,
+      "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+      "display_title": "Stage 2: bounded terminal reconciliation, lock recovery, and unified review"
+    },
+    "isError": false
+  }
+}

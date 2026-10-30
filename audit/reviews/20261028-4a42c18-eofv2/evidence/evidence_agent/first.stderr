@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\evidence_agent\independent_archive_validation.py", line 26, in <module>
+    check('protected_raw_all_'+label,all(digest((root/name).read_bytes())==d for name,d in protected.items()),detail={'files':122})
+  File "C:\Users\11638\.codex\tmp\aqrp-review-4a42c18-20261028\evidence_agent\independent_archive_validation.py", line 20, in check
+    checks.append({'name':name,'kind':kind,'passed':bool(condition),'detail':detail});assert condition,name
+AssertionError: protected_raw_all_candidate

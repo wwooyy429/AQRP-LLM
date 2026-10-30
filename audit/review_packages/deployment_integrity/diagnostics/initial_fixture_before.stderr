@@ -1,0 +1,260 @@
+test_diagnostic_fields_are_whitelisted_bounded_and_defensive (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... test_final_line_breaks_remain_part_of_the_frozen_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_hash_diagnostics_come_from_one_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ERROR
+test_manifest_hash_mismatch_is_distinct_and_never_reads_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ERROR
+test_mismatch_identifies_exact_path_expected_and_observed (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_resolved_path_escape_is_rejected_before_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_shared_source_digest_invalid_bytes_never_echo_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_shared_source_digest_matches_existing_text_policy (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_success_keeps_hash_and_existing_BOM_newline_contract (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+
+======================================================================
+ERROR: test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 118, in test_invalid_paths_do_not_echo_paths_or_touch_sources
+    self.assertEqual(error.diagnostics["failure_kind"], "invalid_path")
+UnboundLocalError: local variable 'error' referenced before assignment
+
+======================================================================
+ERROR: test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 92, in test_manifest_shape_and_hash_values_are_checked_before_any_read
+    self.assertIn(error.diagnostics["failure_kind"], {"invalid_manifest", "invalid_path"})
+UnboundLocalError: local variable 'error' referenced before assignment
+
+======================================================================
+FAIL: test_diagnostic_fields_are_whitelisted_bounded_and_defensive (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 158, in test_diagnostic_fields_are_whitelisted_bounded_and_defensive
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='z/../receiver.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 99, in test_entire_manifest_is_prescanned_before_reading_earlier_valid_file
+    self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='z.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 99, in test_entire_manifest_is_prescanned_before_reading_earlier_valid_file
+    self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_final_line_breaks_remain_part_of_the_frozen_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 145, in test_final_line_breaks_remain_part_of_the_frozen_source
+    self.assertEqual(self.error().diagnostics["failure_kind"], "source_hash_mismatch")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_hash_diagnostics_come_from_one_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 82, in test_hash_diagnostics_come_from_one_source_read
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 43, in error
+    self.fail("A deployment mismatch was accepted")
+AssertionError: A deployment mismatch was accepted
+
+======================================================================
+FAIL: test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'../SENSITIVE_SOURCE_VALUE_123.45.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 116, in test_invalid_paths_do_not_echo_paths_or_touch_sources
+    error = self.error({name: "a" * 64}, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_manifest_hash_mismatch_is_distinct_and_never_reads_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 104, in test_manifest_hash_mismatch_is_distinct_and_never_reads_source
+    error = self.error(expected="0" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (manifest=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 91, in test_manifest_shape_and_hash_values_are_checked_before_any_read
+    error = self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_mismatch_identifies_exact_path_expected_and_observed (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 73, in test_mismatch_identifies_exact_path_expected_and_observed
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_resolved_path_escape_is_rejected_before_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 81, in verify_deployment
+    raise ValueError("Invalid implementation source path")
+ValueError: Invalid implementation source path
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 127, in test_resolved_path_escape_is_rejected_before_source_read
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_shared_source_digest_invalid_bytes_never_echo_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 57, in test_shared_source_digest_invalid_bytes_never_echo_source
+    self.assertTrue(callable(function))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_shared_source_digest_matches_existing_text_policy (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 47, in test_shared_source_digest_matches_existing_text_policy
+    self.assertTrue(callable(function), "Missing shared deployment source hash")
+AssertionError: False is not true : Missing shared deployment source hash
+
+======================================================================
+FAIL: test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 133, in test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 43, in error
+    self.fail("A deployment mismatch was accepted")
+AssertionError: A deployment mismatch was accepted
+
+======================================================================
+FAIL: test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 32, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 150, in test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest
+    error = self.error({name: sha256(SOURCE).hexdigest()})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 35, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.074s
+
+FAILED (failures=14, errors=2)

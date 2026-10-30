@@ -1,0 +1,11 @@
+AQRP固定7b独立审核复现（离线、只使用合成数据）
+在本目录打开PowerShell，使用Python3.10.11和requirements-audit.txt记录的依赖。
+最小复现：python -B minimal_wr08.py source
+预期现有版本退出1，这是应保留的WR-08失败，而不是成功验收。
+独立Pearson：python -B numeric_agent/exact_pearson_review.py
+
+完整便携重放：python -B run_offline_review.py --out ../wr07-offline-rerun-NEW
+--out必须是不存在的新目录；不覆盖源代码和历史输出。它复制候选源码后运行265仓库、原16、原19、适配56、新10、新12、旧fe16负对照和WR-08复现。当前整体退出1；错误的退出模式则退出2。首次Spearman尝试与当前原断言复现也在兼容脚本中执行。
+便携入口只替换兼容脚本内的历史基线路径，不修改任何断言或预期；原脚本原件及首次结果均保留。聚合入口没有在正式报告前整套重跑，仅执行了--help；各原始入口已按execution_records实际执行。
+baselines/fe4374c/source按固定Git原始字节打包。source为7b的217份Git文件原件。所有哈希在artifact_manifest.json；可用verify_artifacts.py离线核对。其余evidence_agent脚本中的临时路径是本轮实际执行来源记录，重放静态证据时可按已有JSON和源文件重新定位。
+原样56历史结果及适配差异在source/audit/reviews与source/docs/review/wr04-wr06中保留，不声称原样56通过。本目录不授权或触发任何市场、模型、LEAN、Research、购买、部署或交易。

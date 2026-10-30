@@ -1,0 +1,51 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"source\":[\"import ast as _aqrp_ast\\n\",\"import base64 as _aqrp_base64\\n\",\"import hashlib as _aqrp_hashlib\\n\",\"import json as _aqrp_json\\n\",\"from pathlib import Path as _aqrp_Path\\n\",\"import sys as _aqrp_sys\\n\",\"import importlib as _aqrp_importlib\\n\",\"import importlib.util as _aqrp_import_util\\n\",\"for _aqrp_name in list(_aqrp_sys.modules):\\n\",\"    if _aqrp_name == 'qresearch' or _aqrp_name.startswith('qresearch.'):\\n\",\"        _aqrp_sys.modules.pop(_aqrp_name, None)\\n\",\"_aqrp_importlib.invalidate_caches()\\n\",\"_aqrp_spec = _aqrp_import_util.find_spec('qresearch')\\n\",\"_aqrp_locations = list(_aqrp_spec.submodule_search_locations or ()) if _aqrp_spec is not None else []\\n\",\"if len(_aqrp_locations) != 1 or not isinstance(_aqrp_locations[0], str) or not _aqrp_locations[0]:\\n\",\"    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\\n\",\"if not _aqrp_Path(_aqrp_locations[0]).is_absolute():\\n\",\"    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\\n\",\"_aqrp_root = _aqrp_Path(_aqrp_locations[0]).resolve().parent\\n\",\"_aqrp_input = (_aqrp_root / '_engineering_task_input.py').read_bytes()\\n\",\"if _aqrp_hashlib.sha256(_aqrp_input).hexdigest() != '03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b':\\n\",\"    raise ValueError('Frozen Research input identity differs')\\n\",\"_aqrp_tree = _aqrp_ast.parse(_aqrp_input.decode('utf-8-sig'))\\n\",\"if (len(_aqrp_tree.body) != 1 or not isinstance(_aqrp_tree.body[0], _aqrp_ast.Assign)\\n\",\"        or len(_aqrp_tree.body[0].targets) != 1\\n\",\"        or not isinstance(_aqrp_tree.body[0].targets[0], _aqrp_ast.Name)\\n\",\"        or _aqrp_tree.body[0].targets[0].id != 'TASK_INPUT_JSON'\\n\",\"        or not isinstance(_aqrp_tree.body[0].value, _aqrp_ast.Constant)\\n\",\"        or not isinstance(_aqrp_tree.body[0].value.value, str)):\\n\",\"    raise ValueError('Frozen Research input must be one inert JSON assignment')\\n\",\"_aqrp_payload = _aqrp_json.loads(_aqrp_tree.body[0].value.value)\\n\",\"if not isinstance(_aqrp_payload, dict) or _aqrp_payload.get('identity') != {'attempt_id': 'f5d05f5b964b4a1d924e4b70cd207386', 'config_id': '8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1', 'data_request_hash': '36d0053dae0f3a302c42b67946ec1fe469ad76c482d0bcbf26afaeccc298cbc2', 'deployment_hash': '3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118', 'plan_hash': '4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7', 'project_id': 38436695, 'source_manifest_hash': '89bc58058beab1315d3fa82fee8c0f22d6272fd80152b1938987453acc78a8c6', 'stage': 'research'}:\\n\",\"    raise ValueError('Frozen Research input identity differs')\\n\",\"from qresearch.engineering_data import run_research_task as _aqrp_run\\n\",\"from qresearch.artifacts import canonical_json as _aqrp_canonical\\n\",\"_aqrp_result = _aqrp_run(_aqrp_payload)\\n\",\"print('AQRP_ENGINEERING_JSON ' + _aqrp_base64.b64encode(_aqrp_canonical(_aqrp_result)).decode('ascii'))\\n\"],\"cellType\":\"code\"}"
+    }
+  ],
+  "structuredContent": {
+    "source": [
+      "import ast as _aqrp_ast\n",
+      "import base64 as _aqrp_base64\n",
+      "import hashlib as _aqrp_hashlib\n",
+      "import json as _aqrp_json\n",
+      "from pathlib import Path as _aqrp_Path\n",
+      "import sys as _aqrp_sys\n",
+      "import importlib as _aqrp_importlib\n",
+      "import importlib.util as _aqrp_import_util\n",
+      "for _aqrp_name in list(_aqrp_sys.modules):\n",
+      "    if _aqrp_name == 'qresearch' or _aqrp_name.startswith('qresearch.'):\n",
+      "        _aqrp_sys.modules.pop(_aqrp_name, None)\n",
+      "_aqrp_importlib.invalidate_caches()\n",
+      "_aqrp_spec = _aqrp_import_util.find_spec('qresearch')\n",
+      "_aqrp_locations = list(_aqrp_spec.submodule_search_locations or ()) if _aqrp_spec is not None else []\n",
+      "if len(_aqrp_locations) != 1 or not isinstance(_aqrp_locations[0], str) or not _aqrp_locations[0]:\n",
+      "    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\n",
+      "if not _aqrp_Path(_aqrp_locations[0]).is_absolute():\n",
+      "    raise ValueError('Frozen Research implementation root is unavailable or ambiguous')\n",
+      "_aqrp_root = _aqrp_Path(_aqrp_locations[0]).resolve().parent\n",
+      "_aqrp_input = (_aqrp_root / '_engineering_task_input.py').read_bytes()\n",
+      "if _aqrp_hashlib.sha256(_aqrp_input).hexdigest() != '03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b':\n",
+      "    raise ValueError('Frozen Research input identity differs')\n",
+      "_aqrp_tree = _aqrp_ast.parse(_aqrp_input.decode('utf-8-sig'))\n",
+      "if (len(_aqrp_tree.body) != 1 or not isinstance(_aqrp_tree.body[0], _aqrp_ast.Assign)\n",
+      "        or len(_aqrp_tree.body[0].targets) != 1\n",
+      "        or not isinstance(_aqrp_tree.body[0].targets[0], _aqrp_ast.Name)\n",
+      "        or _aqrp_tree.body[0].targets[0].id != 'TASK_INPUT_JSON'\n",
+      "        or not isinstance(_aqrp_tree.body[0].value, _aqrp_ast.Constant)\n",
+      "        or not isinstance(_aqrp_tree.body[0].value.value, str)):\n",
+      "    raise ValueError('Frozen Research input must be one inert JSON assignment')\n",
+      "_aqrp_payload = _aqrp_json.loads(_aqrp_tree.body[0].value.value)\n",
+      "if not isinstance(_aqrp_payload, dict) or _aqrp_payload.get('identity') != {'attempt_id': 'f5d05f5b964b4a1d924e4b70cd207386', 'config_id': '8552b4c1f96caf63b56fc95c8ebcd5e43598b81e14e7c5ae62eb21913225f5b1', 'data_request_hash': '36d0053dae0f3a302c42b67946ec1fe469ad76c482d0bcbf26afaeccc298cbc2', 'deployment_hash': '3227c82d09fde3aaddeea61e82aa7e7845ca67b4ff817e932edd145b82b64118', 'plan_hash': '4c67e2b61b6d1955a7f94948756aa7277b6f076adfaab5e1fbc14470ec599da7', 'project_id': 38436695, 'source_manifest_hash': '89bc58058beab1315d3fa82fee8c0f22d6272fd80152b1938987453acc78a8c6', 'stage': 'research'}:\n",
+      "    raise ValueError('Frozen Research input identity differs')\n",
+      "from qresearch.engineering_data import run_research_task as _aqrp_run\n",
+      "from qresearch.artifacts import canonical_json as _aqrp_canonical\n",
+      "_aqrp_result = _aqrp_run(_aqrp_payload)\n",
+      "print('AQRP_ENGINEERING_JSON ' + _aqrp_base64.b64encode(_aqrp_canonical(_aqrp_result)).decode('ascii'))\n"
+    ],
+    "cellType": "code"
+  },
+  "isError": false
+}

@@ -1,0 +1,740 @@
+"""Cloud-only, no-order data reception checks for a registered engineering job.
+
+No row values leave these functions. End times describe modeled LEAN delivery,
+not certified historical vendor receipts. This is not a trading strategy.
+"""
+from dataclasses import replace
+from datetime import datetime, timedelta
+from pathlib import Path
+import ast
+import hashlib
+import json
+import re
+import platform
+
+import pandas as pd
+import numpy as np
+
+from .artifacts import canonical_json, content_hash, validate_key
+from .cache import CacheMiss, SharedDataCache
+from .contracts import DataRequest, NY, RECORD_COLUMNS, aware
+from .coverage import produce_engineering_coverage
+from .engineering_tasks import EngineeringTaskPlan, _safe_collection_probe, validate_joint_report
+from .quantconnect import ExchangeCalendar, ObjectStoreArtifactStore, QuantConnectHistoryProvider
+from .worker_identity import (controlled_source_observation, path_fingerprint,
+    validate_source_observation, MAX_WORKER_DIAGNOSTIC_BYTES)
+from .deployment_sources import (SOURCE_IDENTITY_POLICY, SourceIdentityError,
+    parse_manifest, source_sha256, validate_record_against_source)
+from .deployment_observation import validate_deployment_observation, validate_observation_binding
+
+
+STORE_PREFIX = "aqrp/engineering/v2"
+
+
+_DEPLOYMENT_FAILURE_MESSAGES = {
+    "invalid_manifest": "Missing or changed frozen source manifest",
+    "manifest_hash_mismatch": "Missing or changed frozen source manifest",
+    "invalid_path": "Invalid implementation source path",
+    "source_unreadable": "Implementation source is unavailable",
+    "source_decode_error": "Implementation source is not UTF-8",
+    "source_hash_mismatch": "Cloud implementation differs from the frozen deployment",
+}
+
+
+def _deployment_path_valid(name):
+    if (not isinstance(name, str) or not name.endswith(".py")
+            or name == "_engineering_task_input.py" or any(ord(character) == 127 for character in name)):
+        return False
+    try:
+        validate_key(name)
+        name.encode("utf-8")
+    except (TypeError, ValueError, UnicodeError):
+        return False
+    return True
+
+
+class DeploymentVerificationError(ValueError):
+    """Bounded source metadata only; never OS paths, contents or exceptions."""
+
+    def __init__(self, failure_kind, *, path=None, expected_sha256=None, observed_sha256=None,
+                 worker_observation=None):
+        if failure_kind not in _DEPLOYMENT_FAILURE_MESSAGES:
+            raise ValueError("Unknown deployment diagnostic kind") from None
+        diagnostic = {"schema_version": 1, "failure_kind": failure_kind}
+        if isinstance(path, str):
+            if (_deployment_path_valid(path) and len(path) <= 160
+                    and re.fullmatch(r"[A-Za-z0-9_./-]+", path) is not None):
+                diagnostic["path"] = path
+            else:
+                diagnostic["path_sha256"] = hashlib.sha256(path.encode("utf-8", errors="surrogatepass")).hexdigest()
+        for name, value in (("expected_sha256", expected_sha256), ("observed_sha256", observed_sha256)):
+            if isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None:
+                diagnostic[name] = value
+        if worker_observation is not None:
+            validate_source_observation(worker_observation)
+            diagnostic.update(schema_version=2, worker_observation=worker_observation)
+            if (len(_DEPLOYMENT_FAILURE_MESSAGES[failure_kind].encode("ascii"))
+                    + len(b"; diagnostics=") + len(canonical_json(diagnostic)) > MAX_WORKER_DIAGNOSTIC_BYTES):
+                raise ValueError("Worker diagnostics exceed their metadata bound") from None
+        self._diagnostics = json.loads(canonical_json(diagnostic))
+        super().__init__(_DEPLOYMENT_FAILURE_MESSAGES[failure_kind] + "; diagnostics="
+                         + canonical_json(diagnostic).decode("ascii"))
+
+    @property
+    def diagnostics(self):
+        return json.loads(canonical_json(self._diagnostics))
+
+
+def source_bytes_sha256(raw: bytes):
+    """The existing UTF-8-sig/universal-newline identity, without stripping EOF.
+
+    Hashing raw bytes from one read also lets mismatch diagnostics identify the
+    same observation that caused rejection. No imports, whitespace or source
+    syntax are removed; this is equivalent to read_text(encoding='utf-8-sig').
+    """
+    return source_sha256(raw)
+
+
+def _runtime_environment(api):
+    return {"python": platform.python_version(), "pandas": pd.__version__,
+        "numpy": np.__version__, "lean": str(api.Globals.version)}
+
+
+def load_task_input(path):
+    """Read a generated JSON literal without executing the input as Python."""
+    tree = ast.parse(Path(path).read_text(encoding="utf-8-sig"))
+    if (len(tree.body) != 1 or not isinstance(tree.body[0], ast.Assign)
+            or len(tree.body[0].targets) != 1 or not isinstance(tree.body[0].targets[0], ast.Name)
+            or tree.body[0].targets[0].id != "TASK_INPUT_JSON"
+            or not isinstance(tree.body[0].value, ast.Constant)
+            or not isinstance(tree.body[0].value.value, str)):
+        raise ValueError("Generated task input must be one inert JSON string assignment")
+    return json.loads(tree.body[0].value.value)
+
+
+def _request(raw):
+    return DataRequest(raw["dataset"], tuple(raw["fields"]), tuple(raw["sids"]),
+        raw["start"], raw["end"], raw["data_version"], raw["universe_hash"],
+        raw["normalization"], raw["timezone"])
+
+
+def _save(store, key, document):
+    encoded = canonical_json(document)
+    store.write_once(key, encoded)
+    return {"key": key, "sha256": hashlib.sha256(encoded).hexdigest()}
+
+
+def _load(store, reference):
+    encoded = store.read_bytes(reference["key"])
+    if hashlib.sha256(encoded).hexdigest() != reference["sha256"]:
+        raise ValueError("Engineering cloud artifact integrity mismatch")
+    return json.loads(encoded)
+
+
+def _worker_observation(root, path, *, explicit_root, read_status, raw=None):
+    context = {"root_selection": "explicit" if explicit_root else "verifier_module_parent",
+        "source_root_sha256": path_fingerprint(str(root)), "source_path_sha256": path_fingerprint(str(path)),
+        "verifier_path_sha256": None, "verifier_within_source_root": None,
+        "inspected_source_is_verifier": None}
+    try:
+        verifier = Path(__file__).resolve()
+        context.update(verifier_path_sha256=path_fingerprint(str(verifier)),
+            verifier_within_source_root=verifier.is_relative_to(root), inspected_source_is_verifier=path == verifier)
+    except (OSError, RuntimeError, TypeError, ValueError):
+        pass
+    return controlled_source_observation(root_context=context, read_status=read_status, raw=raw)
+
+
+def verify_deployment(manifest, expected_hash, *, source_root=None, worker_diagnostics=False,
+                      require_source_bytes=False):
+    """Verify implementation bytes separately from the generated job input.
+
+    The input contains the plan and therefore is explicitly outside the code
+    manifest; its own bytes are pinned in the platform submission receipt.
+    The default retains schema1 diagnostics. Admitted runtime contexts opt in to
+    bounded schema2 observations of the same bytes that caused rejection; these
+    observations cannot establish the source of an earlier failed worker.
+    """
+    return _verify_deployment(manifest, expected_hash, source_root=source_root,
+        worker_diagnostics=worker_diagnostics, require_source_bytes=require_source_bytes)[0]
+
+
+def verify_deployment_observation(manifest, expected_hash, *, source_root=None,
+                                  worker_diagnostics=False, require_source_bytes=False):
+    """One source read per file, with a v2 aggregate observation on success.
+
+    Legacy sources return no new report fields. This is a source-policy check,
+    not a remote signature, market-data certificate or raw-byte equality claim.
+    """
+    return _verify_deployment(manifest, expected_hash, source_root=source_root,
+        worker_diagnostics=worker_diagnostics, require_source_bytes=require_source_bytes)[1]
+
+
+def _verify_deployment(manifest, expected_hash, *, source_root, worker_diagnostics,
+                       require_source_bytes):
+    if type(worker_diagnostics) is not bool or type(require_source_bytes) is not bool:
+        raise ValueError("Worker diagnostics selection must be boolean") from None
+    if (not isinstance(manifest, dict) or not manifest or not isinstance(expected_hash, str)
+            or re.fullmatch(r"[0-9a-f]{64}", expected_hash) is None):
+        raise DeploymentVerificationError("invalid_manifest") from None
+    # Validate the entire declared set before resolving or reading any source.
+    try:
+        version, records = parse_manifest(manifest)
+    except SourceIdentityError as error:
+        # Keep historical diagnostics, including the invalid path fingerprint.
+        if error.reason == "invalid_path":
+            candidates = manifest.get("files", manifest)
+            if isinstance(candidates, dict):
+                for name in candidates:
+                    if not _deployment_path_valid(name):
+                        raise DeploymentVerificationError("invalid_path", path=name) from None
+        raise DeploymentVerificationError("invalid_manifest") from None
+    manifest_hash = content_hash(manifest)
+    if manifest_hash != expected_hash:
+        raise DeploymentVerificationError("manifest_hash_mismatch", expected_sha256=expected_hash,
+                                          observed_sha256=manifest_hash) from None
+    try:
+        root = Path(source_root or Path(__file__).resolve().parents[1]).resolve()
+    except (OSError, RuntimeError, TypeError, ValueError):
+        raise DeploymentVerificationError("source_unreadable") from None
+    paths = []
+    for name, record in sorted(records.items()):
+        try:
+            path = root / name
+            contained = path.resolve().is_relative_to(root)
+        except (OSError, RuntimeError, TypeError, ValueError):
+            raise DeploymentVerificationError("invalid_path", path=name) from None
+        if not contained:
+            raise DeploymentVerificationError("invalid_path", path=name) from None
+        paths.append((name, record, path))
+    observed = {}
+    normalized_count = 0
+    for name, record, path in paths:
+        expected = record["source_sha256"]
+        def observation(status, raw=None):
+            return (_worker_observation(root, path, explicit_root=bool(source_root),
+                read_status=status, raw=raw) if worker_diagnostics else None)
+        try:
+            raw = path.read_bytes()
+        except (OSError, ValueError) as error:
+            status = "missing" if isinstance(error, FileNotFoundError) else (
+                "permission_denied" if isinstance(error, PermissionError) else "unreadable")
+            raise DeploymentVerificationError("source_unreadable", path=name, expected_sha256=expected,
+                worker_observation=observation(status)) from None
+        try:
+            actual = source_bytes_sha256(raw)
+        except ValueError:
+            raise DeploymentVerificationError("source_decode_error", path=name, expected_sha256=expected,
+                worker_observation=observation("read", raw)) from None
+        if version == 2:
+            try:
+                observed[name] = validate_record_against_source(raw, record,
+                    require_source_bytes=require_source_bytes)
+            except SourceIdentityError:
+                # v2 canonical and pinned-source mismatches are static schema1.
+                # Do not label a canonical digest as a legacy strict digest.
+                raise DeploymentVerificationError("source_hash_mismatch", path=name,
+                    expected_sha256=expected, observed_sha256=actual) from None
+            normalized_count += actual != expected
+        elif actual != expected:
+            raise DeploymentVerificationError("source_hash_mismatch", path=name,
+                expected_sha256=expected, observed_sha256=actual,
+                worker_observation=observation("read", raw)) from None
+        else:
+            observed[name] = actual
+    if version == 1:
+        return content_hash(observed), None
+    reconstructed = {"schema_version": 2, "source_identity_policy": SOURCE_IDENTITY_POLICY,
+                     "files": observed}
+    verified_hash = content_hash(reconstructed)
+    summary = {"schema_version": 1, "source_identity_policy": SOURCE_IDENTITY_POLICY,
+        "deployment_hash": verified_hash,
+        "verification_mode": "project_original_source" if require_source_bytes else "worker_terminal_lf",
+        "declared_file_count": len(records), "verified_file_count": len(observed),
+        "eof_normalized_file_count": normalized_count,
+        "original_source_identity_match": normalized_count == 0, "canonical_sources_verified": True}
+    validate_deployment_observation(summary, deployment_hash=expected_hash)
+    return verified_hash, summary
+
+
+def _context(payload, stage, *, source_root=None, with_observation=False):
+    if not isinstance(payload, dict) or payload.get("identity", {}).get("stage") != stage:
+        raise ValueError("Wrong engineering execution stage")
+    identity = payload["identity"]
+    _identity_shape(identity)
+    plan = EngineeringTaskPlan.from_dict(payload["plan"], discovered_project_ids=(identity["project_id"],))
+    document = plan.to_dict()
+    if document["schema_version"] == 3:
+        raise ValueError("Retired engineering protocol is readable history only; register the plain-reference protocol")
+    if document["request_mode"] != "symbol_resolution":
+        raise ValueError("This fixed producer requires its declared symbol resolver")
+    expected = {"plan_hash": plan.hash, "project_id": document["project_id"],
+        "source_manifest_hash": document["source_manifest_hash"],
+        "deployment_hash": document["deployment_hash"], "data_request_hash": plan.request_hash}
+    if any(identity.get(key) != value for key, value in expected.items()):
+        raise ValueError("Engineering payload differs from its registered plan")
+    if not identity.get("attempt_id") or not identity.get("config_id"):
+        raise ValueError("A precharged registered engineering attempt is required")
+    if identity["config_id"] != content_hash({"engineering_task_schema_version": 1, "plan": document}):
+        raise ValueError("Engineering configuration identity changed")
+    report_key = document["report_namespace"] + "/reports/" + plan.hash + "/" + stage + "/" + identity["attempt_id"] + ".json"
+    if payload.get("report_key") != report_key:
+        raise ValueError("Engineering result destination differs from the admitted attempt")
+    observation = verify_deployment_observation(payload.get("deployment_manifest"), document["deployment_hash"],
+                      source_root=source_root, worker_diagnostics=True)
+    if with_observation:
+        return plan, document, identity, observation
+    return plan, document, identity
+
+
+def _identity_shape(identity):
+    if not isinstance(identity, dict) or set(identity) != {"plan_hash", "config_id", "attempt_id", "stage", "project_id", "source_manifest_hash", "deployment_hash", "data_request_hash"}:
+        raise ValueError("Unknown engineering identity metadata")
+    for name in ("plan_hash", "config_id", "source_manifest_hash", "deployment_hash", "data_request_hash"):
+        if not isinstance(identity[name], str) or re.fullmatch("[0-9a-f]{64}", identity[name]) is None:
+            raise ValueError("Engineering identities must be canonical hashes")
+    if (not isinstance(identity["attempt_id"], str) or re.fullmatch("[0-9a-f]{32}", identity["attempt_id"]) is None
+            or type(identity["project_id"]) is not int or identity["project_id"] <= 0
+            or identity["stage"] not in {"research", "lean"}):
+        raise ValueError("Invalid engineering attempt metadata")
+
+
+def _safe_evidence(evidence):
+    allowed = {"coverage_report_ref", "cache_payload_refs", "coverage_certification_gaps",
+        "lean_engine_version", "vendor_revision_known", "received_bar_ref", "corporate_action_ref",
+        "unobserved_action_types_are_not_certified", "runtime_environment", "collection_probe",
+        "deployment_verification", "storage_preflight", "collection_storage", "receiver_storage"}
+    if not isinstance(evidence, dict) or not set(evidence) <= allowed:
+        raise ValueError("Unknown engineering evidence metadata")
+    for name, value in evidence.items():
+        if name in {"storage_preflight", "collection_storage", "receiver_storage"}:
+            from .engineering_storage import (validate_capacity_observation,
+                validate_collection_evidence, validate_encoding_metadata)
+            {"storage_preflight": validate_capacity_observation,
+             "collection_storage": validate_collection_evidence,
+             "receiver_storage": validate_encoding_metadata}[name](value)
+        elif name == "deployment_verification":
+            validate_deployment_observation(value)
+        elif name == "collection_probe":
+            _safe_collection_probe(value)
+        elif name.endswith("_ref") or name == "cache_payload_refs":
+            refs = value if name == "cache_payload_refs" else [value]
+            if not isinstance(refs, list) or len(refs) > 5:
+                raise ValueError("Invalid cloud evidence references")
+            for ref in refs:
+                if (not isinstance(ref, dict) or set(ref) != {"key", "sha256"}
+                        or not isinstance(ref["key"], str) or not isinstance(ref["sha256"], str)
+                        or re.fullmatch("[0-9a-f]{64}", ref["sha256"]) is None):
+                    raise ValueError("Only content-addressed evidence metadata can leave cloud")
+        elif name == "coverage_certification_gaps":
+            from .coverage import RESEARCH_GAPS
+            if value != list(RESEARCH_GAPS):
+                raise ValueError("Coverage gaps must be the fixed program observations")
+        elif name == "lean_engine_version":
+            if not isinstance(value, str) or not value or len(value) > 100 or "\n" in value:
+                raise ValueError("Invalid engine version metadata")
+        elif name == "runtime_environment":
+            if (not isinstance(value, dict) or set(value) != {"python", "pandas", "numpy", "lean"}
+                    or any(not isinstance(version, str) or not version or len(version) > 100 or "\n" in version or "\r" in version for version in value.values())):
+                raise ValueError("Only runtime version strings can leave cloud")
+        elif name == "vendor_revision_known" and value is not False:
+            raise ValueError("Vendor revision has not been certified")
+        elif name == "unobserved_action_types_are_not_certified" and value is not True:
+            raise ValueError("Unobserved corporate actions are not certified")
+
+
+def _cloud_store(object_store, *, read_only=False):
+    return ObjectStoreArtifactStore(object_store, STORE_PREFIX,
+        read_only=read_only, single_producer=not read_only)
+
+
+def _resolution(store, plan, symbols):
+    document = plan.to_dict()
+    resolver = document["symbol_resolution"]
+    if sorted(symbols) != resolver["tickers"]:
+        raise ValueError("Resolved tickers differ from the fixed engineering plan")
+    entries = [{"ticker": ticker, "sid": str(symbol.id)} for ticker, symbol in sorted(symbols.items())]
+    registry = {"schema_version": 1, "method": resolver["method"], "as_of": resolver["as_of"],
+        "symbols": entries, "purpose": "fixed_engineering_fixture_not_historical_universe"}
+    sids = tuple(entry["sid"] for entry in entries)
+    if len(set(sids)) != 2 or any(not sid.strip() for sid in sids):
+        raise ValueError("Engineering fixture did not resolve two permanent identities")
+    template = document["request_template"]
+    request = _request(dict(template, sids=list(sids)))
+    namespace = document["report_namespace"] + "/resolutions/" + plan.hash
+    registry_ref = _save(store, namespace + "/" + content_hash(registry) + ".json", registry)
+    request_ref = _save(store, namespace + "/" + content_hash(request.identity()) + ".json", request.identity())
+    references = {"resolved_registry_ref": registry_ref, "resolved_request_ref": request_ref}
+    return request, {"resolved_request_hash": request_ref["sha256"],
+        "resolved_registry_hash": registry_ref["sha256"], "resolution_artifact_hash": content_hash(references),
+        "tickers": sorted(symbols), "ticker_count": 2, "permanent_sid_count": 2,
+        "method": resolver["method"], **references}
+
+
+def _read_resolution(store, plan, resolution):
+    references = {key: resolution[key] for key in ("resolved_registry_ref", "resolved_request_ref")}
+    if (content_hash(references) != resolution["resolution_artifact_hash"]
+            or references["resolved_registry_ref"]["sha256"] != resolution["resolved_registry_hash"]
+            or references["resolved_request_ref"]["sha256"] != resolution["resolved_request_hash"]):
+        raise ValueError("Engineering resolution metadata changed")
+    registry, raw_request = (_load(store, references[name]) for name in ("resolved_registry_ref", "resolved_request_ref"))
+    document = plan.to_dict()
+    entries = registry["symbols"]
+    if (sorted(entry["ticker"] for entry in entries) != document["symbol_resolution"]["tickers"]
+            or registry["method"] != document["symbol_resolution"]["method"]
+            or registry["as_of"] != document["symbol_resolution"]["as_of"]
+            or len(entries) != 2 or len({entry["sid"] for entry in entries}) != 2):
+        raise ValueError("Resolved identities differ from the fixed fixture")
+    request = _request(raw_request)
+    if request.identity() != _request(dict(document["request_template"], sids=[entry["sid"] for entry in entries])).identity():
+        raise ValueError("Resolved data request differs from the frozen template")
+    return request, {entry["ticker"]: entry["sid"] for entry in entries}
+
+
+def _finish(store, payload, checks, statistics, resolution, *, evidence=None):
+    _identity_shape(payload["identity"])
+    allowed = ({"record_count", "history_calls_first", "history_calls_second", "expected_formation_count"}
+        if payload["identity"]["stage"] == "research" else
+        {"data_event_count", "slice_count", "orders_submitted", "runtime_error_count", "dividend_event_count", "split_event_count", "delisting_event_count", "mapping_event_count"})
+    if not isinstance(statistics, dict) or not set(statistics) <= allowed or any(type(value) is not int or value < 0 for value in statistics.values()):
+        raise ValueError("Only nonnegative engineering counts can leave cloud")
+    _safe_evidence(evidence or {})
+    validate_observation_binding(evidence or {}, payload["deployment_manifest"],
+                                 payload["identity"]["deployment_hash"])
+    resolution_keys = {"resolved_request_hash", "resolved_registry_hash", "resolution_artifact_hash", "tickers", "ticker_count", "permanent_sid_count", "method", "resolved_registry_ref", "resolved_request_ref"}
+    if not isinstance(resolution, dict) or set(resolution) != resolution_keys:
+        raise ValueError("Only fixed resolution metadata can leave cloud")
+    for name in ("resolved_request_hash", "resolved_registry_hash", "resolution_artifact_hash"):
+        if not isinstance(resolution[name], str) or re.fullmatch("[0-9a-f]{64}", resolution[name]) is None:
+            raise ValueError("Resolution identities must be canonical hashes")
+    if (resolution["tickers"] != ["AAPL", "MSFT"] or type(resolution["ticker_count"]) is not int
+            or resolution["ticker_count"] != 2 or type(resolution["permanent_sid_count"]) is not int
+            or resolution["permanent_sid_count"] != 2
+            or resolution["method"] != "QuantBook.add_equity/as-of fixed fixture"):
+        raise ValueError("Resolution differs from the fixed engineering fixture")
+    _safe_evidence({"cache_payload_refs": [resolution["resolved_registry_ref"], resolution["resolved_request_ref"]]})
+    references = {key: resolution[key] for key in ("resolved_registry_ref", "resolved_request_ref")}
+    if (content_hash(references) != resolution["resolution_artifact_hash"]
+            or resolution["resolved_registry_ref"]["sha256"] != resolution["resolved_registry_hash"]
+            or resolution["resolved_request_ref"]["sha256"] != resolution["resolved_request_hash"]):
+        raise ValueError("Resolution reference bundle changed")
+    required = payload["plan"]["required_checks"][payload["identity"]["stage"]]
+    if not set(required) <= set(checks) or any(type(value) is not bool for value in checks.values()):
+        raise ValueError("Fixed engineering observations are missing")
+    report = {"schema_version": 1, "identity": payload["identity"],
+        "status": "completed" if all(checks.values()) else "failed", "terminal": True,
+        "checks": checks, "statistics": statistics, "resolution": resolution,
+        "market_values_exported": False, "economic_factor_tested": False,
+        "final_data_accessed": False, "full_US200_coverage_certified": False,
+        "actual_availability_verified": False, "evidence": evidence or {}}
+    validate_joint_report(report, payload["plan"])
+    reference = _save(store, payload["report_key"], report)
+    return {"cloud_report": report, "report_ref": reference}
+
+
+def _run_collection_probe(qb, store, plan, payload, *, api):
+    """One fixed substep of the precharged parent, never a second task/ledger."""
+    from .collection import HistoricalCollectionPlan, HistoricalSnapshotCollector
+    from .historical_source import QuantConnectSnapshotSource
+    document = plan.to_dict()
+    raw = document["collection_probe"]
+    child = HistoricalCollectionPlan.from_dict(raw["collection_plan"], field_catalog=raw["field_catalog"])
+    key = document["report_namespace"] + "/collection-probes/" + plan.hash + "/" + payload["identity"]["attempt_id"] + ".json"
+    reader = HistoricalSnapshotCollector(store, None, child)
+    if store.exists(key):
+        receipt = json.loads(store.read_bytes(key))
+        if (not isinstance(receipt, dict) or set(receipt) != {"identity", "collection_plan_hash", "first", "cache_only_replay"}
+                or receipt["identity"] != payload["identity"] or receipt["collection_plan_hash"] != child.hash):
+            raise ValueError("Saved joint collection receipt differs from this parent")
+        first, second = receipt["first"], receipt["cache_only_replay"]
+        observed = reader.collect()
+        if (not isinstance(first, dict) or set(first) != set(observed) or second != observed
+                or any(first[name] != value for name, value in observed.items() if name not in {"provider_calls", "reused_windows"})):
+            raise ValueError("Saved joint collection receipt differs from verified cache")
+    else:
+        options = ({"observation_policy": child.to_dict()["observation_policy"]}
+                   if child.to_dict()["schema_version"] == 2 else {})
+        source = QuantConnectSnapshotSource(qb, child.field_catalog, api=api, **options)
+        first = HistoricalSnapshotCollector(store, source, child).collect()
+        second = reader.collect()
+        receipt = {"identity": payload["identity"], "collection_plan_hash": child.hash,
+                   "first": first, "cache_only_replay": second}
+    reference = _save(store, key, receipt)
+    summary = {"schema_version": child.to_dict()["schema_version"], "plan_hash": child.hash, "receipt_ref": reference,
+        "window_count": first["window_count"], "record_count": first["record_count"],
+        "source_fetch_calls": first["provider_calls"], "reused_windows": first["reused_windows"],
+        "empty_windows": first["empty_windows"], "cache_only_source_fetch_calls": second["provider_calls"],
+        "missing_values": first["missing_values"], "full_historical_US200_certified": False,
+        "actual_availability_certified": False, "research_certified": False,
+        "row_values_exported": False, "financial_vintage_certified": False}
+    if summary["schema_version"] == 2:
+        summary.update({name: first[name] for name in ("observation_policy", "duplicate_projection_records",
+                                                     "conflicting_projection_records")})
+    _safe_collection_probe(summary)
+    return summary
+
+
+def _run_stored_collection_probe(store, plan, payload):
+    """Verify pinned historical objects in place; never refetch or copy rows."""
+    from .collection import HistoricalCollectionPlan
+    from .collection_storage import StableCollectionCache
+    document = plan.to_dict()
+    probe = document["collection_probe"]
+    child = HistoricalCollectionPlan.from_dict(probe["collection_plan"], field_catalog=probe["field_catalog"])
+    cache = StableCollectionCache(store, child, document["storage_policy"]["collection_cache"])
+    first, evidence = cache.collect()
+    second, replay_evidence = cache.collect()
+    if first != second or evidence != replay_evidence:
+        raise ValueError("Verified legacy replay changed during one engineering task") from None
+    key = document["report_namespace"] + "/collection-probes/" + plan.hash + "/" + payload["identity"]["attempt_id"] + ".json"
+    reference = _save(store, key, {"identity": payload["identity"], "collection_plan_hash": child.hash,
+        "first": first, "cache_only_replay": second})
+    summary = {"schema_version": child.to_dict()["schema_version"], "plan_hash": child.hash,
+        "receipt_ref": reference, "window_count": first["window_count"], "record_count": first["record_count"],
+        "source_fetch_calls": first["provider_calls"], "reused_windows": first["reused_windows"],
+        "empty_windows": first["empty_windows"], "cache_only_source_fetch_calls": second["provider_calls"],
+        "missing_values": first["missing_values"], "full_historical_US200_certified": False,
+        "actual_availability_certified": False, "research_certified": False, "row_values_exported": False,
+        "financial_vintage_certified": False,
+        **{k: first[k] for k in ("observation_policy", "duplicate_projection_records", "conflicting_projection_records")}}
+    _safe_collection_probe(summary)
+    return summary, evidence
+
+
+def _storage_preflight(store, document, stage):
+    if document["schema_version"] != 4:
+        return None
+    return store.preflight_capacity(**document["storage_policy"]["capacity"][stage])
+
+
+def run_research_task(payload, *, api=None, quantbook_factory=None):
+    """Execute one admitted Research job, prefetch once, then read only cache."""
+    if api is None:
+        import AlgorithmImports as api
+    if quantbook_factory is None:
+        from QuantConnect.Research import QuantBook
+        quantbook_factory = QuantBook
+    plan, document, identity, deployment_observation = _context(payload, "research", with_observation=True)
+    qb = quantbook_factory()
+    qb.set_time_zone("America/New_York")
+    frontier = aware(document["symbol_resolution"]["as_of"])
+    qb.set_start_date(frontier.year, frontier.month, frontier.day)
+    next_day = frontier + pd.Timedelta(days=1)
+    qb.set_end_date(next_day.year, next_day.month, next_day.day)
+    qb.settings.daily_precise_end_time = True
+    securities = {ticker: qb.add_equity(ticker, api.Resolution.DAILY, fill_forward=False,
+        data_normalization_mode=api.DataNormalizationMode.RAW) for ticker in document["symbol_resolution"]["tickers"]}
+    store = _cloud_store(qb.object_store)
+    capacity_observation = _storage_preflight(store, document, "research")
+    request, resolution = _resolution(store, plan, {name: security.symbol for name, security in securities.items()})
+    provider = QuantConnectHistoryProvider(qb, {str(s.symbol.id): s.symbol for s in securities.values()}, request.data_version, api=api)
+    cache = SharedDataCache(store, provider)
+    if document["schema_version"] == 4:
+        # A repaired cache identity is not permission to request data again.
+        # Existing raw-price partitions must already be complete and verified.
+        records = cache.read(request, allow_fetch=False)
+        first = tuple(part.key for part in cache.partitions(request))
+    else:
+        first = cache.prefetch(request)
+    first_calls = provider.fetch_call_count
+    if document["schema_version"] == 4:
+        cache.read(request, allow_fetch=False)
+        second = tuple(part.key for part in cache.partitions(request))
+    else:
+        second = cache.prefetch(request)
+    records = cache.read(request, allow_fetch=False)
+    second_calls = provider.fetch_call_count - first_calls
+    consumer = SharedDataCache(_cloud_store(qb.object_store, read_only=True))
+    copied = consumer.read(request, allow_fetch=False)
+    cache_miss_rejected = False
+    try:
+        consumer.read(replace(request, data_version=request.data_version + "-negative-unprefetched"), allow_fetch=False)
+    except CacheMiss:
+        cache_miss_rejected = True
+    readonly_rejected = False
+    try:
+        consumer.store.write_once("forbidden-readonly-probe.json", b"{}")
+    except PermissionError:
+        readonly_rejected = True
+    final_rejected = False
+    try:
+        replace(request, end=datetime(2024, 1, 2, tzinfo=NY))
+    except ValueError:
+        final_rejected = True
+    window = document["observation_window"]
+    calendar = ExchangeCalendar(next(iter(securities.values())).exchange.hours)
+    schedule = calendar.decisions(aware(window["start"]), aware(window["end_exclusive"]))
+    expected = dict(zip(schedule.formation_at, schedule.session_close))
+    membership = pd.DataFrame(True, index=pd.DatetimeIndex(schedule.formation_at), columns=request.sids)
+    source_refs = []
+    for part in cache.partitions(request):
+        for field in part.fields:
+            unit = replace(part, fields=(field,))
+            manifest = json.loads(store.read_bytes("feature-cache/v1/manifests/" + unit.key + ".json"))
+            source_refs.append({"key": manifest["payload"], "sha256": manifest["sha256"]})
+    coverage = produce_engineering_coverage(store, request=request, records=records,
+        decisions=tuple(schedule.formation_at), sids=request.sids,
+        policies={field: "exact_session" for field in request.fields}, expected_events=expected,
+        membership=membership, provenance=provider.provenance, subject_hash=plan.hash,
+        source_hash=identity["deployment_hash"], source_refs=source_refs,
+        snapshot_cache_only=document["schema_version"] == 4)
+    checks = {"source_snapshot_matches": True, "raw_data_received": not records.empty,
+        "second_prefetch_no_history": second_calls == 0, "same_partition_ids": first == second,
+        "cache_only_consumer": copied.equals(records) and cache_miss_rejected,
+        "read_only_write_rejected": readonly_rejected, "final_request_rejected": final_rejected,
+        "coverage_observed_complete": coverage["status"] == "passed",
+        "development_only": bool((records.event_time.dt.year == 2018).all()),
+        "symbol_registry_resolved": resolution["permanent_sid_count"] == 2}
+    statistics = {"record_count": len(records), "history_calls_first": first_calls,
+        "history_calls_second": second_calls, "expected_formation_count": len(schedule)}
+    evidence = {"coverage_report_ref": coverage["report_ref"], "cache_payload_refs": source_refs,
+                  "coverage_certification_gaps": coverage["research_certification_gaps"],
+                  "lean_engine_version": str(api.Globals.version), "vendor_revision_known": False,
+                  "runtime_environment": _runtime_environment(api)}
+    if deployment_observation is not None:
+        evidence["deployment_verification"] = deployment_observation
+    if capacity_observation is not None:
+        evidence["storage_preflight"] = capacity_observation
+    if document["schema_version"] in {2, 3, 4}:
+        if document["schema_version"] == 4:
+            summary, reuse_evidence = _run_stored_collection_probe(store, plan, payload)
+            evidence["collection_storage"] = reuse_evidence
+        else:
+            summary = _run_collection_probe(qb, store, plan, payload, api=api)
+        evidence["collection_probe"] = summary
+        checks.update(collection_windows_completed=summary["window_count"] == 40,
+                      collection_cache_only_replay=summary["cache_only_source_fetch_calls"] == 0,
+                      collection_nonempty=summary["record_count"] > 0)
+    return _finish(store, payload, checks, statistics, resolution, evidence=evidence)
+
+
+def initialize_receiver(algorithm, payload, *, api=None):
+    """Initialize a dedicated no-order LEAN data receiver using Research refs."""
+    if api is None:
+        import AlgorithmImports as api
+    plan, document, identity, deployment_observation = _context(payload, "lean", with_observation=True)
+    store = _cloud_store(algorithm.object_store)
+    capacity_observation = _storage_preflight(store, document, "lean")
+    request, registry = _read_resolution(store, plan, payload["research_resolution"])
+    window = document["observation_window"]
+    start, end = aware(window["start"]), aware(window["end_exclusive"]) - pd.Timedelta(days=1)
+    algorithm.set_time_zone("America/New_York")
+    algorithm.settings.daily_precise_end_time = True
+    algorithm.set_start_date(start.year, start.month, start.day)
+    algorithm.set_end_date(end.year, end.month, end.day)
+    algorithm.set_cash(100000)  # Engineering cash only; never invested.
+    securities = {ticker: algorithm.add_equity(ticker, api.Resolution.DAILY, fill_forward=False,
+        data_normalization_mode=api.DataNormalizationMode.RAW) for ticker in sorted(registry)}
+    if any(str(security.symbol.id) != registry[ticker] for ticker, security in securities.items()):
+        raise ValueError("LEAN and Research resolved different permanent identities")
+    algorithm.set_benchmark(securities["AAPL"].symbol)
+    algorithm._engineering_state = {"payload": payload, "plan": plan, "request": request,
+        "store": store, "securities": securities, "records": [], "bar_keys": [],
+        "actions": [], "order_events": 0, "slices": 0, "engine_version": str(api.Globals.version),
+        "runtime_environment": _runtime_environment(api), "deployment_verification": deployment_observation,
+        "storage_preflight": capacity_observation}
+
+
+def receive_slice(algorithm, data):
+    state = algorithm._engineering_state
+    state["slices"] += 1
+    received = pd.Timestamp(algorithm.time)
+    received = received.tz_localize(NY) if received.tzinfo is None else received.tz_convert(NY)
+    if received.year != 2018:
+        raise ValueError("Engineering receiver left its frozen development year")
+    expected_sids = {str(security.symbol.id) for security in state["securities"].values()}
+    for collection in ("bars", "dividends", "splits", "delistings", "symbol_changed_events"):
+        if {str(symbol.id) for symbol in getattr(data, collection).keys()} - expected_sids:
+            raise ValueError("Engineering slice contains an undeclared identity")
+    for ticker, security in state["securities"].items():
+        symbol, sid = security.symbol, str(security.symbol.id)
+        bar = data.bars.get(symbol)
+        if bar is not None:
+            if str(bar.symbol.id) != sid:
+                raise ValueError("Bar identity differs from its declared dictionary key")
+            event = pd.Timestamp(bar.end_time)
+            event = event.tz_localize(NY) if event.tzinfo is None else event.tz_convert(NY)
+            if event != ExchangeCalendar(security.exchange.hours).close_on(event) or event > received:
+                raise ValueError("LEAN bar time differs from the completed exchange session")
+            state["bar_keys"].append((sid, event.isoformat()))
+            for field in state["request"].fields:
+                state["records"].append([sid, field, event.isoformat(), received.isoformat(),
+                    float(getattr(bar, field)), state["request"].data_version])
+        for name in ("dividends", "splits", "delistings", "symbol_changed_events"):
+            action = getattr(data, name).get(symbol)
+            if action is None:
+                continue
+            if str(action.symbol.id) != sid:
+                raise ValueError("Corporate action identity differs from its dictionary key")
+            item = {"kind": name, "sid": sid, "received_at": received.isoformat()}
+            for attribute in ("time", "end_time"):
+                if hasattr(action, attribute):
+                    stamp = pd.Timestamp(getattr(action, attribute))
+                    stamp = stamp.tz_localize(NY) if stamp.tzinfo is None else stamp.tz_convert(NY)
+                    if pd.isna(stamp) or stamp > received:
+                        raise ValueError("Corporate action event follows its modeled receipt")
+                    item[attribute] = stamp.isoformat()
+            for attribute in ("distribution", "split_factor", "type", "old_symbol", "new_symbol"):
+                if hasattr(action, attribute):
+                    value = getattr(action, attribute)
+                    item[attribute] = float(value) if attribute in {"distribution", "split_factor"} else str(value)
+            state["actions"].append(item)
+
+
+def finish_receiver(algorithm):
+    state = algorithm._engineering_state
+    payload, request, store = state["payload"], state["request"], state["store"]
+    document = state["plan"].to_dict()
+    window = document["observation_window"]
+    expected = set()
+    for security in state["securities"].values():
+        calendar = ExchangeCalendar(security.exchange.hours)
+        schedule = calendar.decisions(aware(window["start"]), aware(window["end_exclusive"]))
+        expected.update((str(security.symbol.id), calendar.close_on(time).isoformat()) for time in schedule.formation_at)
+    actual = set(state["bar_keys"])
+    rows = {"schema_version": 1, "request_hash": request.key, "columns": list(RECORD_COLUMNS), "rows": state["records"]}
+    actions = {"schema_version": 1, "availability_basis": "modeled_LEAN_event_delivery", "events": state["actions"]}
+    namespace = document["report_namespace"] + "/received/" + payload["identity"]["attempt_id"]
+    encoding = None
+    if document["schema_version"] == 4:
+        from .received_manifest import build_received_manifest
+        cache = SharedDataCache(store)
+        cached = cache.read(request, allow_fetch=False)
+        source_refs = []
+        for part in cache.partitions(request):
+            for field in part.fields:
+                unit = replace(part, fields=(field,))
+                manifest = json.loads(store.read_bytes("feature-cache/v1/manifests/" + unit.key + ".json"))
+                source_refs.append({"key": manifest["payload"], "sha256": manifest["sha256"]})
+        manifest, encoding = build_received_manifest(state["records"], cached, request, window, source_refs)
+        stored = canonical_json(manifest)
+        store.preflight_capacity(required_bytes=len(stored), required_files=1,
+            reserve_bytes=document["storage_policy"]["capacity"]["lean"]["reserve_bytes"], reserve_files=1)
+        raw_ref = _save(store, namespace + "/" + encoding["manifest_sha256"] + ".json", manifest)
+        if _load(store, raw_ref) != manifest:
+            raise ValueError("Receiver reference readback differs") from None
+    else:
+        raw_ref = _save(store, namespace + "/" + content_hash(rows) + ".json", rows)
+    action_ref = _save(store, namespace + "/" + content_hash(actions) + ".json", actions)
+    orders = len(list(algorithm.transactions.get_orders()))
+    dividend_count = sum(item["kind"] == "dividends" for item in state["actions"])
+    checks = {"source_snapshot_matches": True, "raw_data_received": bool(actual),
+        "complete_expected_bars": bool(expected) and actual == expected and len(actual) == len(state["bar_keys"]),
+        "no_orders": orders == 0 and state["order_events"] == 0,
+        "development_only": all(aware(item[2]).year == 2018 for item in state["records"]),
+        "symbol_registry_resolved": True, "corporate_action_received": dividend_count > 0}
+    statistics = {"data_event_count": len(state["bar_keys"]), "slice_count": state["slices"],
+        "orders_submitted": orders, "runtime_error_count": 0, "dividend_event_count": dividend_count,
+        "split_event_count": sum(item["kind"] == "splits" for item in state["actions"]),
+        "delisting_event_count": sum(item["kind"] == "delistings" for item in state["actions"]),
+        "mapping_event_count": sum(item["kind"] == "symbol_changed_events" for item in state["actions"])}
+    evidence = {"received_bar_ref": raw_ref, "corporate_action_ref": action_ref,
+                  "unobserved_action_types_are_not_certified": True,
+                  "lean_engine_version": state["engine_version"], "vendor_revision_known": False,
+                  "runtime_environment": state["runtime_environment"]}
+    if state.get("deployment_verification") is not None:
+        evidence["deployment_verification"] = state["deployment_verification"]
+    if state.get("storage_preflight") is not None:
+        evidence["storage_preflight"] = state["storage_preflight"]
+        evidence["receiver_storage"] = encoding
+    return _finish(store, payload, checks, statistics, payload["research_resolution"], evidence=evidence)

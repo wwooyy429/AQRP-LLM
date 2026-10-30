@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "kind": "developer_collaborator_actual_metadata_review_not_independent_acceptance",
+  "inputs": {
+    "UI_sha256": "4808a3cfcddf81b3f837b0a40cf1636217a3c67fb7dc4b0aeb76c146dcb0962f",
+    "fixed_assessment_sha256": "89e2c2007b228849dc290294709397a608e59665b19fb54d1398d475cdfb9b04",
+    "analyzer_sha256": "d6a11c4b9552d660384d497589b32e9e784b1282f31f654e52da6f6c15d0619b"
+  },
+  "actual_checks": {
+    "original_block_archive_hashes_match": true,
+    "table_blocks": 40,
+    "capacity_blocks": 2,
+    "all63_observations_match_original_block_hash_character_span_and_explicit_column_mapping": true,
+    "raw_marker_formats": {
+      "AQRP_STORAGE_INVENTORY_UI": 10,
+      "AQRP_STORAGE_INVENTORY_TUPLES": 53
+    },
+    "visible_row_observations": 529,
+    "unique_UI_entries": 496,
+    "unique_UI_leaf_objects": 456,
+    "unique_UI_folders": 40,
+    "repeated_observations_not_extra_objects": 33,
+    "directories_observed": 31,
+    "all31_range_ordered_positions_and_unique_keys_match_totals": true,
+    "metadata_conflicts": 0,
+    "exact_byte_sizes_obtained": 0,
+    "whole_organization_tree_complete": false
+  },
+  "pagination_fix": {
+    "initial_actual_assessment_preserved": "object_assessment.json",
+    "initial_extended19_tests_failed": 4,
+    "final20_known_answers_passed": true,
+    "known_answer_evidence": "pagination_fix/final_known_answers.json",
+    "v2_window_page_total_labels": [
+      3,
+      4
+    ],
+    "v2_window_unique_keys_and_positions": 43,
+    "v2_window_repeated_rows": 30,
+    "Factor_Validator_empty_0_of_0_supported": true,
+    "nonempty_0_of_0_rejected": true
+  },
+  "reviewer_probe_correction": {
+    "initial_probe_exit": 1,
+    "reason": "Review probe initially assumed only the UI object marker; saved actual tool output also uses TUPLES with four explicit columns",
+    "correction": "Decode each recorded marker format with its actual declared columns; do not change the UI source observations",
+    "this_was_an_audit_probe_assumption_not_an_additional_product_defect": true
+  },
+  "hash_name_review": {
+    "same_digest_name_groups": 96,
+    "all_are_identity_names_not_content_duplicate_proof": true,
+    "payload_digest_duplicate_name_groups_observed": 0,
+    "actual_content_duplicates_verified": 0
+  },
+  "unmatched_intents_by_UI_name_only": {
+    "v1": [
+      "aqrp/engineering/v2/historical-snapshots/v1/intents/35553affa2a93090350bd2bed3212310052a59ba12ba2b6469dd6c766e56ecf6.json",
+      "aqrp/engineering/v2/historical-snapshots/v1/intents/8eb031dcada8305da01d2ab56b4278a9470200e421f34c35789b4579cb83f6a8.json",
+      "aqrp/engineering/v2/historical-snapshots/v1/intents/98e41fd0d63aa484c00e55c2b03b4af3a7d53babf3787c3fc2df928a2875e8ec.json",
+      "aqrp/engineering/v2/historical-snapshots/v1/intents/bcf78d226a9286b145af5306f03122df82f4f7e6ae38e77cbe93f70fc87f9401.json"
+    ],
+    "v2": [
+      "aqrp/engineering/v2/historical-snapshots/v2/intents/7d192eebb9e271c7d420d00e7e11cc9f98d6482e4c62fd68e6bb9dc7d365deb5.json"
+    ]
+  },
+  "unmatched_interpretation": "Absent names in complete respective window listings; preserve intent and any partial-write forensic evidence. No specific batch association follows from a name or timestamp.",
+  "v1_raw_payload_objects_requiring_cloud_header_and_reference_review": [
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/336ac7d05cf90bb3db468f457d2bb10158866e7f55a9c6d42641070fd8dd8336.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/3a5c15e7af890c6bd5a7209ab2c30dedf9c93f60b0b1d19e5ab3255eccaa5108.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/3c83c5657ddc06c1adf7ee748ef686970830ca7eef5244e3b26ef08094d27b68.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/3dcbf5bafc8ecd471e172c7911ea905d2d90cdc5bf92bd3e22ff12dd5c21566c.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/6dc05520fea94b197441fc489f7dd08ee6d7ef41999613ced80f57558454eb93.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/b70c7dcfbb1ea18f740564b0f244286eda29721ca62d44c4f551f85c1df05051.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/bf6d935ccd5cdb3433b2b01009e167f4fa22a9a307cb02b5102b2f7406e0aeb1.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/c7fccd5ce63bd2ac1194cef31426666a303b9779d4d17b2eb02cd0c13a69657c.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/db44c3a1fca89e6033c69d7b79bc58ea1213efd65485bf1ddf86cd803bbf2707.json",
+    "aqrp/engineering/v2/historical-snapshots/v1/objects/e7902abff8749bcb3c182235b1df69f3c65bb30c9843486b7d9dd70e872c58a2.json"
+  ],
+  "unvisited_child_directories": [
+    "aqrp/engineering/v2/engineering/host-integration-normal009-v4",
+    "aqrp/engineering/v2/engineering/joint-round002-v1",
+    "aqrp/engineering/v2/engineering/joint-round002-v2",
+    "aqrp/engineering/v2/engineering/joint-v1",
+    "aqrp/engineering/v2/engineering/occurrence-retention-normal004-v2",
+    "aqrp/engineering/v2/engineering/repaired-round003-v1",
+    "aqrp/engineering/v2/engineering/sid-diagnostic-normal004-v1",
+    "aqrp/engineering/v2/engineering/source-policy-v2-round005",
+    "aqrp/engineering/v2/engineering/storage-repair-normal008-v4",
+    "aqrp/engineering/v2/engineering/v2"
+  ],
+  "unvisited_disposition": "All ten are within historical engineering namespaces. Retain each entire subtree; descendant counts and all reference edges were not enumerated.",
+  "release": {
+    "every_leaf_retained": true,
+    "unknown_generic_raw_objects_retained": 3,
+    "confirmed_reclaimable_bytes": 0,
+    "potential_total_bytes": null,
+    "reference_closure_complete": false,
+    "rounded_UI_sizes_are_not_release_bytes": true
+  },
+  "remaining_boundaries": [
+    "Raw SDK keys and exact bytes are not authenticated",
+    "Cloud metadata bodies and transitive references remain unresolved",
+    "Other project consumers or unseen implicit references remain possible",
+    "No payload bytes or row values were exported or compared",
+    "Saved UI tool text consistency is not server authentication or an atomic cloud snapshot"
+  ],
+  "product_source_changed": false,
+  "cloud_calls": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "Registry_or_budget_changes": 0,
+  "cloud_deletions": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "final_test_enabled": false
+}

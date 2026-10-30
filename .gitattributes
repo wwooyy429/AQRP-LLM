@@ -3,3 +3,36 @@
 *.json text eol=lf
 *.jsonl text eol=lf
 *.md text eol=lf
+# Preserve original review evidence bytes, including Windows line endings.
+audit/reviews/20261026-75f24629-windows/* -text
+audit/review_packages/wr04_wr06/** -text
+audit/reviews/20261026-fe4374c-windows/** -text
+audit/review_packages/wr07/** -text
+audit/reviews/20261026-7b0dcce-windows/** -text
+audit/review_packages/wr08/** -text
+audit/reviews/20261026-d0b9c98-windows/** -text
+audit/reviews/20261026-fbe2454-windows/** -text
+audit/reviews/20261026-7bf716f-windows/** -text
+audit/reviews/20261026-e513c66-windows/** -text
+audit/reviews/20261026-be94426-windows/** -text
+audit/review_packages/wr13/original_* -text
+audit/review_packages/wr11_wr12/original_* -text
+audit/review_packages/wr09_wr10/original_* -text
+audit/reviews/20261027-dc49f0f-windows/** -text
+audit/review_packages/wr14/original_* -text
+# Hash this manifest's exact Git LF bytes; do not convert on checkout or commit.
+audit/review_packages/wr14/developer_outputs_manifest.json -text
+audit/review_packages/wr15/** -text
+audit/reviews/20261027-4a94430-windows/** -text
+audit/review_packages/phase2_joint/** -text
+audit/reviews/20261027-8f7236e-windows/** -text
+audit/review_packages/wr16_wr17/** -text
+audit/reviews/20261027-ae2b898-windows/** -text
+audit/review_packages/wr18/** -text
+audit/reviews/20261027-81fbe52-windows/** -text
+audit/review_packages/wr19/** -text
+audit/reviews/20261027-84414ab-windows/** -text
+audit/review_packages/native_rejection/** -text
+audit/review_packages/native_runtime_failure/** -text
+audit/tool_observations/bfd00f2611fd4496b9498d4597618a8e-terminal-runtime-error.json -text
+audit/review_packages/deployment_integrity/** -text

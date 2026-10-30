@@ -1,0 +1,52 @@
+{
+  "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "actually_executed": true,
+  "methods": 11,
+  "passed_methods": 11,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "failure_records": 0,
+  "error_records": 0,
+  "skipped": 0,
+  "subcases": 716,
+  "observations": {
+    "comparison_count": 719,
+    "max_normalized_mean_error": 0.7142857142857143,
+    "max_std_relative_error": 2.8107271145275333e-16,
+    "max_normalized_icir_error": 1.6868995801715694,
+    "worst_mean": {
+      "label": "cancellation",
+      "values_hex": [
+        "0x1.6666666666666p-1",
+        "-0x1.6666666666666p-1",
+        "0x1.87e92154ef7acp-665"
+      ],
+      "expected": 3.3333333333333335e-201,
+      "actual": 1.1102230246251565e-16,
+      "absolute_error": 1.1102230246251565e-16,
+      "error_in_eps_times_max_abs_input": 0.7142857142857143
+    },
+    "first_failure": null
+  },
+  "tolerance": {
+    "mean": "max(16*eps*max(abs(valid_IC)),2*ulp(correctly_rounded_mean))",
+    "sample_std": "max(32*eps*correctly_rounded_std,2*ulp(correctly_rounded_std))",
+    "ICIR": "32*eps*max(1,abs(correctly_rounded_ICIR)); this is a relative 32eps bound for large near-constant-IC ratios and an absolute 32eps bound near zero",
+    "positive_std_guard": "Every representable positive oracle std must remain strictly positive; only subnormal std rounding uses 2 ULP allowance"
+  },
+  "oracle": "Exact Fraction raw moments with sample ddof1, 180-significant-digit Decimal square root and mean/std ratio",
+  "warnings": [],
+  "failures": [],
+  "errors": [],
+  "source_unchanged": true,
+  "author_test_fixtures_imported": false,
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "platform_calls": 0,
+  "financial_evidence": false,
+  "exit_code": 0
+}

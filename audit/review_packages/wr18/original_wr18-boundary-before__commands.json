@@ -1,0 +1,42 @@
+{
+  "phase": "before",
+  "synthetic_only": true,
+  "actual_cloud_or_model_calls": 0,
+  "test_sha256": "211932997dbbd8566bda9a287bb2a4a64f59b45fe1cfac67a2223933a2fbef4d",
+  "records": [
+    {
+      "name": "original_mre",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-ae2b898-20261027\\minimal_wr18.py",
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 1,
+      "seconds": 0.8430000000007567,
+      "stdout": "original_mre.stdout",
+      "stderr": "original_mre.stderr"
+    },
+    {
+      "name": "new_tests",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_wr18_completion_dependency.py",
+        "-v"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 1,
+      "seconds": 1.6409999999959837,
+      "stdout": "new_tests.stdout",
+      "stderr": "new_tests.stderr"
+    }
+  ]
+}

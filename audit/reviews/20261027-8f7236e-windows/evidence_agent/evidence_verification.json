@@ -1,0 +1,749 @@
+{
+  "fixed_candidate": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "baseline": "dd094f345f45b9d9cb78dd9295a6aefd587f4c68",
+  "scope": "Source/evidence identity and read-only preview preparation; no platform or financial acceptance",
+  "actually_executed": "Read-only raw hashes, AST/JSON, independent event replay and pure identity function",
+  "check_count": 63,
+  "passed_checks": 63,
+  "failed_checks": 0,
+  "unit_test_methods_executed": 0,
+  "new_QC_or_market_model_calls": 0,
+  "source": {
+    "files": 1563,
+    "all_raw_bytes_match_Git": true,
+    "review_files": 117,
+    "review_hash": "a4f6a9fae042f15675b43e3ad024cd3ea8592de71246a50e4a46d9a05d763217",
+    "old_review_hash": "51f7019f11f9357707889a45083e697d741bb3d38bcc8ff534e48597cc7f6aa0",
+    "execution_hash": "9f9b2d696dec59d765c8720f4d98be9a3b703aeea2d732ae7404a477bbc4f808"
+  },
+  "deployment": {
+    "Python_files": 29,
+    "local_deployment_hash": "77a6767c8fbd7e7adadafc499b921a77e4133d8061e0a3ed25fd71a0dabb9358",
+    "implementation_hash": "bad02900258fcb091c18d15a19c571d5f341d698f7fe4e57d140d5335eca7f98",
+    "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+    "new_identity_does_not_prove_deployment": true
+  },
+  "complete_diff": [
+    {
+      "path": ".gitattributes",
+      "kind": "modified",
+      "old_raw_sha256": "cad3b3b905696fc1334d39be256876293f21310961e31c29342714b4cda85bd6",
+      "new_raw_sha256": "7e8fb29d1979640071a08e60a85b53aae22042d391dac3600fda5448ea104cd8"
+    },
+    {
+      "path": "README.md",
+      "kind": "modified",
+      "old_raw_sha256": "af3724a8b44cd44a12743eb346ea403c1cc2842778129518ecbcd9425b4038c7",
+      "new_raw_sha256": "d2ecd869dc3e35f8cda63dd16b531afd25ed49eeafd6a0bb59f79a037ac2696b"
+    },
+    {
+      "path": "audit/deployment.json",
+      "kind": "modified",
+      "old_raw_sha256": "7eca09ea42ff8a837a85cad00e8daf5af3c3a9b23220d72bb37319d93251b3cf",
+      "new_raw_sha256": "eddbb061737f458bd5b930f779aafc3983b8e2db9fceb2a5eee7ff2eebee61da"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/developer_verification.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "d5156905f7bcd8a1ff41494f7dd9a764e012f363b80af50a706bfcdc1fcaded0"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_full_repository_verification.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "3a169665c7e234e32a8168b874e9eb6010f9f63856246fb988e188b975a6d463"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_initial10.stderr",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "3d9f76640438ed60abd687557f1a59f1eff41d83b7665295772bea0374b964c6"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_initial10_summary.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "8271441b1a84305046d623fefb287c54a5ae3c8411c91749d7161d7ade73a92b"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_runner.py",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "1af68a3cedfda8a8b1c88028611550b4b3fe4071c2d1c3e58058dddcc4f46a01"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted.stderr",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "bc52db38d900e2f6a0f2d46c66987e3640289c4eb9bf0b685f59e00969b9f750"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted.stdout",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted_summary.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "b883a0f0a9456d1d3c8495ebb84675f60b365981b01c2bd28b59badf037b4c42"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_outputs_manifest.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "c4a518e8f755012515e4720d8a52160adc3001b6793fe8251d88d0b008448526"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_preview.stderr",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_preview.stdout",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "bd620a28c2dadef264fdb3151434bcb529d1a8a5956dc8da5fb8d749907a852d"
+    },
+    {
+      "path": "audit/review_tracking.json",
+      "kind": "modified",
+      "old_raw_sha256": "0106d4f4c8b2fb9d178f7a808970c14e9d489cc6ff28c7e7bb0f330db5c6f67e",
+      "new_raw_sha256": "c6aa5e3f44972864091d2bbb00c527967c9a2b5240f3f5cbfac7ebe857f67b90"
+    },
+    {
+      "path": "audit/stage2_current_readiness.json",
+      "kind": "modified",
+      "old_raw_sha256": "00dd52efd6e1a6e14090144431c891c53b0a336f23a481be2749dd2c80340361",
+      "new_raw_sha256": "ad376ad7c920355953f292a92c5a8cd2a7e1bdf7a4175d035054f1755a0e543f"
+    },
+    {
+      "path": "audit/stage2_joint_preview.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "092ca833a90014a3d8e2412827049d0576c8e07036a13742ed6783aefea5056c"
+    },
+    {
+      "path": "audit/stage2_live_preflight.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "698368f478f6619244225d87480cee5cba7d3217eb993e6b1870a5a259abaaa8"
+    },
+    {
+      "path": "audit/stage2_live_project_listing.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "ff61f1e53b4b6b1126bc4bd45b89cfff5168ee8f3de192fda1780bfa40050ec2"
+    },
+    {
+      "path": "audit/stage_verification.json",
+      "kind": "modified",
+      "old_raw_sha256": "7a0e9fcaf58c93e672eb0df7d73161c7e7afc44f323266486a51b86ba3f708c6",
+      "new_raw_sha256": "3a169665c7e234e32a8168b874e9eb6010f9f63856246fb988e188b975a6d463"
+    },
+    {
+      "path": "cloud/qresearch/engineering_data.py",
+      "kind": "modified",
+      "old_raw_sha256": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+      "new_raw_sha256": "f29bed3bbcfe66428c25404f18cc3638711af88eb4a93791fd5538d6fe4aa70f"
+    },
+    {
+      "path": "cloud/qresearch/engineering_receipts.py",
+      "kind": "modified",
+      "old_raw_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+      "new_raw_sha256": "06abbcef0212c5a4cbfc7b3ac15d84b1f89c260311316a17105ebce4dcefbfa9"
+    },
+    {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "kind": "modified",
+      "old_raw_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+      "new_raw_sha256": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32"
+    },
+    {
+      "path": "cloud/qresearch/registry.py",
+      "kind": "modified",
+      "old_raw_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+      "new_raw_sha256": "e9a78469a01f371ced3005aa58a5c5f752931a6e319e0d30cafe716ea902b7eb"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "modified",
+      "old_raw_sha256": "ef708550717c5b864ee6ec666c93fa84ab5809f887ba6c2df46170b644393420",
+      "new_raw_sha256": "c4a64f90e020190ffd78476820f68b402e95c584a8f38a84c69f2c4f98198844"
+    },
+    {
+      "path": "config/engineering_joint_pilot.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "54aa4c171eebe7cbdf5e7838da4a7399761f9f7217839287d5b9ce57007f00d9"
+    },
+    {
+      "path": "docs/stage2-live-pilot.md",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "b5faf2e22f8476c5da69f64661e2c79b6f5e07291850fd9b7ef90874c5d564dc"
+    },
+    {
+      "path": "tests/test_phase2_joint_boundaries.py",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "7a1bf0ca9880a3b45960c6d5cea6ffd3cd975fc41db62305cf641848466a3cd3"
+    },
+    {
+      "path": "tests/test_phase2_joint_plan.py",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "aa922a38b1bbd0583c3baac2bac8b32496c93e2a06f39723ac7c7a44223ba6fb"
+    },
+    {
+      "path": "tools/stage2.py",
+      "kind": "modified",
+      "old_raw_sha256": "a03289fb0b2792bc5b0ef7937061373e746e016c328e4d1e62bdd7535c468d65",
+      "new_raw_sha256": "01ab899ad71c1ecab62cf33c4b62541651ffcb0ea4d9c557cbfdfbe2d1f38040"
+    }
+  ],
+  "production_diff": [
+    {
+      "path": "cloud/qresearch/engineering_data.py",
+      "kind": "modified",
+      "old_raw_sha256": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+      "new_raw_sha256": "f29bed3bbcfe66428c25404f18cc3638711af88eb4a93791fd5538d6fe4aa70f"
+    },
+    {
+      "path": "cloud/qresearch/engineering_receipts.py",
+      "kind": "modified",
+      "old_raw_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+      "new_raw_sha256": "06abbcef0212c5a4cbfc7b3ac15d84b1f89c260311316a17105ebce4dcefbfa9"
+    },
+    {
+      "path": "cloud/qresearch/engineering_tasks.py",
+      "kind": "modified",
+      "old_raw_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+      "new_raw_sha256": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32"
+    },
+    {
+      "path": "cloud/qresearch/registry.py",
+      "kind": "modified",
+      "old_raw_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+      "new_raw_sha256": "e9a78469a01f371ced3005aa58a5c5f752931a6e319e0d30cafe716ea902b7eb"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "modified",
+      "old_raw_sha256": "ef708550717c5b864ee6ec666c93fa84ab5809f887ba6c2df46170b644393420",
+      "new_raw_sha256": "c4a64f90e020190ffd78476820f68b402e95c584a8f38a84c69f2c4f98198844"
+    },
+    {
+      "path": "config/engineering_joint_pilot.json",
+      "kind": "added",
+      "old_raw_sha256": null,
+      "new_raw_sha256": "54aa4c171eebe7cbdf5e7838da4a7399761f9f7217839287d5b9ce57007f00d9"
+    },
+    {
+      "path": "tools/stage2.py",
+      "kind": "modified",
+      "old_raw_sha256": "a03289fb0b2792bc5b0ef7937061373e746e016c328e4d1e62bdd7535c468d65",
+      "new_raw_sha256": "01ab899ad71c1ecab62cf33c4b62541651ffcb0ea4d9c557cbfdfbe2d1f38040"
+    }
+  ],
+  "old_evidence_files_unchanged": 1387,
+  "developer_original_output_rows": [
+    {
+      "path": "audit/review_packages/phase2_joint/original_full_repository_verification.json",
+      "actual_raw_sha256": "3a169665c7e234e32a8168b874e9eb6010f9f63856246fb988e188b975a6d463",
+      "expected_raw_sha256": "3a169665c7e234e32a8168b874e9eb6010f9f63856246fb988e188b975a6d463",
+      "actual_bytes": 14689,
+      "expected_bytes": 14689,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_initial10.stderr",
+      "actual_raw_sha256": "3d9f76640438ed60abd687557f1a59f1eff41d83b7665295772bea0374b964c6",
+      "expected_raw_sha256": "3d9f76640438ed60abd687557f1a59f1eff41d83b7665295772bea0374b964c6",
+      "actual_bytes": 1358,
+      "expected_bytes": 1358,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_initial10_summary.json",
+      "actual_raw_sha256": "8271441b1a84305046d623fefb287c54a5ae3c8411c91749d7161d7ade73a92b",
+      "expected_raw_sha256": "8271441b1a84305046d623fefb287c54a5ae3c8411c91749d7161d7ade73a92b",
+      "actual_bytes": 1065,
+      "expected_bytes": 1065,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_runner.py",
+      "actual_raw_sha256": "1af68a3cedfda8a8b1c88028611550b4b3fe4071c2d1c3e58058dddcc4f46a01",
+      "expected_raw_sha256": "1af68a3cedfda8a8b1c88028611550b4b3fe4071c2d1c3e58058dddcc4f46a01",
+      "actual_bytes": 1861,
+      "expected_bytes": 1861,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted.stderr",
+      "actual_raw_sha256": "bc52db38d900e2f6a0f2d46c66987e3640289c4eb9bf0b685f59e00969b9f750",
+      "expected_raw_sha256": "bc52db38d900e2f6a0f2d46c66987e3640289c4eb9bf0b685f59e00969b9f750",
+      "actual_bytes": 1624,
+      "expected_bytes": 1624,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted.stdout",
+      "actual_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_bytes": 0,
+      "expected_bytes": 0,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_joint_boundary_targeted_summary.json",
+      "actual_raw_sha256": "b883a0f0a9456d1d3c8495ebb84675f60b365981b01c2bd28b59badf037b4c42",
+      "expected_raw_sha256": "b883a0f0a9456d1d3c8495ebb84675f60b365981b01c2bd28b59badf037b4c42",
+      "actual_bytes": 1065,
+      "expected_bytes": 1065,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_preview.stderr",
+      "actual_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected_raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual_bytes": 0,
+      "expected_bytes": 0,
+      "passed": true
+    },
+    {
+      "path": "audit/review_packages/phase2_joint/original_preview.stdout",
+      "actual_raw_sha256": "bd620a28c2dadef264fdb3151434bcb529d1a8a5956dc8da5fb8d749907a852d",
+      "expected_raw_sha256": "bd620a28c2dadef264fdb3151434bcb529d1a8a5956dc8da5fb8d749907a852d",
+      "actual_bytes": 3327,
+      "expected_bytes": 3327,
+      "passed": true
+    }
+  ],
+  "developer_failure_boundary": "Initial4 worker-method error exists as reported tool-transcript summary only, not an original saved raw subprocess file; later saved boundary/423/preview files remain developer evidence.",
+  "preview": {
+    "archived_plan_hash": "a04fb70f1ad48db1cb1fca09653e3bb3bd6c531c72089400710d907e3ea10b52",
+    "source_and_deployment_hashes_match_current": true,
+    "registration_admission_and_dispatch": false,
+    "independent_replay": "See build_preview_verification.json"
+  },
+  "preflight_boundary": "Developer-recorded read-only project/main/input checks are not independently retrieved here; two normalized files do not certify full cloud source, runtime, terminal or licensed data. No QC tool called in this subtask.",
+  "protected_metadata": {
+    "paths": 40,
+    "changed": []
+  },
+  "budget": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_attempt": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    }
+  },
+  "checks": [
+    {
+      "check": "1563_file_set_equals_fixed_Git",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_source_raw_bytes_equal_fixed_Git",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "117_normalized_source_manifest_files",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_review_source_map_recomputed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_review_source_hash_recomputed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "complete_seven_path_production_diff",
+      "passed": true,
+      "details": [
+        {
+          "path": "cloud/qresearch/engineering_data.py",
+          "kind": "modified",
+          "old_raw_sha256": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca",
+          "new_raw_sha256": "f29bed3bbcfe66428c25404f18cc3638711af88eb4a93791fd5538d6fe4aa70f"
+        },
+        {
+          "path": "cloud/qresearch/engineering_receipts.py",
+          "kind": "modified",
+          "old_raw_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+          "new_raw_sha256": "06abbcef0212c5a4cbfc7b3ac15d84b1f89c260311316a17105ebce4dcefbfa9"
+        },
+        {
+          "path": "cloud/qresearch/engineering_tasks.py",
+          "kind": "modified",
+          "old_raw_sha256": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872",
+          "new_raw_sha256": "f87cc320aaccbd60b44709f561d4bfff96862b71cb76c26748c6227df8c22d32"
+        },
+        {
+          "path": "cloud/qresearch/registry.py",
+          "kind": "modified",
+          "old_raw_sha256": "5bc752e73bf7a5c3e297dd490d774bb05c19c71a7971d831cebd1eb582026894",
+          "new_raw_sha256": "e9a78469a01f371ced3005aa58a5c5f752931a6e319e0d30cafe716ea902b7eb"
+        },
+        {
+          "path": "cloud/research_config.py",
+          "kind": "modified",
+          "old_raw_sha256": "ef708550717c5b864ee6ec666c93fa84ab5809f887ba6c2df46170b644393420",
+          "new_raw_sha256": "c4a64f90e020190ffd78476820f68b402e95c584a8f38a84c69f2c4f98198844"
+        },
+        {
+          "path": "config/engineering_joint_pilot.json",
+          "kind": "added",
+          "old_raw_sha256": null,
+          "new_raw_sha256": "54aa4c171eebe7cbdf5e7838da4a7399761f9f7217839287d5b9ce57007f00d9"
+        },
+        {
+          "path": "tools/stage2.py",
+          "kind": "modified",
+          "old_raw_sha256": "a03289fb0b2792bc5b0ef7937061373e746e016c328e4d1e62bdd7535c468d65",
+          "new_raw_sha256": "01ab899ad71c1ecab62cf33c4b62541651ffcb0ea4d9c557cbfdfbe2d1f38040"
+        }
+      ]
+    },
+    {
+      "check": "all_previous_config_documents_raw_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_previous_tests_raw_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_prior_failure_acceptance_precision_metadata_evidence_unchanged",
+      "passed": true,
+      "details": {
+        "files": 1387,
+        "changed": []
+      }
+    },
+    {
+      "check": "WR15_corrected_Git_manifest_digest_kept",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "48_historical_output_hashes_still_match",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_full_repository_verification.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_initial10.stderr",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_initial10_summary.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_runner.py",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_targeted.stderr",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_targeted.stdout",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_joint_boundary_targeted_summary.json",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_preview.stderr",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_developer_raw_output_original_preview.stdout",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "nine_saved_original_outputs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "new_original_output_attribute_minus_text",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer423_record_matches_candidate_source",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "boundary_original_runs_not_replaced_by_worker_summary",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "first_worker_failure_is_explicitly_summary_only",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_evidence_not_independent_acceptance",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "implementation_hash_tracks_all_library_files",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "generated_active_research_configuration_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "local29file_deployment_hashes_recomputed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "execution_manifest_policy_function_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "execution_manifest_exactly_binds_source_and_budget_policy",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preview_same_as_saved_raw_stdout",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preview_plan_and_configuration_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preview_binds_current_execution_and_deployment",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preview_explicit_not_registration_admission_dispatch",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unregistered_template_has_null_identity",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "joint_probe_four_explicit_observation_fields",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "joint_probe_only_fixed40calendar_day_development_range",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "joint_is_no_orders_no_financial_test_no_retry",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preview_returns_before_opening_registry_AST",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "developer_preflight_is_metadata_read_only_not_runtime_claim",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preflight_preserves_pending_no_terminal_no_poll",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "preflight_limits_readback_to_two_files_normalized_not_raw",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "project_listing_metadata_consistent",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "old_budget_pointer_inputs_partitions_exposure_and_protected_metadata_unchanged",
+      "passed": true,
+      "details": {
+        "paths": 40,
+        "changed": []
+      }
+    },
+    {
+      "check": "no_joint_config_registration_attempt_or_input_written",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "journal_complete_tail",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_1_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_2_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_3_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_4_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_5_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_6_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_7_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_8_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_9_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_10_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_11_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "event_12_hash_chain",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "12_authoritative_events_replay_to6_9_1",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "existing_pending_attempt_identity_unchanged",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_four_production_execution_flags_false",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_data_certifications_and_final_evaluation_remain_false",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "financial_evidence": false
+}

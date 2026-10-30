@@ -1,0 +1,63 @@
+{
+  "reviewed_source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+  "review_scope": "Independent Pearson kernel numerical recheck only",
+  "WR-07": {
+    "status": "passed_after_fix_in_tested_scope",
+    "source_locations": [
+      {"file": "cloud/qresearch/evaluation.py", "lines": [200,208,211,215,216,217,218,221,222,243,246,248]}
+    ],
+    "mechanism_reviewed": "Power-of-two scaling bounds values, reference-observation offsets preserve small spreads at a common large offset, a second spread scaling and unit-vector normalization avoid raw squared moments. Public Pearson uses bounded normalized dot product; Spearman is a separate retained rank path.",
+    "independent_oracle": "Exact binary64 Fraction raw moments n*sum(x*y)-sum(x)*sum(y), n*sum(x*x)-sum(x)^2 and n*sum(y*y)-sum(y)^2; 160-significant-digit Decimal square root/division. No developer test or fixture imported.",
+    "actual_coverage": [
+      "Original small/normal/large independently scaled positive and negative pair reproductions",
+      "Non-perfect/nonlinear covariance with non-equally-spaced offsets and ties",
+      "Smallest subnormal, minimum normal and maximum finite float64 values",
+      "Positive/negative large shared offsets with ULP-sized variation and row permutations",
+      "Mixed dynamic range and almost orthogonal/zero covariance",
+      "Constants and zero/one/two observations",
+      "720 deterministically seeded random cases across wide exponents, shared offsets and nearly perfect pairs",
+      "16 pairwise absolute-Pearson matrix subcases with common-sample missingness"
+    ],
+    "tolerance": {
+      "absolute": 2.842170943040401e-14,
+      "basis": "128 times binary64 epsilon for tested vectors up to 32 observations; absolute, not relative, assessment near zero",
+      "max_observed_absolute_error": 2.220446049250313e-16,
+      "worst_case": "Two-point negative correlation in deterministic random-wide case1: exact -1 versus computed -0.9999999999999998; ordinary last-bit rounding, not a defect"
+    },
+    "new_verified_defects": [],
+    "legitimate_finite_nonconstant_input_discard_observed": false,
+    "first_failure": null
+  },
+  "tests": {
+    "actually_executed": true,
+    "command": "C:/Users/11638/.codex/tmp/aqrp-review-20261026/venv/Scripts/python.exe -B exact_pearson_review.py",
+    "cwd": "C:/Users/11638/.codex/tmp/aqrp-review-7b0dcce-20261026/numeric_agent",
+    "methods": 10,
+    "passed_methods": 10,
+    "failed_methods": 0,
+    "error_methods": 0,
+    "skipped": 0,
+    "subcases": 896,
+    "default_public_correlation_comparisons": 880,
+    "matrix_pair_subcases": 16,
+    "exit_code": 0,
+    "runtime_warnings": [],
+    "source_unchanged": true,
+    "developer_test_fixtures_imported": false
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "unverified": [
+    "Exhaustive correctness over every possible finite vector or unlimited sample count",
+    "Relative accuracy of correlations whose true magnitude is below binary64 absolute rounding",
+    "Linux/extended-precision execution in this subtask",
+    "Real financial data, factor validity or market/portfolio performance"
+  ],
+  "platform_calls": 0,
+  "financial_evidence": false,
+  "artifacts": ["exact_pearson_review.py", "exact_test_results.json", "exact_test_output.txt"]
+}

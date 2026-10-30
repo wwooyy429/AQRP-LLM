@@ -1,0 +1,90 @@
+{
+  "baseline_commit": "f37340415ff080ae44310c912044f683e9986e96",
+  "same_final_dedicated_tests": true,
+  "baseline": {
+    "command": [
+      "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_deployment_preflight.py",
+      "-v"
+    ],
+    "working_copy": "baseline_same_final_tests",
+    "exit_code": 1,
+    "test_methods": 22,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "13d5d9edc69592e6f2f1d786e33188dddb2718a307a166021e757bc4d1be1de5",
+    "dedicated_test_sha256": "d81df25c783d5251061cd599c09c9bae0d48d05a1db5bad63c6bff15eb63f6db",
+    "synthetic_only": true,
+    "provider_calls": 0,
+    "real_budget_operations": 0
+  },
+  "candidate": {
+    "command": [
+      "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_deployment_preflight.py",
+      "-v"
+    ],
+    "working_copy": "candidate_final",
+    "exit_code": 0,
+    "test_methods": 22,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "c156dc7268c95a462dfc83cf8030a271f8233e97daae28b7334b6d01c4ad2e96",
+    "dedicated_test_sha256": "d81df25c783d5251061cd599c09c9bae0d48d05a1db5bad63c6bff15eb63f6db",
+    "synthetic_only": true,
+    "provider_calls": 0,
+    "real_budget_operations": 0
+  },
+  "compatibility": {
+    "command": [
+      "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "tests.test_wr17_engineering_recovery",
+      "tests.test_phase2_joint_boundaries",
+      "tests.test_native_runtime_failure",
+      "tests.test_native_backtest_rejection",
+      "tests.test_stage2_cli",
+      "-v"
+    ],
+    "working_copy": "compatibility_final",
+    "exit_code": 0,
+    "test_methods": 66,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "3bbfa64b27d219641d837226ad8b65979f15a357093263a2a07c069ab695eb86",
+    "dedicated_test_sha256": "d81df25c783d5251061cd599c09c9bae0d48d05a1db5bad63c6bff15eb63f6db",
+    "synthetic_only": true,
+    "provider_calls": 0,
+    "real_budget_operations": 0
+  },
+  "source_raw_sha256": {
+    "tools/stage2.py": "a59c9ecdf615b3cc59c0d47058c7555763d63d4bb2ee8f2ccd885220db7716d3",
+    "tools/deployment_preflight.py": "b9945fd1cbd702ba70f76d4a6437203f69ea1728b4176c3da2c61082831627f6",
+    "tests/test_deployment_preflight.py": "d81df25c783d5251061cd599c09c9bae0d48d05a1db5bad63c6bff15eb63f6db",
+    "tests/test_wr17_engineering_recovery.py": "7f4fbf17ebb37d89f1fbf297889a6334b33dbc120d0d18eef96107e31c42150b",
+    "tests/test_phase2_joint_boundaries.py": "183c862f1aa9121f93dbc927364beea8ef37ab06f500225556b240c92213e472"
+  },
+  "actual_provider_calls": 0,
+  "actual_research_executions": 0,
+  "actual_lean_submissions": 0,
+  "actual_budget_or_pointer_or_old_admission_changes": false,
+  "fixture_changes": "Two existing fixture modules now create actual synthetic cloud/stub.py matching a real hash; original assertions and quota limits unchanged.",
+  "v1_scope": "Strict local implementation manifest/set and frozen plan.deployment_hash; no new mutable full source_manifest recheck.",
+  "v2_scope": "Strict implementation contract plus existing stable execution source/catalog identities retained.",
+  "historical_worker_root_cause_proven": false,
+  "worker_source_verified": false,
+  "cloud_inventory_certified": false
+}

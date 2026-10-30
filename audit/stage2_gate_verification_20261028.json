@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "kind": "developer_stage2_gate_verification_with_native_failure",
+  "baseline_commit": "d23c0ab93ceba71529eb813e349c8dfdcbb5ea88",
+  "runtime_source_commit": "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+  "verification_completed": true,
+  "all_acceptance_gates_passed": false,
+  "stage2_accepted": false,
+  "gates": [
+    {
+      "id": "LEAN_NATIVE_TERMINAL",
+      "status": "verified_failed",
+      "acceptance_gate_passed": false,
+      "backtest_id": "3e68866a46ca88ff16481c31b3c2c822",
+      "attempt_id": "37dc855045e14ca49c88fd9d75f40cf7",
+      "native_status": "Runtime Error",
+      "ledger_status": "failed",
+      "required_checks": 7,
+      "actual_success_checks": null,
+      "actual_orders": null,
+      "evidence": [
+        "audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-result.json",
+        "audit/tool_observations/37dc855045e14ca49c88fd9d75f40cf7-backtest-logs.json",
+        "audit/review_packages/gates-20261028/round_evidence_after_terminal.json"
+      ],
+      "detail": "Initialization stopped at strict source_hash_mismatch for engineering_smoke.py; fixed success report absent."
+    },
+    {
+      "id": "PROJECT_SOURCE_AND_WORKER_PARITY",
+      "status": "project_sources_match_worker_first_file_mismatch",
+      "acceptance_gate_passed": false,
+      "declared_project_sources_checked": 32,
+      "declared_project_sources_equal_frozen": true,
+      "full_project_inventory_certified": false,
+      "worker_sources_observed": 1,
+      "first_rejected_source": "engineering_smoke.py",
+      "expected_sha256": "33ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90",
+      "observed_sha256": "5b7111b3806c2f4a8f93b85ffb8a54fa63cebdefb126bcc449c6020b95d3c4e5",
+      "finite_exact_matching_candidate": "append_one_LF_only",
+      "matching_byte_counts": [
+        3561,
+        3562
+      ],
+      "matching_trailing_LF_counts": [
+        1,
+        2
+      ],
+      "unchanged_AlgorithmImports_star_count": 1,
+      "strict_identity_relaxed": false,
+      "responsible_platform_step_proven": false,
+      "other31_worker_sources_certified": false,
+      "old39cafa_root_cause_proven": false,
+      "evidence": [
+        "audit/review_packages/gates-20261028/cloud_sources_result.json",
+        "audit/review_packages/gates-20261028/lean/lf_guard_check.json"
+      ]
+    },
+    {
+      "id": "CERTIFICATION_COMPUTATION_KERNEL",
+      "status": "implemented_synthetic_rechecks_passed",
+      "software_scope_passed": true,
+      "actual_data_certified": false,
+      "suite_methods": {
+        "certification": 48,
+        "ingestion": 12
+      },
+      "evidence": [
+        "audit/review_packages/gates-20261028/certification/gate_report.json"
+      ]
+    },
+    {
+      "id": "FINANCIAL_NUMERIC_CATALOG",
+      "status": "not_implemented_in_production_catalog",
+      "acceptance_gate_passed": false,
+      "production_observed_fields": 15,
+      "as_reported_financial_value_fields": 0,
+      "evidence": [
+        "config/source_catalog.json",
+        "audit/review_packages/gates-20261028/certification/capabilities.stdout"
+      ]
+    },
+    {
+      "id": "CHARGED_CERTIFICATION_DISPATCH",
+      "status": "not_implemented",
+      "acceptance_gate_passed": false,
+      "supported_CLI_commands": [
+        "capabilities",
+        "validate-plan"
+      ],
+      "ready_to_dispatch": false,
+      "evidence": [
+        "tools/data_certification.py",
+        "audit/review_packages/gates-20261028/certification/dispatch_cli_absent.stderr"
+      ]
+    },
+    {
+      "id": "FULL_HISTORICAL_US200_VINTAGE_AND_AVAILABILITY",
+      "status": "insufficient_actual_source_evidence",
+      "acceptance_gate_passed": false,
+      "catalogue_metadata_rechecked": true,
+      "cloud_historical_row_counts_rechecked": false,
+      "financial_vintage_certified": false,
+      "actual_historical_delivery_and_ingestion_certified": false,
+      "permanent_SID_ambiguity_economically_resolved": false,
+      "evidence": [
+        "audit/review_packages/gates-20261028/dataset_metadata_native.json",
+        "audit/review_packages/gates-20261028/certification/gate_report.json"
+      ]
+    }
+  ],
+  "global_usage": {
+    "configurations": 12,
+    "research": 15,
+    "lean": 2
+  },
+  "round_status": "closed",
+  "round_used": {
+    "configurations": 2,
+    "lean": 1,
+    "research": 2
+  },
+  "journal_events_before": 46,
+  "journal_events_after": 48,
+  "original46_event_prefix_preserved": true,
+  "actual_native_terminal_settlements": 1,
+  "round_closures": 1,
+  "new_configurations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "refunds": 0,
+  "global_limits_unchanged": true,
+  "unspent_reservation_release_is_not_refund": true,
+  "current_turn_QC_metadata_calls": 40,
+  "explicit_compile_API_calls": 0,
+  "UI_compile_observation": {
+    "build_log": "Built project Research/GenericResearch for Lean2.5.0.0.18207 withId3adbdf-40f1d6",
+    "displayed_time": "8:24:59",
+    "initiator_not_independently_proven": true,
+    "original_historical_compile_packet_recovered": false
+  },
+  "UI_terminal_observation": {
+    "method": "single historical Results view after fresh user login; no submission and no queued-status polling",
+    "project_url": "https://www.quantconnect.com/project/38436695",
+    "rendered_row_name": "AQRP Stage2 Occurrence Reception 662ccd8 37dc8550",
+    "rendered_status": "Runtime Error",
+    "requested_time_as_displayed": "2026-10-27 19:45:49",
+    "identity_bound_by_original_admission_and_actual_native_request_context": true
+  },
+  "independent_acceptance": false,
+  "prior_4520_scoped_independent_review_retained": true,
+  "native_error_origin_relies_on_trusted_dispatch_context": true,
+  "synthetic_counts_are_separate_and_overlapping_not_additive": true,
+  "product_source_or_config_changed": false,
+  "real_data_rows_exported": false,
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "year2026_independence": "not_certified",
+  "full_offline_verification": {
+    "actual_methods": 765,
+    "passed": true,
+    "source_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+    "evidence": "audit/review_packages/gates-20261028/full_offline_verification.json",
+    "independent_acceptance": false
+  }
+}

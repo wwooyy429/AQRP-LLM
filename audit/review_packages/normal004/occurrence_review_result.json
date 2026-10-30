@@ -1,0 +1,52 @@
+{
+  "kind": "auxiliary_v2_occurrence_boundary_review_not_independent_GPT_Work_acceptance",
+  "scope": "Current implementation and pure synthetic fixtures; no QC or real budget registry access",
+  "shared_source_or_config_modified_by_reviewer": false,
+  "recorded_source_hashes_current_worktree": {
+    "cloud/qresearch/collection.py": "c7ff2d2852a40706a036feaba3488bee6552cfd564be75c16622ede38adba213",
+    "cloud/qresearch/historical_source.py": "f6e0d78c4aa841010c00682884333f9e8c45fd3f023a31f6286c123d305ea46b",
+    "cloud/qresearch/engineering_tasks.py": "c61e6fc631c484499c01f21fd12e1e56f60810bd281c789874a0b2d38f501d8a",
+    "cloud/qresearch/engineering_data.py": "4def6ed8d014dae55697b5be5ac96587ed75287317ae0d7561b71ab08302d3f9",
+    ".git/repair-work/sid-normal-round/gates-review/test_independent_occurrences.py": "13c3067f0046ac2bd5d706608d5ef1e071e88eef0932d4ff499df96a6edcd6fa"
+  },
+  "source_hash_policy": "UTF-8 normalized LF; coordinator must test/freeze final complete package",
+  "actual_tests": [
+    {
+      "suite": "private IndependentOccurrenceTests",
+      "count": 10,
+      "seconds": 0.103,
+      "result": "OK"
+    },
+    {
+      "suite": "test_collection.py legacy regression",
+      "count": 25,
+      "seconds": 0.041,
+      "result": "OK"
+    },
+    {
+      "suite": "test_historical_source.py legacy regression",
+      "count": 13,
+      "seconds": 0.109,
+      "result": "OK"
+    }
+  ],
+  "blocking_findings_in_tested_scope": [],
+  "accepted_design_scope": "An explicitly frozen source-occurrence observation/quarantine format only; every projected native occurrence is preserved in order, no inferred economic uniqueness or provider vintage identity",
+  "boundaries": [
+    "Schema1 and default source retain strict unique-SID policy",
+    "V2 requires exact extra policy and source_record_index column; index is native int starting0 and continuous across allSIDs per snapshot",
+    "Counts and cap include alloccurrences; duplicate/conflict relative to firstprojection are recomputed across batches on replay",
+    "Missing/noncanonical/Empty SID and source/property errors still fail closed with retained intent",
+    "Observed-only certification flags remainfalse; 4-columnv2 rows are rejected by the exact3-column observed_liquidity_record adapter"
+  ],
+  "nonblocking_reporting_risks": [
+    "Projection equality/conflict concerns only frozen selectedfields, not the entire native Fundamental object",
+    "source_record_index is local source response order, not a permanent security or vintage identity",
+    "Do not claim HistoricalBatchIngestor rejects every repeatedSID/session across different revisions: it rejects duplicate vintageidentity; manual removal of occurrenceindex is outside this frozen format and must not be introduced implicitly",
+    "Completed observation collection and two-stock plumbing can pass engineering software checks while full historicalUS200, financialvintage and actualavailability remainuncertified"
+  ],
+  "budget_boundary": "Any semantic format/source/catalog change belongs to last newly frozen configuration12. No editing configuration11, no deleting failed intents or rerunning source for free.",
+  "final_test_opened": false,
+  "financial_evidence": false,
+  "independent_GPT_Work_acceptance": false
+}

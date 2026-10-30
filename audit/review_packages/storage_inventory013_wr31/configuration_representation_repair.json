@@ -1,0 +1,37 @@
+{
+  "kind": "actual_failed_fixed_Git_checkout_configuration_representation_repair",
+  "failed_materials_commit": "69b3be64d27aaed4eb12518c7c2c75fe5ae781d1",
+  "actual_first_exit": 1,
+  "first_assertion": "config/data.json raw bytes",
+  "configuration_files": 28,
+  "different_raw_representations": [
+    {
+      "path": "config/data.json",
+      "workspace_raw_sha256": "a5545c1b31ccddafefefeb08a815dc54e5c3eb86deaa0ce9f63aba9552dd01ec",
+      "baseline_Git_raw_sha256": "ee7aacfd24589e4fe2c6090f27550ca61b587e87ba5e135cb85611b5f98a32e3",
+      "normalized_text_sha256": "ee7aacfd24589e4fe2c6090f27550ca61b587e87ba5e135cb85611b5f98a32e3",
+      "baseline_Git_blob_sha1": "95ecc3def05b8db1ddd05c6f8671595ab4ce2198",
+      "workspace_raw_bytes": 4727,
+      "baseline_Git_raw_bytes": 4632
+    },
+    {
+      "path": "config/research.json",
+      "workspace_raw_sha256": "a200a8bf889f9559e56b34bfc4b237138048b01bed5b20ab0687d0572c3449df",
+      "baseline_Git_raw_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "normalized_text_sha256": "270cd8fcd44201cd2f78c7c98418060df32d311ab3d1a5f4b923812d94599d04",
+      "baseline_Git_blob_sha1": "15c3c59bf9bd5635132bd217569680118c41f99d",
+      "workspace_raw_bytes": 9881,
+      "baseline_Git_raw_bytes": 9686
+    }
+  ],
+  "all_differences_are_only_workspace_CRLF_vs_baseline_Git_LF": true,
+  "repair": "Record both exact existing raw forms and their identical universal-newline UTF-8 text hash; require actual raw identity in this two-form allowlist and the text hash. No config bytes normalized or changed.",
+  "original_raw_hashes_preserved": true,
+  "budget_and_registry_still_strict_one_raw_hash": true,
+  "product_source_or_config_changed": false,
+  "full_1085_repeated_after_audit_verifier_only_change": false,
+  "cloud_calls": 0,
+  "budget_changes": 0,
+  "independent_acceptance": false,
+  "final_test_enabled": false
+}

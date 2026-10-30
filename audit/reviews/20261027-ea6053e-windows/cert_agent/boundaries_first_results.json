@@ -1,0 +1,52 @@
+{
+  "fixed_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "methods": 9,
+  "passed_methods": 8,
+  "failed_methods": 1,
+  "error_methods": 0,
+  "failure_records": 2,
+  "error_records": 0,
+  "scenario_checks": 23,
+  "scenario_checks_not_unittest_subcases": true,
+  "scenarios": [
+    "IPO_observed_summary_false_flags",
+    "invalid_IPO_claim_2018-01-04 16:00:00",
+    "invalid_IPO_claim_2018-01-04 16:00:00.000001",
+    "invalid_IPO_claim_2018-01-25 12:00:00",
+    "listing_available_2018-02-01 09:00:00",
+    "listing_available_2018-02-01 09:00:00.000001",
+    "listing_available_2018-02-02 09:00:00.000001",
+    "IPO_clock_2018-01-04 12:00:00",
+    "IPO_clock_2018-01-04 16:00:00",
+    "IPO_clock_2018-01-04 16:00:00.000001",
+    "old_eligible_mapping_one_session_missing",
+    "old_eligible_mapping_all_sessions_missing",
+    "old_eligible_mapping_all_missing_same_ticker_new_interval",
+    "young_IPO_refs_drop_pre_False",
+    "young_IPO_refs_drop_pre_True",
+    "recent_classification",
+    "recent_mapping",
+    "recent_both",
+    "IPO_summary_private_batch_tamper",
+    "IPO_summary_fake_count",
+    "IPO_summary_empty_refs",
+    "unknown_listing_effective_at",
+    "unknown_listing_available_at"
+  ],
+  "failures": [
+    {
+      "method": "__main__.Boundaries.test_old_eligible_missing_history_after_mapping_must_not_fill_rank201 (variant='all_sessions_missing')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\independent_fix_boundaries.py\", line 78, in test_old_eligible_missing_history_after_mapping_must_not_fill_rank201\n    r=run(make(change));self.assertEqual(r['status'],'insufficient_evidence','A retained old listed master interval cannot be treated as a young IPO because the current mapping is new');self.assertFalse(r['checks']['all_known_eligible_candidate_histories_complete']);self.assertGreater(r['counts']['missing_candidate_session_cells'],0);assert_false(self,r)\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n : A retained old listed master interval cannot be treated as a young IPO because the current mapping is new\n"
+    },
+    {
+      "method": "__main__.Boundaries.test_old_eligible_missing_history_after_mapping_must_not_fill_rank201 (variant='all_missing_same_ticker_new_interval')",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ea6053e-20261027\\cert_agent\\independent_fix_boundaries.py\", line 78, in test_old_eligible_missing_history_after_mapping_must_not_fill_rank201\n    r=run(make(change));self.assertEqual(r['status'],'insufficient_evidence','A retained old listed master interval cannot be treated as a young IPO because the current mapping is new');self.assertFalse(r['checks']['all_known_eligible_candidate_histories_complete']);self.assertGreater(r['counts']['missing_candidate_session_cells'],0);assert_false(self,r)\nAssertionError: 'observations_passed' != 'insufficient_evidence'\n- observations_passed\n+ insufficient_evidence\n : A retained old listed master interval cannot be treated as a young IPO because the current mapping is new\n"
+    }
+  ],
+  "errors": [],
+  "seconds": 65.09656360000372,
+  "source_unchanged": true,
+  "network_attempts": 0,
+  "actual_QC_market_model_or_authoritative_budget_calls": 0,
+  "original_independent_fixture": true
+}

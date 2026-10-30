@@ -1,0 +1,45 @@
+[
+  {
+    "kind": "synthetic execution",
+    "label": "candidate",
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\independent_intervals.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source' '--label' 'candidate' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent'",
+    "tool_chunk_id": "6b86aa",
+    "exit_code": 0
+  },
+  {
+    "kind": "synthetic execution",
+    "label": "baseline",
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\independent_intervals.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source' '--label' 'baseline' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent' '--methods' 'test_reference_contract_dense_microsecond_edges' 'test_public_chain_source_to_collector'",
+    "tool_chunk_id": "1b9e15",
+    "exit_code": 1
+  },
+  {
+    "kind": "synthetic execution",
+    "label": "candidate",
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\start_only_probe.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source' '--label' 'candidate' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\candidate_start_only.json'",
+    "tool_chunk_id": "7cc51f",
+    "exit_code": 0
+  },
+  {
+    "kind": "synthetic execution",
+    "label": "baseline",
+    "command": "& 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe' -B 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\start_only_probe.py' '--source' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source' '--label' 'baseline' '--out' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\interval_agent\\baseline_start_only.json'",
+    "tool_chunk_id": "1b8c61",
+    "exit_code": 1
+  },
+  {
+    "kind": "read-only discovery error",
+    "tool_chunk_id": "609143",
+    "exit_code": 1,
+    "command": "rg -n -C 8 'EndTime|StartTimeUtc|EndTimeUtc|SubscriptionDataReaderHistoryProvider|where|Where' 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\source\\audit\\reviews\\20261026-fbe2454-windows\\source_agent\\official_sdk_static\\SubscriptionDataReaderHistoryProvider.cs'",
+    "error": "系统找不到指定的文件。 (os error 2)",
+    "resolution": "随后列目录发现归档以Engine__HistoricalData__前缀存储；改用完整文件名读取，chunk 014627。未据此修改源码或测试。"
+  },
+  {
+    "kind": "read-only oversized inspection",
+    "tool_chunk_id": "12d2e1",
+    "exit_code": 0,
+    "command": "Get-Content -LiteralPath 'C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7bf716f-20261026\\change.diff'",
+    "limitation": "宽范围diff含归档内容，输出被截断；后续以候选源码、合同文件及定向读取为结论依据。未导入任何开发者测试夹具。"
+  }
+]

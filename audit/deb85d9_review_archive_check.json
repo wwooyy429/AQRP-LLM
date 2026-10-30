@@ -1,0 +1,107 @@
+{
+  "kind": "metadata_archival_verification_only_not_software_retest",
+  "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "review_formal_json_raw_sha256": "0af91bbd0b525de3c1e89b8b2a54b737ef7deb6e6bbec1c83d962410a83905e2",
+  "review_formal_txt_raw_sha256": "07a3a9fb84c50e92e207e95bcd4d69339eadb1d381c5dbce8b94f8e6c136ccd1",
+  "original_zip_sha256": "19d2614008caf209c18b79e16220826de0394ee9a86f585f32ccce5a9bfd6b49",
+  "original_package_files": 12475,
+  "original_manifest_registered_files": 12474,
+  "manifest_excludes_itself": true,
+  "original_package_manifest_and_ZIP_verified": true,
+  "archived_original_count": 216,
+  "archived_original_raw_bytes": 3361243,
+  "archived_original_raw_hashes_match": true,
+  "selective_archive_not_complete_original_package": true,
+  "omitted_original_count": 12259,
+  "archive_selection_ref": {
+    "path": "audit/reviews/20261027-deb85d9-windows/developer_archive_selection.json",
+    "raw_sha256": "cf92177eea9cc2548ec0648da273b976bad32e188107b0ff564c17de9167515b"
+  },
+  "git_source_snapshots_verified": {
+    "candidate": {
+      "commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+      "raw_git_blobs_verified": 4270,
+      "all_equal_original_manifest": true
+    },
+    "baseline66": {
+      "commit": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+      "raw_git_blobs_verified": 3178,
+      "all_equal_original_manifest": true
+    },
+    "actual_cloud7fc": {
+      "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+      "raw_git_blobs_verified": 4204,
+      "all_equal_original_manifest": true
+    }
+  },
+  "source_manifest_hash": "138f8c6315ff7314596390ff1a25ee6b1f0a6ebd9a43eca14b15f79385882d78",
+  "execution_source_manifest_hash": "b6559a7ab7b1e0a6622a6028579ddbf01b6e4601526cf6d6fcad7a1016f71e41",
+  "software_acceptance": {
+    "status": "失败",
+    "blocking": [
+      "WR21",
+      "WR20"
+    ],
+    "passed_partial": [
+      "原生失败双载体/原attempt恢复",
+      "受控worker指纹诊断",
+      "单次派发许可的并发正控",
+      "既有数值/缓存/采集/准入/恢复回归"
+    ],
+    "full_phase2_accepted": false
+  },
+  "new_open_findings": [
+    {
+      "id": "WR-21",
+      "priority": "P1"
+    },
+    {
+      "id": "WR-20",
+      "priority": "P2"
+    }
+  ],
+  "remaining_acceptance_gates": {
+    "G1": "失败：真实Research在源迭代失败；无新版成功联合链或新LEAN。",
+    "G2": "证据不足：旧worker差异仍未知；受控诊断通过合成检查。",
+    "G3": "原生失败解析/恢复已测通过；新协议成功入口WR21失败，不能整体通过。",
+    "G4": "WR20数据审计软件失败；完整历史US200/财务版本/实际送达认证仍不足。"
+  },
+  "stage2_whole_accepted": false,
+  "real_registry_event_count": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "engineering_round_usage": {
+    "configurations": 2,
+    "research": 2,
+    "lean": 1
+  },
+  "engineering_round_stopped": true,
+  "archival_QC_calls": 0,
+  "archival_Research_executions": 0,
+  "archival_LEAN_submissions": 0,
+  "archival_model_calls": 0,
+  "archival_deployments": 0,
+  "archival_software_test_executions": 0,
+  "review_original_tests_not_reexecuted_by_this_archival_check": true,
+  "archive_helper_attempts": [
+    {
+      "attempt": 1,
+      "status": "completed_full_verification_initial_selection",
+      "selected_originals": 218,
+      "selected_raw_bytes": 7279327,
+      "note": "Initial selection included both large original inventories; developer selection metadata listed every omitted file."
+    },
+    {
+      "attempt": 2,
+      "status": "completed_compact_selection",
+      "note": "Retain original inventories externally with exact raw hashes and selection rules; avoid copying duplicate source inventories or listing every omitted Git source file again."
+    }
+  ],
+  "production_or_config_files_changed_by_archival_agent": false,
+  "report_counts_are_overlapping": true,
+  "final_test_enabled": false,
+  "financial_evidence": false
+}

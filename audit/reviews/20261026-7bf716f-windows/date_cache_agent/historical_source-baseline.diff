@@ -1,0 +1,48 @@
+--- fbe/cloud/qresearch/historical_source.py
++++ 7bf/cloud/qresearch/historical_source.py
+@@ -83,11 +83,16 @@
+         raise HistoricalSourceError("A declared source flag must be boolean or explicit 0/1")
+     if kind == "date":
+         if isinstance(value, (date, datetime, pd.Timestamp)):
+-            return value.date().isoformat() if isinstance(value, (datetime, pd.Timestamp)) else value.isoformat()
++            result = value.date() if isinstance(value, (datetime, pd.Timestamp)) else value
++            # LEAN MultiPeriodField<DateTime>.NoValue is default(DateTime).
++            # Inspect the resolved Value, not default-period HasValue: Value can
++            # legitimately select a populated alternate period.
++            return None if result == date.min else result.isoformat()
+         if isinstance(value, str):
+             try:
+-                if date.fromisoformat(value).isoformat() == value:
+-                    return value
++                result = date.fromisoformat(value)
++                if result.isoformat() == value:
++                    return None if result == date.min else value
+             except ValueError:
+                 pass
+         raise HistoricalSourceError("A source date cannot be promoted into an intraday timestamp")
+@@ -110,6 +115,16 @@
+     if not identity or identity.strip() != identity:
+         raise HistoricalSourceError("Native response lacks a valid universe identity")
+     return ("sid" if native_id is not None else "text", identity)
++
++
++def _history_endpoint(value):
++    """Map a half-open DAILY boundary to LEAN's right-closed EndTime grid.
++
++    The verified daily Fundamental path and Python datetime use microseconds;
++    this is not a promise about arbitrary custom 100ns .NET tick histories.
++    Subtract on the absolute timeline, then express in the notebook's NY zone.
++    """
++    return (value.tz_convert("UTC") - pd.Timedelta(microseconds=1)).tz_convert(NY).tz_localize(None).to_pydatetime()
+ 
+ 
+ class QuantConnectSnapshotSource:
+@@ -159,7 +174,7 @@
+         self.history_call_count += 1
+         try:
+             response = self.qb.universe_history(self.universe,
+-                start.tz_localize(None).to_pydatetime(), end.tz_localize(None).to_pydatetime(), flatten=False)
++                _history_endpoint(start), _history_endpoint(end), flatten=False)
+         except Exception:
+             raise HistoricalSourceError("Native universe history request failed; reconcile before retry") from None
+         if (not isinstance(response, pd.Series) or not isinstance(response.index, pd.MultiIndex)

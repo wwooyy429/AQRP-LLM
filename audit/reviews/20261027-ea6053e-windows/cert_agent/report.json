@@ -1,0 +1,321 @@
+{
+  "fixed_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "scope": "Independent WR20 unchanged original replay, original known-answer fixtures, new synthetic edge cases, old-master/mapping combination, read-only stage0–7 controls. Not developer-only fixture replay.",
+  "verdict": {
+    "WR20_original_scope": "pass_fix_verified_on_original_unchanged_assertions",
+    "current_data_certification_module": "fail_WR22_P2",
+    "stage2_overall": "not_accepted",
+    "data_vendor_full_history_actual_availability": "not_certified",
+    "financial_evidence": false,
+    "WR21": "separate_root_entry_review_not_decided_by_this_agent"
+  },
+  "actually_executed": {
+    "original_baseline": {
+      "methods": 13,
+      "passed_methods": 12,
+      "failed_methods": 1,
+      "error_methods": 0,
+      "scenario_checks": 43,
+      "failure_records": 2,
+      "minimal_exit": 1,
+      "suite_exit": 1,
+      "metadata_CLI": 4
+    },
+    "original_candidate": {
+      "methods": 13,
+      "passed_methods": 13,
+      "failed_methods": 0,
+      "error_methods": 0,
+      "scenario_checks": 43,
+      "failure_records": 0,
+      "minimal_exit": 0,
+      "suite_exit": 0,
+      "metadata_CLI": 4
+    },
+    "new_candidate_boundaries": {
+      "methods": 9,
+      "passed_methods": 8,
+      "failed_methods": 1,
+      "error_methods": 0,
+      "scenario_checks": 23,
+      "failure_records": 2,
+      "suite_exit": 1
+    },
+    "WR22_manual_controls": {
+      "scenarios": 4,
+      "expectations_met": 3,
+      "failed_expectations": 1,
+      "unit_methods": 0
+    },
+    "WR22_minimal_exit": 1,
+    "first_WR22_probe_exit": 1,
+    "actual_market_QC_model_or_authoritative_budget_calls": 0,
+    "network_attempts": 0,
+    "source_unchanged_in_original_and_new_suites": true
+  },
+  "original_bytes_and_binding": {
+    "copies": [
+      {
+        "version": "baseline",
+        "file": "cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "minimal_wr20.py",
+        "raw_sha256": "6df5ee5ba52f69ba6310ed6a5290d75e02d977bd57fcfe4fa53cfa4d6dfc638b",
+        "byte_identical": true
+      },
+      {
+        "version": "baseline",
+        "file": "independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "cert_fixture.py",
+        "raw_sha256": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "minimal_wr20.py",
+        "raw_sha256": "6df5ee5ba52f69ba6310ed6a5290d75e02d977bd57fcfe4fa53cfa4d6dfc638b",
+        "byte_identical": true
+      },
+      {
+        "version": "candidate",
+        "file": "independent_certification.py",
+        "raw_sha256": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+        "byte_identical": true
+      }
+    ],
+    "scripts_and_assertions_unchanged": true,
+    "fixture_origin": "This agent original independent cert_fixture.py from baseline deb; no imports from author tests.",
+    "explicit_source_binding": "launch_original.py imports the original fixture and overrides only ROOT/SOURCE before runpy; baseline and candidate scripts themselves are byte-identical. Separate process, output directory and source tree per execution.",
+    "embedded_historical_fixed_commit": "The unchanged original scripts still emit literal fixed_commit=deb. Authoritative current binding is each *_execution.json plus source_module_raw_sha256 and original_replay_index.json.",
+    "other_original_literal": "minimal_wr20.py invalid_case.SID200_ranked_first=True is an unchanged target-case literal, not a recomputed candidate ranking observation. Current pass/fail is actual_report_status and unchanged assertions. Do not interpret that literal as candidate admission."
+  },
+  "WR20_verified_boundaries": [
+    "Original invalid Jan04/Jan25 pre-listing history no longer supplies20 sessions.",
+    "Independent Jan04 intraday and16:00 close inclusivity gives19/20 post-listing sessions;16:00:00.000001 gives18/19 and cannot enter.",
+    "Listing information exactly at formation is available; one microsecond later is unavailable until a later formation.",
+    "Unknown listing clock or listing availability is retained as a gap, not silently dropped.",
+    "Recent classification/mapping changes with complete old listing history do not reset IPO history.",
+    "Original source rows, ingestion index/batch refs, counts and bytes are retained; only ranking view is filtered.",
+    "Summary reopens private inputs, detects private batch tamper, fake counts and empty refs.",
+    "All7 provenance/full-history/availability/vintage/research/export/financial flags remain false."
+  ],
+  "WR22": {
+    "id": "WR-22",
+    "priority": "P2",
+    "reviewed_source_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "title": "老SID近期更新映射后，全量流动性缺失被误当作不足期IPO并由第201名补位",
+    "locations": [
+      {
+        "file": "cloud/qresearch/data_certification.py",
+        "line": 383,
+        "end_line": 398
+      }
+    ],
+    "trigger": "原创201-SID合成输入中，SID000保留2017-12-01至2018-01-25的listed=true老security-master区间，同一SID自Jan25起更新ticker映射（同ticker新区间也复现）。删除该SID全部21条liquidity行，并在两形成时点以SID001至SID200补位。旧区间及新映射均在形成前已知，SID没有发生IPO。",
+    "expected": "完整历史security-master仍证明这是老eligible SID；全量流动性历史缺失必须使观测审计不足，不能由rank201补位掩盖，也不能因为最近mapping/classification区间的起始时间重置上市历史。合法年轻IPO仍应正确排除。",
+    "actual": "返回observations_passed，全部12项checks=true，known_eligible_candidate_expected_cells由8040降为8000，missing_candidate_session_cells=0，observed_member_cells=400；原202条master记录中老listed区间仍存在。",
+    "cause": "active只保留形成时点新区间，expected_candidates再要求新区间effective_from不晚于trailing首日，或者SID存在于known_old_listings。后者又来自liquidity本身；当全部liquidity缺失时该SID同时失去老上市身份和完整性检查资格。保留的旧listed master区间没有用于连续上市资格判断，ranker因而可用201名替补并获得全部checks通过。",
+    "positive_controls": [
+      "相同完整老区间及新映射，liquidity齐全：observations_passed，expected cells8040。",
+      "相同SID和映射，仅缺最早1session：insufficient_evidence，missing candidate cells1，且声明成员与真实重排一致。",
+      "老SID全部liquidity缺失但未更新mapping：insufficient_evidence。",
+      "真实Jan25年轻IPO移除上市前行，只有5/6期：合法排除，原200老SID observations_passed。",
+      "原WR20 IPO修复：byte-identical旧13方法/43场景在candidate13方法全通过；同日盘中/收盘相等/close后一微秒额外边界亦通过。"
+    ],
+    "scope_and_severity": "P2数据观测合规完整性缺陷，阻断当前data-certification模块软件验收。它不同于已修复的WR20上市前行补足IPO20期问题；相关expected_candidates逻辑原已存在，不能称为本轮IPO过滤修复新引入的回归。所有vendor/full-US200/actual-availability/financial-vintage/research/export/financial标志仍false，无实际市场调用、预算变化、生产因子选择或供应商真实性认证。",
+    "reproduction": "固定旧venv的python -B cert_agent/minimal_wr22.py --output NEW_DIRECTORY/result.json。依赖相邻byte-identical原创cert_fixture.py及本候选生产模块；三合法控制先通过，当前缺陷exit1。first_mapping_history_probe.py及原9方法/23场景首跑保留。",
+    "minimal_fix": "用可在形成时点获知的完整security-master历史确定同一永久SID的连续上市资格，不能把ticker/mapping/classification区间更新当作IPO；候选完整性检查须独立于该SID是否仍有liquidity行。缺全历史的老eligible仍须记缺口并拒绝观测通过，同时保留IPO20期过滤、未知历史拒绝、原refs/count/raw证据和私有重算。",
+    "regression_tasks": [
+      "完整旧listed区间+新ticker，老SID全部liquidity缺失：不足且rank201不能掩盖。",
+      "同ticker新区间也不能重置连续上市历史。",
+      "同SID缺1session、全部缺失、齐全分别得到不足/不足/通过。",
+      "真实年轻IPO仍排除；19/20期、盘中、close相等及close+1微秒边界保持。",
+      "旧13/43、summary私有重核、原refs/raw/count保留及全部认证false保持。"
+    ]
+  },
+  "WR22_manual_controls": {
+    "fixed_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "synthetic_memory_only": true,
+    "scenarios": [
+      {
+        "variant": "mapping_complete",
+        "expected_status": "observations_passed",
+        "actual_status": "observations_passed",
+        "expectation_met": true,
+        "known_candidate_expected_cells": 8040,
+        "missing_candidate_session_cells": 0,
+        "membership_matches": true,
+        "certification_flags_false": true
+      },
+      {
+        "variant": "same_old_SID_one_session_missing",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expectation_met": true,
+        "known_candidate_expected_cells": 8040,
+        "missing_candidate_session_cells": 1,
+        "membership_matches": true,
+        "certification_flags_false": true
+      },
+      {
+        "variant": "same_old_SID_all_sessions_missing",
+        "expected_status": "insufficient_evidence",
+        "actual_status": "observations_passed",
+        "expectation_met": false,
+        "known_candidate_expected_cells": 8000,
+        "missing_candidate_session_cells": 0,
+        "membership_matches": true,
+        "certification_flags_false": true
+      },
+      {
+        "variant": "genuine_young_IPO_without_prelisting_rows",
+        "expected_status": "observations_passed",
+        "actual_status": "observations_passed",
+        "expectation_met": true,
+        "known_candidate_expected_cells": 8000,
+        "missing_candidate_session_cells": 0,
+        "membership_matches": true,
+        "certification_flags_false": true
+      }
+    ],
+    "unit_methods": 0,
+    "new_market_QC_model_or_authoritative_budget_calls": 0,
+    "source_raw_sha256": "586f4858de04155da02eda5f9cc5021d1d62b5d9faed3b9c318de73acba824b9"
+  },
+  "system_matrix": {
+    "file": "system_matrix.json",
+    "raw_sha256": "ddaaf92a99496d2176430691ee68c52b4a2858cbdcac7673e0204d41ebda537a",
+    "stages": 8,
+    "exact_source_references": 80,
+    "software_methods_added_by_matrix": 0,
+    "new_platform_calls": 0,
+    "all_execution_gates_closed": true,
+    "active_factor_model_trading_null": true,
+    "GPT_model_calls_spend_null": true,
+    "budget_events": 17,
+    "budget_used": {
+      "configurations": 7,
+      "Research": 10,
+      "LEAN": 1
+    },
+    "engineering_used": {
+      "configurations": 2,
+      "Research": 2,
+      "LEAN": 1
+    },
+    "2024_2025_exposed": true,
+    "2026_independence": "unknown_requires_independent_review"
+  },
+  "source_files_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "586f4858de04155da02eda5f9cc5021d1d62b5d9faed3b9c318de73acba824b9",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "cloud/qresearch/universe.py": "e06827efb8826248ce00a9a4ff80ad8d659bdf4fe7647a744ebb4d03ac7bdbd6",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1"
+  },
+  "first_results_preserved": {
+    "original_baseline_failures_not_rewritten": true,
+    "candidate_originals_pass_without_assertion_changes": true,
+    "new_WR22_first_probe_minimal_and_suite_failures_retained": true,
+    "software_fixture_or_runner_errors": 0,
+    "PowerShell_first_probe_stdout": "The first_mapping_history.stdout/.stderr files retain the initial PowerShell redirection carrier (not Python capture_output bytes); first_mapping_history_result.json is the direct UTF8 script artifact. Subsequent minimal_wr22 and boundaries have exact subprocess-captured raw stdout/stderr. No first carrier was overwritten."
+  },
+  "counting_limit": "Methods, hand-named scenarios, failure records, metadata CLI processes and manual controls are separate. The baseline/candidate13-method replays overlap each other; new9-method boundaries overlap those43 scenarios and the MRE/manual controls. No unique combined total or unittest-subcase count is asserted.",
+  "unverified": [
+    "No fresh QC/cloud/source/input/cell/output read by this agent. Actual executed version remains7fc and existing failed realResearch remains failed.",
+    "No actual vendor authentication, complete historical US200, financial revision or actual delivery attestation.",
+    "No new actual Research/LEAN/model call, runtime success, production factor choice, finance metrics or final-test execution.",
+    "No independent full manifest/build/budget replay is duplicated here; root/archive agent owns those static checks."
+  ],
+  "evidence_raw_sha256": {
+    "boundaries_execution.json": "bc94a427a7d8b66bf772e31f29368169b036b420bb8a7427f808b0818af618a4",
+    "boundaries_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "boundaries_first.stdout": "f8d1cea41ce83c17147cbe6db85bacd5dfdcaba79aff2a5364b5b708c7b626a1",
+    "boundaries_first_results.json": "2d0b63c0d4afde6a44dcee345f43448d552376902881f85472730854ab0401fa",
+    "boundaries_first_unittest.txt": "2d173de359edb6031bb048d5c7d81575b2340165c8b6211d8f52fc2ef05875d2",
+    "build_system_matrix.py": "1f044a7b36e9fd604b5c81fa3a80be8f799846399417c654721d35fcba02ab4a",
+    "capture_boundaries.py": "1009e2d8b6d60b19156f99875309e9e7877c4177aef97908e421305d85a5201d",
+    "capture_mapping_controls.py": "d40150adaba789b5b370a1f2163d9de0ce7134599cf5a6c167e1738f24b06c86",
+    "cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "finding_WR22.json": "4576135c2085d4f15a320b4269442426a33cc71c0dfa038ff3f28e624d293be3",
+    "first_mapping_history.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "first_mapping_history.stdout": "4ca444b0f1445c8238505e5914b9d26152062d5ea1e7f456e467f9cd7735b218",
+    "first_mapping_history_probe.py": "6e895d1c61718e7d4b7eb7777fb1a78e7c97537c762efcc09362bba08a4eb934",
+    "first_mapping_history_result.json": "4ca444b0f1445c8238505e5914b9d26152062d5ea1e7f456e467f9cd7735b218",
+    "independent_fix_boundaries.py": "58be619ad63f68183c4604bef5b5cb37500153822128941a54981f20bb174197",
+    "launch_original.py": "48e81978ff7263cb646ba8cdf227540d43e258cba1d925a880fb6bf550c0031a",
+    "mapping_controls_execution.json": "a08784aa376597db2b22732c37d62ebb93542200cea9a2731551c134ce14c4da",
+    "mapping_controls_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "mapping_controls_first.stdout": "7b2145eb667a58009d118c933d5ff2c1a5392e95afa391fa69c0802c0dcc2deb",
+    "mapping_gap_controls.py": "ca9694cabcbab7759fe31a3ff2b93fc5e578efdb667f461abe08561537f95256",
+    "mapping_gap_controls_first_result.json": "7b2145eb667a58009d118c933d5ff2c1a5392e95afa391fa69c0802c0dcc2deb",
+    "minimal_wr22.py": "40c9e1784419c08c48ed17c9cd1af62b1f200e02df896a18f37977b5f79363ee",
+    "minimal_wr22_execution.json": "296b7c505300abeedf4daeb6e96c668f534a43b9c4938685d2108a61b2bacd5f",
+    "minimal_wr22_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "minimal_wr22_first.stdout": "d710d087b316621c944eb01f59ad52b04088dfa925e6cf1cca9218663817c50d",
+    "minimal_wr22_first_result.json": "d710d087b316621c944eb01f59ad52b04088dfa925e6cf1cca9218663817c50d",
+    "original_replay_index.json": "2a2315f8969ca22a0199c253ffd35b7eaa715c49083a3500704a8edeedecde8c",
+    "replay_originals.py": "84607edb441010952f17f9dc009af61ed7be69e0f0b71c470cea2d481ae4debf",
+    "system_matrix.json": "ddaaf92a99496d2176430691ee68c52b4a2858cbdcac7673e0204d41ebda537a",
+    "system_matrix.json.sha256": "72c87df1d22283dda14e7f3a5a515c710c3a624081b47aa706aef901890148ba",
+    "system_matrix.txt": "8cbbff0d6ec0c7115607afabfecc090737b72ee1131ccbb558679ebcea7ab280",
+    "write_report.py": "0f311065d43a35905d186d3f5b2a51192dac09e59c097aab041f4fa72b35a916",
+    "baseline_original/capabilities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/capabilities.stdout": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+    "baseline_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "baseline_original/cli_command_log.json": "7a7612cbb8bf6da8c34bdd51414c9499cfdb33ef2994f8a4ceca464f20a8999d",
+    "baseline_original/duplicate_JSON_key.json": "316e7b4094c483c3106e3124435f04851fdc423e6b3abdfbb955cfb674f50775",
+    "baseline_original/duplicate_JSON_key.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/duplicate_JSON_key.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "baseline_original/first_results.json": "f914590a24c8bc14e22cb5f34ed9509a23525e99c2d1bec99e07a6e4c790a966",
+    "baseline_original/first_unittest.txt": "798c1a1b390b5db6f7368ff3e3875924633244213ce9f83d8e8f9e6d23e17f19",
+    "baseline_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "baseline_original/minimal_execution.json": "dbc40e1b1ea07c061f6a83395b1744e7d4cf916eada3f6c1dc82fdc87af8d779",
+    "baseline_original/minimal_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/minimal_first.stdout": "694aa2017951751fffb8b655d09d01657c2e4fbea7bf8b34079be56e4667acda",
+    "baseline_original/minimal_first_result.json": "694aa2017951751fffb8b655d09d01657c2e4fbea7bf8b34079be56e4667acda",
+    "baseline_original/minimal_wr20.py": "6df5ee5ba52f69ba6310ed6a5290d75e02d977bd57fcfe4fa53cfa4d6dfc638b",
+    "baseline_original/suite_execution.json": "345ddcd2ffbe80864fc761453967a49498f4d4cf36a4dac9685209672c679d4f",
+    "baseline_original/suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/suite_first.stdout": "47cf54ea688a04870c19e7556a11d5605cc7cfdd1b6ffb124a191c1077363dc1",
+    "baseline_original/unknown_override.json": "f4c3b7a7d3a0cda3aab6109fc5331e32e29c5e8a999c32e7baa941c620ca40fc",
+    "baseline_original/unknown_override.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/unknown_override.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "baseline_original/valid_plan.json": "0961eaaf2ac7226e4195a06e342c0fc5d9b78c65f813ec0ddcb4de430f09c725",
+    "baseline_original/valid_plan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline_original/valid_plan.stdout": "b34be3142be748bf1673014d6b8d8dc4ae355f69670435300e3353f71db764c1",
+    "candidate_original/capabilities.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/capabilities.stdout": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+    "candidate_original/cert_fixture.py": "13e40968928ad32c75bc15cd99692be56326957aa3c86a696986af3c5db6dba1",
+    "candidate_original/cli_command_log.json": "21e92c323c248f794069673f12dbdfc8728138cc0eb7092ef0f54701cddf54b6",
+    "candidate_original/duplicate_JSON_key.json": "2e81a0220b27e92965310b55164ea7273bc5c3c8e49151c1e687e9544e89518d",
+    "candidate_original/duplicate_JSON_key.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/duplicate_JSON_key.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/first_results.json": "0bb3498624a6f40919efec29942cbe9d02094281e80501bf33837523153a8efb",
+    "candidate_original/first_unittest.txt": "527ffc0ea83885e51c1204736e3a620e3db55cc860c6715ddc57f410278c010d",
+    "candidate_original/independent_certification.py": "738df7796e4399ba05bbdeee3f2589d4034fbb509933e49d4a76aa9e9e8bc940",
+    "candidate_original/minimal_execution.json": "87f6029d52e9e4385cdaaf9e46b9e0e192cd590d9f7935c053e1a4825102b2ec",
+    "candidate_original/minimal_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/minimal_first.stdout": "1feee23b38f82f0951500eedc539a100865e10631d360ab64aa8ac8f3d8f16b3",
+    "candidate_original/minimal_first_result.json": "1feee23b38f82f0951500eedc539a100865e10631d360ab64aa8ac8f3d8f16b3",
+    "candidate_original/minimal_wr20.py": "6df5ee5ba52f69ba6310ed6a5290d75e02d977bd57fcfe4fa53cfa4d6dfc638b",
+    "candidate_original/suite_execution.json": "483fccdbca9f28c94cbc98709725a3af45248c06ea71f49960d5e4c531cb0f9c",
+    "candidate_original/suite_first.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/suite_first.stdout": "fbf34fb7a713ba7a021879b5192f1313d4a3e1ae7771d121f97299e1701f451e",
+    "candidate_original/unknown_override.json": "4f96c9a8d6dd983ad1163bbce5631f8d965edce97ea5462e18bf7ea5e643a70a",
+    "candidate_original/unknown_override.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/unknown_override.stdout": "be55dc964fbddfaef46b962cc8bcb86da579fa1af113ca92913d79118d6c03d5",
+    "candidate_original/valid_plan.json": "17eab4b7ea193c79aed81f482e0b3df861165349053e883d643c631431b99b96",
+    "candidate_original/valid_plan.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "candidate_original/valid_plan.stdout": "cd35d0023a46eb335807ba013dfca3dab348187f42dd770026f27cab9b856b1d"
+  }
+}

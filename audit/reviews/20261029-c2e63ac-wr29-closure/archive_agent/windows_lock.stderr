@@ -1,0 +1,23 @@
+test_01_native_shared_handle_delayed_release_is_once_only (__main__.IndependentWindowsLock) ... ok
+test_02_native_share_timeout_keeps_owner_then_explicit_same_owner_release (__main__.IndependentWindowsLock) ... ok
+test_03_native_successful_release_preserves_original_body_exception (__main__.IndependentWindowsLock) ... ok
+test_04_changed_on_disk_owner_is_never_deleted (__main__.IndependentWindowsLock) ... ok
+test_05_captured_owner_strict_validation_and_wrong_hash_path (__main__.IndependentWindowsLock) ... ok
+test_06_exact_path_not_arbitrary_leaf (__main__.IndependentWindowsLock) ... ok
+test_07_only_Windows_code32_retries (__main__.IndependentWindowsLock) ... ok
+test_08_replacement_after_first_realistic_denial_stops_second_delete (__main__.IndependentWindowsLock) ... ok
+test_09_disappearance_after_denial_is_error (__main__.IndependentWindowsLock) ... ok
+test_10_unreadable_owner_after_denial_is_not_retried (__main__.IndependentWindowsLock) ... ok
+test_11_release_timeout_and_six_second_cap (__main__.IndependentWindowsLock) ... ok
+test_12_nonadvancing_clock_still_exactly_120_backoffs (__main__.IndependentWindowsLock) ... ok
+test_13_release_window_starts_after_long_body (__main__.IndependentWindowsLock) ... ok
+test_14_nonretry_error_keeps_body_exception_as_context (__main__.IndependentWindowsLock) ... ok
+test_15_six_processes_eighteen_requests_one_dispatch_and_one_charge (__main__.IndependentWindowsLock) ... ok
+test_16_WR04_cross_project_processes_compete_for_last_engineering_slot (__main__.IndependentWindowsLock) ... ok
+test_17_write_once_keeps_original_on_conflict (__main__.IndependentWindowsLock) ... ok
+test_18_unresolved_occupied_lock_not_guessed_abandoned (__main__.IndependentWindowsLock) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 3.575s
+
+OK

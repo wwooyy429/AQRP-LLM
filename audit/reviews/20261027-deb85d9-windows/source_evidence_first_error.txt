@@ -1,0 +1,3 @@
+First readonly static verifier: exit1 before summary save.
+verify_source_evidence.py line48: TypeError: list indices must be integers or slices, not str.
+Reviewer assumed Registry.snapshot().attempts is a dictionary; its public schema is a list. Corrected reader indexes that list by attempt_id, without changing any assertion, product, source or registry. Original script retained as verify_source_evidence_first.py. Raw tool traceback remains in chat.

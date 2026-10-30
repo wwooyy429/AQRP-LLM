@@ -1,0 +1,71 @@
+test_IPO_history_across_mapping_boundary_nineteen_twenty_sessions (__main__.History) ... ok
+test_WR25_unknown_text_classifications_must_not_be_known_exclusions (__main__.History) ... test_WR26_no_then_known_current_is_not_affirmative_exclusion (__main__.History) ... test_continuous_two_and_three_mapping_versions_independently_prove_age (__main__.History) ... ok
+test_fixed_missing_old_history_preserves_raw_refs_and_summary_reopens (__main__.History) ... ok
+test_genuine_young_IPO_with_declared_clock_and_without_any_history (__main__.History) ... ok
+test_half_open_interval_adjacency_gap_and_overlap_microsecond (__main__.History) ... ok
+test_old_interval_knowledge_at_formation_equality_and_future (__main__.History) ... ok
+test_unknown_current_states_and_explicit_exclusions (__main__.History) ... ok
+
+======================================================================
+FAIL: test_WR25_unknown_text_classifications_must_not_be_known_exclusions (__main__.History) (code='UNMAPPED_VENDOR_CODE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions
+    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)
+AssertionError: 'observations_passed' != 'insufficient_evidence'
+- observations_passed
++ insufficient_evidence
+ : A string outside the registered taxonomy is unknown, not ETF/other known exclusion
+
+======================================================================
+FAIL: test_WR25_unknown_text_classifications_must_not_be_known_exclusions (__main__.History) (code='unknown')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions
+    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)
+AssertionError: 'observations_passed' != 'insufficient_evidence'
+- observations_passed
++ insufficient_evidence
+ : A string outside the registered taxonomy is unknown, not ETF/other known exclusion
+
+======================================================================
+FAIL: test_WR25_unknown_text_classifications_must_not_be_known_exclusions (__main__.History) (code='common_stok')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 60, in test_WR25_unknown_text_classifications_must_not_be_known_exclusions
+    self.assertEqual(r['status'],'insufficient_evidence','A string outside the registered taxonomy is unknown, not ETF/other known exclusion');false(self,r)
+AssertionError: 'observations_passed' != 'insufficient_evidence'
+- observations_passed
++ insufficient_evidence
+ : A string outside the registered taxonomy is unknown, not ETF/other known exclusion
+
+======================================================================
+FAIL: test_WR26_no_then_known_current_is_not_affirmative_exclusion (__main__.History) (mode='future_current')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 47, in test_WR26_no_then_known_current_is_not_affirmative_exclusion
+    _,r=audit(self,raw,'insufficient_evidence');self.assertGreater(r['counts']['inconsistent_classification_cells'],0)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 22, in audit
+    f=make(raw=raw);r=run(f);test.assertEqual(r['status'],expected);false(test,r);return f,r
+AssertionError: 'observations_passed' != 'insufficient_evidence'
+- observations_passed
++ insufficient_evidence
+
+
+======================================================================
+FAIL: test_WR26_no_then_known_current_is_not_affirmative_exclusion (__main__.History) (mode='missing_current')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 47, in test_WR26_no_then_known_current_is_not_affirmative_exclusion
+    _,r=audit(self,raw,'insufficient_evidence');self.assertGreater(r['counts']['inconsistent_classification_cells'],0)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\cert_agent\independent_history_boundaries.py", line 22, in audit
+    f=make(raw=raw);r=run(f);test.assertEqual(r['status'],expected);false(test,r);return f,r
+AssertionError: 'observations_passed' != 'insufficient_evidence'
+- observations_passed
++ insufficient_evidence
+
+
+----------------------------------------------------------------------
+Ran 9 tests in 82.551s
+
+FAILED (failures=5)

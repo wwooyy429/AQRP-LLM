@@ -1,0 +1,11 @@
+--- original
++++ explicit_legacy_shape
+@@ -38,6 +38,8 @@
+     assert good['status']=='completed'
+     legacy,oldid,oldadm,oldr,oldb=setup('modeled-legacy-no-marker')
+     # Only this isolated fixture models an old admission that never promised entry semantics.
++    oldadm.pop('research_entry_protocol',None)
++    oldr.store._path('engineering/admitted-inputs/'+oldid+'.json').write_bytes(canonical_json(oldadm))
+     (legacy/'audit/runtime/engineering/research-entry-protocol'/(oldid+'.json')).unlink()
+     assert not oldr.store.exists('engineering/research-entry-protocol/'+oldid+'.json')
+     old_good=f.accepted(settle_cli(legacy,oldb,oldid,23))

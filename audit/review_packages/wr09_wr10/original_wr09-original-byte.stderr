@@ -1,0 +1,56 @@
+test_all_periods_missing_cache_nulls_and_counts_each_field (test_wr09_missing_dates.WR09MissingDateTests) ... test_exact_sdk_default_datetime_and_date_are_missing (test_wr09_missing_dates.WR09MissingDateTests) ... test_existing_missing_variants_and_legitimate_dates (test_wr09_missing_dates.WR09MissingDateTests) ... ok
+test_normal_and_missing_fields_have_independent_gap_counts (test_wr09_missing_dates.WR09MissingDateTests) ... FAIL
+test_valid_fallback_is_not_deleted_by_default_has_value_false (test_wr09_missing_dates.WR09MissingDateTests) ... ok
+
+======================================================================
+FAIL: test_all_periods_missing_cache_nulls_and_counts_each_field (test_wr09_missing_dates.WR09MissingDateTests) (path='financial_statements.file_date.value')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 97, in test_all_periods_missing_cache_nulls_and_counts_each_field
+    self.assertIsNone(rows[0]["values"][path])
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_all_periods_missing_cache_nulls_and_counts_each_field (test_wr09_missing_dates.WR09MissingDateTests) (path='financial_statements.period_ending_date.value')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 97, in test_all_periods_missing_cache_nulls_and_counts_each_field
+    self.assertIsNone(rows[0]["values"][path])
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_exact_sdk_default_datetime_and_date_are_missing (test_wr09_missing_dates.WR09MissingDateTests) (value_type='datetime')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 78, in test_exact_sdk_default_datetime_and_date_are_missing
+    self.assertIsNone(_scalar(value, "date"))
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_exact_sdk_default_datetime_and_date_are_missing (test_wr09_missing_dates.WR09MissingDateTests) (value_type='date')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 78, in test_exact_sdk_default_datetime_and_date_are_missing
+    self.assertIsNone(_scalar(value, "date"))
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_exact_sdk_default_datetime_and_date_are_missing (test_wr09_missing_dates.WR09MissingDateTests) (value_type='Timestamp')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 78, in test_exact_sdk_default_datetime_and_date_are_missing
+    self.assertIsNone(_scalar(value, "date"))
+AssertionError: '0001-01-01' is not None
+
+======================================================================
+FAIL: test_normal_and_missing_fields_have_independent_gap_counts (test_wr09_missing_dates.WR09MissingDateTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_wr09_missing_dates.py", line 117, in test_normal_and_missing_fields_have_independent_gap_counts
+    self.assertIsNone(rows[0]["values"][DATE_PATHS[1]])
+AssertionError: '0001-01-01' is not None
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.014s
+
+FAILED (failures=6)

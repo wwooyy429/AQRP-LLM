@@ -1,0 +1,387 @@
+{
+  "reviewer": "native_agent independent Research native failure and legacy receipt review",
+  "commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "baseline": "66ff72ffaaff8c91c008898e6527c91131176c2a",
+  "verdict": "本代理负责的Research原生失败解析、原attempt失败恢复及旧native/合同/故障回归在已测范围通过，未确认新增该模块缺陷。entry_agent的WR21为新入口成功fallback另案，不能据本局部通过判定候选整体通过。",
+  "findings": [],
+  "new_first_run": {
+    "methods": 6,
+    "subcases": 91,
+    "passed_methods": 6,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0,
+    "seconds": 35.779,
+    "stats": {
+      "actual_CLI_processes": 25,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 0,
+      "actual_worker_executions": 0
+    },
+    "method_subcases": {
+      "test_01_supported_carriers_full_original_hash_and_projection": 16,
+      "test_02_reject_carrier_annotations_transport_and_error_grammar": 42,
+      "test_03_binding_and_typed_boolean_context": 22,
+      "test_04_actual_archive_9_entries_43_physical_lines_and_original_hash": 1,
+      "test_05_actual_original_attempt_15_17_17_and_refusal_guards": 8,
+      "test_06_actual_settlement_write_faults_no_refund_or_success": 2
+    }
+  },
+  "new_coverage": [
+    "Independently authored nbformat errors and direct/list/explicit-cell wrapper/single carrier/typed-equivalent mirrored carriers plus standard equal annotations. Full unchanged result content_hash is retained; each internal single-carrier projection has a different hash and is never substituted for the raw observation.",
+    "Different or extra carriers, one JSON containing two errors, mirrored wrapper arrays, structured conflict, unknown annotations/rows/metadata, differing annotations, bool priority, duplicate JSON keys, integer isError, transport failure and successful stdout printing an error dictionary reject.",
+    "Empty/blank/nonstring/129-entry/overlong traceback and unknown error fields reject. The registered wrapper has strict positive int execution count and exact int cell index; bool aliases reject.",
+    "Original dispatch identity/attempt/project/input/cell/source hash and exact typed arguments are checked; schema/index bool aliases and missing binding reject.",
+    "Actual f5d packet is read offline byte-identically, parsed as one error with two representations, then settled only in copies reconstructed at15 events. Normal15→17→17, wrong cell/project/attempt binding/input/entry evidence refuses without file or usage change; changed full response or projected-substitution after failure refuses.",
+    "Injected actual completion-write and failed-journal exceptions leave pending16; actual CLI recovery reaches failed18 and repeats18 with no new debit/success. The extra pending acknowledgement is a generic audit replay event, not an execution charge."
+  ],
+  "actual_archived_packet": {
+    "archive_sha256": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3",
+    "response_sha256": "6a5371b3ff243998baded6dc2f9627b110af793a94907a4a73859ced3d5f4f0b",
+    "traceback_entries": 9,
+    "physical_lines": 43,
+    "logical_errors": 1,
+    "representations": 2,
+    "traceback_line_count_is_entries": true,
+    "error_class": "CollectionError",
+    "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386"
+  },
+  "actual_original_bindings": {
+    "attempt_id": "f5d05f5b964b4a1d924e4b70cd207386",
+    "input_hash": "03dd4dcc9cf99c44496236b70370cb8785105d05523cd098798408bfa17c917b",
+    "cell_source_sha256": "33c34e9fbbf958f6518966cee185e947d96a4c610b7c0a942d206dec252e3340",
+    "cell_read_response_sha256": "d2715eb13d4b424e667640ac745c6ab35ab619cadf4e009ea54386fea6de0ada",
+    "arguments": {
+      "index": 1,
+      "projectId": 38436695
+    },
+    "raw_original_packet": "source/audit/tool_observations/f5d05f5b964b4a1d924e4b70cd207386-research.json"
+  },
+  "event_trajectories": [
+    {
+      "name": "normal",
+      "events": [
+        15,
+        17,
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false
+    },
+    {
+      "name": "completion_write",
+      "events": [
+        15,
+        16,
+        18,
+        18
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false,
+      "extra_pending_ack_is_not_debit": true
+    },
+    {
+      "name": "failure_journal",
+      "events": [
+        15,
+        16,
+        18,
+        18
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false,
+      "extra_pending_ack_is_not_debit": true
+    }
+  ],
+  "event_count_caveat": "Normal replay is15→17→17. Two injected-fault paths are15→16→18→18 because record_submission replays a pending audit acknowledgement before failure. Usage never changes, no refund/new execution/success is claimed; the authoritative17-event ledger was not changed.",
+  "legacy_byte_identical_replay": {
+    "files": [
+      {
+        "path": "independent_recovery_support.py",
+        "old_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489",
+        "new_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489"
+      },
+      {
+        "path": "native_boundaries.py",
+        "old_sha256": "5e32242267457340a029ec896c518f79d6625f2799086d8827371dacc73b8d13",
+        "new_sha256": "5e32242267457340a029ec896c518f79d6625f2799086d8827371dacc73b8d13"
+      },
+      {
+        "path": "crash_boundaries.py",
+        "old_sha256": "bbfd53c75c31b7455e4f6e593a3951a39c178a16dd3bd0f4f77030c0a026a19f",
+        "new_sha256": "bbfd53c75c31b7455e4f6e593a3951a39c178a16dd3bd0f4f77030c0a026a19f"
+      },
+      {
+        "path": "compat_scripts/independent_recovery_support.py",
+        "old_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489",
+        "new_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489"
+      },
+      {
+        "path": "compat_scripts/completion_boundaries.py",
+        "old_sha256": "29b3b514fc7adb5781c790d3d95f57879611dea4a6f05e3ecb0e084c19c85ce0",
+        "new_sha256": "29b3b514fc7adb5781c790d3d95f57879611dea4a6f05e3ecb0e084c19c85ce0"
+      },
+      {
+        "path": "compat_scripts/failure_settlement.py",
+        "old_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46",
+        "new_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46"
+      }
+    ],
+    "fixture_adaptations": [],
+    "native": {
+      "methods": 6,
+      "subcases": 62,
+      "passed_methods": 6,
+      "stats": {
+        "actual_CLI_processes": 58,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      }
+    },
+    "completion_contract": {
+      "methods": 3,
+      "subcases": 28,
+      "passed_methods": 3,
+      "stats": {
+        "actual_CLI_processes": 16,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      }
+    },
+    "manual_failure": {
+      "programs": 1,
+      "probes": 4,
+      "passed": 4,
+      "stats": {
+        "actual_CLI_processes": 28,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 6,
+        "actual_worker_executions": 0
+      }
+    },
+    "manual_write_faults": {
+      "programs": 1,
+      "probes": 4,
+      "passed": 4,
+      "stats": {
+        "actual_CLI_processes": 7,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 0,
+        "actual_worker_executions": 0
+      }
+    },
+    "all_first_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "all_first_failures": null,
+    "commit_literal_caveat": "The byte-identical original scripts retain66ff/81f/ae literal commit fields; actual --source argv and current source hashes bind these runs todeb85d9. No prior output was overwritten."
+  },
+  "counting": {
+    "new_unit_methods": 6,
+    "new_unit_subcases": 91,
+    "legacy_unit_methods": 9,
+    "legacy_unit_subcases": 90,
+    "unit_methods": 15,
+    "unit_subcases": 181,
+    "legacy_manual_probe_programs": 2,
+    "legacy_manual_probe_subcases": 8,
+    "new_write_fault_subcases": 2,
+    "new_write_faults_already_included_in_6_91": true,
+    "bug_MRE_programs_owned": 0,
+    "actual_CLI_processes": 134,
+    "direct_freeze_processes": 0,
+    "synthetic_metadata_finish_calls": 14,
+    "actual_worker_executions": 0,
+    "new_CLI_processes": 25,
+    "legacy_CLI_processes": 109,
+    "limits": "Method/subcase/manual-probe/CLI/metadata_finish counters differ. New2 write faults are unit subcases, not an extra manual2. Cross-suite overlap is not a unique-test or financial-sample sum. Entry agent MRE commands are not included in this agent134."
+  },
+  "commands": {
+    "complete_134_CLI_argv_cwd_raw_stream_references": "all_CLI_commands.json",
+    "per_program_breakdown": {
+      "research_first": {
+        "freeze": 2,
+        "register": 2,
+        "claim": 2,
+        "prepare": 2,
+        "research-cell": 2,
+        "research-dispatch": 2,
+        "research-result": 13
+      },
+      "main": {
+        "freeze": 2,
+        "register": 2,
+        "claim": 4,
+        "prepare": 6,
+        "research-result": 2,
+        "backtest-submission": 6,
+        "backtest-rejection": 26,
+        "backtest-result": 10
+      },
+      "compat_boundaries": {
+        "freeze": 2,
+        "register": 2,
+        "claim": 4,
+        "prepare": 4,
+        "research-result": 2,
+        "backtest-submission": 2
+      },
+      "compat_failure": {
+        "freeze": 4,
+        "register": 4,
+        "claim": 6,
+        "prepare": 6,
+        "research-result": 4,
+        "backtest-submission": 2,
+        "backtest-result": 2
+      },
+      "crash_addendum": {
+        "backtest-rejection": 3,
+        "backtest-submission": 2,
+        "prepare": 2
+      }
+    },
+    "top_level_captures": [
+      "capture_legacy.py",
+      "capture_research.py"
+    ],
+    "executions": [
+      {
+        "argv": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\research_failure_boundaries.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\research_first"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent",
+        "exit_code": 0,
+        "stdout_bytes": 3510,
+        "stderr_bytes": 0,
+        "stdout_sha256": "9a04fc6d4ef86c2b22c3e4f33f7bcdc98ff7bdf3dc42294b983f22d61723afc9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\legacy_scripts\\native_boundaries.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\main"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent",
+        "exit_code": 0,
+        "stdout_bytes": 11882,
+        "stderr_bytes": 0,
+        "stdout_sha256": "cddbe11156d4105908489c73aa498f33d75dda1613173e194387c83c3200edce",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\legacy_scripts\\compat_scripts\\completion_boundaries.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\compat_boundaries"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent",
+        "exit_code": 0,
+        "stdout_bytes": 7262,
+        "stderr_bytes": 0,
+        "stdout_sha256": "f4a99e6873913ae9474b96928febb1ca474f7eb9e0ebdf43fe4a179de668cc32",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\legacy_scripts\\compat_scripts\\failure_settlement.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\compat_failure"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent",
+        "exit_code": 0,
+        "stdout_bytes": 1870,
+        "stderr_bytes": 0,
+        "stdout_sha256": "530c81659c496cbc6c8ebd6bd95dea8b55d170a32d0c588af9d8c16c0431ed64",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+          "-B",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\legacy_scripts\\crash_boundaries.py",
+          "--source",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\source",
+          "--out",
+          "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent\\crash_addendum"
+        ],
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-deb85d9-20261027\\native_agent",
+        "exit_code": 0,
+        "stdout_bytes": 4885,
+        "stderr_bytes": 0,
+        "stdout_sha256": "42ea6617685d959debcd3ce46771ee027bb70d182442d331f025312de496da64",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "in_process_fault_injected_production_calls": "Two new settle_research_result calls inside test06; four legacy record_submission/prepare calls inside legacy crash probes. These are not CLI/SDK/worker calls."
+  },
+  "source_locations": {
+    "narrow_nbformat_error_grammar": "cloud/qresearch/engineering_receipts.py:451-483",
+    "duplicate_error_carriers_annotations_and_full_hash": "cloud/qresearch/engineering_receipts.py:486-523",
+    "failure_projection": "cloud/qresearch/engineering_receipts.py:526-545",
+    "dispatch_typed_context_binding": "cloud/qresearch/engineering_receipts.py:427-448",
+    "success_legacy_and_failure_split": "cloud/qresearch/engineering_receipts.py:548-574",
+    "immutable_dispatch_entry_reads": "tools/stage2.py:245-266",
+    "failed_replay_original_evidence": "tools/stage2.py:305-329"
+  },
+  "first_results_preserved": true,
+  "reviewer_test_measurement_corrections": [],
+  "non_test_lookup_note": "Initial REVIEW_INSTRUCTIONS lookup at source root was absent; located and read audit/review_packages/stage2_completion_runtime/REVIEW_INSTRUCTIONS.md. No tests or product operation occurred in that lookup.",
+  "WR21_peer_QA": "entry_qa.txt confirms new-marker/no-dispatch success path is distinct from allowed marker-free legacy success. This agent did not rerun the peer MRE or count its commands.",
+  "source_and_authority_hashes_before_after_equal": true,
+  "source_and_authority_hashes": {
+    "tools/stage2.py": "b05ea7654a3151e1e99f33ff1a570560e8cee06f1259ccf7b226b6467af4f10a",
+    "cloud/qresearch/engineering_tasks.py": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+    "cloud/qresearch/registry.py": "f764cd79c38c110e3bb1dc5d6d1162d2395968cd404baad5d4e723e49e61fb4c",
+    "config/budget.json": "29d38d4542f4ad60678b3541e483b107d9b0edf501464f53036c124029936df5",
+    "audit/runtime/registry/events.jsonl": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1"
+  },
+  "engineering_receipts_raw_sha256": "1f017844f537c3dd6383d1881078414cfa1ab2ae92904b0633d871b0451ab383",
+  "actual_ledger_scope": "Source17-event ledger and actual7/10/1 projection read/hashed only. Replay copies retain the original13-event prefix and reconstruct first15 bytes; future f5d ack/completion artifacts are removed only from those copies.",
+  "actions": {
+    "actual_worker": 0,
+    "actual_SDK": 0,
+    "QC": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "market": 0,
+    "models": 0,
+    "network": 0,
+    "production_source_edits": 0,
+    "authoritative_ledger_writes": 0,
+    "actual_budget_changes": 0
+  },
+  "acceptance_limits": [
+    "No new remote source, execution or notebook output was read by this agent. Actual packet provenance is archived evidence, not a new SDK execution.",
+    "Actual deployed/failed source identity is7fc5ef2e9d2379d29f48d05a1f3cc760000884d6; deb85d9 contains post-failure local parser changes and was not cloud-executed.",
+    "CollectionError/source-iteration failure is not Research success, normal missing data, a repaired root cause or LEAN qualification. Underlying cause not provided; history/window/received-record/order/financial counts remain null.",
+    "G3 failure parser/recovery evidence passes this local scope; whole candidate entry issue WR21 and other agents findings are separate. G1 successful run, G2 worker root cause, G4 full authenticated data and full stage2/financial acceptance are not granted.",
+    "No OS-kill/power-loss durability certification; fault injections are synchronous exceptions at controlled production call boundaries."
+  ]
+}

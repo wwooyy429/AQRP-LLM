@@ -1,0 +1,162 @@
+{
+  "executed_source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-8f7236e-20261027\\source",
+  "observations": [
+    {
+      "case": "wrong_operation",
+      "bridge_control_refusal": null,
+      "registry_refusal": null,
+      "attempt": {
+        "attempt_id": "334ef944c5444a68b9e85e708a28cfd0",
+        "config_id": "06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102",
+        "stage": "research",
+        "operation_key": "independent-free-operation",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102/research/89636a0483ecc7e4d9d51238470d7725b2062ab02175be4024edf9a6cc6dc433.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "bridge_payload_usable_after_charge": false,
+      "later_payload_refusal": "Attempt does not belong to this exact registered task plan"
+    },
+    {
+      "case": "lean_before_research",
+      "bridge_control_refusal": "LEAN requires the verified completed Research resolution first",
+      "registry_refusal": null,
+      "attempt": {
+        "attempt_id": "1b9d6ccf3e4b4e0688bb8897f6e787ed",
+        "config_id": "06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102",
+        "stage": "lean",
+        "operation_key": "engineering-plan:19c4a65184a378bda44fa625972615d18d3f345eb7ea9e572e751d97517996af:lean",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102/lean/da1124d756479380c103dff358408ac129ac099ecc29f9574db9f07e05abd8a5.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        }
+      },
+      "bridge_payload_usable_after_charge": false,
+      "later_payload_refusal": "LEAN requires the verified completed Research resolution first"
+    },
+    {
+      "case": "retry_above_zero",
+      "bridge_control_refusal": "Preregistered retry bound reached",
+      "registry_refusal": null,
+      "attempt": {
+        "attempt_id": "0daed7567c254551a51d47c8d680f2bd",
+        "config_id": "06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102",
+        "stage": "research",
+        "operation_key": "engineering-plan:19c4a65184a378bda44fa625972615d18d3f345eb7ea9e572e751d97517996af:research",
+        "status": "started",
+        "should_execute": true,
+        "allocation": "normal",
+        "result_key": "results/06fcee10664e61c3e39e84d300d07eb070bdcdef93f304d3911d86ae8902a102/research/031c4813717f30842927ad1c17e18a95a9dacd9580b89028f4c1543ff65e86f4.json",
+        "external_id": null
+      },
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 2,
+          "normal": 2,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "bridge_payload_usable_after_charge": true,
+      "later_payload_refusal": null
+    }
+  ],
+  "actual_remote_calls": 0
+}

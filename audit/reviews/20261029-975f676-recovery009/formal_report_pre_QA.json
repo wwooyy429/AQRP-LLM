@@ -1,0 +1,433 @@
+{
+  "review_id": "AQRP-20261029-975F676-RECOVERY009-25",
+  "review_date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "reviewed_source_commit": "975f676d62b561689909744f9e7236290e3f5fcb",
+  "baseline_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+  "evidence_commits": {
+    "materials": "a6a5a165d87c172535cdea6cf495e3c1a850e6e4",
+    "historical_runtime": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+    "historical_terminal": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+    "WR28_closure": "2f5591e28c0748ac42caeae7bbf3977141d031cb"
+  },
+  "conclusion": "975f676本轮通知恢复、Windows锁释放及已测试离线回归范围通过；未确认新产品缺陷。阶段2整体未通过验收。",
+  "source_manifest_hash": "d5a5ca0b1426c4333061932e280de08976762c801e6e26ff9c33cdcc74f2ef01",
+  "deployment_hash": "f89de8960ab68d1e18dc2003a7b4a9e3517100e4daf9c12a6eda2b95b378fdc6",
+  "implementation_hash": "72572cfda77588e333741d986be3ab278947536c2700442dc0d18fce6e800d66",
+  "configuration_hash": "a06709495845911c33d21e077c771793ea68c33c0691fefd711702739a1d5536",
+  "version_consistency": {
+    "source_files": 7045,
+    "materials_files": 7076,
+    "managed_identity_files": 213,
+    "current_deployment_files": 44,
+    "historical_cloud_files": 43,
+    "source_materials_managed_raw_equal": true,
+    "immutable_source_or_materials_changed": false,
+    "scratch_changes": [
+      "audit/stage_verification.json"
+    ],
+    "builds": 2,
+    "both_config_changed": false,
+    "materials_git_verifier_exit": 0,
+    "packet_raw_files": 38,
+    "protected_records": 10,
+    "post_materials_PR_head": "338bd6ea211d287396836752509d828c156ec442",
+    "post_materials_difference": [
+      "audit/review_handoffs/recovery009.json"
+    ]
+  },
+  "PR": {
+    "number": 2,
+    "draft": true,
+    "merged": false,
+    "source_CI_run": 40829100715,
+    "Python3.10": "success",
+    "Python3.11": "success",
+    "independently_extracted_CI_test_count": null
+  },
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    }
+  },
+  "tool_capabilities": {
+    "readonly_Git_GitHub": true,
+    "native_Windows_and_private_synthetic_execution": true,
+    "QC_cloud_calls": 0,
+    "Research_executions": 0,
+    "LEAN_submissions": 0,
+    "compile_calls": 0,
+    "market_or_model_calls": 0,
+    "authoritative_budget_or_production_writes": 0,
+    "PR_mutations": 0
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范、身份、Registry、预算、持久化和交付",
+      "implementation": "已有离线组件",
+      "evidence": "987回归；213份身份；通知、原生锁、周期/轮次和资料检查",
+      "verdict": "已测离线范围回归通过",
+      "missing": "不包含真实宿主调度与远端真实性认证"
+    },
+    {
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型和滚动内核",
+      "implementation": "已有离线内核",
+      "evidence": "987回归及原数值16、Pearson10、IC汇总11方法重放",
+      "verdict": "已测离线范围回归通过",
+      "missing": "无已认证经济因子、生产模型或金融检验"
+    },
+    {
+      "stage": 2,
+      "modules": "QC、缓存、摄入、任务桥、通知恢复",
+      "implementation": "部分实现",
+      "evidence": "本地通知恢复及Windows修复通过；旧b1a归档工程回执重解析",
+      "verdict": "局部软件范围通过；整体未通过",
+      "missing": "新候选真实调度/云端；完整US200/SID及财务时点认证；完整计费认证派发"
+    },
+    {
+      "stage": 3,
+      "modules": "评价、共同样本、成熟标签、滚动",
+      "implementation": "局部内核",
+      "evidence": "仓库与数值合成回归",
+      "verdict": "未验收",
+      "missing": "完整分层收益/风险报告和真实固定六轮研究"
+    },
+    {
+      "stage": 4,
+      "modules": "无订单接收器、标签成交与成本",
+      "implementation": "局部工程组件",
+      "evidence": "旧有限2018工程零订单回执",
+      "verdict": "未验收",
+      "missing": "完整组合、订单成交、持仓现金净值、风险、对账及压力验证"
+    },
+    {
+      "stage": 5,
+      "modules": "提案、持久化控制器、adapter接口",
+      "implementation": "局部原语",
+      "evidence": "离线回归；闸门关闭",
+      "verdict": "未验收",
+      "missing": "实际GPT客户端、模型/调用/费用设置和真实无人值守闭环"
+    },
+    {
+      "stage": 6,
+      "modules": "结构相似、相关性、复杂度",
+      "implementation": "局部原语",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整搜索、消融、净组合增量和选择偏差实证"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结元数据、暴露记录及闸门",
+      "implementation": "骨架",
+      "evidence": "原暴露与关闭闸门保留",
+      "verdict": "未验收",
+      "missing": "独立最终执行器、前向模拟、监控回滚；2026独立性未认证"
+    }
+  ],
+  "tests": [
+    {
+      "name": "repository",
+      "methods": 987,
+      "scenarios": null,
+      "kind": "repository_suite",
+      "result": "passed",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "independent_notification",
+      "methods": 18,
+      "scenarios": 106,
+      "kind": "new_independent_synthetic_and_Windows_processes",
+      "result": "passed_after_reviewer_fixture_correction",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "independent_Windows_lock",
+      "methods": 18,
+      "scenarios": 37,
+      "kind": "new_independent_native_Win32_and_synthetic",
+      "result": "passed_first_run",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "independent_cycles_rounds_preflight",
+      "methods": 7,
+      "scenarios": 28,
+      "kind": "new_independent_synthetic_and_processes",
+      "result": "passed_first_run",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "independent_storage_identity",
+      "methods": 5,
+      "scenarios": 26,
+      "kind": "new_independent_known_answers",
+      "result": "passed_first_run",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "actually_executed": true
+    },
+    {
+      "name": "historical_numeric_time",
+      "methods": 16,
+      "scenarios": 84,
+      "kind": "original_independent_suite_replayed_on_current_source",
+      "result": "passed_first_run",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "historical_Pearson",
+      "methods": 10,
+      "scenarios": 896,
+      "kind": "original_independent_suite_replayed_on_current_source",
+      "result": "passed_first_run",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "historical_IC_summary",
+      "methods": 11,
+      "scenarios": 716,
+      "kind": "original_independent_suite_replayed_on_current_source",
+      "result": "passed_first_run",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "historical_certification",
+      "methods": 13,
+      "scenarios": 43,
+      "kind": "original_independent_suite_replayed_on_current_source",
+      "result": "passed_first_run",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "historical_carriers",
+      "methods": 15,
+      "scenarios": 80,
+      "kind": "original_then_fixture_adapted_independent_suite",
+      "result": "passed_after_two_preserved_fixture_adaptations",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "WR25_WR26_MRE",
+      "methods": null,
+      "scenarios": 7,
+      "kind": "original_MRE_expected_outcomes",
+      "result": "matched",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "name": "historical_WR28_audit",
+      "methods": 11,
+      "scenarios": null,
+      "kind": "developer_audit_suite_replayed_for_original_frozen_scope",
+      "result": "passed",
+      "actually_executed": true,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "actually_executed": true,
+  "counting": "方法、子场景、进程请求、静态核验及重跑存在重叠，不合计独有测试总数；旧909/924/940和本轮987不相加。",
+  "notification_recovery": {
+    "verdict": "已测本地软件范围通过",
+    "methods": 18,
+    "scenarios": 106,
+    "original_pending_1800_seconds_boundary": true,
+    "max_pages": 3,
+    "durable_reservations_before_requests": true,
+    "unknown_outcome_no_redispatch": true,
+    "terminal_summary_does_not_settle": true,
+    "parser_Bridge_Registry_full_synthetic_chain": true,
+    "six_process_18_requests_permissions": 1,
+    "thread_history_permissions": 1,
+    "thread_completed_read_permissions": 1,
+    "real_host_and_push_verified": false
+  },
+  "Windows_lock": {
+    "verdict": "原生Windows已测范围通过",
+    "methods": 18,
+    "scenarios": 37,
+    "actual_native_Win32_handle_methods": 3,
+    "native_WinError32_observed": true,
+    "body_not_reexecuted": true,
+    "captured_owner_and_path_verified": true,
+    "max_backoffs": 120,
+    "max_unlink_attempts_including_initial": 121,
+    "six_second_exact_bound_uses_controlled_clock": true,
+    "actual_OS_timeout_test_seconds": 0.12,
+    "all_races_or_power_loss_certified": false
+  },
+  "historical_findings": {
+    "WR01_WR28_original_exact_scopes_retained": true,
+    "current_related_repository_regressions_passed": true,
+    "all_original_independent_suites_rerun": false,
+    "per_WR_original_SHA_scope_current_tests_and_limits": "history_agent/WR_current_matrix.json",
+    "WR_count": 28,
+    "original_reports_checked": 25,
+    "selected_archive_is_complete_original_bundle": false,
+    "WR15_WR19_WR27_additional_static_or_MRE_checks_passed": true,
+    "WR28_replay_scope": "Original three frozen Git snapshots/122 records/48-event historical chain; does not assert current changed files equal old protected list.",
+    "static_metadata_checks": 1582
+  },
+  "reviewer_corrections": {
+    "notification_first_run": {
+      "methods": 12,
+      "failures": 0,
+      "errors": 1,
+      "cause": "审核者分块夹具误用400字节/1基；按既定500字节/0基更正，产品未改",
+      "corrected": "12方法/79场景通过；另6方法/27场景首次通过"
+    },
+    "carrier_first_run": {
+      "errors": 44,
+      "cause": "旧fresh baseline误用累计16配置投影；新周期限额13",
+      "second_errors": 14,
+      "second_cause": "旧合成完成payload缺当前deployment_manifest",
+      "adaptation": "仅更新合成baseline及三处completion fixture；15方法/80场景通过，断言未改"
+    },
+    "all_first_scripts_logs_and_diffs_preserved": true,
+    "history_summary_helper": "已完成测试后的汇总器因重复全树哈希被中止，并修正IC结果文件名；仅改审核汇总程序，原程序/退出记录/更正全部保留。"
+  },
+  "findings": [],
+  "budget_replay": {
+    "events": 71,
+    "journal_sha256": "cea800e0fe5a0facc5f2aed238d105a6f3d1c80db40c1dc4b674efd3026cd48a",
+    "prior69_prefix_sha256": "2d3131a32864434d22635f058ec3de8062e9b1b610a90185bf6ba6cf9c637934",
+    "prior_prefix_raw_preserved": true,
+    "configuration_cycle": {
+      "used": 3,
+      "limit": 13
+    },
+    "lifetime_configurations": 16,
+    "Research": {
+      "used": 17,
+      "limit": 20
+    },
+    "LEAN": {
+      "used": 3,
+      "limit": 16
+    },
+    "round008": "closed",
+    "new_events": 0,
+    "new_debits": 0,
+    "refunds": 0,
+    "authority": "既有Registry原字节和私有Memory重放；本轮不授予预算变更或执行授权",
+    "original_human_authorization_dialogue_independently_obtained": false
+  },
+  "platform_evidence_level": {
+    "grade": "开发者归档原生工程元数据，经审核者离线重新解析；本轮未独立访问QC",
+    "historical_runtime_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+    "Research_checks_passed": 13,
+    "LEAN_checks_passed": 7,
+    "historical_orders": 0,
+    "PROJECT_raw_source_files": 43,
+    "Research_worker_EOF_normalized_files": 0,
+    "LEAN_worker_EOF_normalized_files": 43,
+    "LEAN_original_source_identity_match": false,
+    "terminal_acquisition": "一次历史目录对账",
+    "automatic_push_observed": false,
+    "new_candidate_cloud_run": null,
+    "new_candidate_orders": null,
+    "native_complete_compiler_worker_packet": "未归档"
+  },
+  "software_acceptance": {
+    "stage0_offline_regression": "已测范围通过",
+    "stage1_offline_regression": "已测范围通过",
+    "stage2_notification_lock_local_scope": "通过",
+    "stage2_overall": "未通过",
+    "stages3_to7": "未验收",
+    "formal_research_enabled": false,
+    "GPT_runtime_enabled": false,
+    "orders_enabled": false,
+    "final_test_enabled": false
+  },
+  "data_certification": {
+    "full_historical_US200": false,
+    "SID_economic_ambiguity_resolved": false,
+    "financial_statement_numeric_catalog_count": 0,
+    "financial_vintage_publication_actual_delivery_ingestion": false,
+    "computation_kernel": "已有实现及合成回归",
+    "complete_charged_native_dispatch": "未完成验收"
+  },
+  "financial_evidence": false,
+  "financial_metrics": {
+    "IC": null,
+    "returns": null,
+    "costs": null,
+    "risk": null,
+    "NAV": null
+  },
+  "research_constraints": {
+    "universe": "历史当时流动性前200美股；财务缺失不换入201名",
+    "timezone": "America/New_York",
+    "rolling": "2010-2017/2018至2015-2022/2023的六个固定八年训练/一年验证窗",
+    "final_window": "2024-01-01至2026-10-23",
+    "2024_2025_exposed": true,
+    "2026_independence": "未认证",
+    "independent_final_executor_configured": false
+  },
+  "unverified": [
+    "新候选真实MCP宿主调度、自动通知传输及云端超时对账联调",
+    "完整历史US200/SID/交易日、公司行动和财务版本/公开/实际送达/摄入认证",
+    "完整计费认证派发及阶段3–7缺失模块",
+    "任意文件系统竞争、硬终止、断电耐久性及远端工具真实性",
+    "2026样本独立性和实际金融有效性",
+    "本轮只核对选取归档原件，未全量重验全部外部原ZIP；未独立取得新增额度的原人类授权对话"
+  ],
+  "next_required_work": [
+    "归档本次固定975f676的软件有限通过结论，保留全部旧SHA失败和原范围结论",
+    "在另行授权的受限联调中验证真实宿主调度及终态回执；本报告不授权执行",
+    "补齐数据认证和完整计费派发，随后重新提交阶段2整体验收",
+    "保持正式研究、自动GPT、交易和最终测试关闭"
+  ],
+  "artifacts": {
+    "root_commands": "root_execution_records.json",
+    "independent_commands": "notification_agent/execution_records.json; windows_lock_agent/execution_records.json; windows_lock_agent/supplement/execution_records.json; history_agent/historical_execution.json",
+    "source_raw_maps": "source_git_manifest.json",
+    "WR_matrix": "history_agent/WR_current_matrix.json",
+    "minimum": "python -B minimal_windows.py source",
+    "seal": "python -B verify_artifacts.py"
+  }
+}

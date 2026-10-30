@@ -1,0 +1,347 @@
+{
+  "review_id": "AQRP-20261027-84414AB-METADATA-15",
+  "review_date": "2026-10-27",
+  "reviewer": "GPT Work / Codex 独立审核",
+  "review_kind": "WR19 metadata correction only",
+  "reviewed_source_commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+  "baseline_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "software_acceptance_bound_to_commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "evidence_commits": [
+    "84414ab49c39e25cb50ece1c1debeefa3993c874",
+    "81fbe5294055423e88ee5aeae48ca6223e7971da",
+    "ae2b8985f3799c246e90341370f86d80483f63ed"
+  ],
+  "source_manifest_hash": "3d6a236f3d492114a1178da5fe9d9e0b09788580344e2be9fd6df2eb65716a94",
+  "source_manifest_files": 123,
+  "Git_archive_files": 2890,
+  "execution_manifest_hash": "432d7f42258336041c8f521addd4918294e89997bc2b00a89b8a7d03cb461926",
+  "deployment_hash": "25d3c891ef10aa8d62f5144792fdbaf22621c00521f431e9a60c566b6c8bccfb",
+  "implementation_hash": "07ba5cc17262f3a6059d09eff5098619f57e8f0b26767d2d93bb4345d1aceaf2",
+  "active_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "python-dateutil": "3.0.0",
+      "pytz": "2026.5",
+      "six": "1.17.0",
+      "tzdata": "2026.5"
+    },
+    "execution_kind": "metadata/hash/JSON/identity functions only; no software suite or build"
+  },
+  "tool_capabilities": {
+    "GitHub": "已只读核对PR2与本提交CI job元数据，仍草稿未合并",
+    "local": "固定Git导出、原字节/归档/JSON/引用哈希/身份函数/元数据MRE与负例",
+    "QuantConnect": "本轮未访问QC，不读旧回测状态/结果/日志，不编译/更新/派发"
+  },
+  "stage_results": [
+    {
+      "stage": 0,
+      "modules": "规范、StudySpec/AuditEvidence、身份及预算",
+      "acceptance": "保留既有离线范围",
+      "evidence": "115保护文件原字节保持，未重跑软件"
+    },
+    {
+      "stage": 1,
+      "modules": "受限因子、执行标签、模型协议及数值",
+      "acceptance": "保留既有离线范围",
+      "evidence": "计算及测试代码与81相同，原软件结论保持"
+    },
+    {
+      "stage": 2,
+      "modules": "QC桥、缓存、快照、联合任务及恢复",
+      "acceptance": "保留81已测离线通过；整体验收待定",
+      "evidence": "WR19元数据更正通过；缺真实运行/终态/认证"
+    },
+    {
+      "stage": 3,
+      "modules": "固定模型、六轮滚动及Research报告",
+      "acceptance": "未验收",
+      "evidence": "部分实现，无新增金融/平台证据"
+    },
+    {
+      "stage": 4,
+      "modules": "LEAN交易、成本/成交/风险及一致性",
+      "acceptance": "未验收",
+      "evidence": "部分实现，无新增真实交易验收"
+    },
+    {
+      "stage": 5,
+      "modules": "GPT提案、持久调度及修复",
+      "acceptance": "未验收",
+      "evidence": "模型与调用额度未配置，自动调用关闭"
+    },
+    {
+      "stage": 6,
+      "modules": "受限搜索、相似度及消融",
+      "acceptance": "未验收",
+      "evidence": "未开展正式市场搜索"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、独立最终执行器及监控",
+      "acceptance": "未验收",
+      "evidence": "最终测试关闭"
+    }
+  ],
+  "tests": {
+    "actually_executed": true,
+    "software_unit_methods": 0,
+    "software_subcases": 0,
+    "software_suite_runs": 0,
+    "builds": 0,
+    "metadata_check_groups": [
+      {
+        "name": "identity_and_runtime_scope",
+        "checks": 148,
+        "passed": 148,
+        "failed": 0
+      },
+      {
+        "name": "comparison_and_negative_variants",
+        "checks": 37,
+        "passed": 37,
+        "failed": 0
+      },
+      {
+        "name": "archive_provenance_budget",
+        "checks": 591,
+        "passed": 591,
+        "failed": 0
+      }
+    ],
+    "group_counting": "分组存在重复核对，不声称三组相加是独有检查。元数据检查/子进程不算软件测试方法。",
+    "original_MRE": {
+      "script_sha256": "4e65b60ae1621b8fd158b945d147118b733d27913600031663f824564ce48c6d",
+      "original_bytes_unchanged": true,
+      "baseline_exit": 1,
+      "baseline_declared": 12,
+      "baseline_computed": 13,
+      "candidate_exit": 0,
+      "candidate_declared": 13,
+      "candidate_computed": 13
+    },
+    "developer_verifier": {
+      "candidate_exit": 0,
+      "independent_negative_variants": 7,
+      "each_negative_exit": 1,
+      "rejects": [
+        "escaping_reference",
+        "candidate_commit_mismatch",
+        "reference_hash_mismatch",
+        "count12",
+        "raw_reference_tamper",
+        "path_list_mismatch",
+        "duplicate_reference_path"
+      ],
+      "scope": "只核对所引用比较，不认证任意readiness字段或远程来源"
+    },
+    "reviewer_first_measurement": {
+      "checks": 590,
+      "passed": 589,
+      "overstrict_reader_assertions": 1,
+      "reason": "误要求当前deployment_comparison_scope说明逐字节不变；该说明合理澄清ae13，原历史dc49及d0细表原字节未变。",
+      "correction": "保留首脚本/原报告/raw，按历史范围及原档案保存核对；补充d0细表核验后591项通过。",
+      "product_failure": false
+    },
+    "previous_software_evidence": {
+      "commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+      "repository_methods": 453,
+      "independently_rerun_this_round": false,
+      "WR18": "81fbe52修复后通过结论保持",
+      "developer_current453_output": "只作开发归档核对，不称本轮独立453运行"
+    },
+    "commands": [
+      {
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027",
+        "command": "python -B run_metadata_probes.py",
+        "exit_code": 0
+      },
+      {
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027",
+        "command": "python -B metadata_replay/original_minimal_wr19.py source",
+        "exit_code": 0
+      },
+      {
+        "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-84414ab-20261027",
+        "command": "python -B source/audit/review_packages/wr19/verify_archived_comparison.py source",
+        "exit_code": 0
+      }
+    ],
+    "command_records": [
+      "metadata_replay/execution_records.json",
+      "identity_agent/command_log.json",
+      "comparison_agent/command_log.json",
+      "comparison_agent/execution.json",
+      "evidence_agent/corrected_execution_record.json"
+    ]
+  },
+  "actually_executed": true,
+  "findings": [],
+  "WR19_acceptance": {
+    "status": "元数据更正通过",
+    "compared_candidate_commit": "ae2b8985f3799c246e90341370f86d80483f63ed",
+    "candidate_paths": 29,
+    "known_reference_paths": 25,
+    "same_hash": 16,
+    "different_hash": 9,
+    "not_in_reference": 4,
+    "total_different_or_outside": 13,
+    "candidate_manifest_raw_sha256": "5b0a0a698b005d8ba1bdf378935cefa82809786b83650e340d6fb44f4fe22bdb",
+    "archived_platform_comparison_raw_sha256": "1f946c026a3c24999be0a60ccea9f0cc748dbca62b231d09deaf41bbcedbad46",
+    "original_claim12_preserved": true,
+    "original81_readiness_raw_preserved": true,
+    "historical_dc49_8_plus4_equal12_preserved": true,
+    "scope": "归档29候选路径与25已知参考的比较；4不在参考不证明实际云端缺4，不认证当前平台或全集。"
+  },
+  "runtime_identity_check": {
+    "protected_unique_files": 115,
+    "all_raw_equal_baseline": true,
+    "runtime_semantic_changes_detected": 0,
+    "implementation_deployment_active_config_unchanged": true,
+    "source_and_execution_manifest_changed": true,
+    "changed_manifest_paths": [
+      ".gitattributes",
+      "docs/review/wr18.md",
+      "docs/review/wr19.md"
+    ],
+    "reason": "文档及.gitattributes参与清单，因此新SHA的source/execution身份改变；身份算法未变。新派发仍须绑定当前身份，不从软件通过推导派发许可。"
+  },
+  "historical_findings": {
+    "WR01_to_WR18": "既有固定版本实际范围通过结论保持；软件通过身份固定81fbe52",
+    "WR19": "本轮更正通过，原错误12、完整81 Git状态及旧报告保留",
+    "preserved_evidence": "2202旧证据、22开发原件、487原独立原件及27引用、4754项原最终封包/ZIP核验；引用数不是原生回执数"
+  },
+  "budget_replay": {
+    "events": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "pending_attempt": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    },
+    "new_real_charges": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "engineering_stop_limits": {
+      "configurations": 2,
+      "research": 2,
+      "lean": 2
+    },
+    "engineering_used": {
+      "configurations": 1,
+      "research": 1,
+      "lean": 1
+    }
+  },
+  "platform_evidence_level": {
+    "current_round": "无新增平台读取/部署/Research/LEAN/原生回执证据",
+    "historical_only": "前轮25实现及1输入已知路径核对；当时列表18py漏8可读路径，全集未认证",
+    "current_cloud_source_commit": null,
+    "current_cloud_deployment_hash": null,
+    "candidate_runtime_verified": false,
+    "full_cloud_inventory_certified": false,
+    "real_native_failure_receipt_verified": false
+  },
+  "backtest_terminal": {
+    "project_id": 38436695,
+    "backtest_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "last_archived_status": "pending",
+    "current_platform_status": null,
+    "completed": null,
+    "failed": null,
+    "status_results_logs_read": false
+  },
+  "CI": {
+    "run_id": 40452157673,
+    "commit": "84414ab49c39e25cb50ece1c1debeefa3993c874",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 122017145376,
+        "python": "3.10",
+        "conclusion": "success",
+        "tests_count": null
+      },
+      {
+        "id": 122017145076,
+        "python": "3.11",
+        "conclusion": "success",
+        "tests_count": null
+      }
+    ],
+    "scope": "只读job元数据，不是本轮独立双版本453测试"
+  },
+  "data_exposure": {
+    "2024_2025_prior_research_exposure": true,
+    "2026_independence_certified": null
+  },
+  "execution_switches": {
+    "market_research": false,
+    "automatic_GPT": false,
+    "final_test": false,
+    "live_trading": false,
+    "GPT_model": null,
+    "GPT_call_limit": null,
+    "GPT_spend_limit_USD": null
+  },
+  "unverified": [
+    "旧LEAN原生终态及原attempt结算",
+    "新候选真实部署/输入读回/Research/LEAN及成功失败原生回执",
+    "云端全集、完整历史US200/PIT分类/永久SID/20交易日排名",
+    "财务原报/修订版本及真实公开、供应商送达、历史摄入时点",
+    "迁移后实际数据分支及未观察公司行动",
+    "真实金融一致性、成本/成交/风险、组合增量；阶段3–7及最终测试"
+  ],
+  "next_actions": [
+    "保留软件结论与81fbe52绑定，后续新派发按当前执行身份冻结并遵守原预算/占用保护",
+    "取得旧LEAN原生终态并按原attempt结算，之后再处理新云端运行",
+    "真实有界运行/原生回执与完整数据认证分别验收；最终测试继续关闭"
+  ],
+  "software_acceptance": "retained_81fbe52_scope; no_new_software_test_or_approval_at84414ab",
+  "metadata_acceptance": "WR19_passed_at84414ab",
+  "data_certification": false,
+  "financial_evidence": false,
+  "artifact_directory": "review-84414ab-20261027"
+}

@@ -1,0 +1,264 @@
+{
+  "reviewer": "recovery_agent independent live completion / historical recovery review",
+  "commit": "81fbe5294055423e88ee5aeae48ca6223e7971da",
+  "verdict": "本代理负责的旧v1/v2恢复、成功/失败结算及新共享原提交loader/完成合同边界通过；未确认新增缺陷。Registry新准入关闭结论由主审及另一代理负责，完整系统/阶段2及真实平台运行仍未验收。",
+  "findings": [],
+  "byte_identical_replay": {
+    "files": [
+      {
+        "name": "independent_recovery.py",
+        "old_sha256": "bc1e5946407c4b3eb73188bef835901f754d5456ddb67b44b0023232aa450857",
+        "new_sha256": "bc1e5946407c4b3eb73188bef835901f754d5456ddb67b44b0023232aa450857"
+      },
+      {
+        "name": "independent_recovery_support.py",
+        "old_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489",
+        "new_sha256": "3fadd44b9680f2347c729a748c11049ac1cba515447bb4fa55e02f0277983489"
+      },
+      {
+        "name": "direct_freeze_entry.py",
+        "old_sha256": "268ba0f68dff5f7b046464ab4f5d7a8100343bc9862a412f96179fc99c4a2d2b",
+        "new_sha256": "268ba0f68dff5f7b046464ab4f5d7a8100343bc9862a412f96179fc99c4a2d2b"
+      },
+      {
+        "name": "capture_first_run.py",
+        "old_sha256": "a137a2cebb6f020ba2143c44a1754c10f8eb68e048930f6b1ebaff96e619be2a",
+        "new_sha256": "a137a2cebb6f020ba2143c44a1754c10f8eb68e048930f6b1ebaff96e619be2a"
+      },
+      {
+        "name": "failure_settlement.py",
+        "old_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46",
+        "new_sha256": "6be7119cadf96195f3d28379da61b13de56c3168cc5b5bb14121ba28e1cdca46"
+      },
+      {
+        "name": "capture_failure_run.py",
+        "old_sha256": "29dc7906b352c821d2ec2243315aa4f97f2eb6e401559155448ec7f1353e35b7",
+        "new_sha256": "29dc7906b352c821d2ec2243315aa4f97f2eb6e401559155448ec7f1353e35b7"
+      }
+    ],
+    "modified_original_files": false,
+    "metadata_caveat": "Original scripts intentionally retain hardcoded commit=ae2b898 in their summaries. Actual --source argv resolves to this new 81fbe52/source; the candidate engineering_tasks.py SHA-256 is c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e. Do not interpret the old literal as the tested source."
+  },
+  "original_recovery_suite": {
+    "methods": 5,
+    "subcases": 46,
+    "passed_methods": 5,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0,
+    "seconds": 91.088,
+    "stats": {
+      "actual_CLI_processes": 72,
+      "direct_freeze_processes": 12,
+      "synthetic_metadata_finish_calls": 4,
+      "actual_worker_executions": 0
+    },
+    "method_subcases": {
+      "test_freeze_all_versions_states_entrypoints_no_write": 24,
+      "test_missing_tampered_foreign_admission_and_input_rejected_no_write": 14,
+      "test_original_attempt_research_and_lean_settlement_after_drift": 2,
+      "test_two_process_mixed_freeze_cannot_change_pointer": 2,
+      "test_unknown_attempt_rejected_without_pointer_dependency_or_write": 4
+    }
+  },
+  "original_failure_probe": {
+    "programs": 1,
+    "subcases": 4,
+    "passed": 4,
+    "failure_records": 0,
+    "exit_code": 0,
+    "stats": {
+      "actual_CLI_processes": 28,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 6,
+      "actual_worker_executions": 0
+    },
+    "records": [
+      {
+        "version": 1,
+        "kind": "Research synthetic fixed-check failed report",
+        "status": "failed",
+        "usage_unchanged": true,
+        "real_native_failure_claimed": false
+      },
+      {
+        "version": 1,
+        "kind": "LEAN synthetic delivered Runtime Error envelope",
+        "status": "failed",
+        "usage_unchanged": true,
+        "error_text_not_persisted": true,
+        "real_native_failure_claimed": false
+      },
+      {
+        "version": 2,
+        "kind": "Research synthetic fixed-check failed report",
+        "status": "failed",
+        "usage_unchanged": true,
+        "real_native_failure_claimed": false
+      },
+      {
+        "version": 2,
+        "kind": "LEAN synthetic delivered Runtime Error envelope",
+        "status": "failed",
+        "usage_unchanged": true,
+        "error_text_not_persisted": true,
+        "real_native_failure_claimed": false
+      }
+    ],
+    "limits": "Research check-failed report is fabricated inside a successful synthetic cell; the delivered LEAN Runtime Error envelope is also synthetic. Neither proves real platform failed execution."
+  },
+  "new_loader_completion_boundaries": {
+    "methods": 3,
+    "subcases": 28,
+    "passed_methods": 3,
+    "failure_records": 0,
+    "error_records": 0,
+    "skipped": 0,
+    "first_failure": null,
+    "exit_code": 0,
+    "seconds": 21.669,
+    "stats": {
+      "actual_CLI_processes": 16,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 4,
+      "actual_worker_executions": 0
+    },
+    "method_subcases": {
+      "test_01_loader_rejects_before_completion_read_and_no_write": 12,
+      "test_02_contract_rejects_input_raw_and_rows_without_persistence": 12,
+      "test_03_legacy_submission_status_success_and_completed_idempotence": 4
+    },
+    "inputs": "boundaries/result.json:inputs",
+    "coverage": [
+      "All four v1/v2 x Research/LEAN pending submissions use actual Filesystem Registry; initial freeze/register/claim/prepare and parent Research/LEAN admission run via production CLI.",
+      "Missing original receipt, hash-self-consistent empty raw_receipt and accepted=false are rejected before invoking completion_source; whole filesystem and usage remain unchanged.",
+      "Mismatched terminal input_hash, empty terminal raw_receipt and unknown completion rows are rejected after one completion callback; whole filesystem and usage remain unchanged.",
+      "Missing Research submission status and synchronous completed LEAN submission status remain compatible. Successful completion consumes the exact recorded checked submission.",
+      "With malformed current pointer/catalog, removed deployment manifest/local input and drifted current source, the original frozen Bridge still completes Research/LEAN.",
+      "After completed settlement, remove original submission/evidence/admission: direct Bridge.consume_completion returns completed with should_execute=false, never calls source or writes. This is an idempotent read, not a new dispatch permission."
+    ]
+  },
+  "historical_recovery_scope": [
+    "v1/v2 originals, started/pending/ambiguous states, both freeze target schemas, CLI and direct freeze process entrypoints; same-project refusal preserves all case file hashes.",
+    "Two concurrent v1/v2 CLI freezes each refused without pointer or journal changes.",
+    "Actual CLI success Research then LEAN recovers original admitted input and resolution after pointer/deployment/catalog deletion, source drift and local input deletion, without new charge.",
+    "After Research terminal, a legal zero-charge different-plan freeze changes current pointer; old finalized admission remains readable.",
+    "Missing/tampered/foreign/noncanonical admissions, cloud destination changes, unknown row fields, bad local bytes and unknown attempts reject without new writes/charges. A finalized missing admission cannot generate new input.",
+    "Both original synthetic failure kinds settle failed after pointer/catalog/deployment deletion, source drift and input loss, without new debit or error-text persistence."
+  ],
+  "counting": {
+    "unit_methods": 8,
+    "unit_subcases": 74,
+    "supplemental_probe_programs": 1,
+    "supplemental_probe_subcases": 4,
+    "MRE_programs_executed_by_this_agent_this_round": 0,
+    "actual_CLI_processes": 116,
+    "direct_freeze_processes": 12,
+    "synthetic_metadata_finish_calls": 14,
+    "actual_worker_executions": 0,
+    "limits": "Unit methods/subcases, parameterized probes, CLI processes and metadata writer calls are separate counters. Overlapping checks are not independent economic observations."
+  },
+  "source_locations": {
+    "shared_recorded_submission_loader": "cloud/qresearch/engineering_tasks.py:436-479",
+    "completion_metadata_residency_check": "cloud/qresearch/engineering_tasks.py:531-549",
+    "shared_completion_contract": "cloud/qresearch/engineering_tasks.py:662-690",
+    "live_consume_and_completed_idempotence": "cloud/qresearch/engineering_tasks.py:692-720",
+    "immutable_attempt_and_admitted_input_CLI": "tools/stage2.py:91-157",
+    "CLI_native_result_routing": "tools/stage2.py:224-261"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent\\independent_recovery.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent",
+      "exit_code": 0,
+      "stdout_sha256": "4af64dde0c6ff50b798c8b8be69d96ba5ba07a7d87bfa535ae1b6018424054e4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 2630,
+      "stderr_bytes": 0
+    },
+    {
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent\\failure_settlement.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent",
+      "exit_code": 0,
+      "stdout_bytes": 1826,
+      "stderr_bytes": 0,
+      "stdout_sha256": "9bab9e63bc1e739d7fd5b0dc4559e6318f5817ff2a99dae12b5c6641b25befaa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent\\completion_boundaries.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent\\boundaries"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-81fbe52-20261027\\recovery_agent",
+      "exit_code": 0,
+      "stdout_bytes": 7262,
+      "stderr_bytes": 0,
+      "stdout_sha256": "83042dc28177e62453d3864d8e4baa443372bad526485d58a1bedcd63511fee1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "evidence": {
+    "first_stdout": "first_run.stdout",
+    "first_stderr": "first_run.stderr",
+    "first_unittest": "first_run_unittest.txt",
+    "first_inputs_and_hashes": "first_run_summary.json",
+    "first_commands": "command_log.json",
+    "failure_stdout": "failure_settlement.stdout",
+    "failure_stderr": "failure_settlement.stderr",
+    "failure_commands": "failure_command_log.json",
+    "new_stdout": "boundaries/first.stdout",
+    "new_stderr": "boundaries/first.stderr",
+    "new_unittest": "boundaries/unittest.txt",
+    "new_commands": "boundaries/command_log.json",
+    "per_command_streams": "commands/ and boundaries/commands/"
+  },
+  "first_runs_preserved": true,
+  "reviewer_measurement_corrections": [],
+  "source_and_authority_hashes_before_after_equal": true,
+  "source_and_authority_hashes": {
+    "tools/stage2.py": "cdd8e5b302bf51f439bc4f698298f1114cd1db36f2bf52b89dbf4a10d61f9161",
+    "cloud/qresearch/engineering_tasks.py": "c957b7ccc415e86a88f90b29bea63ee01f5ca657d1437340a890dad21b482a9e",
+    "cloud/qresearch/registry.py": "3d6a77c93ba88822ec5cb4b8393c85d977b4f33e1e8a0945cf4e4c282927bd92",
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "audit/runtime/registry/events.jsonl": "caeab4328922974e448de2027cb6a24104faae758604674801c67f92cd26c0ed"
+  },
+  "actions": {
+    "network": 0,
+    "QC": 0,
+    "SDK": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "models": 0,
+    "market": 0,
+    "deployment": 0,
+    "production_source_edits": 0,
+    "authoritative_budget_changes": 0
+  },
+  "remaining_unverified": [
+    "Actual deployed source/input readback, real successful and full failed platform executions, current pending cloud terminal, row-level market data and complete historical universe/availability/vintage certification."
+  ]
+}

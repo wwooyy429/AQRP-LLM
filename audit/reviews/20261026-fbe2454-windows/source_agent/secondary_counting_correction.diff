@@ -1,0 +1,24 @@
+--- interim
++++ counted
+@@ -66,13 +66,17 @@
+     result=unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=Recorder).run(
+         unittest.defaultTestLoader.loadTestsFromTestCase(AdditionalSourceTests))
+     output=stream.getvalue();print(output,end="")
+-    failed_methods={r["test"].split(" (")[0] for r in result.records}
++    def method_id(case):
++        return case.test_case.id() if hasattr(case,"test_case") else case.id()
++    execution_records=[{"test":str(case),"method_id":method_id(case),"traceback":trace}
++        for case,trace in result.failures+result.errors]
++    failed_methods={record["method_id"] for record in execution_records}
+     report={"methods":result.testsRun,"passed_methods":result.testsRun-len(failed_methods),
+         "failed_or_error_methods":len(failed_methods),"failure_records":len(result.failures),
+         "error_records":len(result.errors),"subtests":result.subtests,"skips":len(result.skipped),
+-        "first_failure":result.records[0] if result.records else None,"all_failures":result.records,
++        "first_failure":execution_records[0] if execution_records else None,"all_failures":execution_records,
+         "observations":OBS,"real_sdk_executed":False,"platform_calls":0,
+         "evidence_kind":"immutable official LEAN static contract plus synthetic native-shape replay"}
+-    (OUT/"secondary_source_output_final.txt").write_text(output,encoding="utf-8")
+-    (OUT/"secondary_source_results_final.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
++    (OUT/"secondary_source_output_counted.txt").write_text(output,encoding="utf-8")
++    (OUT/"secondary_source_results_counted.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
+     sys.exit(not result.wasSuccessful())

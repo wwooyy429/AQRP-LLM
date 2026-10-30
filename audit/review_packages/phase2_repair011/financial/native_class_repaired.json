@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "kind": "actual_synthetic_public_helper_boundary_probe",
+  "argv": [
+    "python",
+    "-X",
+    "utf8",
+    "-B",
+    "audit/review_packages/phase2_repair011/financial/boundary_probe.py"
+  ],
+  "exit_code": 0,
+  "stdout_sha256": "35c69d1f26bebfce9be97512f460a539dd0da6bee84932cfd8f0de7ed9aa9a82",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_original": "native_class_repaired.stdout.raw.base64",
+  "stderr_original": "native_class_repaired.stderr.raw.base64",
+  "result": {
+    "synthetic": true,
+    "cases": [
+      {
+        "case": "numeric_type_predicate",
+        "exact_owned_error": true,
+        "raw_native_runtime_error": false,
+        "private_native_argument_escaped": false
+      },
+      {
+        "case": "period_type_predicate",
+        "exact_owned_error": true,
+        "raw_native_runtime_error": false,
+        "private_native_argument_escaped": false
+      }
+    ]
+  },
+  "source_sha256": "f8c12f504b778705ae24d8e750d2d37fb38489079a63b2f255b43d92d1203959",
+  "cloud_calls": 0,
+  "budget_mutations": 0,
+  "financial_certification": false
+}

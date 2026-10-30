@@ -1,0 +1,39 @@
+{
+  "kind": "independent_synthetic_schema3_receiver_and_compression_probe",
+  "results": [
+    {
+      "case": "second_stream",
+      "rejected": true
+    },
+    {
+      "case": "truncated",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_json_key",
+      "rejected": true
+    },
+    {
+      "case": "noncanonical_whitespace",
+      "rejected": true
+    },
+    {
+      "case": "decompression_bomb",
+      "rejected": true
+    },
+    {
+      "case": "schema3_fake_receiver_complete",
+      "completed": true,
+      "orders": 0,
+      "raw_bytes": 2356,
+      "stored_bytes": 332,
+      "rows_not_exported": true
+    }
+  ],
+  "real_budget_and_journal_unchanged": true,
+  "cloud_calls": 0,
+  "actual_Research_executions": 0,
+  "actual_LEAN_submissions": 0,
+  "preflight_mock_note": "SDK preflight returns a synthetic capacity fixture; separate storage_capacity tests cover actual metadata-only adapter.",
+  "reviewer_fixture_correction": "First two probe attempts used February helper slices for a January3-10 frozen observation window. complete_expected_bars correctly failed. Probe was corrected to matching explicit January synthetic sessions; no production edit."
+}

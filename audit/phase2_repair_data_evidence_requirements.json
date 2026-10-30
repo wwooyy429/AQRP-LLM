@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "kind": "phase2_data_evidence_requirements",
+  "report_scope": "Developer assessment of source capability metadata, current implementation boundaries and evidence required for later certification; not an independent acceptance or financial test",
+  "credential_source": {
+    "user_designated_source": "QuantConnect MCP Server",
+    "source_is_resolved": true,
+    "additional_credentials_requested_by_this_report": false,
+    "project_id_in_observed_calls": 38436695,
+    "project_id_origin": "Project list performed by the coordinating agent before its MCP project operations; this report performs no project operation"
+  },
+  "evidence_basis": [
+    {
+      "path": "audit/tool_observations/phase2-repair-dataset-capabilities.json",
+      "evidence_type": "actual_MCP_response_metadata",
+      "supports": [
+        "US Fundamental Data and US SEC Filings dataset details were returned successfully",
+        "The dataset directory included US Equity Security Master, US Fundamental Data and US SEC Filings",
+        "The returned descriptive start date for both detailed datasets was January 1998",
+        "The US Fundamental Data documentation response was not truncated and contained 22166 characters"
+      ],
+      "does_not_support": [
+        "Account entitlement to every dataset and historical field",
+        "Successful historical retrieval for every required SID, session or financial vintage",
+        "Complete historical all-market inventory",
+        "Authenticated historical vendor delivery or local ingestion timestamps"
+      ]
+    },
+    {
+      "path": "audit/stage2_completion_data_capabilities.json",
+      "evidence_type": "local_fixed_program_capability_report",
+      "supports": [
+        "The present source catalog declares 15 observation fields and zero as-reported financial value fields",
+        "The present certification implementation retains explicit external provenance gaps",
+        "The capability report did not admit budget or make a QuantConnect call"
+      ],
+      "does_not_support": [
+        "Real data coverage or financial effectiveness",
+        "A successful cloud certification execution"
+      ]
+    },
+    {
+      "path": "audit/tool_observations/e17fd1ac2d3e433e909aef149c7afeec-research.json",
+      "evidence_type": "actual_failed_Research_execution_response",
+      "attempt_id": "e17fd1ac2d3e433e909aef149c7afeec",
+      "observed_error": "CollectionError",
+      "observed_diagnostic_stage": "row_identity",
+      "observed_diagnostic_failure_code": "source_contract",
+      "observed_diagnostic_rows_emitted": 5124,
+      "counter_scope": "Source-adapter diagnostic for the interrupted native call/window; not the total row count of the complete Research task or its full planned date range",
+      "supports": [
+        "A real native response was nonempty before an identity contract check stopped iteration",
+        "The attempted collection did not complete successfully"
+      ],
+      "does_not_support": [
+        "A completed Research result",
+        "5124 rows for the complete Research task",
+        "Accepted window completeness or zero missing records",
+        "Historical US200, financial vintage or historical availability certification"
+      ]
+    }
+  ],
+  "documentation_interpretation": {
+    "fundamental_documentation_url": "https://www.quantconnect.com/docs/v2/writing-algorithms/datasets/morningstar/us-fundamental-data",
+    "observed_documentation_statements": [
+      "Older FileDate values may be approximated 45 days after the as-of date",
+      "The documentation describes financial data as originally reported",
+      "The documentation describes approximately 6 AM live daily delivery",
+      "The documentation describes 2026 feed changes with historical data rebuilt"
+    ],
+    "required_limits": [
+      "An approximated FileDate is not an authenticated historical vendor receipt or exact publication timestamp",
+      "A live delivery schedule is not a row-level record of actual historical delivery",
+      "An as-originally-reported description does not by itself authenticate each retrieved value's revision identity or historical delivery time",
+      "Rebuilt history requires the observed feed, engine and source version to be recorded; current reconstruction is not automatically an archived historical vintage",
+      "The currently examined MCP responses returned directory metadata, descriptions, examples and documentation, rather than historical receipt rows",
+      "No conclusion is made that QuantConnect can never supply additional historical receipt evidence"
+    ]
+  },
+  "current_implementation": {
+    "source_catalog": "config/source_catalog.json",
+    "observed_source_field_count": 15,
+    "declared_financial_value_field_count": 0,
+    "factor_fields_enabled": false,
+    "catalog_contains": [
+      "Daily supplied dollar volume and the has_fundamental_data coverage flag",
+      "Native time and end_time clocks",
+      "Market capitalization observation",
+      "Classification, listing and exchange observations",
+      "Financial report period, supplier file date, accession number and form type metadata"
+    ],
+    "catalog_does_not_declare": [
+      "A numeric as-reported financial statement value with a frozen period accessor and unit",
+      "An authenticated row-level historical vendor delivery timestamp",
+      "An authenticated row-level historical ingestion timestamp",
+      "An authenticated source vendor revision or authoritative historical inventory receipt"
+    ],
+    "existing_components": [
+      "Historical snapshot collection, immutable batch references and cache-only replay",
+      "HistoricalBatchIngestor with separate observation and availability fields",
+      "As-of liquidity and financial readers that reject missing actual receipt evidence",
+      "Fixed-program certification checks and partition-scope summary verification"
+    ],
+    "implementable_gaps_remaining": [
+      {
+        "id": "full_scope_certification_cloud_worker",
+        "status": "open",
+        "description": "tools/data_certification.py exposes capability reporting and plan validation, but there is no complete charged cloud worker and native receipt dispatch bridge that collects and certifies every required component for the historical US200 scope",
+        "acceptance_evidence": "A frozen closed-schema plan, budget debit, admitted task identity, actual cloud terminal receipt, immutable cloud component references and recomputed fixed-program result"
+      },
+      {
+        "id": "financial_value_catalog_and_adapter",
+        "status": "open",
+        "description": "The current catalog has zero financial value fields and the observation pipeline does not yet provide a complete as-reported financial value-to-ingestion bridge",
+        "acceptance_evidence": "Frozen field paths, period accessors, units and missing-value rules; real retrieved values retained in cloud; source revision, publication and actual availability evidence joined without substituting native clocks"
+      },
+      {
+        "id": "scope_sizing_and_partition_execution",
+        "status": "open",
+        "description": "Certification currently limits source rows and component table rows to 250000 per audited scope; partition sizing must be based on observed candidate counts, actual sessions and warmup requirements",
+        "conditional_capacity_example": "More than 12500 candidate SIDs across 20 required daily observations already exceeds 250000 rows, before additional formation dates; no actual candidate count is asserted here",
+        "acceptance_evidence": "Recorded observed size estimates, bounded partitions, verified shared warmup, no overlapping scored formations, no omitted expected sessions and a fixed-program scope summary"
+      }
+    ],
+    "deliberate_safety_boundaries": [
+      "observed_liquidity_record leaves vendor_available_at and historical_ingested_at unknown when the source does not provide them",
+      "Native Time, EndTime, current capture time and supplier FileDate are not substituted for an actual historical receipt",
+      "An observed snapshot content hash identifies captured content and does not impersonate a vendor revision identifier",
+      "A missing classification or financial observation is retained as missing rather than silently replaced",
+      "has_fundamental_data is a coverage observation and is not used to silently replace the all-market stock selection policy"
+    ]
+  },
+  "required_component_evidence": [
+    {
+      "component": "exchange_calendar",
+      "can_be_collected_or_verified_through_Research": true,
+      "required_fields": ["calendar identity and version", "America/New_York session dates", "actual opens and closes", "holidays and early closes", "initial 20-session warmup boundary"],
+      "required_validation": "Expected observations are derived from actual exchange sessions rather than a supplied calendar-day count"
+    },
+    {
+      "component": "historical_inventory_and_security_master",
+      "can_be_observed_through_Research": true,
+      "required_fields": ["permanent SID", "ticker mapping", "listing and delisting effective intervals", "historical candidate inventory", "security classification", "classification and listing availability evidence", "source version", "authoritative inventory completeness receipt"],
+      "not_returned_by_examined_MCP_lookup_calls": ["authoritative historical all-market completeness receipt", "row-level historical classification and listing availability receipts"],
+      "required_validation": "Surviving present-day names do not replace the historical candidate inventory; absence from a response is not automatically a justified exclusion"
+    },
+    {
+      "component": "liquidity_20_session_US200_and_frozen_membership",
+      "can_be_observed_through_Research": true,
+      "required_fields": ["formation timestamp", "candidate permanent SID", "each of 20 expected sessions", "daily dollar volume", "eligibility evidence", "actual source availability", "deterministic rank and tie rule", "frozen selected SID set", "source component references"],
+      "not_returned_by_examined_MCP_lookup_calls": ["authenticated actual historical availability receipts"],
+      "required_validation": "Compute liquidity and exclusion accounting for all eligible historical candidates; do not certify a top-200 set merely by checking its 200 winners"
+    },
+    {
+      "component": "raw_prices_and_corporate_actions",
+      "can_be_observed_through_Research": true,
+      "required_fields": ["permanent SID", "expected session", "raw OHLCV", "normalization mode", "available_at", "source revision", "split and dividend events", "mapping, IPO and delisting events", "event effective time", "event availability time", "security master version"],
+      "not_returned_by_examined_MCP_lookup_calls": ["authoritative action completeness receipt", "authenticated historical event availability and revision receipts"],
+      "required_validation": "A successful small raw-history response or automatic LEAN adjustment is separate from complete all-SID action coverage and provenance"
+    },
+    {
+      "component": "financial_vintages_and_publication",
+      "can_be_observed_through_Research_after_catalog_and_adapter_are_implemented": true,
+      "required_fields": ["permanent SID", "exact field path", "unit", "period accessor", "report period end", "numeric as-reported value", "publication timestamp or date and precision", "filing accession and form type where available", "authenticated source revision", "actual vendor receipt", "actual historical ingestion", "immutable source reference"],
+      "not_returned_by_examined_MCP_lookup_calls": ["numeric financial value rows", "row-level financial revision receipts", "authenticated historical vendor and ingestion timestamps"],
+      "required_validation": "Date-only publication evidence follows the preregistered conservative session gate; financial revisions remain separate; zero declared financial fields is not zero financial missingness"
+    },
+    {
+      "component": "actual_delivery_and_ingestion",
+      "current_MCP_lookup_responses_provide_required_rows": false,
+      "required_fields": ["source dataset and source revision", "permanent SID and field or event identity", "authenticated historical vendor_available_at", "authenticated historical_ingested_at", "receipt origin and authentication method", "clock timezone and precision", "immutable receipt reference and content hash"],
+      "required_validation": "Bind each receipt to the exact observation or vintage. Capturing data now establishes a current capture time and cannot establish a missing historical receipt",
+      "availability_conclusion": "Not supplied by the examined MCP responses; whether another QuantConnect capability can supply this evidence remains unconfirmed"
+    }
+  ],
+  "execution_boundary": {
+    "current_engineering_round": "round003 closed after the failed admitted Research execution; this report admits or dispatches nothing",
+    "new_full_history_certification_task_in_current_round": false,
+    "prerequisites_before_full_scope_dispatch": [
+      "Resolve and independently test the real source identity failure without weakening permanent-SID checks",
+      "Finish the minimum engineering Research-to-LEAN run and native terminal receipt reconciliation under an authorized remaining allocation",
+      "Implement and independently review the missing certification worker and financial catalog/adapter",
+      "Confirm a usable evidence source for every required historical receipt or retain the corresponding certification gate as open",
+      "Freeze the development scope, expected sessions, financial fields, source/feed version, partition rules and explicit stopping condition before charged data collection",
+      "Debit configuration and Research usage through the authoritative budget registry before dispatch; failed attempts remain charged"
+    ],
+    "planned_development_data_scope": "2010-01-01 through 2024-01-01 exclusive in America/New_York, with calendar-derived 20-session warmup before the first formation; not the reserved final-test period",
+    "conditional_observation_plan": [
+      "Use the smallest admitted diagnostic to establish structural compatibility and real source shape, retaining records in QuantConnect Cloud",
+      "After a successful bounded collection, derive partition sizes from actual candidate counts and expected session counts",
+      "Collect inventory, liquidity, prices/actions and financial observations only through a frozen reviewed worker; reuse immutable cached batches for subsequent checks",
+      "If receipt provenance is unavailable, stop with an observed-coverage report and explicit unknown provenance instead of repeatedly spending quota to claim certification"
+    ],
+    "guarantee_full_certification_with_remaining_budget": false,
+    "budget_reason": "Additional executions can reveal source observations and failure causes, but cannot manufacture missing historical provenance; this report does not create a second budget registry or authorize use of another budget lane",
+    "missing_data_reporting": {
+      "unattempted_component": "not_observed",
+      "interrupted_component": "incomplete_with_unknown_remainder",
+      "expected_denominator_unavailable": "unknown",
+      "zero_missing_requires": "A completed declared component, a nonempty justified field catalog where applicable, an independently derived expected denominator and a verified exact observation comparison"
+    }
+  },
+  "stage2_gate_boundary": {
+    "plan_reference": "config/development.json stage 2",
+    "engineering_acceptance_items": ["small_real_data_fixture", "minimal_completed_backtest", "raw_and_adjustment_trace", "failure_recovery"],
+    "separate_full_coverage_clause": "full_universe_coverage_is_separate_gate",
+    "interpretation": "The exact-version minimum QuantConnect integration can be independently accepted within its declared small-fixture engineering scope while full historical US200, financial vintage and actual availability gates remain open. Such scoped acceptance does not authorize real factor research",
+    "latest_failed_run_means": "The new joint engineering task has not reached a completed Research-to-LEAN success; the nonempty interrupted source response is progress in diagnosis only",
+    "this_report_changes_acceptance_status": false,
+    "independent_GPT_Work_approval_issued": false,
+    "all_phase2_problems_resolved": false
+  },
+  "preserved_research_controls": {
+    "final_test_enabled": false,
+    "previous_2024_2025_exposure_retained": true,
+    "real_factor_research_enabled_by_this_report": false,
+    "automatic_model_calls_enabled_by_this_report": false,
+    "financial_effectiveness_evidence": false,
+    "market_rows_or_row_level_derived_values_exported_by_this_report": false,
+    "source_config_runtime_or_Git_modified_by_this_report": false,
+    "additional_Research_or_LEAN_calls_by_this_report": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "kind": "developer_operator_failures_and_corrections",
+  "records": [
+    {
+      "operation": "source publication pack",
+      "first_exit_code": 1,
+      "tool_chunk_id": "718a3a",
+      "cause": "Existing operator pack allowlist omitted .github while the authorized CI change was present",
+      "correction": "Extend only the transient operator pack allowlist to .github; preserve source and audit residency checks",
+      "repaired_exit_code": 0,
+      "code_runtime_or_budget_changed_by_correction": false
+    },
+    {
+      "operation": "first full source overlay retention",
+      "test_result": "1074 passed, followed by a failing historical-plan recovery probe",
+      "retained": "actual outputs and source-file hash manifest",
+      "not_retained": "disposable source checkout; no separate Git commit for that initial overlay",
+      "claim_limit": "Do not call the initial overlay a fully retained reproducible Git source version; final dee26ee and failed5132ef0 are retained"
+    },
+    {
+      "operation": "repair message delivery",
+      "observation": "A correction message queued to an idle auxiliary task did not start work",
+      "correction": "Explicit follow-up resumed the task before code repair and tests",
+      "cloud_calls_or_budget_debits": 0
+    }
+  ],
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_budget_events": 0,
+  "final_test_enabled": false
+}

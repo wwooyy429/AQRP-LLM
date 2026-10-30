@@ -1,0 +1,96 @@
+{
+  "baseline_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "same_final_test_bytes": true,
+  "runs": [
+    {
+      "name": "baseline_final",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_research_error_representations.py",
+        "-v"
+      ],
+      "exit_code": 1,
+      "methods": 11,
+      "failure_outcomes": 0,
+      "error_outcomes": 5,
+      "unique_unsuccessful_methods": 5,
+      "test_raw_sha256": "b7b9594d7b9abcff3c974c67379ccf371061581ffde9750a5dbf9a9cfed86d7d"
+    },
+    {
+      "name": "candidate_final",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_research_error_representations.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "methods": 11,
+      "failure_outcomes": 0,
+      "error_outcomes": 0,
+      "unique_unsuccessful_methods": 0,
+      "test_raw_sha256": "b7b9594d7b9abcff3c974c67379ccf371061581ffde9750a5dbf9a9cfed86d7d"
+    },
+    {
+      "name": "compatibility_final",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_native_research_failure",
+        "tests.test_wr11_carriers",
+        "tests.test_wr13_annotations",
+        "tests.test_wr14_fractional_annotations",
+        "tests.test_engineering_receipts",
+        "tests.test_native_runtime_failure",
+        "tests.test_native_backtest_rejection",
+        "tests.test_wr17_engineering_recovery",
+        "tests.test_phase2_joint_boundaries",
+        "tests.test_stage2_cli",
+        "-v"
+      ],
+      "exit_code": 0,
+      "methods": 124,
+      "failure_outcomes": 0,
+      "error_outcomes": 0,
+      "unique_unsuccessful_methods": 0,
+      "test_raw_sha256": "b7b9594d7b9abcff3c974c67379ccf371061581ffde9750a5dbf9a9cfed86d7d"
+    }
+  ],
+  "actual_before": "actual_before.json",
+  "actual_after": "actual_after.json",
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "1f017844f537c3dd6383d1881078414cfa1ab2ae92904b0633d871b0451ab383",
+    "tools/stage2.py": "b05ea7654a3151e1e99f33ff1a570560e8cee06f1259ccf7b226b6467af4f10a",
+    "tests/test_research_error_representations.py": "b7b9594d7b9abcff3c974c67379ccf371061581ffde9750a5dbf9a9cfed86d7d"
+  },
+  "canonical_cell_source_sha256": "33c34e9fbbf958f6518966cee185e947d96a4c610b7c0a942d206dec252e3340",
+  "canonical_cell_matches_actual_dispatch": true,
+  "global_native_function_unchanged": true,
+  "actual_failure_logical_count": 1,
+  "actual_error_representation_count": 2,
+  "actual_traceback_line_count": 9,
+  "actual_cloud_source_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "new_parser_cloud_executed": false,
+  "internal_single_carrier_projections_are_only_validation_views": true,
+  "returned_response_hash_uses_complete_original_result": true,
+  "initial_test_fixture_correction": "Initial duplicate helper deepcopied an aliased two-item list; corrected it to two independent block copies before candidate tests. Initial baseline bytes and output retained; final exact-byte baseline replay separate.",
+  "QC_calls": 0,
+  "real_Research_or_LEAN_executions": 0,
+  "real_ledger_or_input_or_dispatch_binding_writes": 0,
+  "financial_evidence": false
+}

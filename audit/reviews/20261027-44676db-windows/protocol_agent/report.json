@@ -1,0 +1,311 @@
+{
+  "fixed_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "environment": {
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0"
+  },
+  "source_production_comparison": {
+    "tools/stages.py": {
+      "old_raw_sha256": "bd29e9dd11586e7f7a22e16dae8ba272bceb41e2a9193683fae9021209dfa495",
+      "new_raw_sha256": "5d7060bcecd4aa2bc2b7037dd602498c82b8d15cef6e2ebb6f8c7d5cf578fd37",
+      "raw_equal": false
+    },
+    "tools/stage2.py": {
+      "old_raw_sha256": "8f1acec8955ea3cebe1de0b855c89e0fa20816ac318e279554ef482a2d713689",
+      "new_raw_sha256": "8f1acec8955ea3cebe1de0b855c89e0fa20816ac318e279554ef482a2d713689",
+      "raw_equal": true
+    },
+    "cloud/qresearch/engineering_receipts.py": {
+      "old_raw_sha256": "3efe3f9a88f5c8da4b11fb74edf989ec06bff6b55cf7364c76d94ba9c609b960",
+      "new_raw_sha256": "3efe3f9a88f5c8da4b11fb74edf989ec06bff6b55cf7364c76d94ba9c609b960",
+      "raw_equal": true
+    },
+    "cloud/qresearch/engineering_tasks.py": {
+      "old_raw_sha256": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+      "new_raw_sha256": "804020f455b3a1dcf4f8acad53e4c03114f61c917ac47cbc2d03547678006967",
+      "raw_equal": true
+    }
+  },
+  "new_source_execution_binding": "Every actual command uses immutable new source or its explicitly created synthetic copy; scripts/helper hashes recorded in script_bindings and execution records; original embedded historical commit labels are retained and do not identify this execution",
+  "source_literals_retained": {
+    "protocol_boundaries.py": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "minimal_prepare_entry_crash.py": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+    "other_old_scripts": "other historical fixed SHA literals retained"
+  },
+  "original_WR23": {
+    "scope": "candidate-only unchanged original prepare-entry synchronous failure trigger",
+    "result": "wr23_original/results/results.json",
+    "outer_exit": 0,
+    "test_raw_equal_previous": true,
+    "helper_raw_equal_previous": true,
+    "success_settlement_refused": true,
+    "no_file_writes": true,
+    "stats": {
+      "actual_CLI_processes": 5,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 1,
+      "actual_worker_executions": 0
+    }
+  },
+  "publication_concurrency": {
+    "result": "boundaries/results.json",
+    "methods": 5,
+    "subcases": 21,
+    "custom_check_calls": 281,
+    "success": true,
+    "stats": {
+      "actual_CLI_processes": 180,
+      "direct_freeze_processes": 0,
+      "synthetic_metadata_finish_calls": 27,
+      "actual_worker_executions": 0
+    },
+    "parallel_CLI_processes": 16,
+    "source_and_authority_unchanged": true,
+    "test_raw_equal_previous": true,
+    "coverage": [
+      "input/admission/entry six before-after synchronous write exceptions",
+      "inline and sidecar identity mismatch, missing marker after binding, success/error no-write/no-debit/no-downstream refusals",
+      "explicit legacy four-field admissions, both plan versions, bound legal success and replay",
+      "v1/v2 four real Windows prepare processes and four dispatch processes each; one permit",
+      "unknown prior dispatch refuses first permission"
+    ]
+  },
+  "WR21": {
+    "scope": "accepted explicit old-four-field fixture reused without obsolete marker-only setup",
+    "test_raw_equal_previous_accepted_adapter": true,
+    "assertions_AST_equal_previous_original": true,
+    "outer_exit": 0,
+    "command_count": 17,
+    "bound_positive": "completed",
+    "legacy_positive": "completed",
+    "new_no_dispatch_rejected": true,
+    "actual_worker_calls": 0,
+    "historical_adapter_diff": "wr21_explicit_legacy/fixture.diff",
+    "first_outcome_current_scope": "passed; known obsolete old-legacy prerequisite is not rerun as a legitimate current fixture"
+  },
+  "historical_regressions": [
+    {
+      "name": "native_LEAN",
+      "result": "legacy/main/results.json",
+      "methods": 6,
+      "subcases": 62,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 60,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true
+    },
+    {
+      "name": "completion_compatibility",
+      "result": "legacy/compat/result.json",
+      "methods": 3,
+      "subcases": 28,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 18,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true
+    },
+    {
+      "name": "manual_failure_settlement",
+      "result": "legacy/failure/failure_settlement_result.json",
+      "methods": 0,
+      "subcases": 4,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 32,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 6,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": null
+    },
+    {
+      "name": "manual_synchronous_crash_repair",
+      "result": "legacy/crash/results.json",
+      "methods": 0,
+      "subcases": 4,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 7,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 0,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true
+    },
+    {
+      "name": "engineering_recovery",
+      "result": "legacy/recovery/first_run_summary.json",
+      "methods": 5,
+      "subcases": 46,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 76,
+        "direct_freeze_processes": 12,
+        "synthetic_metadata_finish_calls": 4,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true
+    },
+    {
+      "name": "native_Research_failure",
+      "result": "research_failure/results.json",
+      "methods": 6,
+      "subcases": 91,
+      "success": true,
+      "stats": {
+        "actual_CLI_processes": 25,
+        "direct_freeze_processes": 0,
+        "synthetic_metadata_finish_calls": 0,
+        "actual_worker_executions": 0
+      },
+      "source_and_authority_unchanged": true
+    }
+  ],
+  "native_and_recovery_totals": {
+    "ordinary_CLI": 193,
+    "direct_freeze_processes": 12,
+    "synthetic_finish": 18,
+    "manual_chains": 8,
+    "native_Research_failure_CLI_separate": 25
+  },
+  "f5d_replay": [
+    {
+      "name": "normal",
+      "events": [
+        15,
+        17,
+        17
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false
+    },
+    {
+      "name": "completion_write",
+      "events": [
+        15,
+        16,
+        18,
+        18
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false,
+      "extra_pending_ack_is_not_debit": true
+    },
+    {
+      "name": "failure_journal",
+      "events": [
+        15,
+        16,
+        18,
+        18
+      ],
+      "usage_unchanged": true,
+      "success_result_created": false,
+      "extra_pending_ack_is_not_debit": true
+    }
+  ],
+  "outer_execution_records": [
+    {
+      "name": "legacy",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\run_legacy.py"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent",
+      "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+      "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "exit_code": 0,
+      "stdout_sha256": "b0b5e29913b85c783ed5bd15c589a8ecd9a3ee3064c196098a300381428b87c4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds_until_result_collection": 370.0782895088196
+    },
+    {
+      "name": "boundaries",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\protocol_boundaries.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\boundaries"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent",
+      "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+      "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "exit_code": 0,
+      "stdout_sha256": "880ef0777c9f279f40677d1b036e5f296dc72f476bd2cb665eaba3158eaca8a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds_until_result_collection": 370.0694532394409
+    },
+    {
+      "name": "wr23",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr23_original\\minimal_prepare_entry_crash.py",
+        "--source",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+        "--out",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr23_original\\results"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent",
+      "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+      "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "exit_code": 0,
+      "stdout_sha256": "cc908dcc2268dece1e09beb561f0848f4cff2982183cdadbc326f96e7d3abf53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds_until_result_collection": 370.0624372959137
+    },
+    {
+      "name": "wr21",
+      "argv": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent\\wr21_explicit_legacy\\launch.py",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source"
+      ],
+      "cwd": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\protocol_agent",
+      "source": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-44676db-20261027\\source",
+      "source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+      "exit_code": 0,
+      "stdout_sha256": "94f5c74c6c8421eae9b9290cbb3dbf5232ffe6c1de642f6fcc88d52379ac85ef",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds_until_result_collection": 370.05441880226135
+    }
+  ],
+  "outer_timing_note": "Initial outer elapsed_seconds measures time until sequential result collection, not duration of a previously finished parallel child; normalized field renamed here. Individual legacy execution_records elapsed_seconds is directly measured around that synchronous child.",
+  "findings": [],
+  "new_protocol_findings": 0,
+  "limited_protocol_replay_passed": true,
+  "source_and_authority_unchanged": true,
+  "source_guard_note": "Measured critical-source guards in publication and other suites are true. Standalone manual failure script does not emit a source guard field, left null rather than inferred true; its per-case no-refund assertions pass. Complete immutable Git identity is independently checked by archive review.",
+  "limits": [
+    "Only requested existing offline tests; no broad new expansion",
+    "Known narrow legacy and legal-dispatch setup adapters reused; test assertions unchanged",
+    "Local synthetic metadata only; no QC, Research, LEAN, market, GPT, trading or real worker execution",
+    "Synchronous production-write exceptions and actual cooperating Windows process tests only; no OS kill, power loss or persistent-disk durability certification",
+    "These counts overlap and must not be summed as unique tests",
+    "No module-wide, Phase2 overall, data-vendor or financial certification implied"
+  ],
+  "zero_real_actions": {
+    "QC": 0,
+    "Research": 0,
+    "LEAN": 0,
+    "models": 0,
+    "market": 0,
+    "trading": 0,
+    "authoritative_ledger_writes": 0,
+    "production_edits": 0
+  }
+}

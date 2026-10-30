@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "purpose": "WR14_developer_repair_evidence_not_independent_acceptance",
+  "date": "2026-10-27",
+  "failed_review_commit": "dc49f0f3037918f3ce4413665c59b164a8d6e2b7",
+  "original_independent_report": "audit/reviews/20261027-dc49f0f-windows/formal_report.json",
+  "original_archive_files": 188,
+  "original_archive_manifest_raw_sha256": "67e46311c17d75c386c6874c0f830dbb07ae3df221b20c1998b2748cba6a17f7",
+  "original_archive_byte_equal": true,
+  "prior_failures_and_reviewer_corrections_preserved": true,
+  "candidate_source_manifest_hash": "f40259398c2f617d09b992ae97557cd53391c8934e22201ee59c82b951fc78c3",
+  "candidate_source_files": 112,
+  "implementation_hash": "d700a46ed6692229ae2247d20c0b6d951c7dc20a29cbbe71fa23b170f227e95b",
+  "parser_source_normalized_sha256": "f3d060961cd17d3dee7be5f4a7f0f5ff21a2185c839aa48e55aab48da407f5f8",
+  "deployment_python_files": 29,
+  "configuration_hash_unchanged": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "environment": {
+    "python": "3.10.11",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "platform": "nativeWindows",
+    "BLAS_threads": 1
+  },
+  "fix": {
+    "WR14": "Keep strict grammar unchanged; validate Gregorian date using datetime(year,month,day); fraction never parsed or rewritten",
+    "retained_boundaries": "Field whitelist, role/priority checks, invalid clock/offset rejection, recursive text/carrier checks unchanged",
+    "hint_only": "Annotation timestamps do not prove market/publication/vendor availability"
+  },
+  "baseline_new_tests": {
+    "methods": 6,
+    "passed_methods": 2,
+    "error_methods": 4,
+    "error_records": 124,
+    "assertion_failures": 0,
+    "subcases": 373,
+    "input": "original_wr14-baseline-test-input.py",
+    "raw_summary_failed_methods_field": "Lists subtest IDs; unique method prefix count=4, not 124 methods"
+  },
+  "targeted_after": {
+    "methods": 6,
+    "subcases": 373,
+    "all_passed": true,
+    "full_worker_chain_cases": 78,
+    "no_extra_synthetic_debit": true,
+    "test_input_byte_unchanged": true
+  },
+  "original_public_replay": {
+    "minimal_before_exit": 1,
+    "minimal_after_exit": 0,
+    "full_chain_before_completed": 6,
+    "full_chain_before_wrong_rejections": 8,
+    "full_chain_after_completed": 14,
+    "scripts_unchanged": true,
+    "annotations_after_methods": 12,
+    "annotations_after_subcases": 160,
+    "annotations_after_all_passed": true,
+    "counts_overlap": true,
+    "is_new_GPT_Work_acceptance": false
+  },
+  "developer_replay_preparation_errors_preserved": [
+    "Initial annotation replay omitted official schema fixture (alongside actual product clock error before fix)",
+    "First after-edit worker replay used stale generated deployment manifest; initialization rejected",
+    "After rebuild, annotation replay still lacked official schema fixture; final after-ready supplied exact original fixture and passed"
+  ],
+  "original_script_literal_identity_caution": "Hardcoded commit and path-inferred label in unchanged scripts are historical literals. Compare actual CLI source root, phase/parser hashes and execution_records.",
+  "repository_verification": {
+    "command": "python -B tools/stages.py verify",
+    "methods": 407,
+    "all_passed": true,
+    "output": "----------------------------------------------------------------------\nRan 407 tests in 42.077s\n\nOK\n",
+    "source_hash": "f40259398c2f617d09b992ae97557cd53391c8934e22201ee59c82b951fc78c3",
+    "report": "audit/stage_verification.json"
+  },
+  "second_build_config_changed": false,
+  "developer_original_outputs": "developer_outputs_manifest.json",
+  "developer_outputs_manifest_raw_sha256": "b8170f1c123ef3eb3991cb519206f7db8a700f6673f406121b5535f4411c8df5",
+  "protected_files_checked": 966,
+  "protected_files_unchanged_in_registered_git_representation": true,
+  "protected_check": "protected_files_check.json",
+  "independent_acceptance_retained": {
+    "WR11_WR12": "Original scopes on be94426",
+    "WR13": "Original unknown-annotation bypass scope on dc49f0f",
+    "stage0_stage1": "Prior offline scope and precision limits only"
+  },
+  "budget": {
+    "used": {
+      "configurations": 6,
+      "research": 9,
+      "lean": 1
+    },
+    "added": {
+      "configurations": 0,
+      "research": 0,
+      "lean": 0,
+      "model_API": 0
+    },
+    "extra_resource_purchases": 0
+  },
+  "cloud": {
+    "new_project_operations": 0,
+    "deployed": false,
+    "real_SDK_executed": false,
+    "prior_backtest": "39cafa1e9b11f91b27e396b66d033a6d",
+    "delivered_terminal_received": false,
+    "polled": false,
+    "source_or_input_changed": false
+  },
+  "known_open_findings_pending_independent_verification": [
+    "WR-14"
+  ],
+  "new_candidate_independently_accepted": false,
+  "stage2": "failed_reviewed_dc49_receipt_compatibility_pending_WR14_repair_review",
+  "whole_system": "not_accepted",
+  "financial_evidence": false,
+  "final_test_enabled": false,
+  "prior_2024_2025_exposure_preserved": true,
+  "independence_2026": null,
+  "limitations": [
+    "No new cloud SDK/runtime evidence",
+    "Full native success/failure receipts, prior terminal and historical data certification pending",
+    "Only registered annotation fields/ISO forms; not arbitrary MCP extensions"
+  ],
+  "documentation": "docs/review/wr14.md",
+  "manifest_hash_correction_WR15": {
+    "date": "2026-10-27",
+    "finding": "WR-15/P3/nonblocking_metadata",
+    "previous_declared_raw_sha256": "44e8ff2bc0ce87a76ef52b2c3d7f4d263166ca5bb14f0aaf5474e1516c869ddb",
+    "previous_declaration_scope": "Local CRLF representation, incorrectly labelled as fixed Git raw bytes",
+    "fixed_Git_LF_raw_sha256": "b8170f1c123ef3eb3991cb519206f7db8a700f6673f406121b5535f4411c8df5",
+    "prior_commit": "4a94430144cd3d9e4b5469bd2b6e4a48d80d5fc7",
+    "original_git_verification": "../wr15/original_git_developer_verification.json",
+    "original_workspace_manifest": "../wr15/original_workspace_developer_outputs_manifest.json",
+    "current_byte_policy": "The manifest is pinned with -text; exact LF bytes in Git and worktree; 48 original outputs untouched",
+    "WR14_software_result_unchanged": true
+  }
+}

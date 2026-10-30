@@ -1,0 +1,63 @@
+{
+  "finding": "WR-20",
+  "baseline_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "developer_repair_only": true,
+  "independent_acceptance": false,
+  "production_files": [
+    "cloud/qresearch/data_certification.py"
+  ],
+  "test_files": [
+    "tests/test_data_certification.py"
+  ],
+  "root_cause": "Ranking view admitted a session earlier than its then-declared listing_effective_at because the shared helper only compared availability to formation.",
+  "fix_scope": "Only data-certification verified liquidity view excludes known pre-listing rows; original shared ingestion helper, input batches, refs and raw counts unchanged. Unknown listing clocks remain in gap checks.",
+  "session_semantics": "session is a completed exchange-session close. listing_effective_at <= session is inclusive; intraday/before-or-at-close observations count that close, after-close observations start later. This does not infer a market open or authenticate an IPO date.",
+  "baseline_minimal_exit": 1,
+  "baseline_illegal_status": "observations_passed",
+  "fixed_minimal_exit": 0,
+  "fixed_illegal_status": "insufficient_evidence",
+  "minimal_legal_controls_passed": 3,
+  "targeted_methods": 30,
+  "new_repository_methods": 8,
+  "targeted_final_seconds": 64.759,
+  "targeted_first_run": {
+    "methods": 30,
+    "errors": 1,
+    "cause": "New intraday subcases reused the same memory store and changed one immutable vintage. ArtifactConflict was correctly raised.",
+    "test_correction": "Fresh setUp() store in each independent timestamp subcase; no production change.",
+    "preserved": "targeted_first.stderr"
+  },
+  "independent_suite": {
+    "methods": 13,
+    "passed": 13,
+    "failure_records": 0,
+    "error_records": 0,
+    "scenarios": 43,
+    "cloud_or_market_calls": 0,
+    "adaptations": [
+      "fixture SOURCE points at current checkout",
+      "CLI interpreter uses locked local venv",
+      "output O points at fresh ignored folder; original modules loaded without __main__ archive sweep"
+    ],
+    "failures": [],
+    "errors": [],
+    "independent_acceptance": false,
+    "synthetic_replay_only": true
+  },
+  "counts_overlap": true,
+  "production_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "586f4858de04155da02eda5f9cc5021d1d62b5d9faed3b9c318de73acba824b9",
+    "cloud/qresearch/ingestion.py": "dc596f09edf2fc7b2b502d0c2e227d86994a597b242d95df133a23e1d229283f",
+    "tests/test_data_certification.py": "fc06662768287ca87608f892702fb27e0a340757da568eae2872c49df7888092"
+  },
+  "cloud_or_model_calls": 0,
+  "actual_registry_or_budget_writes": 0,
+  "build_calls": 0,
+  "financial_evidence": false,
+  "limitations": [
+    "No true market or IPO data",
+    "No full historical certification",
+    "Current software awaits exact-version independent review",
+    "Original minimal fixture fixed_commit label remains deb85d9; source raw fingerprint identifies modified working implementation"
+  ]
+}

@@ -1,59 +1,98 @@
 {
-  "schema_version": 1,
-  "status": "user_authorized_totals_usage_preserved",
-  "configuration_id": "GENERIC-WF-001",
-  "resources": {
-    "backtest": "B2-8",
-    "research": "R4-12",
-    "agent": "A1-1"
-  },
   "allocations": {
-    "research_execution_attempts": {
-      "reserve": 8,
-      "normal": 12,
-      "total": 20
-    },
     "full_configurations": {
-      "reserve": 4,
       "normal": 8,
-      "total": 12
+      "reserve": 5,
+      "total": 13
     },
     "lean_submission_attempts": {
-      "reserve": 8,
       "normal": 8,
+      "reserve": 8,
       "total": 16
+    },
+    "research_execution_attempts": {
+      "normal": 12,
+      "reserve": 8,
+      "total": 20
     }
   },
+  "configuration_cycle": {
+    "authorization_ref": {
+      "key": "budget-cycles/user-authorizations/6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347.json",
+      "sha256": "6490582cd34826d60a8989d712ba33a9e45d3ec8757890bee761001e42370347"
+    },
+    "capacity": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "cycle_id": "configuration-cycle-20261029-002",
+    "cycle_ref": {
+      "key": "budget-cycles/cycles/58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db.json",
+      "sha256": "58c68a5d716fa676e9da8628335a929e88bd287e1390d16e376e82b48100c1db"
+    },
+    "lifetime_usage": {
+      "normal": 13,
+      "reserve": 5,
+      "total": 18
+    },
+    "remaining": {
+      "normal": 3,
+      "reserve": 5,
+      "total": 8
+    },
+    "schema_version": 1,
+    "sequence": 1,
+    "starting_lifetime_usage": {
+      "normal": 8,
+      "reserve": 5,
+      "total": 13
+    },
+    "state_hash": "176c585e47ec1b421f204a9231adb79294498b0eab6771c30737fa370a3afb77",
+    "usage": {
+      "normal": 5,
+      "reserve": 0,
+      "total": 5
+    }
+  },
+  "configuration_id": "GENERIC-WF-001",
+  "counting": "Increment before each actual Research execution/LEAN submission. Failure, repair and rerun do not refund quota. Automatic annual refits under one frozen procedure are model-artifact updates, not new configurations.",
+  "deletion_does_not_reset_usage": true,
+  "final_evaluation_execution_enabled": false,
+  "historical_usage_preserved": true,
+  "hypothesis_policy": "No active factor or inherited one-hypothesis setting; every new economic hypothesis/semantic design must consume configuration budget",
   "limits": {
-    "full_configurations": 12,
-    "research_execution_attempts": 20,
+    "extra_resource_purchases": 0,
+    "extra_spend_USD": 0,
+    "full_configurations": 13,
     "lean_submission_attempts": 16,
     "optimization_jobs": 0,
-    "extra_resource_purchases": 0,
-    "extra_spend_USD": 0
+    "research_execution_attempts": 20
   },
-  "usage": {
-    "configuration_budget_charges": 5,
-    "configuration_normal_used": 5,
-    "configuration_reserve_used": 0,
-    "research_execution_attempts": 8,
-    "research_normal_used": 5,
-    "research_reserve_used": 3,
-    "lean_submission_attempts": 0,
-    "complete_strategy_configurations_frozen": 0,
-    "lean_normal_used": 0,
-    "lean_reserve_used": 0
-  },
-  "historical_usage_preserved": true,
   "migration_charge": {
-    "configurations": 1,
     "allocation": "normal",
+    "configurations": 1,
     "reason": "User-requested fixed8+1 rolling split plus removal of factor-specific settings and generic reconfiguration; combined before new performance computation"
   },
-  "counting": "Increment before each actual Research execution/LEAN submission. Failure, repair and rerun do not refund quota. Automatic annual refits under one frozen procedure are model-artifact updates, not new configurations.",
-  "reserve_policy": "Reserved for failures, repairs and reruns; not extra hypothesis selection",
-  "deletion_does_not_reset_usage": true,
   "old_round_records_removed_at_user_request": true,
-  "hypothesis_policy": "No active factor or inherited one-hypothesis setting; every new economic hypothesis/semantic design must consume configuration budget",
-  "final_evaluation_execution_enabled": false
+  "reserve_policy": "Reserved for failures, repairs and reruns; not extra hypothesis selection",
+  "resources": {
+    "agent": "A1-1",
+    "backtest": "B2-8",
+    "research": "R4-12"
+  },
+  "schema_version": 1,
+  "status": "user_authorized_totals_usage_preserved",
+  "usage": {
+    "complete_strategy_configurations_frozen": 0,
+    "configuration_budget_charges": 18,
+    "configuration_normal_used": 13,
+    "configuration_reserve_used": 5,
+    "lean_normal_used": 4,
+    "lean_reserve_used": 0,
+    "lean_submission_attempts": 4,
+    "research_execution_attempts": 19,
+    "research_normal_used": 11,
+    "research_reserve_used": 8
+  }
 }

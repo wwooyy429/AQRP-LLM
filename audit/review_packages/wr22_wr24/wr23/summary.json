@@ -1,0 +1,47 @@
+{
+  "kind": "developer_WR23_repair_not_independent_acceptance",
+  "fixed_production_files": [
+    "tools/stage2.py"
+  ],
+  "production_raw_sha256": {
+    "tools/stage2.py": "8f1acec8955ea3cebe1de0b855c89e0fa20816ac318e279554ef482a2d713689"
+  },
+  "test_files": [
+    "tests/test_wr23_prepare_protocol.py",
+    "tests/test_wr21_research_dispatch.py",
+    "tests/test_native_research_failure.py"
+  ],
+  "original_MRE_baseline_exit": 1,
+  "original_MRE_current_exit": 0,
+  "original_MRE_scripts_unchanged": true,
+  "targeted_methods": 8,
+  "targeted_seconds": 0.962,
+  "compatibility_methods": 116,
+  "compatibility_seconds": 9.277,
+  "counts_overlap": true,
+  "first_result": {
+    "scope": "native older-task fixture after new admission identity introduced",
+    "methods": 24,
+    "errors": 1,
+    "reason": "fixture deleted only sidecar from a newly typed admission; corrected to genuine historical four-field shape, product expectation not relaxed"
+  },
+  "protocol_identity": "new Research admission embeds exact protocol identity atomically; old four-field format stays explicit legacy compatibility",
+  "write_boundary_cases": "input/admission/entry, synchronous exceptions before and after each write, never blind marker backfill",
+  "concurrency": {
+    "unit_prepare_threads": 24,
+    "unit_dispatch_threads": 16,
+    "actual_Windows_first_prepare_processes": 2,
+    "actual_Windows_dispatch_processes": 2,
+    "permission_count": 1
+  },
+  "original_f5d_old_four_field_with_sidecar_compatible": true,
+  "larger_threat_model": "No authentication against adversarial rewriting of immutable admission records is claimed",
+  "new_QC_calls": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_authoritative_budget_writes": 0,
+  "new_deployments": 0,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "archive_note": "Copy top-level evidence files only; baseline_source/fixed_source and complete synthetic cases are ignored working copies, not review originals"
+}

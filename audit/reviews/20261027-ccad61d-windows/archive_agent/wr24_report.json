@@ -1,0 +1,182 @@
+{
+  "reviewed_source_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "baseline_commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "WR24_original_scope": "old raw ea negative reproduced; current fields/history/source lists and default metadata CLI corrected",
+  "checks": [
+    {
+      "name": "original_WR24_ea_negative_exit1_unchanged_bytes",
+      "passed": true,
+      "detail": {
+        "raw_original_sha256": "b72fe20587f9aa98908e05ce7c9df66594b2f4915c53892beb6d1b0c11c3aab9",
+        "exit_code": 1,
+        "scope": "unchanged old deb..ea script, not renamed as current scope"
+      }
+    },
+    {
+      "name": "independent_current9source_diff_matches",
+      "passed": true,
+      "detail": [
+        "cloud/qresearch/data_certification.py",
+        "cloud/research_config.py",
+        "tests/test_data_certification.py",
+        "tests/test_native_research_failure.py",
+        "tests/test_review_metadata.py",
+        "tests/test_wr21_research_dispatch.py",
+        "tests/test_wr23_prepare_protocol.py",
+        "tools/review_metadata.py",
+        "tools/stage2.py"
+      ]
+    },
+    {
+      "name": "independent_historical_old_texts_and_extra_activity_preserved",
+      "passed": true,
+      "detail": {
+        "fields": [
+          "source_changed_this_round",
+          "source_configuration_budget_changed_scope",
+          "read_or_polled_this_turn_scope",
+          "completed_result_read_count",
+          "terminal_read_scope",
+          "consolidated_run_preparation",
+          "market_calls_scope",
+          "candidate_additions",
+          "new_candidate_acceptance_scope",
+          "latest_independent_platform_observation"
+        ]
+      }
+    },
+    {
+      "name": "independent_current_zero_platform_and_execution_counters",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "independent_source_hash_matches_current_metadata",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isolated_index_prepared_without_real_Git_index_write",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_current_metadata_default_CLI_positive",
+      "passed": true,
+      "detail": {
+        "exit_code": 0,
+        "stdout": "{\"status\": \"metadata_consistent\", \"baseline_commit\": \"ea6053e3e9ef4be17db246daf18a4cf9b2e5be58\", \"changed_source_files\": 9, \"budget_and_journal_raw_unchanged\": true, \"external_activity_authenticated\": false, \"independent_acceptance\": false, \"financial_evidence\": false}\r\n"
+      }
+    },
+    {
+      "name": "metadata_validator12_negative_case_rejections",
+      "passed": true,
+      "detail": [
+        {
+          "case": "stale_new_configuration_text",
+          "correctly_rejected": true,
+          "error": "Current activity text contains a stale or contradictory scope"
+        },
+        {
+          "case": "stale_platform_read_text",
+          "correctly_rejected": true,
+          "error": "Current activity text contains a stale or contradictory scope"
+        },
+        {
+          "case": "old_source_list",
+          "correctly_rejected": true,
+          "error": "Current source list differs from the pinned Git change set"
+        },
+        {
+          "case": "missing_new_test",
+          "correctly_rejected": true,
+          "error": "Current source list differs from the pinned Git change set"
+        },
+        {
+          "case": "bool_alias_execution_count",
+          "correctly_rejected": true,
+          "error": "Current offline counters must be explicit zero integers"
+        },
+        {
+          "case": "bool_alias_QC_count",
+          "correctly_rejected": true,
+          "error": "Activity counters must not use boolean aliases"
+        },
+        {
+          "case": "new_platform_reads",
+          "correctly_rejected": true,
+          "error": "The current offline activity and exact source scope must be declared"
+        },
+        {
+          "case": "historical_text_changed",
+          "correctly_rejected": true,
+          "error": "Prior activity descriptions must be preserved with their exact source identities"
+        },
+        {
+          "case": "wrong_historical_cloud_SHA",
+          "correctly_rejected": true,
+          "error": "Prior activity descriptions must be preserved with their exact source identities"
+        },
+        {
+          "case": "budget_bytes_changed",
+          "correctly_rejected": true,
+          "error": "Offline metadata cannot claim an unchanged budget or journal when bytes differ"
+        },
+        {
+          "case": "journal_bytes_changed",
+          "correctly_rejected": true,
+          "error": "Offline metadata cannot claim an unchanged budget or journal when bytes differ"
+        },
+        {
+          "case": "out_of_scope_path",
+          "correctly_rejected": true,
+          "error": "Changed-source paths are outside the explicitly declared scope"
+        }
+      ]
+    },
+    {
+      "name": "alternate_root_rejects_stale_foreign_source_manifest",
+      "passed": false,
+      "detail": {
+        "expected": "reject",
+        "actual_exit_code": 0,
+        "target_source_hash": "6c883fbca0a5de5838c46f6abd323418622651a58401ae7b148d165b0b9f4bfa",
+        "incorrect_foreign_declared_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
+        "stdout": "{\"status\": \"metadata_consistent\", \"baseline_commit\": \"ea6053e3e9ef4be17db246daf18a4cf9b2e5be58\", \"changed_source_files\": 10, \"budget_and_journal_raw_unchanged\": true, \"external_activity_authenticated\": false, \"independent_acceptance\": false, \"financial_evidence\": false}\r\n"
+      }
+    },
+    {
+      "name": "alternate_root_accepts_own_correct_source_manifest",
+      "passed": false,
+      "detail": {
+        "expected": "accept",
+        "actual_exit_code": 1,
+        "target_source_hash": "6c883fbca0a5de5838c46f6abd323418622651a58401ae7b148d165b0b9f4bfa",
+        "stderr": "Traceback (most recent call last):\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 92, in <module>\r\n    print(json.dumps(check_repository(args.root), ensure_ascii=True))\r\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source\\tools\\review_metadata.py\", line 84, in check_repository\r\n    raise ValueError(\"Current metadata does not identify the actual local source manifest\")\r\nValueError: Current metadata does not identify the actual local source manifest\r\n"
+      }
+    },
+    {
+      "name": "original_Git_index_unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "metadata_checks": 11,
+  "checks_passed": 9,
+  "negative_validator_scenarios": 12,
+  "CLI_invocations": 4,
+  "original_MRE_invocations": 1,
+  "metadata_tool_invocations": 3,
+  "production_Git_or_source_writes": 0,
+  "market_QC_model_or_authoritative_registry_writes": 0,
+  "independent_product_unit_methods": 0,
+  "alternate_root_probe": {
+    "default_source_hash": "0467707062f8f37d4a827e10fede9dd71a24ae7fc21980be93020d06bf3e7327",
+    "target_actual_source_hash": "6c883fbca0a5de5838c46f6abd323418622651a58401ae7b148d165b0b9f4bfa",
+    "stale_manifest_exit": 0,
+    "correct_manifest_exit": 1,
+    "candidate_source_under_audit": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\source",
+    "synthetic_target_root": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-ccad61d-20261027\\archive_agent\\alternate_root"
+  },
+  "financial_evidence": false
+}

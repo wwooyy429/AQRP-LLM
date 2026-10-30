@@ -1,0 +1,33 @@
+[
+  {
+    "label": "static_first",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\audit_archive_first.py"
+    ],
+    "exit_code": 1,
+    "evidence": "static_first.stderr",
+    "kind": "preserved_reviewer_encoding_error"
+  },
+  {
+    "label": "static_second",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\audit_archive.py"
+    ],
+    "exit_code": 0,
+    "evidence": "static_second.stdout;static_second.stderr"
+  },
+  {
+    "label": "static_extra",
+    "command": [
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-2d1d306-20261029\\archive_agent\\audit_extra.py"
+    ],
+    "exit_code": 0,
+    "evidence": "extra_first.stdout;extra_first.stderr"
+  }
+]

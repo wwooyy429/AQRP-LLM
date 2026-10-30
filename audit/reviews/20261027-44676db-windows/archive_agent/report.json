@@ -1,0 +1,556 @@
+{
+  "review_id": "44676db-20261027-source-budget-archive",
+  "reviewed_source_commit": "44676db609b3b7c2175fa7fa4f19c8ccf8165458",
+  "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "actual_cloud_execution_commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+  "raw_git_files": 5433,
+  "review_source_count": 145,
+  "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+  "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
+  "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
+  "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
+  "active_economic_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "local_deployment_files": 31,
+  "source_change_files": [
+    "cloud/qresearch/data_certification.py",
+    "cloud/research_config.py",
+    "tests/test_data_certification.py",
+    "tests/test_review_metadata.py",
+    "tools/review_metadata.py",
+    "tools/stages.py"
+  ],
+  "full_patch": {
+    "bytes": 2258818,
+    "raw_sha256": "ea2a6116cd9aab3913db10f241eb4774bc6c9dee7baeef2b3766beb6e87262c8"
+  },
+  "protected_originals": 39,
+  "prior_archived_files_preserved": 4745,
+  "developer_raw_output_entries": 61,
+  "budget": {
+    "events": 17,
+    "journal_raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1",
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 1,
+        "total": 7
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 4,
+        "total": 10
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "engineering_usage": {
+      "configurations": 2,
+      "research": 2,
+      "lean": 1
+    },
+    "engineering_cap": 2,
+    "stopped": true
+  },
+  "native_failure": {
+    "packet_raw_sha256": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3",
+    "response_hash": "6a5371b3ff243998baded6dc2f9627b110af793a94907a4a73859ced3d5f4f0b",
+    "representations": 2,
+    "logical_failures": 1,
+    "traceback_entries": 9,
+    "traceback_physical_lines": 43,
+    "source_cause_known": false
+  },
+  "old_cloud_source_comparison": {
+    "same": 28,
+    "different": 3,
+    "scope": "only archived old independent readback reparsed offline, not new QC or current inventory",
+    "readback_files": 32
+  },
+  "old_review_archive": {
+    "ZIP_raw_sha256": "2ffc9089ad19a5675d18cafb5379262db7c99a431e518ae4f52cb2dd094b313c",
+    "ZIP_bytes": 39319686,
+    "registered_manifest_files": 15119,
+    "complete_files": 15120,
+    "selected_originals": 381,
+    "selected_raw_bytes": 1581651,
+    "omitted_originals": 14739,
+    "git_manifests": {
+      "candidate": {
+        "commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+        "files": 4977
+      },
+      "baseline_ea": {
+        "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+        "files": 4541
+      },
+      "actual_cloud7fc": {
+        "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+        "files": 4204
+      }
+    }
+  },
+  "checks": [
+    {
+      "name": "all_candidate_raw_files_equal_fixed_Git",
+      "passed": true,
+      "detail": {
+        "files": 5433
+      }
+    },
+    {
+      "name": "full_review_manifest_matches_actual_sources",
+      "passed": true,
+      "detail": {
+        "count": 145,
+        "hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935"
+      }
+    },
+    {
+      "name": "normalized_LF_keep_EOF31_deployment",
+      "passed": true,
+      "detail": {
+        "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
+        "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7"
+      }
+    },
+    {
+      "name": "active_economic_configuration_recomputed_and_unchanged",
+      "passed": true,
+      "detail": {
+        "hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94"
+      }
+    },
+    {
+      "name": "all_config_raw_bytes_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_runtime_input_observation_budget_exposure_raw_preserved",
+      "passed": true,
+      "detail": {
+        "files": 39
+      }
+    },
+    {
+      "name": "all_previous_archived_evidence_raw_preserved",
+      "passed": true,
+      "detail": {
+        "files": 4745
+      }
+    },
+    {
+      "name": "developer_raw_output_manifest_all_files",
+      "passed": true,
+      "detail": {
+        "entries": 61,
+        "bad": []
+      }
+    },
+    {
+      "name": "developer_unmanifested_only_explicit_meta",
+      "passed": true,
+      "detail": [
+        "audit/review_packages/wr25_wr27/.gitattributes",
+        "audit/review_packages/wr25_wr27/README.md",
+        "audit/review_packages/wr25_wr27/developer_outputs_manifest.json",
+        "audit/review_packages/wr25_wr27/developer_verification.json"
+      ]
+    },
+    {
+      "name": "developer_identity_claims_match_fixed_candidate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "developer668_final_report_not_independent_acceptance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "developer_tested_source_count_scope141",
+      "passed": true,
+      "detail": {
+        "tested": 141,
+        "review_including_four_roots": 145
+      }
+    },
+    {
+      "name": "developer_single_final_source_freeze",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "17events_raw_equal_ea",
+      "passed": true,
+      "detail": {
+        "raw_sha256": "0f9668c2fb94131892e2ef0074765f0b19138238bbdaaa6e698afd76aec491e1"
+      }
+    },
+    {
+      "name": "old13_raw_prefix_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_3",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_5",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_7",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_8",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_11",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "journal_chain_17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "independent_budget_replay_7_10_1",
+      "passed": true,
+      "detail": {
+        "configurations": {
+          "normal": 6,
+          "reserve": 1,
+          "total": 7
+        },
+        "lean": {
+          "normal": 1,
+          "reserve": 0,
+          "total": 1
+        },
+        "research": {
+          "normal": 6,
+          "reserve": 4,
+          "total": 10
+        }
+      }
+    },
+    {
+      "name": "budget_projection_7_10_1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "engineering_2_2_1_stopped",
+      "passed": true,
+      "detail": {
+        "configurations": 2,
+        "research": 2,
+        "lean": 1
+      }
+    },
+    {
+      "name": "memory_Registry_snapshot_matches_independent_replay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_native_packet14ae_and_2_identical_carriers",
+      "passed": true,
+      "detail": {
+        "packet_hash": "14ae4a18636496737862a1ce314d90ae7fcf1abaf35f8a0f27145e0e839af8f3",
+        "logical_failures": 1,
+        "representations": 2
+      }
+    },
+    {
+      "name": "native_CollectionError9entries43physical",
+      "passed": true,
+      "detail": {
+        "entries": 9,
+        "physical_lines": 43,
+        "isError": false
+      }
+    },
+    {
+      "name": "native_response_6a537",
+      "passed": true,
+      "detail": "6a5371b3ff243998baded6dc2f9627b110af793a94907a4a73859ced3d5f4f0b"
+    },
+    {
+      "name": "original_receipt_content_addressed_bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_dispatch_admission_native_arguments_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_failed_completion_same_identity_and_response",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "original_failure_no_success_result",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual7fc31_deployment_and_original_input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "old_independent32_source_readback_only_offline_reparsed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "current28_same3_different_vs_archived31_not_live",
+      "passed": true,
+      "detail": {
+        "same": 28,
+        "different": 3
+      }
+    },
+    {
+      "name": "old_complete15119_manifest_and15120_directory",
+      "passed": true,
+      "detail": {
+        "bad": []
+      }
+    },
+    {
+      "name": "old_completeZIP39319686_identity",
+      "passed": true,
+      "detail": {
+        "bytes": 39319686,
+        "raw_sha256": "2ffc9089ad19a5675d18cafb5379262db7c99a431e518ae4f52cb2dd094b313c"
+      }
+    },
+    {
+      "name": "old_completeZIP15120_inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "old_completeZIP_all_member_raw_hashes",
+      "passed": true,
+      "detail": {
+        "verified": 15120,
+        "bad": []
+      }
+    },
+    {
+      "name": "old_original_Git_manifest_candidate",
+      "passed": true,
+      "detail": {
+        "commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+        "files": 4977
+      }
+    },
+    {
+      "name": "old_original_Git_manifest_baseline_ea",
+      "passed": true,
+      "detail": {
+        "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+        "files": 4541
+      }
+    },
+    {
+      "name": "old_original_Git_manifest_actual_cloud7fc",
+      "passed": true,
+      "detail": {
+        "commit": "7fc5ef2e9d2379d29f48d05a1f3cc760000884d6",
+        "files": 4204
+      }
+    },
+    {
+      "name": "selective381_original_raw1581651",
+      "passed": true,
+      "detail": {
+        "bad": []
+      }
+    },
+    {
+      "name": "selective_exact_rules_and14739_omitted",
+      "passed": true,
+      "detail": {
+        "groups": {
+          "omitted_complete_large_manifest_retained_in_ZIP": 3,
+          "omitted_large_full_patch_retained_in_ZIP": 3,
+          "omitted_redundant_full_name_list": 3,
+          "omitted_historical_replay_detail_retained_in_ZIP": 1004,
+          "omitted_existing_archived_cloud_reference_copy": 1,
+          "omitted_reconstructible_Git_index": 3,
+          "omitted_duplicate_fixed_Git_snapshot": 13722
+        },
+        "non_UTF8_omitted": []
+      }
+    },
+    {
+      "name": "external_manifest:artifact_manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "external_manifest:source_git_manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "external_manifest:archive_agent/source_raw_git_manifest.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "selective_only381_originals_plus7_declared_metadata",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "local_selective_inventory387_plus_itself388",
+      "passed": true,
+      "detail": {
+        "bad": []
+      }
+    },
+    {
+      "name": "pasted_report_raw_bytes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "archive_check_exact_selected_complete_metadata",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ccad_previous_failed_overall_original_fixes_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "omitted_developer_binary_original_preserved:audit/review_packages/wr25_wr27/wr27/fixed_prepare.index",
+      "passed": true,
+      "detail": {
+        "path": "audit/review_packages/wr25_wr27/wr27/fixed_prepare.index",
+        "original_retained_at": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\wr25_wr27\\wr27\\fixed_prepare.index",
+        "exists": true,
+        "bytes": 740565,
+        "raw_sha256": "2ff2e0dab64f5a800a5ea8d56029f93e36f0de4be9b8970ac99686aa30e3843f",
+        "claimed_raw_sha256": "2ff2e0dab64f5a800a5ea8d56029f93e36f0de4be9b8970ac99686aa30e3843f"
+      }
+    },
+    {
+      "name": "binary_preflight_failure_and_nonsource_correction_explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "real_market_model_final_live_gates_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "immutable_source_all_raw_unchanged_after_checks",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "static_byte_metadata_checks": 67,
+  "checks_passed": 67,
+  "independent_product_unit_methods": 0,
+  "current_QC_Research_LEAN_model_deployment_actual_registry_writes": 0,
+  "financial_evidence": false,
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "executable": "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe"
+  }
+}

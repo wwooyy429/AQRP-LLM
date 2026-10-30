@@ -1,0 +1,169 @@
+{
+  "scope": "Pure identity mutations in memory, readiness, and saved transcript accounting; no test suite rerun",
+  "check_count": 14,
+  "passed_checks": 14,
+  "failed_checks": 0,
+  "unit_test_methods_executed": 0,
+  "QC_market_model_calls": 0,
+  "identity_source_deltas": [
+    {
+      "path": ".gitattributes",
+      "kind": "modified",
+      "old_normalized_sha256": "7e8fb29d1979640071a08e60a85b53aae22042d391dac3600fda5448ea104cd8",
+      "new_normalized_sha256": "cb999b56d5452fcc360adc40c72853eafc4e8442b4b13a5911ad954568ded42e"
+    },
+    {
+      "path": "cloud/qresearch/registry.py",
+      "kind": "modified",
+      "old_normalized_sha256": "e9a78469a01f371ced3005aa58a5c5f752931a6e319e0d30cafe716ea902b7eb",
+      "new_normalized_sha256": "0eff8ba966022d75663dd16c233b361f2b48427078ed02db1001c03cc07843c7"
+    },
+    {
+      "path": "cloud/research_config.py",
+      "kind": "modified",
+      "old_normalized_sha256": "c4a64f90e020190ffd78476820f68b402e95c584a8f38a84c69f2c4f98198844",
+      "new_normalized_sha256": "b786c0488c056ec6b8b8dc3c92036024e08c2646c4853b180adb9b9e99f7ae34"
+    },
+    {
+      "path": "docs/review/wr16-wr17.md",
+      "kind": "added",
+      "old_normalized_sha256": null,
+      "new_normalized_sha256": "79f8804ae6c6075846bcef7e975aa8ee889f769f124e75a18d60f588b8643800"
+    },
+    {
+      "path": "docs/stage2-live-pilot.md",
+      "kind": "modified",
+      "old_normalized_sha256": "b5faf2e22f8476c5da69f64661e2c79b6f5e07291850fd9b7ef90874c5d564dc",
+      "new_normalized_sha256": "3fd5e93a0d7c147601439495c7b355bb0e64b6051996f6d2c4d4b1e7a14e7b36"
+    },
+    {
+      "path": "tests/test_wr16_registry_admission.py",
+      "kind": "added",
+      "old_normalized_sha256": null,
+      "new_normalized_sha256": "75b6013d0ad2fc42a8f9d5f8545b3ecededcc2ba76ca530fbb08e02f0f2fe9ff"
+    },
+    {
+      "path": "tests/test_wr17_engineering_recovery.py",
+      "kind": "added",
+      "old_normalized_sha256": null,
+      "new_normalized_sha256": "06d79a0be77841bbc9d90ff7766c4c524d8e1bd15805d431f63b1f2be509a791"
+    },
+    {
+      "path": "tools/stage2.py",
+      "kind": "modified",
+      "old_normalized_sha256": "01ab899ad71c1ecab62cf33c4b62541651ffcb0ea4d9c557cbfdfbe2d1f38040",
+      "new_normalized_sha256": "cdd8e5b302bf51f439bc4f698298f1114cd1db36f2bf52b89dbf4a10d61f9161"
+    }
+  ],
+  "policy_probes": [
+    {
+      "top_level_policy_key": "allocations",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "configuration_id",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "counting",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "deletion_does_not_reset_usage",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "final_evaluation_execution_enabled",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "historical_usage_preserved",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "hypothesis_policy",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "limits",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "migration_charge",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "old_round_records_removed_at_user_request",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "reserve_policy",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "resources",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "schema_version",
+      "identity_changed": true
+    },
+    {
+      "top_level_policy_key": "status",
+      "identity_changed": true
+    }
+  ],
+  "developer_raw_transcript_counts": {
+    "WR16_before": {
+      "path": "original_wr16-before__new_tests.stderr",
+      "methods": 6,
+      "failure_records": 10,
+      "failed_methods": 4,
+      "error_records": 0,
+      "error_methods": 0,
+      "success": false,
+      "all_error_types": [
+        "AssertionError"
+      ]
+    },
+    "WR16_final": {
+      "path": "original_wr16-final8__new_tests.stderr",
+      "methods": 8,
+      "failure_records": 0,
+      "failed_methods": 0,
+      "error_records": 0,
+      "error_methods": 0,
+      "success": true,
+      "all_error_types": []
+    },
+    "WR17_before": {
+      "path": "original_wr17-tests-baseline__stderr",
+      "methods": 11,
+      "failure_records": 9,
+      "failed_methods": 4,
+      "error_records": 10,
+      "error_methods": 5,
+      "success": false,
+      "all_error_types": [
+        "AssertionError",
+        "FileNotFoundError",
+        "KeyError"
+      ]
+    },
+    "WR17_repair": {
+      "path": "original_wr17-tests-repair__stderr",
+      "methods": 11,
+      "failure_records": 0,
+      "failed_methods": 0,
+      "error_records": 0,
+      "error_methods": 0,
+      "success": true,
+      "all_error_types": []
+    }
+  },
+  "inspection_path_lookup": {
+    "exit_code": 1,
+    "cause": "Optional inspection used guessed original_wr16-before.stdout, which does not exist; directory listing succeeded. Correct raw filename original_wr16-before__new_tests.stderr was read and independently parsed here. No software command or candidate modification was involved."
+  },
+  "boundary": "Developer baseline errors are missing recovery product behavior, not reviewer setup errors. These raw transcript counts are checked, but repair acceptance belongs to the separate independent software audit. No new runtime cloud comparison."
+}

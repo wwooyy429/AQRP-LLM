@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Action completed."
+    }
+  ],
+  "structuredContent": {
+    "url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "number": 2,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": true,
+    "body": "修复WR-29/P1：标准脚本和 `python -m followup_host` 原先在__main__定义另一份宿主类，普通factory导入canonical FollowupHost后被精确type检查误拒。执行入口现在在定义类型/加载factory之前委派canonical followup_host.main。严格type、controller/authority、enabled、默认off及生产UTC规则不变，不要求factory引用__main__。PR仍为草稿，WR29待独立新SHA复验，阶段2整体未通过。\n\n固定新源码：[c2e63ac](https://github.com/wwooyy429/AQRP-LLM/commit/c2e63ac5f19901bd95e127069b5998452f7f9864)；固定资料：[f698a38](https://github.com/wwooyy429/AQRP-LLM/commit/f698a38a99c3ed8388c9403f2eda723b579c5eaf)；source hash9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f。\n\n实际重放原审方最小复现：修前canonical/script/module为0/2/2，修后为0/0/0。新增6项真实子进程回归及原19项host回归通过，覆盖合法factory、默认off不导入、非法/disabled/duck/subclass拒绝、真实UTC及跨入口发现/迟到响应/重启不重派。完整规定离线验证1012项通过；218份源码身份一致，348份守卫worktree before/after字节不变。守卫不等于所有文件与Git原始blob相同，既有5份CRLF表示差异另有披露。重叠套件/场景不相加。\n\n开发辅助：原MRE3/3；初轮79/84含3夹具预期错误和2次未取trace的晚响应失败；修正轮89/90，1次明确为私有store append EACCES并安全停止；原store恢复8/8及原响应克隆10/10。原始失败、trace、重建输入说明和恢复证据全保留，不把首两次未取trace异常追认为同根因，也不宣称所有辅助运行全绿。这些不是正式独审批准。\n\n[WR29说明](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/docs/review/wr29.md)、[开发报告](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/audit/wr29_development_report.json)、[完整复验指令](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/audit/review_packages/wr29/GPT_WORK_REVIEW.txt)、[当前包指针](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/audit/current_review_package.json)。原2d1d306/fe08846独审失败、API有限通过、旧975有限结论分别保留。原审核161原件选取归档，LF镜像和raw.base64原字节分开记录；完整ZIP SHA及省略范围见[导入索引](https://github.com/wwooyy429/AQRP-LLM/blob/f698a38a99c3ed8388c9403f2eda723b579c5eaf/audit/reviews/20261029-2d1d306-host010/import_index.json)。不得把selected包称完整原包。\n\n本轮源/资料仅离线，未QC/Research/LEAN/编译/购买/准入/生产automation。当前44份云端清单未部署本次修复，Research17/20、LEAN3/16、配置周期3/13/累计16及71事件不变，008不重开。原失败/配置周期、2024–2025暴露及2026未认证保留。未来1/1/1只是待授权准备，不触发执行。\n\n新SHA待独立WR29复验；真实factory/transport/通知/云端链、完整原生回执收集、全历史US200/SID、财务数值及历史真实时点、计费认证派发仍缺。阶段3–7未验收，金融证据false，最终测试、正式研究、自动GPT及交易保持关闭。固定资料核对命令：`python -B audit/review_packages/wr29/verify_review.py`；旧host010脚本只在原fe08846树运行。",
+    "title": "Stage 2: fix WR-29 canonical host entrypoint identity",
+    "base": "feat/staged-research-workflow",
+    "base_sha": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+    "head": "feat/stage2-data-task-bridge",
+    "head_sha": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
+    "head_repo_id": 1433665311,
+    "head_repo_full_name": "wwooyy429/AQRP-LLM",
+    "merge_commit_sha": "ab554031e98e7e630c3ed34d85552a82d243048e",
+    "user": {
+      "login": "wwooyy429",
+      "name": "wwooyy429",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/80371541?v=4",
+      "id": 80371541
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-26T04:02:16Z",
+    "updated_at": "2026-10-29T12:23:19Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 73,
+    "changed_files": 7712,
+    "additions": 825457,
+    "deletions": 292,
+    "display_url": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+    "display_title": "Stage 2: fix WR-29 canonical host entrypoint identity"
+  },
+  "isError": false
+}

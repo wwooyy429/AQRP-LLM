@@ -1,0 +1,47 @@
+请对 AQRP-LLM 本轮部署源码协议修复做独立软件审核与实际离线复验。
+
+固定源码：4a42c18f0b78bea2068d589bc12f1615712354c6
+仓库：https://github.com/wwooyy429/AQRP-LLM
+草稿PR：https://github.com/wwooyy429/AQRP-LLM/pull/2
+比较基线：8d65c290773547c83549c098172f1eb8c3376cd7
+预期离线源码清单哈希：bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a
+
+本指令随后的归档提交只绑定审核身份和更新状态，不扩张上述固定源码范围。请先checkout固定源码并核对Git SHA，再阅读AGENTS.md、config/development.json、研究章程、data/universe/research/workflow配置、权威预算与暴露记录。独立结果必须说明实际运行环境、固定Git版本、执行命令、测试范围及限制。不得仅转述开发报告或以测试总数代替审核。
+
+一、事实与权限
+
+阶段0/1及4520fd1的局部历史软件结论仍限于原固定版本和已测范围；本候选未获GPT Work批准。阶段2整体未验收，阶段3–7未因此获得验收。
+原实际worker源码为662ccd876b67ca0949f921a53c4c33df37cfbbf1。回测3e68866a46ca88ff16481c31b3c2c822、attempt37dc855045e14ca49c88fd9d75f40cf7已原生确认Runtime Error并结算failed。engineering_smoke.py仅追加一个LF可复现首个被拒worker观测，但具体平台转换环节、其他worker文件及旧39cafa原因未证明。当前候选未部署或实际云端复跑。
+配置12/12、Research15/20、LEAN2/16，48个权威事件；原工程轮关闭，无待处理/未知提交。不得调用Research、回测、compile、供应商、收费认证或模型API，不登记新配置、重开轮次、退款、改上限或改历史任务。不要用旧配置承载新协议。最终测试、真实研究、LLM运行与交易继续关闭。2024–2025已暴露，2026独立性仍未认证。
+
+二、实际执行并核对证据
+
+python -B tools/research.py build
+python -B tools/stages.py verify
+python -B audit/review_packages/deployment-eof-v2/run_independent_review.py
+python -B audit/review_packages/deployment-eof-v2/verify_candidate.py
+
+开发方记录825项完整合成测试及35项辅助边界检查通过；请独立执行，不直接采纳通过结论。辅助审阅来自开发方子代理，不能视为GPT Work独立验收。核验artifact_manifest.json及full_offline_verification.json中的证据引用，独立重算源码清单。protected_before.json覆盖122份历史/预算/暴露文件；如checkout换行使原字节不符，逐项比较Git对象并披露，不得改预期哈希后宣称通过。
+build须幂等，既有原admission和回执不得改写。全部验证应为合成测试或只读元数据核对，不访问真实数据提供者。
+
+三、独立设计边界测试，不只照抄实现
+
+1. 旧v1仍保留EOF：0/1/2个终端LF严格不同，旧UTF8 BOM/CRLF行为及schema1/schema2诊断语义不变。旧v1不新增AST/大小约束。原失败admission必须按原完整字节恢复，不能读取当前build或新policy重解释历史。
+2. v2只由闭集schema_version=2与固定policy启用；原strictSHA、canonicalSHA、声明LF数和完整wrapper都受部署哈希、计划、配置及原admission约束。测试未知版本/字段、bool整数、越界、错误哈希、记录互不一致、空清单、大小写别名、路径穿越/符号链接、生成输入与资源上限。
+3. 末尾LF等价只可在明确v2 worker使用。本地freeze、首次prepare、扣额前预检及PROJECT读回均严格保留原身份；用stale manifest、只改EOF、改正文、新增/缺失源码都应在派发和扣额前拒绝。
+4. 规范只能改终端LF连续段。正文换行、导入/星号导入、注释、行尾空格、字符串和公式变化不可被隐藏。原/通用换行/规范字节须编译有效且AST相同，不能执行源码。独立构造显式续行、编码cookie/BOM冲突、三引号字符串、无效UTF8/NUL和超限输入，错误不得泄露源码/绝对路径。
+5. worker必须用观测正文及声明LF数重建原strictSHA，再验canonicalSHA；不得复制预期记录当作计算结果。测试篡改任一记录值或policy后无法旁路。错误中的expected/observed旧SHA不能冒充canonicalSHA。
+6. v2成功摘要须闭集、绑定原部署哈希/文件数，实际EOF规范化计数及original_source_identity_match相互一致，mode为worker。缺失摘要、伪造count、无原admission、错误namespace和项目模式摘要不能结算。v1旧报告不得冒充v2。摘要不是原始字节相等、远端签名或数据认证。
+7. 检查Research、LEAN、独立collection、联合collection、native rejection、恢复与结算的全部消费者。v2原生file-map编译拒绝只识别内层实际源码；保留未知提交不自动重试、同attempt幂等及失败不退款规则。特别验证engineering/admitted-inputs与collection/admitted-inputs使用各自正确namespace。
+8. PROJECT读回的collection输入不能计入实现文件，也不能满足engineering输入hash；notebook内容不得持久化/返回。v1既有读回输出结构与拒绝边界保持。
+9. 阶段0预算/身份/权限、阶段1因子/标签/时间/数值内核及此前相关WR做适当回归。审阅review_findings.json的开发中发现及测试夹具修正，不把它们当作独立审核已关闭的WR。
+
+四、完整系统及数据门槛
+
+此轮不能宣告云端修复完成或阶段2通过。请分别报告软件结论、实际云端运行证据、数据认证、金融有效性四种范围。原七项LEAN成功检查及实际订单数仍为null。已有13项Research检查只属2018双股票工程样例。
+完整历史US200、永久SID经济身份歧义、财务数值目录、版本/公开/供应商实际送达/摄入凭证及计费认证派发仍未补齐；不要用MCP文档或目录代替逐条历史证据。不得新增IC、收益或金融有效性结论。
+
+五、交付
+
+按固定源码列出结论：通过、修复后通过、不通过或证据不足，并明确范围。每个新问题给出文件/位置、最小复现、实际与预期、严重级别及影响；审核者自行构造有已知答案的测试，保留首轮失败、审查器修正及复跑记录。生产源码修复必须由开发侧另开版本后重审，不能在审查工作树静默修改再判原版本通过。
+输出正式文本报告、机器可读结论、环境/命令/完整实际结果及证据哈希清单。即使离线软件通过，也必须保留阶段2待验收、原failed任务、预算满额及最终测试关闭的结论。

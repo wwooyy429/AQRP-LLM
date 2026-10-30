@@ -1,0 +1,25 @@
+test_MCP_positive_carriers_no_notebook_or_dispatch_certification (__main__.PurePreflight) ... ok
+test_all_manifest_paths_validated_before_first_read (__main__.PurePreflight) ... test_invalid_paths_aliases_and_carrier_conflicts_are_rejected (__main__.PurePreflight) ... ok
+test_returned_reference_missing_extra_EOF_and_input_mismatch (__main__.PurePreflight) ... ok
+test_single_observation_diagnostics_and_safe_OS_decode_errors (__main__.PurePreflight) ... ok
+test_unicode_positive_and_diagnostic_path_hash (__main__.PurePreflight) ... ok
+test_universal_newline_BOM_and_EOF_contract (__main__.PurePreflight) ... ok
+
+======================================================================
+ERROR: test_all_manifest_paths_validated_before_first_read (__main__.PurePreflight) (path="'a\\ud800.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\preflight_agent\independent_preflight.py", line 49, in test_all_manifest_paths_validated_before_first_read
+    verify_deployment(manifest,content_hash(manifest),source_root=RUN)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\source\cloud\qresearch\artifacts.py", line 72, in content_hash
+    return sha256(canonical_json(value)).hexdigest()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\source\cloud\qresearch\artifacts.py", line 67, in canonical_json
+    separators=(",", ":")).encode("utf-8")
+UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 79: surrogates not allowed
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.021s
+
+FAILED (errors=1)
+
+{"methods": 7, "passed_methods": 6, "failed_methods": 0, "error_methods": 1, "subcases": 42, "exit_code": 1}

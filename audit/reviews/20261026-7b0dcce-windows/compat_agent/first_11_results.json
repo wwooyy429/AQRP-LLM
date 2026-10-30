@@ -1,0 +1,94 @@
+{
+  "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+  "actually_executed": true,
+  "independent_methods": 11,
+  "passed_methods": 11,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "skipped_methods": 0,
+  "subcases": 22,
+  "failure_records_including_subcases": 0,
+  "error_records_including_subcases": 0,
+  "failure_details": [],
+  "error_details": [],
+  "static_checks": {
+    "protected_file_hash_equal": {
+      "cloud/qresearch/registry.py": true,
+      "cloud/qresearch/engineering_tasks.py": true,
+      "tools/stage2.py": true,
+      "cloud/qresearch/workflow.py": true,
+      "cloud/qresearch/runtime.py": true,
+      "cloud/qresearch/point_in_time.py": true,
+      "cloud/qresearch/contracts.py": true,
+      "cloud/qresearch/study.py": true,
+      "cloud/qresearch/factors.py": true,
+      "cloud/qresearch/models.py": true,
+      "cloud/qresearch/labels.py": true,
+      "cloud/qresearch/pipeline.py": true,
+      "tools/research.py": true,
+      "tools/stages.py": true,
+      "config/budget.json": true,
+      "config/research.json": true,
+      "config/data.json": true,
+      "config/development.json": true,
+      "config/engineering.json": true,
+      "config/universe.json": true,
+      "config/workflow.json": true,
+      "config/quantconnect.json": true,
+      "tests/test_factors.py": true,
+      "tests/test_pipeline.py": true,
+      "docs/research_charter.md": true
+    },
+    "summarize_ic_source_unchanged": true,
+    "daily_rank_ic_source_unchanged": true,
+    "generated_configuration": {
+      "configuration_equal": true,
+      "source_sha_equal": true,
+      "implementation_sha_changed": true
+    }
+  },
+  "selected_historical_reproduction": [
+    {
+      "label": "archived_uncommitted_first_attempt",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+        "-v"
+      ],
+      "exit_code": 1,
+      "method": "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+      "source_commit": null,
+      "evaluation_file_sha256": "5986a897a0b0aa7d7ae4dd3bd5ffec95196e13d9cf46f2d5eade1a66d3e83d0e",
+      "output": "test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests) ... FAIL\n\n======================================================================\nFAIL: test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-7b0dcce-20261026\\compat_agent\\first_attempt\\tests\\test_factors.py\", line 298, in test_each_fold_gets_fresh_fit_and_exact_predictions\n    self.assertTrue(np.isnan(result.ic_statistics[\"icir\"]))\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.130s\n\nFAILED (failures=1)\n"
+    },
+    {
+      "label": "current_fixed_commit",
+      "command": [
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+        "-v"
+      ],
+      "exit_code": 0,
+      "method": "test_factors.EvaluationTests.test_each_fold_gets_fresh_fit_and_exact_predictions",
+      "source_commit": "7b0dccebef2d3582e1b07ada05211863c3cba0d8",
+      "evaluation_file_sha256": "5a4139100d2610426072cf33afe7f8abbba96d1f99e7776928f9a353d9531db2",
+      "output": "test_each_fold_gets_fresh_fit_and_exact_predictions (test_factors.EvaluationTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.142s\n\nOK\n"
+    }
+  ],
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "developer_fixtures_imported": false,
+  "historical_original_method_run_separately": true,
+  "market_or_model_calls": 0,
+  "financial_evidence": false
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source": "quantconnect_fundamental_universe",
+  "purpose": "engineering_source_observation_only",
+  "factor_fields_enabled": false,
+  "vendor_revision_certified": false,
+  "actual_availability_certified": false,
+  "fields": {
+    "dollar_volume": {"kind": "number", "role": "supplied_daily_liquidity", "unit": "USD", "period_accessor": null},
+    "has_fundamental_data": {"kind": "boolean", "role": "coverage_observation_not_eligibility_filter", "unit": "flag", "period_accessor": null},
+    "time": {"kind": "text", "role": "native_clock_not_vendor_receipt", "unit": "native_ISO_clock", "period_accessor": null},
+    "end_time": {"kind": "text", "role": "native_clock_not_vendor_receipt", "unit": "native_ISO_clock", "period_accessor": null},
+    "market_cap": {"kind": "number", "role": "valuation_observation_not_statement_vintage", "unit": "USD", "period_accessor": null},
+    "security_reference.security_type": {"kind": "text", "role": "observed_classification_without_receipt", "unit": "Morningstar_code", "period_accessor": null},
+    "security_reference.common_share_sub_type": {"kind": "text", "role": "observed_classification_without_receipt", "unit": "Morningstar_code", "period_accessor": null},
+    "security_reference.is_depositary_receipt": {"kind": "boolean", "role": "observed_classification_without_receipt", "unit": "flag", "period_accessor": null},
+    "security_reference.share_class_status": {"kind": "text", "role": "observed_listing_without_receipt", "unit": "Morningstar_code", "period_accessor": null},
+    "security_reference.exchange_id": {"kind": "text", "role": "observed_exchange_without_receipt", "unit": "Morningstar_code", "period_accessor": null},
+    "company_reference.is_reit": {"kind": "boolean", "role": "observed_classification_without_receipt", "unit": "flag", "period_accessor": null},
+    "financial_statements.period_ending_date.value": {"kind": "date", "role": "reported_period_metadata", "unit": "ISO_date", "period_accessor": "value"},
+    "financial_statements.file_date.value": {"kind": "date", "role": "supplier_file_date_may_be_approximated_not_receipt", "unit": "ISO_date", "period_accessor": "value"},
+    "financial_statements.accession_number.value": {"kind": "text", "role": "filing_identifier_observation", "unit": "identifier", "period_accessor": "value"},
+    "financial_statements.form_type.value": {"kind": "text", "role": "filing_type_observation", "unit": "form_type", "period_accessor": "value"},
+    "financial_statements.income_statement.total_revenue_as_reported.twelve_months": {"kind": "number", "role": "as_reported_financial_value", "unit": "reported_currency", "period_accessor": "twelve_months"}
+  }
+}

@@ -1,0 +1,484 @@
+test_diagnostic_fields_are_whitelisted_bounded_and_defensive (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... test_final_line_breaks_remain_part_of_the_frozen_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_hash_diagnostics_come_from_one_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ERROR
+test_manifest_hash_mismatch_is_distinct_and_never_reads_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ERROR
+test_mismatch_identifies_exact_path_expected_and_observed (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_resolved_path_escape_is_rejected_before_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... test_shared_source_digest_invalid_bytes_never_echo_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_shared_source_digest_matches_existing_text_policy (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_success_keeps_hash_and_existing_BOM_newline_contract (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... FAIL
+
+======================================================================
+ERROR: test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 119, in test_invalid_paths_do_not_echo_paths_or_touch_sources
+    self.assertEqual(error.diagnostics["failure_kind"], "invalid_path")
+UnboundLocalError: local variable 'error' referenced before assignment
+
+======================================================================
+ERROR: test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 93, in test_manifest_shape_and_hash_values_are_checked_before_any_read
+    self.assertIn(error.diagnostics["failure_kind"], {"invalid_manifest", "invalid_path"})
+UnboundLocalError: local variable 'error' referenced before assignment
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'CON.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\CON.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'COM1.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\COM1.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'aux.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\aux.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'nested/NUL.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\nested\\NUL.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'LPT9.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\LPT9.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'PRN/x.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\PRN\\x.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'nested./receiver.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\nested.\\receiver.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'trailing /receiver.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\trailing \\receiver.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='\'quote"file.py\'')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\quote"file.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'star*.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\star*.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'pipe|file.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\pipe|file.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'q?u.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\q?u.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'<a>.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\<a>.py'
+
+======================================================================
+ERROR: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'control\\x01.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 82, in verify_deployment
+    actual = hashlib.sha256(path.read_text(encoding="utf-8-sig").encode("utf-8")).hexdigest()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\11638\\AppData\\Local\\Temp\\tmp43p29sut\\control\x01.py'
+
+======================================================================
+FAIL: test_diagnostic_fields_are_whitelisted_bounded_and_defensive (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 174, in test_diagnostic_fields_are_whitelisted_bounded_and_defensive
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='z/../receiver.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 100, in test_entire_manifest_is_prescanned_before_reading_earlier_valid_file
+    self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='z.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 100, in test_entire_manifest_is_prescanned_before_reading_earlier_valid_file
+    self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_final_line_breaks_remain_part_of_the_frozen_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 161, in test_final_line_breaks_remain_part_of_the_frozen_source
+    self.assertEqual(self.error().diagnostics["failure_kind"], "source_hash_mismatch")
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_hash_diagnostics_come_from_one_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 83, in test_hash_diagnostics_come_from_one_source_read
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 44, in error
+    self.fail("A deployment mismatch was accepted")
+AssertionError: A deployment mismatch was accepted
+
+======================================================================
+FAIL: test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'../SENSITIVE_SOURCE_VALUE_123.45.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 117, in test_invalid_paths_do_not_echo_paths_or_touch_sources
+    error = self.error({name: "a" * 64}, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_manifest_hash_mismatch_is_distinct_and_never_reads_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 105, in test_manifest_hash_mismatch_is_distinct_and_never_reads_source
+    error = self.error(expected="0" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (manifest=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 72, in verify_deployment
+    raise ValueError("Missing or changed frozen source manifest")
+ValueError: Missing or changed frozen source manifest
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 92, in test_manifest_shape_and_hash_values_are_checked_before_any_read
+    error = self.error(manifest=manifest, expected="a" * 64)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_mismatch_identifies_exact_path_expected_and_observed (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 74, in test_mismatch_identifies_exact_path_expected_and_observed
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_resolved_path_escape_is_rejected_before_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 81, in verify_deployment
+    raise ValueError("Invalid implementation source path")
+ValueError: Invalid implementation source path
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 128, in test_resolved_path_escape_is_rejected_before_source_read
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+======================================================================
+FAIL: test_shared_source_digest_invalid_bytes_never_echo_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 58, in test_shared_source_digest_invalid_bytes_never_echo_source
+    self.assertTrue(callable(function))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_shared_source_digest_matches_existing_text_policy (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 48, in test_shared_source_digest_matches_existing_text_policy
+    self.assertTrue(callable(function), "Missing shared deployment source hash")
+AssertionError: False is not true : Missing shared deployment source hash
+
+======================================================================
+FAIL: test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 149, in test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics
+    error = self.error()
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 44, in error
+    self.fail("A deployment mismatch was accepted")
+AssertionError: A deployment mismatch was accepted
+
+======================================================================
+FAIL: test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 166, in test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest
+    error = self.error({name: sha256(SOURCE).hexdigest()})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\.git\repair-work\deployment-diagnostics\baselinef373\tests\test_deployment_integrity_diagnostics.py", line 36, in error
+    self.assertTrue(isinstance(kind, type), "Missing typed deployment diagnostics")
+AssertionError: False is not true : Missing typed deployment diagnostics
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.095s
+
+FAILED (failures=14, errors=16)

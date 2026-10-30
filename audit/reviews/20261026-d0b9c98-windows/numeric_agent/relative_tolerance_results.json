@@ -1,0 +1,82 @@
+{
+  "source_commit": "d0b9c98ae9490b977d62f3e9742d854146d298b4",
+  "actually_executed": true,
+  "methods": 11,
+  "passed_methods": 9,
+  "failed_methods": 2,
+  "error_methods": 0,
+  "failure_records": 4,
+  "error_records": 0,
+  "skipped": 0,
+  "subcases": 716,
+  "observations": {
+    "comparison_count": 719,
+    "max_normalized_mean_error": 0.7142857142857143,
+    "max_std_relative_error": 2.8107271145275333e-16,
+    "max_normalized_icir_error": 1.6868995801715694,
+    "worst_mean": {
+      "label": "cancellation",
+      "values_hex": [
+        "0x1.6666666666666p-1",
+        "-0x1.6666666666666p-1",
+        "0x1.87e92154ef7acp-665"
+      ],
+      "expected": 3.3333333333333335e-201,
+      "actual": 1.1102230246251565e-16,
+      "absolute_error": 1.1102230246251565e-16,
+      "error_in_eps_times_max_abs_input": 0.7142857142857143
+    },
+    "first_failure": {
+      "label": "random-6",
+      "field": "icir",
+      "values_hex": [
+        "0x1.b89f9954fb790p-1",
+        "-0x1.4ca0b27cee080p-4",
+        "-0x1.d1234c8cb1c80p-4",
+        "-0x1.de8c9198f7978p-3",
+        "-0x1.b5c116e50b7f0p-2"
+      ],
+      "expected": 0.0018682597145297103,
+      "actual": 0.0018682597145296656,
+      "absolute_tolerance": 1.3274783686723241e-17
+    }
+  },
+  "tolerance": {
+    "mean": "max(16*eps*max(abs(valid_IC)),2*ulp(correctly_rounded_mean))",
+    "sample_std": "max(32*eps*correctly_rounded_std,2*ulp(correctly_rounded_std))",
+    "ICIR": "32*eps*abs(correctly_rounded_ICIR) except explicit strong cancellation, where 32*eps*max(1,abs(ICIR)) avoids relative-error false alarms near zero",
+    "positive_std_guard": "Every representable positive oracle std must remain strictly positive; only subnormal std rounding uses 2 ULP allowance"
+  },
+  "oracle": "Exact Fraction raw moments with sample ddof1, 180-significant-digit Decimal square root and mean/std ratio",
+  "warnings": [],
+  "failures": [
+    {
+      "test": "test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=6)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 117, in test_deterministic_general_legal_ic_values\n    with self.subTest(case=case):self.check(values,f'random-{case}')\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 55, in check\n    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)\nAssertionError: 4.466912950640278e-17 not less than or equal to 1.3274783686723241e-17 : random-6-icir\n"
+    },
+    {
+      "test": "test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=52)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 117, in test_deterministic_general_legal_ic_values\n    with self.subTest(case=case):self.check(values,f'random-{case}')\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 55, in check\n    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)\nAssertionError: 5.421010862427522e-17 not less than or equal to 2.3625166484834644e-17 : random-52-icir\n"
+    },
+    {
+      "test": "test_deterministic_general_legal_ic_values (__main__.SummaryTests) (case=75)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 117, in test_deterministic_general_legal_ic_values\n    with self.subTest(case=case):self.check(values,f'random-{case}')\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 55, in check\n    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)\nAssertionError: 7.37257477290143e-17 not less than or equal to 1.5333030425279962e-17 : random-75-icir\n"
+    },
+    {
+      "test": "test_deterministic_tiny_dynamic_ranges (__main__.SummaryTests) (case=79)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 129, in test_deterministic_tiny_dynamic_ranges\n    with self.subTest(case=case):self.check(values,f'random-tiny-{case}')\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-d0b9c98-20261026\\numeric_agent\\exact_ic_summary_review.py\", line 55, in check\n    self.assertLessEqual(abs(actual-want),tolerance,label+'-'+field)\nAssertionError: 8.847089727481716e-17 not less than or equal to 6.985153976249459e-17 : random-tiny-79-icir\n"
+    }
+  ],
+  "errors": [],
+  "source_unchanged": true,
+  "author_test_fixtures_imported": false,
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "platform_calls": 0,
+  "financial_evidence": false,
+  "exit_code": 1
+}

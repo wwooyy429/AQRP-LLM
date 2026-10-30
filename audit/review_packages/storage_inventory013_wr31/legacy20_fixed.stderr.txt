@@ -1,0 +1,36 @@
+test_boolean_exact_bytes_not_an_integer (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_changed_metadata_invalidates_stability (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_content_names_are_only_claims (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_identity_names_are_not_content_duplicates (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_invalid_row_cannot_complete_listing (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_local_roots_do_not_rebase_by_basename (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_matching_window_does_not_retire_intent (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_missing_page_stays_incomplete (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_mixed_viewport_ranges_complete_without_double_count (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_nonempty_page_zero_never_complete (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_overlap_is_one_physical_key (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_position_to_key_conflict_is_incomplete (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_range_row_count_mismatch_is_incomplete (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_realistic_empty_page_zero_is_complete (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_reported_bytes_never_grant_deletion (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_unbounded_page_claim_rejected (original_012_literal_cases.InventoryKnownAnswers) ... FAIL
+test_unknown_reference_preserved (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_unresolved_intent_has_no_mtime_association (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_unvisited_folder_explicit (original_012_literal_cases.InventoryKnownAnswers) ... ok
+test_v1_batch_is_review_item_not_reclaim (original_012_literal_cases.InventoryKnownAnswers) ... ok
+
+======================================================================
+FAIL: test_unbounded_page_claim_rejected (original_012_literal_cases.InventoryKnownAnswers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\audit\review_packages\storage_inventory012\check_analyzer.py", line 28, in test
+    self.assertEqual(selected(result, path), expected, path)
+AssertionError: 'unrecognized_or_ambiguous_UI_paging_label' != 'invalid_UI_page_count'
+- unrecognized_or_ambiguous_UI_paging_label
++ invalid_UI_page_count
+ : directories.0.invalid_paging.0.reason
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.005s
+
+FAILED (failures=1)

@@ -10,6 +10,7 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Callable, Iterable, Sequence
+import math
 
 import numpy as np
 import pandas as pd
@@ -196,15 +197,55 @@ def walk_forward_evaluate(records: pd.DataFrame, feature_columns: Sequence[str],
     return WalkForwardResult(combined, pd.DataFrame(summaries), daily, summarize_ic(daily), tuple(artifacts))
 
 
+def _centered_unit(values: np.ndarray) -> np.ndarray | None:
+    """Center finite float64 observations without squaring their original scale.
+
+    A power-of-two scale bounds subtraction and preserves neighboring floats.
+    Remove an observation first so a large shared offset cannot round away the
+    mean of small differences. Rescale those differences before taking a norm;
+    no extended-precision dtype or product of raw variances is required.
+    """
+    largest = float(np.max(np.abs(values)))
+    if largest == 0:
+        return None
+    exponent = math.frexp(largest)[1]
+    # Components negligible beside the largest observation may underflow here;
+    # the largest survives, so this cannot turn a varying vector into a constant.
+    with np.errstate(under="ignore"):
+        scaled = np.ldexp(values, -exponent)
+    offsets = scaled - scaled[0]
+    centered = offsets - math.fsum(float(value) for value in offsets) / len(offsets)
+    spread = float(np.max(np.abs(centered)))
+    if spread == 0:
+        return None
+    centered = centered / spread
+    norm = math.sqrt(math.fsum(float(value) * float(value) for value in centered))
+    return centered / norm
+
+
 def _correlation(left: np.ndarray, right: np.ndarray, method: str) -> float:
-    if len(left) < 2 or np.std(left) == 0 or np.std(right) == 0:
+    if len(left) < 2:
         return float("nan")
     if method == "spearman":
+        # Spearman depends only on order. Testing raw-value variance first can
+        # underflow for distinct, finite scores (or overflow at large scales).
+        # Average ranks preserve ties and have a well-scaled variance.
         left = pd.Series(left).rank(method="average").to_numpy()
         right = pd.Series(right).rank(method="average").to_numpy()
+        # Retain the accepted rank-correlation path, including exact perfect
+        # rank outputs used by constant-IC statistics. Ranks need no raw-scale
+        # stabilization; applying another normalization changes last-bit rounding.
+        if np.std(left) == 0 or np.std(right) == 0:
+            return float("nan")
+        return float(np.corrcoef(left, right)[0, 1])
     elif method != "pearson":
         raise EvaluationError("Correlation method must be pearson or spearman")
-    return float(np.corrcoef(left, right)[0, 1])
+    left, right = _centered_unit(left), _centered_unit(right)
+    if left is None or right is None:
+        return float("nan")
+    correlation = math.fsum(float(x) * float(y) for x, y in zip(left, right))
+    # The exact normalized dot product is bounded; trim final rounding only.
+    return max(-1.0, min(1.0, correlation))
 
 
 def daily_rank_ic(records: pd.DataFrame, score_column: str = "prediction", label_column: str = "label",
@@ -232,13 +273,46 @@ def daily_rank_ic(records: pd.DataFrame, score_column: str = "prediction", label
     return pd.DataFrame(result, columns=["date", "n", "ic"])
 
 
+def _ic_moments(values: np.ndarray) -> tuple[float, float, float]:
+    """Stable arithmetic mean, sample standard deviation and unannualized ICIR.
+
+    Exact equality defines a constant, never a tolerance. Power-of-two scaling
+    preserves small representable differences; anchor-centered offsets avoid
+    creating residuals from rounding the large common part of the mean.
+    """
+    count = len(values)
+    if not count:
+        return float("nan"), float("nan"), float("nan")
+    first = float(values[0])
+    if count == 1:
+        return first, float("nan"), float("nan")
+    if np.all(values == first):
+        return first, 0.0, float("nan")
+    exponent = math.frexp(float(np.max(np.abs(values))))[1]
+    scaled = [math.ldexp(float(value), -exponent) for value in values]
+    offsets = [value - scaled[0] for value in scaled]
+    offset_mean = math.fsum(offsets) / count
+    centered = [value - offset_mean for value in offsets]
+    scaled_mean = scaled[0] + offset_mean
+    mean = math.ldexp(scaled_mean, exponent)
+    scaled_std = math.hypot(*centered) / math.sqrt(count - 1)
+    try:
+        std = math.ldexp(scaled_std, exponent)
+    except OverflowError:
+        # Preserve the existing undefined-ICIR rule for unrepresentable std.
+        std = float("inf")
+    # Cancel the common scale before division. Rounded public float outputs
+    # can lose a subnormal mean/std even when their ratio is representable.
+    icir = scaled_mean / scaled_std if scaled_std > 0 and math.isfinite(std) else float("nan")
+    return mean, std, icir
+
+
 def summarize_ic(daily: pd.DataFrame) -> dict[str, Any]:
     """ICIR = arithmetic mean / sample standard deviation, without annualization."""
     values = pd.to_numeric(daily["ic"], errors="raise").replace([np.inf, -np.inf], np.nan).dropna()
-    mean = float(values.mean()) if len(values) else float("nan")
-    std = float(values.std(ddof=1)) if len(values) >= 2 else float("nan")
+    mean, std, icir = _ic_moments(values.to_numpy(dtype=float))
     return {"valid_days": len(values), "total_days": len(daily), "mean_ic": mean,
-            "sample_std_ic": std, "icir": mean / std if np.isfinite(std) and std > 0 else float("nan"),
+            "sample_std_ic": std, "icir": icir,
             "icir_annualized": False, "common_observations": int(daily["n"].sum())}
 
 

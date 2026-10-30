@@ -1,0 +1,83 @@
+{
+  "methods": 3,
+  "passed_methods": 2,
+  "failed_or_error_methods": 1,
+  "failure_records": 4,
+  "error_records": 0,
+  "subtests": 3,
+  "skips": 0,
+  "first_failure": {
+    "test": "test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=1)",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review.py\", line 52, in test_native_endtime_contract_maps_exact_selection_window\n    self.assertIsNone(error,\"Adapter rejects an official-contract endpoint before mapping its half-open selection window\")\nAssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window\n"
+  },
+  "all_failures": [
+    {
+      "test": "test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=1)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review.py\", line 52, in test_native_endtime_contract_maps_exact_selection_window\n    self.assertIsNone(error,\"Adapter rejects an official-contract endpoint before mapping its half-open selection window\")\nAssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window\n"
+    },
+    {
+      "test": "test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=2)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review.py\", line 52, in test_native_endtime_contract_maps_exact_selection_window\n    self.assertIsNone(error,\"Adapter rejects an official-contract endpoint before mapping its half-open selection window\")\nAssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window\n"
+    },
+    {
+      "test": "test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) (days=7)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-fbe2454-20261026\\source_agent\\secondary_source_review.py\", line 52, in test_native_endtime_contract_maps_exact_selection_window\n    self.assertIsNone(error,\"Adapter rejects an official-contract endpoint before mapping its half-open selection window\")\nAssertionError: 'Duplicate or out-of-window native universe snapshot' is not None : Adapter rejects an official-contract endpoint before mapping its half-open selection window\n"
+    }
+  ],
+  "observations": {
+    "1": {
+      "expected_snapshot_clocks": [
+        "2017-05-22T00:00:00-04:00"
+      ],
+      "actual_snapshot_clocks": null,
+      "error": "Duplicate or out-of-window native universe snapshot",
+      "native_request": [
+        "2017-05-22 00:00:00",
+        "2017-05-23 00:00:00"
+      ],
+      "native_filter": "start < EndTime <= end",
+      "api_calls": 1
+    },
+    "2": {
+      "expected_snapshot_clocks": [
+        "2017-05-22T00:00:00-04:00",
+        "2017-05-23T00:00:00-04:00"
+      ],
+      "actual_snapshot_clocks": null,
+      "error": "Duplicate or out-of-window native universe snapshot",
+      "native_request": [
+        "2017-05-22 00:00:00",
+        "2017-05-24 00:00:00"
+      ],
+      "native_filter": "start < EndTime <= end",
+      "api_calls": 1
+    },
+    "7": {
+      "expected_snapshot_clocks": [
+        "2017-05-22T00:00:00-04:00",
+        "2017-05-23T00:00:00-04:00",
+        "2017-05-24T00:00:00-04:00",
+        "2017-05-25T00:00:00-04:00",
+        "2017-05-26T00:00:00-04:00",
+        "2017-05-27T00:00:00-04:00",
+        "2017-05-28T00:00:00-04:00"
+      ],
+      "actual_snapshot_clocks": null,
+      "error": "Duplicate or out-of-window native universe snapshot",
+      "native_request": [
+        "2017-05-22 00:00:00",
+        "2017-05-29 00:00:00"
+      ],
+      "native_filter": "start < EndTime <= end",
+      "api_calls": 1
+    },
+    "collector": {
+      "error": "Historical source iteration failed; unfinished intent retained",
+      "result": null,
+      "api_calls": 1
+    }
+  },
+  "real_sdk_executed": false,
+  "platform_calls": 0,
+  "evidence_kind": "immutable official LEAN static contract plus synthetic native-shape replay"
+}

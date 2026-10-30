@@ -1,0 +1,11 @@
+{
+  "kind": "actual_local_report_generator_failure_before_report_write",
+  "exit_code": 1,
+  "cause": "Read event kind at checksum envelope top level rather than inside verified event payload",
+  "observed_exception": "KeyError: kind",
+  "actual_runtime_result_still_completed": true,
+  "new_Research_or_Registry_changes": 0,
+  "first_generator_source_retained": "first_report_generator.py",
+  "separate_original_process_stdout_stderr_not_created": true,
+  "repair": "Use artifacts.decode_events checksum validation and select envelope.event before extracting kind"
+}

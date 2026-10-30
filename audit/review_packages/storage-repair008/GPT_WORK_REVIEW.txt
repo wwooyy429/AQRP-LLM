@@ -1,0 +1,22 @@
+请对AQRP-LLM PR #2本次阶段2工程修复做独立复审。先固定两个身份：实际运行源码b1a4041ce98867047294b8f0830292af5d7ec56e，以及本资料包发布后的不可变Git提交（由PR链接指定）。不得用变动中的分支HEAD代替两者。940项开发测试不是独立验收。
+
+权限与范围
+- 只在独立干净环境做离线审核、已知答案和边界测试。禁止查询市场数据、执行Research、提交LEAN、优化、修改预算、启用GPT API或交易，以及打开最终测试。
+- 已有任务为project38436695、backtest8a45b6c62d55521033e9cc5b9b9d3950、attempt a03a7c7611fb496aaf5487ca8974b0d2；配置9d464fb454afe9bd0b3826d2e22e6fe20f6f5948acc6c5985b09d89d3548a9b6、计划b76898797639ea2f2c1c79f5093f240608c97625efc2e056003799c469ab723f。现经一次用户触发的历史目录对账取得Completed.终态，再读取已完成任务的原生回执与2页12块日志；不是自动推送通知。固定parser确认7/7，Registry已结算completed且轮次关闭。不得重跑或把人工对账标为自动推送。
+- 既往WR25–27及WR28只按其原报告固定版本与有限范围保留；b1a候选尚未独立验收。完整阶段2与金融有效性是另外两个结论。
+
+读取和执行
+1. 阅读AGENTS.md、config/development.json、docs/research_charter.md、config/data.json、source_catalog.json、research.json、universe.json、budget.json及audit/data_exposure.json。先说明阶段0/1既往有限范围与本次变更范围，阶段3–7不在已验收范围。
+2. 在运行源码固定检出和最终资料固定检出中分别核对源码身份；实际运行python -B tools/stages.py verify。自行构造答案，检查计算、标签、时点、缺失/未来输入和数值边界；不得只复述940这个数。当前跟进只变更审计资料、README，不含cloud/tools/tests/config修改；解释预算usage投影与冻结执行身份的区别。
+3. 核对原baseline、前55条及此次结算前69条事件原字节，原55前缀SHA256应b7ea9c1a46416b68b05110a1cb2452502e983c8d18a449ae3b673f780124d7b5。新配置周期3/13、余10、历史累计16，Research17/20、LEAN3/16；限额、原用量和历史均未重置或退款。006/007各1配置、0R、0L已关闭，分别保留压缩包导入和源字符上限原生拒写。实际008轮上限1配置/1R/1L、零自动重试；结算仅追加第70条completed及第71条engineering_round_closed。检查预扣、并发只扣一次、closed/ambiguous任务拒绝重提。
+4. 独立检查缓存数据语义身份和完整处理依赖：计划名称/无关源码变化不能重复下载/存储；字段、版本、可用时点、原始定义及处理语义变化必须失效。验证旧receipt、40窗口、每批/行hash及原始来源；缺失、损坏和未完成intent必须拒绝，不能替换缺失数据或静默丢弃重复/冲突。
+5. 容量应检查SDK完整键、稳定双次文件长度、字节和文件数、预留及实际manifest大小。加入缺API、SDK error event、并发变化、容量不足、原生save拒绝、读回异常反例；确认在新取数或写入前停止，固定错误step/category/code不泄露第三方消息、类型、路径和行值。开发mock与真实SDK证据分开。
+6. 对LEAN引用清单构造缺/增/重复行、改SID/字段/事件时间/可用时间/revision/value、非有限值、超窗口及无关ref的反例。五份原缓存_encode哈希必须独立重算，实际行和缓存逐项一致后才写纯文本引用；manifest不保存行值。篡改count/hash/refcount/encoding、新行对象声明、报告ref绑定应拒绝。旧3计划只读解析/replay，当前worker不能执行。
+7. 核对模块拆分保持Registry同一存储、预算、锁和异常类身份，双向导入无循环，26个搬移方法AST核对可复现；不得仅信结果标签。源文本按实际原生字符口径核对43文件均<=60800，最大49898；超限在freeze/register/claim前拒绝，动态输入在首次发布前拒绝。
+8. 原生证据逐层核对：项目listing→43声明PROJECT源读回→Research输入/代码单元读回与dispatch绑定→实际Research回执→同计划LEAN输入/编译/提交。Research95de031ff6a54c3fa1747fc44047cc4e为completed13/13、History与采集新增调用0、旧40窗口复用、无新row对象；R写入前实际总容量52428800/已用52269616，仅为该时点快照。接收2510字段记录和250形成时点是两股工程覆盖，不能推为全US200。208223旧投影、27重复、四字段冲突0均保留来源，不证明全原始记录相同。
+9. 核对followup/metadata_reconciliation.json和旧readiness原字节快照。当前同级字段不得还写旧backtest/未提交/零提交/零配置余量/35文件；旧独审true必须留在明确历史范围内。create_compile响应不等于原始编译worker包。报告preview的false为冻结前快照，不是当前登记状态。
+10. 对terminal/中真实Completed.回执、两页12块AQRP_ENGINEERING a03a...日志、native zeroorders及固定parser completion/result独立重组核对。实测7/7、500 bar事件、258 slices、8次分红、0订单/运行错误、2500字段记录引用5缓存且new_row_objects=false。LEAN43文件全部EOF规范化，original_source_identity_match=false、canonical_sources_verified=true；PROJECT原始读回与Research0规范化不能扩张成LEAN原始一致。本次终态取得方式为历史目录一次对账，automatic push未观测；具体通知丢失环节没有链路日志证明。核对原生状态、关轮、ledger和预算一致，不以摘要替代原生证据。另检查两次本地结算失败在69条事件之前，死PID临时锁清理及exact-owner/WinError32有限释放重试包装器未改parser/身份/预算/指标；这是操作兼容处理，不是b1a共享库的永久修复。
+11. 完整历史US200、财务数值目录、报告历史版本、公开时间精度、供应商实际送达和历史摄入凭证、计费认证派发桥分别列出证据缺口。Time/EndTime/FileDate、当前采集时间和MCP目录不能冒充历史receipt。2024–2025已暴露，2026独立性未认证；所有最终测试/正式研究/自动GPT/交易开关保持关闭。
+
+交付要求
+报告固定Git身份、实际命令和环境、复现步骤、每项通过/失败/未测、可复现新WR及严重性、原WR回归范围。分别给出有限软件范围、阶段2整体、金融证据三个结论。不要合并PR或授予独立金融测试通过。先检查followup/review_packet_manifest.json与verify_followup.py；自洽hash不是平台/供应商签名，仍须外部固定到Git并独立检验原生来源。

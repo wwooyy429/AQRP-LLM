@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\launch.py", line 7, in <module>
+    runpy.run_path(str(folder/'minimal_new_success_without_dispatch.py'),run_name='__main__')
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 289, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 96, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\minimal_new_success_without_dispatch.py", line 66, in <module>
+    if __name__=='__main__':main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\minimal_new_success_without_dispatch.py", line 43, in main
+    old_good=f.accepted(settle_cli(legacy,oldb,oldid,23))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\independent_cli_gates.py", line 37, in accepted
+    if result.returncode!=0:raise AssertionError('CLI prerequisite failed: '+result.stderr)
+AssertionError: CLI prerequisite failed: Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\cli_cases\510555ad\2-modeled-legacy-no-marker-d8781d\tools\stage2.py", line 442, in <module>
+    main()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\cli_cases\510555ad\2-modeled-legacy-no-marker-d8781d\tools\stage2.py", line 425, in main
+    result = vars(settle_research_result(bridge, args.attempt, native))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\cli_cases\510555ad\2-modeled-legacy-no-marker-d8781d\tools\stage2.py", line 336, in settle_research_result
+    binding = _read_research_dispatch(bridge, payload, deployment, require_dispatch=require_dispatch)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\cli_cases\510555ad\2-modeled-legacy-no-marker-d8781d\tools\stage2.py", line 268, in _read_research_dispatch
+    _read_research_entry_protocol(bridge, payload, deployment)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-ccad61d-20261027\protocol_agent\wr21\original\cli_cases\510555ad\2-modeled-legacy-no-marker-d8781d\tools\stage2.py", line 285, in _read_research_entry_protocol
+    raise EngineeringTaskError("Original Research entry protocol is required; legacy inputs cannot be backfilled")
+qresearch.engineering_tasks.EngineeringTaskError: Original Research entry protocol is required; legacy inputs cannot be backfilled
+

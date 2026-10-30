@@ -1,0 +1,15 @@
+{
+  "scope": "read-only exploratory structure probes, not product tests",
+  "events": [
+    {
+      "exit": 1,
+      "error": "AttributeError: list has no keys",
+      "cause": "reviewer assumed first diagnostic JSON was an object; actual list; corrected later structure inspection"
+    },
+    {
+      "error": "looked for replay_history.py; actual helper filename run_replays.py",
+      "action": "read correct filename only"
+    }
+  ],
+  "source_or_product_changed": false
+}

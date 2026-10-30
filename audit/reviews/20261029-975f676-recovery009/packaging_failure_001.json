@@ -1,0 +1,14 @@
+{
+  "command": "python -B package_review.py (original script retained as package_review_first.py)",
+  "exit_code": 1,
+  "stage": "strict portable verifier before ZIP creation",
+  "exception": "AssertionError: Artifact file set differs",
+  "expected_files": 14329,
+  "observed_files_at_diagnostic": 14345,
+  "extra_files": 17,
+  "missing_files": 1,
+  "all_set_differences_end_with": ".baiduyun.uploading.cfg",
+  "production_source_or_tests_changed": false,
+  "formal_report_changed": false,
+  "remedy": "Preserve failed B drive directory and original scripts. Strictly seal at C temporary directory, omit transient sidecars from non-Git artifacts, verify every ZIP entry, then publish only the validated ZIP and report copies to a new B directory. Do not relax the strict verifier or remove any immutable Git file."
+}

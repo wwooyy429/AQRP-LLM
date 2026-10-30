@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "kind": "metadata_only_delivery_identity_correction",
+  "first_materials_commit": "1dc317ebb8e13c841b7091d18e5cee63a8ba22cb",
+  "source_commit_unchanged": "dee26eec9481e8c75c09c2b97c680707d1814452",
+  "actual_diagnostic": "delivery_diagnostic.json",
+  "first_clean_checkout_failure": "git_delivery_first_failure.json",
+  "cause": "Four unchanged protected worktree files use CRLF while their immutable Git blobs use LF. The first packet incorrectly used worktree raw hashes for every managed source.",
+  "affected_paths": [
+    "cloud/main.py",
+    "config/data.json",
+    "config/research.json",
+    "docs/review/phase0-phase1/manifest.json"
+  ],
+  "correction": "For the232 managed source files use the existing source_manifest UTF-8-sig/universal-newline identity, preserving EOF LF count. For all original streams, Registry and other audit evidence continue to require raw-byte SHA256. The verifier binds policy to the fixed source list.",
+  "protected_original_files_modified": false,
+  "source_logic_changed": false,
+  "known_answer_checks": "delivery_identity_checks.json",
+  "known_answer_check_count": 6,
+  "known_answer_checks_passed": true,
+  "auxiliary_file_write": "One patch-tool write to the audit verifier was rejected; atomic write_changed completed the same intended edit. No calculation source or protected file was modified.",
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_budget_events": 0,
+  "final_test_enabled": false,
+  "independent_acceptance": false
+}

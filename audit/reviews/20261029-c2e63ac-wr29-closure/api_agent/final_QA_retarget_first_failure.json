@@ -1,0 +1,9 @@
+{
+  "classification": "reviewer_QA_helper_shell_quoting_error_not_product_or_formal_report_failure",
+  "operation": "Python -c retarget old QA expected hash and output filename",
+  "first_exit": 1,
+  "stderr": "SyntaxError: '(' was never closed; check_formal_final.py not created, subsequent invocation file-not-found",
+  "root_cause": "PowerShell quoting of escaped double quotes broke the inline Python command before any filesystem writes.",
+  "formal_report_or_original_QA_modified": false,
+  "correction": "Use standalone retarget_final_QA.py with ordinary Python strings, then execute unchanged49 static checks for the new final hash."
+}

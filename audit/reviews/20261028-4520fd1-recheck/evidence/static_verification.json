@@ -1,0 +1,112 @@
+{
+  "reviewed_source_commit": "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+  "raw_source_files": 5976,
+  "managed_files": 169,
+  "cloud_files": 32,
+  "source_manifest_hash": "7aba684fecccfd60342acda732dae5b5f8cb23b826ce52de2dee2ea0b38483f4",
+  "execution_source_manifest_hash": "f7007328c504a54435ab2b7ae94b2f6c70df965b01e50a8256318ad0dfb7b820",
+  "deployment_hash": "89a4c8415e0a0ddfe1ddb7e2d59c9e90c28ce70e7f02fe93d1863cdab62217b8",
+  "implementation_hash": "07a49c23b3701e05e3eec1f074103e29d5aaf15f7f3d0df257c47f8781da1c0b",
+  "economic_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "generated_identity_matches": true,
+  "all_raw_Git_bytes_unchanged": true,
+  "runtime_cloud_tools_tests_diff": [],
+  "reused_matrix_exact_refs_verified": 105,
+  "reused_matrix_stages": 8,
+  "reused_matrix_is_static_not_new_tests": true,
+  "QC_calls_this_round": 0,
+  "previous_independent_live_QC_source_only_calls": 35,
+  "previous_live_readback_is_not_current_cloud_status": true,
+  "declared_execution": {
+    "market_research_enabled": false,
+    "llm_runtime_enabled": false,
+    "final_test_enabled": false,
+    "live_trading_enabled": false,
+    "llm_provider": "GPT",
+    "llm_model": null,
+    "llm_call_limit": null,
+    "llm_spend_limit_usd": null,
+    "missing_settings_policy": "Stop the affected stage; do not infer credentials, budget, costs or financial design."
+  },
+  "source_catalog_fields": 15,
+  "data_exposure": {
+    "schema_version": 1,
+    "record_date": "2026-10-26",
+    "factor_specific_sources_and_results_retained": false,
+    "records": [
+      {
+        "start": "2024-01-01",
+        "end": "2025-12-31",
+        "exposure": "prior research screening and direction decisions",
+        "independent_test_eligible": false
+      },
+      {
+        "start": "2016-01-01",
+        "end": "2016-12-31",
+        "exposure": "technical data-clock/schema fixtures; no new-factor performance",
+        "independence_claim": false
+      },
+      {
+        "start": "2020-08-27",
+        "end": "2020-09-03",
+        "exposure": "technical corporate-action fixture; no new-factor performance",
+        "independence_claim": false
+      },
+      {
+        "start": "2018-01-01",
+        "end": "2018-12-31",
+        "exposure": "Two-symbol shared-cache and calendar engineering fixture; no economic factor, return or IC computed",
+        "independence_claim": false
+      }
+    ],
+    "requested_final_window": "2024-01-01/2026-10-23",
+    "whole_window_uncontaminated": false,
+    "year2026_independence": "requires independent review",
+    "note": "Deleting old files cannot erase prior research exposure; this minimal fact ledger contains no old factor formulas, parameters or performance."
+  },
+  "git_commands": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "rev-parse",
+        "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8^{tree}"
+      ],
+      "exit_code": 0,
+      "stdout": "4719a951ddbb9f42f307478f718070b19cf941f1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "merge-base",
+        "6a1edbf07fa8fc6cf774084094f4beacc28ff60b",
+        "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8"
+      ],
+      "exit_code": 0,
+      "stdout": "6a1edbf07fa8fc6cf774084094f4beacc28ff60b\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\repo",
+        "diff",
+        "--name-only",
+        "662ccd876b67ca0949f921a53c4c33df37cfbbf1",
+        "4520fd1a4421a9b764d2bfd61e5fb5cf4b59a9c8",
+        "--",
+        "cloud",
+        "tools",
+        "tests"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

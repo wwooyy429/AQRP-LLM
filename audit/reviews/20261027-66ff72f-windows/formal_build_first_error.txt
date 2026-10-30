@@ -1,0 +1,6 @@
+Report generation first attempt: exit1; no formal report had been written.
+Traceback (most recent call last):
+  File "build_formal_report.py", line 14, in <module>
+    d=read(path);assert d['methods']==m and d['subcases']==n and d['failed_methods']==d['error_methods']==0
+KeyError: 'failed_methods'
+This was a reviewer report-reader schema assumption: CLI test summaries record failure_records/error_records; pure summaries record failed_methods/error_methods. Both actual test results already passed. The generator is separately retained as build_formal_report_first.py; the corrected reader selects their actual fields without changing any result or assertion expectation.

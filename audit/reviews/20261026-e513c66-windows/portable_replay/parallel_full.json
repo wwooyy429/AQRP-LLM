@@ -1,0 +1,259 @@
+{
+  "fixed_commit": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "command_argv": [
+    "receipt_agent/minimal_parallel_output.py",
+    "--source",
+    "source",
+    "--out",
+    "parallel_full.json"
+  ],
+  "script_sha256": "3be0545d41ff0864151850cdc63321f041cb2ac91d538db83fd323e5529532fa",
+  "variants": [
+    {
+      "variant": "clean_control",
+      "expected": "completed",
+      "actual_status": "completed",
+      "passes_expected_gate": true,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "extra_native_content": null,
+      "source_fetch_calls": 1,
+      "row_sentinel_persisted_in_registry": false,
+      "input_sha256_matches": true,
+      "usage_export_calls_are_in_memory_only": 1,
+      "registry_research_usage": 10,
+      "plan_hash": "04fc50f77c3024b549e06afb389e0f28b49588ca339110ca5ae872cc43f14dc2",
+      "attempt_id": "0bf2440158bb4f728a366d138522bd28",
+      "tool_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99281,
+          "index": 3
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "output_type": "stream",
+                "name": "stdout",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvMGJmMjQ0MDE1OGJiNGY3MjhhMzY2ZDEzODUyMmJkMjguanNvbiIsInNoYTI1NiI6IjJlNDM3NzFmY2QyOWI2MzdjNTViNTE1ZjI0ODBhYzgzNThhYTM4NDQ3NDVmNjQ0NjY2ZWY5ZDcyYWU5MWZiZGQifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiMGJmMjQ0MDE1OGJiNGY3MjhhMzY2ZDEzODUyMmJkMjgiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzBiZjI0NDAxNThiYjRmNzI4YTM2NmQxMzg1MjJiZDI4Lmpzb24iLCJzaGEyNTYiOiJiMDc0MDExNTY3OTA4YjMzM2FiMmI0YTc5MDQyMzZkMjYxNWU3ZTUxMGY5MDc3YTk4ZTNjOGNkMjUzMmFmYmVjIn19\n"
+              }
+            ],
+            "status": "ok",
+            "success": true
+          }
+        }
+      }
+    },
+    {
+      "variant": "equivalent_dual",
+      "expected": "completed",
+      "actual_status": "completed",
+      "passes_expected_gate": true,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "extra_native_content": [
+        {
+          "type": "text",
+          "text": "{\"outputs\": [{\"output_type\": \"stream\", \"name\": \"stdout\", \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzguanNvbiIsInNoYTI1NiI6ImI5OGU1NzkyMzNiODQ3NmZiOWIyODg2ZmIyNWE2ZDU0NGY4OTk0NjE1MDAyMzg1ODljZDBlN2E3YWE1ZmZlMzAifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzgiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzc4MDBjYWM3M2NmNDQ2OWViMjE1ZDgzNmUwNTZhNGM4Lmpzb24iLCJzaGEyNTYiOiI5YTA5ZGU0ZDJjZTE3OGQ2ODMzNjY1NTFlNjRhYmRiOGM1NjZlMGI4OGEwZTczNDc3ZTJjYWJkZTA2NDUxYjEzIn19\\n\"}], \"status\": \"ok\", \"success\": true}"
+        }
+      ],
+      "source_fetch_calls": 1,
+      "row_sentinel_persisted_in_registry": false,
+      "input_sha256_matches": true,
+      "usage_export_calls_are_in_memory_only": 1,
+      "registry_research_usage": 10,
+      "plan_hash": "04fc50f77c3024b549e06afb389e0f28b49588ca339110ca5ae872cc43f14dc2",
+      "attempt_id": "7800cac73cf4469eb215d836e056a4c8",
+      "tool_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99281,
+          "index": 3
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "output_type": "stream",
+                "name": "stdout",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzguanNvbiIsInNoYTI1NiI6ImI5OGU1NzkyMzNiODQ3NmZiOWIyODg2ZmIyNWE2ZDU0NGY4OTk0NjE1MDAyMzg1ODljZDBlN2E3YWE1ZmZlMzAifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzgiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzc4MDBjYWM3M2NmNDQ2OWViMjE1ZDgzNmUwNTZhNGM4Lmpzb24iLCJzaGEyNTYiOiI5YTA5ZGU0ZDJjZTE3OGQ2ODMzNjY1NTFlNjRhYmRiOGM1NjZlMGI4OGEwZTczNDc3ZTJjYWJkZTA2NDUxYjEzIn19\n"
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"outputs\": [{\"output_type\": \"stream\", \"name\": \"stdout\", \"text\": \"AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzguanNvbiIsInNoYTI1NiI6ImI5OGU1NzkyMzNiODQ3NmZiOWIyODg2ZmIyNWE2ZDU0NGY4OTk0NjE1MDAyMzg1ODljZDBlN2E3YWE1ZmZlMzAifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiNzgwMGNhYzczY2Y0NDY5ZWIyMTVkODM2ZTA1NmE0YzgiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzc4MDBjYWM3M2NmNDQ2OWViMjE1ZDgzNmUwNTZhNGM4Lmpzb24iLCJzaGEyNTYiOiI5YTA5ZGU0ZDJjZTE3OGQ2ODMzNjY1NTFlNjRhYmRiOGM1NjZlMGI4OGEwZTczNDc3ZTJjYWJkZTA2NDUxYjEzIn19\\n\"}], \"status\": \"ok\", \"success\": true}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variant": "extra_text_row",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "extra_native_content": [
+        {
+          "type": "text",
+          "text": "INDEPENDENT-PARALLEL-OUTPUT-ROW 123456789.75"
+        }
+      ],
+      "source_fetch_calls": 1,
+      "row_sentinel_persisted_in_registry": false,
+      "input_sha256_matches": true,
+      "usage_export_calls_are_in_memory_only": 1,
+      "registry_research_usage": 10,
+      "plan_hash": "04fc50f77c3024b549e06afb389e0f28b49588ca339110ca5ae872cc43f14dc2",
+      "attempt_id": "4bf1c489f6274cd29b7b67656d010b62",
+      "tool_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99281,
+          "index": 3
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "output_type": "stream",
+                "name": "stdout",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvNGJmMWM0ODlmNjI3NGNkMjliN2I2NzY1NmQwMTBiNjIuanNvbiIsInNoYTI1NiI6IjVkM2YzNDdiYzMyZmJjNDg0MjQ3MWQ4OTUwNTVmOTNhYjkwZjgxMzBlNjFmZDNhZTZhNzdmMzc2MzI1YzFiYjMifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiNGJmMWM0ODlmNjI3NGNkMjliN2I2NzY1NmQwMTBiNjIiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzRiZjFjNDg5ZjYyNzRjZDI5YjdiNjc2NTZkMDEwYjYyLmpzb24iLCJzaGEyNTYiOiI3MjY2MmE5Yjc1YzNmZTI1NmJmMTlkYmZiY2Y2MjUwMmNiZDRlYmVjM2VjMDQyYTEzZjFiZjAzOGQzODI5OTI1In19\n"
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "INDEPENDENT-PARALLEL-OUTPUT-ROW 123456789.75"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variant": "extra_display_row",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "extra_native_content": [
+        {
+          "type": "text",
+          "text": "{\"outputs\": [{\"output_type\": \"display_data\", \"data\": {\"text/plain\": \"INDEPENDENT-PARALLEL-OUTPUT-ROW 123456789.75\"}}]}"
+        }
+      ],
+      "source_fetch_calls": 1,
+      "row_sentinel_persisted_in_registry": false,
+      "input_sha256_matches": true,
+      "usage_export_calls_are_in_memory_only": 1,
+      "registry_research_usage": 10,
+      "plan_hash": "04fc50f77c3024b549e06afb389e0f28b49588ca339110ca5ae872cc43f14dc2",
+      "attempt_id": "ddb7d506d08340b18430a4a887676228",
+      "tool_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99281,
+          "index": 3
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "output_type": "stream",
+                "name": "stdout",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvZGRiN2Q1MDZkMDgzNDBiMTg0MzBhNGE4ODc2NzYyMjguanNvbiIsInNoYTI1NiI6IjM3NjVkNGRkZjljNTJiYjUxYmQ3MmYwMWM4ZGJlZWY1ZmU0NTMxMzcxOGFmZjE5Y2ViZjU4NjdjNWQwZDNlYWIifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiZGRiN2Q1MDZkMDgzNDBiMTg0MzBhNGE4ODc2NzYyMjgiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoL2RkYjdkNTA2ZDA4MzQwYjE4NDMwYTRhODg3Njc2MjI4Lmpzb24iLCJzaGEyNTYiOiJhMWNhYzdhY2Y4OTcwODQ2YjM4NjYwNTI0ZmFkMDU0Zjk4YTAwNTQ3ZTZmNWY5YWFhYTU5YjI2OGM5NDE4MTQxIn19\n"
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"outputs\": [{\"output_type\": \"display_data\", \"data\": {\"text/plain\": \"INDEPENDENT-PARALLEL-OUTPUT-ROW 123456789.75\"}}]}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "variant": "extra_error",
+      "expected": "reject",
+      "actual_status": "completed",
+      "passes_expected_gate": false,
+      "parsed_stdout_only": true,
+      "parsed_marker_count": 1,
+      "market_values_exported": false,
+      "extra_native_content": [
+        {
+          "type": "text",
+          "text": "{\"outputs\": [{\"output_type\": \"error\", \"ename\": \"RuntimeError\", \"evalue\": \"synthetic execution failed\", \"traceback\": []}], \"status\": \"error\", \"success\": false}"
+        }
+      ],
+      "source_fetch_calls": 1,
+      "row_sentinel_persisted_in_registry": false,
+      "input_sha256_matches": true,
+      "usage_export_calls_are_in_memory_only": 1,
+      "registry_research_usage": 10,
+      "plan_hash": "04fc50f77c3024b549e06afb389e0f28b49588ca339110ca5ae872cc43f14dc2",
+      "attempt_id": "2ac34f742934430ba2133e2878785b55",
+      "tool_envelope": {
+        "tool_name": "mcp__quantconnect__jupyter_execute_cell",
+        "arguments": {
+          "projectId": 99281,
+          "index": 3
+        },
+        "result": {
+          "isError": false,
+          "structuredContent": {
+            "outputs": [
+              {
+                "output_type": "stream",
+                "name": "stdout",
+                "text": "AQRP_ENGINEERING_JSON eyJjbG91ZF9yZXBvcnQiOnsiYWN0dWFsX2F2YWlsYWJpbGl0eV92ZXJpZmllZCI6ZmFsc2UsImNoZWNrcyI6eyJhbGxfd2luZG93c19jb21wbGV0ZWQiOnRydWUsImNhY2hlX29ubHlfcmVwbGF5X3plcm9fZmV0Y2giOnRydWUsImNsb3VkX3Jvd3Nfbm90X2V4cG9ydGVkIjp0cnVlLCJkZXZlbG9wbWVudF9vbmx5Ijp0cnVlLCJzYW1lX2NvbXBsZXRlZF9yZWZzIjp0cnVlLCJzb3VyY2VfaWRlbnRpdHlfbWF0Y2hlcyI6dHJ1ZX0sImVjb25vbWljX2ZhY3Rvcl90ZXN0ZWQiOmZhbHNlLCJldmlkZW5jZSI6eyJjb2xsZWN0aW9uX3BsYW5faGFzaCI6IjM5MWU3NmYzNjQxOWY0ZWE5NDk5ZTJkYmE0ZWE3YzU1ZDlhOGU1MzNkYmRkYWVmYTZmZmIwNmIzMWEzMTI3ZjQiLCJjb2xsZWN0aW9uX3JlY2VpcHRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVjZWlwdHMvMmFjMzRmNzQyOTM0NDMwYmEyMTMzZTI4Nzg3ODViNTUuanNvbiIsInNoYTI1NiI6ImY5YzgyYjM0MTk0MjI0YWZjMTU4ZjU2Zjk5OGM1M2Y0ZWIwZDc0YzJhMjRjM2RmZTdjMDZjNWMwMDdmMThlMGQifSwibWlzc2luZ192YWx1ZXMiOnsiZG9sbGFyX3ZvbHVtZSI6MH19LCJmaW5hbF9kYXRhX2FjY2Vzc2VkIjpmYWxzZSwiZnVsbF9VUzIwMF9jb3ZlcmFnZV9jZXJ0aWZpZWQiOmZhbHNlLCJpZGVudGl0eSI6eyJhdHRlbXB0X2lkIjoiMmFjMzRmNzQyOTM0NDMwYmEyMTMzZTI4Nzg3ODViNTUiLCJjb25maWdfaWQiOiJkN2Y1ZGE1OTIwMGVlODJhMzJhMDYxOWQ4NTUxYzhhOGZhMDY0ZDE5ZDBhNGQ3M2RjYjM4OTgyYThmNTI0N2MxIiwiZGF0YV9yZXF1ZXN0X2hhc2giOiIzOTFlNzZmMzY0MTlmNGVhOTQ5OWUyZGJhNGVhN2M1NWQ5YThlNTMzZGJkZGFlZmE2ZmZiMDZiMzFhMzEyN2Y0IiwiZGVwbG95bWVudF9oYXNoIjoiYzhlNTkxNWJmZDJmNGNkZjE0YWU4NmRmMjgwMzdkNmU5NDAwMTMyNWI4ZTkyZGJiNDUwYjc3YzM2OThiNzQ3OCIsInBsYW5faGFzaCI6IjA0ZmM1MGY3N2MzMDI0YjU0OWUwNmFmYjM4OWUwZjI4YjQ5NTg4Y2EzMzkxMTBjYTVhZTg3MmNjNDNmMTRkYzIiLCJwcm9qZWN0X2lkIjo5OTI4MSwic291cmNlX21hbmlmZXN0X2hhc2giOiJlZTQxNzA2YTRiZTRiZjc1OTk1YTdiMDZhMTllYTgzNjhjZjdmMzhhMWE2MGE3ODQ2YjhiZmI3NDJhNTE0N2M1Iiwic3RhZ2UiOiJyZXNlYXJjaCJ9LCJtYXJrZXRfdmFsdWVzX2V4cG9ydGVkIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInN0YXRpc3RpY3MiOnsiY2FjaGVfb25seV9zb3VyY2VfZmV0Y2hfY2FsbHMiOjAsImVtcHR5X3dpbmRvd3MiOjAsInJlY29yZF9jb3VudCI6MSwicmV1c2VkX3dpbmRvd3MiOjAsInNvdXJjZV9mZXRjaF9jYWxscyI6MSwid2luZG93X2NvdW50IjoxfSwic3RhdHVzIjoiY29tcGxldGVkIiwidGVybWluYWwiOnRydWV9LCJyZXBvcnRfcmVmIjp7ImtleSI6ImluZGVwZW5kZW50LW1pbmltYWwvcmVwb3J0cy8wNGZjNTBmNzdjMzAyNGI1NDllMDZhZmIzODllMGYyOGI0OTU4OGNhMzM5MTEwY2E1YWU4NzJjYzQzZjE0ZGMyL3Jlc2VhcmNoLzJhYzM0Zjc0MjkzNDQzMGJhMjEzM2UyODc4Nzg1YjU1Lmpzb24iLCJzaGEyNTYiOiI4ZjM1NDY5NmQyYTM3MjQxZDQyMTI1NGY5MjViYjJhODE3MWFlZThiZTlkNmVmYzg0OTlhZDQ5NDNhMThmMWFiIn19\n"
+              }
+            ],
+            "status": "ok",
+            "success": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"outputs\": [{\"output_type\": \"error\", \"ename\": \"RuntimeError\", \"evalue\": \"synthetic execution failed\", \"traceback\": []}], \"status\": \"error\", \"success\": false}"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "confirmed_false_acceptances": 3,
+  "scope": "independent native-shape replay only; no actual SDK/Research call",
+  "real_actions": {
+    "Research": 0,
+    "SDK": 0,
+    "market": 0,
+    "LEAN": 0,
+    "models": 0,
+    "deploy": 0,
+    "budget_mutation": 0,
+    "source_edits": 0
+  }
+}

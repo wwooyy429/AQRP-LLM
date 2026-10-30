@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "developer_offline_phase01_recheck",
+  "generated_at_utc": "2026-10-26T06:32:29.407511+00:00",
+  "reviewed_source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "expected_original_source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+  "environment": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11",
+    "packages": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "python-dateutil": "2.9.0.post0",
+      "pytz": "2026.3.post1",
+      "tzdata": "2026.3",
+      "six": "1.17.0"
+    }
+  },
+  "source_file_count": 91,
+  "source_integrity_errors_before": [],
+  "independent_review": false,
+  "financial_evidence": false,
+  "market_execution_requested": false,
+  "Research_calls_added": 0,
+  "LEAN_submissions_added": 0,
+  "configuration_registrations_added": 0,
+  "tests": {
+    "actually_executed": true,
+    "run": 141,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "failure_records_including_subtests": 0,
+    "error_records_including_subtests": 0,
+    "expected_failures": 0,
+    "unexpected_successes": 0,
+    "test_methods_by_module": {
+      "test_study": 12,
+      "test_audit_bridge": 4,
+      "test_persistence": 21,
+      "test_data_pipeline": 9,
+      "test_factors": 16,
+      "test_known_answers": 1,
+      "test_labels_models": 22,
+      "test_pipeline": 8,
+      "test_quantconnect_adapter": 11,
+      "test_runtime": 2,
+      "test_runtime_binding": 10,
+      "test_work_p1_minimal": 2,
+      "test_work_wr03_minimal": 1,
+      "test_workflow": 22
+    },
+    "seconds": 2.25,
+    "successful": true,
+    "output": ".............................................................................................................................................\n----------------------------------------------------------------------\nRan 141 tests in 2.259s\n\nOK\n",
+    "passed": 141
+  },
+  "source_manifest_command": "python -B tools/stages.py manifest (cwd=fixed source)",
+  "source_manifest_exit_code": 0,
+  "actual_original_source_manifest_hash": "566f04a2da8113844a8a269cd2343aad5df2b40b851886816064b423061fef06",
+  "test_command": "python -B review/run_checks.py --child --source-dir source --manifest review/manifest.json (absolute paths resolved at execution)",
+  "test_process_exit_code": 0,
+  "source_integrity_errors_after": [],
+  "developer_recheck_passed": true,
+  "known_open_findings": [
+    "WR-04"
+  ],
+  "acceptance_note": "Developer evidence only. Does not resolve WR-04 or grant independent phase/system acceptance.",
+  "protected_state_before": {
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "audit/runtime/registry/events.jsonl": "caeab4328922974e448de2027cb6a24104faae758604674801c67f92cd26c0ed",
+    "audit/data_exposure.json": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95",
+    "config/development.json": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08"
+  },
+  "protected_state_after": {
+    "config/budget.json": "c698994490716a9aed23c10b6df543141b58ebc1df446e2242b2a6b7e92998e0",
+    "audit/runtime/registry/events.jsonl": "caeab4328922974e448de2027cb6a24104faae758604674801c67f92cd26c0ed",
+    "audit/data_exposure.json": "e2dca7f851229b3382a385eaf0cc3d4af7a3ddd8d6215af19dfc2a0e943dbe95",
+    "config/development.json": "7c78ba7d928222795c6ef05e34be46f680d22630edbf6f8b692dec6726e31d08"
+  },
+  "authoritative_state_unchanged": true,
+  "source_archive_origin": "git archive --format=zip 75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4; isolated temporary directory removed after checking",
+  "dependency_profile": "Existing local environment; NumPy differs from requirements-test.txt; additional compatibility evidence only",
+  "canonical_fixed_dependency_evidence": false,
+  "note": "Initial helper did not require pinned dependencies in its success flag; original141 passing executions remain compatibility evidence only."
+}

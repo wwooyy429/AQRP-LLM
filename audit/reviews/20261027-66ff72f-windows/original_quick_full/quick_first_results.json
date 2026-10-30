@@ -1,0 +1,142 @@
+{
+  "source_commit": "8f7236ecbafcb514f07a6af4150a5afdbc1fd474",
+  "methods": 7,
+  "passed_methods": 6,
+  "failed_methods": 1,
+  "error_methods": 0,
+  "skipped": 0,
+  "subcases": 0,
+  "failures": [
+    {
+      "method": "__main__.JointProbes.test_legacy_freeze_must_not_replace_pending_project_pointer",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\original_quick_full\\quick_joint_probes.py\", line 93, in test_legacy_freeze_must_not_replace_pending_project_pointer\n    self.assertNotEqual(joint_result.returncode,0,joint_result.stdout)\nAssertionError: 0 == 0 : {\"schema_version\": 1, \"plan_key\": \"engineering/frozen-plans/167f5602edce468bfd85745081d8c59aa567fe94d5a894c7d6466a1c183f02c3.json\", \"plan_hash\": \"167f5602edce468bfd85745081d8c59aa567fe94d5a894c7d6466a1c183f02c3\", \"project_listing_ref\": {\"key\": \"engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json\", \"sha256\": \"498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6\"}, \"configuration_registered\": false, \"execution_started\": false}\n\n"
+    }
+  ],
+  "errors": [],
+  "observations": {
+    "premature_lean": {
+      "attempt": null,
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": "Joint LEAN requires completed Research for this exact plan first"
+    },
+    "zero_retry": {
+      "attempt": null,
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": "Preregistered joint engineering retry bound reached",
+      "bridge_payload_usable": null
+    },
+    "wrong_operation": {
+      "attempt": null,
+      "before": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "after": {
+        "configurations": {
+          "total": 1,
+          "normal": 1,
+          "reserve": 0
+        },
+        "research": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        },
+        "lean": {
+          "total": 0,
+          "normal": 0,
+          "reserve": 0
+        }
+      },
+      "error": "Joint engineering permits only its fixed stage operation"
+    }
+  },
+  "command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-66ff72f-20261027\\original_quick_full\\quick_joint_probes.py"
+  ],
+  "script_sha256": "b3eb2d148bdc41e551e24b67f689602066a06aba3adcbbfae70224436aef6af7",
+  "actual_external_calls": 0,
+  "author_fixture_imports": false,
+  "exit_code": 1
+}

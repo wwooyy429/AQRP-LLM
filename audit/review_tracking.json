@@ -1,140 +1,186 @@
 {
-  "schema_version": 2,
+  "schema_version": 25,
   "repository": "wwooyy429/AQRP-LLM",
-  "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/1",
-  "reviewed_source_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
-  "source_manifest_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
+  "pull_request": "https://github.com/wwooyy429/AQRP-LLM/pull/2",
+  "previous_tracking": {
+    "commit": "e48beff7343ab61726682f67867785d7078572b7",
+    "path": "audit/review_tracking.json",
+    "preserved_copy": "audit/review_packages/wr29_closure/previous_review_tracking.snapshot.json"
+  },
+  "latest_independent_report": "audit/reviews/20261029-c2e63ac-wr29-closure/formal_report.json",
+  "latest_independent_result": "audit/review_results/wr29.json",
+  "reviewed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "reviewed_delivery_commit": "f698a38a99c3ed8388c9403f2eda723b579c5eaf",
+  "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
   "accepted_stages": [
     0,
     1
   ],
-  "acceptance_scope": "Fixed-version offline synthetic software acceptance only",
-  "review_is_financial_final_test": false,
-  "review_history": [
+  "acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+  "software_acceptance_bound_to_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+  "stage_acceptance": [
     {
-      "reviewed_commit": "113fdf7cf7147d58a8b3125beceeaeee0f6aa962",
-      "source_hash": "2231d32bac52db386ed084a9432f1d2e1c88a65c204b81d8b602b668962805d7",
-      "stage_results": {
-        "0": {
-          "status": "failed",
-          "blocking_findings": [
-            "WR-02"
-          ]
-        },
-        "1": {
-          "status": "failed",
-          "blocking_findings": [
-            "WR-01"
-          ]
-        }
-      },
-      "report_path": "audit/reviews/113fdf7cf7147d58a8b3125beceeaeee0f6aa962.json"
+      "stage": 0,
+      "modules": "规范、身份、Registry、预算、归档",
+      "implementation": "已有组件",
+      "evidence": "1012回归、218身份、161原件恢复、71事件重放",
+      "verdict": "已测离线回归范围通过",
+      "missing": "不涵盖生产调度或远端真实性"
     },
     {
-      "reviewed_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
-      "source_hash": "a0dd6a3ff7d631771ec54c3dd531c1b40a1e436babe94921ae0070ed177a1e99",
-      "stage_results": {
-        "0": {
-          "status": "passed_after_fix",
-          "scope": "Offline synthetic software acceptance on the fixed commit; native Windows kernel behavior not certified"
-        },
-        "1": {
-          "status": "failed",
-          "blocking_findings": [
-            "WR-03"
-          ]
-        },
-        "2-7": {
-          "status": "not_accepted"
-        }
-      },
-      "report_path": "audit/reviews/dd7710854bca31135d2fc86f4f5625b8ded05d65.json"
+      "stage": 1,
+      "modules": "因子、PIT、标签、模型、滚动内核",
+      "implementation": "共享内核未改",
+      "evidence": "仓库及既往相关回归重放",
+      "verdict": "已测回归范围通过",
+      "missing": "无金融有效性验收"
     },
     {
-      "reviewed_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
-      "source_hash": "cb768720723f0c335356014cc85bcc3ed90d0be0272a44698c0172f7a65ccebf",
-      "stage_results": {
-        "0": {
-          "status": "passed_after_fix",
-          "scope": "Offline synthetic software acceptance of this fixed commit"
-        },
-        "1": {
-          "status": "passed_after_fix",
-          "scope": "Offline factor, realized-label, fixed-model and synthetic integration acceptance"
-        },
-        "2-7": {
-          "status": "not_accepted"
-        }
-      },
-      "report_path": "audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json"
+      "stage": 2,
+      "modules": "QC、任务桥、通知与本地宿主",
+      "implementation": "部分实现",
+      "evidence": "WR29原范围关闭；本地CLI/stdio/API及故障恢复有限测试通过",
+      "verdict": "局部软件通过；整体未通过",
+      "missing": "真实factory/transport/通知/新云端工程、完整回执、数据认证及计费认证派发"
+    },
+    {
+      "stage": 3,
+      "modules": "评价、共同样本与滚动",
+      "implementation": "局部内核",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整分层收益/风险及真实固定六轮研究"
+    },
+    {
+      "stage": 4,
+      "modules": "工程接收器、标签成交/成本",
+      "implementation": "局部组件",
+      "evidence": "无新真实执行，旧b1a有限证据保留",
+      "verdict": "未验收",
+      "missing": "完整组合交易/账本/风险/压力与对账"
+    },
+    {
+      "stage": 5,
+      "modules": "受限提案与持久化状态机",
+      "implementation": "局部组件",
+      "evidence": "默认关闭及权限边界测试",
+      "verdict": "未验收",
+      "missing": "实际GPT客户端、模型/调用/费用及真实研究闭环"
+    },
+    {
+      "stage": 6,
+      "modules": "相似性、相关性及复杂度",
+      "implementation": "局部组件",
+      "evidence": "合成回归",
+      "verdict": "未验收",
+      "missing": "完整搜索/消融/净增量/选择偏差实证"
+    },
+    {
+      "stage": 7,
+      "modules": "冻结、暴露与关闭闸门",
+      "implementation": "元数据骨架",
+      "evidence": "既往暴露保留，最终测试关闭",
+      "verdict": "未验收",
+      "missing": "独立最终执行器/前向监控回滚及2026独立性"
     }
   ],
-  "gpt_work": {
-    "task_id": "6ade8331-1c9c-83e8-b954-0d5a6debc8b7",
-    "task_kind_verified": "chatgpt",
-    "title": "AQRP-LLM 阶段0–1独立验收",
-    "execution_mode_requested": "chatgptWorkCloud",
-    "status": "passed_after_repairs",
-    "approved": true,
-    "report_path": "audit/reviews/ddca623a879d7f051540b6a15a3fe29bc7b96441.json",
-    "native_windows_certified": false
+  "known_open_findings": [],
+  "known_open_findings_scope": "No new product defect confirmed in this exact review; not proof of absence in untested code.",
+  "current_candidate": {
+    "kind": "independently_reviewed_WR29_local_source",
+    "source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+    "source_manifest_hash": "9d0d6da95815ee77d993d823df616d575a3ec4f00f5e40e859a7858de02dad5f",
+    "independent_acceptance": true,
+    "independent_acceptance_scope": "WR29 original factory identity defect; independently tested local CLI/stdio/API finite range only",
+    "cloud_deployed": false
   },
-  "developer_checks": {
-    "platform": "Windows",
-    "synthetic_tests": 138,
-    "passed": 138,
-    "new_market_executions": 0,
-    "previous_local_failure_report": "audit/reviews/local-128-lock-failure.json",
-    "additional_finding_record": "audit/reviews/local-followup-findings.json"
+  "latest_real_runtime_source_commit": "b1a4041ce98867047294b8f0830292af5d7ec56e",
+  "historical_terminal_materials_commit": "ca5e4f3f68a58297cf02d97629346e10306ebcf0",
+  "actual_review_task": {
+    "thread_id": "01a175b6-fed2-77d0-a763-522b6fd695cf",
+    "host_id": "local",
+    "kind": "codex",
+    "title": "更新 GPT 审核与验收状态",
+    "completed_turn_id": "01a1879e-1025-7ce2-bfef-06fea9080a7c"
   },
-  "github_actions": {
-    "source_run_id": 40243674065,
-    "url": "https://github.com/wwooyy429/AQRP-LLM/actions/runs/40243674065",
-    "source_commit": "ddca623a879d7f051540b6a15a3fe29bc7b96441",
-    "conclusion": "success",
-    "python_matrix": [
-      "3.10",
-      "3.11"
-    ],
-    "tests_each": 138,
-    "both_jobs_completed_successfully": true,
-    "source_manifest_matched": true,
-    "earlier_successful_runs": [
-      40240499422,
-      40242492066
-    ]
+  "current_engineering_round": {
+    "round_id": "stage2-storage-repair-round-008",
+    "status": "closed",
+    "new_round_registered": false
   },
-  "independent_test_executions": {
-    "repository": 138,
-    "original_independent": 32,
-    "original_minimal_reproductions": 2,
-    "second_review_added": 16,
-    "third_review_added": 14,
-    "all_passed": true,
-    "contents_deduplicated": false
+  "budget_usage": {
+    "configuration_cycle": {
+      "used": 3,
+      "limit": 13
+    },
+    "lifetime_configurations": 16,
+    "research": {
+      "used": 17,
+      "limit": 20
+    },
+    "lean": {
+      "used": 3,
+      "limit": 16
+    },
+    "journal_events": 71
   },
-  "findings": {
-    "WR-01": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441",
-    "WR-02": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441",
-    "WR-03": "independently_verified_resolved_on_ddca623a879d7f051540b6a15a3fe29bc7b96441"
-  },
-  "stage_acceptance": {
-    "0": "passed_after_repairs",
-    "1": "passed_after_repairs",
-    "2_to_7": "not_accepted"
-  },
-  "stage2_readiness_record": "audit/stage2_readiness.json",
-  "research_budget_usage": {
-    "configurations": 5,
-    "research": 8,
-    "lean": 0
-  },
+  "remaining_stage2_acceptance_gates": [
+    "Actual production factory/transport/scheduler/notification integration remains unverified.",
+    "New44-file source has no actual cloud engineering run; old b1a2018 chain remains historical.",
+    "Complete native receipt collection/settlement/round-closing integration is not accepted.",
+    "Full2010-2023 historical US200/SID/calendar/raw-price/corporate-action coverage is uncertified.",
+    "Financial numeric catalog remains0; vintage/publication/actual historical vendor-delivery/ingestion evidence is incomplete.",
+    "Complete charged certification native dispatch and stages3-7 remain unaccepted."
+  ],
+  "new_market_or_model_calls": 0,
+  "new_budget_events": 0,
+  "whole_system_acceptance": false,
+  "stage2_accepted": false,
+  "financial_evidence": false,
   "final_evaluation_enabled": false,
   "prior_2024_2025_exposure_preserved": true,
-  "later_record_commit_scope": "Archive reports and update documentation only; code acceptance remains bound to reviewed_source_commit and source_manifest_hash.",
-  "publication_transport_repair": {
-    "superseded_commit": "d256abf6b342fffb5e80286296d39c80bee8e7f6",
-    "corrected_commit": "dd7710854bca31135d2fc86f4f5625b8ded05d65",
-    "reason": "Restore UTF-8 text through escaped transport and compare source exactly."
-  }
+  "year2026_independence": "not_certified",
+  "sealed_request_package009": "Use original a6a5a16 Git snapshot; its pending flag is the historical request, not current review status.",
+  "prior_passed_review": "audit/review_results/recovery009.json",
+  "closed_findings": [
+    {
+      "id": "WR-29",
+      "original_priority": "P1",
+      "status": "fixed_verified_closed",
+      "original_review_id": "AQRP-20261029-2D1D306-HOST010-26",
+      "original_source_commit": "2d1d3060dbc7eb136c1dee61f0647977528b8aad",
+      "original_file": "tools/followup_host.py",
+      "original_line": 469,
+      "fixed_source_commit": "c2e63ac5f19901bd95e127069b5998452f7f9864",
+      "scope": "标准脚本及-m入口拒绝普通canonical-import合法factory的原缺陷范围",
+      "original_expected_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_actual_exits": [
+        0,
+        2,
+        2
+      ],
+      "fixed_actual_exits": [
+        0,
+        0,
+        0
+      ],
+      "original_MRE_assertion_exit": 1,
+      "fixed_MRE_assertion_exit": 0,
+      "original_script_and_success_expectations_unchanged": true,
+      "repair": "在定义类型和加载factory前委派canonical followup_host.main；10个顶层函数/类AST原样保留",
+      "normal_path_and_strict_negative_paths_verified": true,
+      "not_granted": [
+        "倒改2d1d306原失败",
+        "生产factory/MCP调度/平台通知成功",
+        "完整回执收集或计费认证派发",
+        "完整阶段2、数据认证或金融有效性"
+      ]
+    }
+  ],
+  "original_failed_review": "audit/review_results/host010.json",
+  "metadata_archive_independently_accepted": false
 }

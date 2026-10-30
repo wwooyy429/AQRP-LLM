@@ -1,0 +1,45 @@
+{
+  "baseline_commit": "a6b14b05e913daa894c9049b428e953954b40e08",
+  "same_final_test_bytes": true,
+  "test_raw_sha256": "c89caa348d18e023b514df42bdba5ac56eb39d41aee806bc737dc714b7122bf2",
+  "baseline": {
+    "exit_code": 1,
+    "methods": 22,
+    "failure_outcomes": 1,
+    "error_outcomes": 62,
+    "unique_unsuccessful_methods": 22
+  },
+  "candidate": {
+    "exit_code": 0,
+    "methods": 22,
+    "failure_outcomes": 0,
+    "error_outcomes": 0,
+    "unique_unsuccessful_methods": 0
+  },
+  "compatibility": {
+    "exit_code": 0,
+    "methods": 100,
+    "failure_outcomes": 0,
+    "error_outcomes": 0,
+    "unique_unsuccessful_methods": 0
+  },
+  "source_raw_sha256": {
+    "cloud/qresearch/engineering_receipts.py": "1cc949c440789326544497ac24fab476aa98bac7a3400a27908e05e60f05fc3a",
+    "tools/stage2.py": "b05ea7654a3151e1e99f33ff1a570560e8cee06f1259ccf7b226b6467af4f10a",
+    "tests/test_native_research_failure.py": "c89caa348d18e023b514df42bdba5ac56eb39d41aee806bc737dc714b7122bf2"
+  },
+  "native_QC_failed_cell_observed": false,
+  "supported_failure_grammar": "synthetic nbformat single error node/direct/list or explicit status=error single-cell wrapper",
+  "all_carriers_and_exact_dispatch_bound": true,
+  "unknown_transport_outcome_can_settle": false,
+  "legacy_failure_without_prior_entry_protocol_can_settle": false,
+  "legacy_success_marker_compatible": true,
+  "schema_authenticates_remote_provenance": false,
+  "new_marker_write_fault_behavior": "First admission may persist before entry-protocol write. Existing input recovery never backfills. Dispatch stays blocked, no API call is authorized; charged attempt remains unresolved for explicit reconciliation.",
+  "first_candidate_fixture_error": "Registry.ambiguous was incorrectly called with positional reason in one synthetic test. Original output retained; changed fixture to the documented reason keyword. No production fix for that error.",
+  "real_QC_calls": 0,
+  "real_budget_or_ledger_writes": 0,
+  "real_Research_executions": 0,
+  "real_LEAN_submissions": 0,
+  "financial_evidence": false
+}

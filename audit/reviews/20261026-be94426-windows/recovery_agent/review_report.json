@@ -1,0 +1,165 @@
+{
+  "reviewed_commit": "be9442603a31481a9a71e51ca794df77650c7411",
+  "baseline": "e513c66e5965133fbe83fb0ab987eae853f96260",
+  "verdict_in_scope": "WR12 recovery fix passes independently tested scope; no new confirmed recovery/admission defect.",
+  "methods": 12,
+  "passed_methods": 12,
+  "subcases": 36,
+  "failed_methods": 0,
+  "error_methods": 0,
+  "skipped": 0,
+  "first_failure_records": 0,
+  "first_error_records": 0,
+  "original_script": "independent_recovery.py",
+  "original_script_sha256": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4",
+  "first_results": "first_results.json",
+  "first_output": "first_output.txt",
+  "command_log": "command_log.json",
+  "root_command": [
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-20261026\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\11638\\.codex\\tmp\\aqrp-review-be94426-20261026\\recovery_agent\\independent_recovery.py"
+  ],
+  "actual_child_commands": 61,
+  "child_successes": 28,
+  "child_expected_rejections": 33,
+  "child_expected_nonzero_are_not_test_failures": true,
+  "new_minimal_failing_reproduction": null,
+  "accurate_source_function_ranges": {
+    "tools/collection_task_cli.py:execution_source_manifest": [
+      14,
+      25
+    ],
+    "tools/collection_task_cli.py:freeze_task": [
+      28,
+      54
+    ],
+    "tools/collection_task_cli.py:current_bridge": [
+      57,
+      65
+    ],
+    "tools/collection_task_cli.py:bridge_for_attempt": [
+      68,
+      94
+    ],
+    "tools/collection_task_cli.py:admitted_input": [
+      97,
+      126
+    ],
+    "tools/collection_task_cli.py:prepare_task": [
+      129,
+      152
+    ],
+    "tools/collection_task_cli.py:verify_current_source": [
+      155,
+      158
+    ],
+    "tools/collection_task_cli.py:execute_metadata_command": [
+      161,
+      198
+    ],
+    "tools/stage2_collection.py:catalog": [
+      15,
+      24
+    ],
+    "tools/stage2_collection.py:preview": [
+      27,
+      38
+    ],
+    "tools/stage2_collection.py:main": [
+      41,
+      72
+    ]
+  },
+  "unchanged_shared_admission_implementation_raw_bytes": {
+    "cloud/qresearch/registry.py": true,
+    "cloud/qresearch/collection_tasks.py": true,
+    "cloud/qresearch/engineering_tasks.py": true,
+    "cloud/qresearch/collection_execution.py": true
+  },
+  "evidence": [
+    "All cases use a full copied source tree (891 original files), actual tools/stage2_collection.py subprocess entry points and actual FilesystemArtifactStore/Registry. Source manifests, current catalog reads, Registry opening, usage exports and CLI branches were not mocked.",
+    "The independently generated task A consumes configuration/Research in the isolated copy only (6/9/1 -> 7/10/1). Production worker code runs a six-row, two-window synthetic source and produces a valid native-shaped final report, with two source fetch calls, two missing dollar_volume observations and cache-only replay zero calls.",
+    "A->freeze B->settle A completes through the standard CLI using original identity; a repeat completes with identical journal bytes and no new charge.",
+    "Current catalog change, source-file change, pointer deletion, malformed pointer, missing catalog and combined changes all permit old valid settlement after real subprocess restarts. task-status --attempt remains readable.",
+    "Existing prepared input returns the same admission/bytes after source and current-pointer changes. Deleting the local input still permits digest-checked settlement from the original admission record without recreating any file.",
+    "A separately preserved never-prepared snapshot has no admission or input file. Source, deployment or catalog drift each prevents prepare-task from creating either artifact, with unchanged journal and charge. Current register-task/claim-task likewise still reject stale source or current-catalog mismatch.",
+    "Frozen but unregistered documents, invented attempt IDs, configuration hashes used as attempts and existing old non-collection LEAN attempts cannot authorize recovery. Rewriting the already registered catalog fails configuration hash/replay verification.",
+    "Twelve admission mutations cover payload attempt/config/plan/report path, manifest digest/traversal, deployment input/source hashes, input/cloud destination, extra fields and noncanonical bytes. Payload cases recompute the easy input digest; the stronger immutable binding still rejects them before any lifecycle transition.",
+    "Missing/malformed admission and extra/changed local input bytes reject settlement. Wrong project, attempt/config in the cloud report and report destination reject settlement. All refused cases preserve the precharged started attempt, journal and quota.",
+    "Completed attempts cannot prepare a new remote input, even when a prior admission record exists."
+  ],
+  "trust_boundary_assessment": {
+    "frozen_catalog": "bridge_for_attempt only reconstructs catalog after finding a charged canonical attempt in verified Registry replay, checking immutable configuration bytes/hash and exact collection package, reconstructing its canonical plan and binding exact operation via bridge._record. It does not use this original catalog to register or claim a new task.",
+    "admitted_input": "Existing immutable admission is trusted metadata from the dispatcher/store. It is validated against the charged configuration, expected payload, frozen deployment-manifest hash, exact input text/hash and optional existing local bytes. It is not a signed authorization token, and arbitrary code able to fabricate self-consistent trusted-store records or call SDKs directly is outside this declared boundary.",
+    "new_inputs": "Without an existing admission record, prepare_task rechecks current execution source and current deployment before writing. This was dynamically verified using an actual never-prepared snapshot, not by deleting a record after preparation.",
+    "shared_admission": "Registry, CollectionTaskPlan/Bridge, EngineeringTaskBridge and worker/parser files are byte-identical to e513. Original 24/36 replay belongs to root reviewer; this report does not claim it as a new run."
+  },
+  "observations": {
+    "A_to_B": {
+      "budget": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "journal_repeat_unchanged": true,
+      "repeat_status": "completed",
+      "status": "completed"
+    },
+    "base": {
+      "attempt": "472d0fa300bb489db7faff7f311c109a",
+      "source_copy_complete": true,
+      "source_file_count": 891,
+      "usage": {
+        "complete_strategy_configurations_frozen": 0,
+        "configuration_budget_charges": 7,
+        "configuration_normal_used": 7,
+        "configuration_reserve_used": 0,
+        "lean_normal_used": 1,
+        "lean_reserve_used": 0,
+        "lean_submission_attempts": 1,
+        "research_execution_attempts": 10,
+        "research_normal_used": 7,
+        "research_reserve_used": 3
+      },
+      "worker": {
+        "missing_values": {
+          "dollar_volume": 2,
+          "has_fundamental_data": 0
+        },
+        "source_calls": 2,
+        "statistics": {
+          "cache_only_source_fetch_calls": 0,
+          "empty_windows": 0,
+          "record_count": 6,
+          "reused_windows": 0,
+          "source_fetch_calls": 2,
+          "window_count": 2
+        }
+      }
+    }
+  },
+  "production_source_bytes_unchanged": true,
+  "actual_external_calls": 0,
+  "developer_test_helpers_imported": false,
+  "limits": [
+    "All native Research observations and source rows were synthetic; no actual SDK, provider, project, task or platform operation was executed.",
+    "The independently identified receipt annotation issue WR13 is assigned to the other reviewer and does not convert this WR12 scope into full bridge acceptance.",
+    "No real budget/configuration/source file was modified; synthetic copy 7/10/1 is not production usage.",
+    "No real data certification, stage2 whole-system acceptance or financial validity is inferred."
+  ],
+  "artifact_sha256": {
+    "build_report.py": "18c374ef6810186caf0cf3b7d6c0bb924be9eeae81ce1178176227dab50c056c",
+    "command_log.json": "c298c65c264a578b3c6fc7bf0179bcbf591700665239f1526251c58003c55eeb",
+    "first_output.txt": "6f4911c901b7224082ab9f3b0b0a182dc34f22f9fe2b0cfe2c2b6deaab0cc93b",
+    "first_results.json": "e2900db6accc2029baa2d52f15a8eaa836fdc5904298eae6bcd88a3bfdf894f5",
+    "independent_recovery.py": "9e3643e9b9fd177f50edf9e275942d3bcbcbfbb6689b6acbd3c73e481bfdb4a4"
+  }
+}

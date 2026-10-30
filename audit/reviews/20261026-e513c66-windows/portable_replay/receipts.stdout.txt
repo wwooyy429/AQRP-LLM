@@ -1,0 +1,36 @@
+test_complete_worker_native_parser_registry_chain (__main__.IndependentReceiptTests) ... ok
+test_context_rejects_cross_identity_and_report_paths (__main__.IndependentReceiptTests) ... ok
+test_corrupt_cache_or_receipt_never_refetches (__main__.IndependentReceiptTests) ... ok
+test_cross_attempt_report_replay_rejected (__main__.IndependentReceiptTests) ... ok
+test_deployment_and_input_bindings_reject_changes (__main__.IndependentReceiptTests) ... ok
+test_deployment_source_bytes_checked_before_source_fetch (__main__.IndependentReceiptTests) ... ok
+test_inert_input_loader_never_executes_additional_code (__main__.IndependentReceiptTests) ... ok
+test_native_errors_extra_stdout_and_displays_rejected (__main__.IndependentReceiptTests) ... ok
+test_native_parallel_content_row_leak_must_be_rejected (__main__.IndependentReceiptTests) ... test_reentry_is_cache_only_and_same_report (__main__.IndependentReceiptTests) ... ok
+test_report_metadata_whitelist_and_false_limitations (__main__.IndependentReceiptTests) ... ok
+test_source_failure_suppresses_rows_and_blocks_same_attempt_retry (__main__.IndependentReceiptTests) ... ok
+test_unknown_adapter_and_late_success_reconciliation (__main__.IndependentReceiptTests) ... ok
+test_valid_shape_failed_marker_marks_registry_failed (__main__.IndependentReceiptTests) ... ok
+
+======================================================================
+FAIL: test_native_parallel_content_row_leak_must_be_rejected (__main__.IndependentReceiptTests) (parallel_content='text_row')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-e513c66-20261026\portable_replay\receipt_agent\independent_receipts.py", line 287, in test_native_parallel_content_row_leak_must_be_rejected
+    with self.assertRaises(API_ERRORS): h.parse(envelope)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'TypeError'>, <class 'KeyError'>) not raised
+
+======================================================================
+FAIL: test_native_parallel_content_row_leak_must_be_rejected (__main__.IndependentReceiptTests) (parallel_content='display_row')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-e513c66-20261026\portable_replay\receipt_agent\independent_receipts.py", line 287, in test_native_parallel_content_row_leak_must_be_rejected
+    with self.assertRaises(API_ERRORS): h.parse(envelope)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'TypeError'>, <class 'KeyError'>) not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.549s
+
+FAILED (failures=2)
+
+{"fixed_commit": "e513c66e5965133fbe83fb0ab987eae853f96260", "source_root": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM审核\\review-e513c66-20261026\\portable_replay\\source", "command_argv": ["receipt_agent/independent_receipts.py", "--source", "source", "--out", "receipt_agent"], "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]", "platform": "Windows-10-10.0.26300-SP0", "numpy": "1.26.4", "pandas": "2.3.3", "source_raw_sha256": {"cloud/qresearch/collection_execution.py": "e91950daae99ca55feb595b8cfd5281973dbf54a586ba2e18714aeb92c473e57", "cloud/qresearch/collection_tasks.py": "d3262cd0397c509a3646f505d86fd13e565adef1a40d2c156edca181cdc5c875", "cloud/qresearch/engineering_receipts.py": "69326601a5180487695a66e7dc5d7f858efdfac691c49f72b85958948680491d", "cloud/qresearch/engineering_tasks.py": "521c8efd212843cac1d3f586897a310a786f4b399a0d9b4677019b73582c6872", "cloud/qresearch/engineering_data.py": "e5825a4a2841a5778dc6d99da25a2536f67ddc154a5706c4d439ec306ab234ca", "cloud/qresearch/collection.py": "5bffe9ea9b1b3bfb5c4206e2a4e704136d42aca4f05604d234c42d14cbb3a37b", "tools/collection_task_cli.py": "ef7a978e6c4879f8021fe5982a0a8c69950b9451c2df671dc944b46a866d7872"}, "script_sha256": "85083e3a39670fcb79e5a2f7c8e589b0b50d8408656fd111b674ad32c55ca180", "methods": 14, "subcases": 54, "failure_records": 2, "error_records": 0, "skipped": 0, "success": false, "actions": {"market": 0, "real_SDK": 0, "Research": 0, "LEAN": 0, "model": 0, "deployment": 0, "real_budget_change": 0, "candidate_source_edits": 0}, "limits": "synthetic public worker/native-shape/Registry chain only; actual run and actual execution-failure receipt unavailable"}

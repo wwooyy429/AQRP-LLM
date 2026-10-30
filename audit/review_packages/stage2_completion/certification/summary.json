@@ -1,0 +1,109 @@
+{
+  "baseline_commit": "a6b14b05e913daa894c9049b428e953954b40e08",
+  "same_final_dedicated_tests": true,
+  "dedicated_test_raw_sha256": "d9508d5ba4083587ed08588640604ffb21dacc3a8ef1dd76b70a7b8e7c4d806d",
+  "baseline_feature_absence": "New module absent; unittest discovery has one import-error, not22 executed failures",
+  "candidate_methods": 22,
+  "runs": [
+    {
+      "label": "final_baseline",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_data_certification.py",
+        "-v"
+      ],
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "da3741be3fb2cdee5ad7cfcc2ba44ced5135947f9d46a8e35ccc695b4aa761a0"
+    },
+    {
+      "label": "final_candidate",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_data_certification.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c51e5a13af32de6d9de4de9e0581cf40e9310d8c5308b25f7afffbc75532ae76"
+    },
+    {
+      "label": "compatibility",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "tests.test_ingestion",
+        "tests.test_data_pipeline",
+        "tests.test_coverage",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "accb1f337205ba56746eb2f434205dceeef84cba746db4eddf60237c79710f10"
+    },
+    {
+      "label": "capabilities",
+      "command": [
+        "B:\\BaiduSyncdisk\\\u5b66\u4e60\\\u6295\u8d44\\\u91cf\u5316\\\u91cf\u5316\u4ea4\u6613\u6bd4\u8d5b\\LLM \u56e0\u5b50\u751f\u6210\u5668\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/data_certification.py",
+        "capabilities"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4a8874c9945cba7be7f4c8d24c4fec2327c3eccef3a3f6ead5f60e498c157738",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_raw_sha256": {
+    "cloud/qresearch/data_certification.py": "55c033887e0b73f6e6d9119d747bc5def3952c3929dac855f5814eaacefa33cd",
+    "tools/data_certification.py": "95b49e5473f55a258b22addb9254d194bfe564bf6276d3ecc4c25b076d9d6cb1",
+    "tests/test_data_certification.py": "d9508d5ba4083587ed08588640604ffb21dacc3a8ef1dd76b70a7b8e7c4d806d"
+  },
+  "corrected_known_answer_expectations": [
+    "Jan31 unknown classification cannot contaminate earlier formation",
+    "shared validator rejects simultaneous financial vintages as whole batch"
+  ],
+  "production_report_fix": "fixed zero counter keys; revalidate private partition inputs; reject incomplete eligible candidate histories",
+  "actual_provider_calls": 0,
+  "actual_research_executions": 0,
+  "actual_lean_submissions": 0,
+  "actual_budget_mutations": 0,
+  "active_configuration_changed": false,
+  "research_certification_granted": false,
+  "full_historical_US200_certified": false,
+  "financial_evidence": false,
+  "compatibility_methods": 35,
+  "API": "DataCertificationPlan.from_dict; store_certification_table; audit_data_certification; summarize_certification_scope(calendar=...); certification_capabilities",
+  "peer_findings_and_corrections": {
+    "original_findings": "../peer-certification/initial_findings.json",
+    "original_probe_script": "../peer-certification/initial_probes.py",
+    "pre_peer_source_reconstructed_from_recorded_patch": "pre_peer_reconstructed_data_certification.py",
+    "reconstruction_receipt": "pre_peer_reconstruction.json",
+    "fixed": [
+      "partition report private-input recalculation before aggregation",
+      "known old eligible candidate twenty-session holes cannot hide through rank201 substitution"
+    ]
+  },
+  "helper_compatibility_first_attempt": {
+    "original_output": "pre_peer_compatibility.stderr",
+    "cause": "incorrect nonexistent tests.test_universe module and missing tests import path for coverage test_pipeline",
+    "product_failure": false,
+    "correction": "test_data_pipeline and per-run PYTHONPATH pointed to actual cwd/cloud and cwd/tests; 35 original methods pass"
+  }
+}

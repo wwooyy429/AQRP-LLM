@@ -1,0 +1,17 @@
+解压后在独立目录运行，勿覆盖开发者工作区。
+source/是与Git 75f24629逐文件核对的完整91文件原始快照，review_package/source/是同一快照副本。
+环境准备（Windows PowerShell）：
+py -3.10 -m venv venv
+.\venv\Scripts\python.exe -m pip install -r source\requirements-test.txt
+独立测试：
+.\venv\Scripts\python.exe -B independent_review.py
+最小复现：
+.\venv\Scripts\python.exe -B minimal_repro.py
+141项仓库子集（重复覆盖217项中的方法，不是新增141项独立案例）：
+.\venv\Scripts\python.exe -B review_package\review\run_checks.py --source-dir source --output package_rerun.json
+独立套件在当前缺陷版本应报告56方法：45通过、10失败、1错误、0跳过，进程退出1。
+这是实际缺陷的失败断言；没有使用expectedFailure或skip。最小复现打印缺陷观测，进程退出0不代表验收通过。
+所有数据为独立构造的合成数据；不会调用Research、LEAN、模型或交易。
+reconcile_evidence.py另需先git clone --no-checkout https://github.com/wwooyy429/AQRP-LLM.git repo，供固定提交差异核对。
+历史首次审核脚本两个ridge声明顺序错误的输出另保留；最终测试修正了声明，未改数值答案或被审源码。
+完整JSON是formal_report.json，报告中的历史原32/16/14脚本次数不是本轮重跑数。

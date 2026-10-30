@@ -1,0 +1,41 @@
+{
+  "id": "WR-20",
+  "priority": "P2",
+  "reviewed_source_commit": "deb85d9f27441b275ab8b108f0232ecd2707a1e8",
+  "title": "上市前流动性被计入IPO的20期窗口，错误报告observations_passed",
+  "locations": [
+    {
+      "file": "cloud/qresearch/data_certification.py",
+      "line": 374,
+      "end_line": 390
+    },
+    {
+      "file": "cloud/qresearch/ingestion.py",
+      "line": 367,
+      "end_line": 380
+    },
+    {
+      "file": "config/universe.json",
+      "line": 31
+    }
+  ],
+  "trigger": "独立201名称/21session/两形成时点合成输入，SID200明确listing_effective_at与security master effective_from=2018-01-25；只有5/6个上市后完成session，却提供15条上市前liquidity rows并将SID200列为DollarVolume第一。",
+  "expected": "拒绝自相矛盾的上市前历史，或将其排除出有效排名窗口；不足20个真实上市后session的IPO不能进入US200且不能获得全部观测检查通过。",
+  "actual": "audit_data_certification返回observations_passed，全部12项checks=true，observed_member_cells=400；新上市SID被排到首位。Jan04上市的19→20边界也误过首个19session形成时点。",
+  "cause": "expected_candidates只把在trailing首日前已上市的名称纳入缺历史计数，却将未按listing_effective_at过滤的rank_input整体交给ranker。liquidity_rows_asof只将listing等时钟并入可用时间max；ranker只数20个日期和最后一行listed，不排除这些日期早于已知上市日。",
+  "positive_controls": [
+    "合法201个老名称基线通过：400成员单元、8040已知候选session单元。",
+    "IPO晚上市且移除上市前行，只有5/6session时被正确排除，原200老名称观测通过。",
+    "Jan04上市、只留上市后行：首形成19session被排除，次形成20session进入，正确换仓通过。",
+    "将上市日设为2017-12-01且20个真实历史session完整，排名通过。"
+  ],
+  "scope_and_severity": "新数据观测合规审计的P2软件缺陷。所有vendor/full-US200/actual-availability/research认证及financial_evidence标志仍固定false；没有真实市场调用、预算改变或实际因子选择证据，不把它扩大成供应商真实性绕过或真实Research失败原因。",
+  "reproduction": "python -B cert_agent/minimal_wr20.py --output wr20_confirmation/result.json（当前exit1；仅旁边原创cert_fixture.py及生产模块）。first_ipo_probe.py和13方法首套件的原件保持。",
+  "minimal_fix": "在观测私有输入和rank窗口上复用明确的历史上市资格：上市前行不贡献有效20期，显式IPO不足20期不得成为排名候选；同时保持已知老eligible缺历史不能靠rank201填洞的检查。不能仅放宽report状态或取消反例断言。",
+  "regression_tasks": [
+    "Jan25 IPO有15条上市前行时拒绝/观测不通过；无该假行时合法排除。",
+    "Jan04 IPO分别19与20个上市后完整session：前者排除、后者允许。",
+    "早上市且记录完备可排名；非IPO的历史classification版本更新不得误当新上市。",
+    "保持老eligible丢单session/全历史时不能rank201补位掩盖；保留unknown/PIT/日期/RAW/summary重算及false认证标志。"
+  ]
+}

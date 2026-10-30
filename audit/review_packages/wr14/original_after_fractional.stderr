@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\fractional_clock_probe.py", line 12, in <module>
+    item=h.Harness(family)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM审核\review-dc49f0f-20261027\receipt_agent\independent_fractional_harness.py", line 145, in __init__
+    self.wrapper=run_collection_task(self.payload,field_catalog=CAT,source=self.source,store=self.cloud,
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\collection_execution.py", line 52, in run_collection_task
+    verify_deployment(payload.get("deployment_manifest"), plan.to_dict()["deployment_hash"], source_root=source_root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 84, in verify_deployment
+    raise ValueError("Cloud implementation differs from the frozen deployment")
+ValueError: Cloud implementation differs from the frozen deployment

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 97, in <module>
+    print(json.dumps(verify(), sort_keys=True))
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\verify_candidate.py", line 50, in verify
+    frozen = read_replay_fixture(ROOT)
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\git_protection.py", line 183, in read_replay_fixture
+    _fail()
+  File "C:\Users\11638\.codex\tmp\aqrp-review-2f5591e-20261028\repro_agent\work\no_git_export\audit\review_packages\deployment-eof-v2\git_protection.py", line 42, in _fail
+    raise ProtectionError("Git raw-byte protection check failed") from None
+git_protection.ProtectionError: Git raw-byte protection check failed

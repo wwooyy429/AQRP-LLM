@@ -1,0 +1,11 @@
+固定7bf独立复审，离线合成数据。
+Python3.10.11及requirements-audit.txt实测依赖。
+原最小脚本：python -B minimal_missing_date.py source；python -B minimal_history_boundary.py source，当前均exit0；相同脚本对baselines/fbe2454/source均exit1。
+新独立日期缓存9方法：python -B date_cache_agent/independent_date_cache.py（原记录OLD为本机旧fbe临时目录；跨机器用下述便携入口）。
+新独立端点12方法：python -B interval_agent/independent_intervals.py --source source --label candidate --out ../interval-rerun-NEW
+便携重放：python -B run_offline_review.py --out ../7bf-offline-rerun-NEW
+--out必须不存在，避免覆盖历史。便携入口在新输出副本中只替换日期缓存脚本的OLD基线路径，写出差异，不改任何断言；原脚本原件留本包不改。聚合入口仅检查过语法及--help，本轮动态结论来自各原始入口，未虚构整套再次执行。预期旧版负对照exit1不算新版通过数；整体系统仍未验收。
+source为7bf451份Git原件；baselines/fbe2454/source为旧313份Git原件。20官方合同源码在source/audit/reviews/20261026-fbe2454-windows/内，不是本轮真实SDK。Synthetic缓存为本次自造输入，不是市场数据或真实认证。
+replay_archived_script.py保存原字节并禁网运行main；replay_public_class.py仅运行类方法。原历史SHA字面量不认证当前身份，以外层执行参数/文件哈希及固定7bf为准。旧失败/审核器修正/精度探针均保留，原样56没有被称作全过。
+evidence_agent中机器专属路径记录实际来源，跨机器可按source_git_manifest及原JSON重新定位；最终逐文件清单artifact_manifest.json可用verify_artifacts.py离线核验。
+不授权或触发真实SDK/市场/模型/Research/LEAN、部署、合并、购买或交易；旧LEAN不轮询。

@@ -1,0 +1,253 @@
+test_diagnostic_fields_are_whitelisted_bounded_and_defensive (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_entire_manifest_is_prescanned_before_reading_earlier_valid_file (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_final_line_breaks_remain_part_of_the_frozen_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_hash_diagnostics_come_from_one_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_invalid_paths_do_not_echo_paths_or_touch_sources (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_manifest_hash_mismatch_is_distinct_and_never_reads_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_manifest_shape_and_hash_values_are_checked_before_any_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_mismatch_identifies_exact_path_expected_and_observed (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_resolved_path_escape_is_rejected_before_source_read (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... test_shared_source_digest_invalid_bytes_never_echo_source (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_shared_source_digest_matches_existing_text_policy (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_success_keeps_hash_and_existing_BOM_newline_contract (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_unreadable_and_non_UTF8_source_have_fixed_safe_diagnostics (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+test_valid_unicode_path_uses_digest_and_input_stays_outside_manifest (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) ... ok
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'CON.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'COM1.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'aux.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'nested/NUL.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'LPT9.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'PRN/x.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'nested./receiver.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'trailing /receiver.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name='\'quote"file.py\'')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'star*.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'pipe|file.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'q?u.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+======================================================================
+FAIL: test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO (test_deployment_integrity_diagnostics.DeploymentIntegrityDiagnosticsTests) (name="'<a>.py'")
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 142, in test_shared_path_contract_rejects_devices_and_forbidden_characters_before_IO
+    error = self.error({name: "a" * 64})
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\tests\test_deployment_integrity_diagnostics.py", line 33, in error
+    data.verify_deployment(manifest, expected, source_root=self.root)
+  File "B:\BaiduSyncdisk\学习\投资\量化\量化交易比赛\LLM 因子生成器\cloud\qresearch\engineering_data.py", line 166, in verify_deployment
+    raw = path.read_bytes()
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1114, in __call__
+    return self._mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1118, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+  File "C:\Users\11638\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py", line 1173, in _execute_mock_call
+    raise effect
+AssertionError: Unsafe source read
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.109s
+
+FAILED (failures=13)

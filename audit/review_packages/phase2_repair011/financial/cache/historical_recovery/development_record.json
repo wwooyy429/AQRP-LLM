@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "developer_historical_metadata_recovery_compatibility_fix",
+  "first_observed_failure": "audit/review_packages/phase2_repair011/historical_recovery_first_failure.json",
+  "prior_full_suite_pass_was_not_sufficient": true,
+  "problem": "The storage compatibility guard compared an immutable admitted task's old5ef contract to current0f01 during metadata decoding, preventing Registry replay and original receipt recovery as well as new execution.",
+  "repair": {
+    "default_plan_decode": "Strict current storage compatibility",
+    "historical_decode": "Explicit Python-only boolean for trusted persisted metadata; not a JSON flag or grant",
+    "structural_guards_retained": [
+      "canonical original plan/configuration/request identity",
+      "complete closed storage policy and bounded capacity",
+      "matching original and legacy processing hash declarations",
+      "original child plan, provenance references and receipt identity",
+      "admitted input/deployment and native receipt bindings"
+    ],
+    "historical_readers": [
+      "Registry persisted package classification and replay",
+      "tools/stage2.bridge_for_attempt",
+      "fixed engineering receipt context parser",
+      "TaskFollowupController persisted context"
+    ],
+    "new_work_stays_strict": [
+      "EngineeringTaskPlan.from_dict default",
+      "EngineeringTaskBridge.register and claim",
+      "Registry new round authorization and configuration binding",
+      "Registry precharge engineering limit admission",
+      "new freeze/preparation and worker context",
+      "StableCollectionCache runtime validation"
+    ],
+    "certification_native_proof_guards_preserved": true
+  },
+  "targeted_verification": "verification.json",
+  "targeted_suite_counts": {
+    "historical_recovery": 10,
+    "storage_contract": 21,
+    "engineering_storage": 11,
+    "receipt_regression": 12,
+    "registry_rounds": 12
+  },
+  "all_targeted_suites_passed": true,
+  "counts_overlap_full_repository_suite": true,
+  "actual_existing_registry_readonly_probe": "current_registry_readonly_probe.json",
+  "actual_existing_registry_and_old_bridge_recovery_succeeded": true,
+  "guarded_real_raw_files": 145,
+  "original_real_raw_files_unchanged": true,
+  "old_plan_hash_preserved": "6a875a9e894baaae251fe6304e38bfb95d05c173235b111ba4175ccd79ea997b",
+  "old_configuration_hash_preserved": "64e7ef0354b78b69d97bd97b5e2a0210c0545bf08c921b53fbde98f6a0f2810a",
+  "old_processing_contract_preserved": "5ef61ef75f80ee7de0abcfd5461896a427a20d4c621d10759855b4cd11468219",
+  "current_processing_contract": "0f01ca7f2e850cd89de8c6d75c78614b1994929bcc83dfc8f6478a819117f617",
+  "contracts_declared_compatible_for_new_cache_use": false,
+  "old_terminal_state_not_inferred": true,
+  "real_register_claim_or_settlement_called": false,
+  "cloud_calls": 0,
+  "Research_executions": 0,
+  "LEAN_submissions": 0,
+  "budget_mutations": 0,
+  "financial_certification": false,
+  "independent_acceptance": false,
+  "final_test_enabled": false
+}

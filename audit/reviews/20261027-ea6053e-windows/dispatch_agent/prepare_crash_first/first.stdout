@@ -1,0 +1,168 @@
+{
+  "commit": "ea6053e3e9ef4be17db246daf18a4cf9b2e5be58",
+  "boundary": "actual first prepare admission-write then entry-marker-write exception",
+  "write_order": [
+    "engineering/admitted-inputs/28b63ba69553426e9b75b54af18a13f7.json",
+    "engineering/research-entry-protocol/28b63ba69553426e9b75b54af18a13f7.json"
+  ],
+  "admission_persisted": true,
+  "entry_after_recovery": false,
+  "dispatch_exists": false,
+  "unbound_result_exit": 0,
+  "unbound_status": "completed",
+  "ledger_usage_before": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 8,
+        "normal": 7,
+        "reserve": 1
+      },
+      "research": {
+        "total": 11,
+        "normal": 7,
+        "reserve": 4
+      },
+      "lean": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "28b63ba69553426e9b75b54af18a13f7",
+        "config_id": "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6",
+        "kind": "attempt_started",
+        "operation_key": "engineering-plan:e0c7bc45717031d5dd5eeb1b71b255f9046ed90d4ba0a54d065d4dec06e754b8:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T12:44:10.891108+00:00",
+        "result_key": "results/4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6/research/0debeea50a051cf5995496d7fd706b19d23f94a2eeffd4f5b09bfc6e23ef7783.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "started",
+        "external_id": null
+      }
+    ]
+  },
+  "ledger_after_result": {
+    "limits": {
+      "configurations": {
+        "total": 12,
+        "normal": 8,
+        "reserve": 4
+      },
+      "research": {
+        "total": 20,
+        "normal": 12,
+        "reserve": 8
+      },
+      "lean": {
+        "total": 16,
+        "normal": 8,
+        "reserve": 8
+      }
+    },
+    "usage": {
+      "configurations": {
+        "total": 8,
+        "normal": 7,
+        "reserve": 1
+      },
+      "research": {
+        "total": 11,
+        "normal": 7,
+        "reserve": 4
+      },
+      "lean": {
+        "total": 1,
+        "normal": 1,
+        "reserve": 0
+      }
+    },
+    "config_ids": [
+      "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6"
+    ],
+    "attempts": [
+      {
+        "allocation": "normal",
+        "attempt_id": "28b63ba69553426e9b75b54af18a13f7",
+        "config_id": "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6",
+        "kind": "completed",
+        "operation_key": "engineering-plan:e0c7bc45717031d5dd5eeb1b71b255f9046ed90d4ba0a54d065d4dec06e754b8:research",
+        "reason": null,
+        "recorded_at": "2026-10-27T12:44:14.247384+00:00",
+        "result_key": "results/4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6/research/0debeea50a051cf5995496d7fd706b19d23f94a2eeffd4f5b09bfc6e23ef7783.json",
+        "retry_of": null,
+        "stage": "research",
+        "status": "completed",
+        "external_id": "qc-research:38436695:28b63ba69553426e9b75b54af18a13f7",
+        "details": {
+          "deployment": {
+            "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+            "input_hash": "1050a31d7ad0d673a424c845244ecd9a11903451086abde00fdee9947ce3e1d4",
+            "source_manifest_hash": "de38348bfc7c86a9525a145dfbb4ef5bf0986c993df064e6713d6115b8515c2f"
+          },
+          "external_id": "qc-research:38436695:28b63ba69553426e9b75b54af18a13f7",
+          "identity": {
+            "attempt_id": "28b63ba69553426e9b75b54af18a13f7",
+            "config_id": "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6",
+            "data_request_hash": "fba5416d6eab4f36e1359aa10ab2c3e1f03fa944704a700c817f9ca2d98eb67e",
+            "deployment_hash": "91294236d49d5aad5755ca75a2e96dced70a347c1a7c870a829cd9ab18dd31c4",
+            "plan_hash": "e0c7bc45717031d5dd5eeb1b71b255f9046ed90d4ba0a54d065d4dec06e754b8",
+            "project_id": 38436695,
+            "source_manifest_hash": "de38348bfc7c86a9525a145dfbb4ef5bf0986c993df064e6713d6115b8515c2f",
+            "stage": "research"
+          },
+          "identity_kind": "logical_research_execution_receipt",
+          "receipt_ref": {
+            "key": "engineering/evidence/28b63ba69553426e9b75b54af18a13f7/submission/922aa81c18740c9b75b67a3ac8eb26d4ed53e5a9fefb8cc99331869d52f8bcc7.json",
+            "sha256": "922aa81c18740c9b75b67a3ac8eb26d4ed53e5a9fefb8cc99331869d52f8bcc7"
+          }
+        },
+        "result_sha256": "a9523ba0d45d978a9ca47a49fd457cb4153a461f0f0b15c1a5fd5bff6ffa77e3"
+      }
+    ]
+  },
+  "files_changed_by_result": true,
+  "downstream_lean_exit": 0,
+  "downstream_lean": {
+    "attempt_id": "b2d2808651254481b674232240819a08",
+    "config_id": "4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6",
+    "stage": "lean",
+    "operation_key": "engineering-plan:e0c7bc45717031d5dd5eeb1b71b255f9046ed90d4ba0a54d065d4dec06e754b8:lean",
+    "status": "started",
+    "should_execute": true,
+    "allocation": "normal",
+    "result_key": "results/4d636af2f08ecfed6759374704c4f2d456e41ed3031fe2e03bb75999aef1fdf6/lean/b86d4526091463caee047b86d49b34152c1e07b46427310878c3a926c2d6d5aa.json",
+    "external_id": null
+  },
+  "stats": {
+    "actual_CLI_processes": 6,
+    "direct_freeze_processes": 0,
+    "synthetic_metadata_finish_calls": 1,
+    "actual_worker_executions": 0
+  },
+  "actual_provider_calls": 0,
+  "authoritative_ledger_writes": 0
+}

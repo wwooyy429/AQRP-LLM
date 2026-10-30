@@ -1,0 +1,48 @@
+请对 WR-28/P2 的审计交付修复做独立复验，并分别报告软件功能、交付可复现性、云端运行和数据认证的结论。
+
+固定待复验交付提交：2f5591e28c0748ac42caeae7bbf3977141d031cb
+仓库：https://github.com/wwooyy429/AQRP-LLM
+草稿PR：https://github.com/wwooyy429/AQRP-LLM/pull/2
+原独审源码：4a42c18f0b78bea2068d589bc12f1615712354c6
+原资料提交：1cf26578da59eebd37e138ca5d6d076991386470
+原始Git保护基线：8d65c290773547c83549c098172f1eb8c3376cd7
+原独审ID：AQRP-20261028-4A42C18-EOFV2-23
+生产源码清单哈希应保持：bf19f3027e5fa21ded361c4cbb1edc6264a06def00c306b72d62c52ce8af9b5a
+
+后续只追加交接与执行证据的资料提交不扩大上述待复验代码范围。先固定Git SHA，再阅读AGENTS.md、config/development.json、原正式报告和WR28_CORRECTION.txt。请实际执行与自行构造边界，不仅转述开发方报告；不要静默修改产品或预期值后将原固定版本判为通过。
+
+一、保留原失败及版本边界
+
+原EOF-v2已测核心/桥接功能范围通过，但原protected_before.json混入audit/data_exposure.json、config/research.json、config/workflow.json的本地CRLF哈希，干净Git原文为LF，原声明只能匹配119/122，原verify_candidate.py失败。122份实际文件在8d65c29、4a42c18、1cf2657三树均一致。
+原错误清单、原reconciliation_result及首次失败日志必须保持原字节。原结果只支持当时本地工作树前后未变，其干净Git交付通过含义已撤销。旧checker、旧artifact_manifest及旧摘要从不可变Git另封存于audit/review_packages/wr28/originals；独审正式报告、全部首次失败/审查器修正/复跑记录紧凑保存在audit/reviews/20261028-4a42c18-eofv2。原ZIP SHA256 e7f32eba7ccebcd6f833a9954b5ca13f50ec1a762497c59ae5f8a7a93fcc1910保持，省略三套重复源码只是存储去重。
+
+二、审查本次仅audit变更
+
+比较1cf2657到固定新交付提交，cloud/config/tools/tests/docs/README.md应无差异。原预算、48事件、任务admission、failed记录和数据暴露文件不得改变，不转换主工作树三文件的换行。
+新protected_git_baseline.json是独立的新声明，来源必须是固定基线的Git ls-tree/cat-file原始blob，且逐项核对原候选和资料树相同。字段绑定SHA256、真实Git blob编号、字节数及原错误声明；禁止取工作树内容或做换行规范后重新定义原始保护。
+复核git_protection.py与build_git_protection.py：固定commit/tree、旧清单来源SHA/blobOID及122项路径集、闭集类型/整数/路径/大小边界；生成器已有不同输出不得覆盖。验证器对导出文件读原字节，无解码、CRLF归一或expected值替换。自行独立核对新清单的全部122项，而非只核三项。
+新manifest与本地Git固定提交构成来源证据，不是远端签名。无.git导出运行已有清单不应调用Git；从Git重建来源清单则必须有相应不可变本地对象。
+
+三、实际执行
+
+在固定新提交的正常Git检出运行：
+python -B audit/review_packages/deployment-eof-v2/build_git_protection.py --repository . --output audit/review_packages/deployment-eof-v2/protected_git_baseline.json
+python -B audit/review_packages/wr28/test_git_protection.py -q
+python -B audit/review_packages/wr28/verify_wr28_end_to_end.py --commit 2f5591e28c0748ac42caeae7bbf3977141d031cb --evidence-dir <新的空审核结果目录> --full-verify
+python -B audit/reviews/20261028-4a42c18-eofv2/verify_import.py
+
+端到端程序应独立生成两份无.git的原始Git导出和一份core.autocrlf=false、core.eol=lf的正常检出，三者原样运行verify_candidate.py成功。它还应分别拒绝三问题路径的单字节与LF到CRLF变更、账本单字节修改、已知答案夹具EOF篡改/缺失，以及新声明哈希篡改；所有负例只修改临时副本并恢复。请独立额外构造同长变更、BOM、缺文件及来源/类型错误等边界。
+--full-verify应在临时LF检出执行两次build，确认cloud/config和audit/deployment原字节保持、config_changed均false，再实际运行python -B tools/stages.py verify；应观察825项合成测试及上述源清单哈希。程序不能覆盖已有结果目录或将临时源码树提交Git。
+11项audit单元检查、13个端到端checker进程、2次build和825项仓库测试属于不同且有重叠的计数，不相加为独立测试或金融样本总数。请报告实际结果而非预设结论；保留首次失败、审查器修正、diff和复跑输出。
+
+四、可移植夹具及原任务兼容
+
+fixtures/engineering_smoke_662ccd.py仅是Git662ccd876b67ca0949f921a53c4c33df37cfbbf1的cloud/engineering_smoke.py原始源码：3561字节、SHA25633ffa365d6b54d0a823574eaba5831c2f53c6aae7f2dff2c885b1d7ac0c9ca90。核对Git来源、原始字节及夹具修改/缺失拒绝；它只用于合成已知答案重放，不得声称取回真实worker文件。追加一个LF应继续精确复现归档观测，v1拒绝，显式v2 worker等价接受，本地严格预检拒绝，正文变更拒绝。
+原attempt37dc855045e14ca49c88fd9d75f40cf7、回测3e68866a46ca88ff16481c31b3c2c822仍必须恢复为原v1/Runtime Error/failed，原input hash8c9de804d671e13040a8aa765315937898ed8f9b1f28909606a5eff0a897dc03不变，7项成功检查及实际订单数仍null。
+
+五、权限与最终结论
+
+本轮审核只允许离线合成测试、Git与归档元数据读取，不进行QuantConnect、Research、LEAN、compile、供应商、模型API调用或任何配置登记/扣额/退款/重开轮次。预算配置12/12、Research15/20、LEAN2/16和48事件保持。新EOF-v2仍未正式登记或部署；后续上云需有效新配置容量和正式准入，不得复用旧失败配置。
+WR-28开发侧修复通过不等于独立关闭。请单独判定原WR-28是否在新固定版本修复后通过；如新增问题，提供严重级别、位置、最小复现及实际/预期，不将审查器或夹具错误算作产品缺陷。
+即使交付检查通过，阶段2整体仍未验收：新协议真实云端成功、完整历史US200/SID经济歧义、财务数值/版本/公开及供应商实际送达/摄入证据、计费认证派发仍有缺口。阶段3–7未因此验收；正式因子研究、自动GPT、交易及最终测试继续关闭，2024–2025暴露及2026独立性未认证事实保留。
+交付正式文本与JSON报告、环境/固定版本/命令/实际结果和哈希清单，明确软件、交付、云端、数据与金融证据各自边界。

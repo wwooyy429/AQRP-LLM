@@ -1,0 +1,253 @@
+{
+  "reviewed_source_commit": "2f5591e28c0748ac42caeae7bbf3977141d031cb",
+  "methods": 7,
+  "passed_methods": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "named_scenarios": 34,
+  "scenario_records": [
+    {
+      "name": "candidate_plain",
+      "kind": "CLI_positive",
+      "expected": "exit0_and122",
+      "actual": {
+        "exit": 0,
+        "verified": 122
+      }
+    },
+    {
+      "name": "candidate_subprocess_forbidden",
+      "kind": "CLI_positive",
+      "expected": "exit0_and122",
+      "actual": {
+        "exit": 0,
+        "verified": 122
+      }
+    },
+    {
+      "name": "original_WR28_preserved",
+      "kind": "CLI_negative",
+      "expected": "exit1_and3_legacy_mismatches",
+      "actual": {
+        "exit": 1,
+        "mismatch_paths": [
+          "audit/data_exposure.json",
+          "config/research.json",
+          "config/workflow.json"
+        ]
+      }
+    },
+    {
+      "name": "protected_same_size_flip_0",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "protected_same_size_flip_1",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "protected_same_size_flip_2",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "research_CRLF",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "research_BOM",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "research_missing",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "budget_journal_one_byte",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "budget_baseline_one_byte",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "old_admission_one_byte",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "record_SHA",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "record_OID",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "record_size",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "snapshot_commit",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "snapshot_tree",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "path_list_origin",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "manifest_bool_count",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "manifest_unknown_field",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "manifest_duplicate_JSON_key",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "manifest_BOM",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "legacy_source_extra_LF",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "fixture_missing",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "fixture_extra_LF",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "fixture_BOM",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "fixture_body_append",
+      "kind": "CLI_rejection",
+      "expected": "nonzero_exit",
+      "actual": 1
+    },
+    {
+      "name": "fixture_v1_original",
+      "kind": "direct_known_answer",
+      "expected": "accept",
+      "actual": true
+    },
+    {
+      "name": "fixture_v1_extra_LF",
+      "kind": "direct_known_answer",
+      "expected": "reject",
+      "actual": true
+    },
+    {
+      "name": "fixture_v2_worker_extra_LF",
+      "kind": "direct_known_answer",
+      "expected": "accept_and_normalized1",
+      "actual": true
+    },
+    {
+      "name": "fixture_v2_strict_extra_LF",
+      "kind": "direct_known_answer",
+      "expected": "reject",
+      "actual": true
+    },
+    {
+      "name": "fixture_v2_body_comment",
+      "kind": "direct_known_answer",
+      "expected": "reject",
+      "actual": true
+    },
+    {
+      "name": "fixture_exact_original_git_blob",
+      "kind": "metadata_known_answer",
+      "expected": {
+        "bytes": 3561,
+        "SHA": "33ffa365..."
+      },
+      "actual": true
+    },
+    {
+      "name": "selfconsistent_replaced_trusted_manifest",
+      "kind": "authenticity_boundary_not_negative",
+      "expected": "accepted_locally_but_changed_fixed_source_version",
+      "actual": {
+        "exit": 0,
+        "legacy_discrepancies": 2,
+        "original_manifest_version_invalidated": true
+      }
+    }
+  ],
+  "unittest_subtest_count": null,
+  "actually_executed_processes": 29,
+  "actual_checker_processes": 28,
+  "readonly_Git_blob_processes": 1,
+  "seconds": 75.59400000000096,
+  "first_run": true,
+  "success": true,
+  "source_guard": {
+    "candidate_files": 6379,
+    "candidate_original_bytes_unchanged": true,
+    "baseline_files": 6180,
+    "baseline_original_bytes_unchanged": true,
+    "private_copy_restored": true,
+    "no_git_in_private_copy": true
+  },
+  "failure_details": [],
+  "error_details": [],
+  "actual_platform_model_market_budget_calls": 0
+}

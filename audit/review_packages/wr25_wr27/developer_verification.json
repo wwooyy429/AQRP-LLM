@@ -1,0 +1,91 @@
+{
+  "kind": "developer_offline_repair_verification",
+  "process_environment": {
+    "PYTHONUTF8": "1",
+    "PYTHONIOENCODING": "utf-8",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+  "runs": [
+    {
+      "label": "build",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/research.py",
+        "build"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "elapsed_seconds": 0.609,
+      "stdout": "final_build.stdout",
+      "stderr": "final_build.stderr"
+    },
+    {
+      "label": "verify",
+      "command": [
+        "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器\\.git\\repair-work\\venv\\Scripts\\python.exe",
+        "-B",
+        "tools/stages.py",
+        "verify"
+      ],
+      "cwd": "B:\\BaiduSyncdisk\\学习\\投资\\量化\\量化交易比赛\\LLM 因子生成器",
+      "exit_code": 0,
+      "elapsed_seconds": 209.406,
+      "stdout": "final_verify.stdout",
+      "stderr": "final_verify.stderr"
+    }
+  ],
+  "local_tests_passed": true,
+  "test_methods": 668,
+  "test_seconds": 206.324,
+  "source_manifest_hash": "d0b720f6c15abd754371c2ef7bdc9420286c7e2def6adc03e5e7803f89184935",
+  "protected_file_count": 38,
+  "all_protected_bytes_unchanged": true,
+  "all_tested_source_bytes_unchanged": true,
+  "tested_source_file_count": 141,
+  "real_journal_events": 17,
+  "global_usage": {
+    "configurations": 7,
+    "research": 10,
+    "lean": 1
+  },
+  "new_market_configuration_registrations": 0,
+  "new_Research_executions": 0,
+  "new_LEAN_submissions": 0,
+  "new_model_calls": 0,
+  "new_deployments": 0,
+  "engineering_stop_retained": true,
+  "final_test_enabled": false,
+  "independent_acceptance": false,
+  "financial_evidence": false,
+  "execution_source_manifest_hash": "847f590959b0963166c9159421963c4434ac06229d5d3a34b6a91df545c70cd0",
+  "implementation_hash": "9720773e1306b2a7ab5bd6adead9615b014c35245e7d421864fd37bd7f3aa705",
+  "deployment_hash": "b81019f81898da6c47718362d42936c12a7a7c62a1117a9d8b12180e4929eea7",
+  "active_economic_configuration_hash": "272e2461117c36aec1c4470d13d2e47ee47fccdaab86b92f31fd11f922701f94",
+  "baseline_protected_metadata_files": 45,
+  "all_baseline_protected_metadata_unchanged": true,
+  "repair_status": {
+    "WR-25": "developer_fixed_pending_independent_review",
+    "WR-26": "developer_fixed_pending_independent_review",
+    "WR-27": "developer_corrected_pending_independent_review"
+  },
+  "metadata_check": {
+    "status": "metadata_consistent",
+    "baseline_commit": "ccad61d03ccf17bf2bdc2d7ffc88dfd11b6d3ca6",
+    "changed_source_files": 6,
+    "budget_and_journal_raw_unchanged": true,
+    "external_activity_authenticated": false,
+    "independent_acceptance": false,
+    "financial_evidence": false
+  },
+  "independent_original_review_report": "audit/reviews/20261027-ccad61d-windows/formal_report.json",
+  "original_review_archive_is_selective": true,
+  "final_source_vs_archived_cloud_reference": "audit/wr25_wr27_source_reference_comparison.json",
+  "source_freeze_note": "One final frozen version; earlier negative baselines and explicit scope/encoding harness corrections retained; no source edits during full verification",
+  "test_count_note": "Repository, targeted suites and developer replays overlap; all replay scope adapters and original historical labels are recorded separately",
+  "omitted_reconstructible_working_artifacts": "verification/omitted_working_artifacts.json",
+  "publication_preflight_first_result": "verification/publication_preflight_first.json"
+}

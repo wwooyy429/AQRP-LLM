@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "review_id": "AQRP-20261026-FE4374C-WINDOWS-02",
+  "review_date": "2026-10-26",
+  "reviewed_source_commit": "fe4374cee054fb8053706074be913ad7068c4484",
+  "baseline_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+  "evidence_commits": [
+    "1f7c0c0ab4640a825fd317684f854158ad5d2193",
+    "34de67eef2ef70544ea513865d40e1cbfe73adfc",
+    "fe4374cee054fb8053706074be913ad7068c4484"
+  ],
+  "source_manifest_hash": "1e98343a15a47bf3b59ee51747a304e29bb23719d0ea973c454c2559cb415d7f",
+  "source_manifest_file_count": 78,
+  "deployment_hash": "e41824b6b1f6baf0966beec50af9d0d9a96540f9bf544a75852f3e107da7ca53",
+  "deployment_hash_scope": "本地候选构建，未部署",
+  "environment": {
+    "os": "Windows-10-10.0.26300-SP0",
+    "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "BLAS_threads_main_replays": 1,
+    "longdouble_nmant": 52
+  },
+  "tool_capabilities": {
+    "GitHub_read": true,
+    "offline_shell_and_native_Windows_processes": true,
+    "QC_readonly_calls": [
+      "list_projects",
+      "read_project"
+    ],
+    "project_id_observed": 38436695,
+    "pending_task_read_or_polled": false,
+    "market_or_model_execution": false,
+    "production_or_PR_written": false
+  },
+  "repair_acceptance": {
+    "WR-04": {
+      "status": "passed_after_fix",
+      "scope": "跨计划/项目/store、线程及Windows进程的工程2/2/2原子准入；所有有效入口，复用与失败/未知保护"
+    },
+    "WR-05": {
+      "status": "passed_after_fix",
+      "scope": "原Spearman问题；独立平均秩、多尺度、符号、并列、常数与共同样本"
+    },
+    "WR-06": {
+      "status": "passed_after_fix",
+      "scope": "共享PIT/计划/运行入口的等价时区、DST、非法成员拒绝、缓存复用和未加调用方适配的完整链"
+    }
+  },
+  "stage_results": {
+    "0": {
+      "modules": "Study/身份/审计/Artifacts/Registry/准入",
+      "implementation": "已实现离线工程核心",
+      "status": "passed_after_fix",
+      "scope": "本轮实际覆盖的合同、身份、持久化及全局/阶段2原子预算准入",
+      "tests": "250项仓库回归；适配56；新增19项准入；63项独立证据检查",
+      "blocking_findings": []
+    },
+    "1": {
+      "modules": "因子/PIT/股票池内核/标签/模型/提前评价接口",
+      "implementation": "已实现核心，相关性有未解决边界",
+      "status": "failed",
+      "scope": "WR-05/06及因子、标签、模型、完整六轮链通过；扩展Pearson范围失败",
+      "tests": "原套件正向回归、新增数值/时区16方法中15通过1失败",
+      "blocking_findings": [
+        "WR-07"
+      ]
+    },
+    "2": {
+      "modules": "QC适配/缓存/接收器/任务桥/覆盖与接入合同",
+      "implementation": "本地软件已实现，当前修复未部署",
+      "status": "pending",
+      "software_foundation": "passed_after_fix_in_tested_synthetic_scope",
+      "tests": "新增19项准入及56项回执/恢复等回归；QC当前源码只读核对",
+      "blocking_findings": [],
+      "missing": [
+        "既有LEAN终态",
+        "新实现的部署及运行证据",
+        "完整US200/财务版本/实际送达认证"
+      ]
+    },
+    "3": {
+      "modules": "evaluation/pipeline",
+      "implementation": "提前交付六轮评价核心，完整研究尚未实现",
+      "status": "not_accepted",
+      "implemented_correlation_scope": "failed",
+      "blocking_findings": [
+        "WR-07"
+      ],
+      "tests": "独立六轮、成熟边界、样本/模型恢复及数值复算",
+      "missing": [
+        "合格真实数据与固定生产模型",
+        "完整分层/暴露/换手/风险报告"
+      ]
+    },
+    "4": {
+      "modules": "LEAN组合与执行",
+      "implementation": "仅有无订单工程接收器",
+      "status": "not_implemented_not_accepted",
+      "tests": "工程订单拒绝回归",
+      "blocking_findings": [],
+      "missing": [
+        "组合、订单成交、持仓现金净值账本",
+        "成本风险压力、Research/LEAN交易一致性及增量"
+      ]
+    },
+    "5": {
+      "modules": "Workflow/GPT闭环",
+      "implementation": "持久化状态机已有，GPT调用未配置接通",
+      "status": "not_accepted",
+      "tests": "既有合成状态机及重启/未知提交回归",
+      "blocking_findings": [],
+      "missing": [
+        "固定GPT模型、次数与费用上限",
+        "实际生成、有限修复和提示注入闭环"
+      ]
+    },
+    "6": {
+      "modules": "结构及相关性辅助函数/受限搜索",
+      "implementation": "辅助函数部分实现，完整搜索未实现",
+      "status": "not_implemented_not_accepted",
+      "blocking_findings": [
+        "WR-07"
+      ],
+      "tests": "结构/绝对相关回归及Pearson失败复现",
+      "missing": [
+        "搜索台账、消融、净组合增量及选择偏差诊断"
+      ]
+    },
+    "7": {
+      "modules": "冻结/独立最终执行器/前向",
+      "implementation": "有冻结元数据和关闭门槛，执行器未实现",
+      "status": "not_implemented_not_accepted",
+      "blocking_findings": [],
+      "tests": "日期拒绝与暴露事实回归/静态检查",
+      "missing": [
+        "完整冻结及独立最终执行器",
+        "2026独立性、前向监控停止回滚"
+      ]
+    }
+  },
+  "tests": {
+    "repository": {
+      "actually_executed": true,
+      "command": "python -B tools/stages.py verify",
+      "cwd": "runs/repository_source",
+      "methods": 250,
+      "passed": 250,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "archived_original": {
+      "actually_executed": true,
+      "command": "python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/independent_original --mode original",
+      "methods": 56,
+      "passed": 50,
+      "failed": 3,
+      "errors": 3,
+      "skipped": 0,
+      "subcases": 25,
+      "exit_code": 1,
+      "interpretation": "六项均为预期Stage2 BudgetExceeded未被旧竞态测试正确处理；原始结果保留，未称原样全通过"
+    },
+    "archived_adapted": {
+      "actually_executed": true,
+      "command": "python -B source/docs/review/wr04-wr06/replay.py --source-dir source --output-dir runs/independent_adapted --mode adapted",
+      "methods": 56,
+      "passed": 56,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "subcases": 25,
+      "exit_code": 0
+    },
+    "baseline_same_adaptation": {
+      "actually_executed": true,
+      "source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+      "methods": 56,
+      "passed": 45,
+      "failed": 10,
+      "errors": 1,
+      "skipped": 0,
+      "subcases": 25,
+      "exit_code": 1
+    },
+    "new_atomic": {
+      "actually_executed": true,
+      "command": "python -B atomic_agent/atomic_independent.py",
+      "methods": 19,
+      "passed": 19,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "subcases": 9,
+      "exit_code": 0
+    },
+    "new_atomic_baseline": {
+      "actually_executed": true,
+      "source_commit": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+      "command": "AQRP_AUDIT_SOURCE=<fixed75>; AQRP_AUDIT_SHA=75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4; AQRP_ATOMIC_OUTPUT=atomic_agent/baseline; python -B atomic_agent/atomic_independent.py",
+      "methods": 19,
+      "passed": 5,
+      "failed_methods": 14,
+      "failure_records_including_subtests": 20,
+      "errors": 0,
+      "skipped": 0,
+      "subcases": 9,
+      "exit_code": 1
+    },
+    "new_numeric_time": {
+      "actually_executed": true,
+      "command": "python -B numeric_agent/numeric_time_review.py",
+      "methods": 16,
+      "passed": 15,
+      "failed_methods": 1,
+      "failure_records_including_subtests": 4,
+      "errors": 0,
+      "skipped": 0,
+      "subcases": 84,
+      "exit_code": 1
+    },
+    "evidence_checks": {
+      "actually_executed": true,
+      "command": "python -B evidence_agent/verify_delivery.py",
+      "checks": 63,
+      "passed_checks": 63,
+      "failed_checks": 0,
+      "is_unit_test_method_count": false
+    },
+    "new_independent_inputs_import_developer_fixtures": false,
+    "new_full_chain": {
+      "synthetic": true,
+      "folds": 6,
+      "predictions": 18,
+      "models_restored": 6,
+      "provider_prefetch_calls": 14,
+      "later_extra_provider_calls": 0
+    },
+    "method_counts_overlap_across_runs": true,
+    "unique_semantic_test_count": null,
+    "original_history_32_16_14_full_scripts_rerun": false
+  },
+  "harness_adaptation": {
+    "judgment": "legitimate",
+    "changed_AST_methods": [
+      "AdmissionTests.race"
+    ],
+    "only_exception_caught": "BudgetExceeded",
+    "assertions": [
+      "one winner",
+      "one BudgetExceeded",
+      "execution winner should_execute=True",
+      "count == 2",
+      "original count <= 2 retained"
+    ],
+    "other_method_bodies_unchanged": true,
+    "skip_or_expectedFailure_added": false,
+    "original_9_artifacts_byte_identical": true,
+    "old_source_still_fails_same_adaptation": true
+  },
+  "findings": [
+    {
+      "id": "WR-07",
+      "priority": "P2",
+      "status": "open",
+      "source_commit": "fe4374cee054fb8053706074be913ad7068c4484",
+      "title": "默认Pearson及绝对Pearson矩阵对合法有限分数产生尺度相关错误",
+      "locations": [
+        {
+          "file": "cloud/qresearch/evaluation.py",
+          "lines": [
+            210,
+            212,
+            250,
+            258,
+            259,
+            262,
+            270,
+            271,
+            272
+          ]
+        }
+      ],
+      "trigger": "x=[s,2s,3s]，y=[1,2,3]；s为1e-200或1e200。调用公共paired_factor_correlation默认方法或pairwise_factor_correlations的absolute_pearson。",
+      "expected": {
+        "correlation": 1.0,
+        "absolute_correlation": 1.0
+      },
+      "actual": {
+        "s_1e_minus_200": {
+          "correlation": null,
+          "absolute_correlation": null,
+          "representation": "NaN"
+        },
+        "s_1e200": {
+          "correlation": 0.0,
+          "absolute_correlation": 0.0
+        },
+        "normal_scale": 1.0,
+        "fixed_spearman_same_inputs": 1.0
+      },
+      "cause": "Pearson分支仍使用原值np.std和np.corrcoef；平方下溢误判常数，大尺度方差溢出使交叉相关被报告为0。",
+      "impact": "完全冗余的有限因子分数可被报告为零绝对相关或未定义，影响已实现的相关性比较。完整搜索未验收，本轮未观察或宣称真实市场选择损失。",
+      "severity_reason": "已接受有限输入的实际数值错误，属于继承的极端尺度边界；并非本次Spearman修复新引入。",
+      "baseline_75_also_reproduced": true,
+      "minimal_reproduction": "numeric_agent/minimal_pearson.py source；新旧SHA均在独立进程运行，root_confirmed_wr07.json另存主审核复核。",
+      "minimal_fix": "使用避免上下溢的居中、缩放、协方差和范数算法；常数判断不能依赖会下溢的原值方差。保留共同有限样本、符号和缺失合同。",
+      "required_regressions": [
+        "默认paired Pearson与absolute_pearson矩阵在1e-200/1/1e200下不变",
+        "正负线性关系及非完美相关的独立手算",
+        "常数、缺失、共同样本和最小样本数",
+        "不得仅将默认方法改为Spearman代替Pearson正确实现"
+      ],
+      "evidence_level": "reviewer_executed_independent_synthetic_tests"
+    }
+  ],
+  "known_open_findings": [
+    "WR-07"
+  ],
+  "budget_replay": {
+    "event_count": 12,
+    "usage": {
+      "configurations": {
+        "normal": 6,
+        "reserve": 0,
+        "total": 6
+      },
+      "lean": {
+        "normal": 1,
+        "reserve": 0,
+        "total": 1
+      },
+      "research": {
+        "normal": 6,
+        "reserve": 3,
+        "total": 9
+      }
+    },
+    "limits": {
+      "configurations": {
+        "normal": 8,
+        "reserve": 4,
+        "total": 12
+      },
+      "lean": {
+        "normal": 8,
+        "reserve": 8,
+        "total": 16
+      },
+      "research": {
+        "normal": 12,
+        "reserve": 8,
+        "total": 20
+      }
+    },
+    "known_pending_lean": {
+      "attempt_id": "bfd00f2611fd4496b9498d4597618a8e",
+      "stage": "lean",
+      "status": "pending",
+      "external_id": "39cafa1e9b11f91b27e396b66d033a6d"
+    },
+    "hash_chain_valid": true,
+    "projection_matches": true,
+    "review_added": {
+      "configurations": 0,
+      "Research": 0,
+      "LEAN": 0,
+      "model_API": 0,
+      "purchases": 0,
+      "trades": 0
+    }
+  },
+  "budget_evidence_scope": "归档基线和12条事件独立离线重放；此前保留的聚合历史使用量未逐笔重建。37份受保护文件及暴露/时间分区/开关无变化。",
+  "version_and_platform": {
+    "ZIP_SHA256": "f524bf1e0bc75fc96c228b3d7e5e814c3e16bea812c64e3ad01c25b0e660fa25",
+    "zip_git_files_byte_identical": 170,
+    "current_cloud_source_commit_matches": "75f24629d3b7f94ff3aa906c3ce8a2b8b9a8d3c4",
+    "current_cloud_code_files_matching_old": 25,
+    "current_cloud_files_differing_from_candidate": 7,
+    "historical_runtime_deployment_hash": "dad57a0513899dc5ed89cef637d648229dd1c5c1b31bb70583ff95962c1c5bc6",
+    "current_task_input_matches_old_lean": true,
+    "candidate_deployed": false,
+    "build_repeated_stable": true,
+    "LEAN_external_id": "39cafa1e9b11f91b27e396b66d033a6d",
+    "LEAN_archived_state": "pending",
+    "LEAN_current_terminal_state": null,
+    "CI_exact_commit": {
+      "total_count": 2,
+      "runs": [
+        {
+          "id": 40296975110,
+          "head_sha": "fe4374cee054fb8053706074be913ad7068c4484",
+          "event": "pull_request",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/wwooyy429/AQRP-LLM/actions/runs/40296975110"
+        },
+        {
+          "id": 40296969964,
+          "head_sha": "fe4374cee054fb8053706074be913ad7068c4484",
+          "event": "push",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/wwooyy429/AQRP-LLM/actions/runs/40296969964"
+        }
+      ]
+    }
+  },
+  "platform_evidence_level": {
+    "project_and_current_source": "reviewer_independent_readonly_platform_evidence",
+    "Research_and_LEAN_submission": "prior_developer_archived_native_JSON_reparsed_offline; unchanged this round",
+    "new_candidate_platform_execution": "none",
+    "financial_or_forward": "none"
+  },
+  "historical_findings": {
+    "WR-01": "原报告与最小复现保留；当前仓库/原独立套件回归通过",
+    "WR-02": "原报告保留；当前既有权威身份与计划绑定回归通过",
+    "WR-03": "原报告保留；当前不等高精度数量拒绝及等量正向回归通过",
+    "WR-04_WR-05_WR-06": "原75失败保留；本轮按各自原范围修复后通过",
+    "WR-07": "本轮新增独立覆盖发现，原75同现；不改写原历史报告"
+  },
+  "reviewer_auxiliary_notes": [
+    "证据辅助检查首次混用了原始与规范化哈希口径，原输出保留，已更正且未改待审文件",
+    "一次云端源码本地JSON辅助读取因未明确UTF-8而失败，已指定编码重读；不计为软件用例失败"
+  ],
+  "unverified": [
+    "既有LEAN真实终态；未读取日志或轮询",
+    "新源码实际云端部署、Research及LEAN运行",
+    "完整历史US200、永久SID/分类/映射全覆盖、财务公开/修订及实际送达/摄入认证",
+    "Object Store跨节点原子性及完整NTFS攻击面",
+    "本轮Linux/Python3.11/3.12及扩展精度longdouble运行",
+    "阶段3-7完整生产能力、真实成本风险/净组合增量、独立最终与前向测试",
+    "2026独立性及未知编码凭证的绝对不存在"
+  ],
+  "software_acceptance": "failed",
+  "software_acceptance_reason": "原三项修复通过，但已实现Pearson相关性仍有WR-07",
+  "data_certification": {
+    "historical_US200": false,
+    "financial_vintages": false,
+    "actual_vendor_delivery": false,
+    "year2026_independence": null
+  },
+  "financial_evidence": false,
+  "next_actions": [
+    "修复WR-07并交付新固定SHA，覆盖默认Pearson和absolute_pearson矩阵，保留本轮失败",
+    "保留WR-04/05/06当前通过的合法路径、单胜者/预算及完整时区链回归",
+    "等待已有LEAN自动终态后再核对；本报告不授权新增市场或模型调用、部署或合并",
+    "数据认证及阶段3-7继续分别验收"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "repository": "modelcontextprotocol/modelcontextprotocol",
+  "file_commit": "c4c367f9f58296a7053f5c78a52fd02bfbb56a49",
+  "schema_version": "2025-11-25",
+  "fetch_date": "2026-10-27",
+  "source_url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/c4c367f9f58296a7053f5c78a52fd02bfbb56a49/schema/2025-11-25/schema.json",
+  "discovery_url": "https://api.github.com/repos/modelcontextprotocol/modelcontextprotocol/commits?path=schema/2025-11-25/schema.json&per_page=1",
+  "raw_sha256": "268a5f82ba70fd7e4b6dc4aa1e64f116f74b4d0edcb69dc046829c79dd4e97e7",
+  "Annotations": {
+    "description": "Optional annotations for the client. The client can use annotations to inform how objects are used or displayed",
+    "properties": {
+      "audience": {
+        "description": "Describes who the intended audience of this object or data is.\n\nIt can include multiple entries to indicate content useful for multiple audiences (e.g., `[\"user\", \"assistant\"]`).",
+        "items": {
+          "$ref": "#/$defs/Role"
+        },
+        "type": "array"
+      },
+      "lastModified": {
+        "description": "The moment the resource was last modified, as an ISO 8601 formatted string.\n\nShould be an ISO 8601 formatted string (e.g., \"2025-01-12T15:00:58Z\").\n\nExamples: last activity timestamp in an open file, timestamp when the resource\nwas attached, etc.",
+        "type": "string"
+      },
+      "priority": {
+        "description": "Describes how important this data is for operating the server.\n\nA value of 1 means \"most important,\" and indicates that the data is\neffectively required, while 0 means \"least important,\" and indicates that\nthe data is entirely optional.",
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      }
+    },
+    "type": "object"
+  },
+  "Role": {
+    "description": "The sender or recipient of messages and data in a conversation.",
+    "enum": [
+      "assistant",
+      "user"
+    ],
+    "type": "string"
+  },
+  "TextContent": {
+    "description": "Text provided to or from an LLM.",
+    "properties": {
+      "_meta": {
+        "additionalProperties": {},
+        "description": "See [General fields: `_meta`](/specification/2025-11-25/basic/index#meta) for notes on `_meta` usage.",
+        "type": "object"
+      },
+      "annotations": {
+        "$ref": "#/$defs/Annotations",
+        "description": "Optional annotations for the client."
+      },
+      "text": {
+        "description": "The text content of the message.",
+        "type": "string"
+      },
+      "type": {
+        "const": "text",
+        "type": "string"
+      }
+    },
+    "required": [
+      "text",
+      "type"
+    ],
+    "type": "object"
+  },
+  "interpretation": "官方Annotations登记三字段：audience为Role数组，priority为0–1数值，lastModified为ISO提示字符串；schema并未封闭全部扩展或机器校验全部ISO。本项目明确采用更窄白名单/时钟子集，未知扩展拒绝与None兼容是本适配器合同，不冒称所有MCP封装兼容。"
+}

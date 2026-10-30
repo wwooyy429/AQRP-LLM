@@ -1,0 +1,21 @@
+test_bridge_lean_guard_is_positive_control (__main__.JointProbes) ... ok
+test_bridge_retry_guard_is_positive_control (__main__.JointProbes) ... ok
+test_direct_registry_lean_requires_parent_research_before_debit (__main__.JointProbes) ... ok
+test_direct_registry_respects_joint_max_retry_zero (__main__.JointProbes) ... ok
+test_direct_registry_wrong_operation_must_not_charge_joint_task (__main__.JointProbes) ... ok
+test_legacy_freeze_must_not_replace_pending_project_pointer (__main__.JointProbes) ... FAIL
+test_valid_parent_claim_and_reuse_are_single_charged_control (__main__.JointProbes) ... ok
+
+======================================================================
+FAIL: test_legacy_freeze_must_not_replace_pending_project_pointer (__main__.JointProbes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11638\.codex\tmp\aqrp-review-66ff72f-20261027\original_quick_full\quick_joint_probes.py", line 93, in test_legacy_freeze_must_not_replace_pending_project_pointer
+    self.assertNotEqual(joint_result.returncode,0,joint_result.stdout)
+AssertionError: 0 == 0 : {"schema_version": 1, "plan_key": "engineering/frozen-plans/167f5602edce468bfd85745081d8c59aa567fe94d5a894c7d6466a1c183f02c3.json", "plan_hash": "167f5602edce468bfd85745081d8c59aa567fe94d5a894c7d6466a1c183f02c3", "project_listing_ref": {"key": "engineering/project-listings/498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6.json", "sha256": "498ecbe965413599663c026e463f54396c67f5ae4382a90c6d186d921364acc6"}, "configuration_registered": false, "execution_started": false}
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 13.414s
+
+FAILED (failures=1)

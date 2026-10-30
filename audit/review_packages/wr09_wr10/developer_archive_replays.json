@@ -1,0 +1,36 @@
+{
+  "purpose": "developer_replay_of_unchanged_independent_test_scripts_on_repair_candidate",
+  "is_new_GPT_Work_acceptance": false,
+  "script_path_bindings": "Temporary source-only copy in .git/repair-work/wr09_wr10-replay/source; original scripts byte-identical",
+  "reviewed_source_literal_in_original_scripts": "fbe2454e6ea10aa59211c01f236c54bb251527be",
+  "actual_current_source_manifest_hash": "8200262e31fba80d57888474c0980f22a15b8a1bfa59261a334a67ef87c11381",
+  "real_SDK_executed": false,
+  "market_calls": 0,
+  "counts_are_overlapping_not_unique": true,
+  "runs": [
+    {
+      "script": "source_agent/independent_source_review.py",
+      "chunk_id": "f0366a",
+      "wall_time_seconds": 1.6763705,
+      "exit_code": 0,
+      "original_token_count": 195,
+      "output": "test_bridge_ingestion_preserves_unknown_and_rejects_pit (__main__.IndependentSourceTests) ... ok\r\ntest_classification_primary_contract (__main__.IndependentSourceTests) ... ok\r\ntest_clocks_dst_utc_and_window_boundaries (__main__.IndependentSourceTests) ... ok\r\ntest_complete_projection_and_no_coverage_screen (__main__.IndependentSourceTests) ... ok\r\ntest_date_no_value_sentinel_remains_missing (__main__.IndependentSourceTests) ... ok\r\ntest_scalar_types_missing_and_zero (__main__.IndependentSourceTests) ... ok\r\ntest_sid_universe_shape_and_duplicate_rejection (__main__.IndependentSourceTests) ... ok\r\ntest_subset_frozen_definitions (__main__.IndependentSourceTests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 8 tests in 0.057s\r\n\r\nOK\r\n"
+    },
+    {
+      "script": "source_agent/secondary_source_review_counted.py",
+      "chunk_id": "18b131",
+      "wall_time_seconds": 1.3507304,
+      "exit_code": 0,
+      "original_token_count": 97,
+      "output": "test_native_endtime_contract_maps_exact_selection_window (__main__.AdditionalSourceTests) ... ok\r\ntest_public_collector_fails_with_legal_native_endpoint (__main__.AdditionalSourceTests) ... ok\r\ntest_valid_fallback_dates_and_zero_remain_values (__main__.AdditionalSourceTests) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 3 tests in 0.033s\r\n\r\nOK\r\n"
+    },
+    {
+      "script": "collection_agent/independent_collection.py",
+      "chunk_id": "36c845",
+      "wall_time_seconds": 4.7659303,
+      "exit_code": 0,
+      "original_token_count": 568,
+      "output": "test_batch_write_unknown_preserves_intent_and_does_not_retry_source (__main__.IndependentCollection) ... ok\r\ntest_calendar_partition_contiguous_through_fall_clock_change (__main__.IndependentCollection) ... ok\r\ntest_cloud_different_adapter_instances_serialize_same_namespace (__main__.IndependentCollection) ... ok\r\ntest_cloud_readonly_store_rejects_missing_fetch_and_reuses_verified_cache (__main__.IndependentCollection) ... ok\r\ntest_completed_manifest_unknown_write_can_be_verified_after_restart (__main__.IndependentCollection) ... ok\r\ntest_cross_plan_and_cross_synthetic_refs_rejected_without_fetch (__main__.IndependentCollection) ... ok\r\ntest_empty_cache_miss_and_empty_source_have_distinct_honest_receipts (__main__.IndependentCollection) ... ok\r\ntest_equivalent_instants_duplicate_across_batches_leave_unfinished (__main__.IndependentCollection) ... ok\r\ntest_exact_batch_window_capacity_and_excess_never_returns_partial_window (__main__.IndependentCollection) ... ok\r\ntest_manifest_metadata_tamper_with_recomputed_digest_still_rejected (__main__.IndependentCollection) ... ok\r\ntest_missing_or_corrupt_batch_fails_entire_read_without_repair_fetch (__main__.IndependentCollection) ... ok\r\ntest_multiwindow_failure_retains_only_completed_prefix_and_blocks_resume (__main__.IndependentCollection) ... ok\r\ntest_restart_readonly_consumption_reuses_bytes_and_never_needs_source (__main__.IndependentCollection) ... ok\r\ntest_same_memory_store_six_collectors_get_one_source_dispatch (__main__.IndependentCollection) ... ok\r\ntest_semantic_changes_get_new_namespaces_and_explicit_new_dispatches (__main__.IndependentCollection) ... ok\r\ntest_semantic_identity_is_immutable_and_selected_catalog_bound (__main__.IndependentCollection) ... ok\r\ntest_separate_filesystem_instances_share_thread_lock_boundary (__main__.IndependentCollection) ... ok\r\ntest_separate_processes_share_filesystem_single_window_intent (__main__.IndependentCollection) ... ok\r\ntest_stream_failure_after_persisted_batch_never_publishes_or_retries (__main__.IndependentCollection) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 19 tests in 3.398s\r\n\r\nOK\r\n\r\n{\"methods\": 19, \"passed_methods\": 19, \"failed_methods\": 0, \"error_methods\": 0, \"subcases\": 31, \"exit_code\": 0}\r\n"
+    }
+  ]
+}

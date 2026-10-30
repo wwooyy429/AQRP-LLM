@@ -1,0 +1,2433 @@
+{
+  "schema_version": 1,
+  "kind": "actual_QC_official_API_reference_observations",
+  "project_id": 38436695,
+  "observations": [
+    {
+      "query": "IncomeStatement.total_revenue",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"results\":[{\"name\":\"TotalRevenueIncomeStatement\",\"kind\":\"class\",\"summary\":\"All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"one_month\",\"kind\":\"property\",\"summary\":\"Gets/sets the OneMonth period value for the field\",\"signatures\":[\"one_month: float\"]},{\"name\":\"two_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwoMonths period value for the field\",\"signatures\":[\"two_months: float\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"TotalRevenueAsReportedIncomeStatement\",\"kind\":\"class\",\"summary\":\"Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"IncomeStatement\",\"kind\":\"class\",\"summary\":\"Definition of the IncomeStatement class\",\"overloads\":[{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"fee_revenue_and_other_income\",\"kind\":\"property\",\"summary\":\"Other revenue that is not classified elsewhere. Fees and commissions are not included.\",\"signatures\":[\"fee_revenue_and_other_income: FeeRevenueAndOtherIncomeIncomeStatement\"]},{\"name\":\"gross_profit\",\"kind\":\"property\",\"summary\":\"Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.\",\"signatures\":[\"gross_profit: GrossProfitIncomeStatement\"]},{\"name\":\"net_income_continuous_operations\",\"kind\":\"property\",\"summary\":\"Revenue less expenses and taxes from the entity's ongoing operations and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other Gains/Losses.\",\"signatures\":[\"net_income_continuous_operations: NetIncomeContinuousOperationsIncomeStatement\"]},{\"name\":\"total_revenue\",\"kind\":\"property\",\"summary\":\"All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Reven...\",\"signatures\":[\"total_revenue: TotalRevenueIncomeStatement\"]},{\"name\":\"non_interest_income\",\"kind\":\"property\",\"summary\":\"The total amount of non-interest income which may be derived from: (1) fees and commissions; (2) premiums earned; (3) equity investment; (4) the sale or disposal of assets; and (5) other sources not otherwise specified.\",\"signatures\":[\"non_interest_income: NonInterestIncomeIncomeStatement\"]},{\"name\":\"operating_income\",\"kind\":\"property\",\"summary\":\"Income from normal business operations after deducting cost of revenue and operating expenses. It does not include income from any investing activities.\",\"signatures\":[\"operating_income: OperatingIncomeIncomeStatement\"]},{\"name\":\"operating_revenue\",\"kind\":\"property\",\"summary\":\"Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is th...\",\"signatures\":[\"operating_revenue: OperatingRevenueIncomeStatement\"]},{\"name\":\"total_expenses\",\"kind\":\"property\",\"summary\":\"The sum of operating expense and cost of revenue. If the company does not give the reported number, it will be calculated by adding operating expense and cost of revenue.\",\"signatures\":[\"total_expenses: TotalExpensesIncomeStatement\"]},{\"name\":\"ebit\",\"kind\":\"property\",\"summary\":\"Earnings minus expenses (excluding interest and tax expenses).\",\"signatures\":[\"ebit: EBITIncomeStatement\"]},{\"name\":\"ebitda\",\"kind\":\"property\",\"summary\":\"Earnings minus expenses (excluding interest, tax, depreciation, and amortization expenses).\",\"signatures\":[\"ebitda: EBITDAIncomeStatement\"]},{\"name\":\"net_income_continuous_operations_net_minority_interest\",\"kind\":\"property\",\"summary\":\"Revenue less expenses and taxes from the entity's ongoing operations net of minority interest and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other...\",\"signatures\":[\"net_income_continuous_operations_net_minority_interest: NetIncomeContinuousOperationsNetMinorityInterestIncomeStatement\"]},{\"name\":\"interest_income_from_loans_and_lease\",\"kind\":\"property\",\"summary\":\"Total interest and fee income generated by loans and lease. This item is usually only available for bank industry.\",\"signatures\":[\"interest_income_from_loans_and_lease: InterestIncomeFromLoansAndLeaseIncomeStatement\"]},{\"name\":\"reconciled_cost_of_revenue\",\"kind\":\"property\",\"summary\":\"The costs incurred to provide the goods or services that generate revenue, as reported; not reconciled for depreciation and amortization.\",\"signatures\":[\"reconciled_cost_of_revenue: ReconciledCostOfRevenueIncomeStatement\"]},{\"name\":\"impairment_losses_reversals_financial_instruments_net\",\"kind\":\"property\",\"summary\":\"Impairment or reversal of impairment on financial instrument such as derivative. This is a contra account under Total Revenue in banks.\",\"signatures\":[\"impairment_losses_reversals_financial_instruments_net: ImpairmentLossesReversalsFinancialInstrumentsNetIncomeStatement\"]},{\"name\":\"normalized_ebitda\",\"kind\":\"property\",\"summary\":\"EBITDA less Total Unusual Items\",\"signatures\":[\"normalized_ebitda: NormalizedEBITDAIncomeStatement\"]},{\"name\":\"total_operating_income_as_reported\",\"kind\":\"property\",\"summary\":\"Operating profit/loss as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"total_operating_income_as_reported: TotalOperatingIncomeAsReportedIncomeStatement\"]},{\"name\":\"total_revenue_as_reported\",\"kind\":\"property\",\"summary\":\"Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"total_revenue_as_reported: TotalRevenueAsReportedIncomeStatement\"]},{\"name\":\"net_operating_profit_after_tax\",\"kind\":\"property\",\"summary\":\"This calculation represents the tax affected operating earnings the company generated for the period. This can be used to measure a company's profitability. This is calculated using Net Income from Continuing Operations plus tax affected Net Interest Income/Expense minus tax affected Dividend and...\",\"signatures\":[\"net_operating_profit_after_tax: NetOperatingProfitAfterTaxIncomeStatement\"]},{\"name\":\"ebita\",\"kind\":\"property\",\"summary\":\"This data point represents the earnings the company generated before interest; tax and amortization expenses. This can be used to measure a company's profitability. This is calculated using Earnings Before Interest; Tax; Depreciation and Amortization minus Depreciation.\",\"signatures\":[\"ebita: EBITAIncomeStatement\"]},{\"name\":\"unadjusted_revenue\",\"kind\":\"property\",\"summary\":\"Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies us...\",\"signatures\":[\"unadjusted_revenue: UnadjustedRevenueIncomeStatement\"]}],\"truncated\":true}]}"
+          }
+        ],
+        "structuredContent": {
+          "results": [
+            {
+              "name": "TotalRevenueIncomeStatement",
+              "kind": "class",
+              "summary": "All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "one_month",
+                  "kind": "property",
+                  "summary": "Gets/sets the OneMonth period value for the field",
+                  "signatures": [
+                    "one_month: float"
+                  ]
+                },
+                {
+                  "name": "two_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwoMonths period value for the field",
+                  "signatures": [
+                    "two_months: float"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "TotalRevenueAsReportedIncomeStatement",
+              "kind": "class",
+              "summary": "Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "IncomeStatement",
+              "kind": "class",
+              "summary": "Definition of the IncomeStatement class",
+              "overloads": [
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "fee_revenue_and_other_income",
+                  "kind": "property",
+                  "summary": "Other revenue that is not classified elsewhere. Fees and commissions are not included.",
+                  "signatures": [
+                    "fee_revenue_and_other_income: FeeRevenueAndOtherIncomeIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "gross_profit",
+                  "kind": "property",
+                  "summary": "Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.",
+                  "signatures": [
+                    "gross_profit: GrossProfitIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "net_income_continuous_operations",
+                  "kind": "property",
+                  "summary": "Revenue less expenses and taxes from the entity's ongoing operations and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other Gains/Losses.",
+                  "signatures": [
+                    "net_income_continuous_operations: NetIncomeContinuousOperationsIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_revenue",
+                  "kind": "property",
+                  "summary": "All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Reven...",
+                  "signatures": [
+                    "total_revenue: TotalRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "non_interest_income",
+                  "kind": "property",
+                  "summary": "The total amount of non-interest income which may be derived from: (1) fees and commissions; (2) premiums earned; (3) equity investment; (4) the sale or disposal of assets; and (5) other sources not otherwise specified.",
+                  "signatures": [
+                    "non_interest_income: NonInterestIncomeIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "operating_income",
+                  "kind": "property",
+                  "summary": "Income from normal business operations after deducting cost of revenue and operating expenses. It does not include income from any investing activities.",
+                  "signatures": [
+                    "operating_income: OperatingIncomeIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "operating_revenue",
+                  "kind": "property",
+                  "summary": "Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is th...",
+                  "signatures": [
+                    "operating_revenue: OperatingRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_expenses",
+                  "kind": "property",
+                  "summary": "The sum of operating expense and cost of revenue. If the company does not give the reported number, it will be calculated by adding operating expense and cost of revenue.",
+                  "signatures": [
+                    "total_expenses: TotalExpensesIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "ebit",
+                  "kind": "property",
+                  "summary": "Earnings minus expenses (excluding interest and tax expenses).",
+                  "signatures": [
+                    "ebit: EBITIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "ebitda",
+                  "kind": "property",
+                  "summary": "Earnings minus expenses (excluding interest, tax, depreciation, and amortization expenses).",
+                  "signatures": [
+                    "ebitda: EBITDAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "net_income_continuous_operations_net_minority_interest",
+                  "kind": "property",
+                  "summary": "Revenue less expenses and taxes from the entity's ongoing operations net of minority interest and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other...",
+                  "signatures": [
+                    "net_income_continuous_operations_net_minority_interest: NetIncomeContinuousOperationsNetMinorityInterestIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "interest_income_from_loans_and_lease",
+                  "kind": "property",
+                  "summary": "Total interest and fee income generated by loans and lease. This item is usually only available for bank industry.",
+                  "signatures": [
+                    "interest_income_from_loans_and_lease: InterestIncomeFromLoansAndLeaseIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "reconciled_cost_of_revenue",
+                  "kind": "property",
+                  "summary": "The costs incurred to provide the goods or services that generate revenue, as reported; not reconciled for depreciation and amortization.",
+                  "signatures": [
+                    "reconciled_cost_of_revenue: ReconciledCostOfRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "impairment_losses_reversals_financial_instruments_net",
+                  "kind": "property",
+                  "summary": "Impairment or reversal of impairment on financial instrument such as derivative. This is a contra account under Total Revenue in banks.",
+                  "signatures": [
+                    "impairment_losses_reversals_financial_instruments_net: ImpairmentLossesReversalsFinancialInstrumentsNetIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_ebitda",
+                  "kind": "property",
+                  "summary": "EBITDA less Total Unusual Items",
+                  "signatures": [
+                    "normalized_ebitda: NormalizedEBITDAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_operating_income_as_reported",
+                  "kind": "property",
+                  "summary": "Operating profit/loss as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "total_operating_income_as_reported: TotalOperatingIncomeAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_revenue_as_reported",
+                  "kind": "property",
+                  "summary": "Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "total_revenue_as_reported: TotalRevenueAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "net_operating_profit_after_tax",
+                  "kind": "property",
+                  "summary": "This calculation represents the tax affected operating earnings the company generated for the period. This can be used to measure a company's profitability. This is calculated using Net Income from Continuing Operations plus tax affected Net Interest Income/Expense minus tax affected Dividend and...",
+                  "signatures": [
+                    "net_operating_profit_after_tax: NetOperatingProfitAfterTaxIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "ebita",
+                  "kind": "property",
+                  "summary": "This data point represents the earnings the company generated before interest; tax and amortization expenses. This can be used to measure a company's profitability. This is calculated using Earnings Before Interest; Tax; Depreciation and Amortization minus Depreciation.",
+                  "signatures": [
+                    "ebita: EBITAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "unadjusted_revenue",
+                  "kind": "property",
+                  "summary": "Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies us...",
+                  "signatures": [
+                    "unadjusted_revenue: UnadjustedRevenueIncomeStatement"
+                  ]
+                }
+              ],
+              "truncated": true
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "query": "TotalRevenue.twelve_months",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"results\":[{\"name\":\"TotalRevenueIncomeStatement\",\"kind\":\"class\",\"summary\":\"All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"one_month\",\"kind\":\"property\",\"summary\":\"Gets/sets the OneMonth period value for the field\",\"signatures\":[\"one_month: float\"]},{\"name\":\"two_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwoMonths period value for the field\",\"signatures\":[\"two_months: float\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"TotalRevenueAsReportedIncomeStatement\",\"kind\":\"class\",\"summary\":\"Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"GrossProfitIncomeStatement\",\"kind\":\"class\",\"summary\":\"Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"one_month\",\"kind\":\"property\",\"summary\":\"Gets/sets the OneMonth period value for the field\",\"signatures\":[\"one_month: float\"]},{\"name\":\"two_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwoMonths period value for the field\",\"signatures\":[\"two_months: float\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"OperatingRevenueIncomeStatement\",\"kind\":\"class\",\"summary\":\"Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is the sum of revenue-passenger, revenue-cargo, and other operating revenue.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"one_month\",\"kind\":\"property\",\"summary\":\"Gets/sets the OneMonth period value for the field\",\"signatures\":[\"one_month: float\"]},{\"name\":\"two_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwoMonths period value for the field\",\"signatures\":[\"two_months: float\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"UnadjustedRevenueIncomeStatement\",\"kind\":\"class\",\"summary\":\"Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies using the normal; insurance and investment templates; unadjusted revenue is the same as the company's total revenue.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"QuantConnect.Data.Fundamental.Period\",\"kind\":\"class\",\"summary\":\"Period constants for multi-period fields\",\"members\":[{\"name\":\"ONE_MONTH\",\"kind\":\"field\",\"summary\":\"Period constant for one month\",\"signatures\":[\"ONE_MONTH: str = \\\"1M\\\"\"]},{\"name\":\"TWO_MONTHS\",\"kind\":\"field\",\"summary\":\"Period constant for two months\",\"signatures\":[\"TWO_MONTHS: str = \\\"2M\\\"\"]},{\"name\":\"THREE_MONTHS\",\"kind\":\"field\",\"summary\":\"Period constant for three months\",\"signatures\":[\"THREE_MONTHS: str = \\\"3M\\\"\"]},{\"name\":\"SIX_MONTHS\",\"kind\":\"field\",\"summary\":\"Period constant for six months\",\"signatures\":[\"SIX_MONTHS: str = \\\"6M\\\"\"]},{\"name\":\"NINE_MONTHS\",\"kind\":\"field\",\"summary\":\"Period constant for nine months\",\"signatures\":[\"NINE_MONTHS: str = \\\"9M\\\"\"]},{\"name\":\"TWELVE_MONTHS\",\"kind\":\"field\",\"summary\":\"Period constant for twelve months\",\"signatures\":[\"TWELVE_MONTHS: str = \\\"12M\\\"\"]},{\"name\":\"ONE_YEAR\",\"kind\":\"field\",\"summary\":\"Period constant for one year\",\"signatures\":[\"ONE_YEAR: str = \\\"1Y\\\"\"]},{\"name\":\"TWO_YEARS\",\"kind\":\"field\",\"summary\":\"Period constant for two years\",\"signatures\":[\"TWO_YEARS: str = \\\"2Y\\\"\"]},{\"name\":\"THREE_YEARS\",\"kind\":\"field\",\"summary\":\"Period constant for three years\",\"signatures\":[\"THREE_YEARS: str = \\\"3Y\\\"\"]},{\"name\":\"FIVE_YEARS\",\"kind\":\"field\",\"summary\":\"Period constant for five years\",\"signatures\":[\"FIVE_YEARS: str = \\\"5Y\\\"\"]},{\"name\":\"TEN_YEARS\",\"kind\":\"field\",\"summary\":\"Period constant for ten years\",\"signatures\":[\"TEN_YEARS: str = \\\"10Y\\\"\"]}]}]}"
+          }
+        ],
+        "structuredContent": {
+          "results": [
+            {
+              "name": "TotalRevenueIncomeStatement",
+              "kind": "class",
+              "summary": "All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "one_month",
+                  "kind": "property",
+                  "summary": "Gets/sets the OneMonth period value for the field",
+                  "signatures": [
+                    "one_month: float"
+                  ]
+                },
+                {
+                  "name": "two_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwoMonths period value for the field",
+                  "signatures": [
+                    "two_months: float"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "TotalRevenueAsReportedIncomeStatement",
+              "kind": "class",
+              "summary": "Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "GrossProfitIncomeStatement",
+              "kind": "class",
+              "summary": "Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "one_month",
+                  "kind": "property",
+                  "summary": "Gets/sets the OneMonth period value for the field",
+                  "signatures": [
+                    "one_month: float"
+                  ]
+                },
+                {
+                  "name": "two_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwoMonths period value for the field",
+                  "signatures": [
+                    "two_months: float"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "OperatingRevenueIncomeStatement",
+              "kind": "class",
+              "summary": "Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is the sum of revenue-passenger, revenue-cargo, and other operating revenue.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "one_month",
+                  "kind": "property",
+                  "summary": "Gets/sets the OneMonth period value for the field",
+                  "signatures": [
+                    "one_month: float"
+                  ]
+                },
+                {
+                  "name": "two_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwoMonths period value for the field",
+                  "signatures": [
+                    "two_months: float"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "UnadjustedRevenueIncomeStatement",
+              "kind": "class",
+              "summary": "Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies using the normal; insurance and investment templates; unadjusted revenue is the same as the company's total revenue.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "QuantConnect.Data.Fundamental.Period",
+              "kind": "class",
+              "summary": "Period constants for multi-period fields",
+              "members": [
+                {
+                  "name": "ONE_MONTH",
+                  "kind": "field",
+                  "summary": "Period constant for one month",
+                  "signatures": [
+                    "ONE_MONTH: str = \"1M\""
+                  ]
+                },
+                {
+                  "name": "TWO_MONTHS",
+                  "kind": "field",
+                  "summary": "Period constant for two months",
+                  "signatures": [
+                    "TWO_MONTHS: str = \"2M\""
+                  ]
+                },
+                {
+                  "name": "THREE_MONTHS",
+                  "kind": "field",
+                  "summary": "Period constant for three months",
+                  "signatures": [
+                    "THREE_MONTHS: str = \"3M\""
+                  ]
+                },
+                {
+                  "name": "SIX_MONTHS",
+                  "kind": "field",
+                  "summary": "Period constant for six months",
+                  "signatures": [
+                    "SIX_MONTHS: str = \"6M\""
+                  ]
+                },
+                {
+                  "name": "NINE_MONTHS",
+                  "kind": "field",
+                  "summary": "Period constant for nine months",
+                  "signatures": [
+                    "NINE_MONTHS: str = \"9M\""
+                  ]
+                },
+                {
+                  "name": "TWELVE_MONTHS",
+                  "kind": "field",
+                  "summary": "Period constant for twelve months",
+                  "signatures": [
+                    "TWELVE_MONTHS: str = \"12M\""
+                  ]
+                },
+                {
+                  "name": "ONE_YEAR",
+                  "kind": "field",
+                  "summary": "Period constant for one year",
+                  "signatures": [
+                    "ONE_YEAR: str = \"1Y\""
+                  ]
+                },
+                {
+                  "name": "TWO_YEARS",
+                  "kind": "field",
+                  "summary": "Period constant for two years",
+                  "signatures": [
+                    "TWO_YEARS: str = \"2Y\""
+                  ]
+                },
+                {
+                  "name": "THREE_YEARS",
+                  "kind": "field",
+                  "summary": "Period constant for three years",
+                  "signatures": [
+                    "THREE_YEARS: str = \"3Y\""
+                  ]
+                },
+                {
+                  "name": "FIVE_YEARS",
+                  "kind": "field",
+                  "summary": "Period constant for five years",
+                  "signatures": [
+                    "FIVE_YEARS: str = \"5Y\""
+                  ]
+                },
+                {
+                  "name": "TEN_YEARS",
+                  "kind": "field",
+                  "summary": "Period constant for ten years",
+                  "signatures": [
+                    "TEN_YEARS: str = \"10Y\""
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "query": "IncomeStatement.total_revenue_as_reported",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"results\":[{\"name\":\"TotalRevenueAsReportedIncomeStatement\",\"kind\":\"class\",\"summary\":\"Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]},{\"name\":\"IncomeStatement\",\"kind\":\"class\",\"summary\":\"Definition of the IncomeStatement class\",\"overloads\":[{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"gross_profit\",\"kind\":\"property\",\"summary\":\"Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.\",\"signatures\":[\"gross_profit: GrossProfitIncomeStatement\"]},{\"name\":\"net_income_continuous_operations\",\"kind\":\"property\",\"summary\":\"Revenue less expenses and taxes from the entity's ongoing operations and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other Gains/Losses.\",\"signatures\":[\"net_income_continuous_operations: NetIncomeContinuousOperationsIncomeStatement\"]},{\"name\":\"total_revenue\",\"kind\":\"property\",\"summary\":\"All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Reven...\",\"signatures\":[\"total_revenue: TotalRevenueIncomeStatement\"]},{\"name\":\"operating_revenue\",\"kind\":\"property\",\"summary\":\"Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is th...\",\"signatures\":[\"operating_revenue: OperatingRevenueIncomeStatement\"]},{\"name\":\"pretax_income\",\"kind\":\"property\",\"summary\":\"Reported income before the deduction or benefit of income taxes.\",\"signatures\":[\"pretax_income: PretaxIncomeIncomeStatement\"]},{\"name\":\"total_expenses\",\"kind\":\"property\",\"summary\":\"The sum of operating expense and cost of revenue. If the company does not give the reported number, it will be calculated by adding operating expense and cost of revenue.\",\"signatures\":[\"total_expenses: TotalExpensesIncomeStatement\"]},{\"name\":\"ebitda\",\"kind\":\"property\",\"summary\":\"Earnings minus expenses (excluding interest, tax, depreciation, and amortization expenses).\",\"signatures\":[\"ebitda: EBITDAIncomeStatement\"]},{\"name\":\"net_income_continuous_operations_net_minority_interest\",\"kind\":\"property\",\"summary\":\"Revenue less expenses and taxes from the entity's ongoing operations net of minority interest and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other...\",\"signatures\":[\"net_income_continuous_operations_net_minority_interest: NetIncomeContinuousOperationsNetMinorityInterestIncomeStatement\"]},{\"name\":\"reconciled_cost_of_revenue\",\"kind\":\"property\",\"summary\":\"The costs incurred to provide the goods or services that generate revenue, as reported; not reconciled for depreciation and amortization.\",\"signatures\":[\"reconciled_cost_of_revenue: ReconciledCostOfRevenueIncomeStatement\"]},{\"name\":\"impairment_losses_reversals_financial_instruments_net\",\"kind\":\"property\",\"summary\":\"Impairment or reversal of impairment on financial instrument such as derivative. This is a contra account under Total Revenue in banks.\",\"signatures\":[\"impairment_losses_reversals_financial_instruments_net: ImpairmentLossesReversalsFinancialInstrumentsNetIncomeStatement\"]},{\"name\":\"normalized_ebitda\",\"kind\":\"property\",\"summary\":\"EBITDA less Total Unusual Items\",\"signatures\":[\"normalized_ebitda: NormalizedEBITDAIncomeStatement\"]},{\"name\":\"total_operating_income_as_reported\",\"kind\":\"property\",\"summary\":\"Operating profit/loss as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"total_operating_income_as_reported: TotalOperatingIncomeAsReportedIncomeStatement\"]},{\"name\":\"total_revenue_as_reported\",\"kind\":\"property\",\"summary\":\"Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"total_revenue_as_reported: TotalRevenueAsReportedIncomeStatement\"]},{\"name\":\"normalized_income_as_reported\",\"kind\":\"property\",\"summary\":\"Earnings adjusted for items that are irregular or unusual in nature, and/or are non-recurring. This can be used to fairly measure a company's profitability. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"normalized_income_as_reported: NormalizedIncomeAsReportedIncomeStatement\"]},{\"name\":\"normalized_ebitda_as_reported\",\"kind\":\"property\",\"summary\":\"EBITDA less Total Unusual Items. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"normalized_ebitda_as_reported: NormalizedEBITDAAsReportedIncomeStatement\"]},{\"name\":\"normalized_ebit_as_reported\",\"kind\":\"property\",\"summary\":\"EBIT less Total Unusual Items. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"normalized_ebit_as_reported: NormalizedEBITAsReportedIncomeStatement\"]},{\"name\":\"normalized_operating_profit_as_reported\",\"kind\":\"property\",\"summary\":\"Operating profit adjusted for items that are irregular or unusual in nature, and/or are non-recurring. This can be used to fairly measure a company's profitability. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.\",\"signatures\":[\"normalized_operating_profit_as_reported: NormalizedOperatingProfitAsReportedIncomeStatement\"]},{\"name\":\"income_after_taxes\",\"kind\":\"property\",\"summary\":\"This calculation represents the company's after-tax earnings for the period. The calculation differs from Net Income; because it excludes Earnings from Equity Interests. This is calculated using Pretax Income minus Provision for Income Tax.\",\"signatures\":[\"income_after_taxes: IncomeAfterTaxesIncomeStatement\"]},{\"name\":\"ebita\",\"kind\":\"property\",\"summary\":\"This data point represents the earnings the company generated before interest; tax and amortization expenses. This can be used to measure a company's profitability. This is calculated using Earnings Before Interest; Tax; Depreciation and Amortization minus Depreciation.\",\"signatures\":[\"ebita: EBITAIncomeStatement\"]},{\"name\":\"unadjusted_revenue\",\"kind\":\"property\",\"summary\":\"Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies us...\",\"signatures\":[\"unadjusted_revenue: UnadjustedRevenueIncomeStatement\"]}],\"truncated\":true},{\"name\":\"TotalRevenueIncomeStatement\",\"kind\":\"class\",\"summary\":\"All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.\",\"bases\":[\"MultiPeriodField[float]\"],\"overloads\":[{\"description\":\"Creates a new empty instance\",\"signatures\":[\"()\"]},{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"default_period\",\"kind\":\"property\",\"summary\":\"The default period\",\"signatures\":[\"default_period: str\"]},{\"name\":\"one_month\",\"kind\":\"property\",\"summary\":\"Gets/sets the OneMonth period value for the field\",\"signatures\":[\"one_month: float\"]},{\"name\":\"two_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwoMonths period value for the field\",\"signatures\":[\"two_months: float\"]},{\"name\":\"three_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the ThreeMonths period value for the field\",\"signatures\":[\"three_months: float\"]},{\"name\":\"six_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the SixMonths period value for the field\",\"signatures\":[\"six_months: float\"]},{\"name\":\"nine_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the NineMonths period value for the field\",\"signatures\":[\"nine_months: float\"]},{\"name\":\"twelve_months\",\"kind\":\"property\",\"summary\":\"Gets/sets the TwelveMonths period value for the field\",\"signatures\":[\"twelve_months: float\"]},{\"name\":\"has_value\",\"kind\":\"property\",\"summary\":\"Returns true if the field contains a value for the default period\",\"signatures\":[\"has_value: bool\"]},{\"name\":\"value\",\"kind\":\"property\",\"summary\":\"Returns the default value for the field\",\"signatures\":[\"value: float\"]},{\"name\":\"get_period_value\",\"kind\":\"method\",\"summary\":\"Gets the value of the field for the requested period\",\"signatures\":[\"get_period_value(period: str) -> float\"]},{\"name\":\"get_period_values\",\"kind\":\"method\",\"summary\":\"Gets a dictionary of period names and values for the field\",\"signatures\":[\"get_period_values() -> Dict[str, float]\"]},{\"name\":\"NO_VALUE\",\"kind\":\"field\",\"summary\":\"No Value\",\"signatures\":[\"NO_VALUE: T\"],\"from\":\"MultiPeriodField\"},{\"name\":\"time_provider\",\"kind\":\"property\",\"summary\":\"The time provider instance to use\",\"signatures\":[\"time_provider: ITimeProvider\"],\"from\":\"MultiPeriodField\"},{\"name\":\"security_identifier\",\"kind\":\"property\",\"summary\":\"The target security identifier\",\"signatures\":[\"security_identifier: SecurityIdentifier (settable)\"],\"from\":\"MultiPeriodField\"},{\"name\":\"convert_period\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"convert_period(period: str) -> str\"],\"from\":\"MultiPeriodField\"},{\"name\":\"get_period_names\",\"kind\":\"method\",\"summary\":\"Gets the list of available period names for the field\",\"signatures\":[\"get_period_names() -> Sequence[str]\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_period_value\",\"kind\":\"method\",\"summary\":\"Returns true if the field contains a value for the requested period\",\"signatures\":[\"has_period_value(period: str) -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"has_values\",\"kind\":\"method\",\"summary\":\"Returns true if the field has at least one value for one period\",\"signatures\":[\"has_values() -> bool\"],\"from\":\"MultiPeriodField\"},{\"name\":\"to_string\",\"kind\":\"method\",\"summary\":\"Returns a string that represents the current object.\",\"signatures\":[\"to_string() -> str\"],\"from\":\"MultiPeriodField\"}]}]}"
+          }
+        ],
+        "structuredContent": {
+          "results": [
+            {
+              "name": "TotalRevenueAsReportedIncomeStatement",
+              "kind": "class",
+              "summary": "Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            },
+            {
+              "name": "IncomeStatement",
+              "kind": "class",
+              "summary": "Definition of the IncomeStatement class",
+              "overloads": [
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "gross_profit",
+                  "kind": "property",
+                  "summary": "Total revenue less cost of revenue. The number is as reported by the company on the income statement; however, the number will be calculated if it is not reported. This field is null if the cost of revenue is not given. Gross Profit = Total Revenue - Cost of Revenue.",
+                  "signatures": [
+                    "gross_profit: GrossProfitIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "net_income_continuous_operations",
+                  "kind": "property",
+                  "summary": "Revenue less expenses and taxes from the entity's ongoing operations and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other Gains/Losses.",
+                  "signatures": [
+                    "net_income_continuous_operations: NetIncomeContinuousOperationsIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_revenue",
+                  "kind": "property",
+                  "summary": "All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Reven...",
+                  "signatures": [
+                    "total_revenue: TotalRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "operating_revenue",
+                  "kind": "property",
+                  "summary": "Sales and income that the company makes from its business operations. This applies only to non-bank and insurance companies. For Utility template companies, this is the sum of revenue from electric, gas, transportation and other operating revenue. For Transportation template companies, this is th...",
+                  "signatures": [
+                    "operating_revenue: OperatingRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "pretax_income",
+                  "kind": "property",
+                  "summary": "Reported income before the deduction or benefit of income taxes.",
+                  "signatures": [
+                    "pretax_income: PretaxIncomeIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_expenses",
+                  "kind": "property",
+                  "summary": "The sum of operating expense and cost of revenue. If the company does not give the reported number, it will be calculated by adding operating expense and cost of revenue.",
+                  "signatures": [
+                    "total_expenses: TotalExpensesIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "ebitda",
+                  "kind": "property",
+                  "summary": "Earnings minus expenses (excluding interest, tax, depreciation, and amortization expenses).",
+                  "signatures": [
+                    "ebitda: EBITDAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "net_income_continuous_operations_net_minority_interest",
+                  "kind": "property",
+                  "summary": "Revenue less expenses and taxes from the entity's ongoing operations net of minority interest and before income (loss) from: Preferred Dividends; Extraordinary Gains and Losses; Income from Cumulative Effects of Accounting Change; Discontinuing Operation; Income from Tax Loss Carry forward; Other...",
+                  "signatures": [
+                    "net_income_continuous_operations_net_minority_interest: NetIncomeContinuousOperationsNetMinorityInterestIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "reconciled_cost_of_revenue",
+                  "kind": "property",
+                  "summary": "The costs incurred to provide the goods or services that generate revenue, as reported; not reconciled for depreciation and amortization.",
+                  "signatures": [
+                    "reconciled_cost_of_revenue: ReconciledCostOfRevenueIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "impairment_losses_reversals_financial_instruments_net",
+                  "kind": "property",
+                  "summary": "Impairment or reversal of impairment on financial instrument such as derivative. This is a contra account under Total Revenue in banks.",
+                  "signatures": [
+                    "impairment_losses_reversals_financial_instruments_net: ImpairmentLossesReversalsFinancialInstrumentsNetIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_ebitda",
+                  "kind": "property",
+                  "summary": "EBITDA less Total Unusual Items",
+                  "signatures": [
+                    "normalized_ebitda: NormalizedEBITDAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_operating_income_as_reported",
+                  "kind": "property",
+                  "summary": "Operating profit/loss as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "total_operating_income_as_reported: TotalOperatingIncomeAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "total_revenue_as_reported",
+                  "kind": "property",
+                  "summary": "Total revenue as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "total_revenue_as_reported: TotalRevenueAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_income_as_reported",
+                  "kind": "property",
+                  "summary": "Earnings adjusted for items that are irregular or unusual in nature, and/or are non-recurring. This can be used to fairly measure a company's profitability. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "normalized_income_as_reported: NormalizedIncomeAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_ebitda_as_reported",
+                  "kind": "property",
+                  "summary": "EBITDA less Total Unusual Items. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "normalized_ebitda_as_reported: NormalizedEBITDAAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_ebit_as_reported",
+                  "kind": "property",
+                  "summary": "EBIT less Total Unusual Items. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "normalized_ebit_as_reported: NormalizedEBITAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "normalized_operating_profit_as_reported",
+                  "kind": "property",
+                  "summary": "Operating profit adjusted for items that are irregular or unusual in nature, and/or are non-recurring. This can be used to fairly measure a company's profitability. This is as reported by the company, may be the same or not the same as Morningstar's standardized definition.",
+                  "signatures": [
+                    "normalized_operating_profit_as_reported: NormalizedOperatingProfitAsReportedIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "income_after_taxes",
+                  "kind": "property",
+                  "summary": "This calculation represents the company's after-tax earnings for the period. The calculation differs from Net Income; because it excludes Earnings from Equity Interests. This is calculated using Pretax Income minus Provision for Income Tax.",
+                  "signatures": [
+                    "income_after_taxes: IncomeAfterTaxesIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "ebita",
+                  "kind": "property",
+                  "summary": "This data point represents the earnings the company generated before interest; tax and amortization expenses. This can be used to measure a company's profitability. This is calculated using Earnings Before Interest; Tax; Depreciation and Amortization minus Depreciation.",
+                  "signatures": [
+                    "ebita: EBITAIncomeStatement"
+                  ]
+                },
+                {
+                  "name": "unadjusted_revenue",
+                  "kind": "property",
+                  "summary": "Revenue derived based on requirements from NASDAQ. For companies using the bank industry template; it is calculated using Net Interest Income; adding back interest expense to derive interest income revenue for the bank; and adding non-interest income to derive unadjusted revenue. For companies us...",
+                  "signatures": [
+                    "unadjusted_revenue: UnadjustedRevenueIncomeStatement"
+                  ]
+                }
+              ],
+              "truncated": true
+            },
+            {
+              "name": "TotalRevenueIncomeStatement",
+              "kind": "class",
+              "summary": "All sales, business revenues and income that the company makes from its business operations, net of excise taxes. This applies for all companies and can be used as comparison for all industries. For Normal, Mining, Transportation and Utility templates companies, this is the sum of Operating Revenues, Excise Taxes and Fees. For Bank template companies, this is the sum of Net Interest Income and Non-Interest Income. For Insurance template companies, this is the sum of Premiums, Interest Income, Fees, Investment and Other Income.",
+              "bases": [
+                "MultiPeriodField[float]"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new empty instance",
+                  "signatures": [
+                    "()"
+                  ]
+                },
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "default_period",
+                  "kind": "property",
+                  "summary": "The default period",
+                  "signatures": [
+                    "default_period: str"
+                  ]
+                },
+                {
+                  "name": "one_month",
+                  "kind": "property",
+                  "summary": "Gets/sets the OneMonth period value for the field",
+                  "signatures": [
+                    "one_month: float"
+                  ]
+                },
+                {
+                  "name": "two_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwoMonths period value for the field",
+                  "signatures": [
+                    "two_months: float"
+                  ]
+                },
+                {
+                  "name": "three_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the ThreeMonths period value for the field",
+                  "signatures": [
+                    "three_months: float"
+                  ]
+                },
+                {
+                  "name": "six_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the SixMonths period value for the field",
+                  "signatures": [
+                    "six_months: float"
+                  ]
+                },
+                {
+                  "name": "nine_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the NineMonths period value for the field",
+                  "signatures": [
+                    "nine_months: float"
+                  ]
+                },
+                {
+                  "name": "twelve_months",
+                  "kind": "property",
+                  "summary": "Gets/sets the TwelveMonths period value for the field",
+                  "signatures": [
+                    "twelve_months: float"
+                  ]
+                },
+                {
+                  "name": "has_value",
+                  "kind": "property",
+                  "summary": "Returns true if the field contains a value for the default period",
+                  "signatures": [
+                    "has_value: bool"
+                  ]
+                },
+                {
+                  "name": "value",
+                  "kind": "property",
+                  "summary": "Returns the default value for the field",
+                  "signatures": [
+                    "value: float"
+                  ]
+                },
+                {
+                  "name": "get_period_value",
+                  "kind": "method",
+                  "summary": "Gets the value of the field for the requested period",
+                  "signatures": [
+                    "get_period_value(period: str) -> float"
+                  ]
+                },
+                {
+                  "name": "get_period_values",
+                  "kind": "method",
+                  "summary": "Gets a dictionary of period names and values for the field",
+                  "signatures": [
+                    "get_period_values() -> Dict[str, float]"
+                  ]
+                },
+                {
+                  "name": "NO_VALUE",
+                  "kind": "field",
+                  "summary": "No Value",
+                  "signatures": [
+                    "NO_VALUE: T"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "time_provider",
+                  "kind": "property",
+                  "summary": "The time provider instance to use",
+                  "signatures": [
+                    "time_provider: ITimeProvider"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "security_identifier",
+                  "kind": "property",
+                  "summary": "The target security identifier",
+                  "signatures": [
+                    "security_identifier: SecurityIdentifier (settable)"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "convert_period",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "convert_period(period: str) -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "get_period_names",
+                  "kind": "method",
+                  "summary": "Gets the list of available period names for the field",
+                  "signatures": [
+                    "get_period_names() -> Sequence[str]"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_period_value",
+                  "kind": "method",
+                  "summary": "Returns true if the field contains a value for the requested period",
+                  "signatures": [
+                    "has_period_value(period: str) -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "has_values",
+                  "kind": "method",
+                  "summary": "Returns true if the field has at least one value for one period",
+                  "signatures": [
+                    "has_values() -> bool"
+                  ],
+                  "from": "MultiPeriodField"
+                },
+                {
+                  "name": "to_string",
+                  "kind": "method",
+                  "summary": "Returns a string that represents the current object.",
+                  "signatures": [
+                    "to_string() -> str"
+                  ],
+                  "from": "MultiPeriodField"
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    },
+    {
+      "query": "FinancialStatements",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"results\":[{\"name\":\"FinancialStatements\",\"kind\":\"class\",\"summary\":\"Definition of the FinancialStatements class\",\"bases\":[\"FundamentalTimeDependentProperty\"],\"overloads\":[{\"description\":\"Creates a new instance for the given time and security\",\"signatures\":[\"(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)\"]}],\"members\":[{\"name\":\"period_ending_date\",\"kind\":\"property\",\"summary\":\"The period ending date of the financial statements, dated by the filing the balance sheet, income statement and cash flow statement were reported in. Each statement also carries its own date: BalanceSheet.PeriodEndingDate, IncomeStatement.PeriodEndingDate and CashFlowStatement.PeriodEndingDate.\",\"signatures\":[\"period_ending_date: FinancialStatementsPeriodEndingDate\"]},{\"name\":\"file_date\",\"kind\":\"property\",\"summary\":\"Specific date on which a company released its filing to the public.\",\"signatures\":[\"file_date: FinancialStatementsFileDate\"]},{\"name\":\"accession_number\",\"kind\":\"property\",\"summary\":\"The accession number is a unique number that EDGAR assigns to each submission as the submission is received.\",\"signatures\":[\"accession_number: FinancialStatementsAccessionNumber\"]},{\"name\":\"form_type\",\"kind\":\"property\",\"summary\":\"The type of filing of the report: for instance, 10-K (annual report) or 10-Q (quarterly report).\",\"signatures\":[\"form_type: FinancialStatementsFormType\"]},{\"name\":\"period_auditor\",\"kind\":\"property\",\"summary\":\"The name of the auditor that performed the financial statement audit for the given period.\",\"signatures\":[\"period_auditor: PeriodAuditor\"]},{\"name\":\"auditor_report_status\",\"kind\":\"property\",\"summary\":\"Auditor opinion code will be one of the following for each annual period: Code Meaning UQ Unqualified Opinion UE Unqualified Opinion with Explanation QM Qualified - Due to change in accounting method QL Qualified - Due to litigation OT Qualified Opinion - Other AO Adverse Opinion DS Disclaim an o...\",\"signatures\":[\"auditor_report_status: AuditorReportStatus\"]},{\"name\":\"inventory_valuation_method\",\"kind\":\"property\",\"summary\":\"Which method of inventory valuation was used - LIFO, FIFO, Average, Standard costs, Net realizable value, Others, LIFO and FIFO, FIFO and Average, FIFO and other, LIFO and Average, LIFO and other, Average and other, 3 or more methods, None\",\"signatures\":[\"inventory_valuation_method: InventoryValuationMethod\"]},{\"name\":\"number_of_share_holders\",\"kind\":\"property\",\"summary\":\"The number of shareholders on record\",\"signatures\":[\"number_of_share_holders: NumberOfShareHolders\"]},{\"name\":\"period_type\",\"kind\":\"property\",\"summary\":\"The nature of the period covered by an individual set of financial results. The output can be: Quarter, Semi-annual or Annual. Assuming a 12-month fiscal year, quarter typically covers a three-month period, semi-annual a six-month period, and annual a twelve-month period. Annual could cover resul...\",\"signatures\":[\"period_type: FinancialStatementsPeriodType\"]},{\"name\":\"total_risk_based_capital\",\"kind\":\"property\",\"summary\":\"The total capital ratio: total regulatory capital, Tier 1 plus Tier 2, divided by risk weighted assets.\",\"signatures\":[\"total_risk_based_capital: TotalRiskBasedCapital\"]},{\"name\":\"income_statement\",\"kind\":\"property\",\"summary\":\"The instance of the IncomeStatement class\",\"signatures\":[\"income_statement: IncomeStatement\"]},{\"name\":\"balance_sheet\",\"kind\":\"property\",\"summary\":\"The instance of the BalanceSheet class\",\"signatures\":[\"balance_sheet: BalanceSheet\"]},{\"name\":\"cash_flow_statement\",\"kind\":\"property\",\"summary\":\"The instance of the CashFlowStatement class\",\"signatures\":[\"cash_flow_statement: CashFlowStatement\"]},{\"name\":\"common_equity_tier_1_capital_ratio\",\"kind\":\"property\",\"summary\":\"Common equity tier 1 capital divided by risk weighted assets\",\"signatures\":[\"common_equity_tier_1_capital_ratio: CommonEquityTier1CapitalRatio\"]},{\"name\":\"common_equity_tier_1_capital\",\"kind\":\"property\",\"summary\":\"Common equity tier 1 capital, the highest quality regulatory capital\",\"signatures\":[\"common_equity_tier_1_capital: CommonEquityTier1Capital\"]},{\"name\":\"liquidity_coverage_ratio\",\"kind\":\"property\",\"summary\":\"High quality liquid assets divided by projected net cash outflows over thirty days\",\"signatures\":[\"liquidity_coverage_ratio: LiquidityCoverageRatio\"]},{\"name\":\"net_interest_margin\",\"kind\":\"property\",\"summary\":\"Net interest income divided by average earning assets\",\"signatures\":[\"net_interest_margin: NetInterestMargin\"]},{\"name\":\"net_interest_spread\",\"kind\":\"property\",\"summary\":\"The difference between the yield on earning assets and the rate paid on funding\",\"signatures\":[\"net_interest_spread: NetInterestSpread\"]},{\"name\":\"non_performing_assets_loans\",\"kind\":\"property\",\"summary\":\"Loans on which the borrower is not making interest or principal payments as scheduled\",\"signatures\":[\"non_performing_assets_loans: NonPerformingAssetsLoans\"]},{\"name\":\"risk_weighted_asset\",\"kind\":\"property\",\"summary\":\"Assets weighted by credit risk, the denominator of the regulatory capital ratios\",\"signatures\":[\"risk_weighted_asset: RiskWeightedAsset\"]},{\"name\":\"tier_1_capital_ratio\",\"kind\":\"property\",\"summary\":\"Tier 1 capital divided by risk weighted assets\",\"signatures\":[\"tier_1_capital_ratio: Tier1CapitalRatio\"]},{\"name\":\"tier_1_capital\",\"kind\":\"property\",\"summary\":\"Tier 1 capital: common equity, qualifying preferred equity and retained earnings\",\"signatures\":[\"tier_1_capital: Tier1Capital\"]},{\"name\":\"tier_1_leverage_ratio\",\"kind\":\"property\",\"summary\":\"Tier 1 capital divided by average total consolidated assets\",\"signatures\":[\"tier_1_leverage_ratio: Tier1LeverageRatio\"]},{\"name\":\"tier_2_capital_ratio\",\"kind\":\"property\",\"summary\":\"Tier 2 capital divided by risk weighted assets\",\"signatures\":[\"tier_2_capital_ratio: Tier2CapitalRatio\"]},{\"name\":\"tier_2_capital\",\"kind\":\"property\",\"summary\":\"Tier 2 capital: subordinated debt, cumulative preferred stock and loan loss allowances\",\"signatures\":[\"tier_2_capital: Tier2Capital\"]},{\"name\":\"total_capital\",\"kind\":\"property\",\"summary\":\"The sum of tier 1 and tier 2 capital, in currency rather than as a ratio\",\"signatures\":[\"total_capital: TotalCapital\"]},{\"name\":\"adjusted_basic_net_asset_value\",\"kind\":\"property\",\"summary\":\"Net asset value adjusted per the reporting standard, on a basic share basis\",\"signatures\":[\"adjusted_basic_net_asset_value: AdjustedBasicNetAssetValue\"]},{\"name\":\"adjusted_diluted_net_asset_value\",\"kind\":\"property\",\"summary\":\"Net asset value adjusted per the reporting standard, on a diluted share basis\",\"signatures\":[\"adjusted_diluted_net_asset_value: AdjustedDilutedNetAssetValue\"]},{\"name\":\"reported_basic_adjusted_fund_from_operations\",\"kind\":\"property\",\"summary\":\"Adjusted funds from operations as reported, on a basic share basis\",\"signatures\":[\"reported_basic_adjusted_fund_from_operations: ReportedBasicAdjustedFundFromOperations\"]},{\"name\":\"reported_diluted_adjusted_fund_from_operations\",\"kind\":\"property\",\"summary\":\"Adjusted funds from operations as reported, on a diluted share basis\",\"signatures\":[\"reported_diluted_adjusted_fund_from_operations: ReportedDilutedAdjustedFundFromOperations\"]},{\"name\":\"reported_diluted_fund_from_operations\",\"kind\":\"property\",\"summary\":\"Funds from operations as reported, on a diluted share basis\",\"signatures\":[\"reported_diluted_fund_from_operations: ReportedDilutedFundFromOperations\"]},{\"name\":\"adjusted_basic_net_asset_value_per_share\",\"kind\":\"property\",\"summary\":\"Adjusted net asset value per basic share\",\"signatures\":[\"adjusted_basic_net_asset_value_per_share: AdjustedBasicNetAssetValuePerShare\"]},{\"name\":\"adjusted_diluted_net_asset_value_per_share\",\"kind\":\"property\",\"summary\":\"Adjusted net asset value per diluted share\",\"signatures\":[\"adjusted_diluted_net_asset_value_per_share: AdjustedDilutedNetAssetValuePerShare\"]},{\"name\":\"reported_basic_adjusted_fund_from_operations_per_share\",\"kind\":\"property\",\"summary\":\"Adjusted funds from operations per basic share, as reported\",\"signatures\":[\"reported_basic_adjusted_fund_from_operations_per_share: ReportedBasicAdjustedFundFromOperationsPerShare\"]},{\"name\":\"reported_basic_fund_from_operations_per_share\",\"kind\":\"property\",\"summary\":\"Funds from operations per basic share, as reported\",\"signatures\":[\"reported_basic_fund_from_operations_per_share: ReportedBasicFundFromOperationsPerShare\"]},{\"name\":\"reported_diluted_adjusted_fund_from_operations_per_share\",\"kind\":\"property\",\"summary\":\"Adjusted funds from operations per diluted share, as reported\",\"signatures\":[\"reported_diluted_adjusted_fund_from_operations_per_share: ReportedDilutedAdjustedFundFromOperationsPerShare\"]},{\"name\":\"reported_diluted_fund_from_operations_per_share\",\"kind\":\"property\",\"summary\":\"Funds from operations per diluted share, as reported\",\"signatures\":[\"reported_diluted_fund_from_operations_per_share: ReportedDilutedFundFromOperationsPerShare\"]},{\"name\":\"clone\",\"kind\":\"method\",\"summary\":\"Clones this instance\",\"signatures\":[\"clone(time_provider: ITimeProvider) -> FundamentalTimeDependentProperty\"]}]}]}"
+          }
+        ],
+        "structuredContent": {
+          "results": [
+            {
+              "name": "FinancialStatements",
+              "kind": "class",
+              "summary": "Definition of the FinancialStatements class",
+              "bases": [
+                "FundamentalTimeDependentProperty"
+              ],
+              "overloads": [
+                {
+                  "description": "Creates a new instance for the given time and security",
+                  "signatures": [
+                    "(time_provider: ITimeProvider, security_identifier: SecurityIdentifier)"
+                  ]
+                }
+              ],
+              "members": [
+                {
+                  "name": "period_ending_date",
+                  "kind": "property",
+                  "summary": "The period ending date of the financial statements, dated by the filing the balance sheet, income statement and cash flow statement were reported in. Each statement also carries its own date: BalanceSheet.PeriodEndingDate, IncomeStatement.PeriodEndingDate and CashFlowStatement.PeriodEndingDate.",
+                  "signatures": [
+                    "period_ending_date: FinancialStatementsPeriodEndingDate"
+                  ]
+                },
+                {
+                  "name": "file_date",
+                  "kind": "property",
+                  "summary": "Specific date on which a company released its filing to the public.",
+                  "signatures": [
+                    "file_date: FinancialStatementsFileDate"
+                  ]
+                },
+                {
+                  "name": "accession_number",
+                  "kind": "property",
+                  "summary": "The accession number is a unique number that EDGAR assigns to each submission as the submission is received.",
+                  "signatures": [
+                    "accession_number: FinancialStatementsAccessionNumber"
+                  ]
+                },
+                {
+                  "name": "form_type",
+                  "kind": "property",
+                  "summary": "The type of filing of the report: for instance, 10-K (annual report) or 10-Q (quarterly report).",
+                  "signatures": [
+                    "form_type: FinancialStatementsFormType"
+                  ]
+                },
+                {
+                  "name": "period_auditor",
+                  "kind": "property",
+                  "summary": "The name of the auditor that performed the financial statement audit for the given period.",
+                  "signatures": [
+                    "period_auditor: PeriodAuditor"
+                  ]
+                },
+                {
+                  "name": "auditor_report_status",
+                  "kind": "property",
+                  "summary": "Auditor opinion code will be one of the following for each annual period: Code Meaning UQ Unqualified Opinion UE Unqualified Opinion with Explanation QM Qualified - Due to change in accounting method QL Qualified - Due to litigation OT Qualified Opinion - Other AO Adverse Opinion DS Disclaim an o...",
+                  "signatures": [
+                    "auditor_report_status: AuditorReportStatus"
+                  ]
+                },
+                {
+                  "name": "inventory_valuation_method",
+                  "kind": "property",
+                  "summary": "Which method of inventory valuation was used - LIFO, FIFO, Average, Standard costs, Net realizable value, Others, LIFO and FIFO, FIFO and Average, FIFO and other, LIFO and Average, LIFO and other, Average and other, 3 or more methods, None",
+                  "signatures": [
+                    "inventory_valuation_method: InventoryValuationMethod"
+                  ]
+                },
+                {
+                  "name": "number_of_share_holders",
+                  "kind": "property",
+                  "summary": "The number of shareholders on record",
+                  "signatures": [
+                    "number_of_share_holders: NumberOfShareHolders"
+                  ]
+                },
+                {
+                  "name": "period_type",
+                  "kind": "property",
+                  "summary": "The nature of the period covered by an individual set of financial results. The output can be: Quarter, Semi-annual or Annual. Assuming a 12-month fiscal year, quarter typically covers a three-month period, semi-annual a six-month period, and annual a twelve-month period. Annual could cover resul...",
+                  "signatures": [
+                    "period_type: FinancialStatementsPeriodType"
+                  ]
+                },
+                {
+                  "name": "total_risk_based_capital",
+                  "kind": "property",
+                  "summary": "The total capital ratio: total regulatory capital, Tier 1 plus Tier 2, divided by risk weighted assets.",
+                  "signatures": [
+                    "total_risk_based_capital: TotalRiskBasedCapital"
+                  ]
+                },
+                {
+                  "name": "income_statement",
+                  "kind": "property",
+                  "summary": "The instance of the IncomeStatement class",
+                  "signatures": [
+                    "income_statement: IncomeStatement"
+                  ]
+                },
+                {
+                  "name": "balance_sheet",
+                  "kind": "property",
+                  "summary": "The instance of the BalanceSheet class",
+                  "signatures": [
+                    "balance_sheet: BalanceSheet"
+                  ]
+                },
+                {
+                  "name": "cash_flow_statement",
+                  "kind": "property",
+                  "summary": "The instance of the CashFlowStatement class",
+                  "signatures": [
+                    "cash_flow_statement: CashFlowStatement"
+                  ]
+                },
+                {
+                  "name": "common_equity_tier_1_capital_ratio",
+                  "kind": "property",
+                  "summary": "Common equity tier 1 capital divided by risk weighted assets",
+                  "signatures": [
+                    "common_equity_tier_1_capital_ratio: CommonEquityTier1CapitalRatio"
+                  ]
+                },
+                {
+                  "name": "common_equity_tier_1_capital",
+                  "kind": "property",
+                  "summary": "Common equity tier 1 capital, the highest quality regulatory capital",
+                  "signatures": [
+                    "common_equity_tier_1_capital: CommonEquityTier1Capital"
+                  ]
+                },
+                {
+                  "name": "liquidity_coverage_ratio",
+                  "kind": "property",
+                  "summary": "High quality liquid assets divided by projected net cash outflows over thirty days",
+                  "signatures": [
+                    "liquidity_coverage_ratio: LiquidityCoverageRatio"
+                  ]
+                },
+                {
+                  "name": "net_interest_margin",
+                  "kind": "property",
+                  "summary": "Net interest income divided by average earning assets",
+                  "signatures": [
+                    "net_interest_margin: NetInterestMargin"
+                  ]
+                },
+                {
+                  "name": "net_interest_spread",
+                  "kind": "property",
+                  "summary": "The difference between the yield on earning assets and the rate paid on funding",
+                  "signatures": [
+                    "net_interest_spread: NetInterestSpread"
+                  ]
+                },
+                {
+                  "name": "non_performing_assets_loans",
+                  "kind": "property",
+                  "summary": "Loans on which the borrower is not making interest or principal payments as scheduled",
+                  "signatures": [
+                    "non_performing_assets_loans: NonPerformingAssetsLoans"
+                  ]
+                },
+                {
+                  "name": "risk_weighted_asset",
+                  "kind": "property",
+                  "summary": "Assets weighted by credit risk, the denominator of the regulatory capital ratios",
+                  "signatures": [
+                    "risk_weighted_asset: RiskWeightedAsset"
+                  ]
+                },
+                {
+                  "name": "tier_1_capital_ratio",
+                  "kind": "property",
+                  "summary": "Tier 1 capital divided by risk weighted assets",
+                  "signatures": [
+                    "tier_1_capital_ratio: Tier1CapitalRatio"
+                  ]
+                },
+                {
+                  "name": "tier_1_capital",
+                  "kind": "property",
+                  "summary": "Tier 1 capital: common equity, qualifying preferred equity and retained earnings",
+                  "signatures": [
+                    "tier_1_capital: Tier1Capital"
+                  ]
+                },
+                {
+                  "name": "tier_1_leverage_ratio",
+                  "kind": "property",
+                  "summary": "Tier 1 capital divided by average total consolidated assets",
+                  "signatures": [
+                    "tier_1_leverage_ratio: Tier1LeverageRatio"
+                  ]
+                },
+                {
+                  "name": "tier_2_capital_ratio",
+                  "kind": "property",
+                  "summary": "Tier 2 capital divided by risk weighted assets",
+                  "signatures": [
+                    "tier_2_capital_ratio: Tier2CapitalRatio"
+                  ]
+                },
+                {
+                  "name": "tier_2_capital",
+                  "kind": "property",
+                  "summary": "Tier 2 capital: subordinated debt, cumulative preferred stock and loan loss allowances",
+                  "signatures": [
+                    "tier_2_capital: Tier2Capital"
+                  ]
+                },
+                {
+                  "name": "total_capital",
+                  "kind": "property",
+                  "summary": "The sum of tier 1 and tier 2 capital, in currency rather than as a ratio",
+                  "signatures": [
+                    "total_capital: TotalCapital"
+                  ]
+                },
+                {
+                  "name": "adjusted_basic_net_asset_value",
+                  "kind": "property",
+                  "summary": "Net asset value adjusted per the reporting standard, on a basic share basis",
+                  "signatures": [
+                    "adjusted_basic_net_asset_value: AdjustedBasicNetAssetValue"
+                  ]
+                },
+                {
+                  "name": "adjusted_diluted_net_asset_value",
+                  "kind": "property",
+                  "summary": "Net asset value adjusted per the reporting standard, on a diluted share basis",
+                  "signatures": [
+                    "adjusted_diluted_net_asset_value: AdjustedDilutedNetAssetValue"
+                  ]
+                },
+                {
+                  "name": "reported_basic_adjusted_fund_from_operations",
+                  "kind": "property",
+                  "summary": "Adjusted funds from operations as reported, on a basic share basis",
+                  "signatures": [
+                    "reported_basic_adjusted_fund_from_operations: ReportedBasicAdjustedFundFromOperations"
+                  ]
+                },
+                {
+                  "name": "reported_diluted_adjusted_fund_from_operations",
+                  "kind": "property",
+                  "summary": "Adjusted funds from operations as reported, on a diluted share basis",
+                  "signatures": [
+                    "reported_diluted_adjusted_fund_from_operations: ReportedDilutedAdjustedFundFromOperations"
+                  ]
+                },
+                {
+                  "name": "reported_diluted_fund_from_operations",
+                  "kind": "property",
+                  "summary": "Funds from operations as reported, on a diluted share basis",
+                  "signatures": [
+                    "reported_diluted_fund_from_operations: ReportedDilutedFundFromOperations"
+                  ]
+                },
+                {
+                  "name": "adjusted_basic_net_asset_value_per_share",
+                  "kind": "property",
+                  "summary": "Adjusted net asset value per basic share",
+                  "signatures": [
+                    "adjusted_basic_net_asset_value_per_share: AdjustedBasicNetAssetValuePerShare"
+                  ]
+                },
+                {
+                  "name": "adjusted_diluted_net_asset_value_per_share",
+                  "kind": "property",
+                  "summary": "Adjusted net asset value per diluted share",
+                  "signatures": [
+                    "adjusted_diluted_net_asset_value_per_share: AdjustedDilutedNetAssetValuePerShare"
+                  ]
+                },
+                {
+                  "name": "reported_basic_adjusted_fund_from_operations_per_share",
+                  "kind": "property",
+                  "summary": "Adjusted funds from operations per basic share, as reported",
+                  "signatures": [
+                    "reported_basic_adjusted_fund_from_operations_per_share: ReportedBasicAdjustedFundFromOperationsPerShare"
+                  ]
+                },
+                {
+                  "name": "reported_basic_fund_from_operations_per_share",
+                  "kind": "property",
+                  "summary": "Funds from operations per basic share, as reported",
+                  "signatures": [
+                    "reported_basic_fund_from_operations_per_share: ReportedBasicFundFromOperationsPerShare"
+                  ]
+                },
+                {
+                  "name": "reported_diluted_adjusted_fund_from_operations_per_share",
+                  "kind": "property",
+                  "summary": "Adjusted funds from operations per diluted share, as reported",
+                  "signatures": [
+                    "reported_diluted_adjusted_fund_from_operations_per_share: ReportedDilutedAdjustedFundFromOperationsPerShare"
+                  ]
+                },
+                {
+                  "name": "reported_diluted_fund_from_operations_per_share",
+                  "kind": "property",
+                  "summary": "Funds from operations per diluted share, as reported",
+                  "signatures": [
+                    "reported_diluted_fund_from_operations_per_share: ReportedDilutedFundFromOperationsPerShare"
+                  ]
+                },
+                {
+                  "name": "clone",
+                  "kind": "method",
+                  "summary": "Clones this instance",
+                  "signatures": [
+                    "clone(time_provider: ITimeProvider) -> FundamentalTimeDependentProperty"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "isError": false
+      }
+    }
+  ],
+  "warning": "API presence and descriptions do not certify historical values, currency denomination, period coverage or vendor timing"
+}
